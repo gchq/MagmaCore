@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC "-//Checkstyle//DTD Suppressions 1.2//EN" "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+  <suppress checks="Indentation|HiddenField" files="\.java" />
+  <suppress checks="MethodLength|LineLength" files="ExampleDataObjects.java" />
+  <!-- Javadoc Suppressions -->
+  <suppress checks="SummaryJavadoc|NonEmptyAtclauseDescription" files="\.java" />
+</suppressions>
