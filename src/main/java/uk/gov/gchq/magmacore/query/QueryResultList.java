@@ -17,20 +17,19 @@ package uk.gov.gchq.magmacore.query;
 import java.util.List;
 
 /**
- * 
+ * A list of {@link QueryResult}s returned from a SPARQL query.
  */
 public class QueryResultList {
 
-    /** */
     private List<String> varNames;
 
-    /** */
     private List<QueryResult> queryResults;
 
     /**
+     * Construct a new QueryResultList from a list of QueryResults and variable names.
      *
-     * @param varNames
-     * @param queryResults
+     * @param varNames Variable names used in the results list.
+     * @param queryResults Results of the query.
      */
     public QueryResultList(final List<String> varNames, final List<QueryResult> queryResults) {
         this.varNames = varNames;
@@ -38,40 +37,45 @@ public class QueryResultList {
     }
 
     /**
+     * Get the list of variable names from the results list.
      *
-     * @return
+     * @return The list of variable names.
      */
     public final List<String> getVarNames() {
         return varNames;
     }
 
     /**
+     * Set the list of variable names.
      *
-     * @param varNames
+     * @param varNames The list of variable names used in the results list.
      */
     public final void setVarNames(final List<String> varNames) {
         this.varNames = varNames;
     }
 
     /**
+     * Get the list of QueryResults.
      *
-     * @return
+     * @return The list of QueryResults.
      */
     public final List<QueryResult> getQueryResults() {
         return queryResults;
     }
 
     /**
+     * Set the list of QueryResults found by the query.
      *
-     * @param queryResults
+     * @param queryResults The list of QueryResults
      */
     public final void setQueryResults(final List<QueryResult> queryResults) {
         this.queryResults = queryResults;
     }
 
     /**
+     * Get the total number of QueryResults in the results list.
      *
-     * @return
+     * @return Size of the QueryResultsList.
      */
     public final int size() {
         return queryResults.size();

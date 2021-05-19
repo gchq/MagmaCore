@@ -12,23 +12,7 @@
  * the License.
  */
 
-package uk.gov.gchq.magmacore;
-
-import uk.gov.gchq.magmacore.demo.FusekiService;
-
 /**
- * Application entry point.
+ * Exceptions arising from Magma Core code.
  */
-public final class MagmaCore {
-
-    private MagmaCore() {}
-
-    /**
-     * Executes FusekiService or selected database example.
-     *
-     * @param args Application arguments.
-     */
-    public static void main(final String[] args) {
-        new FusekiService().run();
-    }
-}
+package uk.gov.gchq.magmacore.exception;

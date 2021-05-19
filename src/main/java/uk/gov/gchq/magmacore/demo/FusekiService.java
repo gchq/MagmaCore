@@ -21,12 +21,26 @@ import org.apache.jena.query.Dataset;
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
 
 /**
- * 
+ * Example use-case scenario for hosting {@link MagmaCoreJenaDatabase} on a Fuseki server.
+ *
+ * <p>
+ * The FusekiService class can be used to host in-memory or persistent Magma Core Jena Datasets over
+ * HTTP using a Fuseki server.
+ * </p>
+ * <p>
+ * By default, the Fuseki server is configured to run on localhost:3330, however this can be change
+ * by setting the {@code port(int)}.
+ * </p>
+ * <p>
+ * The Fuseki server can host either in-memory Datasets, or connected TDB stores. Datasets can be
+ * added to the server using the {@code add(name, dataset)} method. Datasets are hosted at
+ * {@code localhost:<port>/<name>}.
+ * </p>
  */
 public final class FusekiService {
 
     /**
-     * 
+     * Run the example Fuseki server.
      */
     public void run() {
         // Create/connect to persistent TDB.
@@ -45,11 +59,10 @@ public final class FusekiService {
         } else {
             tdb.abort();
         }
-
         // Build and start Fuseki server.
         final FusekiServer server = FusekiServer
                 .create()
-                .port(3332)
+                .port(3330)
                 .add("/tdb", tdb.getDataset(), true).build();
         FusekiLogging.setLogging();
         server.start();

@@ -25,31 +25,33 @@ import uk.gov.gchq.hqdm.model.PossibleWorld;
 import uk.gov.gchq.hqdm.model.impl.PointInTimeImpl;
 
 /**
- * 
+ * Utilities for building and generating HQDM objects.
  */
 public final class DataObjectUtils {
 
-    /** */
+    /** IriBase for Reference Data Library. */
     public static final IriBase REF_BASE =
             new IriBase("rdl", "http://www.semanticweb.org/magma-core/ontologies/rdl#");
 
-    /** */
+    /** IriBase for User data. */
     public static final IriBase USER_BASE =
             new IriBase("user", "http://www.semanticweb.org/magma-core/ontologies/user#");
 
     private DataObjectUtils() {}
 
     /**
+     * Create a new random UUID to assign to an object.
      *
-     * @return
+     * @return A Random UUID.
      */
     public static String uid() {
         return UUID.randomUUID().toString();
     }
 
     /**
+     * Get the current date-time in the ISO-8601 calendar system.
      *
-     * @return
+     * @return Local date-time in the format {@code 2007-12-03T10:15:30.123456789}.
      */
     public static String timeNow() {
         final LocalDateTime now = LocalDateTime.now();
@@ -57,11 +59,12 @@ public final class DataObjectUtils {
     }
 
     /**
+     * Generate a new PointInTime.
      *
-     * @param eventTime
-     * @param pw
-     * @param baseIri
-     * @return
+     * @param eventTime Entity name of the point in time.
+     * @param pw The PossibleWorld the PointInTime is a part of.
+     * @param baseIri IriBase of the PointInTime.
+     * @return The generated PointInTime.
      */
     public static PointInTime event(final String eventTime, final PossibleWorld pw,
             final IriBase baseIri) {

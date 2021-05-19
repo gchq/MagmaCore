@@ -23,43 +23,51 @@ import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 
 /**
- *
+ * A single result returned from a SPARQL query.
  */
 public class QueryResult {
 
-    /** */
     private final Map<String, RDFNode> map = new HashMap<>();
 
     /**
+     * Get either the subject (s), object (o), or predicate (p) of the result triple.
      *
-     * @param varName
-     * @return
+     * @param varName Name of variable within query result to get.
+     * @return Corresponding RDFNode.
      */
     public final RDFNode get(final String varName) {
         return map.get(varName);
     }
 
     /**
-     * Method to support JSON Serialisation.
+     * Set either the subject (s), object (o), or predicate (p) of the result triple.
      *
-     * @return
-     */
-    @JsonProperty("binding")
-    public final Map<String, String> getMap() {
-        final HashMap<String, String> result = new HashMap<>();
-        map.keySet().forEach(key -> result.put(key, getValue(map.get(key))));
-        return result;
-    }
-
-    /**
-     *
-     * @param varName
-     * @param node
+     * @param varName Name of variable within the query result to set.
+     * @param node RDF node to set.
      */
     public final void set(final String varName, final RDFNode node) {
         map.put(varName, node);
     }
 
+    /**
+     * Method to support JSON Serialisation.
+     *
+     * @return Map of variable names and IRIs in the QueryResultsList.
+     */
+    @JsonProperty("binding")
+    public final Map<String, String> getMap() {
+        final HashMap<String, String> results = new HashMap<>();
+        map.keySet().forEach(key -> results.put(key, getValue(map.get(key))));
+        return results;
+    }
+
+    /**
+     * Get the value of an RDF node. This could either be the URI of the node, string literal, or
+     * the local name of the property within this namespace.
+     *
+     * @param node Node to get the value of.
+     * @return Value of the RDF node.
+     */
     private static String getValue(final RDFNode node) {
         if (node instanceof Literal) {
             return node.asLiteral().getString();

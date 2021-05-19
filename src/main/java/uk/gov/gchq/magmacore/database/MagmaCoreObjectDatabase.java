@@ -25,11 +25,10 @@ import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.model.Thing;
 
 /**
- * In-memory HQDM object database.
+ * In-memory collection of HQDM objects.
  */
 public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
 
-    /** */
     private final Map<IRI, Thing> objects;
 
     /**
@@ -84,8 +83,9 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
-    public List<Thing> findByPredicateIri(final IRI predicateIri, final IRI value) {
-        return objects.values().stream().filter(object -> object.hasThisValue(predicateIri, value))
+    public List<Thing> findByPredicateIri(final IRI predicateIri, final IRI objectIri) {
+        return objects.values().stream()
+                .filter(object -> object.hasThisValue(predicateIri, objectIri))
                 .collect(Collectors.toList());
     }
 

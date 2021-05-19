@@ -12,23 +12,8 @@
  * the License.
  */
 
-package uk.gov.gchq.magmacore;
-
-import uk.gov.gchq.magmacore.demo.FusekiService;
-
 /**
- * Application entry point.
+ * Magma Core is a lightweight set of Java classes to enable HQDM data objects to be created and
+ * used as RDF Linked Data through Apache Jena.
  */
-public final class MagmaCore {
-
-    private MagmaCore() {}
-
-    /**
-     * Executes FusekiService or selected database example.
-     *
-     * @param args Application arguments.
-     */
-    public static void main(final String[] args) {
-        new FusekiService().run();
-    }
-}
+package uk.gov.gchq.magmacore;

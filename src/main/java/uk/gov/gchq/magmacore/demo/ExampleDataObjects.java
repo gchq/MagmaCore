@@ -64,15 +64,16 @@ import uk.gov.gchq.hqdm.model.impl.StateOfFunctionalSystemImpl;
 import uk.gov.gchq.hqdm.model.impl.StateOfPersonImpl;
 
 /**
- *
+ * Constructs a set of example HQDM objects for demonstrating Magma Core.
  */
 public final class ExampleDataObjects {
 
     private ExampleDataObjects() {}
 
     /**
+     * Creates and populates a Jena dataset with the example data objects.
      *
-     * @return
+     * @return The populated Jena dataset.
      */
     public static final Dataset buildDataset() {
         final Model model = ModelFactory.createDefaultModel();
@@ -88,11 +89,12 @@ public final class ExampleDataObjects {
     }
 
     /**
+     * Generates a set of example data objects using HQDM.
      *
-     * @return
+     * @return A list of HQDM objects.
      */
     public static List<Thing> createDataObjects() {
-        final List<Thing> objects = new ArrayList<Thing>();
+        final List<Thing> objects = new ArrayList<>();
 
         // RDL CLASSES - Can be created, stored and queried separately.
 

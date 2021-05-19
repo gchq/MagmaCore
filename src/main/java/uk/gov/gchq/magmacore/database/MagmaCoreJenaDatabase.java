@@ -53,12 +53,11 @@ import uk.gov.gchq.magmacore.query.QueryResult;
 import uk.gov.gchq.magmacore.query.QueryResultList;
 
 /**
- * Apache Jena triplestore object database store HQDM objects as RDF triples either as an in-memory
- * dataset or persistant TDB.
+ * Apache Jena triplestore to store HQDM objects as RDF triples either as an in-memory Jena dataset
+ * or persistent TDB triplestore.
  */
 public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
 
-    /** */
     private final Dataset dataset;
 
     /**
@@ -71,14 +70,14 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     /**
      * Instantiate a new in-memory Magma Core Jena database using an existing dataset.
      *
-     * @param dataset
+     * @param dataset Existing in-memory Jena dataset.
      */
     public MagmaCoreJenaDatabase(final Dataset dataset) {
         this.dataset = dataset;
     }
 
     /**
-     * Create/connect a persistent Jena dataset using TDB2.
+     * Create/connect a persistent Jena dataset using Apache TDB2.
      *
      * @param location Path of persistent TDB.
      */
@@ -87,7 +86,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     }
 
     /**
-     * Return Jena dataset.
+     * Get Jena dataset.
      *
      * @return The Jena dataset.
      */
@@ -192,9 +191,10 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
-    public List<Thing> findByPredicateIri(final IRI iri, final IRI object) {
-        final String query = "SELECT ?s ?p ?o WHERE {?s ?p ?o. ?s <" + iri.toString() + "> <"
-                + object.toString() + ">.}";
+    public List<Thing> findByPredicateIri(final IRI predicateIri, final IRI objectIri) {
+        final String query =
+                "SELECT ?s ?p ?o WHERE {?s ?p ?o. ?s <" + predicateIri.toString() + "> <"
+                        + objectIri.toString() + ">.}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -262,14 +262,13 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     }
 
     /**
-     * Perform SPARQL query and construct a list of HQDM objects from the resulting RDF triples.
+     * Execute a SPARQL query and construct a list of HQDM objects from the resulting RDF triples.
      *
      * @param queryExec SPARQL query to execute.
      * @return Results of the query.
      */
-    protected final QueryResultList getQueryResultList(final QueryExecution queryExec) {
+    private final QueryResultList getQueryResultList(final QueryExecution queryExec) {
         final ResultSet resultSet = queryExec.execSelect();
-        // Extract results and return them
         final List<QueryResult> queryResults = new ArrayList<>();
         final QueryResultList queryResultList =
                 new QueryResultList(resultSet.getResultVars(), queryResults);
@@ -334,8 +333,8 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     /**
      * Dump the contents of the collection as text in specified RDF language.
      *
+     * @param out Output stream to dump to.
      * @param language RDF language syntax to output data as.
-     * @return
      */
     public final void dump(final PrintStream out, final Lang language) {
         begin();

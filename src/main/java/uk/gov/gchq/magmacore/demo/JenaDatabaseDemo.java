@@ -15,9 +15,9 @@
 package uk.gov.gchq.magmacore.demo;
 
 import static uk.gov.gchq.hqdm.iri.HQDM.ENTITY_NAME;
+import static uk.gov.gchq.hqdm.iri.HQDM.HQDM_PREFIX;
 import static uk.gov.gchq.magmacore.util.DataObjectUtils.REF_BASE;
 import static uk.gov.gchq.magmacore.util.DataObjectUtils.USER_BASE;
-import static uk.gov.gchq.magmacore.util.SparqlUtils.HQDM_BASE;
 import static uk.gov.gchq.magmacore.util.SparqlUtils.RDFS;
 
 import java.util.List;
@@ -26,17 +26,34 @@ import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
 
 /**
- * 
+ * Example use-case scenario for {@link MagmaCoreJenaDatabase}.
+ *
+ * <p>
+ * This example demo creates an in-memory {@link MagmaCoreJenaDatabase} populated with the
+ * {@link ExampleDataObjects} as RDF triples.
+ * </p>
+ * <p>
+ * The Jena dataset is transactional, so {@link MagmaCoreJenaDatabase#begin()} must be called before
+ * any operations can be performed on the dataset, including queries. Once complete,
+ * {@link MagmaCoreJenaDatabase#commit()} or {@link MagmaCoreJenaDatabase#abort()} should be called
+ * to finish a transaction.
+ * </p>
+ * <p>
+ * {@code PersonB1_Bob} can be queried for using the
+ * {@link MagmaCoreJenaDatabase#findByPredicateIriAndStringValue(uk.gov.gchq.hqdm.iri.IRI, String)}
+ * method. The resulting object(s) of this query are output to the command-line as RDF triples.
+ * </p>
+ *
  */
 public final class JenaDatabaseDemo {
 
     /**
-     * 
+     * Run the in-memory Jena database example.
      */
     public void run() {
         // Instantiate new in-memory Jena database.
         final MagmaCoreJenaDatabase jenaDatabase = new MagmaCoreJenaDatabase();
-        jenaDatabase.register(HQDM_BASE);
+        jenaDatabase.register(HQDM_PREFIX);
         jenaDatabase.register(RDFS);
         jenaDatabase.register(REF_BASE);
         jenaDatabase.register(USER_BASE);

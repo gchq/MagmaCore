@@ -22,12 +22,22 @@ import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.database.MagmaCoreObjectDatabase;
 
 /**
- * 
+ * Example use-case scenario for {@link MagmaCoreObjectDatabase}.
+ *
+ * <p>
+ * This example demo creates an in-memory {@link MagmaCoreObjectDatabase} populated with the
+ * {@link ExampleDataObjects} as HQDM Java objects.
+ * </p>
+ * <p>
+ * {@code PersonB1_Bob} can be queried for using the
+ * {@link MagmaCoreObjectDatabase#findByPredicateIriAndStringValue(uk.gov.gchq.hqdm.iri.IRI, String)}
+ * method. The resulting object(s) of this query are output to the command-line as RDF triples.
+ * </p>
  */
 public final class ObjectDatabaseDemo {
 
     /**
-     * 
+     * Run the in-memory Object Database example.
      */
     public void run() {
         final MagmaCoreObjectDatabase objectDatabase = new MagmaCoreObjectDatabase();

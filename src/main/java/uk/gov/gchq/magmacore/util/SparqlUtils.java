@@ -18,14 +18,11 @@ import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.iri.IriBase;
 
 /**
- * 
+ * Utilities for building and executing SPARQL queries.
  */
 public final class SparqlUtils {
 
     private SparqlUtils() {}
-
-    public static final IriBase HQDM_BASE = new IriBase("hqdm",
-            "http://www.semanticweb.org/magma-core/ontologies/hqdm#");
 
     public static final IriBase RDFS = new IriBase("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
     public static final IRI RDFS_LITERAL = new IRI(RDFS, "Literal");
