@@ -101,7 +101,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * @param base IRI prefix to register.
      */
     public void register(final IriBase base) {
-        PrintUtil.registerPrefix(base.getPrefix(), base.getValue());
+        PrintUtil.registerPrefix(base.getPrefix(), base.getNamespace());
     }
 
     /**

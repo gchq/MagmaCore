@@ -14,6 +14,7 @@
 
 package uk.gov.gchq.magmacore.demo;
 
+import static uk.gov.gchq.hqdm.iri.HQDM.ENTITY_NAME;
 import static uk.gov.gchq.magmacore.util.DataObjectUtils.REF_BASE;
 import static uk.gov.gchq.magmacore.util.DataObjectUtils.USER_BASE;
 import static uk.gov.gchq.magmacore.util.DataObjectUtils.event;
@@ -28,7 +29,6 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
 
-import uk.gov.gchq.hqdm.iri.HQDM;
 import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.model.Association;
 import uk.gov.gchq.hqdm.model.ClassOfStateOfFunctionalSystem;
@@ -103,21 +103,21 @@ public final class ExampleDataObjects {
         final uk.gov.gchq.hqdm.model.Class viewable =
                 new uk.gov.gchq.hqdm.model.impl.ClassImpl.Builder(
                         new IRI(REF_BASE, uid())).build();
-        viewable.addStringValue(HQDM.ENTITY_NAME, "VIEWABLE");
+        viewable.addStringValue(ENTITY_NAME, "VIEWABLE");
         objects.add(viewable);
 
         // A sub-set of the Viewable class.
         final uk.gov.gchq.hqdm.model.Class viewableObject =
                 new uk.gov.gchq.hqdm.model.impl.ClassImpl.Builder(
                         new IRI(REF_BASE, uid())).has_Superclass(viewable).build();
-        viewableObject.addStringValue(HQDM.ENTITY_NAME, "VIEWABLE_OBJECT");
+        viewableObject.addStringValue(ENTITY_NAME, "VIEWABLE_OBJECT");
         objects.add(viewableObject);
 
         // A sub-set of the Viewable Class for viewable Associations.
         final uk.gov.gchq.hqdm.model.Class viewableAssociation =
                 new uk.gov.gchq.hqdm.model.impl.ClassImpl.Builder(
                         new IRI(REF_BASE, uid())).has_Superclass(viewable).build();
-        viewableAssociation.addStringValue(HQDM.ENTITY_NAME, "VIEWABLE_ASSOCIATION");
+        viewableAssociation.addStringValue(ENTITY_NAME, "VIEWABLE_ASSOCIATION");
         objects.add(viewableAssociation);
 
         // An system is composed of components so this is the class of components that a whole-life
@@ -125,7 +125,7 @@ public final class ExampleDataObjects {
         final KindOfBiologicalSystemComponent kindOfBiologicalSystemHumanComponent =
                 new KindOfBiologicalSystemComponentImpl.Builder(
                         new IRI(REF_BASE, uid())).build();
-        kindOfBiologicalSystemHumanComponent.addStringValue(HQDM.ENTITY_NAME,
+        kindOfBiologicalSystemHumanComponent.addStringValue(ENTITY_NAME,
                 "KIND_OF_BIOLOGICAL_SYSTEM_HUMAN_COMPONENT");
         objects.add(kindOfBiologicalSystemHumanComponent);
 
@@ -133,20 +133,20 @@ public final class ExampleDataObjects {
         final KindOfPerson kindOfPerson = new KindOfPersonImpl.Builder(new IRI(REF_BASE, uid()))
                 .member__Of(viewableObject)
                 .has_Component_By_Class_M(kindOfBiologicalSystemHumanComponent).build();
-        kindOfPerson.addStringValue(HQDM.ENTITY_NAME, "KIND_OF_PERSON");
+        kindOfPerson.addStringValue(ENTITY_NAME, "KIND_OF_PERSON");
         objects.add(kindOfPerson);
 
         // A class of temporal part (state) of a (whole-life) person.
         final ClassOfStateOfPerson classOfStateOfPerson = new ClassOfStateOfPersonImpl.Builder(
                 new IRI(REF_BASE, uid())).member__Of(viewableObject).build();
-        classOfStateOfPerson.addStringValue(HQDM.ENTITY_NAME, "CLASS_OF_STATE_OF_PERSON");
+        classOfStateOfPerson.addStringValue(ENTITY_NAME, "CLASS_OF_STATE_OF_PERSON");
         objects.add(classOfStateOfPerson);
 
         // A class of whole-life system that is a Building.
         final KindOfFunctionalSystem kindOfFunctionalSystemBuilding =
                 new KindOfFunctionalSystemImpl(
                         new IRI(REF_BASE, uid()));
-        kindOfFunctionalSystemBuilding.addStringValue(HQDM.ENTITY_NAME,
+        kindOfFunctionalSystemBuilding.addStringValue(ENTITY_NAME,
                 "KIND_OF_FUNCTIONAL_SYSTEM_BUILDING");
         objects.add(kindOfFunctionalSystemBuilding);
 
@@ -155,7 +155,7 @@ public final class ExampleDataObjects {
         final KindOfFunctionalSystemComponent kindOfFunctionalSystemDomesticPropertyComponent =
                 new KindOfFunctionalSystemComponentImpl.Builder(
                         new IRI(REF_BASE, uid())).build();
-        kindOfFunctionalSystemDomesticPropertyComponent.addStringValue(HQDM.ENTITY_NAME,
+        kindOfFunctionalSystemDomesticPropertyComponent.addStringValue(ENTITY_NAME,
                 "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY_COMPONENT");
         objects.add(kindOfFunctionalSystemDomesticPropertyComponent);
 
@@ -168,7 +168,7 @@ public final class ExampleDataObjects {
                                 .has_Component_By_Class_M(
                                         kindOfFunctionalSystemDomesticPropertyComponent)
                                 .build();
-        kindOfFunctionalSystemDomesticProperty.addStringValue(HQDM.ENTITY_NAME,
+        kindOfFunctionalSystemDomesticProperty.addStringValue(ENTITY_NAME,
                 "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
         objects.add(kindOfFunctionalSystemDomesticProperty);
 
@@ -178,18 +178,18 @@ public final class ExampleDataObjects {
                         new IRI(REF_BASE, uid()))
                                 .member__Of(viewableObject)
                                 .build();
-        classOfStateOfFunctionalSystemDomesticProperty.addStringValue(HQDM.ENTITY_NAME,
+        classOfStateOfFunctionalSystemDomesticProperty.addStringValue(ENTITY_NAME,
                 "STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
         objects.add(classOfStateOfFunctionalSystemDomesticProperty);
 
         // The class of role that every member of class of person plays.
         final Role personRole = new RoleImpl.Builder(new IRI(REF_BASE, uid())).build();
-        personRole.addStringValue(HQDM.ENTITY_NAME, "NATURAL_MEMBER_OF_SOCIETY_ROLE");
+        personRole.addStringValue(ENTITY_NAME, "NATURAL_MEMBER_OF_SOCIETY_ROLE");
         objects.add(personRole);
 
         // The class of role that every member of class of domestic property plays.
         final Role domesticPropertyRole = new RoleImpl.Builder(new IRI(REF_BASE, uid())).build();
-        domesticPropertyRole.addStringValue(HQDM.ENTITY_NAME,
+        domesticPropertyRole.addStringValue(ENTITY_NAME,
                 "ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
         objects.add(domesticPropertyRole);
 
@@ -198,7 +198,7 @@ public final class ExampleDataObjects {
         // Would be good to add part_of_by_class_(occupantInPropertyKindOfAssociation) but can't
         // neatly do that in the class as it can only be added after
         // occupantInPropertyKindOfAssociation is created. This can be added later for completeness.
-        domesticOccupantInPropertyRole.addStringValue(HQDM.ENTITY_NAME,
+        domesticOccupantInPropertyRole.addStringValue(ENTITY_NAME,
                 "DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE");
         objects.add(domesticOccupantInPropertyRole);
 
@@ -208,7 +208,7 @@ public final class ExampleDataObjects {
         // Would be good to add part_of_by_class_(occupantInPropertyKindOfAssociation) but can't
         // neatly do that in the class as it can only be added after
         // occupantInPropertyKindOfAssociation is created. This can be added later for completeness.
-        occupierOfPropertyRole.addStringValue(HQDM.ENTITY_NAME,
+        occupierOfPropertyRole.addStringValue(ENTITY_NAME,
                 "OCCUPIER_LOCATED_IN_PROPERTY_ROLE");
         objects.add(occupierOfPropertyRole);
 
@@ -219,7 +219,7 @@ public final class ExampleDataObjects {
                                 .member__Of(viewableAssociation)
                                 .consists_Of_By_Class(domesticOccupantInPropertyRole)
                                 .consists_Of_By_Class(occupierOfPropertyRole).build();
-        occupantInPropertyKindOfAssociation.addStringValue(HQDM.ENTITY_NAME,
+        occupantInPropertyKindOfAssociation.addStringValue(ENTITY_NAME,
                 "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
 
         // STATES
@@ -228,7 +228,7 @@ public final class ExampleDataObjects {
         // commitments in HQDM. This is the least strict treatment, the creation of a single
         // possible world.
         final PossibleWorld possibleWorld = new PossibleWorldImpl(new IRI(USER_BASE, uid()));
-        possibleWorld.addStringValue(HQDM.ENTITY_NAME, "Example1_World");
+        possibleWorld.addStringValue(ENTITY_NAME, "Example1_World");
         objects.add(possibleWorld);
 
         // Person B Whole Life Object.
@@ -239,7 +239,7 @@ public final class ExampleDataObjects {
                 .part_Of_Possible_World_M(possibleWorld)
                 .beginning(e1)
                 .build();
-        personB1.addStringValue(HQDM.ENTITY_NAME, "PersonB1_Bob");
+        personB1.addStringValue(ENTITY_NAME, "PersonB1_Bob");
         objects.add(e1);
         objects.add(personB1);
 
@@ -311,7 +311,7 @@ public final class ExampleDataObjects {
                 .beginning(e2)
                 .ending(e3)
                 .build();
-        pPersonBs1.addStringValue(HQDM.ENTITY_NAME,
+        pPersonBs1.addStringValue(ENTITY_NAME,
                 "Note this is the state of person Bs1 that is participating the association");
         objects.add(pPersonBs1);
 
@@ -321,7 +321,7 @@ public final class ExampleDataObjects {
                 .temporal__Part_Of(houseBs1)
                 .beginning(e2)
                 .ending(e3).build();
-        pHouseBs1.addStringValue(HQDM.ENTITY_NAME,
+        pHouseBs1.addStringValue(ENTITY_NAME,
                 "Note this is the state of houseBs1 that is participating in the association");
         objects.add(pHouseBs1);
 
@@ -332,7 +332,7 @@ public final class ExampleDataObjects {
                 .beginning(e4)
                 .ending(e5)
                 .build();
-        pPersonBs2.addStringValue(HQDM.ENTITY_NAME,
+        pPersonBs2.addStringValue(ENTITY_NAME,
                 "Note this is the state of person Bs2 that is participating in the association");
         objects.add(pPersonBs2);
 
@@ -343,7 +343,7 @@ public final class ExampleDataObjects {
                 .beginning(e4)
                 .ending(e5)
                 .build();
-        pHouseBs2.addStringValue(HQDM.ENTITY_NAME,
+        pHouseBs2.addStringValue(ENTITY_NAME,
                 "Note this is the state of houseBs2 that is participating in the association");
         objects.add(pHouseBs2);
 
@@ -357,7 +357,7 @@ public final class ExampleDataObjects {
                         .ending(e3)
                         .build();
         // Abbreviated to allow a string to be displayed against this class of 'relationship'.
-        houseOccupantPresentState1.addStringValue(HQDM.ENTITY_NAME, "HouseOccupantPresent1");
+        houseOccupantPresentState1.addStringValue(ENTITY_NAME, "HouseOccupantPresent1");
         objects.add(houseOccupantPresentState1);
 
         final Association houseOccupantPresentState2 =
@@ -370,7 +370,7 @@ public final class ExampleDataObjects {
                         .ending(e5)
                         .build();
         // Abbreviated to allow a string to be displayed against this class of 'relationship'.
-        houseOccupantPresentState2.addStringValue(HQDM.ENTITY_NAME, "HouseOccupantPresent2");
+        houseOccupantPresentState2.addStringValue(ENTITY_NAME, "HouseOccupantPresent2");
         objects.add(houseOccupantPresentState2);
 
         return objects;

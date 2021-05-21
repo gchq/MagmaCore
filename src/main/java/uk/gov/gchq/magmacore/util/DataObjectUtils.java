@@ -31,11 +31,11 @@ public final class DataObjectUtils {
 
     /** IriBase for Reference Data Library. */
     public static final IriBase REF_BASE =
-            new IriBase("rdl", "http://www.semanticweb.org/magma-core/ontologies/rdl#");
+            new IriBase("rdl", "http://www.semanticweb.org/magma-core/rdl#");
 
     /** IriBase for User data. */
     public static final IriBase USER_BASE =
-            new IriBase("user", "http://www.semanticweb.org/magma-core/ontologies/user#");
+            new IriBase("user", "http://www.semanticweb.org/magma-core/user#");
 
     private DataObjectUtils() {}
 
