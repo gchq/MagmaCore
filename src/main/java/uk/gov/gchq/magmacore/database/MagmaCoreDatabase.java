@@ -65,9 +65,9 @@ public interface MagmaCoreDatabase {
     List<Thing> findByPredicateIri(IRI predicateIri, IRI objectIri);
 
     /**
-     * Find object(s) that have a specific predicate associated with them.
+     * Find object(s) that have a specific HQDM-defined predication.
      *
-     * @param predicateIri IRI of the predicate being queried.
+     * @param predicateIri IRI of the HQDM relationship type being queried.
      * @return The object(s).
      */
     List<Thing> findByPredicateIriOnly(HqdmIri predicateIri);
