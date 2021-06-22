@@ -94,7 +94,9 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
      */
     @Override
     public List<Thing> findByPredicateIriOnly(final HqdmIri predicateIri) {
-        throw new RuntimeException("findByPredicateIRIOnly not yet implemented.");
+        return objects.values().stream()
+                .filter(object -> object.hasValue(predicateIri))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -103,9 +105,7 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
     @Override
     public List<Thing> findByPredicateIriAndStringValue(final IRI predicateIri,
             final String value) {
-        return objects
-                .values()
-                .stream()
+        return objects.values().stream()
                 .filter(object -> object.hasThisStringValue(predicateIri, value))
                 .collect(Collectors.toList());
     }
@@ -116,8 +116,9 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
     @Override
     public List<Thing> findByPredicateIriAndStringCaseInsensitive(final IRI predicateIri,
             final String value) {
-        throw new RuntimeException(
-                "findByPredicateIRIAndStringCaseInsensitive not yet implemented.");
+        return objects.values().stream()
+                .filter(object -> object.hasThisStringValueIgnoreCase(predicateIri, value))
+                .collect(Collectors.toList());
     }
 
     /**
