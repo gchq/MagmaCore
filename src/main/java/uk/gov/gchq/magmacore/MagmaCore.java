@@ -15,6 +15,7 @@
 package uk.gov.gchq.magmacore;
 
 import uk.gov.gchq.magmacore.demo.FusekiService;
+import uk.gov.gchq.magmacore.demo.RemoteSparqlDatabaseDemo;
 
 /**
  * Application entry point.
@@ -24,11 +25,41 @@ public final class MagmaCore {
     private MagmaCore() {}
 
     /**
-     * Executes FusekiService or selected database example.
+     * Executes the selected database example.
      *
      * @param args Application arguments.
      */
     public static void main(final String[] args) {
-        new FusekiService().run();
+        if (args.length == 0) {
+            fuseki(true);
+        } else {
+          if (args[0].equals("fuseki")) {
+              fuseki(false);
+          } else if (args[0].equals("fuseki-populate")) {
+              fuseki(true);
+          } else if (args[0].equals("remote")) {
+              remoteSparqlDatabaseDemo(false);
+          } else if (args[0].equals("remote-populate")) {
+            remoteSparqlDatabaseDemo(true);
+          }
+        }
+    }
+
+    /**
+     * Executes the FusekiService.
+     *
+     * @param populate true if the dataset should be populated with example data
+     */
+    public static void fuseki(final boolean populate) {
+        new FusekiService().run(populate);
+    }
+
+    /**
+     * Executes the RemoteSparqlDatabaseDemo.
+     *
+     * @param populate true if the dataset should be populated with example data
+     */
+    public static void remoteSparqlDatabaseDemo(final boolean populate) {
+        new RemoteSparqlDatabaseDemo("http://localhost:3330/tdb").run(populate);
     }
 }

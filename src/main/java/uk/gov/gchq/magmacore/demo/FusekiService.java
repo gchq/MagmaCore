@@ -42,14 +42,14 @@ public final class FusekiService {
     /**
      * Run the example Fuseki server.
      */
-    public void run() {
+    public void run(final boolean populate) {
         // Create/connect to persistent TDB.
         final MagmaCoreJenaDatabase tdb = new MagmaCoreJenaDatabase("tdb");
 
         // If TDB is not already populated create set of example data objects to
         // store in TDB.
         tdb.begin();
-        if (tdb.getDataset().isEmpty()) {
+        if (tdb.getDataset().isEmpty() && populate) {
             // Build example data objects Dataset.
             final Dataset objects = ExampleDataObjects.buildDataset();
 
@@ -60,11 +60,11 @@ public final class FusekiService {
             tdb.abort();
         }
         // Build and start Fuseki server.
-        final FusekiServer server = FusekiServer
-                .create()
-                .port(3330)
-                .add("/tdb", tdb.getDataset(), true).build();
         FusekiLogging.setLogging();
-        server.start();
+        FusekiServer
+            .create()
+            .port(3330)
+            .add("/tdb", tdb.getDataset(), true)
+            .start();
     }
 }
