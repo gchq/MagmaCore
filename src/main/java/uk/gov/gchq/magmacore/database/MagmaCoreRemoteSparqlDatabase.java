@@ -27,7 +27,6 @@ import org.apache.jena.query.Dataset;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
-import org.apache.jena.query.TxnType;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.RDFNode;
@@ -76,14 +75,9 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      * @param dataset the Dataset to be loaded into the database
      */
     public MagmaCoreRemoteSparqlDatabase(final String serviceUrl, final Dataset dataset) {
-      connection = RDFConnectionRemote.newBuilder()
-       .destination(serviceUrl)
-       .queryEndpoint("query")
-       .updateEndpoint("update")
-       .triplesFormat(RDFFormat.RDFJSON)
-       .build();
+        this(serviceUrl);
 
-       connection.load(dataset.getDefaultModel());
+        connection.load(dataset.getDefaultModel());
     }
 
     /**
