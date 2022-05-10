@@ -63,7 +63,7 @@ public final class JenaDatabaseDemo {
 
         // Add example data objects to dataset.
         jenaDatabase.begin();
-        objects.forEach(object -> jenaDatabase.create(object));
+        objects.forEach(jenaDatabase::create);
         jenaDatabase.commit();
 
         // Query database to check its populated.
