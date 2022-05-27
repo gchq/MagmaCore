@@ -17,12 +17,7 @@ package uk.gov.gchq.magmacore.util;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import uk.gov.gchq.hqdm.iri.HQDM;
-import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.iri.IriBase;
-import uk.gov.gchq.hqdm.model.PointInTime;
-import uk.gov.gchq.hqdm.model.PossibleWorld;
-import uk.gov.gchq.hqdm.model.impl.PointInTimeImpl;
 
 /**
  * Utilities for building and generating HQDM objects.
@@ -58,21 +53,4 @@ public final class DataObjectUtils {
         return now.toString();
     }
 
-    /**
-     * Generate a new PointInTime.
-     *
-     * @param eventTime Entity name of the point in time.
-     * @param pw The PossibleWorld the PointInTime is a part of.
-     * @param baseIri IriBase of the PointInTime.
-     * @return The generated PointInTime.
-     */
-    public static PointInTime event(final String eventTime, final PossibleWorld pw,
-            final IriBase baseIri) {
-        final PointInTime timeEvent = new PointInTimeImpl.Builder(new IRI(baseIri, uid()))
-                .part_Of_Possible_World_M(pw)
-                .build();
-        timeEvent.addStringValue(HQDM.ENTITY_NAME, eventTime);
-
-        return timeEvent;
-    }
 }

@@ -39,4 +39,4 @@ hs_err_pid*
 
 *.swp
 tags
-
+.vim/

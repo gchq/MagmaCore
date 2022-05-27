@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.jena.atlas.lib.Pair;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
@@ -49,6 +48,7 @@ import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.iri.IriBase;
 import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.pojo.HqdmObjectFactory;
+import uk.gov.gchq.hqdm.util.Pair;
 import uk.gov.gchq.magmacore.query.QueryResult;
 import uk.gov.gchq.magmacore.query.QueryResultList;
 
