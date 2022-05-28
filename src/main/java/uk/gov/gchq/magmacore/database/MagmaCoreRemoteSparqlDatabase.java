@@ -42,7 +42,9 @@ import org.apache.jena.util.PrintUtil;
 import uk.gov.gchq.hqdm.iri.HqdmIri;
 import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.pojo.HqdmObjectFactory;
+import uk.gov.gchq.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
+import uk.gov.gchq.hqdm.rdf.Triples;
 import uk.gov.gchq.hqdm.util.Pair;
 import uk.gov.gchq.magmacore.query.QueryResult;
 import uk.gov.gchq.magmacore.query.QueryResultList;
@@ -116,7 +118,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
         final Model model = ModelFactory.createDefaultModel();
 
         final Resource resource =
-                model.createResource(object.getIri().toString());
+                model.createResource(object.getId());
 
         object.getPredicates()
                 .forEach((iri,
@@ -141,7 +143,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      */
     @Override
     public void delete(final Thing object) {
-        executeUpdate(String.format("delete data {%s}", object.toTriples()));
+        executeUpdate(String.format("delete data {%s}", Triples.toTriples((HqdmObject) object)));
     }
 
     /**

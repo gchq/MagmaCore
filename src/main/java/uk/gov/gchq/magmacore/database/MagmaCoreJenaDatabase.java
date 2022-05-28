@@ -47,7 +47,9 @@ import uk.gov.gchq.hqdm.iri.HqdmIri;
 import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.iri.IriBase;
 import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.pojo.HqdmObjectFactory;
+import uk.gov.gchq.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
+import uk.gov.gchq.hqdm.rdf.Triples;
 import uk.gov.gchq.hqdm.util.Pair;
 import uk.gov.gchq.magmacore.query.QueryResult;
 import uk.gov.gchq.magmacore.query.QueryResultList;
@@ -161,7 +163,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     @Override
     public void create(final Thing object) {
         final Resource resource =
-                dataset.getDefaultModel().createResource(object.getIri().toString());
+                dataset.getDefaultModel().createResource(object.getId());
 
         object.getPredicates()
                 .forEach((iri,
@@ -184,7 +186,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      */
     @Override
     public void delete(final Thing object) {
-        executeUpdate(String.format("delete data {%s}", object.toTriples()));
+        executeUpdate(String.format("delete data {%s}", Triples.toTriples((HqdmObject) object)));
     }
 
     /**

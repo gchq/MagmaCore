@@ -23,6 +23,8 @@ import java.util.stream.Collectors;
 import uk.gov.gchq.hqdm.iri.HqdmIri;
 import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.model.Thing;
+import uk.gov.gchq.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.hqdm.rdf.Triples;
 
 /**
  * In-memory collection of HQDM objects.
@@ -51,7 +53,7 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
      */
     @Override
     public void create(final Thing object) {
-        final IRI iri = object.getIri();
+        final IRI iri = new IRI(object.getId());
         if (!objects.keySet().contains(iri)) {
             objects.put(iri, object);
         }
@@ -62,7 +64,7 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
      */
     @Override
     public void update(final Thing object) {
-        final IRI iri = object.getIri();
+        final IRI iri = new IRI(object.getId());
         if (objects.keySet().contains(iri)) {
             objects.put(iri, object);
         }
@@ -73,7 +75,7 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
      */
     @Override
     public void delete(final Thing object) {
-        final IRI iri = object.getIri();
+        final IRI iri = new IRI(object.getId());
         if (objects.keySet().contains(iri)) {
             objects.remove(iri, object);
         }
@@ -85,7 +87,7 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
     @Override
     public List<Thing> findByPredicateIri(final IRI predicateIri, final IRI objectIri) {
         return objects.values().stream()
-                .filter(object -> object.hasThisValue(predicateIri, objectIri))
+                .filter(object -> object.hasThisValue(predicateIri.toString(), objectIri.toString()))
                 .collect(Collectors.toList());
     }
 
@@ -95,7 +97,7 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
     @Override
     public List<Thing> findByPredicateIriOnly(final HqdmIri predicateIri) {
         return objects.values().stream()
-                .filter(object -> object.hasValue(predicateIri))
+                .filter(object -> object.hasValue(predicateIri.toString()))
                 .collect(Collectors.toList());
     }
 
@@ -106,7 +108,7 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
     public List<Thing> findByPredicateIriAndStringValue(final IRI predicateIri,
             final String value) {
         return objects.values().stream()
-                .filter(object -> object.hasThisStringValue(predicateIri, value))
+                .filter(object -> object.hasThisStringValue(predicateIri.toString(), value))
                 .collect(Collectors.toList());
     }
 
@@ -117,7 +119,7 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
     public List<Thing> findByPredicateIriAndStringCaseInsensitive(final IRI predicateIri,
             final String value) {
         return objects.values().stream()
-                .filter(object -> object.hasThisStringValueIgnoreCase(predicateIri, value))
+                .filter(object -> object.hasThisStringValueIgnoreCase(predicateIri.toString(), value))
                 .collect(Collectors.toList());
     }
 
@@ -135,6 +137,6 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
      * @param out Output stream to dump data to.
      */
     public final void dumpTurtle(final PrintStream out) {
-        objects.values().forEach(object -> out.println(object.toTriples()));
+        objects.values().forEach(object -> out.println(Triples.toTriples((HqdmObject) object)));
     }
 }
