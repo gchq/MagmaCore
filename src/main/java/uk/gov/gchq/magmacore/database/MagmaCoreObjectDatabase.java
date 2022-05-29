@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 import uk.gov.gchq.hqdm.iri.HqdmIri;
 import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.pojo.HqdmObject;
 import uk.gov.gchq.hqdm.rdf.Triples;
 
 /**
@@ -137,6 +136,6 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
      * @param out Output stream to dump data to.
      */
     public final void dumpTurtle(final PrintStream out) {
-        objects.values().forEach(object -> out.println(Triples.toTriples((HqdmObject) object)));
+        objects.values().forEach(object -> out.println(Triples.toTriples(object)));
     }
 }
