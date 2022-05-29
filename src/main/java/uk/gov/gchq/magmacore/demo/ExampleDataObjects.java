@@ -217,6 +217,7 @@ public final class ExampleDataObjects {
 
         // Person B Whole Life Object.
         final Event e1 = event(new IRI(USER_BASE, "1991-02-18T00:00:00").toString());
+        e1.addStringValue(HQDM.ENTITY_NAME.toString(), "1991-02-18T00:00:00");
         e1.addValue(HQDM.PART_OF_POSSIBLE_WORLD.toString(), possibleWorld.getId());
         final Person personB1 = SpatioTemporalExtentServices.createPerson(new IRI(USER_BASE, uid()).toString());
 
@@ -230,8 +231,10 @@ public final class ExampleDataObjects {
 
         // Person B states.
         final Event e2 = event(new IRI(USER_BASE, "2020-08-15T17:50:00").toString());
+        e2.addStringValue(HQDM.ENTITY_NAME.toString(), "2020-08-15T17:50:00");
         e2.addValue(HQDM.PART_OF_POSSIBLE_WORLD.toString(), possibleWorld.getId());
         final Event e3 = event(new IRI(USER_BASE, "2020-08-15T19:21:00").toString());
+        e3.addStringValue(HQDM.ENTITY_NAME.toString(), "2020-08-15T19:21:00");
         e3.addValue(HQDM.PART_OF_POSSIBLE_WORLD.toString(), possibleWorld.getId());
         final StateOfPerson personBs1 = SpatioTemporalExtentServices.createStateOfPerson(new IRI(USER_BASE, uid()).toString());
 
@@ -245,8 +248,10 @@ public final class ExampleDataObjects {
         objects.add(personBs1);
 
         final Event e4 = event(new IRI(USER_BASE, "2020-08-16T22:33:00").toString());
+        e4.addStringValue(HQDM.ENTITY_NAME.toString(), "2020-08-16T22:33:00");
         e4.addValue(HQDM.PART_OF_POSSIBLE_WORLD.toString(), possibleWorld.getId());
         final Event e5 = event(new IRI(USER_BASE, "2020-08-17T10:46:00").toString());
+        e5.addStringValue(HQDM.ENTITY_NAME.toString(), "2020-08-17T10:46:00");
         e5.addValue(HQDM.PART_OF_POSSIBLE_WORLD.toString(), possibleWorld.getId());
         final StateOfPerson personBs2 = SpatioTemporalExtentServices.createStateOfPerson(new IRI(USER_BASE, uid()).toString());
 
@@ -261,6 +266,7 @@ public final class ExampleDataObjects {
 
         // House B Whole Life Object.
         final Event e6 = event(new IRI(USER_BASE, "1972-06-01T00:00:00").toString());
+        e6.addStringValue(HQDM.ENTITY_NAME.toString(), "1972-06-01T00:00:00");
         e6.addValue(HQDM.PART_OF_POSSIBLE_WORLD.toString(), possibleWorld.getId());
         final FunctionalSystem houseB = SpatioTemporalExtentServices.createFunctionalSystem(new IRI(USER_BASE, uid()).toString());
 
