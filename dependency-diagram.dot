@@ -1,0 +1,10 @@
+digraph MagmaCore {
+    rankdir=LR
+    node[shape=rect,style="filled,rounded",color=black,fillcolor=white]
+
+    mc[label="MagmaCore"]
+    hqdm[label="HQDM"]
+    rdf[label="HQDM-RDF"]
+
+    mc -> rdf -> hqdm;
+}
