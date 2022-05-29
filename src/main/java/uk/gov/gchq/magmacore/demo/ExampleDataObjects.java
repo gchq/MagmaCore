@@ -89,20 +89,20 @@ public final class ExampleDataObjects {
         // Viewable is a class to assign other data objects to, to indicate that they are likely to
         // be of direct interest to a system user.
         final uk.gov.gchq.hqdm.model.Class viewable = ClassServices.createClass(new IRI(REF_BASE, uid()).toString());
-        viewable.addStringValue(ENTITY_NAME.toString().toString(), "VIEWABLE");
+        viewable.addStringValue(ENTITY_NAME.toString(), "VIEWABLE");
         objects.add(viewable);
 
         // A sub-set of the Viewable class.
         final uk.gov.gchq.hqdm.model.Class viewableObject = ClassServices.createClass(new IRI(REF_BASE, uid()).toString());
         viewableObject.addValue(HQDM.HAS_SUPERCLASS.toString(), viewable.getId());
-        viewableObject.addStringValue(ENTITY_NAME.toString().toString(), "VIEWABLE_OBJECT");
+        viewableObject.addStringValue(ENTITY_NAME.toString(), "VIEWABLE_OBJECT");
         objects.add(viewableObject);
 
         // A sub-set of the Viewable Class for viewable Associations.
         final uk.gov.gchq.hqdm.model.Class viewableAssociation =
                 ClassServices.createClass(new IRI(REF_BASE, uid()).toString());
         viewableAssociation.addValue(HQDM.HAS_SUPERCLASS.toString(), viewable.getId());
-        viewableAssociation.addStringValue(ENTITY_NAME.toString().toString(), "VIEWABLE_ASSOCIATION");
+        viewableAssociation.addStringValue(ENTITY_NAME.toString(), "VIEWABLE_ASSOCIATION");
         objects.add(viewableAssociation);
 
         // An system is composed of components so this is the class of components that a whole-life
@@ -110,7 +110,7 @@ public final class ExampleDataObjects {
         final KindOfBiologicalSystemComponent kindOfBiologicalSystemHumanComponent =
                 ClassServices.createKindOfBiologicalSystemComponent(new IRI(REF_BASE, uid()).toString());
 
-        kindOfBiologicalSystemHumanComponent.addStringValue(ENTITY_NAME.toString().toString(),
+        kindOfBiologicalSystemHumanComponent.addStringValue(ENTITY_NAME.toString(),
                 "KIND_OF_BIOLOGICAL_SYSTEM_HUMAN_COMPONENT");
         objects.add(kindOfBiologicalSystemHumanComponent);
 
@@ -119,21 +119,21 @@ public final class ExampleDataObjects {
 
         kindOfPerson.addValue(HQDM.MEMBER__OF.toString(), viewableObject.getId());
         kindOfPerson.addValue(HQDM.HAS_COMPONENT_BY_CLASS.toString(), kindOfBiologicalSystemHumanComponent.getId());
-        kindOfPerson.addStringValue(ENTITY_NAME.toString().toString(), "KIND_OF_PERSON");
+        kindOfPerson.addStringValue(ENTITY_NAME.toString(), "KIND_OF_PERSON");
         objects.add(kindOfPerson);
 
         // A class of temporal part (state) of a (whole-life) person.
         final ClassOfStateOfPerson classOfStateOfPerson = ClassServices.createClassOfStateOfPerson(new IRI(REF_BASE, uid()).toString());
 
         classOfStateOfPerson.addValue(HQDM.MEMBER__OF.toString(), viewableObject.getId());
-        classOfStateOfPerson.addStringValue(ENTITY_NAME.toString().toString(), "CLASS_OF_STATE_OF_PERSON");
+        classOfStateOfPerson.addStringValue(ENTITY_NAME.toString(), "CLASS_OF_STATE_OF_PERSON");
         objects.add(classOfStateOfPerson);
 
         // A class of whole-life system that is a Building.
         final KindOfFunctionalSystem kindOfFunctionalSystemBuilding =
                 ClassServices.createKindOfFunctionalSystem(new IRI(REF_BASE, uid()).toString());
 
-        kindOfFunctionalSystemBuilding.addStringValue(ENTITY_NAME.toString().toString(),
+        kindOfFunctionalSystemBuilding.addStringValue(ENTITY_NAME.toString(),
                 "KIND_OF_FUNCTIONAL_SYSTEM_BUILDING");
         objects.add(kindOfFunctionalSystemBuilding);
 
@@ -142,7 +142,7 @@ public final class ExampleDataObjects {
         final KindOfFunctionalSystemComponent kindOfFunctionalSystemDomesticPropertyComponent =
                 ClassServices.createKindOfFunctionalSystemComponent(new IRI(REF_BASE, uid()).toString());
 
-        kindOfFunctionalSystemDomesticPropertyComponent.addStringValue(ENTITY_NAME.toString().toString(),
+        kindOfFunctionalSystemDomesticPropertyComponent.addStringValue(ENTITY_NAME.toString(),
                 "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY_COMPONENT");
         objects.add(kindOfFunctionalSystemDomesticPropertyComponent);
 
