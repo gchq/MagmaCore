@@ -1,17 +1,17 @@
 digraph MagmaCore {
-    rankdir=LR
-        node[shape=rect,style="filled,rounded",color=black,fillcolor=white]
+    rankdir=LR;
+    node[shape=rect,style="filled,rounded",color=black,fillcolor=white];
 
-        jena[label="Apache\nJena"]
-        fuseki[label="Apache\nFuseki"]
+    jena[label="Apache\nJena"];
+    fuseki[label="Apache\nFuseki"];
 
-        subgraph cluster_mc {
-            label="MagmaCore Ecosystem"
+    subgraph cluster_mc {
+        label="MagmaCore Ecosystem";
 
-                mc[label="MagmaCore"]
-                hqdm[label="HQDM"]
-                rdf[label="HQDM-RDF"]
-        }
+        mc[label="MagmaCore"];
+        hqdm[label="HQDM"];
+        rdf[label="HQDM-RDF"];
+    }
 
     mc -> rdf -> hqdm;
     mc -> jena;
