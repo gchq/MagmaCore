@@ -16,11 +16,9 @@ package uk.gov.gchq.magmacore.demo;
 
 import static uk.gov.gchq.hqdm.iri.HQDM.ENTITY_NAME;
 import static uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices.event;
-import static uk.gov.gchq.magmacore.util.DataObjectUtils.REF_BASE;
 import static uk.gov.gchq.magmacore.util.DataObjectUtils.USER_BASE;
 import static uk.gov.gchq.magmacore.util.DataObjectUtils.uid;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.jena.query.Dataset;
@@ -48,7 +46,6 @@ import uk.gov.gchq.hqdm.model.Role;
 import uk.gov.gchq.hqdm.model.StateOfFunctionalSystem;
 import uk.gov.gchq.hqdm.model.StateOfPerson;
 import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.services.ClassServices;
 import uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -82,152 +79,107 @@ public final class ExampleDataObjects {
      * @return A list of HQDM objects.
      */
     public static List<Thing> createDataObjects() {
-        final List<Thing> objects = new ArrayList<>();
+        final ModelBuilder builder = new ModelBuilder();
 
         // RDL CLASSES - Can be created, stored and queried separately.
 
         // Viewable is a class to assign other data objects to, to indicate that they are likely to
         // be of direct interest to a system user.
-        final uk.gov.gchq.hqdm.model.Class viewable = ClassServices.createClass(new IRI(REF_BASE, uid()).toString());
-        viewable.addStringValue(ENTITY_NAME.getIri(), "VIEWABLE");
-        objects.add(viewable);
+        final uk.gov.gchq.hqdm.model.Class viewable = builder.createClass("VIEWABLE");
 
         // A sub-set of the Viewable class.
-        final uk.gov.gchq.hqdm.model.Class viewableObject = ClassServices.createClass(new IRI(REF_BASE, uid()).toString());
-        viewableObject.addValue(HQDM.HAS_SUPERCLASS.getIri(), viewable.getId());
-        viewableObject.addStringValue(ENTITY_NAME.getIri(), "VIEWABLE_OBJECT");
-        objects.add(viewableObject);
+        final uk.gov.gchq.hqdm.model.Class viewableObject = builder.createClass("VIEWABLE_OBJECT");
 
         // A sub-set of the Viewable Class for viewable Associations.
-        final uk.gov.gchq.hqdm.model.Class viewableAssociation =
-                ClassServices.createClass(new IRI(REF_BASE, uid()).toString());
-        viewableAssociation.addValue(HQDM.HAS_SUPERCLASS.getIri(), viewable.getId());
-        viewableAssociation.addStringValue(ENTITY_NAME.getIri(), "VIEWABLE_ASSOCIATION");
-        objects.add(viewableAssociation);
+        final uk.gov.gchq.hqdm.model.Class viewableAssociation = builder.createClass("VIEWABLE_ASSOCIATION");
 
-        // An system is composed of components so this is the class of components that a whole-life
+        // A system is composed of components so this is the class of components that a whole-life
         // person can have.
         final KindOfBiologicalSystemComponent kindOfBiologicalSystemHumanComponent =
-                ClassServices.createKindOfBiologicalSystemComponent(new IRI(REF_BASE, uid()).toString());
-
-        kindOfBiologicalSystemHumanComponent.addStringValue(ENTITY_NAME.getIri(),
-                "KIND_OF_BIOLOGICAL_SYSTEM_HUMAN_COMPONENT");
-        objects.add(kindOfBiologicalSystemHumanComponent);
+                builder.createKindOfBiologicalSystemComponent("KIND_OF_BIOLOGICAL_SYSTEM_HUMAN_COMPONENT");
 
         // A class of whole-life person (re-)created as Reference Data.
-        final KindOfPerson kindOfPerson = ClassServices.createKindOfPerson(new IRI(REF_BASE, uid()).toString());
-
-        kindOfPerson.addValue(HQDM.MEMBER__OF.getIri(), viewableObject.getId());
-        kindOfPerson.addValue(HQDM.HAS_COMPONENT_BY_CLASS.getIri(), kindOfBiologicalSystemHumanComponent.getId());
-        kindOfPerson.addStringValue(ENTITY_NAME.getIri(), "KIND_OF_PERSON");
-        objects.add(kindOfPerson);
+        final KindOfPerson kindOfPerson = builder.createKindOfPerson("KIND_OF_PERSON");
 
         // A class of temporal part (state) of a (whole-life) person.
-        final ClassOfStateOfPerson classOfStateOfPerson = ClassServices.createClassOfStateOfPerson(new IRI(REF_BASE, uid()).toString());
-
-        classOfStateOfPerson.addValue(HQDM.MEMBER__OF.getIri(), viewableObject.getId());
-        classOfStateOfPerson.addStringValue(ENTITY_NAME.getIri(), "CLASS_OF_STATE_OF_PERSON");
-        objects.add(classOfStateOfPerson);
+        final ClassOfStateOfPerson classOfStateOfPerson = builder.createClassOfStateOfPerson("CLASS_OF_STATE_OF_PERSON");
 
         // A class of whole-life system that is a Building.
         final KindOfFunctionalSystem kindOfFunctionalSystemBuilding =
-                ClassServices.createKindOfFunctionalSystem(new IRI(REF_BASE, uid()).toString());
-
-        kindOfFunctionalSystemBuilding.addStringValue(ENTITY_NAME.getIri(),
-                "KIND_OF_FUNCTIONAL_SYSTEM_BUILDING");
-        objects.add(kindOfFunctionalSystemBuilding);
+                builder.createKindOfFunctionalSystem("KIND_OF_FUNCTIONAL_SYSTEM_BUILDING");
 
         // A Domestic Property is a system composed of components (e.g. walls, floors, roof, front
         // door, etc). This is the class of those whole-life system components.
         final KindOfFunctionalSystemComponent kindOfFunctionalSystemDomesticPropertyComponent =
-                ClassServices.createKindOfFunctionalSystemComponent(new IRI(REF_BASE, uid()).toString());
-
-        kindOfFunctionalSystemDomesticPropertyComponent.addStringValue(ENTITY_NAME.getIri(),
-                "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY_COMPONENT");
-        objects.add(kindOfFunctionalSystemDomesticPropertyComponent);
+                builder.createKindOfFunctionalSystemComponent("KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY_COMPONENT");
 
         // The class of whole-life system that is domestic property.
         final KindOfFunctionalSystem kindOfFunctionalSystemDomesticProperty =
-                ClassServices.createKindOfFunctionalSystem(new IRI(REF_BASE, uid()).toString());
-
-        kindOfFunctionalSystemDomesticProperty.addValue(HQDM.HAS_SUPERCLASS.getIri(), kindOfFunctionalSystemBuilding.getId());
-        kindOfFunctionalSystemDomesticProperty.addValue(HQDM.MEMBER__OF.getIri(), viewableObject.getId());
-        kindOfFunctionalSystemDomesticProperty.addValue(HQDM.HAS_COMPONENT_BY_CLASS.getIri(), kindOfFunctionalSystemDomesticPropertyComponent.getId());
-        kindOfFunctionalSystemDomesticProperty.addStringValue(ENTITY_NAME.getIri(),
-                "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
-        objects.add(kindOfFunctionalSystemDomesticProperty);
+                builder.createKindOfFunctionalSystem("KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
 
         // The class of state of system whose members are temporal parts of domestic properties.
         final ClassOfStateOfFunctionalSystem classOfStateOfFunctionalSystemDomesticProperty =
-                ClassServices.createClassOfStateOfFunctionalSystem(new IRI(REF_BASE, uid()).toString());
-
-        classOfStateOfFunctionalSystemDomesticProperty.addValue(HQDM.MEMBER__OF.getIri(), viewableObject.getId());
-        classOfStateOfFunctionalSystemDomesticProperty.addStringValue(ENTITY_NAME.getIri(),
-                "STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
-        objects.add(classOfStateOfFunctionalSystemDomesticProperty);
+                builder.createClassOfStateOfFunctionalSystem("STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
 
         // The class of role that every member of class of person plays.
-        final Role personRole = ClassServices.createRole(new IRI(REF_BASE, uid()).toString());
-        personRole.addStringValue(ENTITY_NAME.getIri(), "NATURAL_MEMBER_OF_SOCIETY_ROLE");
-        objects.add(personRole);
+        final Role personRole = builder.createRole("NATURAL_MEMBER_OF_SOCIETY_ROLE");
 
         // The class of role that every member of class of domestic property plays.
-        final Role domesticPropertyRole = ClassServices.createRole(new IRI(REF_BASE, uid()).toString());
-        domesticPropertyRole.addStringValue(ENTITY_NAME.getIri(),
-                "ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
-        objects.add(domesticPropertyRole);
+        final Role domesticPropertyRole = builder.createRole("ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
 
-        final Role domesticOccupantInPropertyRole = ClassServices.createRole(new IRI(REF_BASE, uid()).toString());
-        domesticOccupantInPropertyRole.addValue(HQDM.HAS_SUPERCLASS.getIri(), domesticPropertyRole.getId());
+        final Role domesticOccupantInPropertyRole = builder.createRole("DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE");
         // Would be good to add part_of_by_class_(occupantInPropertyKindOfAssociation) but can't
         // neatly do that in the class as it can only be added after
         // occupantInPropertyKindOfAssociation is created. This can be added later for completeness.
-        domesticOccupantInPropertyRole.addStringValue(ENTITY_NAME.getIri(),
-                "DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE");
-        objects.add(domesticOccupantInPropertyRole);
 
-        final Role occupierOfPropertyRole = ClassServices.createRole(new IRI(REF_BASE, uid()).toString());
-        occupierOfPropertyRole.addValue(HQDM.HAS_SUPERCLASS.getIri(), classOfStateOfPerson.getId());
-
+        final Role occupierOfPropertyRole = builder.createRole("OCCUPIER_LOCATED_IN_PROPERTY_ROLE");
         // Would be good to add part_of_by_class_(occupantInPropertyKindOfAssociation) but can't
         // neatly do that in the class as it can only be added after
         // occupantInPropertyKindOfAssociation is created. This can be added later for completeness.
-        occupierOfPropertyRole.addStringValue(ENTITY_NAME.getIri(),
-                "OCCUPIER_LOCATED_IN_PROPERTY_ROLE");
-        objects.add(occupierOfPropertyRole);
 
         // Add the Association Types (Participants and Associations).
         final KindOfAssociation occupantInPropertyKindOfAssociation =
-                ClassServices.createKindOfAssociation(new IRI(REF_BASE, uid()).toString());
+                builder.createKindOfAssociation("OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
 
-        occupantInPropertyKindOfAssociation.addValue(HQDM.MEMBER__OF.getIri(), viewableAssociation.getId());
-        occupantInPropertyKindOfAssociation.addValue(HQDM.CONSISTS_OF_BY_CLASS.getIri(), domesticOccupantInPropertyRole.getId());
-        occupantInPropertyKindOfAssociation.addValue(HQDM.CONSISTS_OF_BY_CLASS.getIri(), occupierOfPropertyRole.getId());
-        occupantInPropertyKindOfAssociation.addStringValue(ENTITY_NAME.getIri(),
-                "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
+        builder.addSubclass(viewable, viewableObject);
+        builder.addSubclass(viewable, viewableAssociation);
+        builder.addSubclass(kindOfFunctionalSystemBuilding, kindOfFunctionalSystemDomesticProperty);
+        builder.addSubclass(domesticPropertyRole, domesticOccupantInPropertyRole);
+        builder.addSubclass(classOfStateOfPerson, occupierOfPropertyRole);
+
+        builder.addClassMember(viewableObject, kindOfPerson);
+        builder.addClassMember(viewableObject, classOfStateOfPerson);
+        builder.addClassMember(viewableObject, kindOfFunctionalSystemDomesticProperty);
+        builder.addClassMember(viewableObject, classOfStateOfFunctionalSystemDomesticProperty);
+        builder.addClassMember(viewableAssociation, occupantInPropertyKindOfAssociation);
+
+        builder.addHasComponentByClass(kindOfPerson, kindOfBiologicalSystemHumanComponent);
+        builder.addHasComponentByClass(kindOfFunctionalSystemDomesticProperty, kindOfFunctionalSystemDomesticPropertyComponent);
+
+        builder.addConsistsOfByClass(occupantInPropertyKindOfAssociation, domesticOccupantInPropertyRole);
+        builder.addConsistsOfByClass(occupantInPropertyKindOfAssociation, occupierOfPropertyRole);
 
         // STATES
 
         // The main state: This is a mandatory component of all datasets if we are to stick to the
         // commitments in HQDM. This is the least strict treatment, the creation of a single
         // possible world.
-        final PossibleWorld possibleWorld = SpatioTemporalExtentServices.createPossibleWorld(new IRI(USER_BASE, uid()).toString());
-        possibleWorld.addStringValue(ENTITY_NAME.getIri(), "Example1_World");
-        objects.add(possibleWorld);
+        final PossibleWorld possibleWorld = builder.createPossibleWorld("Example1_World");
 
         // Person B Whole Life Object.
-        final Event e1 = event(new IRI(USER_BASE, "1991-02-18T00:00:00").toString());
-        e1.addStringValue(HQDM.ENTITY_NAME.getIri(), "1991-02-18T00:00:00");
-        e1.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        final Person personB1 = SpatioTemporalExtentServices.createPerson(new IRI(USER_BASE, uid()).toString());
+        final Event e1 = builder.createPointInTime("1991-02-18T00:00:00");
+        builder.addToPossibleWorld(possibleWorld, e1);
 
-        personB1.addValue(HQDM.MEMBER_OF_KIND.getIri(), kindOfPerson.getId());
-        personB1.addValue(HQDM.NATURAL_ROLE.getIri(), personRole.getId());
-        personB1.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        personB1.addValue(HQDM.BEGINNING.getIri(), e1.getId());
-        personB1.addStringValue(ENTITY_NAME.getIri(), "PersonB1_Bob");
-        objects.add(e1);
-        objects.add(personB1);
+        final Person personB1 = builder.createPerson("PersonB1_Bob");
+
+        builder.addMemberOfKind(personB1, kindOfPerson);
+        builder.addNaturalRole(personB1, personRole);
+        builder.addToPossibleWorld(possibleWorld, personB1);
+        builder.addBeginningEvent(personB1, e1);
+
+
+
+
 
         // Person B states.
         final Event e2 = event(new IRI(USER_BASE, "2020-08-15T17:50:00").toString());
