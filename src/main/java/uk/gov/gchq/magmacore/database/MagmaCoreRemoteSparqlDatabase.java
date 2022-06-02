@@ -43,8 +43,8 @@ import uk.gov.gchq.hqdm.iri.HqdmIri;
 import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
+import uk.gov.gchq.hqdm.rdf.Pair;
 import uk.gov.gchq.hqdm.rdf.Triples;
-import uk.gov.gchq.hqdm.util.Pair;
 import uk.gov.gchq.magmacore.query.QueryResult;
 import uk.gov.gchq.magmacore.query.QueryResultList;
 

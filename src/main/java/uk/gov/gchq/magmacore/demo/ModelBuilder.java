@@ -10,10 +10,12 @@ import java.util.List;
 
 import uk.gov.gchq.hqdm.iri.HQDM;
 import uk.gov.gchq.hqdm.iri.IRI;
+import uk.gov.gchq.hqdm.model.Association;
 import uk.gov.gchq.hqdm.model.Class;
 import uk.gov.gchq.hqdm.model.ClassOfStateOfFunctionalSystem;
 import uk.gov.gchq.hqdm.model.ClassOfStateOfPerson;
 import uk.gov.gchq.hqdm.model.Event;
+import uk.gov.gchq.hqdm.model.FunctionalSystem;
 import uk.gov.gchq.hqdm.model.KindOfAssociation;
 import uk.gov.gchq.hqdm.model.KindOfBiologicalSystemComponent;
 import uk.gov.gchq.hqdm.model.KindOfFunctionalSystem;
@@ -21,11 +23,14 @@ import uk.gov.gchq.hqdm.model.KindOfFunctionalSystemComponent;
 import uk.gov.gchq.hqdm.model.KindOfPerson;
 import uk.gov.gchq.hqdm.model.KindOfSystem;
 import uk.gov.gchq.hqdm.model.KindOfSystemComponent;
+import uk.gov.gchq.hqdm.model.Participant;
 import uk.gov.gchq.hqdm.model.Person;
 import uk.gov.gchq.hqdm.model.PointInTime;
 import uk.gov.gchq.hqdm.model.PossibleWorld;
 import uk.gov.gchq.hqdm.model.Role;
 import uk.gov.gchq.hqdm.model.SpatioTemporalExtent;
+import uk.gov.gchq.hqdm.model.StateOfFunctionalSystem;
+import uk.gov.gchq.hqdm.model.StateOfPerson;
 import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.services.ClassServices;
 import uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices;
@@ -40,6 +45,15 @@ public class ModelBuilder {
 
     public ModelBuilder() {
         objects = new ArrayList<>();
+    }
+
+    /**
+     * Get the model objects.
+     *
+     * @return a {@link List} of {@link Thing}
+    */
+    public List<Thing> getObjects() {
+        return objects;
     }
 
     /**
@@ -244,12 +258,81 @@ public class ModelBuilder {
     }
 
     /**
+     * Create a StateOfPerson.
+     *
+     * @param name {@link String} name of the entity.
+     * @return {@link StateOfPerson}
+    */
+    public StateOfPerson createStateOfPerson(final String name) {
+        final StateOfPerson o = SpatioTemporalExtentServices.createStateOfPerson(new IRI(USER_BASE, name).getIri());
+        o.addStringValue(ENTITY_NAME.getIri(), name);
+        objects.add(o);
+        return o;
+    }
+
+    /**
+     * Create a FunctionalSystem.
+     *
+     * @param name {@link String} name of the entity.
+     * @return {@link FunctionalSystem}
+    */
+    public FunctionalSystem createFunctionalSystem(final String name) {
+        final FunctionalSystem o = 
+            SpatioTemporalExtentServices.createFunctionalSystem(new IRI(USER_BASE, name).getIri());
+        o.addStringValue(ENTITY_NAME.getIri(), name);
+        objects.add(o);
+        return o;
+    }
+
+    /**
+     * Create a StateOfFunctionalSystem.
+     *
+     * @param name {@link String} name of the entity.
+     * @return {@link StateOfFunctionalSystem}
+    */
+    public StateOfFunctionalSystem createStateOfFunctionalSystem(final String name) {
+        final StateOfFunctionalSystem o = 
+            SpatioTemporalExtentServices.createStateOfFunctionalSystem(new IRI(USER_BASE, name).getIri());
+        o.addStringValue(ENTITY_NAME.getIri(), name);
+        objects.add(o);
+        return o;
+    }
+
+    /**
+     * Create a Participant.
+     *
+     * @param name {@link String} name of the entity.
+     * @return {@link Participant}
+    */
+    public Participant createParticipant(final String name) {
+        final Participant o = 
+            SpatioTemporalExtentServices.createParticipant(new IRI(USER_BASE, name).getIri());
+        o.addStringValue(ENTITY_NAME.getIri(), name);
+        objects.add(o);
+        return o;
+    }
+
+    /**
+     * Create a Association.
+     *
+     * @param name {@link String} name of the entity.
+     * @return {@link Association}
+    */
+    public Association createAssociation(final String name) {
+        final Association o = 
+            SpatioTemporalExtentServices.createAssociation(new IRI(USER_BASE, name).getIri());
+        o.addStringValue(ENTITY_NAME.getIri(), name);
+        objects.add(o);
+        return o;
+    }
+
+    /**
      * Add a {@link SpatioTemporalExtent} to a {@link PossibleWorld}.
      *
-     * @param pw {@link PossibleWorld}
      * @param ste {@link SpatioTemporalExtent}
+     * @param pw {@link PossibleWorld}
     */
-    public void addToPossibleWorld(final PossibleWorld pw, final SpatioTemporalExtent ste) {
+    public void addToPossibleWorld(final SpatioTemporalExtent ste, final PossibleWorld pw) {
         ste.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), pw.getId());
     }
 
@@ -281,6 +364,56 @@ public class ModelBuilder {
     */
     public void addBeginningEvent(final SpatioTemporalExtent ste, final Event e) {
         ste.addValue(HQDM.BEGINNING.getIri(), e.getId());
+    }
+
+    /**
+     * Add ENDING {@link Event}.
+     *
+     * @param ste {@link SpatioTemporalExtent}
+     * @param e {@link Event}
+    */
+    public void addEndingEvent(final SpatioTemporalExtent ste, final Event e) {
+        ste.addValue(HQDM.ENDING.getIri(), e.getId());
+    }
+
+    /**
+     * Add MEMBER_OF.
+     *
+     * @param ste {@link SpatioTemporalExtent}
+     * @param c {@link Class}
+    */
+    public void addMemberOf(final SpatioTemporalExtent ste, final Class c) {
+        ste.addValue(HQDM.MEMBER_OF.getIri(), c.getId());
+    }
+
+    /**
+     * Add TEMPORAL_PART_OF.
+     *
+     * @param whole {@link SpatioTemporalExtent}
+     * @param part {@link SpatioTemporalExtent}
+    */
+    public void addTemporalPartOf(final SpatioTemporalExtent whole, final SpatioTemporalExtent part) {
+        part.addValue(HQDM.TEMPORAL_PART_OF.getIri(), whole.getId());
+    }
+
+    /**
+     * Add INTENDED_ROLE.
+     *
+     * @param ste {@link SpatioTemporalExtent}
+     * @param r {@link Role}
+    */
+    public void addIntendedRole(final SpatioTemporalExtent ste, final Role r) {
+        ste.addValue(HQDM.INTENDED_ROLE.getIri(), r.getId());
+    }
+
+    /**
+     * Add CONSISTS_OF_PARTICIPANT.
+     *
+     * @param a {@link Association}
+     * @param p {@link Participant}
+    */
+    public void addConsistsOfParticipant(final Association a, final Participant p) {
+        a.addValue(HQDM.CONSISTS_OF_PARTICIPANT.getIri(), p.getId());
     }
 
 }

@@ -14,11 +14,6 @@
 
 package uk.gov.gchq.magmacore.demo;
 
-import static uk.gov.gchq.hqdm.iri.HQDM.ENTITY_NAME;
-import static uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices.event;
-import static uk.gov.gchq.magmacore.util.DataObjectUtils.USER_BASE;
-import static uk.gov.gchq.magmacore.util.DataObjectUtils.uid;
-
 import java.util.List;
 
 import org.apache.jena.query.Dataset;
@@ -27,8 +22,6 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
 
-import uk.gov.gchq.hqdm.iri.HQDM;
-import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.model.Association;
 import uk.gov.gchq.hqdm.model.ClassOfStateOfFunctionalSystem;
 import uk.gov.gchq.hqdm.model.ClassOfStateOfPerson;
@@ -46,7 +39,6 @@ import uk.gov.gchq.hqdm.model.Role;
 import uk.gov.gchq.hqdm.model.StateOfFunctionalSystem;
 import uk.gov.gchq.hqdm.model.StateOfPerson;
 import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Constructs a set of example HQDM objects for demonstrating Magma Core.
@@ -168,13 +160,13 @@ public final class ExampleDataObjects {
 
         // Person B Whole Life Object.
         final Event e1 = builder.createPointInTime("1991-02-18T00:00:00");
-        builder.addToPossibleWorld(possibleWorld, e1);
+        builder.addToPossibleWorld(e1, possibleWorld);
 
         final Person personB1 = builder.createPerson("PersonB1_Bob");
 
         builder.addMemberOfKind(personB1, kindOfPerson);
         builder.addNaturalRole(personB1, personRole);
-        builder.addToPossibleWorld(possibleWorld, personB1);
+        builder.addToPossibleWorld(personB1, possibleWorld);
         builder.addBeginningEvent(personB1, e1);
 
 
@@ -182,147 +174,120 @@ public final class ExampleDataObjects {
 
 
         // Person B states.
-        final Event e2 = event(new IRI(USER_BASE, "2020-08-15T17:50:00").toString());
-        e2.addStringValue(HQDM.ENTITY_NAME.getIri(), "2020-08-15T17:50:00");
-        e2.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        final Event e3 = event(new IRI(USER_BASE, "2020-08-15T19:21:00").toString());
-        e3.addStringValue(HQDM.ENTITY_NAME.getIri(), "2020-08-15T19:21:00");
-        e3.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        final StateOfPerson personBs1 = SpatioTemporalExtentServices.createStateOfPerson(new IRI(USER_BASE, uid()).toString());
+        final Event e2 = builder.createPointInTime("2020-08-15T17:50:00");
+        final Event e3 = builder.createPointInTime("2020-08-15T19:21:00");
 
-        personBs1.addValue(HQDM.MEMBER_OF.getIri(), classOfStateOfPerson.getId());
-        personBs1.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        personBs1.addValue(HQDM.TEMPORAL_PART_OF.getIri(), personB1.getId());
-        personBs1.addValue(HQDM.BEGINNING.getIri(), e2.getId());
-        personBs1.addValue(HQDM.ENDING.getIri(), e3.getId());
-        objects.add(e2);
-        objects.add(e3);
-        objects.add(personBs1);
+        builder.addToPossibleWorld(e2, possibleWorld);
+        builder.addToPossibleWorld(e3, possibleWorld);
 
-        final Event e4 = event(new IRI(USER_BASE, "2020-08-16T22:33:00").toString());
-        e4.addStringValue(HQDM.ENTITY_NAME.getIri(), "2020-08-16T22:33:00");
-        e4.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        final Event e5 = event(new IRI(USER_BASE, "2020-08-17T10:46:00").toString());
-        e5.addStringValue(HQDM.ENTITY_NAME.getIri(), "2020-08-17T10:46:00");
-        e5.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        final StateOfPerson personBs2 = SpatioTemporalExtentServices.createStateOfPerson(new IRI(USER_BASE, uid()).toString());
+        final StateOfPerson personBs1 = builder.createStateOfPerson("");
 
-        personBs2.addValue(HQDM.MEMBER_OF.getIri(), classOfStateOfPerson.getId());
-        personBs2.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        personBs2.addValue(HQDM.TEMPORAL_PART_OF.getIri(), personB1.getId());
-        personBs2.addValue(HQDM.BEGINNING.getIri(), e4.getId());
-        personBs2.addValue(HQDM.ENDING.getIri(), e5.getId());
-        objects.add(e4);
-        objects.add(e5);
-        objects.add(personBs2);
+        builder.addMemberOf(personBs1, classOfStateOfPerson);
+        builder.addToPossibleWorld(personBs1, possibleWorld);
+        builder.addTemporalPartOf(personBs1, personB1);
+        builder.addBeginningEvent(personBs1, e2);
+        builder.addEndingEvent(personBs1, e3);
+
+        final Event e4 = builder.createPointInTime("2020-08-16T22:33:00");
+        final Event e5 = builder.createPointInTime("2020-08-17T10:46:00");
+
+        builder.addToPossibleWorld(e4, possibleWorld);
+        builder.addToPossibleWorld(e5, possibleWorld);
+
+        final StateOfPerson personBs2 = builder.createStateOfPerson("");
+
+        builder.addMemberOf(personBs2, classOfStateOfPerson);
+        builder.addToPossibleWorld(personBs2, possibleWorld);
+        builder.addTemporalPartOf(personBs2, personB1);
+        builder.addBeginningEvent(personBs2, e4);
+        builder.addEndingEvent(personBs2, e5);
+
 
         // House B Whole Life Object.
-        final Event e6 = event(new IRI(USER_BASE, "1972-06-01T00:00:00").toString());
-        e6.addStringValue(HQDM.ENTITY_NAME.getIri(), "1972-06-01T00:00:00");
-        e6.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        final FunctionalSystem houseB = SpatioTemporalExtentServices.createFunctionalSystem(new IRI(USER_BASE, uid()).toString());
+        final Event e6 = builder.createPointInTime("1972-06-01T00:00:00");
+        builder.addToPossibleWorld(e6, possibleWorld);
+        final FunctionalSystem houseB = builder.createFunctionalSystem("");
 
-        houseB.addValue(HQDM.MEMBER_OF_KIND.getIri(), kindOfFunctionalSystemDomesticProperty.getId());
-        houseB.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        houseB.addValue(HQDM.INTENDED_ROLE.getIri(), domesticPropertyRole.getId());
-        houseB.addValue(HQDM.BEGINNING.getIri(), e6.getId());
-        objects.add(e6);
-        objects.add(houseB);
+        builder.addMemberOfKind(houseB, kindOfFunctionalSystemDomesticProperty);
+        builder.addToPossibleWorld(houseB, possibleWorld);
+        builder.addIntendedRole(houseB, domesticPropertyRole);
+        builder.addBeginningEvent(houseB, e6);
 
         // States of house when Occupant personBs1 is present.
-        final StateOfFunctionalSystem houseBs1 = SpatioTemporalExtentServices.createStateOfFunctionalSystem(
-                new IRI(USER_BASE, uid()).toString());
+        final StateOfFunctionalSystem houseBs1 = builder.createStateOfFunctionalSystem("");
 
-        houseBs1.addValue(HQDM.MEMBER_OF.getIri(), classOfStateOfFunctionalSystemDomesticProperty.getId());
-        houseBs1.addValue(HQDM.TEMPORAL_PART_OF.getIri(), houseB.getId());
-        houseBs1.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        houseBs1.addValue(HQDM.BEGINNING.getIri(), e2.getId());
-        houseBs1.addValue(HQDM.ENDING.getIri(), e3.getId());
-        objects.add(houseBs1);
+        builder.addMemberOf(houseBs1, classOfStateOfFunctionalSystemDomesticProperty);
+        builder.addTemporalPartOf(houseB, houseBs1);
+        builder.addToPossibleWorld(houseBs1, possibleWorld);
+        builder.addBeginningEvent(houseBs1, e2);
+        builder.addEndingEvent(houseBs1, e3);
 
-        final StateOfFunctionalSystem houseBs2 = SpatioTemporalExtentServices.createStateOfFunctionalSystem(new IRI(USER_BASE, uid()).toString());
+        final StateOfFunctionalSystem houseBs2 = builder.createStateOfFunctionalSystem("");;
 
-        houseBs2.addValue(HQDM.MEMBER_OF.getIri(), classOfStateOfFunctionalSystemDomesticProperty.getId());
-        houseBs2.addValue(HQDM.TEMPORAL_PART_OF.getIri(), houseB.getId());
-        houseBs2.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        houseBs2.addValue(HQDM.BEGINNING.getIri(), e4.getId());
-        houseBs2.addValue(HQDM.ENDING.getIri(), e5.getId());
-        objects.add(houseBs2);
+        builder.addMemberOf(houseBs2, classOfStateOfFunctionalSystemDomesticProperty);
+        builder.addTemporalPartOf(houseB, houseBs2);
+        builder.addToPossibleWorld(houseBs2, possibleWorld);
+        builder.addBeginningEvent(houseBs2, e4);
+        builder.addEndingEvent(houseBs2, e5);
 
         // Add the Associations and map the states above to the appropriate participant objects.
         // If we had full has_superClass resolving in HQDM classes then this participant object
         // wouldn't be needed as the class occupierOfPropertyRole is also a sub-type of
         // state_of_person (see issues list).
-        final Participant pPersonBs1 = SpatioTemporalExtentServices.createParticipant(new IRI(USER_BASE, uid()).toString());
+        final Participant pPersonBs1 = 
+            builder.createParticipant("Note this is the state of person Bs1 that is participating the association");
 
-        pPersonBs1.addValue(HQDM.MEMBER_OF_KIND.getIri(), occupierOfPropertyRole.getId());
-        pPersonBs1.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        pPersonBs1.addValue(HQDM.TEMPORAL__PART_OF.getIri(), personBs1.getId());
-        pPersonBs1.addValue(HQDM.BEGINNING.getIri(), e2.getId());
-        pPersonBs1.addValue(HQDM.ENDING.getIri(), e3.getId());
-        pPersonBs1.addStringValue(ENTITY_NAME.getIri(),
-                "Note this is the state of person Bs1 that is participating the association");
-        objects.add(pPersonBs1);
+        builder.addMemberOfKind(pPersonBs1, occupierOfPropertyRole);
+        builder.addToPossibleWorld(pPersonBs1, possibleWorld);
+        builder.addTemporalPartOf(pPersonBs1, personBs1);
+        builder.addBeginningEvent(pPersonBs1, e2);
+        builder.addEndingEvent(pPersonBs1, e3);
 
-        final Participant pHouseBs1 = SpatioTemporalExtentServices.createParticipant(new IRI(USER_BASE, uid()).toString());
+        final Participant pHouseBs1 = 
+            builder.createParticipant("Note this is the state of houseBs1 that is participating in the association");
 
-        pHouseBs1.addValue(HQDM.MEMBER_OF_KIND.getIri(), domesticOccupantInPropertyRole.getId());
-        pHouseBs1.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        pHouseBs1.addValue(HQDM.TEMPORAL__PART_OF.getIri(), houseBs1.getId());
-        pHouseBs1.addValue(HQDM.BEGINNING.getIri(), e2.getId());
-        pHouseBs1.addValue(HQDM.ENDING.getIri(), e3.getId());
-        pHouseBs1.addStringValue(ENTITY_NAME.getIri(),
-                "Note this is the state of houseBs1 that is participating in the association");
-        objects.add(pHouseBs1);
+        builder.addMemberOfKind(pHouseBs1, domesticOccupantInPropertyRole);
+        builder.addToPossibleWorld(pHouseBs1, possibleWorld);
+        builder.addTemporalPartOf(pHouseBs1, houseBs1);
+        builder.addBeginningEvent(pHouseBs1, e2);
+        builder.addEndingEvent(pHouseBs1, e3);
 
-        final Participant pPersonBs2 = SpatioTemporalExtentServices.createParticipant(new IRI(USER_BASE, uid()).toString());
+        final Participant pPersonBs2 = 
+            builder.createParticipant("Note this is the state of person Bs2 that is participating in the association");
 
-        pPersonBs2.addValue(HQDM.MEMBER_OF_KIND.getIri(), occupierOfPropertyRole.getId());
-        pPersonBs2.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        pPersonBs2.addValue(HQDM.TEMPORAL__PART_OF.getIri(), personBs2.getId());
-        pPersonBs2.addValue(HQDM.BEGINNING.getIri(), e4.getId());
-        pPersonBs2.addValue(HQDM.ENDING.getIri(), e5.getId());
-        pPersonBs2.addStringValue(ENTITY_NAME.getIri(),
-                "Note this is the state of person Bs2 that is participating in the association");
-        objects.add(pPersonBs2);
+        builder.addMemberOfKind(pPersonBs2, occupierOfPropertyRole);
+        builder.addToPossibleWorld(pPersonBs2, possibleWorld);
+        builder.addTemporalPartOf(pPersonBs2, personBs2);
+        builder.addBeginningEvent(pPersonBs2, e4);
+        builder.addEndingEvent(pPersonBs2, e5);
 
-        final Participant pHouseBs2 = SpatioTemporalExtentServices.createParticipant(new IRI(USER_BASE, uid()).toString());
+        final Participant pHouseBs2 = 
+            builder.createParticipant("Note this is the state of houseBs2 that is participating in the association");
 
-        pHouseBs2.addValue(HQDM.MEMBER_OF_KIND.getIri(), domesticOccupantInPropertyRole.getId());
-        pHouseBs2.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        pHouseBs2.addValue(HQDM.TEMPORAL__PART_OF.getIri(), houseBs2.getId());
-        pHouseBs2.addValue(HQDM.BEGINNING.getIri(), e4.getId());
-        pHouseBs2.addValue(HQDM.ENDING.getIri(), e5.getId());
-        pHouseBs2.addStringValue(ENTITY_NAME.getIri(),
-                "Note this is the state of houseBs2 that is participating in the association");
-        objects.add(pHouseBs2);
+        builder.addMemberOfKind(pHouseBs2, domesticOccupantInPropertyRole);
+        builder.addToPossibleWorld(pHouseBs2, possibleWorld);
+        builder.addTemporalPartOf(pHouseBs2, houseBs2);
+        builder.addBeginningEvent(pHouseBs2, e4);
+        builder.addEndingEvent(pHouseBs2, e5);
 
-        final Association houseOccupantPresentState1 =
-                SpatioTemporalExtentServices.createAssociation(new IRI(USER_BASE, uid()).toString());
+        final Association houseOccupantPresentState1 = builder.createAssociation("HouseOccupantPresent1");
 
-        houseOccupantPresentState1.addValue(HQDM.MEMBER_OF_KIND.getIri(), occupantInPropertyKindOfAssociation.getId());
-        houseOccupantPresentState1.addValue(HQDM.CONSISTS_OF_PARTICIPANT.getIri(), pHouseBs1.getId());
-        houseOccupantPresentState1.addValue(HQDM.CONSISTS_OF_PARTICIPANT.getIri(), pPersonBs1.getId());
-        houseOccupantPresentState1.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        houseOccupantPresentState1.addValue(HQDM.BEGINNING.getIri(), e2.getId());
-        houseOccupantPresentState1.addValue(HQDM.ENDING.getIri(), e3.getId());
-        // Abbreviated to allow a string to be displayed against this class of 'relationship'.
-        houseOccupantPresentState1.addStringValue(ENTITY_NAME.getIri(), "HouseOccupantPresent1");
-        objects.add(houseOccupantPresentState1);
+        builder.addMemberOfKind(houseOccupantPresentState1, occupantInPropertyKindOfAssociation);
+        builder.addConsistsOfParticipant(houseOccupantPresentState1, pHouseBs1);
+        builder.addConsistsOfParticipant(houseOccupantPresentState1, pPersonBs1);
+        builder.addToPossibleWorld(houseOccupantPresentState1, possibleWorld);
+        builder.addBeginningEvent(houseOccupantPresentState1, e2);
+        builder.addEndingEvent(houseOccupantPresentState1, e3);
 
-        final Association houseOccupantPresentState2 =
-                SpatioTemporalExtentServices.createAssociation(new IRI(USER_BASE, uid()).toString());
+        final Association houseOccupantPresentState2 = builder.createAssociation("HouseOccupantPresent2");
 
-        houseOccupantPresentState2.addValue(HQDM.MEMBER_OF_KIND.getIri(), occupantInPropertyKindOfAssociation.getId());
-        houseOccupantPresentState2.addValue(HQDM.CONSISTS_OF_PARTICIPANT.getIri(), pHouseBs2.getId());
-        houseOccupantPresentState2.addValue(HQDM.CONSISTS_OF_PARTICIPANT.getIri(), pPersonBs2.getId());
-        houseOccupantPresentState2.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
-        houseOccupantPresentState2.addValue(HQDM.BEGINNING.getIri(), e4.getId());
-        houseOccupantPresentState2.addValue(HQDM.ENDING.getIri(), e5.getId());
-        // Abbreviated to allow a string to be displayed against this class of 'relationship'.
-        houseOccupantPresentState2.addStringValue(ENTITY_NAME.getIri(), "HouseOccupantPresent2");
-        objects.add(houseOccupantPresentState2);
+        builder.addMemberOfKind(houseOccupantPresentState2, occupantInPropertyKindOfAssociation);
+        builder.addConsistsOfParticipant(houseOccupantPresentState2, pHouseBs2);
+        builder.addConsistsOfParticipant(houseOccupantPresentState2, pPersonBs2);
+        builder.addToPossibleWorld(houseOccupantPresentState2, possibleWorld);
+        builder.addBeginningEvent(houseOccupantPresentState2, e4);
+        builder.addEndingEvent(houseOccupantPresentState2, e5);
 
-        return objects;
+        return builder.getObjects();
     }
 }
