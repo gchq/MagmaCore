@@ -14,6 +14,7 @@
 
 package uk.gov.gchq.magmacore.demo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.jena.query.Dataset;
@@ -34,7 +35,6 @@ import uk.gov.gchq.hqdm.model.KindOfFunctionalSystemComponent;
 import uk.gov.gchq.hqdm.model.KindOfPerson;
 import uk.gov.gchq.hqdm.model.Participant;
 import uk.gov.gchq.hqdm.model.Person;
-import uk.gov.gchq.hqdm.model.PossibleWorld;
 import uk.gov.gchq.hqdm.model.Role;
 import uk.gov.gchq.hqdm.model.StateOfFunctionalSystem;
 import uk.gov.gchq.hqdm.model.StateOfPerson;
@@ -150,144 +150,124 @@ public final class ExampleDataObjects {
 
         builder.addConsistsOfByClass(occupantInPropertyKindOfAssociation, domesticOccupantInPropertyRole);
         builder.addConsistsOfByClass(occupantInPropertyKindOfAssociation, occupierOfPropertyRole);
-
         // STATES
 
         // The main state: This is a mandatory component of all datasets if we are to stick to the
         // commitments in HQDM. This is the least strict treatment, the creation of a single
         // possible world.
-        final PossibleWorld possibleWorld = builder.createPossibleWorld("Example1_World");
+        final PossibleWorldContext pwContext = new PossibleWorldContext("Example1_World");
 
         // Person B Whole Life Object.
-        final Event e1 = builder.createPointInTime("1991-02-18T00:00:00");
-        builder.addToPossibleWorld(e1, possibleWorld);
+        final Event e1 = pwContext.createPointInTime("1991-02-18T00:00:00");
 
-        final Person personB1 = builder.createPerson("PersonB1_Bob");
+        final Person personB1 = pwContext.createPerson("PersonB1_Bob");
 
-        builder.addMemberOfKind(personB1, kindOfPerson);
-        builder.addNaturalRole(personB1, personRole);
-        builder.addToPossibleWorld(personB1, possibleWorld);
-        builder.addBeginningEvent(personB1, e1);
-
-
-
-
+        pwContext.addMemberOfKind(personB1, kindOfPerson);
+        pwContext.addNaturalRole(personB1, personRole);
+        pwContext.addBeginningEvent(personB1, e1);
 
         // Person B states.
-        final Event e2 = builder.createPointInTime("2020-08-15T17:50:00");
-        final Event e3 = builder.createPointInTime("2020-08-15T19:21:00");
+        final Event e2 = pwContext.createPointInTime("2020-08-15T17:50:00");
+        final Event e3 = pwContext.createPointInTime("2020-08-15T19:21:00");
 
-        builder.addToPossibleWorld(e2, possibleWorld);
-        builder.addToPossibleWorld(e3, possibleWorld);
 
-        final StateOfPerson personBs1 = builder.createStateOfPerson("");
+        final StateOfPerson personBs1 = pwContext.createStateOfPerson("");
 
-        builder.addMemberOf(personBs1, classOfStateOfPerson);
-        builder.addToPossibleWorld(personBs1, possibleWorld);
-        builder.addTemporalPartOf(personBs1, personB1);
-        builder.addBeginningEvent(personBs1, e2);
-        builder.addEndingEvent(personBs1, e3);
+        pwContext.addMemberOf(personBs1, classOfStateOfPerson);
+        pwContext.addTemporalPartOf(personBs1, personB1);
+        pwContext.addBeginningEvent(personBs1, e2);
+        pwContext.addEndingEvent(personBs1, e3);
 
-        final Event e4 = builder.createPointInTime("2020-08-16T22:33:00");
-        final Event e5 = builder.createPointInTime("2020-08-17T10:46:00");
+        final Event e4 = pwContext.createPointInTime("2020-08-16T22:33:00");
+        final Event e5 = pwContext.createPointInTime("2020-08-17T10:46:00");
 
-        builder.addToPossibleWorld(e4, possibleWorld);
-        builder.addToPossibleWorld(e5, possibleWorld);
 
-        final StateOfPerson personBs2 = builder.createStateOfPerson("");
+        final StateOfPerson personBs2 = pwContext.createStateOfPerson("");
 
-        builder.addMemberOf(personBs2, classOfStateOfPerson);
-        builder.addToPossibleWorld(personBs2, possibleWorld);
-        builder.addTemporalPartOf(personBs2, personB1);
-        builder.addBeginningEvent(personBs2, e4);
-        builder.addEndingEvent(personBs2, e5);
+        pwContext.addMemberOf(personBs2, classOfStateOfPerson);
+        pwContext.addTemporalPartOf(personBs2, personB1);
+        pwContext.addBeginningEvent(personBs2, e4);
+        pwContext.addEndingEvent(personBs2, e5);
 
 
         // House B Whole Life Object.
-        final Event e6 = builder.createPointInTime("1972-06-01T00:00:00");
-        builder.addToPossibleWorld(e6, possibleWorld);
-        final FunctionalSystem houseB = builder.createFunctionalSystem("");
+        final Event e6 = pwContext.createPointInTime("1972-06-01T00:00:00");
+        final FunctionalSystem houseB = pwContext.createFunctionalSystem("");
 
-        builder.addMemberOfKind(houseB, kindOfFunctionalSystemDomesticProperty);
-        builder.addToPossibleWorld(houseB, possibleWorld);
-        builder.addIntendedRole(houseB, domesticPropertyRole);
-        builder.addBeginningEvent(houseB, e6);
+        pwContext.addMemberOfKind(houseB, kindOfFunctionalSystemDomesticProperty);
+        pwContext.addIntendedRole(houseB, domesticPropertyRole);
+        pwContext.addBeginningEvent(houseB, e6);
 
         // States of house when Occupant personBs1 is present.
-        final StateOfFunctionalSystem houseBs1 = builder.createStateOfFunctionalSystem("");
+        final StateOfFunctionalSystem houseBs1 = pwContext.createStateOfFunctionalSystem("");
 
-        builder.addMemberOf(houseBs1, classOfStateOfFunctionalSystemDomesticProperty);
-        builder.addTemporalPartOf(houseB, houseBs1);
-        builder.addToPossibleWorld(houseBs1, possibleWorld);
-        builder.addBeginningEvent(houseBs1, e2);
-        builder.addEndingEvent(houseBs1, e3);
+        pwContext.addMemberOf(houseBs1, classOfStateOfFunctionalSystemDomesticProperty);
+        pwContext.addTemporalPartOf(houseB, houseBs1);
+        pwContext.addBeginningEvent(houseBs1, e2);
+        pwContext.addEndingEvent(houseBs1, e3);
 
-        final StateOfFunctionalSystem houseBs2 = builder.createStateOfFunctionalSystem("");;
+        final StateOfFunctionalSystem houseBs2 = pwContext.createStateOfFunctionalSystem("");;
 
-        builder.addMemberOf(houseBs2, classOfStateOfFunctionalSystemDomesticProperty);
-        builder.addTemporalPartOf(houseB, houseBs2);
-        builder.addToPossibleWorld(houseBs2, possibleWorld);
-        builder.addBeginningEvent(houseBs2, e4);
-        builder.addEndingEvent(houseBs2, e5);
+        pwContext.addMemberOf(houseBs2, classOfStateOfFunctionalSystemDomesticProperty);
+        pwContext.addTemporalPartOf(houseB, houseBs2);
+        pwContext.addBeginningEvent(houseBs2, e4);
+        pwContext.addEndingEvent(houseBs2, e5);
 
         // Add the Associations and map the states above to the appropriate participant objects.
         // If we had full has_superClass resolving in HQDM classes then this participant object
         // wouldn't be needed as the class occupierOfPropertyRole is also a sub-type of
         // state_of_person (see issues list).
         final Participant pPersonBs1 = 
-            builder.createParticipant("Note this is the state of person Bs1 that is participating the association");
+            pwContext.createParticipant("Note this is the state of person Bs1 that is participating the association");
 
-        builder.addMemberOfKind(pPersonBs1, occupierOfPropertyRole);
-        builder.addToPossibleWorld(pPersonBs1, possibleWorld);
-        builder.addTemporalPartOf(pPersonBs1, personBs1);
-        builder.addBeginningEvent(pPersonBs1, e2);
-        builder.addEndingEvent(pPersonBs1, e3);
+        pwContext.addMemberOfKind(pPersonBs1, occupierOfPropertyRole);
+        pwContext.addTemporalPartOf(pPersonBs1, personBs1);
+        pwContext.addBeginningEvent(pPersonBs1, e2);
+        pwContext.addEndingEvent(pPersonBs1, e3);
 
         final Participant pHouseBs1 = 
-            builder.createParticipant("Note this is the state of houseBs1 that is participating in the association");
+            pwContext.createParticipant("Note this is the state of houseBs1 that is participating in the association");
 
-        builder.addMemberOfKind(pHouseBs1, domesticOccupantInPropertyRole);
-        builder.addToPossibleWorld(pHouseBs1, possibleWorld);
-        builder.addTemporalPartOf(pHouseBs1, houseBs1);
-        builder.addBeginningEvent(pHouseBs1, e2);
-        builder.addEndingEvent(pHouseBs1, e3);
+        pwContext.addMemberOfKind(pHouseBs1, domesticOccupantInPropertyRole);
+        pwContext.addTemporalPartOf(pHouseBs1, houseBs1);
+        pwContext.addBeginningEvent(pHouseBs1, e2);
+        pwContext.addEndingEvent(pHouseBs1, e3);
 
         final Participant pPersonBs2 = 
-            builder.createParticipant("Note this is the state of person Bs2 that is participating in the association");
+            pwContext.createParticipant("Note this is the state of person Bs2 that is participating in the association");
 
-        builder.addMemberOfKind(pPersonBs2, occupierOfPropertyRole);
-        builder.addToPossibleWorld(pPersonBs2, possibleWorld);
-        builder.addTemporalPartOf(pPersonBs2, personBs2);
-        builder.addBeginningEvent(pPersonBs2, e4);
-        builder.addEndingEvent(pPersonBs2, e5);
+        pwContext.addMemberOfKind(pPersonBs2, occupierOfPropertyRole);
+        pwContext.addTemporalPartOf(pPersonBs2, personBs2);
+        pwContext.addBeginningEvent(pPersonBs2, e4);
+        pwContext.addEndingEvent(pPersonBs2, e5);
 
         final Participant pHouseBs2 = 
-            builder.createParticipant("Note this is the state of houseBs2 that is participating in the association");
+            pwContext.createParticipant("Note this is the state of houseBs2 that is participating in the association");
 
-        builder.addMemberOfKind(pHouseBs2, domesticOccupantInPropertyRole);
-        builder.addToPossibleWorld(pHouseBs2, possibleWorld);
-        builder.addTemporalPartOf(pHouseBs2, houseBs2);
-        builder.addBeginningEvent(pHouseBs2, e4);
-        builder.addEndingEvent(pHouseBs2, e5);
+        pwContext.addMemberOfKind(pHouseBs2, domesticOccupantInPropertyRole);
+        pwContext.addTemporalPartOf(pHouseBs2, houseBs2);
+        pwContext.addBeginningEvent(pHouseBs2, e4);
+        pwContext.addEndingEvent(pHouseBs2, e5);
 
-        final Association houseOccupantPresentState1 = builder.createAssociation("HouseOccupantPresent1");
+        final Association houseOccupantPresentState1 = pwContext.createAssociation("HouseOccupantPresent1");
 
-        builder.addMemberOfKind(houseOccupantPresentState1, occupantInPropertyKindOfAssociation);
-        builder.addConsistsOfParticipant(houseOccupantPresentState1, pHouseBs1);
-        builder.addConsistsOfParticipant(houseOccupantPresentState1, pPersonBs1);
-        builder.addToPossibleWorld(houseOccupantPresentState1, possibleWorld);
-        builder.addBeginningEvent(houseOccupantPresentState1, e2);
-        builder.addEndingEvent(houseOccupantPresentState1, e3);
+        pwContext.addMemberOfKind(houseOccupantPresentState1, occupantInPropertyKindOfAssociation);
+        pwContext.addConsistsOfParticipant(houseOccupantPresentState1, pHouseBs1);
+        pwContext.addConsistsOfParticipant(houseOccupantPresentState1, pPersonBs1);
+        pwContext.addBeginningEvent(houseOccupantPresentState1, e2);
+        pwContext.addEndingEvent(houseOccupantPresentState1, e3);
 
-        final Association houseOccupantPresentState2 = builder.createAssociation("HouseOccupantPresent2");
+        final Association houseOccupantPresentState2 = pwContext.createAssociation("HouseOccupantPresent2");
 
-        builder.addMemberOfKind(houseOccupantPresentState2, occupantInPropertyKindOfAssociation);
-        builder.addConsistsOfParticipant(houseOccupantPresentState2, pHouseBs2);
-        builder.addConsistsOfParticipant(houseOccupantPresentState2, pPersonBs2);
-        builder.addToPossibleWorld(houseOccupantPresentState2, possibleWorld);
-        builder.addBeginningEvent(houseOccupantPresentState2, e4);
-        builder.addEndingEvent(houseOccupantPresentState2, e5);
+        pwContext.addMemberOfKind(houseOccupantPresentState2, occupantInPropertyKindOfAssociation);
+        pwContext.addConsistsOfParticipant(houseOccupantPresentState2, pHouseBs2);
+        pwContext.addConsistsOfParticipant(houseOccupantPresentState2, pPersonBs2);
+        pwContext.addBeginningEvent(houseOccupantPresentState2, e4);
+        pwContext.addEndingEvent(houseOccupantPresentState2, e5);
 
-        return builder.getObjects();
+        final var result = new ArrayList<Thing>();
+        result.addAll(builder.getObjects());
+        result.addAll(pwContext.getObjects());
+        return result;
     }
 }
