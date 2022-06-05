@@ -105,13 +105,13 @@ public class ExampleDataObjects {
             // Set the has component by class predicates
             .addHasComponentByClass(kindOfPerson, kindOfBiologicalSystemHumanComponent)
             .addHasComponentByClass(kindOfFunctionalSystemDomesticProperty,
-                kindOfFunctionalSystemDomesticPropertyComponent)
+                    kindOfFunctionalSystemDomesticPropertyComponent)
             // Set the consists of by class predicates
             .addConsistsOfByClass(occupantInPropertyKindOfAssociation, domesticOccupantInPropertyRole)
             .addConsistsOfByClass(occupantInPropertyKindOfAssociation, occupierOfPropertyRole)
             // store the objects in the database
             .getObjects().forEach(object -> {
-                 db.create(object);
+                db.create(object);
             });
 
         return db;
@@ -125,11 +125,11 @@ public class ExampleDataObjects {
      * @param name the name {@link String} to seaerch for.
      * @return the {@link Thing}that was found.
      * @throws RuntimeException if no or multiple results found.
-    */
-    private static Thing findByEntityName(final MagmaCoreDatabase db, final String name) {
+     */
+    private static <T> T findByEntityName(final MagmaCoreDatabase db, final String name) {
         final var searchResult = db.findByPredicateIriAndStringValue(HQDM.ENTITY_NAME, name);
         if (searchResult.size() == 1) {
-            return searchResult.get(0);
+            return (T) searchResult.get(0);
         } else if (searchResult.size() == 0) {
             throw new RuntimeException("No entity found with name: " + name);
         } else {
@@ -141,12 +141,12 @@ public class ExampleDataObjects {
     private static UnaryOperator<MagmaCoreDatabase> addWholeLifeIndividuals = (db) -> {
 
         // Find the required classes, kinds, and roles.
-        final var kindOfPerson = (KindOfPerson) findByEntityName(db, "KIND_OF_PERSON");
-        final var personRole = (Role) findByEntityName(db, "NATURAL_MEMBER_OF_SOCIETY_ROLE");
+        final KindOfPerson kindOfPerson = findByEntityName(db, "KIND_OF_PERSON");
+        final Role personRole = findByEntityName(db, "NATURAL_MEMBER_OF_SOCIETY_ROLE");
 
-        final var kindOfFunctionalSystemDomesticProperty = (KindOfFunctionalSystem) 
+        final KindOfFunctionalSystem kindOfFunctionalSystemDomesticProperty =
             findByEntityName(db, "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
-        final var domesticPropertyRole = (Role) 
+        final Role domesticPropertyRole =
             findByEntityName(db, "ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
 
         // STATES
@@ -190,25 +190,22 @@ public class ExampleDataObjects {
      * @param house the house as a {@link FunctionalSystem} that is occupied.
      * @param beginning {@link Event}
      * @param ending {@link Event}
-    */
+     */
     private static void occupyHouse(
-            final MagmaCoreDatabase db, 
-            final PossibleWorld possibleWorld, 
-            final Person person, 
-            final FunctionalSystem house, 
-            final Event beginning, 
+            final MagmaCoreDatabase db,
+            final PossibleWorld possibleWorld,
+            final Person person,
+            final FunctionalSystem house,
+            final Event beginning,
             final Event ending) {
 
         // Find the required classes, kinds, and roles.
-        final var classOfStateOfPerson = (ClassOfStateOfPerson) 
-            findByEntityName(db, "CLASS_OF_STATE_OF_PERSON");
-        final var classOfStateOfFunctionalSystemDomesticProperty = (ClassOfStateOfFunctionalSystem) 
+        final ClassOfStateOfPerson classOfStateOfPerson = findByEntityName(db, "CLASS_OF_STATE_OF_PERSON");
+        final ClassOfStateOfFunctionalSystem classOfStateOfFunctionalSystemDomesticProperty =
             findByEntityName(db, "STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
-        final var occupierOfPropertyRole = (Role) 
-            findByEntityName(db, "OCCUPIER_LOCATED_IN_PROPERTY_ROLE");
-        final var domesticOccupantInPropertyRole = (Role) 
-            findByEntityName(db, "DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE");
-        final var occupantInPropertyKindOfAssociation = (KindOfAssociation) 
+        final Role occupierOfPropertyRole = findByEntityName(db, "OCCUPIER_LOCATED_IN_PROPERTY_ROLE");
+        final Role domesticOccupantInPropertyRole = findByEntityName(db, "DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE");
+        final KindOfAssociation occupantInPropertyKindOfAssociation =
             findByEntityName(db, "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
 
         // STATES
@@ -261,12 +258,12 @@ public class ExampleDataObjects {
             .getObjects().forEach(object -> {
                 db.create(object);
             });
-    }
+            }
 
     // A DB transformer that adds house occupancy associations.
     private static UnaryOperator<MagmaCoreDatabase> addHouseOccupancies = (db) -> {
 
-        final var possibleWorld = (PossibleWorld) findByEntityName(db, "Example1_World");
+        final PossibleWorld possibleWorld = findByEntityName(db, "Example1_World");
         final var pwContext = new PossibleWorldContext(possibleWorld);
 
         final var e2 = pwContext.createPointInTime("2020-08-15T17:50:00");
@@ -280,8 +277,8 @@ public class ExampleDataObjects {
         });
 
         // The person occupies the house twice at different times.
-        final var person = (Person) findByEntityName(db, "PersonB1_Bob");
-        final var house = (FunctionalSystem) findByEntityName(db, "HouseB");
+        final Person person = findByEntityName(db, "PersonB1_Bob");
+        final FunctionalSystem house = findByEntityName(db, "HouseB");
 
         // This will create and persist the associations.
         occupyHouse(db, possibleWorld, person, house, e2, e3);
@@ -294,7 +291,7 @@ public class ExampleDataObjects {
      * A Runnable that creates a database and populates it.
      *
      * @param db a {@link MagmaCoreDatabase}
-    */
+     */
     public static void populateExampleData(final MagmaCoreDatabase db) {
 
         final var runDbOperations =
