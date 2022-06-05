@@ -143,7 +143,6 @@ public class ExampleDataObjects {
         // Find the required classes, kinds, and roles.
         final KindOfPerson kindOfPerson = findByEntityName(db, "KIND_OF_PERSON");
         final Role personRole = findByEntityName(db, "NATURAL_MEMBER_OF_SOCIETY_ROLE");
-
         final KindOfFunctionalSystem kindOfFunctionalSystemDomesticProperty =
             findByEntityName(db, "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
         final Role domesticPropertyRole =
@@ -156,20 +155,22 @@ public class ExampleDataObjects {
         // possible world.
         final var pwContext = new PossibleWorldContext("Example1_World");
 
-        // Person B Whole Life Object.
+        // Create the beginning events for the person and house
         final var e1 = pwContext.createPointInTime("1991-02-18T00:00:00");
         final var e6 = pwContext.createPointInTime("1972-06-01T00:00:00");
 
+        // Person B Whole Life Object.
         final var personB1 = pwContext.createPerson("PersonB1_Bob");
 
-        //
         // House B Whole Life Object.
         final var houseB = pwContext.createFunctionalSystem("HouseB");
 
         pwContext
+            // Add the person predicates
             .addMemberOfKind(personB1, kindOfPerson)
             .addNaturalRole(personB1, personRole)
             .addBeginningEvent(personB1, e1)
+            // Add the house predicates
             .addMemberOfKind(houseB, kindOfFunctionalSystemDomesticProperty)
             .addIntendedRole(houseB, domesticPropertyRole)
             .addBeginningEvent(houseB, e6)
@@ -215,18 +216,20 @@ public class ExampleDataObjects {
         // possible world.
         final var pwContext = new PossibleWorldContext(possibleWorld);
 
-        // Person B states.
+        // Person state.
         final var personState = pwContext.createStateOfPerson(uid());
 
-        // States of house when Occupant personBs1 is present.
+        // States of house when Occupant person is present.
         final var houseState = pwContext.createStateOfFunctionalSystem(uid());
 
+        // Create Participants to link the states to their roles in the association
         final var personParticipant = pwContext.createParticipant(uid());
-
         final var houseParticipant = pwContext.createParticipant(uid());
 
+        // Create the association
         final var houseOccupiedAssociation = pwContext.createAssociation(uid());
 
+        // Build the full structure of the association
         pwContext
             // personState predicates
             .addMemberOf(personState, classOfStateOfPerson)
@@ -263,9 +266,11 @@ public class ExampleDataObjects {
     // A DB transformer that adds house occupancy associations.
     private static UnaryOperator<MagmaCoreDatabase> addHouseOccupancies = (db) -> {
 
+        // Use an existing PossibleWorld
         final PossibleWorld possibleWorld = findByEntityName(db, "Example1_World");
         final var pwContext = new PossibleWorldContext(possibleWorld);
 
+        // Create the bounding events for the associations
         final var e2 = pwContext.createPointInTime("2020-08-15T17:50:00");
         final var e3 = pwContext.createPointInTime("2020-08-15T19:21:00");
         final var e4 = pwContext.createPointInTime("2020-08-16T22:33:00");
@@ -288,17 +293,19 @@ public class ExampleDataObjects {
     };
 
     /**
-     * A Runnable that creates a database and populates it.
+     * A function that populates a database.
      *
      * @param db a {@link MagmaCoreDatabase}
      */
     public static void populateExampleData(final MagmaCoreDatabase db) {
 
+        // Compose 3 functions
         final var runDbOperations =
             createRefDataObjects
             .andThen(addWholeLifeIndividuals)
             .andThen(addHouseOccupancies);
 
+        // Apply the composed function to the database.
         runDbOperations.apply(db);
     }
 
