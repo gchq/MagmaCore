@@ -27,7 +27,7 @@ import uk.gov.gchq.hqdm.services.ClassServices;
  * Class for building HQDM models.
  *
  * */
-public class ModelBuilder {
+public class ExampleModelBuilder {
 
     private List<Thing> objects;
 
@@ -35,7 +35,7 @@ public class ModelBuilder {
      * Constructor.
      *
      * */
-    public ModelBuilder() {
+    public ExampleModelBuilder() {
         objects = new ArrayList<>();
     }
 

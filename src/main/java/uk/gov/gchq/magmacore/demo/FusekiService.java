@@ -16,7 +16,6 @@ package uk.gov.gchq.magmacore.demo;
 
 import org.apache.jena.fuseki.main.FusekiServer;
 import org.apache.jena.fuseki.system.FusekiLogging;
-import org.apache.jena.query.Dataset;
 
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
 
@@ -51,10 +50,8 @@ public final class FusekiService {
         tdb.begin();
         if (tdb.getDataset().isEmpty() && populate) {
             // Build example data objects Dataset.
-            final Dataset objects = ExampleDataObjects.buildDataset();
+            ExampleDataObjects.populateExampleData(tdb);
 
-            // Add example objects to default model in persistent dataset.
-            tdb.getDataset().getDefaultModel().add(objects.getDefaultModel());
             tdb.commit();
         } else {
             tdb.abort();

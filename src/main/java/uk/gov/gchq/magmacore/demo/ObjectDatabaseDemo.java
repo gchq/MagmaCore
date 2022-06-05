@@ -42,11 +42,8 @@ public final class ObjectDatabaseDemo {
     public void run() {
         final MagmaCoreObjectDatabase objectDatabase = new MagmaCoreObjectDatabase();
 
-        // Create set of example data objects.
-        final List<Thing> objects = ExampleDataObjects.createDataObjects();
-
         // Add example data objects to dataset.
-        objects.forEach(objectDatabase::create);
+        ExampleDataObjects.populateExampleData(objectDatabase);
 
         // Query database to check it's populated.
         final List<Thing> queryResults =

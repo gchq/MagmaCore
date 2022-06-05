@@ -58,12 +58,9 @@ public final class JenaDatabaseDemo {
         jenaDatabase.register(REF_BASE);
         jenaDatabase.register(USER_BASE);
 
-        // Create set of example data objects.
-        final List<Thing> objects = ExampleDataObjects.createDataObjects();
-
         // Add example data objects to dataset.
         jenaDatabase.begin();
-        objects.forEach(jenaDatabase::create);
+        ExampleDataObjects.populateExampleData(jenaDatabase);
         jenaDatabase.commit();
 
         // Query database to check its populated.

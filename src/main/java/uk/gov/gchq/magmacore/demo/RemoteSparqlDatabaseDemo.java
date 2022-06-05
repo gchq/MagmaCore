@@ -14,8 +14,6 @@
 
 package uk.gov.gchq.magmacore.demo;
 
-import org.apache.jena.query.Dataset;
-
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 import uk.gov.gchq.magmacore.database.MagmaCoreRemoteSparqlDatabase;
 
@@ -37,8 +35,8 @@ public final class RemoteSparqlDatabaseDemo {
         final MagmaCoreDatabase db;
 
         if (populate) {
-            final Dataset dataset = ExampleDataObjects.buildDataset();
-            db = new MagmaCoreRemoteSparqlDatabase(url, dataset);
+            db = new MagmaCoreRemoteSparqlDatabase(url);
+            ExampleDataObjects.populateExampleData(db);
         } else {
             db = new MagmaCoreRemoteSparqlDatabase(url);
         }

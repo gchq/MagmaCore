@@ -5,28 +5,11 @@ digraph {
 
     subgraph cluster_classes {
         style=rounded;
-        label="Classes";
+        label="Roles";
 
-        classOfStateOfFunctionalSystemDomesticProperty;
-        classOfStateOfPerson;
         domesticOccupantInPropertyRole;
-        domesticPropertyRole;
-        kindOfBiologicalSystemHumanComponent;
-        kindOfFunctionalSystemBuilding;
-        kindOfFunctionalSystemDomesticProperty;
-        kindOfFunctionalSystemDomesticPropertyComponent;
-        kindOfPerson;
-        occupantInPropertyKindOfAssociation;
         occupierOfPropertyRole;
-        personRole;
-        viewable;
-        viewableAssociation;
-        viewableObject;
     }
-    subgraph cluster_stes {
-        style=rounded;
-        label="SpatioTemporalExtents";
-
         subgraph cluster_events {
             style=rounded;
             label="Events";
@@ -54,7 +37,7 @@ digraph {
         }
 
         subgraph cluster_participants {
-            label="Participants";
+            label="Participations";
             pHouseBs1;
             pHouseBs2;
             pPersonBs1;
@@ -67,85 +50,43 @@ digraph {
             houseOccupantPresentState2;
         }
         possibleWorld[fillcolor=lightblue];
-    };
 
-    houseOccupantPresentState2 -> occupantInPropertyKindOfAssociation;
     houseOccupantPresentState2 -> pHouseBs2;
     houseOccupantPresentState2 -> pPersonBs2;
-    houseOccupantPresentState2 -> e4;
-    houseOccupantPresentState2 -> e5;
 
-    houseOccupantPresentState1 -> occupantInPropertyKindOfAssociation;
     houseOccupantPresentState1 -> pHouseBs1;
     houseOccupantPresentState1 -> pPersonBs1;
-    houseOccupantPresentState1 -> e2;
-    houseOccupantPresentState1 -> e3;
 
-    viewable -> viewableObject;
-    viewable -> viewableAssociation;
-    kindOfFunctionalSystemBuilding -> kindOfFunctionalSystemDomesticProperty;
-    domesticPropertyRole -> domesticOccupantInPropertyRole;
-    classOfStateOfPerson -> occupierOfPropertyRole;
-
-    viewableObject -> kindOfPerson;
-    viewableObject -> classOfStateOfPerson;
-    viewableObject -> kindOfFunctionalSystemDomesticProperty;
-    viewableObject -> classOfStateOfFunctionalSystemDomesticProperty;
-    viewableAssociation -> occupantInPropertyKindOfAssociation;
-
-    kindOfPerson -> kindOfBiologicalSystemHumanComponent;
-    kindOfFunctionalSystemDomesticProperty -> kindOfFunctionalSystemDomesticPropertyComponent;
-
-    occupantInPropertyKindOfAssociation -> domesticOccupantInPropertyRole;
-    occupantInPropertyKindOfAssociation -> occupierOfPropertyRole;
-
-
-    personB1 -> kindOfPerson;
-    personB1 -> personRole;
     personB1 -> e1;
 
-    personBs1 -> classOfStateOfPerson;
     personBs1 -> personB1;
     personBs1 -> e2;
     personBs1 -> e3;
 
-    personBs2 -> classOfStateOfPerson;
     personBs2 -> personB1;
     personBs2 -> e4;
     personBs2 -> e5;
 
-    houseB -> kindOfFunctionalSystemDomesticProperty;
-    houseB -> domesticPropertyRole;
     houseB -> e6;
 
-    houseBs1 -> classOfStateOfFunctionalSystemDomesticProperty;
     houseBs1 -> houseB;
     houseBs1 -> e2;
     houseBs1 -> e3;
 
-    houseBs2 -> classOfStateOfFunctionalSystemDomesticProperty;
     houseBs2 -> houseB;
     houseBs2 -> e4;
     houseBs2 -> e5;
 
     pPersonBs1 -> occupierOfPropertyRole;
     pPersonBs1 -> personBs1;
-    pPersonBs1 -> e2;
-    pPersonBs1 -> e3;
 
     pHouseBs1 -> domesticOccupantInPropertyRole;
     pHouseBs1 -> houseBs1;
-    pHouseBs1 -> e2;
-    pHouseBs1 -> e3;
 
     pPersonBs2 -> occupierOfPropertyRole;
     pPersonBs2 -> personBs2;
-    pPersonBs2 -> e4;
-    pPersonBs2 -> e5;
 
     pHouseBs2 -> domesticOccupantInPropertyRole;
     pHouseBs2 -> houseBs2;
-    pHouseBs2 -> e4;
-    pHouseBs2 -> e5;
 
 }
