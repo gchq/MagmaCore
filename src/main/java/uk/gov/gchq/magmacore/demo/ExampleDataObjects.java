@@ -70,7 +70,7 @@ public class ExampleDataObjects {
             builder.createClassOfStateOfFunctionalSystem("STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
 
         // The class of role that every member of class of person plays.
-        final var personRole = builder.createRole("NATURAL_MEMBER_OF_SOCIETY_ROLE");
+        builder.createRole("NATURAL_MEMBER_OF_SOCIETY_ROLE");
 
         // The class of role that every member of class of domestic property plays.
         final var domesticPropertyRole = builder.createRole("ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
@@ -89,28 +89,30 @@ public class ExampleDataObjects {
         final var occupantInPropertyKindOfAssociation =
             builder.createKindOfAssociation("OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
 
-        builder.addSubclass(viewable, viewableObject);
-        builder.addSubclass(viewable, viewableAssociation);
-        builder.addSubclass(kindOfFunctionalSystemBuilding, kindOfFunctionalSystemDomesticProperty);
-        builder.addSubclass(domesticPropertyRole, domesticOccupantInPropertyRole);
-        builder.addSubclass(classOfStateOfPerson, occupierOfPropertyRole);
-
-        builder.addClassMember(viewableObject, kindOfPerson);
-        builder.addClassMember(viewableObject, classOfStateOfPerson);
-        builder.addClassMember(viewableObject, kindOfFunctionalSystemDomesticProperty);
-        builder.addClassMember(viewableObject, classOfStateOfFunctionalSystemDomesticProperty);
-        builder.addClassMember(viewableAssociation, occupantInPropertyKindOfAssociation);
-
-        builder.addHasComponentByClass(kindOfPerson, kindOfBiologicalSystemHumanComponent);
-        builder.addHasComponentByClass(kindOfFunctionalSystemDomesticProperty,
-                kindOfFunctionalSystemDomesticPropertyComponent);
-
-        builder.addConsistsOfByClass(occupantInPropertyKindOfAssociation, domesticOccupantInPropertyRole);
-        builder.addConsistsOfByClass(occupantInPropertyKindOfAssociation, occupierOfPropertyRole);
-
-        builder.getObjects().forEach(object -> {
-            db.create(object);
-        });
+        builder
+            // Create the class hierarchy
+            .addSubclass(viewable, viewableObject)
+            .addSubclass(viewable, viewableAssociation)
+            .addSubclass(kindOfFunctionalSystemBuilding, kindOfFunctionalSystemDomesticProperty)
+            .addSubclass(domesticPropertyRole, domesticOccupantInPropertyRole)
+            .addSubclass(classOfStateOfPerson, occupierOfPropertyRole)
+            // Set class memberships
+            .addClassMember(viewableObject, kindOfPerson)
+            .addClassMember(viewableObject, classOfStateOfPerson)
+            .addClassMember(viewableObject, kindOfFunctionalSystemDomesticProperty)
+            .addClassMember(viewableObject, classOfStateOfFunctionalSystemDomesticProperty)
+            .addClassMember(viewableAssociation, occupantInPropertyKindOfAssociation)
+            // Set the has component by class predicates
+            .addHasComponentByClass(kindOfPerson, kindOfBiologicalSystemHumanComponent)
+            .addHasComponentByClass(kindOfFunctionalSystemDomesticProperty,
+                kindOfFunctionalSystemDomesticPropertyComponent)
+            // Set the consists of by class predicates
+            .addConsistsOfByClass(occupantInPropertyKindOfAssociation, domesticOccupantInPropertyRole)
+            .addConsistsOfByClass(occupantInPropertyKindOfAssociation, occupierOfPropertyRole)
+            // store the objects in the database
+            .getObjects().forEach(object -> {
+                 db.create(object);
+            });
 
         return db;
     };
@@ -139,10 +141,9 @@ public class ExampleDataObjects {
     private static UnaryOperator<MagmaCoreDatabase> addWholeLifeIndividuals = (db) -> {
 
         // Find the required classes, kinds, and roles.
-        final var kindOfPerson = (KindOfPerson) 
-            findByEntityName(db, "KIND_OF_PERSON");
-        final var personRole = (Role) 
-            findByEntityName(db, "NATURAL_MEMBER_OF_SOCIETY_ROLE");
+        final var kindOfPerson = (KindOfPerson) findByEntityName(db, "KIND_OF_PERSON");
+        final var personRole = (Role) findByEntityName(db, "NATURAL_MEMBER_OF_SOCIETY_ROLE");
+
         final var kindOfFunctionalSystemDomesticProperty = (KindOfFunctionalSystem) 
             findByEntityName(db, "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
         final var domesticPropertyRole = (Role) 
@@ -161,20 +162,21 @@ public class ExampleDataObjects {
 
         final var personB1 = pwContext.createPerson("PersonB1_Bob");
 
-        pwContext.addMemberOfKind(personB1, kindOfPerson);
-        pwContext.addNaturalRole(personB1, personRole);
-        pwContext.addBeginningEvent(personB1, e1);
         //
         // House B Whole Life Object.
         final var houseB = pwContext.createFunctionalSystem("HouseB");
 
-        pwContext.addMemberOfKind(houseB, kindOfFunctionalSystemDomesticProperty);
-        pwContext.addIntendedRole(houseB, domesticPropertyRole);
-        pwContext.addBeginningEvent(houseB, e6);
-
-        pwContext.getObjects().forEach(object -> {
-            db.create(object);
-        });
+        pwContext
+            .addMemberOfKind(personB1, kindOfPerson)
+            .addNaturalRole(personB1, personRole)
+            .addBeginningEvent(personB1, e1)
+            .addMemberOfKind(houseB, kindOfFunctionalSystemDomesticProperty)
+            .addIntendedRole(houseB, domesticPropertyRole)
+            .addBeginningEvent(houseB, e6)
+            // Store the objects in the database
+            .getObjects().forEach(object -> {
+                db.create(object);
+            });
 
         return db;
     };
@@ -219,47 +221,46 @@ public class ExampleDataObjects {
         // Person B states.
         final var personState = pwContext.createStateOfPerson(uid());
 
-        pwContext.addMemberOf(personState, classOfStateOfPerson);
-        pwContext.addTemporalPartOf(personState, person);
-        pwContext.addBeginningEvent(personState, beginning);
-        pwContext.addEndingEvent(personState, ending);
-
         // States of house when Occupant personBs1 is present.
         final var houseState = pwContext.createStateOfFunctionalSystem(uid());
 
-        pwContext.addMemberOf(houseState, classOfStateOfFunctionalSystemDomesticProperty);
-        pwContext.addTemporalPartOf(house, houseState);
-        pwContext.addBeginningEvent(houseState, beginning);
-        pwContext.addEndingEvent(houseState, ending);
+        final var personParticipant = pwContext.createParticipant(uid());
 
-        final var personParticipant =
-            pwContext.createParticipant(uid());
-
-        pwContext.addMemberOfKind(personParticipant, occupierOfPropertyRole);
-        pwContext.addTemporalPartOf(personParticipant, personState);
-        pwContext.addBeginningEvent(personParticipant, beginning);
-        pwContext.addEndingEvent(personParticipant, ending);
-
-        final var houseParticipant =
-            pwContext.createParticipant(uid());
-
-        pwContext.addMemberOfKind(houseParticipant, domesticOccupantInPropertyRole);
-        pwContext.addTemporalPartOf(houseParticipant, houseState);
-        pwContext.addBeginningEvent(houseParticipant, beginning);
-        pwContext.addEndingEvent(houseParticipant, ending);
+        final var houseParticipant = pwContext.createParticipant(uid());
 
         final var houseOccupiedAssociation = pwContext.createAssociation(uid());
 
-        pwContext.addMemberOfKind(houseOccupiedAssociation, occupantInPropertyKindOfAssociation);
-        pwContext.addConsistsOfParticipant(houseOccupiedAssociation, houseParticipant);
-        pwContext.addConsistsOfParticipant(houseOccupiedAssociation, personParticipant);
-        pwContext.addBeginningEvent(houseOccupiedAssociation, beginning);
-        pwContext.addEndingEvent(houseOccupiedAssociation, ending);
-
-        pwContext.getObjects().forEach(object -> {
-            db.create(object);
-        });
-
+        pwContext
+            // personState predicates
+            .addMemberOf(personState, classOfStateOfPerson)
+            .addTemporalPartOf(personState, person)
+            .addBeginningEvent(personState, beginning)
+            .addEndingEvent(personState, ending)
+            // houseState predicates
+            .addMemberOf(houseState, classOfStateOfFunctionalSystemDomesticProperty)
+            .addTemporalPartOf(house, houseState)
+            .addBeginningEvent(houseState, beginning)
+            .addEndingEvent(houseState, ending)
+            // personParticipant predicates
+            .addMemberOfKind(personParticipant, occupierOfPropertyRole)
+            .addTemporalPartOf(personParticipant, personState)
+            .addBeginningEvent(personParticipant, beginning)
+            .addEndingEvent(personParticipant, ending)
+            // houseParticipant predicates
+            .addMemberOfKind(houseParticipant, domesticOccupantInPropertyRole)
+            .addTemporalPartOf(houseParticipant, houseState)
+            .addBeginningEvent(houseParticipant, beginning)
+            .addEndingEvent(houseParticipant, ending)
+            // houseOccupiedAssociation predicates
+            .addMemberOfKind(houseOccupiedAssociation, occupantInPropertyKindOfAssociation)
+            .addConsistsOfParticipant(houseOccupiedAssociation, houseParticipant)
+            .addConsistsOfParticipant(houseOccupiedAssociation, personParticipant)
+            .addBeginningEvent(houseOccupiedAssociation, beginning)
+            .addEndingEvent(houseOccupiedAssociation, ending)
+            // Store the objects in the database
+            .getObjects().forEach(object -> {
+                db.create(object);
+            });
     }
 
     // A DB transformer that adds house occupancy associations.

@@ -169,9 +169,11 @@ public class PossibleWorldContext {
      *
      * @param ste {@link SpatioTemporalExtent}
      * @param k {@link Class} which should be a Kind of something.
+     * @return {@link PossibleWorldContext}
     */
-    public void addMemberOfKind(final SpatioTemporalExtent ste, final Class k) {
+    public PossibleWorldContext addMemberOfKind(final SpatioTemporalExtent ste, final Class k) {
         k.addValue(HQDM.MEMBER_OF_KIND.getIri(), ste.getId());
+        return this;
     }
 
     /**
@@ -179,9 +181,11 @@ public class PossibleWorldContext {
      *
      * @param ste {@link SpatioTemporalExtent}
      * @param r {@link Role}
+     * @return {@link PossibleWorldContext}
     */
-    public void addNaturalRole(final SpatioTemporalExtent ste, final Role r) {
+    public PossibleWorldContext addNaturalRole(final SpatioTemporalExtent ste, final Role r) {
         r.addValue(HQDM.NATURAL_ROLE.getIri(), ste.getId());
+        return this;
     }
 
     /**
@@ -189,9 +193,11 @@ public class PossibleWorldContext {
      *
      * @param ste {@link SpatioTemporalExtent}
      * @param e {@link Event}
+     * @return {@link PossibleWorldContext}
     */
-    public void addBeginningEvent(final SpatioTemporalExtent ste, final Event e) {
+    public PossibleWorldContext addBeginningEvent(final SpatioTemporalExtent ste, final Event e) {
         ste.addValue(HQDM.BEGINNING.getIri(), e.getId());
+        return this;
     }
 
     /**
@@ -199,9 +205,11 @@ public class PossibleWorldContext {
      *
      * @param ste {@link SpatioTemporalExtent}
      * @param e {@link Event}
+     * @return {@link PossibleWorldContext}
     */
-    public void addEndingEvent(final SpatioTemporalExtent ste, final Event e) {
+    public PossibleWorldContext addEndingEvent(final SpatioTemporalExtent ste, final Event e) {
         ste.addValue(HQDM.ENDING.getIri(), e.getId());
+        return this;
     }
 
     /**
@@ -209,9 +217,11 @@ public class PossibleWorldContext {
      *
      * @param ste {@link SpatioTemporalExtent}
      * @param c {@link Class}
+     * @return {@link PossibleWorldContext}
     */
-    public void addMemberOf(final SpatioTemporalExtent ste, final Class c) {
+    public PossibleWorldContext addMemberOf(final SpatioTemporalExtent ste, final Class c) {
         ste.addValue(HQDM.MEMBER_OF.getIri(), c.getId());
+        return this;
     }
 
     /**
@@ -219,9 +229,11 @@ public class PossibleWorldContext {
      *
      * @param whole {@link SpatioTemporalExtent}
      * @param part {@link SpatioTemporalExtent}
+     * @return {@link PossibleWorldContext}
     */
-    public void addTemporalPartOf(final SpatioTemporalExtent whole, final SpatioTemporalExtent part) {
+    public PossibleWorldContext addTemporalPartOf(final SpatioTemporalExtent whole, final SpatioTemporalExtent part) {
         part.addValue(HQDM.TEMPORAL_PART_OF.getIri(), whole.getId());
+        return this;
     }
 
     /**
@@ -229,9 +241,11 @@ public class PossibleWorldContext {
      *
      * @param ste {@link SpatioTemporalExtent}
      * @param r {@link Role}
+     * @return {@link PossibleWorldContext}
     */
-    public void addIntendedRole(final SpatioTemporalExtent ste, final Role r) {
+    public PossibleWorldContext addIntendedRole(final SpatioTemporalExtent ste, final Role r) {
         ste.addValue(HQDM.INTENDED_ROLE.getIri(), r.getId());
+        return this;
     }
 
     /**
@@ -239,9 +253,11 @@ public class PossibleWorldContext {
      *
      * @param a {@link Association}
      * @param p {@link Participant}
+     * @return {@link PossibleWorldContext}
     */
-    public void addConsistsOfParticipant(final Association a, final Participant p) {
+    public PossibleWorldContext addConsistsOfParticipant(final Association a, final Participant p) {
         a.addValue(HQDM.CONSISTS_OF_PARTICIPANT.getIri(), p.getId());
+        return this;
     }
 
 }

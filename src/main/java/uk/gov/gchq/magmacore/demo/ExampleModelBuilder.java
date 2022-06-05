@@ -173,9 +173,11 @@ public class ExampleModelBuilder {
      *
      * @param superclass {@link Class}
      * @param subclass {@link Class}
+     * @return {@link ExampleModelBuilder}
     */
-    public void addSubclass(final Class superclass, final Class subclass) {
+    public ExampleModelBuilder addSubclass(final Class superclass, final Class subclass) {
         subclass.addValue(HQDM.HAS_SUPERCLASS.getIri(), superclass.getId());
+        return this;
     }
 
     /**
@@ -183,9 +185,11 @@ public class ExampleModelBuilder {
      *
      * @param set the {@link Class} that the member is a member__of.
      * @param member the {@link Class} that is the member of the set.
+     * @return {@link ExampleModelBuilder}
     */
-    public void addClassMember(final Class set, final Class member) {
+    public ExampleModelBuilder addClassMember(final Class set, final Class member) {
         member.addValue(HQDM.MEMBER__OF.getIri(), set.getId());
+        return this;
     }
 
     /**
@@ -193,10 +197,12 @@ public class ExampleModelBuilder {
      *
      * @param system a {@link KindOfSystem}
      * @param component a {@link KindOfSystemComponent}
+     * @return {@link ExampleModelBuilder}
     */
-    public void addHasComponentByClass(final KindOfSystem system, 
+    public ExampleModelBuilder addHasComponentByClass(final KindOfSystem system, 
                                        final KindOfSystemComponent component) {
         system.addValue(HQDM.HAS_COMPONENT_BY_CLASS.getIri(), component.getId());
+        return this;
     }
 
     /**
@@ -204,10 +210,12 @@ public class ExampleModelBuilder {
      *
      * @param kindOfAssociation {@link KindOfAssociation}
      * @param role {@link Role}
+     * @return {@link ExampleModelBuilder}
     */
-    public void addConsistsOfByClass(final KindOfAssociation kindOfAssociation, 
+    public ExampleModelBuilder addConsistsOfByClass(final KindOfAssociation kindOfAssociation, 
                                        final Role role) {
         kindOfAssociation.addValue(HQDM.CONSISTS_OF_BY_CLASS.getIri(), role.getId());
+        return this;
     }
 
 }
