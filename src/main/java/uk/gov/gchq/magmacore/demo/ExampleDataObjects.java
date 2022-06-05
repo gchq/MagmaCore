@@ -130,7 +130,7 @@ public class ExampleDataObjects {
         final var searchResult = db.findByPredicateIriAndStringValue(HQDM.ENTITY_NAME, name);
         if (searchResult.size() == 1) {
             return (T) searchResult.get(0);
-        } else if (searchResult.size() == 0) {
+        } else if (searchResult.isEmpty()) {
             throw new RuntimeException("No entity found with name: " + name);
         } else {
             throw new RuntimeException("Multiple entities found with name: " + name);
