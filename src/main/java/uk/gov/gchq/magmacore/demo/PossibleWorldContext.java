@@ -41,8 +41,7 @@ public class PossibleWorldContext {
     public PossibleWorldContext(final IRI iri, final String name) {
         possibleWorld = SpatioTemporalExtentServices.createPossibleWorld(iri.getIri());
         possibleWorld.addStringValue(ENTITY_NAME.getIri(), name);
-        objects = new ArrayList<>();
-        objects.add(possibleWorld);
+        init(possibleWorld);
     }
 
     /**
@@ -51,9 +50,29 @@ public class PossibleWorldContext {
      * @param p {@link PossibleWorld}
     */
     public PossibleWorldContext(final PossibleWorld p) {
+        init(p);
+    }
+
+    /**
+     * Common initialisation steps.
+     *
+     * @param p {@link PossibleWorld}
+    */
+    private void init(final PossibleWorld p) {
         this.possibleWorld = p;
         objects = new ArrayList<>();
         objects.add(p);
+    }
+
+    /**
+     * Make this {@link PossibleWorld} part of another {@link PossibleWorld}.
+     *
+     * @param p the parent {@link PossibleWorld}
+     * @return this {@link PossibleWorldContext}
+    */
+    public PossibleWorldContext addParentPossibleWorld(final PossibleWorld p) {
+        possibleWorld.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), p.getId());
+        return this;
     }
 
     /**
