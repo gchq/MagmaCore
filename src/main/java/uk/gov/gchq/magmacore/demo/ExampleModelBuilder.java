@@ -1,8 +1,6 @@
 package uk.gov.gchq.magmacore.demo;
 
 import static uk.gov.gchq.hqdm.iri.HQDM.ENTITY_NAME;
-import static uk.gov.gchq.magmacore.util.DataObjectUtils.REF_BASE;
-import static uk.gov.gchq.magmacore.util.DataObjectUtils.uid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +26,6 @@ import uk.gov.gchq.hqdm.services.ClassServices;
  *
  * */
 public class ExampleModelBuilder {
-
     private List<Thing> objects;
 
     /**
@@ -51,11 +48,12 @@ public class ExampleModelBuilder {
     /**
      * Create a new Class.
      *
+     * @param iri {@link IRI}
      * @param name {@link String}
      * @return a {@link Class}
      * */
-    public Class createClass(final String name) {
-        final Class c = ClassServices.createClass(new IRI(REF_BASE, uid()).getIri());
+    public Class createClass(final IRI iri, final String name) {
+        final Class c = ClassServices.createClass(iri.getIri());
         c.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(c);
         return c;
@@ -64,12 +62,13 @@ public class ExampleModelBuilder {
     /**
      * Create a new ClassOfStateOfFunctionalSystem.
      *
+     * @param iri {@link IRI}
      * @param name {@link String}
      * @return a {@link ClassOfStateOfFunctionalSystem}
      * */
-    public ClassOfStateOfFunctionalSystem createClassOfStateOfFunctionalSystem(final String name) {
+    public ClassOfStateOfFunctionalSystem createClassOfStateOfFunctionalSystem(final IRI iri, final String name) {
         final ClassOfStateOfFunctionalSystem c = 
-            ClassServices.createClassOfStateOfFunctionalSystem(new IRI(REF_BASE, uid()).getIri());
+            ClassServices.createClassOfStateOfFunctionalSystem(iri.getIri());
         c.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(c);
         return c;
@@ -78,11 +77,12 @@ public class ExampleModelBuilder {
     /**
      * Create a new ClassOfStateOfPerson.
      *
+     * @param iri {@link IRI}
      * @param name {@link String}
      * @return a {@link ClassOfStateOfPerson}
      * */
-    public ClassOfStateOfPerson createClassOfStateOfPerson(final String name) {
-        final ClassOfStateOfPerson c = ClassServices.createClassOfStateOfPerson(new IRI(REF_BASE, uid()).getIri());
+    public ClassOfStateOfPerson createClassOfStateOfPerson(final IRI iri, final String name) {
+        final ClassOfStateOfPerson c = ClassServices.createClassOfStateOfPerson(iri.getIri());
         c.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(c);
         return c;
@@ -91,11 +91,12 @@ public class ExampleModelBuilder {
     /**
      * Create a new KindOfAssociation.
      *
+     * @param iri {@link IRI}
      * @param name {@link String}
      * @return a {@link KindOfAssociation}
      * */
-    public KindOfAssociation createKindOfAssociation(final String name) {
-        final KindOfAssociation c = ClassServices.createKindOfAssociation(new IRI(REF_BASE, uid()).getIri());
+    public KindOfAssociation createKindOfAssociation(final IRI iri, final String name) {
+        final KindOfAssociation c = ClassServices.createKindOfAssociation(iri.getIri());
         c.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(c);
         return c;
@@ -104,11 +105,12 @@ public class ExampleModelBuilder {
     /**
      * Create a new Role.
      *
+     * @param iri {@link IRI}
      * @param name {@link String}
      * @return a {@link Role}
      * */
-    public Role createRole(final String name) {
-        final Role c = ClassServices.createRole(new IRI(REF_BASE, uid()).getIri());
+    public Role createRole(final IRI iri, final String name) {
+        final Role c = ClassServices.createRole(iri.getIri());
         c.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(c);
         return c;
@@ -117,12 +119,13 @@ public class ExampleModelBuilder {
     /**
      * Create a new {@link KindOfBiologicalSystemComponent}.
      *
+     * @param iri {@link IRI}
      * @param name the name {@link String}
      * @return {@link KindOfBiologicalSystemComponent}
     */
-    public KindOfBiologicalSystemComponent createKindOfBiologicalSystemComponent(final String name) {
+    public KindOfBiologicalSystemComponent createKindOfBiologicalSystemComponent(final IRI iri, final String name) {
         final KindOfBiologicalSystemComponent c = 
-                ClassServices.createKindOfBiologicalSystemComponent(new IRI(REF_BASE, uid()).getIri());
+                ClassServices.createKindOfBiologicalSystemComponent(iri.getIri());
         c.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(c);
         return c;
@@ -131,11 +134,12 @@ public class ExampleModelBuilder {
     /**
      * Create a new {@link KindOfFunctionalSystem}.
      *
+     * @param iri {@link IRI}
      * @param name the name {@link String}
      * @return {@link KindOfFunctionalSystem}
     */
-    public KindOfFunctionalSystem createKindOfFunctionalSystem(final String name) {
-        final KindOfFunctionalSystem c = ClassServices.createKindOfFunctionalSystem(new IRI(REF_BASE, uid()).getIri());
+    public KindOfFunctionalSystem createKindOfFunctionalSystem(final IRI iri, final String name) {
+        final KindOfFunctionalSystem c = ClassServices.createKindOfFunctionalSystem(iri.getIri());
         c.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(c);
         return c;
@@ -144,12 +148,13 @@ public class ExampleModelBuilder {
     /**
      * Create a new {@link KindOfFunctionalSystemComponent}.
      *
+     * @param iri {@link IRI}
      * @param name the name {@link String}
      * @return {@link KindOfFunctionalSystemComponent}
     */
-    public KindOfFunctionalSystemComponent createKindOfFunctionalSystemComponent(final String name) {
+    public KindOfFunctionalSystemComponent createKindOfFunctionalSystemComponent(final IRI iri, final String name) {
         final KindOfFunctionalSystemComponent c = 
-            ClassServices.createKindOfFunctionalSystemComponent(new IRI(REF_BASE, uid()).getIri());
+            ClassServices.createKindOfFunctionalSystemComponent(iri.getIri());
         c.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(c);
         return c;
@@ -158,11 +163,12 @@ public class ExampleModelBuilder {
     /**
      * Create a new {@link KindOfPerson}.
      *
+     * @param iri {@link IRI}
      * @param name the name {@link String}
      * @return {@link KindOfPerson}
     */
-    public KindOfPerson createKindOfPerson(final String name) {
-        final KindOfPerson c = ClassServices.createKindOfPerson(new IRI(REF_BASE, uid()).getIri());
+    public KindOfPerson createKindOfPerson(final IRI iri, final String name) {
+        final KindOfPerson c = ClassServices.createKindOfPerson(iri.getIri());
         c.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(c);
         return c;

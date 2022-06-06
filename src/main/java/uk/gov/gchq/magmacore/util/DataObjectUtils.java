@@ -14,23 +14,12 @@
 
 package uk.gov.gchq.magmacore.util;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
-
-import uk.gov.gchq.hqdm.iri.IriBase;
 
 /**
  * Utilities for building and generating HQDM objects.
  */
 public final class DataObjectUtils {
-
-    /** IriBase for Reference Data Library. */
-    public static final IriBase REF_BASE =
-            new IriBase("rdl", "http://www.semanticweb.org/magma-core/rdl#");
-
-    /** IriBase for User data. */
-    public static final IriBase USER_BASE =
-            new IriBase("user", "http://www.semanticweb.org/magma-core/user#");
 
     private DataObjectUtils() {}
 
@@ -41,16 +30,6 @@ public final class DataObjectUtils {
      */
     public static String uid() {
         return UUID.randomUUID().toString();
-    }
-
-    /**
-     * Get the current date-time in the ISO-8601 calendar system.
-     *
-     * @return Local date-time in the format {@code 2007-12-03T10:15:30.123456789}.
-     */
-    public static String timeNow() {
-        final LocalDateTime now = LocalDateTime.now();
-        return now.toString();
     }
 
 }

@@ -1,7 +1,6 @@
 package uk.gov.gchq.magmacore.demo;
 
 import static uk.gov.gchq.hqdm.iri.HQDM.ENTITY_NAME;
-import static uk.gov.gchq.magmacore.util.DataObjectUtils.USER_BASE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +35,14 @@ public class PossibleWorldContext {
     /**
      * Constructor that creates a new {@link PossibleWorld}.
      *
+     * @param iri {@link IRI}
      * @param name The {@link PossibleWorld} name.
      * */
-    public PossibleWorldContext(final String name) {
-        this(SpatioTemporalExtentServices.createPossibleWorld(name));
+    public PossibleWorldContext(final IRI iri, final String name) {
+        possibleWorld = SpatioTemporalExtentServices.createPossibleWorld(iri.getIri());
+        possibleWorld.addStringValue(ENTITY_NAME.getIri(), name);
+        objects = new ArrayList<>();
+        objects.add(possibleWorld);
     }
 
     /**
@@ -65,11 +68,12 @@ public class PossibleWorldContext {
     /**
      * Create a PointInTime.
      *
+     * @param iri {@link IRI}
      * @param value {@link String} value of the date-time.
      * @return {@link PointInTime}
     */
-    public PointInTime createPointInTime(final String value) {
-        final PointInTime o = SpatioTemporalExtentServices.createPointInTime(new IRI(USER_BASE, value).getIri());
+    public PointInTime createPointInTime(final IRI iri, final String value) {
+        final PointInTime o = SpatioTemporalExtentServices.createPointInTime(iri.getIri());
         o.addStringValue(ENTITY_NAME.getIri(), value);
         objects.add(o);
         o.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
@@ -79,11 +83,12 @@ public class PossibleWorldContext {
     /**
      * Create a Person.
      *
+     * @param iri {@link IRI}
      * @param name {@link String} name of the entity.
      * @return {@link Person}
     */
-    public Person createPerson(final String name) {
-        final Person o = SpatioTemporalExtentServices.createPerson(new IRI(USER_BASE, name).getIri());
+    public Person createPerson(final IRI iri, final String name) {
+        final Person o = SpatioTemporalExtentServices.createPerson(iri.getIri());
         o.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(o);
         o.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
@@ -93,11 +98,12 @@ public class PossibleWorldContext {
     /**
      * Create a StateOfPerson.
      *
+     * @param iri {@link IRI}
      * @param name {@link String} name of the entity.
      * @return {@link StateOfPerson}
     */
-    public StateOfPerson createStateOfPerson(final String name) {
-        final StateOfPerson o = SpatioTemporalExtentServices.createStateOfPerson(new IRI(USER_BASE, name).getIri());
+    public StateOfPerson createStateOfPerson(final IRI iri, final String name) {
+        final StateOfPerson o = SpatioTemporalExtentServices.createStateOfPerson(iri.getIri());
         o.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(o);
         o.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
@@ -107,12 +113,13 @@ public class PossibleWorldContext {
     /**
      * Create a FunctionalSystem.
      *
+     * @param iri {@link IRI}
      * @param name {@link String} name of the entity.
      * @return {@link FunctionalSystem}
     */
-    public FunctionalSystem createFunctionalSystem(final String name) {
+    public FunctionalSystem createFunctionalSystem(final IRI iri, final String name) {
         final FunctionalSystem o = 
-            SpatioTemporalExtentServices.createFunctionalSystem(new IRI(USER_BASE, name).getIri());
+            SpatioTemporalExtentServices.createFunctionalSystem(iri.getIri());
         o.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(o);
         o.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
@@ -122,12 +129,13 @@ public class PossibleWorldContext {
     /**
      * Create a StateOfFunctionalSystem.
      *
+     * @param iri {@link IRI}
      * @param name {@link String} name of the entity.
      * @return {@link StateOfFunctionalSystem}
     */
-    public StateOfFunctionalSystem createStateOfFunctionalSystem(final String name) {
+    public StateOfFunctionalSystem createStateOfFunctionalSystem(final IRI iri, final String name) {
         final StateOfFunctionalSystem o = 
-            SpatioTemporalExtentServices.createStateOfFunctionalSystem(new IRI(USER_BASE, name).getIri());
+            SpatioTemporalExtentServices.createStateOfFunctionalSystem(iri.getIri());
         o.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(o);
         o.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
@@ -137,12 +145,13 @@ public class PossibleWorldContext {
     /**
      * Create a Participant.
      *
+     * @param iri {@link IRI}
      * @param name {@link String} name of the entity.
      * @return {@link Participant}
     */
-    public Participant createParticipant(final String name) {
+    public Participant createParticipant(final IRI iri, final String name) {
         final Participant o = 
-            SpatioTemporalExtentServices.createParticipant(new IRI(USER_BASE, name).getIri());
+            SpatioTemporalExtentServices.createParticipant(iri.getIri());
         o.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(o);
         o.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());
@@ -152,12 +161,13 @@ public class PossibleWorldContext {
     /**
      * Create a Association.
      *
+     * @param iri {@link IRI}
      * @param name {@link String} name of the entity.
      * @return {@link Association}
     */
-    public Association createAssociation(final String name) {
+    public Association createAssociation(final IRI iri, final String name) {
         final Association o = 
-            SpatioTemporalExtentServices.createAssociation(new IRI(USER_BASE, name).getIri());
+            SpatioTemporalExtentServices.createAssociation(iri.getIri());
         o.addStringValue(ENTITY_NAME.getIri(), name);
         objects.add(o);
         o.addValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), possibleWorld.getId());

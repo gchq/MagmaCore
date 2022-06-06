@@ -5,6 +5,8 @@ import static uk.gov.gchq.magmacore.util.DataObjectUtils.uid;
 import java.util.function.UnaryOperator;
 
 import uk.gov.gchq.hqdm.iri.HQDM;
+import uk.gov.gchq.hqdm.iri.IRI;
+import uk.gov.gchq.hqdm.iri.IriBase;
 import uk.gov.gchq.hqdm.model.ClassOfStateOfFunctionalSystem;
 import uk.gov.gchq.hqdm.model.ClassOfStateOfPerson;
 import uk.gov.gchq.hqdm.model.Event;
@@ -24,6 +26,32 @@ import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
  * */
 public class ExampleDataObjects {
 
+    /** IriBase for Reference Data Library. */
+    private static final IriBase REF_BASE =
+            new IriBase("rdl", "http://www.semanticweb.org/magma-core/rdl#");
+
+    /** IriBase for User data. */
+    private static final IriBase USER_BASE =
+            new IriBase("user", "http://www.semanticweb.org/magma-core/user#");
+
+    /**
+     * Create a new IRI in the REF_BASE namespace.
+     *
+     * @return {@link IRI}
+    */
+    private static IRI mkRefBaseIri() {
+            return new IRI(REF_BASE, uid());
+    }
+
+    /**
+     * Create a new IRI in the USER_BASE namespace.
+     *
+     * @return {@link IRI}
+    */
+    private static IRI mkUserBaseIri() {
+            return new IRI(USER_BASE, uid());
+    }
+
     // A DB transformer that adds the RDL entities.
     private static UnaryOperator<MagmaCoreDatabase> createRefDataObjects = (db) -> {
         final var builder = new ExampleModelBuilder();
@@ -32,62 +60,62 @@ public class ExampleDataObjects {
 
         // Viewable is a class to assign other data objects to, to indicate that they are likely to
         // be of direct interest to a system user.
-        final var viewable = builder.createClass("VIEWABLE");
+        final var viewable = builder.createClass(mkRefBaseIri(), "VIEWABLE");
 
         // A sub-set of the Viewable class.
-        final var viewableObject = builder.createClass("VIEWABLE_OBJECT");
+        final var viewableObject = builder.createClass(mkRefBaseIri(), "VIEWABLE_OBJECT");
 
         // A sub-set of the Viewable Class for viewable Associations.
-        final var viewableAssociation = builder.createClass("VIEWABLE_ASSOCIATION");
+        final var viewableAssociation = builder.createClass(mkRefBaseIri(), "VIEWABLE_ASSOCIATION");
 
         // A system is composed of components so this is the class of components that a whole-life
         // person can have.
         final var kindOfBiologicalSystemHumanComponent =
-            builder.createKindOfBiologicalSystemComponent("KIND_OF_BIOLOGICAL_SYSTEM_HUMAN_COMPONENT");
+            builder.createKindOfBiologicalSystemComponent(mkRefBaseIri(), "KIND_OF_BIOLOGICAL_SYSTEM_HUMAN_COMPONENT");
 
         // A class of whole-life person (re-)created as Reference Data.
-        final var kindOfPerson = builder.createKindOfPerson("KIND_OF_PERSON");
+        final var kindOfPerson = builder.createKindOfPerson(mkRefBaseIri(), "KIND_OF_PERSON");
 
         // A class of temporal part (state) of a (whole-life) person.
         final var classOfStateOfPerson =
-            builder.createClassOfStateOfPerson("CLASS_OF_STATE_OF_PERSON");
+            builder.createClassOfStateOfPerson(mkRefBaseIri(), "CLASS_OF_STATE_OF_PERSON");
 
         // A class of whole-life system that is a Building.
         final var kindOfFunctionalSystemBuilding =
-            builder.createKindOfFunctionalSystem("KIND_OF_FUNCTIONAL_SYSTEM_BUILDING");
+            builder.createKindOfFunctionalSystem(mkRefBaseIri(), "KIND_OF_FUNCTIONAL_SYSTEM_BUILDING");
 
         // A Domestic Property is a system composed of components (e.g. walls, floors, roof, front
         // door, etc). This is the class of those whole-life system components.
         final var kindOfFunctionalSystemDomesticPropertyComponent =
-            builder.createKindOfFunctionalSystemComponent("KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY_COMPONENT");
+            builder.createKindOfFunctionalSystemComponent(mkRefBaseIri(), "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY_COMPONENT");
 
         // The class of whole-life system that is domestic property.
         final var kindOfFunctionalSystemDomesticProperty =
-            builder.createKindOfFunctionalSystem("KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
+            builder.createKindOfFunctionalSystem(mkRefBaseIri(), "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
 
         // The class of state of system whose members are temporal parts of domestic properties.
         final var classOfStateOfFunctionalSystemDomesticProperty =
-            builder.createClassOfStateOfFunctionalSystem("STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
+            builder.createClassOfStateOfFunctionalSystem(mkRefBaseIri(), "STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
 
         // The class of role that every member of class of person plays.
-        builder.createRole("NATURAL_MEMBER_OF_SOCIETY_ROLE");
+        builder.createRole(mkRefBaseIri(), "NATURAL_MEMBER_OF_SOCIETY_ROLE");
 
         // The class of role that every member of class of domestic property plays.
-        final var domesticPropertyRole = builder.createRole("ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
+        final var domesticPropertyRole = builder.createRole(mkRefBaseIri(), "ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
 
-        final var domesticOccupantInPropertyRole = builder.createRole("DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE");
+        final var domesticOccupantInPropertyRole = builder.createRole(mkRefBaseIri(), "DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE");
         // Would be good to add part_of_by_class_(occupantInPropertyKindOfAssociation) but can't
         // neatly do that in the class as it can only be added after
         // occupantInPropertyKindOfAssociation is created. This can be added later for completeness.
 
-        final var occupierOfPropertyRole = builder.createRole("OCCUPIER_LOCATED_IN_PROPERTY_ROLE");
+        final var occupierOfPropertyRole = builder.createRole(mkRefBaseIri(), "OCCUPIER_LOCATED_IN_PROPERTY_ROLE");
         // Would be good to add part_of_by_class_(occupantInPropertyKindOfAssociation) but can't
         // neatly do that in the class as it can only be added after
         // occupantInPropertyKindOfAssociation is created. This can be added later for completeness.
 
         // Add the Association Types (Participants and Associations).
         final var occupantInPropertyKindOfAssociation =
-            builder.createKindOfAssociation("OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
+            builder.createKindOfAssociation(mkRefBaseIri(), "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
 
         builder
             // Create the class hierarchy
@@ -153,17 +181,17 @@ public class ExampleDataObjects {
         // The main state: This is a mandatory component of all datasets if we are to stick to the
         // commitments in HQDM. This is the least strict treatment, the creation of a single
         // possible world.
-        final var pwContext = new PossibleWorldContext("Example1_World");
+        final var pwContext = new PossibleWorldContext(mkUserBaseIri(), "Example1_World");
 
         // Create the beginning events for the person and house
-        final var e1 = pwContext.createPointInTime("1991-02-18T00:00:00");
-        final var e6 = pwContext.createPointInTime("1972-06-01T00:00:00");
+        final var e1 = pwContext.createPointInTime(mkUserBaseIri(), "1991-02-18T00:00:00");
+        final var e6 = pwContext.createPointInTime(mkUserBaseIri(), "1972-06-01T00:00:00");
 
         // Person B Whole Life Object.
-        final var personB1 = pwContext.createPerson("PersonB1_Bob");
+        final var personB1 = pwContext.createPerson(mkUserBaseIri(), "PersonB1_Bob");
 
         // House B Whole Life Object.
-        final var houseB = pwContext.createFunctionalSystem("HouseB");
+        final var houseB = pwContext.createFunctionalSystem(mkUserBaseIri(), "HouseB");
 
         pwContext
             // Add the person predicates
@@ -217,17 +245,17 @@ public class ExampleDataObjects {
         final var pwContext = new PossibleWorldContext(possibleWorld);
 
         // Person state.
-        final var personState = pwContext.createStateOfPerson(uid());
+        final var personState = pwContext.createStateOfPerson(mkUserBaseIri(), uid());
 
         // States of house when Occupant person is present.
-        final var houseState = pwContext.createStateOfFunctionalSystem(uid());
+        final var houseState = pwContext.createStateOfFunctionalSystem(mkUserBaseIri(), uid());
 
         // Create Participants to link the states to their roles in the association
-        final var personParticipant = pwContext.createParticipant(uid());
-        final var houseParticipant = pwContext.createParticipant(uid());
+        final var personParticipant = pwContext.createParticipant(mkUserBaseIri(), uid());
+        final var houseParticipant = pwContext.createParticipant(mkUserBaseIri(), uid());
 
         // Create the association
-        final var houseOccupiedAssociation = pwContext.createAssociation(uid());
+        final var houseOccupiedAssociation = pwContext.createAssociation(mkUserBaseIri(), uid());
 
         // Build the full structure of the association
         pwContext
@@ -271,10 +299,10 @@ public class ExampleDataObjects {
         final var pwContext = new PossibleWorldContext(possibleWorld);
 
         // Create the bounding events for the associations
-        final var e2 = pwContext.createPointInTime("2020-08-15T17:50:00");
-        final var e3 = pwContext.createPointInTime("2020-08-15T19:21:00");
-        final var e4 = pwContext.createPointInTime("2020-08-16T22:33:00");
-        final var e5 = pwContext.createPointInTime("2020-08-17T10:46:00");
+        final var e2 = pwContext.createPointInTime(mkUserBaseIri(), "2020-08-15T17:50:00");
+        final var e3 = pwContext.createPointInTime(mkUserBaseIri(), "2020-08-15T19:21:00");
+        final var e4 = pwContext.createPointInTime(mkUserBaseIri(), "2020-08-16T22:33:00");
+        final var e5 = pwContext.createPointInTime(mkUserBaseIri(), "2020-08-17T10:46:00");
 
         // Persist the events
         pwContext.getObjects().forEach(object -> {
