@@ -17,8 +17,6 @@ package uk.gov.gchq.magmacore.demo;
 import static uk.gov.gchq.hqdm.iri.HQDM.ENTITY_NAME;
 import static uk.gov.gchq.hqdm.iri.HQDM.HQDM;
 import static uk.gov.gchq.hqdm.iri.RDFS.RDFS;
-import static uk.gov.gchq.magmacore.util.DataObjectUtils.REF_BASE;
-import static uk.gov.gchq.magmacore.util.DataObjectUtils.USER_BASE;
 
 import java.util.List;
 
@@ -55,8 +53,6 @@ public final class JenaDatabaseDemo {
         final MagmaCoreJenaDatabase jenaDatabase = new MagmaCoreJenaDatabase();
         jenaDatabase.register(HQDM);
         jenaDatabase.register(RDFS);
-        jenaDatabase.register(REF_BASE);
-        jenaDatabase.register(USER_BASE);
 
         // Add example data objects to dataset.
         jenaDatabase.begin();
