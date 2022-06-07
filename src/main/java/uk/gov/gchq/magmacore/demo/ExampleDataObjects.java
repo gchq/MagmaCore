@@ -18,6 +18,8 @@ import uk.gov.gchq.hqdm.model.Person;
 import uk.gov.gchq.hqdm.model.PossibleWorld;
 import uk.gov.gchq.hqdm.model.Role;
 import uk.gov.gchq.hqdm.model.Thing;
+import uk.gov.gchq.hqdm.rdf.services.ModelBuilder;
+import uk.gov.gchq.hqdm.rdf.services.PossibleWorldContext;
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 
 /**
@@ -54,7 +56,7 @@ public class ExampleDataObjects {
 
     // A DB transformer that adds the RDL entities.
     private static UnaryOperator<MagmaCoreDatabase> createRefDataObjects = (db) -> {
-        final var builder = new ExampleModelBuilder();
+        final var builder = new ModelBuilder();
 
         // RDL CLASSES - Can be created, stored and queried separately.
 
