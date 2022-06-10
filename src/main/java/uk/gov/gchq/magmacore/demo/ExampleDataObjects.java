@@ -2,11 +2,14 @@ package uk.gov.gchq.magmacore.demo;
 
 import static uk.gov.gchq.magmacore.util.DataObjectUtils.uid;
 
+import java.util.List;
+import java.util.Set;
 import java.util.function.UnaryOperator;
 
 import uk.gov.gchq.hqdm.iri.HQDM;
 import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.iri.IriBase;
+import uk.gov.gchq.hqdm.iri.RDFS;
 import uk.gov.gchq.hqdm.model.ClassOfStateOfFunctionalSystem;
 import uk.gov.gchq.hqdm.model.ClassOfStateOfPerson;
 import uk.gov.gchq.hqdm.model.Event;
@@ -18,8 +21,10 @@ import uk.gov.gchq.hqdm.model.Person;
 import uk.gov.gchq.hqdm.model.PossibleWorld;
 import uk.gov.gchq.hqdm.model.Role;
 import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.rdf.services.ModelBuilder;
 import uk.gov.gchq.hqdm.rdf.services.PossibleWorldContext;
+import uk.gov.gchq.magmacore.database.DbChangeSet;
+import uk.gov.gchq.magmacore.database.DbCreateOperation;
+import uk.gov.gchq.magmacore.database.DbTransformation;
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 
 /**
@@ -30,123 +35,151 @@ public class ExampleDataObjects {
 
     /** IriBase for Reference Data Library. */
     private static final IriBase REF_BASE =
-            new IriBase("rdl", "http://www.semanticweb.org/magma-core/rdl#");
+        new IriBase("rdl", "http://www.semanticweb.org/magma-core/rdl#");
 
     /** IriBase for User data. */
     private static final IriBase USER_BASE =
-            new IriBase("user", "http://www.semanticweb.org/magma-core/user#");
+        new IriBase("user", "http://www.semanticweb.org/magma-core/user#");
 
     /**
      * Create a new IRI in the REF_BASE namespace.
      *
      * @return {@link IRI}
-    */
+     */
     private static IRI mkRefBaseIri() {
-            return new IRI(REF_BASE, uid());
+        return new IRI(REF_BASE, uid());
     }
 
     /**
      * Create a new IRI in the USER_BASE namespace.
      *
      * @return {@link IRI}
-    */
+     */
     private static IRI mkUserBaseIri() {
-            return new IRI(USER_BASE, uid());
+        return new IRI(USER_BASE, uid());
     }
 
-    // A DB transformer that adds the RDL entities.
-    private static UnaryOperator<MagmaCoreDatabase> createRefDataObjects = (db) -> {
-        final var builder = new ModelBuilder();
+    /**
+     * Create a DbChangeSet that adds the RDL.
+     *
+     * @return {@link DbChangeSet}
+     */
+    private static DbChangeSet createRefDataObjects() {
 
-        // RDL CLASSES - Can be created, stored and queried separately.
+        final var viewable = mkRefBaseIri();
+        final var viewableObject = mkRefBaseIri();
+        final var viewableAssociation = mkRefBaseIri();
+        final var kindOfBiologicalSystemHumanComponent = mkRefBaseIri();
+        final var kindOfPerson = mkRefBaseIri();
+        final var classOfStateOfPerson = mkRefBaseIri();
+        final var kindOfFunctionalSystemBuilding = mkRefBaseIri();
+        final var kindOfFunctionalSystemDomesticPropertyComponent = mkRefBaseIri();
+        final var kindOfFunctionalSystemDomesticProperty = mkRefBaseIri();
+        final var classOfStateOfFunctionalSystemDomesticProperty = mkRefBaseIri();
+        final var naturalMemberOfSocietyRole = mkRefBaseIri();
+        final var domesticPropertyRole = mkRefBaseIri();
+        final var domesticOccupantInPropertyRole = mkRefBaseIri();
+        final var occupierOfPropertyRole = mkRefBaseIri();
+        final var occupantInPropertyKindOfAssociation = mkRefBaseIri();
 
-        // Viewable is a class to assign other data objects to, to indicate that they are likely to
-        // be of direct interest to a system user.
-        final var viewable = builder.createClass(mkRefBaseIri(), "VIEWABLE");
+        final var viewableObjectSpecializesViewable = mkRefBaseIri();
 
-        // A sub-set of the Viewable class.
-        final var viewableObject = builder.createClass(mkRefBaseIri(), "VIEWABLE_OBJECT");
+        final var creates = Set.of(
+                new DbCreateOperation(viewable, RDFS.RDF_TYPE, HQDM.CLASS.getIri()),
+                new DbCreateOperation(viewable, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(viewable, HQDM.ENTITY_NAME, "VIEWABLE"),
 
-        // A sub-set of the Viewable Class for viewable Associations.
-        final var viewableAssociation = builder.createClass(mkRefBaseIri(), "VIEWABLE_ASSOCIATION");
+                new DbCreateOperation(viewableObject, RDFS.RDF_TYPE, HQDM.CLASS.getIri()),
+                new DbCreateOperation(viewableObject, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(viewableObject, HQDM.ENTITY_NAME, "VIEWABLE_OBJECT"),
 
-        // A system is composed of components so this is the class of components that a whole-life
-        // person can have.
-        final var kindOfBiologicalSystemHumanComponent =
-            builder.createKindOfBiologicalSystemComponent(mkRefBaseIri(), "KIND_OF_BIOLOGICAL_SYSTEM_HUMAN_COMPONENT");
+                new DbCreateOperation(viewableAssociation, RDFS.RDF_TYPE, HQDM.CLASS.getIri()),
+                new DbCreateOperation(viewableAssociation, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(viewableAssociation, HQDM.ENTITY_NAME, "VIEWABLE_ASSOCIATION"),
 
-        // A class of whole-life person (re-)created as Reference Data.
-        final var kindOfPerson = builder.createKindOfPerson(mkRefBaseIri(), "KIND_OF_PERSON");
+                new DbCreateOperation(kindOfBiologicalSystemHumanComponent, RDFS.RDF_TYPE, HQDM.KIND_OF_BIOLOGICAL_SYSTEM_COMPONENT.getIri()),
+                new DbCreateOperation(kindOfBiologicalSystemHumanComponent, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(kindOfBiologicalSystemHumanComponent, HQDM.ENTITY_NAME, "KIND_OF_BIOLOGICAL_SYSTEM_HUMAN_COMPONENT"),
 
-        // A class of temporal part (state) of a (whole-life) person.
-        final var classOfStateOfPerson =
-            builder.createClassOfStateOfPerson(mkRefBaseIri(), "CLASS_OF_STATE_OF_PERSON");
+                new DbCreateOperation(kindOfPerson, RDFS.RDF_TYPE, HQDM.KIND_OF_PERSON.getIri()),
+                new DbCreateOperation(kindOfPerson, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(kindOfPerson, HQDM.ENTITY_NAME,  "KIND_OF_PERSON"),
 
-        // A class of whole-life system that is a Building.
-        final var kindOfFunctionalSystemBuilding =
-            builder.createKindOfFunctionalSystem(mkRefBaseIri(), "KIND_OF_FUNCTIONAL_SYSTEM_BUILDING");
+                new DbCreateOperation(classOfStateOfPerson, RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_PERSON.getIri()),
+                new DbCreateOperation(classOfStateOfPerson, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(classOfStateOfPerson, HQDM.ENTITY_NAME, "CLASS_OF_STATE_OF_PERSON"),
 
-        // A Domestic Property is a system composed of components (e.g. walls, floors, roof, front
-        // door, etc). This is the class of those whole-life system components.
-        final var kindOfFunctionalSystemDomesticPropertyComponent =
-            builder.createKindOfFunctionalSystemComponent(mkRefBaseIri(), "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY_COMPONENT");
+                new DbCreateOperation(kindOfFunctionalSystemBuilding, RDFS.RDF_TYPE, HQDM.KIND_OF_FUNCTIONAL_SYSTEM.getIri()),
+                new DbCreateOperation(kindOfFunctionalSystemBuilding, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(kindOfFunctionalSystemBuilding, HQDM.ENTITY_NAME, "KIND_OF_FUNCTIONAL_SYSTEM_BUILDING"),
 
-        // The class of whole-life system that is domestic property.
-        final var kindOfFunctionalSystemDomesticProperty =
-            builder.createKindOfFunctionalSystem(mkRefBaseIri(), "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
+                new DbCreateOperation(kindOfFunctionalSystemDomesticPropertyComponent, RDFS.RDF_TYPE, HQDM.KIND_OF_FUNCTIONAL_SYSTEM_COMPONENT.getIri()),
+                new DbCreateOperation(kindOfFunctionalSystemDomesticPropertyComponent, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(kindOfFunctionalSystemDomesticPropertyComponent, HQDM.ENTITY_NAME, "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY_COMPONENT"),
 
-        // The class of state of system whose members are temporal parts of domestic properties.
-        final var classOfStateOfFunctionalSystemDomesticProperty =
-            builder.createClassOfStateOfFunctionalSystem(mkRefBaseIri(), "STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
+                new DbCreateOperation(kindOfFunctionalSystemDomesticProperty, RDFS.RDF_TYPE, HQDM.KIND_OF_FUNCTIONAL_SYSTEM.getIri()),
+                new DbCreateOperation(kindOfFunctionalSystemDomesticProperty, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(kindOfFunctionalSystemDomesticProperty, HQDM.ENTITY_NAME, "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY"),
 
-        // The class of role that every member of class of person plays.
-        builder.createRole(mkRefBaseIri(), "NATURAL_MEMBER_OF_SOCIETY_ROLE");
+                new DbCreateOperation(classOfStateOfFunctionalSystemDomesticProperty, RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_FUNCTIONAL_SYSTEM.getIri()),
+                new DbCreateOperation(classOfStateOfFunctionalSystemDomesticProperty, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(classOfStateOfFunctionalSystemDomesticProperty, HQDM.ENTITY_NAME, "STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY"),
 
-        // The class of role that every member of class of domestic property plays.
-        final var domesticPropertyRole = builder.createRole(mkRefBaseIri(), "ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
+                new DbCreateOperation(naturalMemberOfSocietyRole, RDFS.RDF_TYPE, HQDM.ROLE.getIri()),
+                new DbCreateOperation(naturalMemberOfSocietyRole, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(naturalMemberOfSocietyRole, HQDM.ENTITY_NAME, "NATURAL_MEMBER_OF_SOCIETY_ROLE"),
 
-        final var domesticOccupantInPropertyRole = builder.createRole(mkRefBaseIri(), "DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE");
-        // Would be good to add part_of_by_class_(occupantInPropertyKindOfAssociation) but can't
-        // neatly do that in the class as it can only be added after
-        // occupantInPropertyKindOfAssociation is created. This can be added later for completeness.
+                new DbCreateOperation(domesticPropertyRole, RDFS.RDF_TYPE, HQDM.ROLE.getIri()),
+                new DbCreateOperation(domesticPropertyRole, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(domesticPropertyRole, HQDM.ENTITY_NAME, "ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE"),
 
-        final var occupierOfPropertyRole = builder.createRole(mkRefBaseIri(), "OCCUPIER_LOCATED_IN_PROPERTY_ROLE");
-        // Would be good to add part_of_by_class_(occupantInPropertyKindOfAssociation) but can't
-        // neatly do that in the class as it can only be added after
-        // occupantInPropertyKindOfAssociation is created. This can be added later for completeness.
+                new DbCreateOperation(domesticOccupantInPropertyRole, RDFS.RDF_TYPE, HQDM.ROLE.getIri()),
+                new DbCreateOperation(domesticOccupantInPropertyRole, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(domesticOccupantInPropertyRole, HQDM.ENTITY_NAME, "DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE"),
 
-        // Add the Association Types (Participants and Associations).
-        final var occupantInPropertyKindOfAssociation =
-            builder.createKindOfAssociation(mkRefBaseIri(), "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
+                new DbCreateOperation(occupierOfPropertyRole, RDFS.RDF_TYPE, HQDM.ROLE.getIri()),
+                new DbCreateOperation(occupierOfPropertyRole, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(occupierOfPropertyRole, HQDM.ENTITY_NAME, "OCCUPIER_LOCATED_IN_PROPERTY_ROLE"),
 
-        builder
-            // Create the class hierarchy
-            .addSubclass(viewable, viewableObject)
-            .addSubclass(viewable, viewableAssociation)
-            .addSubclass(kindOfFunctionalSystemBuilding, kindOfFunctionalSystemDomesticProperty)
-            .addSubclass(domesticPropertyRole, domesticOccupantInPropertyRole)
-            .addSubclass(classOfStateOfPerson, occupierOfPropertyRole)
-            // Set class memberships
-            .addClassMember(viewableObject, kindOfPerson)
-            .addClassMember(viewableObject, classOfStateOfPerson)
-            .addClassMember(viewableObject, kindOfFunctionalSystemDomesticProperty)
-            .addClassMember(viewableObject, classOfStateOfFunctionalSystemDomesticProperty)
-            .addClassMember(viewableAssociation, occupantInPropertyKindOfAssociation)
-            // Set the has component by class predicates
-            .addHasComponentByClass(kindOfPerson, kindOfBiologicalSystemHumanComponent)
-            .addHasComponentByClass(kindOfFunctionalSystemDomesticProperty,
-                    kindOfFunctionalSystemDomesticPropertyComponent)
-            // Set the consists of by class predicates
-            .addConsistsOfByClass(occupantInPropertyKindOfAssociation, domesticOccupantInPropertyRole)
-            .addConsistsOfByClass(occupantInPropertyKindOfAssociation, occupierOfPropertyRole)
-            // store the objects in the database
-            .getObjects().forEach(object -> {
-                db.create(object);
-            });
+                new DbCreateOperation(occupantInPropertyKindOfAssociation, RDFS.RDF_TYPE, HQDM.KIND_OF_ASSOCIATION.getIri()),
+                new DbCreateOperation(occupantInPropertyKindOfAssociation, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
+                new DbCreateOperation(occupantInPropertyKindOfAssociation, HQDM.ENTITY_NAME, "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION"),
 
-        return db;
-    };
+                // Create the class hierarchy
+                new DbCreateOperation(viewableObject, HQDM.HAS_SUPERCLASS, viewable.getIri()),
+                new DbCreateOperation(viewableObject, RDFS.RDFS_SUB_CLASS_OF, viewable.getIri()),
 
+                new DbCreateOperation(viewableAssociation, HQDM.HAS_SUPERCLASS, viewable.getIri()),
+                new DbCreateOperation(viewableAssociation, RDFS.RDFS_SUB_CLASS_OF, viewable.getIri()),
+
+                new DbCreateOperation(kindOfFunctionalSystemDomesticProperty, HQDM.HAS_SUPERCLASS, kindOfFunctionalSystemBuilding.getIri()),
+                new DbCreateOperation(kindOfFunctionalSystemDomesticProperty, RDFS.RDFS_SUB_CLASS_OF, kindOfFunctionalSystemBuilding.getIri()),
+
+                new DbCreateOperation(domesticOccupantInPropertyRole, HQDM.HAS_SUPERCLASS, domesticPropertyRole.getIri()),
+                new DbCreateOperation(domesticOccupantInPropertyRole, RDFS.RDFS_SUB_CLASS_OF, domesticPropertyRole.getIri()),
+
+                new DbCreateOperation(occupierOfPropertyRole, HQDM.HAS_SUPERCLASS, classOfStateOfPerson.getIri()),
+                new DbCreateOperation(occupierOfPropertyRole, RDFS.RDFS_SUB_CLASS_OF, classOfStateOfPerson.getIri()),
+
+
+                // Set class memberships
+                new DbCreateOperation(kindOfPerson, HQDM.MEMBER_OF, viewableObject.getIri()),
+                new DbCreateOperation(classOfStateOfPerson, HQDM.MEMBER_OF, viewableObject.getIri()),
+                new DbCreateOperation(kindOfFunctionalSystemDomesticProperty, HQDM.MEMBER_OF, viewableObject.getIri()),
+                new DbCreateOperation(classOfStateOfFunctionalSystemDomesticProperty, HQDM.MEMBER_OF, viewableObject.getIri()),
+                new DbCreateOperation(occupantInPropertyKindOfAssociation, HQDM.MEMBER_OF, viewableAssociation.getIri()),
+
+                // Set the has component by class predicates
+                new DbCreateOperation(kindOfBiologicalSystemHumanComponent, HQDM.HAS_COMPONENT_BY_CLASS, kindOfPerson.getIri()),
+                new DbCreateOperation(kindOfFunctionalSystemDomesticPropertyComponent, HQDM.HAS_COMPONENT_BY_CLASS, kindOfFunctionalSystemDomesticProperty.getIri()),
+
+                // Set the consists of by class predicates
+                new DbCreateOperation(domesticOccupantInPropertyRole, HQDM.CONSISTS_OF_BY_CLASS, occupantInPropertyKindOfAssociation.getIri()),
+                new DbCreateOperation(occupierOfPropertyRole, HQDM.CONSISTS_OF_BY_CLASS, occupantInPropertyKindOfAssociation.getIri())
+                    );
+
+        return new DbChangeSet(Set.of(), creates);
+    }
 
     /**
      * Find an object by its ENTITY_NAME.
@@ -167,9 +200,13 @@ public class ExampleDataObjects {
         }
     }
 
-    // A DB transformer that adds whole life individuals.
-    private static UnaryOperator<MagmaCoreDatabase> addWholeLifeIndividuals = (db) -> {
-
+    /**
+     * Create a DbChangeSet that adds the whole life individuals.
+     *
+     * @return {@link DbChangeSet}
+     */
+    private static DbChangeSet addWholeLifeIndividuals(final MagmaCoreDatabase db) {
+        //
         // Find the required classes, kinds, and roles.
         final KindOfPerson kindOfPerson = findByEntityName(db, "KIND_OF_PERSON");
         final Role personRole = findByEntityName(db, "NATURAL_MEMBER_OF_SOCIETY_ROLE");
@@ -178,39 +215,41 @@ public class ExampleDataObjects {
         final Role domesticPropertyRole =
             findByEntityName(db, "ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
 
-        // STATES
+        final var possibleWorld = mkUserBaseIri();
+        final var e1 = mkUserBaseIri();
+        final var e2 = mkUserBaseIri();
+        final var person = mkUserBaseIri();
+        final var house = mkUserBaseIri();
 
-        // The main state: This is a mandatory component of all datasets if we are to stick to the
-        // commitments in HQDM. This is the least strict treatment, the creation of a single
-        // possible world.
-        final var pwContext = new PossibleWorldContext(mkUserBaseIri(), "Example1_World");
+        final var creates = Set.of(
+                new DbCreateOperation(possibleWorld, RDFS.RDF_TYPE, HQDM.POSSIBLE_WORLD.getIri()),
+                new DbCreateOperation(possibleWorld, HQDM.ENTITY_NAME, "Example1_World"),
 
-        // Create the beginning events for the person and house
-        final var e1 = pwContext.createPointInTime(mkUserBaseIri(), "1991-02-18T00:00:00");
-        final var e6 = pwContext.createPointInTime(mkUserBaseIri(), "1972-06-01T00:00:00");
+                new DbCreateOperation(e1, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
+                new DbCreateOperation(e1, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(e1, HQDM.ENTITY_NAME, "1991-02-18T00:00:00"),
 
-        // Person B Whole Life Object.
-        final var personB1 = pwContext.createPerson(mkUserBaseIri(), "PersonB1_Bob");
+                new DbCreateOperation(e2, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
+                new DbCreateOperation(e2, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(e2, HQDM.ENTITY_NAME, "1972-06-01T00:00:00"),
 
-        // House B Whole Life Object.
-        final var houseB = pwContext.createFunctionalSystem(mkUserBaseIri(), "HouseB");
+                new DbCreateOperation(person, RDFS.RDF_TYPE, HQDM.PERSON.getIri()),
+                new DbCreateOperation(person, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(person, HQDM.ENTITY_NAME, "PersonB1_Bob"),
+                new DbCreateOperation(person, HQDM.MEMBER_OF_KIND, kindOfPerson.getId()),
+                new DbCreateOperation(person, HQDM.NATURAL_ROLE, personRole.getId()),
+                new DbCreateOperation(person, HQDM.BEGINNING, e1.getIri()),
 
-        pwContext
-            // Add the person predicates
-            .addMemberOfKind(personB1, kindOfPerson)
-            .addNaturalRole(personB1, personRole)
-            .addBeginningEvent(personB1, e1)
-            // Add the house predicates
-            .addMemberOfKind(houseB, kindOfFunctionalSystemDomesticProperty)
-            .addIntendedRole(houseB, domesticPropertyRole)
-            .addBeginningEvent(houseB, e6)
-            // Store the objects in the database
-            .getObjects().forEach(object -> {
-                db.create(object);
-            });
+                new DbCreateOperation(house, RDFS.RDF_TYPE, HQDM.FUNCTIONAL_SYSTEM.getIri()),
+                new DbCreateOperation(house, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(house, HQDM.ENTITY_NAME, "HouseB"),
+                new DbCreateOperation(house, HQDM.MEMBER_OF_KIND, kindOfFunctionalSystemDomesticProperty.getId()),
+                new DbCreateOperation(house, HQDM.INTENDED_ROLE, domesticPropertyRole.getId()),
+                new DbCreateOperation(house, HQDM.BEGINNING, e2.getIri())
+                );
 
-        return db;
-    };
+        return new DbChangeSet(Set.of(), creates);
+    }
 
     /**
      * Create a person-occupies-house association.
@@ -290,11 +329,37 @@ public class ExampleDataObjects {
             // Store the objects in the database
             .getObjects().forEach(object -> {
                 db.create(object);
-            });
-            }
+        });
+    }
+
+    /**
+     * Add occupancy predicates.
+     *
+     * @param db {@link MagmaCoreDatabase}
+     * @return {@link MagmaCoreDatabase}
+    */
+    private static DbChangeSet addHouseOccupancies(final MagmaCoreDatabase db) {
+        // Use an existing PossibleWorld
+        final PossibleWorld possibleWorld = findByEntityName(db, "Example1_World");
+
+        // The person occupies the house twice at different times.
+        final Person person = findByEntityName(db, "PersonB1_Bob");
+        final FunctionalSystem house = findByEntityName(db, "HouseB");
+
+        // Create the bounding events for the associations
+        final var e2 = mkUserBaseIri();
+        final var e3 = mkUserBaseIri();
+        final var e4 = mkUserBaseIri();
+        final var e5 = mkUserBaseIri();
+
+        final var creates = Set.of(
+                new DbCreateOperation(HQDM.ABSTRACT_OBJECT, HQDM.ABSTRACT_OBJECT, ""),
+                );
+        return new DbChangeSet(Set.of(), creates);
+    }
 
     // A DB transformer that adds house occupancy associations.
-    private static UnaryOperator<MagmaCoreDatabase> addHouseOccupancies = (db) -> {
+    private static UnaryOperator<MagmaCoreDatabase> addHouseOccupancies2 = (db) -> {
 
         // Use an existing PossibleWorld
         final PossibleWorld possibleWorld = findByEntityName(db, "Example1_World");
@@ -326,17 +391,22 @@ public class ExampleDataObjects {
      * A function that populates a database.
      *
      * @param db a {@link MagmaCoreDatabase}
+     * @return {@link MagmaCoreDatabase}
      */
-    public static void populateExampleData(final MagmaCoreDatabase db) {
+    public static MagmaCoreDatabase populateExampleData(final MagmaCoreDatabase db) {
 
-        // Compose 3 functions
-        final var runDbOperations =
-            createRefDataObjects
-            .andThen(addWholeLifeIndividuals)
-            .andThen(addHouseOccupancies);
+        // The database would normally have RDL anyway, but in the 
+        // example it is a new empty database and must be populated.
+        final var databaseWithRdl = createRefDataObjects().apply(db);
 
-        // Apply the composed function to the database.
-        runDbOperations.apply(db);
+        // Apply the transformation to the database. There are dependencies between these change sets 
+        // since they both depend on RDL being present, but also the occupancies depend on the 
+        // individuals being present, so each change set needs to be applied before the next one 
+        // can be created.
+        final var databaseWithIndividuals = addWholeLifeIndividuals(databaseWithRdl).apply(databaseWithRdl);
+        final var databaseWithOccupancies = addWholeLifeIndividuals(databaseWithIndividuals).apply(databaseWithIndividuals);
+
+        return databaseWithOccupancies;
     }
 
 }
