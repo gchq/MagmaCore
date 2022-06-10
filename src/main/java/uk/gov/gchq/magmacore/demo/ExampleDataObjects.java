@@ -64,6 +64,7 @@ public class ExampleDataObjects {
      */
     private static DbChangeSet createRefDataObjects() {
 
+        // Create new unique IRIs for all the objects we need to create.
         final var viewable = mkRefBaseIri();
         final var viewableObject = mkRefBaseIri();
         final var viewableAssociation = mkRefBaseIri();
@@ -80,6 +81,7 @@ public class ExampleDataObjects {
         final var occupierOfPropertyRole = mkRefBaseIri();
         final var occupantInPropertyKindOfAssociation = mkRefBaseIri();
 
+        // Add DbCreateOperations to create the objects and their properties.
         final var creates = Set.of(
                 new DbCreateOperation(viewable, RDFS.RDF_TYPE, HQDM.CLASS.getIri()),
                 new DbCreateOperation(viewable, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
@@ -172,8 +174,9 @@ public class ExampleDataObjects {
                 // Set the consists of by class predicates
                 new DbCreateOperation(domesticOccupantInPropertyRole, HQDM.CONSISTS_OF_BY_CLASS, occupantInPropertyKindOfAssociation.getIri()),
                 new DbCreateOperation(occupierOfPropertyRole, HQDM.CONSISTS_OF_BY_CLASS, occupantInPropertyKindOfAssociation.getIri())
-                    );
+        );
 
+        // Put the operations in a change set and return it.
         return new DbChangeSet(Set.of(), creates);
     }
 
@@ -202,7 +205,7 @@ public class ExampleDataObjects {
      * @return {@link DbChangeSet}
      */
     private static DbChangeSet addWholeLifeIndividuals(final MagmaCoreDatabase db) {
-        //
+
         // Find the required classes, kinds, and roles.
         final KindOfPerson kindOfPerson = findByEntityName(db, "KIND_OF_PERSON");
         final Role personRole = findByEntityName(db, "NATURAL_MEMBER_OF_SOCIETY_ROLE");
@@ -211,12 +214,14 @@ public class ExampleDataObjects {
         final Role domesticPropertyRole =
             findByEntityName(db, "ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
 
+        // Create IRIs for the objects we want to create.
         final var possibleWorld = mkUserBaseIri();
         final var e1 = mkUserBaseIri();
         final var e2 = mkUserBaseIri();
         final var person = mkUserBaseIri();
         final var house = mkUserBaseIri();
 
+        // Create DbCreateOperations to create the objects and their properties.
         final var creates = Set.of(
                 new DbCreateOperation(possibleWorld, RDFS.RDF_TYPE, HQDM.POSSIBLE_WORLD.getIri()),
                 new DbCreateOperation(possibleWorld, HQDM.ENTITY_NAME, "Example1_World"),
@@ -244,6 +249,7 @@ public class ExampleDataObjects {
                 new DbCreateOperation(house, HQDM.BEGINNING, e2.getIri())
                 );
 
+        // Create a change set and return it.
         return new DbChangeSet(Set.of(), creates);
     }
 
@@ -276,12 +282,14 @@ public class ExampleDataObjects {
         final KindOfAssociation occupantInPropertyKindOfAssociation =
             findByEntityName(db, "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
 
+        // Create DbCreateOperations to create the objects and their properties.
         final var personState = mkUserBaseIri();
         final var houseState = mkUserBaseIri();
         final var personParticipant = mkUserBaseIri();
         final var houseParticipant = mkUserBaseIri();
         final var houseOccupiedAssociation = mkUserBaseIri();
 
+        // Create DbCreateOperations to create the objects and their properties.
         creates.add(new DbCreateOperation(personState, RDFS.RDF_TYPE, HQDM.STATE_OF_PERSON.getIri()));
         creates.add(new DbCreateOperation(personState, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
         creates.add(new DbCreateOperation(personState, HQDM.MEMBER_OF, classOfStateOfPerson.getId()));
@@ -333,12 +341,13 @@ public class ExampleDataObjects {
         final Person person = findByEntityName(db, "PersonB1_Bob");
         final FunctionalSystem house = findByEntityName(db, "HouseB");
 
-        // Create the bounding events for the associations
+        // Create IRIs for the objects we want to create.
         final var e2 = mkUserBaseIri();
         final var e3 = mkUserBaseIri();
         final var e4 = mkUserBaseIri();
         final var e5 = mkUserBaseIri();
 
+        // Create DbCreateOperations to create the objects and their properties.
         final var creates = Set.of(
                 new DbCreateOperation(e2, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
                 new DbCreateOperation(e2, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()),
@@ -357,9 +366,11 @@ public class ExampleDataObjects {
                 new DbCreateOperation(e5, HQDM.ENTITY_NAME, "2020-08-17T10:46:00")
         );
 
+        // Add more DbCreateOperations to create the required associations.
         occupyHouse(db, creates, possibleWorld, person, house, e2, e3);
         occupyHouse(db, creates, possibleWorld, person, house, e4, e5);
 
+        // Create and return a new change set.
         return new DbChangeSet(Set.of(), creates);
     }
 
