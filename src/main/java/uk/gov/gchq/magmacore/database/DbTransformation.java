@@ -22,6 +22,14 @@ public class DbTransformation implements Function<MagmaCoreDatabase, MagmaCoreDa
     }
 
     /**
+     * Constructor.
+     *
+    */
+    public DbTransformation() {
+        this(List.of());
+    }
+
+    /**
      * Apply this {@link DbTransformation} to a {@link MagmaCoreDatabase}.
      *
      * */
@@ -50,5 +58,14 @@ public class DbTransformation implements Function<MagmaCoreDatabase, MagmaCoreDa
         Collections.reverse(list);
 
         return new DbTransformation(list);
+    }
+
+    /**
+     * Add a DbChangeSet to this transformation.
+     *
+     * @param changeSet {@link DbChangeSet}
+    */
+    public void add(final DbChangeSet changeSet) {
+        this.transformations.add(changeSet);
     }
 }

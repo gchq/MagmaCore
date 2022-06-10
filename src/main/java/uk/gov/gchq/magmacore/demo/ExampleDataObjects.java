@@ -2,9 +2,7 @@ package uk.gov.gchq.magmacore.demo;
 
 import static uk.gov.gchq.magmacore.util.DataObjectUtils.uid;
 
-import java.util.List;
 import java.util.Set;
-import java.util.function.UnaryOperator;
 
 import uk.gov.gchq.hqdm.iri.HQDM;
 import uk.gov.gchq.hqdm.iri.IRI;
@@ -21,11 +19,11 @@ import uk.gov.gchq.hqdm.model.Person;
 import uk.gov.gchq.hqdm.model.PossibleWorld;
 import uk.gov.gchq.hqdm.model.Role;
 import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.rdf.services.PossibleWorldContext;
 import uk.gov.gchq.magmacore.database.DbChangeSet;
 import uk.gov.gchq.magmacore.database.DbCreateOperation;
 import uk.gov.gchq.magmacore.database.DbTransformation;
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
+import uk.gov.gchq.magmacore.util.ComposableBiFunction;
 
 /**
  * Functions for creating systems using MagmaCore and HQDM.
@@ -81,8 +79,6 @@ public class ExampleDataObjects {
         final var domesticOccupantInPropertyRole = mkRefBaseIri();
         final var occupierOfPropertyRole = mkRefBaseIri();
         final var occupantInPropertyKindOfAssociation = mkRefBaseIri();
-
-        final var viewableObjectSpecializesViewable = mkRefBaseIri();
 
         final var creates = Set.of(
                 new DbCreateOperation(viewable, RDFS.RDF_TYPE, HQDM.CLASS.getIri()),
@@ -255,6 +251,7 @@ public class ExampleDataObjects {
      * Create a person-occupies-house association.
      *
      * @param db a {@link MagmaCoreDatabase}
+     * @param creates {@link Set} of {@link DbCreateOperation}
      * @param possibleWorld a {@link PossibleWorld}
      * @param person the {@link Person} occupying the house.
      * @param house the house as a {@link FunctionalSystem} that is occupied.
@@ -263,11 +260,12 @@ public class ExampleDataObjects {
      */
     private static void occupyHouse(
             final MagmaCoreDatabase db,
+            final Set<DbCreateOperation> creates,
             final PossibleWorld possibleWorld,
             final Person person,
             final FunctionalSystem house,
-            final Event beginning,
-            final Event ending) {
+            final IRI beginning,
+            final IRI ending) {
 
         // Find the required classes, kinds, and roles.
         final ClassOfStateOfPerson classOfStateOfPerson = findByEntityName(db, "CLASS_OF_STATE_OF_PERSON");
@@ -278,58 +276,47 @@ public class ExampleDataObjects {
         final KindOfAssociation occupantInPropertyKindOfAssociation =
             findByEntityName(db, "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
 
-        // STATES
+        final var personState = mkUserBaseIri();
+        final var houseState = mkUserBaseIri();
+        final var personParticipant = mkUserBaseIri();
+        final var houseParticipant = mkUserBaseIri();
+        final var houseOccupiedAssociation = mkUserBaseIri();
 
-        // The main state: This is a mandatory component of all datasets if we are to stick to the
-        // commitments in HQDM. This is the least strict treatment, the creation of a single
-        // possible world.
-        final var pwContext = new PossibleWorldContext(possibleWorld);
+        creates.add(new DbCreateOperation(personState, RDFS.RDF_TYPE, HQDM.STATE_OF_PERSON.getIri()));
+        creates.add(new DbCreateOperation(personState, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
+        creates.add(new DbCreateOperation(personState, HQDM.MEMBER_OF, classOfStateOfPerson.getId()));
+        creates.add(new DbCreateOperation(personState, HQDM.TEMPORAL_PART_OF, person.getId()));
+        creates.add(new DbCreateOperation(personState, HQDM.BEGINNING, beginning.getIri()));
+        creates.add(new DbCreateOperation(personState, HQDM.ENDING, ending.getIri()));
 
-        // Person state.
-        final var personState = pwContext.createStateOfPerson(mkUserBaseIri(), uid());
+        creates.add(new DbCreateOperation(houseState, RDFS.RDF_TYPE, HQDM.STATE_OF_FUNCTIONAL_SYSTEM.getIri()));
+        creates.add(new DbCreateOperation(houseState, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
+        creates.add(new DbCreateOperation(houseState, HQDM.MEMBER_OF, classOfStateOfFunctionalSystemDomesticProperty.getId()));
+        creates.add(new DbCreateOperation(houseState, HQDM.TEMPORAL_PART_OF, house.getId()));
+        creates.add(new DbCreateOperation(houseState, HQDM.BEGINNING, beginning.getIri()));
+        creates.add(new DbCreateOperation(houseState, HQDM.ENDING, ending.getIri()));
 
-        // States of house when Occupant person is present.
-        final var houseState = pwContext.createStateOfFunctionalSystem(mkUserBaseIri(), uid());
+        creates.add(new DbCreateOperation(personParticipant, RDFS.RDF_TYPE, HQDM.PARTICIPANT.getIri()));
+        creates.add(new DbCreateOperation(personParticipant, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
+        creates.add(new DbCreateOperation(personParticipant, HQDM.MEMBER_OF_KIND, occupierOfPropertyRole.getId()));
+        creates.add(new DbCreateOperation(personParticipant, HQDM.TEMPORAL_PART_OF, personState.getIri()));
+        creates.add(new DbCreateOperation(personParticipant, HQDM.BEGINNING, beginning.getIri()));
+        creates.add(new DbCreateOperation(personParticipant, HQDM.ENDING, ending.getIri()));
 
-        // Create Participants to link the states to their roles in the association
-        final var personParticipant = pwContext.createParticipant(mkUserBaseIri(), uid());
-        final var houseParticipant = pwContext.createParticipant(mkUserBaseIri(), uid());
+        creates.add(new DbCreateOperation(houseParticipant, RDFS.RDF_TYPE, HQDM.PARTICIPANT.getIri()));
+        creates.add(new DbCreateOperation(houseParticipant, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
+        creates.add(new DbCreateOperation(houseParticipant, HQDM.MEMBER_OF_KIND, domesticOccupantInPropertyRole.getId()));
+        creates.add(new DbCreateOperation(houseParticipant, HQDM.TEMPORAL_PART_OF, houseState.getIri()));
+        creates.add(new DbCreateOperation(houseParticipant, HQDM.BEGINNING, beginning.getIri()));
+        creates.add(new DbCreateOperation(houseParticipant, HQDM.ENDING, ending.getIri()));
 
-        // Create the association
-        final var houseOccupiedAssociation = pwContext.createAssociation(mkUserBaseIri(), uid());
-
-        // Build the full structure of the association
-        pwContext
-            // personState predicates
-            .addMemberOf(personState, classOfStateOfPerson)
-            .addTemporalPartOf(personState, person)
-            .addBeginningEvent(personState, beginning)
-            .addEndingEvent(personState, ending)
-            // houseState predicates
-            .addMemberOf(houseState, classOfStateOfFunctionalSystemDomesticProperty)
-            .addTemporalPartOf(house, houseState)
-            .addBeginningEvent(houseState, beginning)
-            .addEndingEvent(houseState, ending)
-            // personParticipant predicates
-            .addMemberOfKind(personParticipant, occupierOfPropertyRole)
-            .addTemporalPartOf(personParticipant, personState)
-            .addBeginningEvent(personParticipant, beginning)
-            .addEndingEvent(personParticipant, ending)
-            // houseParticipant predicates
-            .addMemberOfKind(houseParticipant, domesticOccupantInPropertyRole)
-            .addTemporalPartOf(houseParticipant, houseState)
-            .addBeginningEvent(houseParticipant, beginning)
-            .addEndingEvent(houseParticipant, ending)
-            // houseOccupiedAssociation predicates
-            .addMemberOfKind(houseOccupiedAssociation, occupantInPropertyKindOfAssociation)
-            .addConsistsOfParticipant(houseOccupiedAssociation, houseParticipant)
-            .addConsistsOfParticipant(houseOccupiedAssociation, personParticipant)
-            .addBeginningEvent(houseOccupiedAssociation, beginning)
-            .addEndingEvent(houseOccupiedAssociation, ending)
-            // Store the objects in the database
-            .getObjects().forEach(object -> {
-                db.create(object);
-        });
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, RDFS.RDF_TYPE, HQDM.ASSOCIATION.getIri()));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.MEMBER_OF_KIND, occupantInPropertyKindOfAssociation.getId()));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT, houseParticipant.getIri()));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT, personParticipant.getIri()));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.BEGINNING, beginning.getIri()));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.ENDING, ending.getIri()));
     }
 
     /**
@@ -353,60 +340,75 @@ public class ExampleDataObjects {
         final var e5 = mkUserBaseIri();
 
         final var creates = Set.of(
-                new DbCreateOperation(HQDM.ABSTRACT_OBJECT, HQDM.ABSTRACT_OBJECT, ""),
-                );
+                new DbCreateOperation(e2, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
+                new DbCreateOperation(e2, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()),
+                new DbCreateOperation(e2, HQDM.ENTITY_NAME, "2020-08-15T17:50:00"),
+
+                new DbCreateOperation(e3, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
+                new DbCreateOperation(e3, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()),
+                new DbCreateOperation(e3, HQDM.ENTITY_NAME, "2020-08-15T19:21:00"),
+
+                new DbCreateOperation(e4, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
+                new DbCreateOperation(e4, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()),
+                new DbCreateOperation(e4, HQDM.ENTITY_NAME, "2020-08-16T22:33:00"),
+
+                new DbCreateOperation(e5, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
+                new DbCreateOperation(e5, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()),
+                new DbCreateOperation(e5, HQDM.ENTITY_NAME, "2020-08-17T10:46:00")
+        );
+
+        occupyHouse(db, creates, possibleWorld, person, house, e2, e3);
+        occupyHouse(db, creates, possibleWorld, person, house, e4, e5);
+
         return new DbChangeSet(Set.of(), creates);
     }
 
-    // A DB transformer that adds house occupancy associations.
-    private static UnaryOperator<MagmaCoreDatabase> addHouseOccupancies2 = (db) -> {
+    // A BiFunction to create the RDL
+    private static ComposableBiFunction<DbTransformation, MagmaCoreDatabase, MagmaCoreDatabase> createRefDataObjects = (t, d) -> {
+        final var changeSet = createRefDataObjects();
+        t.add(changeSet);
+        return changeSet.apply(d);
+    };
 
-        // Use an existing PossibleWorld
-        final PossibleWorld possibleWorld = findByEntityName(db, "Example1_World");
-        final var pwContext = new PossibleWorldContext(possibleWorld);
+    // A BiFunction to add the individuals
+    private static ComposableBiFunction<DbTransformation, MagmaCoreDatabase, MagmaCoreDatabase> addWholeLifeIndividuals = (t, d) -> {
+        final var changeSet = addWholeLifeIndividuals(d);
+        t.add(changeSet);
+        return changeSet.apply(d);
+    };
 
-        // Create the bounding events for the associations
-        final var e2 = pwContext.createPointInTime(mkUserBaseIri(), "2020-08-15T17:50:00");
-        final var e3 = pwContext.createPointInTime(mkUserBaseIri(), "2020-08-15T19:21:00");
-        final var e4 = pwContext.createPointInTime(mkUserBaseIri(), "2020-08-16T22:33:00");
-        final var e5 = pwContext.createPointInTime(mkUserBaseIri(), "2020-08-17T10:46:00");
-
-        // Persist the events
-        pwContext.getObjects().forEach(object -> {
-            db.create(object);
-        });
-
-        // The person occupies the house twice at different times.
-        final Person person = findByEntityName(db, "PersonB1_Bob");
-        final FunctionalSystem house = findByEntityName(db, "HouseB");
-
-        // This will create and persist the associations.
-        occupyHouse(db, possibleWorld, person, house, e2, e3);
-        occupyHouse(db, possibleWorld, person, house, e4, e5);
-
-        return db;
+    // A BiFunction to create the occupancy associations
+    private static ComposableBiFunction<DbTransformation, MagmaCoreDatabase, MagmaCoreDatabase> addHouseOccupancies = (t, d) -> {
+        final var changeSet = addHouseOccupancies(d);
+        t.add(changeSet);
+        return changeSet.apply(d);
     };
 
     /**
      * A function that populates a database.
      *
      * @param db a {@link MagmaCoreDatabase}
-     * @return {@link MagmaCoreDatabase}
+     * @return {@link DbTransformation}
      */
-    public static MagmaCoreDatabase populateExampleData(final MagmaCoreDatabase db) {
-
-        // The database would normally have RDL anyway, but in the 
-        // example it is a new empty database and must be populated.
-        final var databaseWithRdl = createRefDataObjects().apply(db);
+    public static DbTransformation populateExampleData(final MagmaCoreDatabase db) {
 
         // Apply the transformation to the database. There are dependencies between these change sets 
         // since they both depend on RDL being present, but also the occupancies depend on the 
         // individuals being present, so each change set needs to be applied before the next one 
         // can be created.
-        final var databaseWithIndividuals = addWholeLifeIndividuals(databaseWithRdl).apply(databaseWithRdl);
-        final var databaseWithOccupancies = addWholeLifeIndividuals(databaseWithIndividuals).apply(databaseWithIndividuals);
+        final var transform = 
+            createRefDataObjects
+            .andThen(addWholeLifeIndividuals)
+            .andThen(addHouseOccupancies);
 
-        return databaseWithOccupancies;
+        // This will be updated to record the transformation that took place.
+        final var result = new DbTransformation();
+
+        // Apply the transform to the database
+        transform.apply(result, db);
+
+        // Return the DbTransformation that took place.
+        return result;
     }
 
 }
