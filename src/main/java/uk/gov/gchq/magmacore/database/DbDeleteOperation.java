@@ -3,6 +3,7 @@ package uk.gov.gchq.magmacore.database;
 import java.util.function.Function;
 
 import uk.gov.gchq.hqdm.iri.IRI;
+import uk.gov.gchq.magmacore.exception.DbTransformationException;
 
 /**
  * Class representing an invertible operation to delete a predicate.
@@ -40,7 +41,7 @@ public class DbDeleteOperation implements Function<MagmaCoreDatabase, MagmaCoreD
             return db;
         }
 
-        throw new RuntimeException(
+        throw new DbTransformationException(
                 String.format("Triple not found for delete: %s, %s, %s", subject, predicate, object)
                 );
     }

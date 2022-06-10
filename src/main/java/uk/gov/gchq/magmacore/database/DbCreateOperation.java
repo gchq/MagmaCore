@@ -4,14 +4,21 @@ import java.util.function.Function;
 
 import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.exception.DbTransformationException;
 
 /**
  * Class representing an invertible operation to create a predicate.
  *
  * */
 public class DbCreateOperation implements Function<MagmaCoreDatabase, MagmaCoreDatabase> {
+
+    // The IRI of the Thing we're referring to.
     private IRI subject;
+
+    // The IRI of the property we're referring to.
     private IRI predicate;
+
+    // The value of the property we're referring to.
     private String object;
 
     /**
@@ -43,7 +50,7 @@ public class DbCreateOperation implements Function<MagmaCoreDatabase, MagmaCoreD
                 thing.addValue(predicate.getIri(), object);
                 db.update(thing);
             } else {
-                throw new RuntimeException(
+                throw new DbTransformationException(
                     String.format("Triple already exists: %s, %s, %s", subject, predicate, object)
                 );
             }
