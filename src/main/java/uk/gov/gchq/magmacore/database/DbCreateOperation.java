@@ -2,7 +2,9 @@ package uk.gov.gchq.magmacore.database;
 
 import java.util.function.Function;
 
+import uk.gov.gchq.hqdm.exception.HqdmException;
 import uk.gov.gchq.hqdm.iri.IRI;
+import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices;
 import uk.gov.gchq.magmacore.exception.DbTransformationException;
 
@@ -40,7 +42,13 @@ public class DbCreateOperation implements Function<MagmaCoreDatabase, MagmaCoreD
      * */
     @Override
     public MagmaCoreDatabase apply(final MagmaCoreDatabase db) {
-        final var thing = db.get(subject);
+        Thing thing = null;
+        try {
+            thing = db.get(subject);
+        } catch (final HqdmException e) {
+            // The object does not exist.
+        }
+
         if (thing == null) {
             final  var newThing = SpatioTemporalExtentServices.createSpatioTemporalExtent(subject.getIri());
             newThing.addStringValue(predicate.getIri(), object);

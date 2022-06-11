@@ -1,6 +1,7 @@
 package uk.gov.gchq.magmacore.database;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -26,7 +27,7 @@ public class DbTransformation implements Function<MagmaCoreDatabase, MagmaCoreDa
      *
     */
     public DbTransformation() {
-        this(List.of());
+        this(new LinkedList<>());
     }
 
     /**
