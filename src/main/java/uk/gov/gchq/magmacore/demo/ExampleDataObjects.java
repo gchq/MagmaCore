@@ -1,35 +1,15 @@
 package uk.gov.gchq.magmacore.demo;
 
+import java.util.List;
+
 import uk.gov.gchq.magmacore.service.DbTransformation;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
-import uk.gov.gchq.magmacore.util.ComposableBiFunction;
 
 /**
  * Functions for creating systems using MagmaCore and HQDM.
  *
  * */
 public class ExampleDataObjects {
-
-    // A BiFunction to create the RDL
-    private static ComposableBiFunction<DbTransformation, MagmaCoreService, MagmaCoreService> createRefDataObjects = (t, s) -> {
-        final var changeSet = ExampleRdl.createRefDataObjects();
-        t.add(changeSet);
-        return changeSet.apply(s);
-    };
-
-    // A BiFunction to add the individuals
-    private static ComposableBiFunction<DbTransformation, MagmaCoreService, MagmaCoreService> addWholeLifeIndividuals = (t, s) -> {
-        final var changeSet = ExampleIndividuals.addWholeLifeIndividuals(s);
-        t.add(changeSet);
-        return changeSet.apply(s);
-    };
-
-    // A BiFunction to create the occupancy associations
-    private static ComposableBiFunction<DbTransformation, MagmaCoreService, MagmaCoreService> addHouseOccupancies = (t, s) -> {
-        final var changeSet = ExampleAssociations.addHouseOccupancies(s);
-        t.add(changeSet);
-        return changeSet.apply(s);
-    };
 
     /**
      * A function that populates a database.
@@ -39,23 +19,33 @@ public class ExampleDataObjects {
      */
     public static DbTransformation populateExampleData(final MagmaCoreService mcService) {
 
+        // svc is updated by each DbChangeSet and used to create the next DbChangeSet since
+        // they are sequentially dependent.
+        var svc = mcService;
+        
         // Apply the transformation to the database. There are dependencies between these change sets 
         // since they both depend on RDL being present, but also the occupancies depend on the 
         // individuals being present, so each change set needs to be applied before the next one 
         // can be created.
-        final var transform = 
-            createRefDataObjects
-            .andThen(addWholeLifeIndividuals)
-            .andThen(addHouseOccupancies);
+        final var rdlChangeSet = ExampleRdl.createRefDataObjects();
 
-        // This will be updated to record the transformation that took place.
-        final var result = new DbTransformation();
+        // Apply the DbChangeSet
+        svc = rdlChangeSet.apply(svc);
 
-        // Apply the transform to the database
-        transform.apply(result, mcService);
+        // svc now contains the RDL needed for the next DbChangeSet
+        final var individualsChangeSet = ExampleIndividuals.addWholeLifeIndividuals(svc);
 
-        // Return the DbTransformation that took place.
-        return result;
+        // Apply the DbChangeSet
+        svc = individualsChangeSet.apply(svc);
+
+        // svc now contains the individuals needed for creating the next DbChangeSet
+        final var occupanciesChangeSet = ExampleAssociations.addHouseOccupancies(svc);
+
+        // Apply the DbChangeSet
+        svc = occupanciesChangeSet.apply(svc);
+
+        // Combine the DbChangeSets into a DbTransformation and return it as a record of the changes.
+        return new DbTransformation(List.of(rdlChangeSet, individualsChangeSet, occupanciesChangeSet));
     }
 
 }
