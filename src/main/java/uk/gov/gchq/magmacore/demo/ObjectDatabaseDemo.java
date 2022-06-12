@@ -14,13 +14,11 @@
 
 package uk.gov.gchq.magmacore.demo;
 
-import static uk.gov.gchq.hqdm.iri.HQDM.ENTITY_NAME;
-
 import java.util.List;
 
 import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.database.MagmaCoreObjectDatabase;
-import uk.gov.gchq.magmacore.service.MagmaCoreService;
+import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
  * Example use-case scenario for {@link MagmaCoreObjectDatabase}.
@@ -41,14 +39,13 @@ public final class ObjectDatabaseDemo {
      * Run the in-memory Object Database example.
      */
     public void run() {
-        final MagmaCoreObjectDatabase objectDatabase = new MagmaCoreObjectDatabase();
+        final var mcService = MagmaCoreServiceFactory.createWithObjectDatabase();
 
         // Add example data objects to dataset.
-        ExampleDataObjects.populateExampleData(new MagmaCoreService(objectDatabase));
+        ExampleDataObjects.populateExampleData(mcService);
 
         // Query database to check it's populated.
-        final List<Thing> queryResults =
-                objectDatabase.findByPredicateIriAndStringValue(ENTITY_NAME, "PersonB1_Bob");
+        final List<Thing> queryResults = mcService.findByEntityName("PersonB1_Bob");
 
         // Output results of query to console.
         queryResults.forEach(object -> System.out.println(object.toString()));

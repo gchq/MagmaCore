@@ -19,7 +19,7 @@ public class MagmaCoreService {
      *
      * @param db {@link MagmaCoreDatabase}
     */
-    public MagmaCoreService(final MagmaCoreDatabase db) {
+    MagmaCoreService(final MagmaCoreDatabase db) {
         this.db = db;
     }
 

@@ -13,7 +13,7 @@ import uk.gov.gchq.hqdm.iri.HQDM;
 import uk.gov.gchq.magmacore.service.DbChangeSet;
 import uk.gov.gchq.magmacore.service.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.DbTransformation;
-import uk.gov.gchq.magmacore.service.MagmaCoreService;
+import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
  * Check that {@link DbTransformation} works correctly.
@@ -47,7 +47,7 @@ public class DbTransformationTest {
         ));
 
         // Create a database to be updated.
-        final var mcService = new MagmaCoreService(new MagmaCoreObjectDatabase());
+        final var mcService = MagmaCoreServiceFactory.createWithObjectDatabase();
 
         // Apply the operations.
         transformation.apply(mcService);

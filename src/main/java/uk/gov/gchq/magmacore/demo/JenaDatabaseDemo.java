@@ -14,15 +14,8 @@
 
 package uk.gov.gchq.magmacore.demo;
 
-import static uk.gov.gchq.hqdm.iri.HQDM.ENTITY_NAME;
-import static uk.gov.gchq.hqdm.iri.HQDM.HQDM;
-import static uk.gov.gchq.hqdm.iri.RDFS.RDFS;
-
-import java.util.List;
-
 import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
-import uk.gov.gchq.magmacore.service.MagmaCoreService;
+import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
  * Example use-case scenario for {@link MagmaCoreJenaDatabase}.
@@ -32,14 +25,8 @@ import uk.gov.gchq.magmacore.service.MagmaCoreService;
  * {@link ExampleDataObjects} as RDF triples.
  * </p>
  * <p>
- * The Jena dataset is transactional, so {@link MagmaCoreJenaDatabase#begin()} must be called before
- * any operations can be performed on the dataset, including queries. Once complete,
- * {@link MagmaCoreJenaDatabase#commit()} or {@link MagmaCoreJenaDatabase#abort()} should be called
- * to finish a transaction.
- * </p>
- * <p>
  * {@code PersonB1_Bob} can be queried for using the
- * {@link MagmaCoreJenaDatabase#findByPredicateIriAndStringValue(uk.gov.gchq.hqdm.iri.IRI, String)}
+ * {@link MagmaCoreJenaDatabase#findByEntityName(String)}
  * method. The resulting object(s) of this query are output to the command-line as RDF triples.
  * </p>
  *
@@ -51,27 +38,17 @@ public final class JenaDatabaseDemo {
      */
     public void run() {
         // Instantiate new in-memory Jena database.
-        final MagmaCoreJenaDatabase jenaDatabase = new MagmaCoreJenaDatabase();
-        jenaDatabase.register(HQDM);
-        jenaDatabase.register(RDFS);
+        final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
         // Add example data objects to dataset.
-        jenaDatabase.begin();
-        ExampleDataObjects.populateExampleData(new MagmaCoreService(jenaDatabase));
-        jenaDatabase.commit();
+        ExampleDataObjects.populateExampleData(mcService);
 
         // Query database to check its populated.
-        jenaDatabase.begin();
-        final List<Thing> queryResults =
-                jenaDatabase.findByPredicateIriAndStringValue(ENTITY_NAME, "PersonB1_Bob");
-        jenaDatabase.abort();
+        final Thing queryResults = mcService.findByEntityName("PersonB1_Bob");
 
         // Output results of query to console.
-        queryResults.forEach(object -> System.out.println(object.toString()));
+        System.out.println(queryResults);
 
-        jenaDatabase.begin();
-        jenaDatabase.drop();
-        jenaDatabase.commit();
         System.out.println("\n--- Jena Example End ---");
     }
 }

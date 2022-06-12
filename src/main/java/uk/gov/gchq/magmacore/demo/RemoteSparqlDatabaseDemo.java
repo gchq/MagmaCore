@@ -14,9 +14,8 @@
 
 package uk.gov.gchq.magmacore.demo;
 
-import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 import uk.gov.gchq.magmacore.database.MagmaCoreRemoteSparqlDatabase;
-import uk.gov.gchq.magmacore.service.MagmaCoreService;
+import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
  * Example use-case scenario for using a {@link MagmaCoreRemoteSparqlDatabase} with a remote service.
@@ -33,16 +32,11 @@ public final class RemoteSparqlDatabaseDemo {
      * Run the demo.
      */
     public void run(final boolean populate) {
-        final MagmaCoreDatabase db;
+        final var mcService = MagmaCoreServiceFactory.attachRemoteSparqlEndpoint(url);
 
         if (populate) {
-            db = new MagmaCoreRemoteSparqlDatabase(url);
-            ExampleDataObjects.populateExampleData(new MagmaCoreService(db));
-        } else {
-            db = new MagmaCoreRemoteSparqlDatabase(url);
-        }
-
-        db.dump(System.out);
+            ExampleDataObjects.populateExampleData(mcService);
+        } 
     }
 
 }

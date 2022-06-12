@@ -1,7 +1,7 @@
 
 module MagmaCore.service.main {
     requires HQDM.model.main;
-    requires HQDM.rdf.main;
+    requires transitive HQDM.rdf.main;
     requires org.apache.jena.arq;
     requires org.apache.jena.core;
     requires org.apache.jena.fuseki.main;

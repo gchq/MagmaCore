@@ -10,7 +10,7 @@ import uk.gov.gchq.hqdm.iri.HQDM;
 import uk.gov.gchq.magmacore.exception.DbTransformationException;
 import uk.gov.gchq.magmacore.service.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.DbDeleteOperation;
-import uk.gov.gchq.magmacore.service.MagmaCoreService;
+import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
  * Check that {@link DbCreateOperation} and {@link DbDeleteOperation} work correctly.
@@ -29,7 +29,7 @@ public class DbOperationTest {
         final var op = new DbCreateOperation(HQDM.ABSTRACT_OBJECT, HQDM.ABSTRACT_OBJECT, "value");
 
         // Create a database to be updated.
-        final var mcService = new MagmaCoreService(new MagmaCoreObjectDatabase());
+        final var mcService = MagmaCoreServiceFactory.createWithObjectDatabase();
 
         // Apply the operation.
         op.apply(mcService);
@@ -59,7 +59,7 @@ public class DbOperationTest {
         final var op3 = new DbCreateOperation(HQDM.ABSTRACT_OBJECT, HQDM.PART_OF_POSSIBLE_WORLD, "a world");
 
         // Create a database to be updated.
-        final var mcService = new MagmaCoreService(new MagmaCoreObjectDatabase());
+        final var mcService = MagmaCoreServiceFactory.createWithObjectDatabase();
 
         // Apply the operations.
         op1.apply(mcService);
@@ -95,7 +95,7 @@ public class DbOperationTest {
         final var op = new DbCreateOperation(HQDM.ABSTRACT_OBJECT, HQDM.ABSTRACT_OBJECT, "value");
 
         // Create a database to be updated.
-        final var mcService = new MagmaCoreService(new MagmaCoreObjectDatabase());
+        final var mcService = MagmaCoreServiceFactory.createWithObjectDatabase();
 
         // Apply the operation twice, the second should throw an exception.
         op.apply(mcService);
@@ -113,7 +113,7 @@ public class DbOperationTest {
         final var op = new DbDeleteOperation(HQDM.ABSTRACT_OBJECT, HQDM.ABSTRACT_OBJECT, "value");
 
         // Create a database to be updated.
-        final var mcService = new MagmaCoreService(new MagmaCoreObjectDatabase());
+        final var mcService = MagmaCoreServiceFactory.createWithObjectDatabase();
 
         // Apply the operation, it should throw an exception.
         op.apply(mcService);
