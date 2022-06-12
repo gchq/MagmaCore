@@ -19,10 +19,6 @@ public class ExampleDataObjects {
      */
     public static DbTransformation populateExampleData(final MagmaCoreService mcService) {
 
-        // svc is updated by each DbChangeSet and used to create the next DbChangeSet since
-        // they are sequentially dependent.
-        var svc = mcService;
-        
         // Apply the transformation to the database. There are dependencies between these change sets 
         // since they both depend on RDL being present, but also the occupancies depend on the 
         // individuals being present, so each change set needs to be applied before the next one 
@@ -30,19 +26,19 @@ public class ExampleDataObjects {
         final var rdlChangeSet = ExampleRdl.createRefDataObjects();
 
         // Apply the DbChangeSet
-        svc = rdlChangeSet.apply(svc);
+        rdlChangeSet.apply(mcService);
 
-        // svc now contains the RDL needed for the next DbChangeSet
-        final var individualsChangeSet = ExampleIndividuals.addWholeLifeIndividuals(svc);
-
-        // Apply the DbChangeSet
-        svc = individualsChangeSet.apply(svc);
-
-        // svc now contains the individuals needed for creating the next DbChangeSet
-        final var occupanciesChangeSet = ExampleAssociations.addHouseOccupancies(svc);
+        // mcService now contains the RDL needed for the next DbChangeSet
+        final var individualsChangeSet = ExampleIndividuals.addWholeLifeIndividuals(mcService);
 
         // Apply the DbChangeSet
-        svc = occupanciesChangeSet.apply(svc);
+        individualsChangeSet.apply(mcService);
+
+        // mcService now contains the individuals needed for creating the next DbChangeSet
+        final var occupanciesChangeSet = ExampleAssociations.addHouseOccupancies(mcService);
+
+        // Apply the DbChangeSet
+        occupanciesChangeSet.apply(mcService);
 
         // Combine the DbChangeSets into a DbTransformation and return it as a record of the changes.
         return new DbTransformation(List.of(rdlChangeSet, individualsChangeSet, occupanciesChangeSet));
