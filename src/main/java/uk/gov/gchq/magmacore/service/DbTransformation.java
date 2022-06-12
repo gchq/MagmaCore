@@ -1,4 +1,4 @@
-package uk.gov.gchq.magmacore.database;
+package uk.gov.gchq.magmacore.service;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  * Class representing an invertible ordered sequence of change sets.
  *
  * */
-public class DbTransformation implements Function<MagmaCoreDatabase, MagmaCoreDatabase> {
+public class DbTransformation implements Function<MagmaCoreService, MagmaCoreService> {
     private List<DbChangeSet> transformations;
 
     /**
@@ -31,18 +31,18 @@ public class DbTransformation implements Function<MagmaCoreDatabase, MagmaCoreDa
     }
 
     /**
-     * Apply this {@link DbTransformation} to a {@link MagmaCoreDatabase}.
+     * Apply this {@link DbTransformation} to a {@link MagmaCoreService}.
      *
      * */
     @Override
-    public MagmaCoreDatabase apply(final MagmaCoreDatabase db) {
+    public MagmaCoreService apply(final MagmaCoreService mcService) {
         final var transformation = transformations
             .stream()
-            .map(x -> (Function<MagmaCoreDatabase, MagmaCoreDatabase>) x)
+            .map(x -> (Function<MagmaCoreService, MagmaCoreService>) x)
             .reduce(Function::andThen)
             .orElse(Function.identity());
 
-        return transformation.apply(db);
+        return transformation.apply(mcService);
     }
 
     /**

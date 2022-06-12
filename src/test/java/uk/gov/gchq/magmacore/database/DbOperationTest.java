@@ -8,6 +8,9 @@ import org.junit.Test;
 
 import uk.gov.gchq.hqdm.iri.HQDM;
 import uk.gov.gchq.magmacore.exception.DbTransformationException;
+import uk.gov.gchq.magmacore.service.DbCreateOperation;
+import uk.gov.gchq.magmacore.service.DbDeleteOperation;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
  * Check that {@link DbCreateOperation} and {@link DbDeleteOperation} work correctly.
@@ -26,19 +29,19 @@ public class DbOperationTest {
         final var op = new DbCreateOperation(HQDM.ABSTRACT_OBJECT, HQDM.ABSTRACT_OBJECT, "value");
 
         // Create a database to be updated.
-        final var db = new MagmaCoreObjectDatabase();
+        final var mcService = new MagmaCoreService(new MagmaCoreObjectDatabase());
 
         // Apply the operation.
-        op.apply(db);
+        op.apply(mcService);
 
         // Find the thing we just created and assert it's presence.
-        final var thing = db.get(HQDM.ABSTRACT_OBJECT);
+        final var thing = mcService.get(HQDM.ABSTRACT_OBJECT);
 
         assertNotNull(thing);
         assertTrue(thing.hasThisValue(HQDM.ABSTRACT_OBJECT.getIri(), "value"));
 
         // Invert the operation and assert that it is no longer present.
-        DbCreateOperation.invert(op).apply(db);
+        DbCreateOperation.invert(op).apply(mcService);
 
         assertFalse(thing.hasThisValue(HQDM.ABSTRACT_OBJECT.getIri(), "value"));
     }
@@ -56,15 +59,15 @@ public class DbOperationTest {
         final var op3 = new DbCreateOperation(HQDM.ABSTRACT_OBJECT, HQDM.PART_OF_POSSIBLE_WORLD, "a world");
 
         // Create a database to be updated.
-        final var db = new MagmaCoreObjectDatabase();
+        final var mcService = new MagmaCoreService(new MagmaCoreObjectDatabase());
 
         // Apply the operations.
-        op1.apply(db);
-        op2.apply(db);
-        op3.apply(db);
+        op1.apply(mcService);
+        op2.apply(mcService);
+        op3.apply(mcService);
 
         // Find the thing we just created and assert values are present.
-        final var thing = db.get(HQDM.ABSTRACT_OBJECT);
+        final var thing = mcService.get(HQDM.ABSTRACT_OBJECT);
 
         assertNotNull(thing);
         assertTrue(thing.hasThisValue(HQDM.ABSTRACT_OBJECT.getIri(), "value"));
@@ -72,9 +75,9 @@ public class DbOperationTest {
         assertTrue(thing.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "a world"));
 
         // Invert the operations, apply them in reverse order and assert they are no longer present.
-        DbCreateOperation.invert(op3).apply(db);
-        DbCreateOperation.invert(op2).apply(db);
-        DbCreateOperation.invert(op1).apply(db);
+        DbCreateOperation.invert(op3).apply(mcService);
+        DbCreateOperation.invert(op2).apply(mcService);
+        DbCreateOperation.invert(op1).apply(mcService);
 
         assertFalse(thing.hasThisValue(HQDM.ABSTRACT_OBJECT.getIri(), "value"));
         assertFalse(thing.hasThisValue(HQDM.MEMBER_OF.getIri(), "class1"));
@@ -92,11 +95,11 @@ public class DbOperationTest {
         final var op = new DbCreateOperation(HQDM.ABSTRACT_OBJECT, HQDM.ABSTRACT_OBJECT, "value");
 
         // Create a database to be updated.
-        final var db = new MagmaCoreObjectDatabase();
+        final var mcService = new MagmaCoreService(new MagmaCoreObjectDatabase());
 
         // Apply the operation twice, the second should throw an exception.
-        op.apply(db);
-        op.apply(db);
+        op.apply(mcService);
+        op.apply(mcService);
     }
 
     /**
@@ -110,9 +113,9 @@ public class DbOperationTest {
         final var op = new DbDeleteOperation(HQDM.ABSTRACT_OBJECT, HQDM.ABSTRACT_OBJECT, "value");
 
         // Create a database to be updated.
-        final var db = new MagmaCoreObjectDatabase();
+        final var mcService = new MagmaCoreService(new MagmaCoreObjectDatabase());
 
         // Apply the operation, it should throw an exception.
-        op.apply(db);
+        op.apply(mcService);
     }
 }

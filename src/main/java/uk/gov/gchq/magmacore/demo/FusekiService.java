@@ -18,6 +18,7 @@ import org.apache.jena.fuseki.main.FusekiServer;
 import org.apache.jena.fuseki.system.FusekiLogging;
 
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
  * Example use-case scenario for hosting {@link MagmaCoreJenaDatabase} on a Fuseki server.
@@ -50,7 +51,7 @@ public final class FusekiService {
         tdb.begin();
         if (tdb.getDataset().isEmpty() && populate) {
             // Build example data objects Dataset.
-            ExampleDataObjects.populateExampleData(tdb);
+            ExampleDataObjects.populateExampleData(new MagmaCoreService(tdb));
 
             tdb.commit();
         } else {

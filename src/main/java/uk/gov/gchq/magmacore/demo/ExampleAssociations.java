@@ -14,9 +14,10 @@ import uk.gov.gchq.hqdm.model.KindOfAssociation;
 import uk.gov.gchq.hqdm.model.Person;
 import uk.gov.gchq.hqdm.model.PossibleWorld;
 import uk.gov.gchq.hqdm.model.Role;
-import uk.gov.gchq.magmacore.database.DbChangeSet;
-import uk.gov.gchq.magmacore.database.DbCreateOperation;
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
+import uk.gov.gchq.magmacore.service.DbChangeSet;
+import uk.gov.gchq.magmacore.service.DbCreateOperation;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
  * Functions for creating systems using MagmaCore and HQDM.
@@ -27,7 +28,7 @@ public class ExampleAssociations {
     /**
      * Create a person-occupies-house association.
      *
-     * @param db a {@link MagmaCoreDatabase}
+     * @param mcService a {@link MagmaCoreDatabase}
      * @param creates {@link Set} of {@link DbCreateOperation}
      * @param possibleWorld a {@link PossibleWorld}
      * @param person the {@link Person} occupying the house.
@@ -36,7 +37,7 @@ public class ExampleAssociations {
      * @param ending {@link Event}
      */
     private static void occupyHouse(
-            final MagmaCoreDatabase db,
+            final MagmaCoreService mcService,
             final Set<DbCreateOperation> creates,
             final PossibleWorld possibleWorld,
             final Person person,
@@ -45,13 +46,13 @@ public class ExampleAssociations {
             final IRI ending) {
 
         // Find the required classes, kinds, and roles.
-        final ClassOfStateOfPerson classOfStateOfPerson = ExampleCommonUtils.findByEntityName(db, "CLASS_OF_STATE_OF_PERSON");
+        final ClassOfStateOfPerson classOfStateOfPerson = mcService.findByEntityName("CLASS_OF_STATE_OF_PERSON");
         final ClassOfStateOfFunctionalSystem classOfStateOfFunctionalSystemDomesticProperty =
-            ExampleCommonUtils.findByEntityName(db, "STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
-        final Role occupierOfPropertyRole = ExampleCommonUtils.findByEntityName(db, "OCCUPIER_LOCATED_IN_PROPERTY_ROLE");
-        final Role domesticOccupantInPropertyRole = ExampleCommonUtils.findByEntityName(db, "DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE");
+            mcService.findByEntityName("STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
+        final Role occupierOfPropertyRole = mcService.findByEntityName("OCCUPIER_LOCATED_IN_PROPERTY_ROLE");
+        final Role domesticOccupantInPropertyRole = mcService.findByEntityName("DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE");
         final KindOfAssociation occupantInPropertyKindOfAssociation =
-            ExampleCommonUtils.findByEntityName(db, "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
+            mcService.findByEntityName("OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
 
         // Create DbCreateOperations to create the objects and their properties.
         final var personState = ExampleCommonUtils.mkUserBaseIri();
@@ -101,16 +102,16 @@ public class ExampleAssociations {
     /**
      * Add occupancy predicates.
      *
-     * @param db {@link MagmaCoreDatabase}
+     * @param mcService {@link MagmaCoreDatabase}
      * @return {@link MagmaCoreDatabase}
     */
-    public static DbChangeSet addHouseOccupancies(final MagmaCoreDatabase db) {
+    public static DbChangeSet addHouseOccupancies(final MagmaCoreService mcService) {
         // Use an existing PossibleWorld
-        final PossibleWorld possibleWorld = ExampleCommonUtils.findByEntityName(db, "Example1_World");
+        final PossibleWorld possibleWorld = mcService.findByEntityName("Example1_World");
 
         // The person occupies the house twice at different times.
-        final Person person = ExampleCommonUtils.findByEntityName(db, "PersonB1_Bob");
-        final FunctionalSystem house = ExampleCommonUtils.findByEntityName(db, "HouseB");
+        final Person person = mcService.findByEntityName("PersonB1_Bob");
+        final FunctionalSystem house = mcService.findByEntityName("HouseB");
 
         // Create IRIs for the objects we want to create.
         final var e2 = ExampleCommonUtils.mkUserBaseIri();
@@ -137,8 +138,8 @@ public class ExampleAssociations {
         creates.add(new DbCreateOperation(e5, HQDM.ENTITY_NAME, "2020-08-17T10:46:00"));
 
         // Add more DbCreateOperations to create the required associations.
-        occupyHouse(db, creates, possibleWorld, person, house, e2, e3);
-        occupyHouse(db, creates, possibleWorld, person, house, e4, e5);
+        occupyHouse(mcService, creates, possibleWorld, person, house, e2, e3);
+        occupyHouse(mcService, creates, possibleWorld, person, house, e4, e5);
 
         // Create and return a new change set.
         return new DbChangeSet(Set.of(), creates);

@@ -1,7 +1,7 @@
 package uk.gov.gchq.magmacore.demo;
 
-import uk.gov.gchq.magmacore.database.DbTransformation;
-import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
+import uk.gov.gchq.magmacore.service.DbTransformation;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.util.ComposableBiFunction;
 
 /**
@@ -11,33 +11,33 @@ import uk.gov.gchq.magmacore.util.ComposableBiFunction;
 public class ExampleDataObjects {
 
     // A BiFunction to create the RDL
-    private static ComposableBiFunction<DbTransformation, MagmaCoreDatabase, MagmaCoreDatabase> createRefDataObjects = (t, d) -> {
+    private static ComposableBiFunction<DbTransformation, MagmaCoreService, MagmaCoreService> createRefDataObjects = (t, s) -> {
         final var changeSet = ExampleRdl.createRefDataObjects();
         t.add(changeSet);
-        return changeSet.apply(d);
+        return changeSet.apply(s);
     };
 
     // A BiFunction to add the individuals
-    private static ComposableBiFunction<DbTransformation, MagmaCoreDatabase, MagmaCoreDatabase> addWholeLifeIndividuals = (t, d) -> {
-        final var changeSet = ExampleIndividuals.addWholeLifeIndividuals(d);
+    private static ComposableBiFunction<DbTransformation, MagmaCoreService, MagmaCoreService> addWholeLifeIndividuals = (t, s) -> {
+        final var changeSet = ExampleIndividuals.addWholeLifeIndividuals(s);
         t.add(changeSet);
-        return changeSet.apply(d);
+        return changeSet.apply(s);
     };
 
     // A BiFunction to create the occupancy associations
-    private static ComposableBiFunction<DbTransformation, MagmaCoreDatabase, MagmaCoreDatabase> addHouseOccupancies = (t, d) -> {
-        final var changeSet = ExampleAssociations.addHouseOccupancies(d);
+    private static ComposableBiFunction<DbTransformation, MagmaCoreService, MagmaCoreService> addHouseOccupancies = (t, s) -> {
+        final var changeSet = ExampleAssociations.addHouseOccupancies(s);
         t.add(changeSet);
-        return changeSet.apply(d);
+        return changeSet.apply(s);
     };
 
     /**
      * A function that populates a database.
      *
-     * @param db a {@link MagmaCoreDatabase}
+     * @param mcService a {@link MagmaCoreService}
      * @return {@link DbTransformation}
      */
-    public static DbTransformation populateExampleData(final MagmaCoreDatabase db) {
+    public static DbTransformation populateExampleData(final MagmaCoreService mcService) {
 
         // Apply the transformation to the database. There are dependencies between these change sets 
         // since they both depend on RDL being present, but also the occupancies depend on the 
@@ -52,7 +52,7 @@ public class ExampleDataObjects {
         final var result = new DbTransformation();
 
         // Apply the transform to the database
-        transform.apply(result, db);
+        transform.apply(result, mcService);
 
         // Return the DbTransformation that took place.
         return result;

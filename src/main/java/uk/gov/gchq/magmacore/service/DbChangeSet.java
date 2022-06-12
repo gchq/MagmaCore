@@ -1,4 +1,4 @@
-package uk.gov.gchq.magmacore.database;
+package uk.gov.gchq.magmacore.service;
 
 import java.util.Set;
 import java.util.function.Function;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
  * Class representing an invertible set of deletes and creates.
  *
  * */
-public class DbChangeSet implements Function<MagmaCoreDatabase, MagmaCoreDatabase> {
+public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService> {
     private Set<DbDeleteOperation> deletes;
     private Set<DbCreateOperation> creates;
 
@@ -24,24 +24,24 @@ public class DbChangeSet implements Function<MagmaCoreDatabase, MagmaCoreDatabas
     }
 
     /**
-     * Apply this {@link DbChangeSet} to a {@link MagmaCoreDatabase}.
+     * Apply this {@link DbChangeSet} to a {@link MagmaCoreService}.
      *
      * */
     @Override
-    public MagmaCoreDatabase apply(final MagmaCoreDatabase db) {
+    public MagmaCoreService apply(final MagmaCoreService mcService) {
         final var deleteFunction = deletes
             .stream()
-            .map(x -> (Function<MagmaCoreDatabase, MagmaCoreDatabase>) x)
+            .map(x -> (Function<MagmaCoreService, MagmaCoreService>) x)
             .reduce(Function::andThen)
             .orElse(Function.identity());
 
         final var createFunction = creates
             .stream()
-            .map(x -> (Function<MagmaCoreDatabase, MagmaCoreDatabase>) x)
+            .map(x -> (Function<MagmaCoreService, MagmaCoreService>) x)
             .reduce(Function::andThen)
             .orElse(Function.identity());
 
-        return deleteFunction.andThen(createFunction).apply(db);
+        return deleteFunction.andThen(createFunction).apply(mcService);
     }
 
     /**

@@ -7,9 +7,9 @@ import uk.gov.gchq.hqdm.iri.RDFS;
 import uk.gov.gchq.hqdm.model.KindOfFunctionalSystem;
 import uk.gov.gchq.hqdm.model.KindOfPerson;
 import uk.gov.gchq.hqdm.model.Role;
-import uk.gov.gchq.magmacore.database.DbChangeSet;
-import uk.gov.gchq.magmacore.database.DbCreateOperation;
-import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
+import uk.gov.gchq.magmacore.service.DbChangeSet;
+import uk.gov.gchq.magmacore.service.DbCreateOperation;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
  * Functions for creating systems using MagmaCore and HQDM.
@@ -22,15 +22,15 @@ public class ExampleIndividuals {
      *
      * @return {@link DbChangeSet}
      */
-    public static DbChangeSet addWholeLifeIndividuals(final MagmaCoreDatabase db) {
+    public static DbChangeSet addWholeLifeIndividuals(final MagmaCoreService mcService) {
 
         // Find the required classes, kinds, and roles.
-        final KindOfPerson kindOfPerson = ExampleCommonUtils.findByEntityName(db, "KIND_OF_PERSON");
-        final Role personRole = ExampleCommonUtils.findByEntityName(db, "NATURAL_MEMBER_OF_SOCIETY_ROLE");
+        final KindOfPerson kindOfPerson = mcService.findByEntityName("KIND_OF_PERSON");
+        final Role personRole = mcService.findByEntityName("NATURAL_MEMBER_OF_SOCIETY_ROLE");
         final KindOfFunctionalSystem kindOfFunctionalSystemDomesticProperty =
-            ExampleCommonUtils.findByEntityName(db, "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
+            mcService.findByEntityName("KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
         final Role domesticPropertyRole =
-            ExampleCommonUtils.findByEntityName(db, "ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
+            mcService.findByEntityName("ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
 
         // Create IRIs for the objects we want to create.
         final var possibleWorld = ExampleCommonUtils.mkUserBaseIri();

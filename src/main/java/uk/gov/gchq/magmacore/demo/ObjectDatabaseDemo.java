@@ -20,6 +20,7 @@ import java.util.List;
 
 import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.database.MagmaCoreObjectDatabase;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
  * Example use-case scenario for {@link MagmaCoreObjectDatabase}.
@@ -43,7 +44,7 @@ public final class ObjectDatabaseDemo {
         final MagmaCoreObjectDatabase objectDatabase = new MagmaCoreObjectDatabase();
 
         // Add example data objects to dataset.
-        ExampleDataObjects.populateExampleData(objectDatabase);
+        ExampleDataObjects.populateExampleData(new MagmaCoreService(objectDatabase));
 
         // Query database to check it's populated.
         final List<Thing> queryResults =

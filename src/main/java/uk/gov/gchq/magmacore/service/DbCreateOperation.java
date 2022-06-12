@@ -1,4 +1,4 @@
-package uk.gov.gchq.magmacore.database;
+package uk.gov.gchq.magmacore.service;
 
 import java.util.function.Function;
 
@@ -12,7 +12,7 @@ import uk.gov.gchq.magmacore.exception.DbTransformationException;
  * Class representing an invertible operation to create a predicate.
  *
  * */
-public class DbCreateOperation implements Function<MagmaCoreDatabase, MagmaCoreDatabase> {
+public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreService> {
 
     // The IRI of the Thing we're referring to.
     private IRI subject;
@@ -41,10 +41,10 @@ public class DbCreateOperation implements Function<MagmaCoreDatabase, MagmaCoreD
      *
      * */
     @Override
-    public MagmaCoreDatabase apply(final MagmaCoreDatabase db) {
+    public MagmaCoreService apply(final MagmaCoreService mcService) {
         Thing thing = null;
         try {
-            thing = db.get(subject);
+            thing = mcService.get(subject);
         } catch (final HqdmException e) {
             // The object does not exist.
         }
@@ -52,11 +52,11 @@ public class DbCreateOperation implements Function<MagmaCoreDatabase, MagmaCoreD
         if (thing == null) {
             final  var newThing = SpatioTemporalExtentServices.createSpatioTemporalExtent(subject.getIri());
             newThing.addStringValue(predicate.getIri(), object);
-            db.create(newThing);
+            mcService.create(newThing);
         } else {
             if (!thing.hasThisValue(predicate.getIri(), object)) {
                 thing.addValue(predicate.getIri(), object);
-                db.update(thing);
+                mcService.update(thing);
             } else {
                 throw new DbTransformationException(
                     String.format("Triple already exists: %s, %s, %s", subject, predicate, object)
@@ -64,7 +64,7 @@ public class DbCreateOperation implements Function<MagmaCoreDatabase, MagmaCoreD
             }
         }
 
-        return db;
+        return mcService;
     }
 
     /**

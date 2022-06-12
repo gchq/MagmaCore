@@ -22,6 +22,7 @@ import java.util.List;
 
 import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
  * Example use-case scenario for {@link MagmaCoreJenaDatabase}.
@@ -56,7 +57,7 @@ public final class JenaDatabaseDemo {
 
         // Add example data objects to dataset.
         jenaDatabase.begin();
-        ExampleDataObjects.populateExampleData(jenaDatabase);
+        ExampleDataObjects.populateExampleData(new MagmaCoreService(jenaDatabase));
         jenaDatabase.commit();
 
         // Query database to check its populated.

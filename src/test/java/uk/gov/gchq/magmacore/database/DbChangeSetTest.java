@@ -9,6 +9,9 @@ import java.util.Set;
 import org.junit.Test;
 
 import uk.gov.gchq.hqdm.iri.HQDM;
+import uk.gov.gchq.magmacore.service.DbChangeSet;
+import uk.gov.gchq.magmacore.service.DbCreateOperation;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
  * Check that {@link DbChangeSet} works correctly.
@@ -31,13 +34,13 @@ public class DbChangeSetTest {
         ));
 
         // Create a database to be updated.
-        final var db = new MagmaCoreObjectDatabase();
+        final var mcService = new MagmaCoreService(new MagmaCoreObjectDatabase());
 
         // Apply the operations.
-        changes.apply(db);
+        changes.apply(mcService);
 
         // Find the thing we just created and assert values are present.
-        final var thing = db.get(HQDM.ABSTRACT_OBJECT);
+        final var thing = mcService.get(HQDM.ABSTRACT_OBJECT);
 
         assertNotNull(thing);
         assertTrue(thing.hasThisValue(HQDM.ABSTRACT_OBJECT.getIri(), "value"));
@@ -45,7 +48,7 @@ public class DbChangeSetTest {
         assertTrue(thing.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "a world"));
 
         // Invert the operations, apply them in reverse order and assert they are no longer present.
-        DbChangeSet.invert(changes).apply(db);
+        DbChangeSet.invert(changes).apply(mcService);
 
         assertFalse(thing.hasThisValue(HQDM.ABSTRACT_OBJECT.getIri(), "value"));
         assertFalse(thing.hasThisValue(HQDM.MEMBER_OF.getIri(), "class1"));

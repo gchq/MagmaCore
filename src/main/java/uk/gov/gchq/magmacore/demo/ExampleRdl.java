@@ -4,8 +4,8 @@ import java.util.Set;
 
 import uk.gov.gchq.hqdm.iri.HQDM;
 import uk.gov.gchq.hqdm.iri.RDFS;
-import uk.gov.gchq.magmacore.database.DbChangeSet;
-import uk.gov.gchq.magmacore.database.DbCreateOperation;
+import uk.gov.gchq.magmacore.service.DbChangeSet;
+import uk.gov.gchq.magmacore.service.DbCreateOperation;
 
 /**
  * Functions for creating systems using MagmaCore and HQDM.

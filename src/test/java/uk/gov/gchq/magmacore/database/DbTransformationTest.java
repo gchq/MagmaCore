@@ -10,6 +10,10 @@ import java.util.Set;
 import org.junit.Test;
 
 import uk.gov.gchq.hqdm.iri.HQDM;
+import uk.gov.gchq.magmacore.service.DbChangeSet;
+import uk.gov.gchq.magmacore.service.DbCreateOperation;
+import uk.gov.gchq.magmacore.service.DbTransformation;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
  * Check that {@link DbTransformation} works correctly.
@@ -43,20 +47,20 @@ public class DbTransformationTest {
         ));
 
         // Create a database to be updated.
-        final var db = new MagmaCoreObjectDatabase();
+        final var mcService = new MagmaCoreService(new MagmaCoreObjectDatabase());
 
         // Apply the operations.
-        transformation.apply(db);
+        transformation.apply(mcService);
 
         // Find the thing we just created and assert values are present.
-        final var thing1 = db.get(HQDM.ABSTRACT_OBJECT);
+        final var thing1 = mcService.get(HQDM.ABSTRACT_OBJECT);
 
         assertNotNull(thing1);
         assertTrue(thing1.hasThisValue(HQDM.ABSTRACT_OBJECT.getIri(), "value"));
         assertTrue(thing1.hasThisValue(HQDM.MEMBER_OF.getIri(), "class1"));
         assertTrue(thing1.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "a world"));
 
-        final var thing2 = db.get(HQDM.PERSON);
+        final var thing2 = mcService.get(HQDM.PERSON);
 
         assertNotNull(thing2);
         assertTrue(thing2.hasThisValue(HQDM.ENTITY_NAME.getIri(), "Trillian"));
@@ -64,7 +68,7 @@ public class DbTransformationTest {
         assertTrue(thing2.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "another world"));
 
         // Invert the operations, apply them in reverse order and assert they are no longer present.
-        transformation.invert().apply(db);
+        transformation.invert().apply(mcService);
 
         assertFalse(thing1.hasThisValue(HQDM.ABSTRACT_OBJECT.getIri(), "value"));
         assertFalse(thing1.hasThisValue(HQDM.MEMBER_OF.getIri(), "class1"));
