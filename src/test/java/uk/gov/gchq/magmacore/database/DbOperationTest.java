@@ -1,5 +1,6 @@
 package  uk.gov.gchq.magmacore.database;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -117,5 +118,33 @@ public class DbOperationTest {
 
         // Apply the operation, it should throw an exception.
         op.apply(mcService);
+    }
+
+    /**
+     * Test the equals method for {@link DbCreateOperation}.
+     *
+     * */
+    @Test
+    public void testDbCreateEquals() {
+
+        final var op1 = new DbCreateOperation(HQDM.ABSTRACT_OBJECT, HQDM.MEMBER_OF, "class1");
+        final var op2 = new DbCreateOperation(HQDM.ABSTRACT_OBJECT, HQDM.MEMBER_OF, "class1");
+
+        assertTrue(op1.equals(op2));
+        assertEquals(op1.hashCode(), op2.hashCode());
+    }
+
+    /**
+     * Test the equals method for {@link DbDeleteOperation}.
+     *
+     * */
+    @Test
+    public void testDbDeleteEquals() {
+
+        final var op1 = new DbDeleteOperation(HQDM.ABSTRACT_OBJECT, HQDM.MEMBER_OF, "class1");
+        final var op2 = new DbDeleteOperation(HQDM.ABSTRACT_OBJECT, HQDM.MEMBER_OF, "class1");
+
+        assertTrue(op1.equals(op2));
+        assertEquals(op1.hashCode(), op2.hashCode());
     }
 }
