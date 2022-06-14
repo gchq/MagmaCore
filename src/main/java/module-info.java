@@ -10,11 +10,8 @@ module MagmaCore.service.main {
     requires org.apache.jena.tdb2;
     requires com.fasterxml.jackson.annotation;
 
-    requires lombok;
-    requires javassist;
     requires org.apache.logging.log4j;
     requires org.apache.commons.lang3;
-    requires io.vavr;
 
     exports uk.gov.gchq.magmacore.service;
     exports uk.gov.gchq.magmacore.exception;
