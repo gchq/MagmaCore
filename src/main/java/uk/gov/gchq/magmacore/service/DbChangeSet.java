@@ -41,7 +41,8 @@ public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService>
             .reduce(Function::andThen)
             .orElse(Function.identity());
 
-        return deleteFunction.andThen(createFunction).apply(mcService);
+        mcService.runInTransaction(deleteFunction.andThen(createFunction));
+        return mcService;
     }
 
     /**

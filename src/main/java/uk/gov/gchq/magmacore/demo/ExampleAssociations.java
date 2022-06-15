@@ -1,6 +1,7 @@
 package uk.gov.gchq.magmacore.demo;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import uk.gov.gchq.hqdm.iri.HQDM;
@@ -45,14 +46,22 @@ public class ExampleAssociations {
             final IRI beginning,
             final IRI ending) {
 
+        final var entities = mcService.findByEntityNameInTransaction(List.of(
+                    "CLASS_OF_STATE_OF_PERSON",
+                    "STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY",
+                    "OCCUPIER_LOCATED_IN_PROPERTY_ROLE",
+                    "DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE",
+                    "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION"
+                    ));
+
         // Find the required classes, kinds, and roles.
-        final ClassOfStateOfPerson classOfStateOfPerson = mcService.findByEntityName("CLASS_OF_STATE_OF_PERSON");
+        final ClassOfStateOfPerson classOfStateOfPerson = (ClassOfStateOfPerson) entities.get("CLASS_OF_STATE_OF_PERSON");
         final ClassOfStateOfFunctionalSystem classOfStateOfFunctionalSystemDomesticProperty =
-            mcService.findByEntityName("STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
-        final Role occupierOfPropertyRole = mcService.findByEntityName("OCCUPIER_LOCATED_IN_PROPERTY_ROLE");
-        final Role domesticOccupantInPropertyRole = mcService.findByEntityName("DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE");
+            (ClassOfStateOfFunctionalSystem) entities.get("STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
+        final Role occupierOfPropertyRole = (Role) entities.get("OCCUPIER_LOCATED_IN_PROPERTY_ROLE");
+        final Role domesticOccupantInPropertyRole = (Role) entities.get("DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE");
         final KindOfAssociation occupantInPropertyKindOfAssociation =
-            mcService.findByEntityName("OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
+            (KindOfAssociation) entities.get("OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
 
         // Create DbCreateOperations to create the objects and their properties.
         final var personState = ExampleCommonUtils.mkUserBaseIri();
@@ -97,21 +106,28 @@ public class ExampleAssociations {
         creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT, personParticipant.getIri()));
         creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.BEGINNING, beginning.getIri()));
         creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.ENDING, ending.getIri()));
-    }
+            }
 
     /**
      * Add occupancy predicates.
      *
      * @param mcService {@link MagmaCoreDatabase}
      * @return {@link MagmaCoreDatabase}
-    */
+     */
     public static DbChangeSet addHouseOccupancies(final MagmaCoreService mcService) {
+
+        final var entities = mcService.findByEntityNameInTransaction(List.of(
+                    "Example1_World",
+                    "PersonB1_Bob",
+                    "HouseB"
+                    ));
+
         // Use an existing PossibleWorld
-        final PossibleWorld possibleWorld = mcService.findByEntityName("Example1_World");
+        final PossibleWorld possibleWorld = (PossibleWorld) entities.get("Example1_World");
 
         // The person occupies the house twice at different times.
-        final Person person = mcService.findByEntityName("PersonB1_Bob");
-        final FunctionalSystem house = mcService.findByEntityName("HouseB");
+        final Person person = (Person) entities.get("PersonB1_Bob");
+        final FunctionalSystem house = (FunctionalSystem) entities.get("HouseB");
 
         // Create IRIs for the objects we want to create.
         final var e2 = ExampleCommonUtils.mkUserBaseIri();

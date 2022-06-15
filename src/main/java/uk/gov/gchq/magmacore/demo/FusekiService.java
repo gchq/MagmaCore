@@ -49,14 +49,14 @@ public final class FusekiService {
         // If TDB is not already populated create set of example data objects to
         // store in TDB.
         tdb.begin();
-        if (tdb.getDataset().isEmpty() && populate) {
-            // Build example data objects Dataset.
-            ExampleDataObjects.populateExampleData(MagmaCoreServiceFactory.createWithJenaDatabase(tdb));
+        final boolean dbIsEmpty = tdb.getDataset().isEmpty();
+        tdb.commit();
 
-            tdb.commit();
-        } else {
-            tdb.abort();
+        if (dbIsEmpty && populate) {
+            // Build example data objects Dataset, transactions are controlled by the MagmaCoreService.
+            ExampleDataObjects.populateExampleData(MagmaCoreServiceFactory.createWithJenaDatabase(tdb));
         }
+        
         // Build and start Fuseki server.
         FusekiLogging.setLogging();
         FusekiServer

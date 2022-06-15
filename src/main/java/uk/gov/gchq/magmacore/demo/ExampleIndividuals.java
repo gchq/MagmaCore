@@ -1,5 +1,6 @@
 package uk.gov.gchq.magmacore.demo;
 
+import java.util.List;
 import java.util.Set;
 
 import uk.gov.gchq.hqdm.iri.HQDM;
@@ -24,13 +25,20 @@ public class ExampleIndividuals {
      */
     public static DbChangeSet addWholeLifeIndividuals(final MagmaCoreService mcService) {
 
+        final var entities = mcService.findByEntityNameInTransaction(List.of(
+                    "KIND_OF_PERSON",
+                    "NATURAL_MEMBER_OF_SOCIETY_ROLE",
+                    "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY",
+                    "ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE"
+                    ));
+
         // Find the required classes, kinds, and roles.
-        final KindOfPerson kindOfPerson = mcService.findByEntityName("KIND_OF_PERSON");
-        final Role personRole = mcService.findByEntityName("NATURAL_MEMBER_OF_SOCIETY_ROLE");
+        final KindOfPerson kindOfPerson = (KindOfPerson) entities.get("KIND_OF_PERSON");
+        final Role personRole = (Role) entities.get("NATURAL_MEMBER_OF_SOCIETY_ROLE");
         final KindOfFunctionalSystem kindOfFunctionalSystemDomesticProperty =
-            mcService.findByEntityName("KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
+            (KindOfFunctionalSystem) entities.get("KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
         final Role domesticPropertyRole =
-            mcService.findByEntityName("ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
+            (Role) entities.get("ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
 
         // Create IRIs for the objects we want to create.
         final var possibleWorld = ExampleCommonUtils.mkUserBaseIri();
@@ -65,9 +73,12 @@ public class ExampleIndividuals {
                 new DbCreateOperation(house, HQDM.MEMBER_OF_KIND, kindOfFunctionalSystemDomesticProperty.getId()),
                 new DbCreateOperation(house, HQDM.INTENDED_ROLE, domesticPropertyRole.getId()),
                 new DbCreateOperation(house, HQDM.BEGINNING, e2.getIri())
-                );
+                    );
 
         // Create a change set and return it.
         return new DbChangeSet(Set.of(), creates);
+    }
+
+    public ExampleIndividuals() {
     }
 }

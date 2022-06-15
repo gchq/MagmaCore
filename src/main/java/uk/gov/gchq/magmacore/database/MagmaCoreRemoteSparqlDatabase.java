@@ -81,14 +81,6 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
         connection.load(dataset.getDefaultModel());
     }
 
-    /**
-     * Drop all data from the dataset.
-     */
-    public void drop() {
-        final String drop = "drop all";
-        executeUpdate(drop);
-    }
-
      /**
      * {@inheritDoc}
      */
@@ -295,5 +287,49 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     public final void dump(final PrintStream out, final Lang language) {
         final Dataset dataset = connection.fetchDataset();
         RDFDataMgr.write(out, dataset.getDefaultModel(), language);
+    }
+
+    /**
+     * Begin a writeable transaction initially in READ mode,
+     * but in Jena it will switch to WRITE mode if updates are made.
+     *
+     * @return the {@link MagmaCoreDatabase}
+    */
+    public final MagmaCoreDatabase begin() {
+        if (!connection.isInTransaction()) {
+            connection.begin();
+        }
+        return this;
+    }
+
+    /**
+     * Abort the current transaction.
+     *
+     * @return the {@link MagmaCoreDatabase}
+    */
+    public final MagmaCoreDatabase abort() {
+        connection.abort();
+        return this;
+    }
+
+    /**
+     * Drop the entire database.
+     *
+     * @return the {@link MagmaCoreDatabase}
+    */
+    public final MagmaCoreDatabase drop() {
+        final String drop = "drop all";
+        executeUpdate(drop);
+        return this;
+    }
+
+    /**
+     * Commit the current transaction.
+     *
+     * @return the {@link MagmaCoreDatabase}
+    */
+    public final MagmaCoreDatabase commit() {
+        connection.commit();
+        return this;
     }
 }

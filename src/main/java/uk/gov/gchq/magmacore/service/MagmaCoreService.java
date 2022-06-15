@@ -1,5 +1,10 @@
 package uk.gov.gchq.magmacore.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+
 import uk.gov.gchq.hqdm.iri.HQDM;
 import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.model.Thing;
@@ -10,7 +15,7 @@ import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
  *
  * */
 public class MagmaCoreService {
-    
+
     // The service operates on a database.
     private final MagmaCoreDatabase db;
 
@@ -18,7 +23,7 @@ public class MagmaCoreService {
      * Constructor that requires a {@link MagmaCoreDatabase}.
      *
      * @param db {@link MagmaCoreDatabase}
-    */
+     */
     MagmaCoreService(final MagmaCoreDatabase db) {
         this.db = db;
     }
@@ -32,6 +37,7 @@ public class MagmaCoreService {
      */
     public <T> T findByEntityName(final String name) {
         final var searchResult = db.findByPredicateIriAndStringValue(HQDM.ENTITY_NAME, name);
+
         if (searchResult.size() == 1) {
             return (T) searchResult.get(0);
         } else if (searchResult.isEmpty()) {
@@ -45,7 +51,7 @@ public class MagmaCoreService {
      * Create a new Thing.
      *
      * @param thing {@link Thing}
-    */
+     */
     public void create(final Thing thing) {
         db.create(thing);
     }
@@ -54,7 +60,7 @@ public class MagmaCoreService {
      * Update an existing {@link Thing}.
      *
      * @param thing {@link Thing}
-    */
+     */
     public void update(final Thing thing) {
         db.update(thing);
     }
@@ -64,9 +70,48 @@ public class MagmaCoreService {
      *
      * @param iri {@link IRI}
      * @return {@link Thing}
-    */
+     */
     public Thing get(final IRI iri) {
         return db.get(iri);
     }
 
+    /**
+     * Run a function in a transaction.
+     *
+     * @param f the {@link Function} to run.
+     */
+    public void runInTransaction(final Function<MagmaCoreService, MagmaCoreService> f) {
+        try {
+            db.begin();
+            f.apply(this);
+            db.commit();
+        } catch (final Exception e) {
+            db.abort();
+            throw e;
+        }
+    }
+
+    /**
+     * Find many entities by name.
+     *
+     * @param names a {@link List} of {@link String}
+     * @return a {@link Map} of {@link String} to {@link Thing}
+     */
+    public Map<String, Thing> findByEntityNameInTransaction(final List<String> names) {
+        try {
+            db.begin();
+            final var result = new HashMap<String, Thing>();
+
+            for (final String name : names) {
+                result.put(name, findByEntityName(name));
+            }
+
+            db.commit();
+
+            return result;
+        } catch (final Exception e) {
+            db.abort();
+            throw e;
+        }
+    }
 }

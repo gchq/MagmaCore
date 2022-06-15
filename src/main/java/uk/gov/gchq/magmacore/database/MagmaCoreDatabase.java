@@ -97,4 +97,34 @@ public interface MagmaCoreDatabase {
      * @param out Output stream to dump to.
      */
     void dump(PrintStream out);
+
+    /**
+     * Begin a writeable transaction initially in READ mode,
+     * but in Jena it will switch to WRITE mode if updates are made.
+     *
+     * @return the {@link MagmaCoreDatabase}
+    */
+    MagmaCoreDatabase begin();
+
+    /**
+     * Abort the current transaction.
+     *
+     * @return the {@link MagmaCoreDatabase}
+    */
+    MagmaCoreDatabase abort();
+
+    /**
+     * Drop the entire database.
+     *
+     * @return the {@link MagmaCoreDatabase}
+    */
+    MagmaCoreDatabase drop();
+
+    /**
+     * Commit the current transaction.
+     *
+     * @return the {@link MagmaCoreDatabase}
+    */
+    MagmaCoreDatabase commit();
+
 }
