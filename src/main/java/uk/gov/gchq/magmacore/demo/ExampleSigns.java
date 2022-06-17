@@ -8,6 +8,7 @@ import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.iri.RDFS;
 import uk.gov.gchq.hqdm.model.Description;
 import uk.gov.gchq.hqdm.model.Pattern;
+import uk.gov.gchq.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.magmacore.service.DbChangeSet;
 import uk.gov.gchq.magmacore.service.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.DbTransformation;
@@ -55,17 +56,18 @@ public class ExampleSigns {
     private static DbChangeSet addSigns(final MagmaCoreService mcService) {
         final var entities = mcService.findByEntityNameInTransaction(List.of(
                     "URL Pattern",
-                    "Description By URL"
+                    "Description By URL",
+                    "English Speakers"
                     ));
 
         // Find the required classes, kinds, and roles.
         final var urlPattern = (Pattern) entities.get("URL Pattern");
         final var descriptionByUrl = (Description) entities.get("Description By URL");
-        final var descriptionByUrlIri = new IRI(descriptionByUrl.getId());
+        final var englishSpeakers = (RecognizingLanguageCommunity) entities.get("English Speakers");
+        final var englishSpeakersIri = new IRI(englishSpeakers.getId());
 
         // Create IRIs for the new entities.
         final var person = ExampleCommonUtils.mkUserBaseIri();
-        final var englishSpeakers = ExampleCommonUtils.mkUserBaseIri();
         final var wikipediaSign = ExampleCommonUtils.mkUserBaseIri();
         final var brittanica = ExampleCommonUtils.mkUserBaseIri();
         final var biography = ExampleCommonUtils.mkUserBaseIri();
@@ -78,35 +80,25 @@ public class ExampleSigns {
                 // Create the thing represented
                 new DbCreateOperation(person, RDFS.RDF_TYPE, HQDM.PERSON.getIri()),
 
-                // Create the community that recognizes the signs
-                new DbCreateOperation(englishSpeakers, RDFS.RDF_TYPE, HQDM.RECOGNIZING_LANGUAGE_COMMUNITY.getIri()),
-                new DbCreateOperation(englishSpeakers, HQDM.ENTITY_NAME, "English Speakers"),
-                new DbCreateOperation(englishSpeakers, HQDM.PARTICIPANT_IN, repBySign.getIri()),
-
                 // Create the signs that represent the thing
                 new DbCreateOperation(wikipediaSign, RDFS.RDF_TYPE, HQDM.SIGN.getIri()),
                 new DbCreateOperation(wikipediaSign, HQDM.MEMBER_OF_, urlPattern.getId()),
-                new DbCreateOperation(wikipediaSign, HQDM.PARTICIPANT_IN, repBySign.getIri()),
                 new DbCreateOperation(wikipediaSign, HQDM.VALUE_, "https://en.wikipedia.org/wiki/Socrates"),
                
                 new DbCreateOperation(brittanica, RDFS.RDF_TYPE, HQDM.SIGN.getIri()),
                 new DbCreateOperation(brittanica, HQDM.MEMBER_OF_, urlPattern.getId()),
-                new DbCreateOperation(brittanica, HQDM.PARTICIPANT_IN, repBySign.getIri()),
                 new DbCreateOperation(brittanica, HQDM.VALUE_, "https://www.britannica.com/biography/Socrates"),
                
                 new DbCreateOperation(biography, RDFS.RDF_TYPE, HQDM.SIGN.getIri()),
                 new DbCreateOperation(biography, HQDM.MEMBER_OF_, urlPattern.getId()),
-                new DbCreateOperation(biography, HQDM.PARTICIPANT_IN, repBySign.getIri()),
                 new DbCreateOperation(biography, HQDM.VALUE_, "https://www.biography.com/scholar/socrates"),
                
                 new DbCreateOperation(stanford, RDFS.RDF_TYPE, HQDM.SIGN.getIri()),
                 new DbCreateOperation(stanford, HQDM.MEMBER_OF_, urlPattern.getId()),
-                new DbCreateOperation(stanford, HQDM.PARTICIPANT_IN, repBySign.getIri()),
                 new DbCreateOperation(stanford, HQDM.VALUE_, "https://plato.stanford.edu/entries/socrates/"),
                
                 new DbCreateOperation(nationalGeographic, RDFS.RDF_TYPE, HQDM.SIGN.getIri()),
                 new DbCreateOperation(nationalGeographic, HQDM.MEMBER_OF_, urlPattern.getId()),
-                new DbCreateOperation(nationalGeographic, HQDM.PARTICIPANT_IN, repBySign.getIri()),
                 new DbCreateOperation(nationalGeographic, HQDM.VALUE_, "https://www.nationalgeographic.com/culture/article/socrates"),
                
                 // Create the representation by signs
@@ -114,9 +106,13 @@ public class ExampleSigns {
                 new DbCreateOperation(repBySign, HQDM.MEMBER_OF_, descriptionByUrl.getId()),
                 new DbCreateOperation(repBySign, HQDM.REPRESENTS, person.getIri()),
 
-                // Link the description to the Pattern
-                new DbCreateOperation(descriptionByUrlIri, HQDM.CONSISTS_OF_BY_CLASS, urlPattern.getId())
-
+                // Add the participants
+                new DbCreateOperation(englishSpeakersIri, HQDM.PARTICIPANT_IN, repBySign.getIri()),
+                new DbCreateOperation(wikipediaSign, HQDM.PARTICIPANT_IN, repBySign.getIri()),
+                new DbCreateOperation(brittanica, HQDM.PARTICIPANT_IN, repBySign.getIri()),
+                new DbCreateOperation(biography, HQDM.PARTICIPANT_IN, repBySign.getIri()),
+                new DbCreateOperation(stanford, HQDM.PARTICIPANT_IN, repBySign.getIri()),
+                new DbCreateOperation(nationalGeographic, HQDM.PARTICIPANT_IN, repBySign.getIri())
                 );
 
         // Create a change set and return it.
