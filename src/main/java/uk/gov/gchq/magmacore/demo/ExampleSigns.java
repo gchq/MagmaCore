@@ -28,9 +28,9 @@ public class ExampleSigns {
      */
     public static DbTransformation populateExampleData(final MagmaCoreService mcService) {
 
-        // Apply the transformation to the database. There are dependencies between these change sets 
-        // since they both depend on RDL being present, but also the occupancies depend on the 
-        // individuals being present, so each change set needs to be applied before the next one 
+        // Apply the transformation to the database. There are dependencies between these change sets
+        // since they both depend on RDL being present, but also the occupancies depend on the
+        // individuals being present, so each change set needs to be applied before the next one
         // can be created.
         final var rdlChangeSet = ExampleSignsRdl.createRefDataObjects();
 
@@ -52,7 +52,7 @@ public class ExampleSigns {
      *
      * @param mcService {@link MagmaCoreService}
      * @return {@link DbChangeSet}
-    */
+     */
     private static DbChangeSet addSigns(final MagmaCoreService mcService) {
         final var entities = mcService.findByEntityNameInTransaction(List.of(
                     "URL Pattern",
@@ -67,6 +67,7 @@ public class ExampleSigns {
         final var englishSpeakersIri = new IRI(englishSpeakers.getId());
 
         // Create IRIs for the new entities.
+        final var possibleWorld = ExampleCommonUtils.mkUserBaseIri();
         final var person = ExampleCommonUtils.mkUserBaseIri();
         final var wikipediaSign = ExampleCommonUtils.mkUserBaseIri();
         final var brittanica = ExampleCommonUtils.mkUserBaseIri();
@@ -74,37 +75,63 @@ public class ExampleSigns {
         final var stanford = ExampleCommonUtils.mkUserBaseIri();
         final var nationalGeographic = ExampleCommonUtils.mkUserBaseIri();
         final var repBySign = ExampleCommonUtils.mkUserBaseIri();
+        final var e1 = ExampleCommonUtils.mkUserBaseIri();
+        final var e2 = ExampleCommonUtils.mkUserBaseIri();
 
         // Create the set of DbCreateOperations
         final var creates = Set.of(
+
+                // Create the possible world that we are working in.
+                new DbCreateOperation(possibleWorld, RDFS.RDF_TYPE, HQDM.POSSIBLE_WORLD.getIri()),
+                new DbCreateOperation(possibleWorld, HQDM.ENTITY_NAME, "Example Signs World"),
+
                 // Create the thing represented
                 new DbCreateOperation(person, RDFS.RDF_TYPE, HQDM.PERSON.getIri()),
+                new DbCreateOperation(person, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
 
                 // Create the signs that represent the thing
-                new DbCreateOperation(wikipediaSign, RDFS.RDF_TYPE, HQDM.SIGN.getIri()),
+                new DbCreateOperation(wikipediaSign, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN.getIri()),
                 new DbCreateOperation(wikipediaSign, HQDM.MEMBER_OF_, urlPattern.getId()),
                 new DbCreateOperation(wikipediaSign, HQDM.VALUE_, "https://en.wikipedia.org/wiki/Socrates"),
-               
-                new DbCreateOperation(brittanica, RDFS.RDF_TYPE, HQDM.SIGN.getIri()),
+                new DbCreateOperation(wikipediaSign, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+
+                new DbCreateOperation(brittanica, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN.getIri()),
                 new DbCreateOperation(brittanica, HQDM.MEMBER_OF_, urlPattern.getId()),
                 new DbCreateOperation(brittanica, HQDM.VALUE_, "https://www.britannica.com/biography/Socrates"),
-               
-                new DbCreateOperation(biography, RDFS.RDF_TYPE, HQDM.SIGN.getIri()),
+                new DbCreateOperation(brittanica, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+
+                new DbCreateOperation(biography, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN.getIri()),
                 new DbCreateOperation(biography, HQDM.MEMBER_OF_, urlPattern.getId()),
                 new DbCreateOperation(biography, HQDM.VALUE_, "https://www.biography.com/scholar/socrates"),
-               
-                new DbCreateOperation(stanford, RDFS.RDF_TYPE, HQDM.SIGN.getIri()),
+                new DbCreateOperation(biography, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+
+                new DbCreateOperation(stanford, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN.getIri()),
                 new DbCreateOperation(stanford, HQDM.MEMBER_OF_, urlPattern.getId()),
                 new DbCreateOperation(stanford, HQDM.VALUE_, "https://plato.stanford.edu/entries/socrates/"),
-               
-                new DbCreateOperation(nationalGeographic, RDFS.RDF_TYPE, HQDM.SIGN.getIri()),
+                new DbCreateOperation(stanford, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+
+                new DbCreateOperation(nationalGeographic, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN.getIri()),
                 new DbCreateOperation(nationalGeographic, HQDM.MEMBER_OF_, urlPattern.getId()),
                 new DbCreateOperation(nationalGeographic, HQDM.VALUE_, "https://www.nationalgeographic.com/culture/article/socrates"),
-               
+                new DbCreateOperation(nationalGeographic, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+
                 // Create the representation by signs
                 new DbCreateOperation(repBySign, RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN.getIri()),
                 new DbCreateOperation(repBySign, HQDM.MEMBER_OF_, descriptionByUrl.getId()),
                 new DbCreateOperation(repBySign, HQDM.REPRESENTS, person.getIri()),
+                new DbCreateOperation(repBySign, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+
+                // Add beginning, ending, etc. from `association`
+                new DbCreateOperation(e1, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
+                new DbCreateOperation(e1, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(e1, HQDM.ENTITY_NAME, "2020-01-01T00:00:00"),
+
+                new DbCreateOperation(e2, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
+                new DbCreateOperation(e2, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(e2, HQDM.ENTITY_NAME, "2022-12-01T00:00:00"),
+
+                new DbCreateOperation(repBySign, HQDM.BEGINNING, e1.getIri()),
+                new DbCreateOperation(repBySign, HQDM.ENDING, e2.getIri()),
 
                 // Add the participants
                 new DbCreateOperation(englishSpeakersIri, HQDM.PARTICIPANT_IN, repBySign.getIri()),
@@ -113,7 +140,7 @@ public class ExampleSigns {
                 new DbCreateOperation(biography, HQDM.PARTICIPANT_IN, repBySign.getIri()),
                 new DbCreateOperation(stanford, HQDM.PARTICIPANT_IN, repBySign.getIri()),
                 new DbCreateOperation(nationalGeographic, HQDM.PARTICIPANT_IN, repBySign.getIri())
-                );
+                    );
 
         // Create a change set and return it.
         return new DbChangeSet(Set.of(), creates);
