@@ -43,13 +43,13 @@ import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
 import org.apache.jena.util.PrintUtil;
 
-import uk.gov.gchq.hqdm.iri.HqdmIri;
-import uk.gov.gchq.hqdm.iri.IRI;
-import uk.gov.gchq.hqdm.iri.IriBase;
 import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.hqdm.rdf.Pair;
 import uk.gov.gchq.hqdm.rdf.Triples;
+import uk.gov.gchq.hqdm.rdf.iri.HqdmIri;
+import uk.gov.gchq.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.magmacore.query.QueryResult;
 import uk.gov.gchq.magmacore.query.QueryResultList;
 

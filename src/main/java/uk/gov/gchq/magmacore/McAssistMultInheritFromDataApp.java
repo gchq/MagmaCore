@@ -3,12 +3,12 @@ package uk.gov.gchq.magmacore;
 import java.util.List;
 import java.util.UUID;
 
-import uk.gov.gchq.hqdm.iri.HQDM;
-import uk.gov.gchq.hqdm.iri.RDFS;
 import uk.gov.gchq.hqdm.model.Participant;
 import uk.gov.gchq.hqdm.model.StateOfOrganization;
 import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.hqdm.rdf.Pair;
+import uk.gov.gchq.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.hqdm.rdf.iri.RDFS;
 
 /**
  * Demonstrate how to create a new class dynamically.

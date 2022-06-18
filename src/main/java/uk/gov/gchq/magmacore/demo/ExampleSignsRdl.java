@@ -2,8 +2,8 @@ package uk.gov.gchq.magmacore.demo;
 
 import java.util.Set;
 
-import uk.gov.gchq.hqdm.iri.HQDM;
-import uk.gov.gchq.hqdm.iri.RDFS;
+import uk.gov.gchq.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.service.DbChangeSet;
 import uk.gov.gchq.magmacore.service.DbCreateOperation;
 

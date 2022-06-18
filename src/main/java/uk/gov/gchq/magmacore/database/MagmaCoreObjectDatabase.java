@@ -20,10 +20,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import uk.gov.gchq.hqdm.iri.HqdmIri;
-import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.Triples;
+import uk.gov.gchq.hqdm.rdf.iri.HqdmIri;
+import uk.gov.gchq.hqdm.rdf.iri.IRI;
 
 /**
  * In-memory collection of HQDM objects.

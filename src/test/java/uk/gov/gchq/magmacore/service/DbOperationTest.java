@@ -1,4 +1,4 @@
-package  uk.gov.gchq.magmacore.database;
+package  uk.gov.gchq.magmacore.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -7,11 +7,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import uk.gov.gchq.hqdm.iri.HQDM;
+import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.exception.DbTransformationException;
-import uk.gov.gchq.magmacore.service.DbCreateOperation;
-import uk.gov.gchq.magmacore.service.DbDeleteOperation;
-import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
  * Check that {@link DbCreateOperation} and {@link DbDeleteOperation} work correctly.

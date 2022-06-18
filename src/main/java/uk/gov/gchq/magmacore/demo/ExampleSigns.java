@@ -3,12 +3,12 @@ package uk.gov.gchq.magmacore.demo;
 import java.util.List;
 import java.util.Set;
 
-import uk.gov.gchq.hqdm.iri.HQDM;
-import uk.gov.gchq.hqdm.iri.IRI;
-import uk.gov.gchq.hqdm.iri.RDFS;
 import uk.gov.gchq.hqdm.model.Description;
 import uk.gov.gchq.hqdm.model.Pattern;
 import uk.gov.gchq.hqdm.model.RecognizingLanguageCommunity;
+import uk.gov.gchq.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.service.DbChangeSet;
 import uk.gov.gchq.magmacore.service.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.DbTransformation;

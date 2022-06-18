@@ -2,8 +2,8 @@ package uk.gov.gchq.magmacore.demo;
 
 import static uk.gov.gchq.magmacore.util.DataObjectUtils.uid;
 
-import uk.gov.gchq.hqdm.iri.IRI;
-import uk.gov.gchq.hqdm.iri.IriBase;
+import uk.gov.gchq.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.hqdm.rdf.iri.IriBase;
 
 /**
  * Functions for creating systems using MagmaCore and HQDM.

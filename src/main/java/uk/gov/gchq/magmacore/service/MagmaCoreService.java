@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import uk.gov.gchq.hqdm.iri.HQDM;
-import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.model.Thing;
+import uk.gov.gchq.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 
 /**

@@ -1,4 +1,4 @@
-package  uk.gov.gchq.magmacore.database;
+package  uk.gov.gchq.magmacore.service;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -9,11 +9,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import uk.gov.gchq.hqdm.iri.HQDM;
-import uk.gov.gchq.magmacore.service.DbChangeSet;
-import uk.gov.gchq.magmacore.service.DbCreateOperation;
-import uk.gov.gchq.magmacore.service.DbTransformation;
-import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
+import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 
 /**
  * Check that {@link DbTransformation} works correctly.
