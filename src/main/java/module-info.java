@@ -1,6 +1,6 @@
 
 module MagmaCore.service.main {
-    requires HQDM.model.main;
+    requires uk.gov.gchq.hqdm.core;
     requires transitive uk.gov.gchq.hqdm.rdf;
     requires org.apache.jena.arq;
     requires org.apache.jena.core;
