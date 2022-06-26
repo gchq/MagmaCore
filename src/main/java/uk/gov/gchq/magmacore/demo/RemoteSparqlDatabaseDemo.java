@@ -30,6 +30,8 @@ public final class RemoteSparqlDatabaseDemo {
 
     /**
      * Run the demo.
+     *
+     * @param populate true if the dataset should be populated with example data
      */
     public void run(final boolean populate) {
         final var mcService = MagmaCoreServiceFactory.attachRemoteSparqlEndpoint(url);
