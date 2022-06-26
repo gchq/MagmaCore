@@ -14,7 +14,7 @@
 
 package uk.gov.gchq.magmacore;
 
-import uk.gov.gchq.magmacore.demo.FusekiService;
+import uk.gov.gchq.magmacore.demo.FusekiServiceDemo;
 import uk.gov.gchq.magmacore.demo.JenaDatabaseDemo;
 import uk.gov.gchq.magmacore.demo.ObjectDatabaseDemo;
 import uk.gov.gchq.magmacore.demo.RemoteSparqlDatabaseDemo;
@@ -54,12 +54,12 @@ public final class MagmaCore {
     }
 
     /**
-     * Executes the FusekiService.
+     * Executes the FusekiServiceDemo.
      *
      * @param populate true if the dataset should be populated with example data
      */
     public static void fuseki(final boolean populate) {
-        new FusekiService().run(populate);
+        new FusekiServiceDemo().run(populate);
     }
 
     /**

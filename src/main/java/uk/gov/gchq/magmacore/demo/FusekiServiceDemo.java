@@ -24,7 +24,7 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  * Example use-case scenario for hosting {@link MagmaCoreJenaDatabase} on a Fuseki server.
  *
  * <p>
- * The FusekiService class can be used to host in-memory or persistent Magma Core Jena Datasets over
+ * The FusekiServiceDemo class can be used to host in-memory or persistent Magma Core Jena Datasets over
  * HTTP using a Fuseki server.
  * </p>
  * <p>
@@ -37,10 +37,12 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  * {@code localhost:<port>/<name>}.
  * </p>
  */
-public final class FusekiService {
+public final class FusekiServiceDemo {
 
     /**
      * Run the example Fuseki server.
+     *
+     * @param populate true if the dataset should be populated with example data
      */
     public void run(final boolean populate) {
         // Create/connect to persistent TDB.
