@@ -62,7 +62,7 @@ public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService>
      * Invert a {@link DbChangeSet}.
      *
      * @param c a {@link DbChangeSet}
-     * @return a {@link DbChangeSet}
+     * @return The inverted {@link DbChangeSet}.
     */
     public static DbChangeSet invert(final DbChangeSet c) {
         return new DbChangeSet(
