@@ -61,7 +61,7 @@ public class DbTransformation implements Function<MagmaCoreService, MagmaCoreSer
     /**
      * Invert this {@link DbTransformation}.
      *
-     * @return a {@link DbTransformation}
+     * @return The inverted {@link DbTransformation}.
      */
     public DbTransformation invert() {
         final var list = transformations
