@@ -12,7 +12,7 @@
  * the License.
  */
 
-package uk.gov.gchq.magmacore;
+package uk.gov.gchq.magmacore.demo;
 
 import java.util.List;
 import java.util.UUID;
