@@ -44,7 +44,7 @@ public class MagmaCoreService {
     /**
      * Find an object by its ENTITY_NAME.
      *
-     * @param name the name {@link String} to seaerch for.
+     * @param name the name {@link String} to search for.
      * @return the {@link Thing}that was found.
      * @throws RuntimeException if no or multiple results found.
      */
