@@ -14,8 +14,9 @@
 
 package uk.gov.gchq.magmacore.demo;
 
+import static uk.gov.gchq.magmacore.util.DataObjectUtils.uid;
+
 import java.util.List;
-import java.util.UUID;
 
 import uk.gov.gchq.hqdm.model.Participant;
 import uk.gov.gchq.hqdm.model.StateOfOrganization;
@@ -43,13 +44,13 @@ public class McAssistMultInheritFromDataApp {
         );
 
         // Create a new object using the type specification.
-        final var orgState = HqdmObjectFactory.create(UUID.randomUUID().toString(), newTypeSpecification);
+        final var orgState = HqdmObjectFactory.create(uid(), newTypeSpecification);
 
         // Check that it implements the two interfaces.
         if (orgState instanceof Participant && orgState instanceof StateOfOrganization) {
             System.out.println("Successfully implemented the Participant and StateOfOrganization interfaces.");
         } else {
-            System.err.println("Faile to implement the Participant and StateOfOrganization interfaces.");
+            System.err.println("Failed to implement the Participant and StateOfOrganization interfaces.");
         }
     }
 }
