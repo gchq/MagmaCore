@@ -18,15 +18,14 @@ import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
- * Example use-case scenario for {@link MagmaCoreJenaDatabase}.
+ * Example use-case scenario for the {@link uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase}
  *
  * <p>
  * This example demo creates an in-memory {@link MagmaCoreJenaDatabase} populated with the
  * {@link ExampleDataObjects} as RDF triples.
  * </p>
  * <p>
- * {@code PersonB1_Bob} can be queried for using the
- * {@link MagmaCoreJenaDatabase#findByEntityName(String)}
+ * {@code PersonB1_Bob} can be queried for using the `findByEntityName` method.
  * method. The resulting object(s) of this query are output to the command-line as RDF triples.
  * </p>
  *
