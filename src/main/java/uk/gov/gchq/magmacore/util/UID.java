@@ -17,16 +17,16 @@ package uk.gov.gchq.magmacore.util;
 import java.util.UUID;
 
 /**
- * Utilities for building and generating HQDM objects.
+ * Wrapper for UUID to generate a random UUID {@link String}.
  */
-public final class DataObjectUtils {
+public final class UID {
 
-    private DataObjectUtils() {}
+    private UID() {}
 
     /**
      * Create a new random UUID to assign to an object.
      *
-     * @return A Random UUID.
+     * @return A Random UUID {@link String}.
      */
     public static String uid() {
         return UUID.randomUUID().toString();

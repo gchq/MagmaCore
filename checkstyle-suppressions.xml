@@ -2,6 +2,7 @@
 <!DOCTYPE suppressions PUBLIC "-//Checkstyle//DTD Suppressions 1.2//EN" "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 
 <suppressions>
+  <suppress checks="AbbreviationAsWordInName" files="UID\.java" />
   <suppress checks="Indentation|HiddenField" files="\.java" />
   <suppress checks="LineLength" files="ExampleDataObjects.java|ExampleRdl.java|ExampleAssociations.java" />
   <suppress checks="MethodLength" files="ExampleDataObjects.java" />

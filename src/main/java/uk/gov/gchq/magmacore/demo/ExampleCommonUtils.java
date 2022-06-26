@@ -14,7 +14,7 @@
 
 package uk.gov.gchq.magmacore.demo;
 
-import static uk.gov.gchq.magmacore.util.DataObjectUtils.uid;
+import static uk.gov.gchq.magmacore.util.UID.uid;
 
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.hqdm.rdf.iri.IriBase;
