@@ -37,9 +37,8 @@ public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService>
     }
 
     /**
-     * Apply this {@link DbChangeSet} to a {@link MagmaCoreService}.
-     *
-     * */
+     * {@inheritDoc}
+     */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
         final var deleteFunction = deletes

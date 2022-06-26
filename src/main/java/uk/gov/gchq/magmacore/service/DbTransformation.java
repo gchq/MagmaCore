@@ -44,9 +44,8 @@ public class DbTransformation implements Function<MagmaCoreService, MagmaCoreSer
     }
 
     /**
-     * Apply this {@link DbTransformation} to a {@link MagmaCoreService}.
-     *
-     * */
+     * {@inheritDoc}
+     */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
         final var transformation = transformations

@@ -51,8 +51,7 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
 
     /**
      * {@inheritDoc}
-     *
-     * */
+     */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
         Thing thing = null;

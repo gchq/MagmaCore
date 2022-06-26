@@ -41,10 +41,8 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
     }
 
     /**
-     * Apply the operation to a {@link MagmaCoreService}.
-     *
-     * @param mcService {@link MagmaCoreService}
-     * */
+     * {@inheritDoc}
+     */
     public MagmaCoreService apply(final MagmaCoreService mcService) {
         final var thing = mcService.get(subject);
 
