@@ -84,7 +84,7 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
      * Invert an operation.
      *
      * @param c {@link DbCreateOperation}
-     * @return {@link DbDeleteOperation}
+     * @return The inverted {@link DbDeleteOperation}.
     */
     public static DbDeleteOperation invert(final DbCreateOperation c) {
         return new DbDeleteOperation(c.subject, c.predicate, c.object);
