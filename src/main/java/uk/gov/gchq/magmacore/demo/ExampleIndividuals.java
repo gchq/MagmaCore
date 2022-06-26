@@ -34,6 +34,7 @@ public class ExampleIndividuals {
     /**
      * Create a DbChangeSet that adds the whole life individuals.
      *
+     * @param mcService {@link MagmaCoreService}
      * @return {@link DbChangeSet}
      */
     public static DbChangeSet addWholeLifeIndividuals(final MagmaCoreService mcService) {
