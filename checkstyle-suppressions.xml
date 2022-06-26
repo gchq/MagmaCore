@@ -3,5 +3,6 @@
 
 <suppressions>
   <suppress checks="Indentation|HiddenField" files="\.java" />
-  <suppress checks="MethodLength|LineLength" files="ExampleDataObjects.java|ExampleRdl.java|ExampleAssociations.java" />
+  <suppress checks="LineLength" files="ExampleDataObjects.java|ExampleRdl.java|ExampleAssociations.java" />
+  <suppress checks="MethodLength" files="ExampleDataObjects.java" />
 </suppressions>
