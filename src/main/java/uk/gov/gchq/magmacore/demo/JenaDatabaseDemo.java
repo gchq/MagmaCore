@@ -18,7 +18,7 @@ import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
- * Example use-case scenario for the {@link uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase}
+ * Example use-case scenario for the {@link uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase}.
  *
  * <p>
  * This example demo creates an in-memory {@link MagmaCoreJenaDatabase} populated with the
