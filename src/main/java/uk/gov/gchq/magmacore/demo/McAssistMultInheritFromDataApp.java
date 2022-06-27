@@ -22,6 +22,7 @@ import uk.gov.gchq.hqdm.model.Participant;
 import uk.gov.gchq.hqdm.model.StateOfOrganization;
 import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.hqdm.rdf.Pair;
+import uk.gov.gchq.hqdm.rdf.Triples;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
 
@@ -52,5 +53,9 @@ public class McAssistMultInheritFromDataApp {
         } else {
             System.err.println("Failed to implement the Participant and StateOfOrganization interfaces.");
         }
+
+        // DIsplay the object as triples.
+        System.out.println("Result as TTL triples:");
+        System.out.println(Triples.toTriples(orgState));
     }
 }
