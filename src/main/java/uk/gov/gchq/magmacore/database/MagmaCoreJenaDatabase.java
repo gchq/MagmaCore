@@ -109,39 +109,35 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * Start a transaction which is READ mode and which will switch to WRITE if an update is
      * attempted but only if no intermediate transaction has performed an update.
      */
-    public MagmaCoreDatabase begin() {
+    public void begin() {
         if (!dataset.isInTransaction()) {
             dataset.begin();
         }
-        return this;
     }
 
     /**
      * Commit a transaction - finish the transaction and make any changes permanent (if a "write"
      * transaction).
      */
-    public MagmaCoreDatabase commit() {
+    public void commit() {
         dataset.commit();
         dataset.end();
-        return this;
     }
 
     /**
      * Abort a transaction - finish the transaction and undo any changes (if a "write" transaction).
      */
-    public MagmaCoreDatabase abort() {
+    public void abort() {
         dataset.abort();
         dataset.end();
-        return this;
     }
 
     /**
      * Drop all data from the dataset.
      */
-    public MagmaCoreDatabase drop() {
+    public void drop() {
         final String drop = "drop all";
         executeUpdate(drop);
-        return this;
     }
 
     /**

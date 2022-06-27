@@ -292,44 +292,32 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     /**
      * Begin a writeable transaction initially in READ mode,
      * but in Jena it will switch to WRITE mode if updates are made.
-     *
-     * @return the {@link MagmaCoreDatabase}
     */
-    public final MagmaCoreDatabase begin() {
+    public final void begin() {
         if (!connection.isInTransaction()) {
             connection.begin();
         }
-        return this;
     }
 
     /**
      * Abort the current transaction.
-     *
-     * @return the {@link MagmaCoreDatabase}
     */
-    public final MagmaCoreDatabase abort() {
+    public final void abort() {
         connection.abort();
-        return this;
     }
 
     /**
      * Drop the entire database.
-     *
-     * @return the {@link MagmaCoreDatabase}
     */
-    public final MagmaCoreDatabase drop() {
+    public final void drop() {
         final String drop = "drop all";
         executeUpdate(drop);
-        return this;
     }
 
     /**
      * Commit the current transaction.
-     *
-     * @return the {@link MagmaCoreDatabase}
     */
-    public final MagmaCoreDatabase commit() {
+    public final void commit() {
         connection.commit();
-        return this;
     }
 }

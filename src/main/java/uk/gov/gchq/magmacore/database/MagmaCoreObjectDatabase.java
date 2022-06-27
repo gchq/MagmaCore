@@ -142,41 +142,29 @@ public class MagmaCoreObjectDatabase implements MagmaCoreDatabase {
     /**
      * Begin a writeable transaction initially in READ mode,
      * but in Jena it will switch to WRITE mode if updates are made.
-     *
-     * @return the {@link MagmaCoreDatabase}
     */
-    public final MagmaCoreDatabase begin() {
+    public final void begin() {
         // no-op
-        return this;
     }
 
     /**
      * Abort the current transaction.
-     *
-     * @return the {@link MagmaCoreDatabase}
     */
-    public final MagmaCoreDatabase abort() {
+    public final void abort() {
         // no-op
-        return this;
     }
 
     /**
      * Drop the entire database.
-     *
-     * @return the {@link MagmaCoreDatabase}
     */
-    public final MagmaCoreDatabase drop() {
+    public final void drop() {
         objects.clear();
-        return this;
     }
 
     /**
      * Commit the current transaction.
-     *
-     * @return the {@link MagmaCoreDatabase}
     */
-    public final MagmaCoreDatabase commit() {
+    public final void commit() {
         // no-op
-        return this;
     }
 }
