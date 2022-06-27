@@ -30,8 +30,21 @@ public class ExampleDataTest {
      *
      * */
     @Test
-    public void testApplyAndInvert() {
+    public void testWithJenaDatabase() {
         final var service = MagmaCoreServiceFactory.createWithJenaDatabase();
+        
+        final var transformation = ExampleDataObjects.populateExampleData(service);
+
+        assertNotNull(transformation);
+    }
+
+    /**
+     * Test the {@link ExampleDataObjects} code.
+     *
+     * */
+    @Test
+    public void testWithObjectDatabase() {
+        final var service = MagmaCoreServiceFactory.createWithObjectDatabase();
         
         final var transformation = ExampleDataObjects.populateExampleData(service);
 

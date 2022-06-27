@@ -14,7 +14,11 @@
 
 package uk.gov.gchq.magmacore.demo;
 
+import java.util.List;
+import java.util.Map;
+
 import uk.gov.gchq.hqdm.model.Thing;
+import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
@@ -43,7 +47,7 @@ public final class JenaDatabaseDemo {
         ExampleDataObjects.populateExampleData(mcService);
 
         // Query database to check its populated.
-        final Thing queryResults = mcService.findByEntityName("PersonB1_Bob");
+        final Map<String, Thing> queryResults = mcService.findByEntityNameInTransaction(List.of("PersonB1_Bob"));
 
         // Output results of query to console.
         System.out.println(queryResults);
