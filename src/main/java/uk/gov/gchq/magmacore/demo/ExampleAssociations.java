@@ -14,9 +14,8 @@
 
 package uk.gov.gchq.magmacore.demo;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import uk.gov.gchq.hqdm.model.ClassOfStateOfFunctionalSystem;
 import uk.gov.gchq.hqdm.model.ClassOfStateOfPerson;
@@ -43,7 +42,7 @@ public class ExampleAssociations {
      * Create a person-occupies-house association.
      *
      * @param mcService a {@link MagmaCoreDatabase}
-     * @param creates {@link Set} of {@link DbCreateOperation}
+     * @param creates {@link List} of {@link DbCreateOperation}
      * @param possibleWorld a {@link PossibleWorld}
      * @param person the {@link Person} occupying the house.
      * @param house the house as a {@link FunctionalSystem} that is occupied.
@@ -52,7 +51,7 @@ public class ExampleAssociations {
      */
     private static void occupyHouse(
             final MagmaCoreService mcService,
-            final Set<DbCreateOperation> creates,
+            final List<DbCreateOperation> creates,
             final PossibleWorld possibleWorld,
             final Person person,
             final FunctionalSystem house,
@@ -149,7 +148,7 @@ public class ExampleAssociations {
         final var e5 = ExampleCommonUtils.mkUserBaseIri();
 
         // Create DbCreateOperations to create the objects and their properties.
-        final var creates = new HashSet<DbCreateOperation>();
+        final var creates = new ArrayList<DbCreateOperation>();
         creates.add(new DbCreateOperation(e2, RDFS.RDF_TYPE, HQDM.EVENT.getIri()));
         creates.add(new DbCreateOperation(e2, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
         creates.add(new DbCreateOperation(e2, HQDM.ENTITY_NAME, "2020-08-15T17:50:00"));
@@ -171,6 +170,6 @@ public class ExampleAssociations {
         occupyHouse(mcService, creates, possibleWorld, person, house, e4, e5);
 
         // Create and return a new change set.
-        return new DbChangeSet(Set.of(), creates);
+        return new DbChangeSet(List.of(), creates);
     }
 }

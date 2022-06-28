@@ -46,7 +46,6 @@ import org.apache.jena.util.PrintUtil;
 import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.hqdm.rdf.Pair;
-import uk.gov.gchq.hqdm.rdf.Triples;
 import uk.gov.gchq.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.hqdm.rdf.iri.IriBase;
@@ -120,16 +119,20 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * transaction).
      */
     public void commit() {
-        dataset.commit();
-        dataset.end();
+        if (dataset.isInTransaction()) {
+            dataset.commit();
+            dataset.end();
+        }
     }
 
     /**
      * Abort a transaction - finish the transaction and undo any changes (if a "write" transaction).
      */
     public void abort() {
-        dataset.abort();
-        dataset.end();
+        if (dataset.isInTransaction()) {
+            dataset.abort();
+            dataset.end();
+        }
     }
 
     /**
@@ -185,7 +188,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      */
     @Override
     public void delete(final Thing object) {
-        executeUpdate(String.format("delete data {%s}", Triples.toTriples(object)));
+        executeUpdate(String.format("delete {<%s> ?p ?o} WHERE {<%s> ?p ?o}", object.getId(), object.getId()));
     }
 
     /**

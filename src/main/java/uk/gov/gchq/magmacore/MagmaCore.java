@@ -16,7 +16,6 @@ package uk.gov.gchq.magmacore;
 
 import uk.gov.gchq.magmacore.demo.FusekiServiceDemo;
 import uk.gov.gchq.magmacore.demo.JenaDatabaseDemo;
-import uk.gov.gchq.magmacore.demo.ObjectDatabaseDemo;
 import uk.gov.gchq.magmacore.demo.RemoteSparqlDatabaseDemo;
 
 /**
@@ -47,8 +46,8 @@ public final class MagmaCore {
             remoteSparqlDatabaseDemo(true);
           } else if (option.equals("jena")) {
             jenaDemo();
-          } else if (option.equals("object")) {
-            objectDemo();
+          } else {
+            System.out.println("Unknown option: " + option);
           }
         }
     }
@@ -69,13 +68,6 @@ public final class MagmaCore {
      */
     public static void remoteSparqlDatabaseDemo(final boolean populate) {
         new RemoteSparqlDatabaseDemo("http://localhost:3330/tdb").run(populate);
-    }
-
-    /**
-     * Executes the ObjectDatabaseDemo.
-     */
-    public static void objectDemo() {
-      new ObjectDatabaseDemo().run();
     }
 
     /**

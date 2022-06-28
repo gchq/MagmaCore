@@ -14,7 +14,8 @@
 
 package uk.gov.gchq.magmacore.service;
 
-import java.util.Set;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -22,16 +23,16 @@ import java.util.stream.Collectors;
  * Class representing an invertible set of deletes and creates.
  */
 public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService> {
-    private Set<DbDeleteOperation> deletes;
-    private Set<DbCreateOperation> creates;
+    private List<DbDeleteOperation> deletes;
+    private List<DbCreateOperation> creates;
 
     /**
      * Constructor.
      *
-     * @param deletes a {@link Set} of {@link DbDeleteOperation}
-     * @param creates a {@link Set} of {@link DbCreateOperation}
+     * @param deletes a {@link List} of {@link DbDeleteOperation}
+     * @param creates a {@link List} of {@link DbCreateOperation}
     */
-    public DbChangeSet(final Set<DbDeleteOperation> deletes, final Set<DbCreateOperation> creates) {
+    public DbChangeSet(final List<DbDeleteOperation> deletes, final List<DbCreateOperation> creates) {
         this.deletes = deletes;
         this.creates = creates;
     }
@@ -64,9 +65,10 @@ public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService>
      * @return The inverted {@link DbChangeSet}.
     */
     public static DbChangeSet invert(final DbChangeSet c) {
-        return new DbChangeSet(
-                c.creates.stream().map(DbCreateOperation::invert).collect(Collectors.toSet()),
-                c.deletes.stream().map(DbDeleteOperation::invert).collect(Collectors.toSet())
-                );
+                final var newDeletes = c.creates.stream().map(DbCreateOperation::invert).collect(Collectors.toList());
+                final var newCreates = c.deletes.stream().map(DbDeleteOperation::invert).collect(Collectors.toList());
+                Collections.reverse(newDeletes);
+                Collections.reverse(newCreates);
+        return new DbChangeSet(newDeletes, newCreates);
     }
 }

@@ -14,7 +14,7 @@
 
 package uk.gov.gchq.magmacore.demo;
 
-import java.util.Set;
+import java.util.List;
 
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
@@ -51,7 +51,7 @@ public class ExampleRdl {
         final var occupantInPropertyKindOfAssociation = ExampleCommonUtils.mkRefBaseIri();
 
         // Add DbCreateOperations to create the objects and their properties.
-        final var creates = Set.of(
+        final var creates = List.of(
                 new DbCreateOperation(viewable, RDFS.RDF_TYPE, HQDM.CLASS.getIri()),
                 new DbCreateOperation(viewable, RDFS.RDF_TYPE, RDFS.RDFS_CLASS.getIri()),
                 new DbCreateOperation(viewable, HQDM.ENTITY_NAME, "VIEWABLE"),
@@ -146,6 +146,6 @@ public class ExampleRdl {
         );
 
         // Put the operations in a change set and return it.
-        return new DbChangeSet(Set.of(), creates);
+        return new DbChangeSet(List.of(), creates);
     }
 }

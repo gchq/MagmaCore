@@ -90,6 +90,24 @@ public class MagmaCoreService {
     }
 
     /**
+     * Get a {@link Thing} with the given {@link IRI}.
+     *
+     * @param iri {@link IRI}
+     * @return {@link Thing}
+     */
+    public Thing getInTransaction(final IRI iri) {
+        try {
+            db.begin();
+            final var result = db.get(iri);
+            db.commit();
+            return result;
+        } catch (final Exception e) {
+            db.abort();
+            throw e;
+        }
+    }
+
+    /**
      * Run a function in a transaction.
      *
      * @param f the {@link Function} to run.

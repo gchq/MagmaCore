@@ -15,7 +15,6 @@
 package uk.gov.gchq.magmacore.service;
 
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
-import uk.gov.gchq.magmacore.database.MagmaCoreObjectDatabase;
 import uk.gov.gchq.magmacore.database.MagmaCoreRemoteSparqlDatabase;
 
 /**
@@ -24,15 +23,6 @@ import uk.gov.gchq.magmacore.database.MagmaCoreRemoteSparqlDatabase;
  * clients of the library.
  */
 public class MagmaCoreServiceFactory {
-
-    /**
-     * Create an in-memory object database.
-     *
-     * @return {@link MagmaCoreService}
-     * */
-    public static MagmaCoreService createWithObjectDatabase() {
-        return new MagmaCoreService(new MagmaCoreObjectDatabase());
-    }
 
     /**
      * Create a Jena database.

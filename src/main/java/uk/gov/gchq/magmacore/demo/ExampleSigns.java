@@ -15,7 +15,6 @@
 package uk.gov.gchq.magmacore.demo;
 
 import java.util.List;
-import java.util.Set;
 
 import uk.gov.gchq.hqdm.model.Description;
 import uk.gov.gchq.hqdm.model.Pattern;
@@ -92,7 +91,7 @@ public class ExampleSigns {
         final var e2 = ExampleCommonUtils.mkUserBaseIri();
 
         // Create the set of DbCreateOperations
-        final var creates = Set.of(
+        final var creates = List.of(
 
                 // Create the possible world that we are working in.
                 new DbCreateOperation(possibleWorld, RDFS.RDF_TYPE, HQDM.POSSIBLE_WORLD.getIri()),
@@ -156,6 +155,6 @@ public class ExampleSigns {
                     );
 
         // Create a change set and return it.
-        return new DbChangeSet(Set.of(), creates);
+        return new DbChangeSet(List.of(), creates);
     }
 }

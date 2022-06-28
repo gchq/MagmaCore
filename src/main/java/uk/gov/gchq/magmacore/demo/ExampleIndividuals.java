@@ -15,7 +15,6 @@
 package uk.gov.gchq.magmacore.demo;
 
 import java.util.List;
-import java.util.Set;
 
 import uk.gov.gchq.hqdm.model.KindOfFunctionalSystem;
 import uk.gov.gchq.hqdm.model.KindOfPerson;
@@ -62,7 +61,7 @@ public class ExampleIndividuals {
         final var house = ExampleCommonUtils.mkUserBaseIri();
 
         // Create DbCreateOperations to create the objects and their properties.
-        final var creates = Set.of(
+        final var creates = List.of(
                 new DbCreateOperation(possibleWorld, RDFS.RDF_TYPE, HQDM.POSSIBLE_WORLD.getIri()),
                 new DbCreateOperation(possibleWorld, HQDM.ENTITY_NAME, "Example1_World"),
 
@@ -90,7 +89,7 @@ public class ExampleIndividuals {
                     );
 
         // Create a change set and return it.
-        return new DbChangeSet(Set.of(), creates);
+        return new DbChangeSet(List.of(), creates);
     }
 
     public ExampleIndividuals() {

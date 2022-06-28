@@ -42,7 +42,6 @@ import org.apache.jena.util.PrintUtil;
 import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.hqdm.rdf.Pair;
-import uk.gov.gchq.hqdm.rdf.Triples;
 import uk.gov.gchq.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.query.QueryResult;
@@ -134,7 +133,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      */
     @Override
     public void delete(final Thing object) {
-        executeUpdate(String.format("delete data {%s}", Triples.toTriples(object)));
+        executeUpdate(String.format("delete {<%s> ?p ?o} WHERE {<%s> ?p ?o}", object.getId(), object.getId()));
     }
 
     /**
@@ -303,7 +302,9 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      * Abort the current transaction.
     */
     public final void abort() {
-        connection.abort();
+        if (connection.isInTransaction()) {
+            connection.abort();
+        }
     }
 
     /**
@@ -318,6 +319,8 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      * Commit the current transaction.
     */
     public final void commit() {
-        connection.commit();
+        if (connection.isInTransaction()) {
+            connection.commit();
+        }
     }
 }

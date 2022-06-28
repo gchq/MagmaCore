@@ -14,7 +14,7 @@
 
 package uk.gov.gchq.magmacore.demo;
 
-import java.util.Set;
+import java.util.List;
 
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
@@ -39,7 +39,7 @@ public class ExampleSignsRdl {
         final var englishSpeakers = ExampleCommonUtils.mkUserBaseIri();
 
         // Add DbCreateOperations to create the objects and their properties.
-        final var creates = Set.of(
+        final var creates = List.of(
                 new DbCreateOperation(urlPattern, RDFS.RDF_TYPE, HQDM.PATTERN.getIri()),
                 new DbCreateOperation(urlPattern, HQDM.ENTITY_NAME, "URL Pattern"),
 
@@ -56,6 +56,6 @@ public class ExampleSignsRdl {
         );
 
         // Put the operations in a change set and return it.
-        return new DbChangeSet(Set.of(), creates);
+        return new DbChangeSet(List.of(), creates);
     }
 }
