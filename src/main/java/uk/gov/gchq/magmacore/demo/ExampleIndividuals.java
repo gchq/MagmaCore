@@ -21,9 +21,9 @@ import uk.gov.gchq.hqdm.model.KindOfPerson;
 import uk.gov.gchq.hqdm.model.Role;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
-import uk.gov.gchq.magmacore.service.DbChangeSet;
-import uk.gov.gchq.magmacore.service.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
+import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
+import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 
 /**
  * Functions for creating systems using MagmaCore and HQDM.

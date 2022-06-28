@@ -22,10 +22,10 @@ import uk.gov.gchq.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
-import uk.gov.gchq.magmacore.service.DbChangeSet;
-import uk.gov.gchq.magmacore.service.DbCreateOperation;
-import uk.gov.gchq.magmacore.service.DbTransformation;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
+import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
+import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
+import uk.gov.gchq.magmacore.service.transformation.DbTransformation;
 
 /**
  * Functions for creating systems using MagmaCore and HQDM.

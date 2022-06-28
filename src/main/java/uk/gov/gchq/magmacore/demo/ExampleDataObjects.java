@@ -16,8 +16,8 @@ package uk.gov.gchq.magmacore.demo;
 
 import java.util.List;
 
-import uk.gov.gchq.magmacore.service.DbTransformation;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
+import uk.gov.gchq.magmacore.service.transformation.DbTransformation;
 
 /**
  * Functions for creating systems using MagmaCore and HQDM.

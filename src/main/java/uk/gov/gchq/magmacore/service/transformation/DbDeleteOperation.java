@@ -12,28 +12,20 @@
  * the License.
  */
 
-package uk.gov.gchq.magmacore.service;
+package uk.gov.gchq.magmacore.service.transformation;
 
 import java.util.function.Function;
 
-import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.rdf.exception.HqdmException;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices;
 import uk.gov.gchq.magmacore.exception.DbTransformationException;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
- * Class representing an invertible operation to create a predicate.
+ * Class representing an invertible operation to delete a predicate.
  */
-public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreService> {
-
-    // The IRI of the Thing we're referring to.
+public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreService> {
     private IRI subject;
-
-    // The IRI of the property we're referring to.
     private IRI predicate;
-
-    // The value of the property we're referring to.
     private String object;
 
     /**
@@ -43,7 +35,7 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
      * @param predicate {@link IRI}
      * @param object {@link String}
     */
-    public DbCreateOperation(final IRI subject, final IRI predicate, final String object) {
+    public DbDeleteOperation(final IRI subject, final IRI predicate, final String object) {
         this.subject = subject;
         this.predicate = predicate;
         this.object = object;
@@ -52,41 +44,28 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
     /**
      * {@inheritDoc}
      */
-    @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
-        Thing thing = null;
-        try {
-            thing = mcService.get(subject);
-        } catch (final HqdmException e) {
-            // The object does not exist.
+        final var thing = mcService.get(subject);
+
+        if (thing != null && thing.hasThisValue(predicate.getIri(), object)) {
+            thing.removeValue(predicate.getIri(), object);
+            mcService.update(thing);
+            return mcService;
         }
 
-        if (thing == null) {
-            final  var newThing = SpatioTemporalExtentServices.createThing(subject.getIri());
-            newThing.addStringValue(predicate.getIri(), object);
-            mcService.create(newThing);
-        } else {
-            if (!thing.hasThisValue(predicate.getIri(), object)) {
-                thing.addValue(predicate.getIri(), object);
-                mcService.update(thing);
-            } else {
-                throw new DbTransformationException(
-                    String.format("Triple already exists: %s, %s, %s", subject, predicate, object)
+        throw new DbTransformationException(
+                String.format("Triple not found for delete: %s, %s, %s", subject, predicate, object)
                 );
-            }
-        }
-
-        return mcService;
     }
 
     /**
-     * Invert an operation.
+     * Invert a {@link DbDeleteOperation}.
      *
-     * @param c {@link DbCreateOperation}
-     * @return The inverted {@link DbDeleteOperation}.
+     * @param d the {@link DbDeleteOperation}
+     * @return The inverted {@link DbCreateOperation}.
     */
-    public static DbDeleteOperation invert(final DbCreateOperation c) {
-        return new DbDeleteOperation(c.subject, c.predicate, c.object);
+    public static DbCreateOperation invert(final DbDeleteOperation d) {
+        return new DbCreateOperation(d.subject, d.predicate, d.object);
     }
 
     /**
@@ -121,7 +100,7 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final DbCreateOperation other = (DbCreateOperation) obj;
+        final DbDeleteOperation other = (DbDeleteOperation) obj;
         if (object == null) {
             if (other.object != null) {
                 return false;
@@ -147,4 +126,3 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
     }
 
 }
-

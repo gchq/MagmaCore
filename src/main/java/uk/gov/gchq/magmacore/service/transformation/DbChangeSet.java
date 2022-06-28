@@ -12,12 +12,14 @@
  * the License.
  */
 
-package uk.gov.gchq.magmacore.service;
+package uk.gov.gchq.magmacore.service.transformation;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
  * Class representing an invertible set of deletes and creates.

@@ -29,9 +29,9 @@ import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
-import uk.gov.gchq.magmacore.service.DbChangeSet;
-import uk.gov.gchq.magmacore.service.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
+import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
+import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 
 /**
  * Functions for creating systems using MagmaCore and HQDM.
