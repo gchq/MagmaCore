@@ -30,5 +30,6 @@ module MagmaCore.service.main {
     requires org.apache.commons.lang3;
 
     exports uk.gov.gchq.magmacore.service;
+    exports uk.gov.gchq.magmacore.service.transformation;
     exports uk.gov.gchq.magmacore.exception;
 }
