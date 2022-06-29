@@ -30,7 +30,6 @@ An introduction to Magma Core and the [HQDM Java object library](https://github.
   - `remote` - connects to a local SPARQL endpoint on `http://localhost:3330/tdb`, i.e. the `fuseki` server if executed in a separate shell session.
   - `remote-populate` - connects to a local SPARQL endpoint on `http://localhost:3330/tdb`, i.e. the `fuseki` server if executed in a separate shell session. It will populate the database with example data.
   - `jena` - executes the Apache Jena database demo.
-  - `object` - executes the object database demo.
 - Alternatively, if you are using an IDE, you should be able to run the main method in MagmaCore.java from the editor.
 
 ## Contributing
