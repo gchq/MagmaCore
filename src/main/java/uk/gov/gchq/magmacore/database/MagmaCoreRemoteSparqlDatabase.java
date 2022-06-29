@@ -12,7 +12,7 @@
  * the License.
  */
 
-package uk.gov.gchq.magmacore.database;
+ package uk.gov.gchq.magmacore.database;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -23,24 +23,20 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.jena.query.Dataset;
-import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
-import org.apache.jena.query.QueryExecutionFactory;
-import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
+import org.apache.jena.rdfconnection.RDFConnection;
+import org.apache.jena.rdfconnection.RDFConnectionRemote;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
-import org.apache.jena.tdb2.TDB2Factory;
-import org.apache.jena.update.UpdateExecutionFactory;
-import org.apache.jena.update.UpdateFactory;
-import org.apache.jena.update.UpdateProcessor;
-import org.apache.jena.update.UpdateRequest;
+import org.apache.jena.riot.RDFFormat;
 import org.apache.jena.util.PrintUtil;
 
 import uk.gov.gchq.hqdm.model.Thing;
@@ -48,115 +44,59 @@ import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.hqdm.rdf.Pair;
 import uk.gov.gchq.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.magmacore.query.QueryResult;
 import uk.gov.gchq.magmacore.query.QueryResultList;
 
 /**
- * Apache Jena triplestore to store HQDM objects as RDF triples either as an in-memory Jena dataset
- * or persistent TDB triplestore.
+ * Connection to a remote SPARQL endpoint.
  */
-public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
+public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
 
-    private final Dataset dataset;
-
-    /**
-     * Instantiate a new in-memory Magma Core Jena dataset.
-     */
-    public MagmaCoreJenaDatabase() {
-        dataset = TDB2Factory.createDataset();
-    }
+    private final RDFConnection connection;
 
     /**
-     * Instantiate a new in-memory Magma Core Jena database using an existing dataset.
+     * Constructor to create a connection to a SPARQL endpoint.
      *
-     * @param dataset Existing in-memory Jena dataset.
+     * @param serviceUrl the URL String of the SPARQL update endpoint
      */
-    public MagmaCoreJenaDatabase(final Dataset dataset) {
-        this.dataset = dataset;
+    public MagmaCoreRemoteSparqlDatabase(final String serviceUrl) {
+      connection = RDFConnectionRemote.newBuilder()
+       .destination(serviceUrl)
+       .queryEndpoint("query")
+       .updateEndpoint("update")
+       .triplesFormat(RDFFormat.RDFJSON)
+       .build();
     }
 
     /**
-     * Create/connect a persistent Jena dataset using Apache TDB2.
+     * Constructor to create a connection to a SPARQL endpoint and load it with a dataset.
      *
-     * @param location Path of persistent TDB.
+     * @param serviceUrl the URL String of the SPARQL update endpoint
+     * @param dataset the Dataset to be loaded into the database
      */
-    public MagmaCoreJenaDatabase(final String location) {
-        dataset = TDB2Factory.connectDataset(location);
+    public MagmaCoreRemoteSparqlDatabase(final String serviceUrl, final Dataset dataset) {
+        this(serviceUrl);
+
+        connection.load(dataset.getDefaultModel());
     }
 
-    /**
-     * Get Jena dataset.
-     *
-     * @return The Jena dataset.
-     */
-    public final Dataset getDataset() {
-        return dataset;
-    }
-
-    /**
-     * Register a new prefix/namespace mapping which will be used to shorten the print strings for
-     * resources in known namespaces.
-     *
-     * @param base IRI prefix to register.
-     */
-    public void register(final IriBase base) {
-        PrintUtil.registerPrefix(base.getPrefix(), base.getNamespace());
-    }
-
-    /**
-     * Start a transaction which is READ mode and which will switch to WRITE if an update is
-     * attempted but only if no intermediate transaction has performed an update.
-     */
-    public void begin() {
-        if (!dataset.isInTransaction()) {
-            dataset.begin();
-        }
-    }
-
-    /**
-     * Commit a transaction - finish the transaction and make any changes permanent (if a "write"
-     * transaction).
-     */
-    public void commit() {
-        if (dataset.isInTransaction()) {
-            dataset.commit();
-            dataset.end();
-        }
-    }
-
-    /**
-     * Abort a transaction - finish the transaction and undo any changes (if a "write" transaction).
-     */
-    public void abort() {
-        if (dataset.isInTransaction()) {
-            dataset.abort();
-            dataset.end();
-        }
-    }
-
-    /**
-     * Drop all data from the dataset.
-     */
-    public void drop() {
-        final String drop = "drop all";
-        executeUpdate(drop);
-    }
-
-    /**
+     /**
      * {@inheritDoc}
      */
     @Override
     public Thing get(final IRI iri) {
+
         final String query =
                 String.format("SELECT (<%1$s> as ?s) ?p ?o WHERE {<%1$s> ?p ?o.}", iri.toString());
         final QueryResultList list = executeQuery(query);
         final List<Thing> objects = toTopObjects(list);
+
         if (!objects.isEmpty()) {
             return objects.get(0);
         } else {
             return null;
         }
+
     }
 
     /**
@@ -164,14 +104,19 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      */
     @Override
     public void create(final Thing object) {
+
+        final Model model = ModelFactory.createDefaultModel();
+
         final Resource resource =
-                dataset.getDefaultModel().createResource(object.getId());
+                model.createResource(object.getId());
 
         object.getPredicates()
                 .forEach((iri,
                         predicates) -> predicates.forEach(predicate -> resource.addProperty(
-                                dataset.getDefaultModel().createProperty(iri.toString()),
+                                model.createProperty(iri.toString()),
                                 predicate.toString())));
+        
+        connection.load(model);
     }
 
     /**
@@ -248,9 +193,9 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * @param statement SPARQL update query to execute.
      */
     protected void executeUpdate(final String statement) {
-        final UpdateRequest update = UpdateFactory.create(statement);
-        final UpdateProcessor updateExec = UpdateExecutionFactory.create(update, dataset);
-        updateExec.execute();
+
+        connection.update(statement);
+
     }
 
     /**
@@ -260,8 +205,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * @return Results of the query.
      */
     protected QueryResultList executeQuery(final String sparqlQueryString) {
-        final Query query = QueryFactory.create(sparqlQueryString);
-        final QueryExecution queryExec = QueryExecutionFactory.create(query, dataset);
+        final QueryExecution queryExec = connection.query(sparqlQueryString);
         return getQueryResultList(queryExec);
     }
 
@@ -294,9 +238,9 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
 
     private final List<Thing> toTopObjects(final QueryResultList queryResultsList) {
         final Map<String, List<Pair<String, String>>> objectMap = new HashMap<>();
-        final String subjectVarName = ((List<String>) queryResultsList.getVarNames()).get(0);
-        final String predicateVarName = ((List<String>) queryResultsList.getVarNames()).get(1);
-        final String objectVarName = ((List<String>) queryResultsList.getVarNames()).get(2);
+        final String subjectVarName = queryResultsList.getVarNames().get(0);
+        final String predicateVarName = queryResultsList.getVarNames().get(1);
+        final String objectVarName = queryResultsList.getVarNames().get(2);
 
         // Create a map of the triples for each unique subject IRI
         final List<QueryResult> queryResults = queryResultsList.getQueryResults();
@@ -323,7 +267,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      */
     @Override
     public void dump(final PrintStream out) {
-        begin();
+        final Dataset dataset = connection.fetchDataset();
         final Model model = dataset.getDefaultModel();
         final StmtIterator statements = model.listStatements();
 
@@ -331,7 +275,6 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
             final Statement statement = statements.nextStatement();
             out.println(" - " + PrintUtil.print(statement));
         }
-        abort();
     }
 
     /**
@@ -341,9 +284,43 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * @param language RDF language syntax to output data as.
      */
     public final void dump(final PrintStream out, final Lang language) {
-        begin();
+        final Dataset dataset = connection.fetchDataset();
         RDFDataMgr.write(out, dataset.getDefaultModel(), language);
-        abort();
     }
 
+    /**
+     * Begin a writeable transaction initially in READ mode,
+     * but in Jena it will switch to WRITE mode if updates are made.
+    */
+    public final void begin() {
+        if (!connection.isInTransaction()) {
+            connection.begin();
+        }
+    }
+
+    /**
+     * Abort the current transaction.
+    */
+    public final void abort() {
+        if (connection.isInTransaction()) {
+            connection.abort();
+        }
+    }
+
+    /**
+     * Drop the entire database.
+    */
+    public final void drop() {
+        final String drop = "drop all";
+        executeUpdate(drop);
+    }
+
+    /**
+     * Commit the current transaction.
+    */
+    public final void commit() {
+        if (connection.isInTransaction()) {
+            connection.commit();
+        }
+    }
 }

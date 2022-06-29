@@ -16,15 +16,15 @@ package uk.gov.gchq.magmacore.demo;
 
 import org.apache.jena.fuseki.main.FusekiServer;
 import org.apache.jena.fuseki.system.FusekiLogging;
-import org.apache.jena.query.Dataset;
 
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
+import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
  * Example use-case scenario for hosting {@link MagmaCoreJenaDatabase} on a Fuseki server.
  *
  * <p>
- * The FusekiService class can be used to host in-memory or persistent Magma Core Jena Datasets over
+ * The FusekiServiceDemo class can be used to host in-memory or persistent Magma Core Jena Datasets over
  * HTTP using a Fuseki server.
  * </p>
  * <p>
@@ -37,34 +37,34 @@ import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
  * {@code localhost:<port>/<name>}.
  * </p>
  */
-public final class FusekiService {
+public final class FusekiServiceDemo {
 
     /**
      * Run the example Fuseki server.
+     *
+     * @param populate true if the dataset should be populated with example data
      */
-    public void run() {
+    public void run(final boolean populate) {
         // Create/connect to persistent TDB.
         final MagmaCoreJenaDatabase tdb = new MagmaCoreJenaDatabase("tdb");
 
         // If TDB is not already populated create set of example data objects to
         // store in TDB.
         tdb.begin();
-        if (tdb.getDataset().isEmpty()) {
-            // Build example data objects Dataset.
-            final Dataset objects = ExampleDataObjects.buildDataset();
+        final boolean dbIsEmpty = tdb.getDataset().isEmpty();
+        tdb.commit();
 
-            // Add example objects to default model in persistent dataset.
-            tdb.getDataset().getDefaultModel().add(objects.getDefaultModel());
-            tdb.commit();
-        } else {
-            tdb.abort();
+        if (dbIsEmpty && populate) {
+            // Build example data objects Dataset, transactions are controlled by the MagmaCoreService.
+            ExampleDataObjects.populateExampleData(MagmaCoreServiceFactory.createWithJenaDatabase(tdb));
         }
+        
         // Build and start Fuseki server.
-        final FusekiServer server = FusekiServer
-                .create()
-                .port(3330)
-                .add("/tdb", tdb.getDataset(), true).build();
         FusekiLogging.setLogging();
-        server.start();
+        FusekiServer
+            .create()
+            .port(3330)
+            .add("/tdb", tdb.getDataset(), true)
+            .start();
     }
 }

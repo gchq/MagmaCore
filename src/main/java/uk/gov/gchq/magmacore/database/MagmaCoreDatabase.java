@@ -17,9 +17,9 @@ package uk.gov.gchq.magmacore.database;
 import java.io.PrintStream;
 import java.util.List;
 
-import uk.gov.gchq.hqdm.iri.HqdmIri;
-import uk.gov.gchq.hqdm.iri.IRI;
 import uk.gov.gchq.hqdm.model.Thing;
+import uk.gov.gchq.hqdm.rdf.iri.HqdmIri;
+import uk.gov.gchq.hqdm.rdf.iri.IRI;
 
 /**
  * Interface defining CRUD operations and generic queries for Magma Core data collections.
@@ -97,4 +97,26 @@ public interface MagmaCoreDatabase {
      * @param out Output stream to dump to.
      */
     void dump(PrintStream out);
+
+    /**
+     * Begin a writeable transaction initially in READ mode,
+     * but in Jena it will switch to WRITE mode if updates are made.
+    */
+    void begin();
+
+    /**
+     * Abort the current transaction.
+    */
+    void abort();
+
+    /**
+     * Drop the entire database.
+    */
+    void drop();
+
+    /**
+     * Commit the current transaction.
+    */
+    void commit();
+
 }

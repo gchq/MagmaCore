@@ -12,21 +12,29 @@
  * the License.
  */
 
-package uk.gov.gchq.magmacore;
+package  uk.gov.gchq.magmacore.demo;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
+import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
+
 /**
- * Unit test for simple App.
+ * Exercise the {@link ExampleDataObjects} code during the build.
  */
-public class AppTest {
+public class ExampleDataTest {
+
     /**
-     * Rigorous Test.
-     */
+     * Test the {@link ExampleDataObjects} code.
+     *
+     * */
     @Test
-    public void shouldAnswerWithTrue() {
-        assertTrue(true);
+    public void testWithJenaDatabase() {
+        final var service = MagmaCoreServiceFactory.createWithJenaDatabase();
+        
+        final var transformation = ExampleDataObjects.populateExampleData(service);
+
+        assertNotNull(transformation);
     }
 }
