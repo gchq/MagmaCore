@@ -41,39 +41,32 @@ public class ExampleAssociations {
     /**
      * Create a person-occupies-house association.
      *
-     * @param mcService a {@link MagmaCoreDatabase}
-     * @param creates {@link List} of {@link DbCreateOperation}
+     * @param mcService     a {@link MagmaCoreDatabase}
+     * @param creates       {@link List} of {@link DbCreateOperation}
      * @param possibleWorld a {@link PossibleWorld}
-     * @param person the {@link Person} occupying the house.
-     * @param house the house as a {@link FunctionalSystem} that is occupied.
-     * @param beginning {@link Event}
-     * @param ending {@link Event}
+     * @param person        the {@link Person} occupying the house.
+     * @param house         the house as a {@link FunctionalSystem} that is occupied.
+     * @param beginning     {@link Event}
+     * @param ending        {@link Event}
      */
-    private static void occupyHouse(
-            final MagmaCoreService mcService,
-            final List<DbCreateOperation> creates,
-            final PossibleWorld possibleWorld,
-            final Person person,
-            final FunctionalSystem house,
-            final IRI beginning,
+    private static void occupyHouse(final MagmaCoreService mcService, final List<DbCreateOperation> creates,
+            final PossibleWorld possibleWorld, final Person person, final FunctionalSystem house, final IRI beginning,
             final IRI ending) {
 
-        final var entities = mcService.findByEntityNameInTransaction(List.of(
-                    "CLASS_OF_STATE_OF_PERSON",
-                    "STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY",
-                    "OCCUPIER_LOCATED_IN_PROPERTY_ROLE",
-                    "DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE",
-                    "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION"
-                    ));
+        final var entities = mcService.findByEntityNameInTransaction(
+                List.of("CLASS_OF_STATE_OF_PERSON", "STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY",
+                        "OCCUPIER_LOCATED_IN_PROPERTY_ROLE", "DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE",
+                        "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION"));
 
         // Find the required classes, kinds, and roles.
-        final ClassOfStateOfPerson classOfStateOfPerson = (ClassOfStateOfPerson) entities.get("CLASS_OF_STATE_OF_PERSON");
-        final ClassOfStateOfFunctionalSystem classOfStateOfFunctionalSystemDomesticProperty =
-            (ClassOfStateOfFunctionalSystem) entities.get("STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
+        final ClassOfStateOfPerson classOfStateOfPerson = (ClassOfStateOfPerson) entities
+                .get("CLASS_OF_STATE_OF_PERSON");
+        final ClassOfStateOfFunctionalSystem classOfStateOfFunctionalSystemDomesticProperty = (ClassOfStateOfFunctionalSystem) entities
+                .get("STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY");
         final Role occupierOfPropertyRole = (Role) entities.get("OCCUPIER_LOCATED_IN_PROPERTY_ROLE");
         final Role domesticOccupantInPropertyRole = (Role) entities.get("DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE");
-        final KindOfAssociation occupantInPropertyKindOfAssociation =
-            (KindOfAssociation) entities.get("OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
+        final KindOfAssociation occupantInPropertyKindOfAssociation = (KindOfAssociation) entities
+                .get("OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
 
         // Create DbCreateOperations to create the objects and their properties.
         final var personState = ExampleCommonUtils.mkUserBaseIri();
@@ -92,7 +85,8 @@ public class ExampleAssociations {
 
         creates.add(new DbCreateOperation(houseState, RDFS.RDF_TYPE, HQDM.STATE_OF_FUNCTIONAL_SYSTEM.getIri()));
         creates.add(new DbCreateOperation(houseState, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
-        creates.add(new DbCreateOperation(houseState, HQDM.MEMBER_OF, classOfStateOfFunctionalSystemDomesticProperty.getId()));
+        creates.add(new DbCreateOperation(houseState, HQDM.MEMBER_OF,
+                classOfStateOfFunctionalSystemDomesticProperty.getId()));
         creates.add(new DbCreateOperation(houseState, HQDM.TEMPORAL_PART_OF, house.getId()));
         creates.add(new DbCreateOperation(houseState, HQDM.BEGINNING, beginning.getIri()));
         creates.add(new DbCreateOperation(houseState, HQDM.ENDING, ending.getIri()));
@@ -106,19 +100,24 @@ public class ExampleAssociations {
 
         creates.add(new DbCreateOperation(houseParticipant, RDFS.RDF_TYPE, HQDM.PARTICIPANT.getIri()));
         creates.add(new DbCreateOperation(houseParticipant, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
-        creates.add(new DbCreateOperation(houseParticipant, HQDM.MEMBER_OF_KIND, domesticOccupantInPropertyRole.getId()));
+        creates.add(
+                new DbCreateOperation(houseParticipant, HQDM.MEMBER_OF_KIND, domesticOccupantInPropertyRole.getId()));
         creates.add(new DbCreateOperation(houseParticipant, HQDM.TEMPORAL_PART_OF, houseState.getIri()));
         creates.add(new DbCreateOperation(houseParticipant, HQDM.BEGINNING, beginning.getIri()));
         creates.add(new DbCreateOperation(houseParticipant, HQDM.ENDING, ending.getIri()));
 
         creates.add(new DbCreateOperation(houseOccupiedAssociation, RDFS.RDF_TYPE, HQDM.ASSOCIATION.getIri()));
-        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
-        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.MEMBER_OF_KIND, occupantInPropertyKindOfAssociation.getId()));
-        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT, houseParticipant.getIri()));
-        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT, personParticipant.getIri()));
+        creates.add(
+                new DbCreateOperation(houseOccupiedAssociation, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.MEMBER_OF_KIND,
+                occupantInPropertyKindOfAssociation.getId()));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT,
+                houseParticipant.getIri()));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT,
+                personParticipant.getIri()));
         creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.BEGINNING, beginning.getIri()));
         creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.ENDING, ending.getIri()));
-            }
+    }
 
     /**
      * Add occupancy predicates.
@@ -128,11 +127,8 @@ public class ExampleAssociations {
      */
     public static DbChangeSet addHouseOccupancies(final MagmaCoreService mcService) {
 
-        final var entities = mcService.findByEntityNameInTransaction(List.of(
-                    "Example1_World",
-                    "PersonB1_Bob",
-                    "HouseB"
-                    ));
+        final var entities = mcService
+                .findByEntityNameInTransaction(List.of("Example1_World", "PersonB1_Bob", "HouseB"));
 
         // Use an existing PossibleWorld
         final PossibleWorld possibleWorld = (PossibleWorld) entities.get("Example1_World");

@@ -38,10 +38,10 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
     /**
      * Constructor.
      *
-     * @param subject {@link IRI}
+     * @param subject   {@link IRI}
      * @param predicate {@link IRI}
-     * @param object {@link String}
-    */
+     * @param object    {@link String}
+     */
     public DbCreateOperation(final IRI subject, final IRI predicate, final String object) {
         this.subject = subject;
         this.predicate = predicate;
@@ -56,7 +56,7 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
         final var thing = mcService.get(subject);
 
         if (thing == null) {
-            final  var newThing = SpatioTemporalExtentServices.createThing(subject.getIri());
+            final var newThing = SpatioTemporalExtentServices.createThing(subject.getIri());
             newThing.addStringValue(predicate.getIri(), object);
             mcService.create(newThing);
         } else {
@@ -65,8 +65,7 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
                 mcService.update(thing);
             } else {
                 throw new DbTransformationException(
-                    String.format("Triple already exists: %s, %s, %s", subject, predicate, object)
-                );
+                        String.format("Triple already exists: %s, %s, %s", subject, predicate, object));
             }
         }
 
@@ -78,7 +77,7 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
      *
      * @param c {@link DbCreateOperation}
      * @return The inverted {@link DbDeleteOperation}.
-    */
+     */
     public static DbDeleteOperation invert(final DbCreateOperation c) {
         return new DbDeleteOperation(c.subject, c.predicate, c.object);
     }
@@ -87,7 +86,7 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
      * Calculate a hashcode.
      *
      * @return int
-     * */
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -102,8 +101,8 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
      * Check for equality.
      *
      * @param obj {@link Object}
-     * @return true if the objects are euqal, false otherwise.
-     * */
+     * @return true if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
@@ -139,6 +138,4 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
         }
         return true;
     }
-
 }
-

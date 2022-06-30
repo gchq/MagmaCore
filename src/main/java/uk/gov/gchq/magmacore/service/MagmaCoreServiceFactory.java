@@ -18,9 +18,8 @@ import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
 import uk.gov.gchq.magmacore.database.MagmaCoreRemoteSparqlDatabase;
 
 /**
- * Factory for creating MagmaCoreService instances. This 
- * removes the need to expose MagmaCoreDatabase interface to
- * clients of the library.
+ * Factory for creating MagmaCoreService instances. This removes the need to expose
+ * MagmaCoreDatabase interface to clients of the library.
  */
 public class MagmaCoreServiceFactory {
 
@@ -28,7 +27,7 @@ public class MagmaCoreServiceFactory {
      * Create a Jena database.
      *
      * @return {@link MagmaCoreService}
-    */
+     */
     public static MagmaCoreService createWithJenaDatabase() {
         return new MagmaCoreService(new MagmaCoreJenaDatabase());
     }
@@ -38,7 +37,7 @@ public class MagmaCoreServiceFactory {
      *
      * @param name a database name String
      * @return {@link MagmaCoreService}
-    */
+     */
     public static MagmaCoreService createWithJenaDatabase(final String name) {
         return new MagmaCoreService(new MagmaCoreJenaDatabase(name));
     }
@@ -48,7 +47,7 @@ public class MagmaCoreServiceFactory {
      *
      * @param db a {@link MagmaCoreJenaDatabase}
      * @return {@link MagmaCoreService}
-    */
+     */
     public static MagmaCoreService createWithJenaDatabase(final MagmaCoreJenaDatabase db) {
         return new MagmaCoreService(db);
     }
@@ -58,7 +57,7 @@ public class MagmaCoreServiceFactory {
      *
      * @param url the url {@link String}
      * @return {@link MagmaCoreService}
-    */
+     */
     public static MagmaCoreService attachRemoteSparqlEndpoint(final String url) {
         return new MagmaCoreService(new MagmaCoreRemoteSparqlDatabase(url));
     }

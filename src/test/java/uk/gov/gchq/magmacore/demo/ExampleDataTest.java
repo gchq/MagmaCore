@@ -12,7 +12,7 @@
  * the License.
  */
 
-package  uk.gov.gchq.magmacore.demo;
+package uk.gov.gchq.magmacore.demo;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -27,12 +27,10 @@ public class ExampleDataTest {
 
     /**
      * Test the {@link ExampleDataObjects} code.
-     *
-     * */
+     */
     @Test
     public void testWithJenaDatabase() {
         final var service = MagmaCoreServiceFactory.createWithJenaDatabase();
-        
         final var transformation = ExampleDataObjects.populateExampleData(service);
 
         assertNotNull(transformation);

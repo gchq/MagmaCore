@@ -12,7 +12,7 @@
  * the License.
  */
 
- package uk.gov.gchq.magmacore.database;
+package uk.gov.gchq.magmacore.database;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -60,19 +60,15 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      * @param serviceUrl the URL String of the SPARQL update endpoint
      */
     public MagmaCoreRemoteSparqlDatabase(final String serviceUrl) {
-      connection = RDFConnectionRemote.newBuilder()
-       .destination(serviceUrl)
-       .queryEndpoint("query")
-       .updateEndpoint("update")
-       .triplesFormat(RDFFormat.RDFJSON)
-       .build();
+        connection = RDFConnectionRemote.newBuilder().destination(serviceUrl).queryEndpoint("query")
+                .updateEndpoint("update").triplesFormat(RDFFormat.RDFJSON).build();
     }
 
     /**
      * Constructor to create a connection to a SPARQL endpoint and load it with a dataset.
      *
      * @param serviceUrl the URL String of the SPARQL update endpoint
-     * @param dataset the Dataset to be loaded into the database
+     * @param dataset    the Dataset to be loaded into the database
      */
     public MagmaCoreRemoteSparqlDatabase(final String serviceUrl, final Dataset dataset) {
         this(serviceUrl);
@@ -80,14 +76,13 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
         connection.load(dataset.getDefaultModel());
     }
 
-     /**
+    /**
      * {@inheritDoc}
      */
     @Override
     public Thing get(final IRI iri) {
 
-        final String query =
-                String.format("SELECT (<%1$s> as ?s) ?p ?o WHERE {<%1$s> ?p ?o.}", iri.toString());
+        final String query = String.format("SELECT (<%1$s> as ?s) ?p ?o WHERE {<%1$s> ?p ?o.}", iri.toString());
         final QueryResultList list = executeQuery(query);
         final List<Thing> objects = toTopObjects(list);
 
@@ -107,15 +102,11 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
 
         final Model model = ModelFactory.createDefaultModel();
 
-        final Resource resource =
-                model.createResource(object.getId());
+        final Resource resource = model.createResource(object.getId());
 
-        object.getPredicates()
-                .forEach((iri,
-                        predicates) -> predicates.forEach(predicate -> resource.addProperty(
-                                model.createProperty(iri.toString()),
-                                predicate.toString())));
-        
+        object.getPredicates().forEach((iri, predicates) -> predicates.forEach(
+                predicate -> resource.addProperty(model.createProperty(iri.toString()), predicate.toString())));
+
         connection.load(model);
     }
 
@@ -141,9 +132,8 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      */
     @Override
     public List<Thing> findByPredicateIri(final IRI predicateIri, final IRI objectIri) {
-        final String query =
-                "SELECT ?s ?p ?o WHERE {?s ?p ?o. ?s <" + predicateIri.toString() + "> <"
-                        + objectIri.toString() + ">.}";
+        final String query = "SELECT ?s ?p ?o WHERE {?s ?p ?o. ?s <" + predicateIri.toString() + "> <"
+                + objectIri.toString() + ">.}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -153,9 +143,8 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      */
     @Override
     public List<Thing> findByPredicateIriOnly(final HqdmIri predicateIri) {
-        final String query =
-                "SELECT ?s ?p ?o WHERE {{select ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
-                        + predicateIri.toString() + "> ?o.}}}";
+        final String query = "SELECT ?s ?p ?o WHERE {{select ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
+                + predicateIri.toString() + "> ?o.}}}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -164,10 +153,9 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
-    public List<Thing> findByPredicateIriAndStringValue(final IRI predicateIri,
-            final String value) {
-        final String query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString()
-                + "> \"\"\"" + value + "\"\"\".}";
+    public List<Thing> findByPredicateIriAndStringValue(final IRI predicateIri, final String value) {
+        final String query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString() + "> \"\"\"" + value
+                + "\"\"\".}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -176,13 +164,10 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
-    public List<Thing> findByPredicateIriAndStringCaseInsensitive(final IRI predicateIri,
-            final String value) {
-        final String query =
-                "SELECT ?s ?p ?o WHERE {{ SELECT ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
-                        + predicateIri.toString()
-                        + "> ?o. BIND(LCASE(?o) AS ?lcase) FILTER(?lcase= \"\"\"" + value
-                        + "\"\"\")}}}";
+    public List<Thing> findByPredicateIriAndStringCaseInsensitive(final IRI predicateIri, final String value) {
+        final String query = "SELECT ?s ?p ?o WHERE {{ SELECT ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
+                + predicateIri.toString() + "> ?o. BIND(LCASE(?o) AS ?lcase) FILTER(?lcase= \"\"\"" + value
+                + "\"\"\")}}}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -218,8 +203,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     private final QueryResultList getQueryResultList(final QueryExecution queryExec) {
         final ResultSet resultSet = queryExec.execSelect();
         final List<QueryResult> queryResults = new ArrayList<>();
-        final QueryResultList queryResultList =
-                new QueryResultList(resultSet.getResultVars(), queryResults);
+        final QueryResultList queryResultList = new QueryResultList(resultSet.getResultVars(), queryResults);
         while (resultSet.hasNext()) {
             final QuerySolution querySolution = resultSet.next();
             final Iterator<String> varNames = querySolution.varNames();
@@ -257,8 +241,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
             dataModelObject.add(new Pair<>(predicateValue, objectValue));
         });
 
-        return objectMap.entrySet().stream()
-                .map(entry -> HqdmObjectFactory.create(entry.getKey(), entry.getValue()))
+        return objectMap.entrySet().stream().map(entry -> HqdmObjectFactory.create(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
     }
 
@@ -280,7 +263,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     /**
      * Dump the contents of the collection as text in specified RDF language.
      *
-     * @param out Output stream to dump to.
+     * @param out      Output stream to dump to.
      * @param language RDF language syntax to output data as.
      */
     public final void dump(final PrintStream out, final Lang language) {
@@ -289,9 +272,9 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     }
 
     /**
-     * Begin a writeable transaction initially in READ mode,
-     * but in Jena it will switch to WRITE mode if updates are made.
-    */
+     * Begin a writeable transaction initially in READ mode, but in Jena it will switch to WRITE mode if
+     * updates are made.
+     */
     public final void begin() {
         if (!connection.isInTransaction()) {
             connection.begin();
@@ -300,7 +283,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
 
     /**
      * Abort the current transaction.
-    */
+     */
     public final void abort() {
         if (connection.isInTransaction()) {
             connection.abort();
@@ -309,7 +292,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
 
     /**
      * Drop the entire database.
-    */
+     */
     public final void drop() {
         final String drop = "drop all";
         executeUpdate(drop);
@@ -317,7 +300,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
 
     /**
      * Commit the current transaction.
-    */
+     */
     public final void commit() {
         if (connection.isInTransaction()) {
             connection.commit();

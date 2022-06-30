@@ -39,8 +39,7 @@ public class ExampleSignsRdl {
         final var englishSpeakers = ExampleCommonUtils.mkUserBaseIri();
 
         // Add DbCreateOperations to create the objects and their properties.
-        final var creates = List.of(
-                new DbCreateOperation(urlPattern, RDFS.RDF_TYPE, HQDM.PATTERN.getIri()),
+        final var creates = List.of(new DbCreateOperation(urlPattern, RDFS.RDF_TYPE, HQDM.PATTERN.getIri()),
                 new DbCreateOperation(urlPattern, HQDM.ENTITY_NAME, "URL Pattern"),
 
                 new DbCreateOperation(description, RDFS.RDF_TYPE, HQDM.DESCRIPTION.getIri()),

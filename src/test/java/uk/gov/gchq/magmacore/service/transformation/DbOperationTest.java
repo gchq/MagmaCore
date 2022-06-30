@@ -12,7 +12,7 @@
  * the License.
  */
 
-package  uk.gov.gchq.magmacore.service.transformation;
+package uk.gov.gchq.magmacore.service.transformation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -37,9 +37,9 @@ public class DbOperationTest {
     private static final String TEST_IRI = "http://example.com/test#test";
 
     /**
-     * Test that DbCreateOperations can be applied to a database and can also be
-     * inverted and used to undo the {@link DbCreateOperation}.
-     * */
+     * Test that DbCreateOperations can be applied to a database and can also be inverted and used to
+     * undo the {@link DbCreateOperation}.
+     */
     @Test
     public void testCreateAndDelete() {
 
@@ -69,18 +69,18 @@ public class DbOperationTest {
     }
 
     /**
-     * Test that multiple DbCreateOperations can be applied to a database and can also be
-     * inverted and used to undo the {@link DbCreateOperation}.
-     * */
+     * Test that multiple DbCreateOperations can be applied to a database and can also be inverted and
+     * used to undo the {@link DbCreateOperation}.
+     */
     @Test
     public void testMultipleCreateAndDelete() {
 
         final var iri = new IRI(TEST_IRI);
 
         // Create operations to add an object with dummy values.
-    final var op1 = new DbCreateOperation(iri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri());
-    final var op2 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
-    final var op3 = new DbCreateOperation(iri, HQDM.PART_OF_POSSIBLE_WORLD, "a world");
+        final var op1 = new DbCreateOperation(iri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri());
+        final var op2 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
+        final var op3 = new DbCreateOperation(iri, HQDM.PART_OF_POSSIBLE_WORLD, "a world");
 
         // Create a database to be updated.
         final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
@@ -109,8 +109,7 @@ public class DbOperationTest {
 
     /**
      * Test that we get an exception when trying to create something that already exists.
-     *
-     * */
+     */
     @Test(expected = DbTransformationException.class)
     public void testCreateWhenAlreadyPresent() {
 
@@ -129,8 +128,7 @@ public class DbOperationTest {
 
     /**
      * Test that we get an exception when trying to delete something that does not exist.
-     *
-     * */
+     */
     @Test(expected = DbTransformationException.class)
     public void testDeleteWhenNotPresent() {
 
@@ -148,8 +146,7 @@ public class DbOperationTest {
 
     /**
      * Test the equals method for {@link DbCreateOperation}.
-     *
-     * */
+     */
     @Test
     public void testDbCreateEquals() {
 
@@ -164,8 +161,7 @@ public class DbOperationTest {
 
     /**
      * Test the equals method for {@link DbDeleteOperation}.
-     *
-     * */
+     */
     @Test
     public void testDbDeleteEquals() {
 

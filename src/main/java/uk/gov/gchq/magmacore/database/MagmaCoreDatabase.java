@@ -59,7 +59,7 @@ public interface MagmaCoreDatabase {
      * Find object(s) that have a specific object associated with them.
      *
      * @param predicateIri IRI of the predicate being queried.
-     * @param objectIri IRI of the object to match.
+     * @param objectIri    IRI of the object to match.
      * @return The object(s).
      */
     List<Thing> findByPredicateIri(IRI predicateIri, IRI objectIri);
@@ -73,11 +73,10 @@ public interface MagmaCoreDatabase {
     List<Thing> findByPredicateIriOnly(HqdmIri predicateIri);
 
     /**
-     * Find object(s) that have a specific case-sensitive string-value attribute associated with
-     * them.
+     * Find object(s) that have a specific case-sensitive string-value attribute associated with them.
      *
      * @param predicateIri IRI of the predicate being queried.
-     * @param value Case-sensitive string to match.
+     * @param value        Case-sensitive string to match.
      * @return The object(s).
      */
     List<Thing> findByPredicateIriAndStringValue(IRI predicateIri, String value);
@@ -86,7 +85,7 @@ public interface MagmaCoreDatabase {
      * Find object(s) that have a specific string-value attribute associated with them.
      *
      * @param predicateIri IRI of the predicate being queried.
-     * @param value Case-insensitive string to match.
+     * @param value        Case-insensitive string to match.
      * @return The object(s).
      */
     List<Thing> findByPredicateIriAndStringCaseInsensitive(IRI predicateIri, String value);
@@ -99,24 +98,24 @@ public interface MagmaCoreDatabase {
     void dump(PrintStream out);
 
     /**
-     * Begin a writeable transaction initially in READ mode,
-     * but in Jena it will switch to WRITE mode if updates are made.
-    */
+     * Begin a writeable transaction initially in READ mode, but in Jena it will switch to WRITE mode if
+     * updates are made.
+     */
     void begin();
 
     /**
      * Abort the current transaction.
-    */
+     */
     void abort();
 
     /**
      * Drop the entire database.
-    */
+     */
     void drop();
 
     /**
      * Commit the current transaction.
-    */
+     */
     void commit();
 
 }

@@ -29,8 +29,8 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  * {@link ExampleDataObjects} as RDF triples.
  * </p>
  * <p>
- * {@code PersonB1_Bob} can be queried for using the `findByEntityName` method.
- * method. The resulting object(s) of this query are output to the command-line as RDF triples.
+ * {@code PersonB1_Bob} can be queried for using the `findByEntityName` method. method. The
+ * resulting object(s) of this query are output to the command-line as RDF triples.
  * </p>
  *
  */

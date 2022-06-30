@@ -30,17 +30,15 @@ public class DbTransformation implements Function<MagmaCoreService, MagmaCoreSer
 
     /**
      * Constructor.
-     *
      * @param transformations a {@link List} of {@link DbChangeSet}
-    */
+     */
     public DbTransformation(final List<DbChangeSet> transformations) {
         this.transformations = transformations;
     }
 
     /**
      * Constructor.
-     *
-    */
+     */
     public DbTransformation() {
         this(new LinkedList<>());
     }
@@ -50,11 +48,8 @@ public class DbTransformation implements Function<MagmaCoreService, MagmaCoreSer
      */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
-        final var transformation = transformations
-            .stream()
-            .map(x -> (Function<MagmaCoreService, MagmaCoreService>) x)
-            .reduce(Function::andThen)
-            .orElse(Function.identity());
+        final var transformation = transformations.stream().map(x -> (Function<MagmaCoreService, MagmaCoreService>) x)
+                .reduce(Function::andThen).orElse(Function.identity());
 
         return transformation.apply(mcService);
     }
@@ -65,10 +60,7 @@ public class DbTransformation implements Function<MagmaCoreService, MagmaCoreSer
      * @return The inverted {@link DbTransformation}.
      */
     public DbTransformation invert() {
-        final var list = transformations
-            .stream()
-            .map(DbChangeSet::invert)
-            .collect(Collectors.toList());
+        final var list = transformations.stream().map(DbChangeSet::invert).collect(Collectors.toList());
 
         Collections.reverse(list);
 
@@ -79,7 +71,7 @@ public class DbTransformation implements Function<MagmaCoreService, MagmaCoreSer
      * Add a DbChangeSet to this transformation.
      *
      * @param changeSet {@link DbChangeSet}
-    */
+     */
     public void add(final DbChangeSet changeSet) {
         this.transformations.add(changeSet);
     }

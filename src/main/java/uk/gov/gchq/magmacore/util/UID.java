@@ -21,7 +21,8 @@ import java.util.UUID;
  */
 public final class UID {
 
-    private UID() {}
+    private UID() {
+    }
 
     /**
      * Create a new random UUID to assign to an object.
@@ -31,5 +32,4 @@ public final class UID {
     public static String uid() {
         return UUID.randomUUID().toString();
     }
-
 }

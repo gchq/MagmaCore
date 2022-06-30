@@ -40,9 +40,8 @@ public class McAssistMultInheritFromDataApp {
 
         // Create a new type specification.
         final List<Pair<String, String>> newTypeSpecification = List.of(
-            new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.STATE_OF_ORGANIZATION.getIri()),
-            new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.PARTICIPANT.getIri())
-        );
+                new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.STATE_OF_ORGANIZATION.getIri()),
+                new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.PARTICIPANT.getIri()));
 
         // Create a new object using the type specification.
         final var orgState = HqdmObjectFactory.create(uid(), newTypeSpecification);

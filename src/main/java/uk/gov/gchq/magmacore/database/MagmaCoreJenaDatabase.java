@@ -105,8 +105,8 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     }
 
     /**
-     * Start a transaction which is READ mode and which will switch to WRITE if an update is
-     * attempted but only if no intermediate transaction has performed an update.
+     * Start a transaction which is READ mode and which will switch to WRITE if an update is attempted
+     * but only if no intermediate transaction has performed an update.
      */
     public void begin() {
         if (!dataset.isInTransaction()) {
@@ -148,8 +148,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      */
     @Override
     public Thing get(final IRI iri) {
-        final String query =
-                String.format("SELECT (<%1$s> as ?s) ?p ?o WHERE {<%1$s> ?p ?o.}", iri.toString());
+        final String query = String.format("SELECT (<%1$s> as ?s) ?p ?o WHERE {<%1$s> ?p ?o.}", iri.toString());
         final QueryResultList list = executeQuery(query);
         final List<Thing> objects = toTopObjects(list);
         if (!objects.isEmpty()) {
@@ -164,14 +163,10 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      */
     @Override
     public void create(final Thing object) {
-        final Resource resource =
-                dataset.getDefaultModel().createResource(object.getId());
+        final Resource resource = dataset.getDefaultModel().createResource(object.getId());
 
-        object.getPredicates()
-                .forEach((iri,
-                        predicates) -> predicates.forEach(predicate -> resource.addProperty(
-                                dataset.getDefaultModel().createProperty(iri.toString()),
-                                predicate.toString())));
+        object.getPredicates().forEach((iri, predicates) -> predicates.forEach(predicate -> resource
+                .addProperty(dataset.getDefaultModel().createProperty(iri.toString()), predicate.toString())));
     }
 
     /**
@@ -196,9 +191,8 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      */
     @Override
     public List<Thing> findByPredicateIri(final IRI predicateIri, final IRI objectIri) {
-        final String query =
-                "SELECT ?s ?p ?o WHERE {?s ?p ?o. ?s <" + predicateIri.toString() + "> <"
-                        + objectIri.toString() + ">.}";
+        final String query = "SELECT ?s ?p ?o WHERE {?s ?p ?o. ?s <" + predicateIri.toString() + "> <"
+                + objectIri.toString() + ">.}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -208,9 +202,8 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      */
     @Override
     public List<Thing> findByPredicateIriOnly(final HqdmIri predicateIri) {
-        final String query =
-                "SELECT ?s ?p ?o WHERE {{select ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
-                        + predicateIri.toString() + "> ?o.}}}";
+        final String query = "SELECT ?s ?p ?o WHERE {{select ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
+                + predicateIri.toString() + "> ?o.}}}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -219,10 +212,9 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
-    public List<Thing> findByPredicateIriAndStringValue(final IRI predicateIri,
-            final String value) {
-        final String query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString()
-                + "> \"\"\"" + value + "\"\"\".}";
+    public List<Thing> findByPredicateIriAndStringValue(final IRI predicateIri, final String value) {
+        final String query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString() + "> \"\"\"" + value
+                + "\"\"\".}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -231,13 +223,10 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
-    public List<Thing> findByPredicateIriAndStringCaseInsensitive(final IRI predicateIri,
-            final String value) {
-        final String query =
-                "SELECT ?s ?p ?o WHERE {{ SELECT ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
-                        + predicateIri.toString()
-                        + "> ?o. BIND(LCASE(?o) AS ?lcase) FILTER(?lcase= \"\"\"" + value
-                        + "\"\"\")}}}";
+    public List<Thing> findByPredicateIriAndStringCaseInsensitive(final IRI predicateIri, final String value) {
+        final String query = "SELECT ?s ?p ?o WHERE {{ SELECT ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
+                + predicateIri.toString() + "> ?o. BIND(LCASE(?o) AS ?lcase) FILTER(?lcase= \"\"\"" + value
+                + "\"\"\")}}}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -274,8 +263,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     private final QueryResultList getQueryResultList(final QueryExecution queryExec) {
         final ResultSet resultSet = queryExec.execSelect();
         final List<QueryResult> queryResults = new ArrayList<>();
-        final QueryResultList queryResultList =
-                new QueryResultList(resultSet.getResultVars(), queryResults);
+        final QueryResultList queryResultList = new QueryResultList(resultSet.getResultVars(), queryResults);
         while (resultSet.hasNext()) {
             final QuerySolution querySolution = resultSet.next();
             final Iterator<String> varNames = querySolution.varNames();
@@ -313,8 +301,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
             dataModelObject.add(new Pair<>(predicateValue, objectValue));
         });
 
-        return objectMap.entrySet().stream()
-                .map(entry -> HqdmObjectFactory.create(entry.getKey(), entry.getValue()))
+        return objectMap.entrySet().stream().map(entry -> HqdmObjectFactory.create(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
     }
 
@@ -337,7 +324,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     /**
      * Dump the contents of the collection as text in specified RDF language.
      *
-     * @param out Output stream to dump to.
+     * @param out      Output stream to dump to.
      * @param language RDF language syntax to output data as.
      */
     public final void dump(final PrintStream out, final Lang language) {

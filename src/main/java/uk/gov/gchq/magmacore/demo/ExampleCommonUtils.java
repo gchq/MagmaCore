@@ -25,8 +25,7 @@ import uk.gov.gchq.hqdm.rdf.iri.IriBase;
 public class ExampleCommonUtils {
 
     /** IriBase for User data. */
-    public static final IriBase USER_BASE =
-        new IriBase("user", "http://www.semanticweb.org/magma-core/user#");
+    public static final IriBase USER_BASE = new IriBase("user", "http://www.semanticweb.org/magma-core/user#");
 
     /**
      * Create a new IRI in the USER_BASE namespace.
@@ -38,8 +37,7 @@ public class ExampleCommonUtils {
     }
 
     /** IriBase for Reference Data Library. */
-    public static final IriBase REF_BASE =
-        new IriBase("rdl", "http://www.semanticweb.org/magma-core/rdl#");
+    public static final IriBase REF_BASE = new IriBase("rdl", "http://www.semanticweb.org/magma-core/rdl#");
 
     /**
      * Create a new IRI in the REF_BASE namespace.
@@ -49,5 +47,4 @@ public class ExampleCommonUtils {
     public static IRI mkRefBaseIri() {
         return new IRI(REF_BASE, uid());
     }
-
 }

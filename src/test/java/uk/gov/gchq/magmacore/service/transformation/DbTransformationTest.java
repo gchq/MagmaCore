@@ -12,7 +12,7 @@
  * the License.
  */
 
-package  uk.gov.gchq.magmacore.service.transformation;
+package uk.gov.gchq.magmacore.service.transformation;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -37,8 +37,7 @@ public class DbTransformationTest {
 
     /**
      * Test that multiple DbChangeSets can be applied as a DbTransformation, inverted, and undone.
-     *
-     * */
+     */
     @Test
     public void testApplyAndInvert() {
 
@@ -46,22 +45,17 @@ public class DbTransformationTest {
         final var personIri = new IRI(TEST_IRI + "2");
 
         // Create operations to add an object with dummy values.
-        final var changes1 = new DbChangeSet(List.of(), List.of(
-            new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri()),
-            new DbCreateOperation(individualIri, HQDM.MEMBER_OF, "class1"),
-            new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, "a world")
-        ));
+        final var changes1 = new DbChangeSet(List.of(),
+                List.of(new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri()),
+                        new DbCreateOperation(individualIri, HQDM.MEMBER_OF, "class1"),
+                        new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, "a world")));
 
-        final var changes2 = new DbChangeSet(List.of(), List.of(
-            new DbCreateOperation(personIri, RDFS.RDF_TYPE, HQDM.PERSON.getIri()),
-            new DbCreateOperation(personIri, HQDM.MEMBER_OF, "class2"),
-            new DbCreateOperation(personIri, HQDM.PART_OF_POSSIBLE_WORLD, "another world")
-        ));
+        final var changes2 = new DbChangeSet(List.of(),
+                List.of(new DbCreateOperation(personIri, RDFS.RDF_TYPE, HQDM.PERSON.getIri()),
+                        new DbCreateOperation(personIri, HQDM.MEMBER_OF, "class2"),
+                        new DbCreateOperation(personIri, HQDM.PART_OF_POSSIBLE_WORLD, "another world")));
 
-        final var transformation = new DbTransformation(List.of(
-            changes1,
-            changes2
-        ));
+        final var transformation = new DbTransformation(List.of(changes1, changes2));
 
         // Create a database to be updated.
         final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();

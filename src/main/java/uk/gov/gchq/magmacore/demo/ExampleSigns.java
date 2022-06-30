@@ -66,11 +66,8 @@ public class ExampleSigns {
      * @return {@link DbChangeSet}
      */
     private static DbChangeSet addSigns(final MagmaCoreService mcService) {
-        final var entities = mcService.findByEntityNameInTransaction(List.of(
-                    "URL Pattern",
-                    "Description By URL",
-                    "English Speakers"
-                    ));
+        final var entities = mcService
+                .findByEntityNameInTransaction(List.of("URL Pattern", "Description By URL", "English Speakers"));
 
         // Find the required classes, kinds, and roles.
         final var urlPattern = (Pattern) entities.get("URL Pattern");
@@ -124,7 +121,8 @@ public class ExampleSigns {
 
                 new DbCreateOperation(nationalGeographic, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN.getIri()),
                 new DbCreateOperation(nationalGeographic, HQDM.MEMBER_OF_, urlPattern.getId()),
-                new DbCreateOperation(nationalGeographic, HQDM.VALUE_, "https://www.nationalgeographic.com/culture/article/socrates"),
+                new DbCreateOperation(nationalGeographic, HQDM.VALUE_,
+                        "https://www.nationalgeographic.com/culture/article/socrates"),
                 new DbCreateOperation(nationalGeographic, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
 
                 // Create the representation by signs
@@ -151,8 +149,7 @@ public class ExampleSigns {
                 new DbCreateOperation(brittanica, HQDM.PARTICIPANT_IN, repBySign.getIri()),
                 new DbCreateOperation(biography, HQDM.PARTICIPANT_IN, repBySign.getIri()),
                 new DbCreateOperation(stanford, HQDM.PARTICIPANT_IN, repBySign.getIri()),
-                new DbCreateOperation(nationalGeographic, HQDM.PARTICIPANT_IN, repBySign.getIri())
-                    );
+                new DbCreateOperation(nationalGeographic, HQDM.PARTICIPANT_IN, repBySign.getIri()));
 
         // Create a change set and return it.
         return new DbChangeSet(List.of(), creates);

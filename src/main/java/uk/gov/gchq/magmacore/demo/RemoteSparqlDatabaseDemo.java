@@ -18,14 +18,15 @@ import uk.gov.gchq.magmacore.database.MagmaCoreRemoteSparqlDatabase;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
- * Example use-case scenario for using a {@link MagmaCoreRemoteSparqlDatabase} with a remote service.
+ * Example use-case scenario for using a {@link MagmaCoreRemoteSparqlDatabase} with a remote
+ * service.
  */
 public final class RemoteSparqlDatabaseDemo {
 
     private final String url;
 
     public RemoteSparqlDatabaseDemo(final String url) {
-      this.url = url;
+        this.url = url;
     }
 
     /**
@@ -38,7 +39,6 @@ public final class RemoteSparqlDatabaseDemo {
 
         if (populate) {
             ExampleDataObjects.populateExampleData(mcService);
-        } 
+        }
     }
-
 }

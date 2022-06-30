@@ -31,10 +31,10 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
     /**
      * Constructor.
      *
-     * @param subject {@link IRI}
+     * @param subject   {@link IRI}
      * @param predicate {@link IRI}
-     * @param object {@link String}
-    */
+     * @param object    {@link String}
+     */
     public DbDeleteOperation(final IRI subject, final IRI predicate, final String object) {
         this.subject = subject;
         this.predicate = predicate;
@@ -54,8 +54,7 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
         }
 
         throw new DbTransformationException(
-                String.format("Triple not found for delete: %s, %s, %s", subject, predicate, object)
-                );
+                String.format("Triple not found for delete: %s, %s, %s", subject, predicate, object));
     }
 
     /**
@@ -63,7 +62,7 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
      *
      * @param d the {@link DbDeleteOperation}
      * @return The inverted {@link DbCreateOperation}.
-    */
+     */
     public static DbCreateOperation invert(final DbDeleteOperation d) {
         return new DbCreateOperation(d.subject, d.predicate, d.object);
     }
@@ -72,7 +71,7 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
      * Calculate a hashcode.
      *
      * @return int
-     * */
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -88,7 +87,7 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
      *
      * @param obj {@link Object}
      * @return true if the objects are euqal, false otherwise.
-     * */
+     */
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
@@ -124,5 +123,4 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
         }
         return true;
     }
-
 }

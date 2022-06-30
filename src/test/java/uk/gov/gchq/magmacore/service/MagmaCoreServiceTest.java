@@ -12,7 +12,7 @@
  * the License.
  */
 
-package  uk.gov.gchq.magmacore.service;
+package uk.gov.gchq.magmacore.service;
 
 import static org.junit.Assert.assertNull;
 
@@ -33,8 +33,7 @@ public class MagmaCoreServiceTest {
 
     /**
      * Test that triples can be deleted.
-     *
-     * */
+     */
     @Test
     public void test() {
         final var iri = new IRI(TEST_IRI);

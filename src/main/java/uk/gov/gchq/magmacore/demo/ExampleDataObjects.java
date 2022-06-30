@@ -32,9 +32,9 @@ public class ExampleDataObjects {
      */
     public static DbTransformation populateExampleData(final MagmaCoreService mcService) {
 
-        // Apply the transformation to the database. There are dependencies between these change sets 
-        // since they both depend on RDL being present, but also the occupancies depend on the 
-        // individuals being present, so each change set needs to be applied before the next one 
+        // Apply the transformation to the database. There are dependencies between these change sets
+        // since they both depend on RDL being present, but also the occupancies depend on the
+        // individuals being present, so each change set needs to be applied before the next one
         // can be created.
         final var rdlChangeSet = ExampleRdl.createRefDataObjects();
 
@@ -56,5 +56,4 @@ public class ExampleDataObjects {
         // Combine the DbChangeSets into a DbTransformation and return it as a record of the changes.
         return new DbTransformation(List.of(rdlChangeSet, individualsChangeSet, occupanciesChangeSet));
     }
-
 }

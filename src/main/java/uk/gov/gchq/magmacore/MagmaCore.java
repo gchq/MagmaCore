@@ -23,7 +23,8 @@ import uk.gov.gchq.magmacore.demo.RemoteSparqlDatabaseDemo;
  */
 public final class MagmaCore {
 
-    private MagmaCore() {}
+    private MagmaCore() {
+    }
 
     /**
      * Executes the selected database example.
@@ -34,21 +35,21 @@ public final class MagmaCore {
         if (args.length == 0) {
             fuseki(true);
         } else {
-          final String option = args[0];
+            final String option = args[0];
 
-          if (option.equals("fuseki")) {
-              fuseki(false);
-          } else if (option.equals("fuseki-populate")) {
-              fuseki(true);
-          } else if (option.equals("remote")) {
-              remoteSparqlDatabaseDemo(false);
-          } else if (option.equals("remote-populate")) {
-            remoteSparqlDatabaseDemo(true);
-          } else if (option.equals("jena")) {
-            jenaDemo();
-          } else {
-            System.out.println("Unknown option: " + option);
-          }
+            if (option.equals("fuseki")) {
+                fuseki(false);
+            } else if (option.equals("fuseki-populate")) {
+                fuseki(true);
+            } else if (option.equals("remote")) {
+                remoteSparqlDatabaseDemo(false);
+            } else if (option.equals("remote-populate")) {
+                remoteSparqlDatabaseDemo(true);
+            } else if (option.equals("jena")) {
+                jenaDemo();
+            } else {
+                System.out.println("Unknown option: " + option);
+            }
         }
     }
 
@@ -74,6 +75,6 @@ public final class MagmaCore {
      * Executes the JenaDatabaseDemo.
      */
     public static void jenaDemo() {
-      new JenaDatabaseDemo().run();
+        new JenaDatabaseDemo().run();
     }
 }
