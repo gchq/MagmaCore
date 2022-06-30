@@ -30,17 +30,18 @@ public class DbTransformation implements Function<MagmaCoreService, MagmaCoreSer
 
     /**
      * Constructor.
-     * @param transformations a {@link List} of {@link DbChangeSet}
      */
-    public DbTransformation(final List<DbChangeSet> transformations) {
-        this.transformations = transformations;
+    public DbTransformation() {
+        this(new LinkedList<>());
     }
 
     /**
      * Constructor.
+     *
+     * @param transformations a {@link List} of {@link DbChangeSet}
      */
-    public DbTransformation() {
-        this(new LinkedList<>());
+    public DbTransformation(final List<DbChangeSet> transformations) {
+        this.transformations = transformations;
     }
 
     /**

@@ -105,9 +105,9 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     }
 
     /**
-     * Start a transaction which is READ mode and which will switch to WRITE if an update is attempted
-     * but only if no intermediate transaction has performed an update.
+     * {@inheritDoc}
      */
+    @Override
     public void begin() {
         if (!dataset.isInTransaction()) {
             dataset.begin();
@@ -115,34 +115,36 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     }
 
     /**
-     * Commit a transaction - finish the transaction and make any changes permanent (if a "write"
-     * transaction).
+     * {@inheritDoc}
      */
+    @Override
     public void commit() {
         if (dataset.isInTransaction()) {
             dataset.commit();
             dataset.end();
         }
     }
-
+ 
     /**
-     * Abort a transaction - finish the transaction and undo any changes (if a "write" transaction).
+     * {@inheritDoc}
      */
+    @Override
     public void abort() {
         if (dataset.isInTransaction()) {
             dataset.abort();
             dataset.end();
         }
     }
-
+ 
     /**
-     * Drop all data from the dataset.
+     * {@inheritDoc}
      */
+    @Override
     public void drop() {
         final String drop = "drop all";
         executeUpdate(drop);
     }
-
+ 
     /**
      * {@inheritDoc}
      */

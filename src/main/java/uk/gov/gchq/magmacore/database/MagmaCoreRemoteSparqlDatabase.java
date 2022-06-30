@@ -79,6 +79,41 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     /**
      * {@inheritDoc}
      */
+    public final void begin() {
+        if (!connection.isInTransaction()) {
+            connection.begin();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public final void abort() {
+        if (connection.isInTransaction()) {
+            connection.abort();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public final void drop() {
+        final String drop = "drop all";
+        executeUpdate(drop);
+    }
+
+    /**
+     * Commit the current transaction.
+     */
+    public final void commit() {
+        if (connection.isInTransaction()) {
+            connection.commit();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Thing get(final IRI iri) {
 
@@ -269,41 +304,5 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     public final void dump(final PrintStream out, final Lang language) {
         final Dataset dataset = connection.fetchDataset();
         RDFDataMgr.write(out, dataset.getDefaultModel(), language);
-    }
-
-    /**
-     * Begin a writeable transaction initially in READ mode, but in Jena it will switch to WRITE mode if
-     * updates are made.
-     */
-    public final void begin() {
-        if (!connection.isInTransaction()) {
-            connection.begin();
-        }
-    }
-
-    /**
-     * Abort the current transaction.
-     */
-    public final void abort() {
-        if (connection.isInTransaction()) {
-            connection.abort();
-        }
-    }
-
-    /**
-     * Drop the entire database.
-     */
-    public final void drop() {
-        final String drop = "drop all";
-        executeUpdate(drop);
-    }
-
-    /**
-     * Commit the current transaction.
-     */
-    public final void commit() {
-        if (connection.isInTransaction()) {
-            connection.commit();
-        }
     }
 }

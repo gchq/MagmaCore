@@ -27,6 +27,28 @@ import uk.gov.gchq.hqdm.rdf.iri.IRI;
 public interface MagmaCoreDatabase {
 
     /**
+     * Start a transaction in READ mode and which will switch to WRITE if an update is attempted but
+     * only if no intermediate transaction has performed an update.
+     */
+    void begin();
+
+    /**
+     * Commit a transaction - finish the current transaction and make any changes permanent (if a
+     * "write" transaction).
+     */
+    void commit();
+
+    /**
+     * Abort a transaction - finish the transaction and undo any changes (if a "write" transaction).
+     */
+    void abort();
+
+    /**
+     * Drop all data from the dataset.
+     */
+    void drop();
+
+    /**
      * Get an object from the collection.
      *
      * @param iri IRI of the object to get.
@@ -96,26 +118,4 @@ public interface MagmaCoreDatabase {
      * @param out Output stream to dump to.
      */
     void dump(PrintStream out);
-
-    /**
-     * Begin a writeable transaction initially in READ mode, but in Jena it will switch to WRITE mode if
-     * updates are made.
-     */
-    void begin();
-
-    /**
-     * Abort the current transaction.
-     */
-    void abort();
-
-    /**
-     * Drop the entire database.
-     */
-    void drop();
-
-    /**
-     * Commit the current transaction.
-     */
-    void commit();
-
 }
