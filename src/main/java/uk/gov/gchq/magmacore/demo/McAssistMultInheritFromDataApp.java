@@ -21,10 +21,10 @@ import java.util.List;
 import uk.gov.gchq.hqdm.model.Participant;
 import uk.gov.gchq.hqdm.model.StateOfOrganization;
 import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
-import uk.gov.gchq.hqdm.rdf.Pair;
-import uk.gov.gchq.hqdm.rdf.Triples;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
+import uk.gov.gchq.hqdm.rdf.util.Pair;
+import uk.gov.gchq.hqdm.rdf.util.Triples;
 
 /**
  * Demonstrate how to create a new class dynamically.
