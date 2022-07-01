@@ -15,6 +15,7 @@
 package uk.gov.gchq.magmacore.demo;
 
 import static org.junit.Assert.assertNotNull;
+import static uk.gov.gchq.magmacore.demo.DemoUtils.populateExampleData;
 
 import org.junit.Test;
 
@@ -33,7 +34,7 @@ public class ExampleDataTest {
     @Test
     public void testWithJenaDatabase() {
         final MagmaCoreService service = MagmaCoreServiceFactory.createWithJenaDatabase();
-        final DbTransformation transformation = ExampleDataObjects.populateExampleData(service);
+        final DbTransformation transformation = populateExampleData(service);
 
         assertNotNull(transformation);
     }

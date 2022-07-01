@@ -14,6 +14,9 @@
 
 package uk.gov.gchq.magmacore.demo;
 
+import static uk.gov.gchq.magmacore.demo.DemoUtils.USER_BASE;
+import static uk.gov.gchq.magmacore.util.UID.uid;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -71,11 +74,11 @@ public class ExampleAssociations {
                 .get("OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION");
 
         // Create DbCreateOperations to create the objects and their properties.
-        final IRI personState = ExampleCommonUtils.mkUserBaseIri();
-        final IRI houseState = ExampleCommonUtils.mkUserBaseIri();
-        final IRI personParticipant = ExampleCommonUtils.mkUserBaseIri();
-        final IRI houseParticipant = ExampleCommonUtils.mkUserBaseIri();
-        final IRI houseOccupiedAssociation = ExampleCommonUtils.mkUserBaseIri();
+        final IRI personState = new IRI(USER_BASE, uid());
+        final IRI houseState = new IRI(USER_BASE, uid());
+        final IRI personParticipant = new IRI(USER_BASE, uid());
+        final IRI houseParticipant = new IRI(USER_BASE, uid());
+        final IRI houseOccupiedAssociation = new IRI(USER_BASE, uid());
 
         // Create DbCreateOperations to create the objects and their properties.
         creates.add(new DbCreateOperation(personState, RDFS.RDF_TYPE, HQDM.STATE_OF_PERSON.getIri()));
@@ -140,10 +143,10 @@ public class ExampleAssociations {
         final FunctionalSystem house = (FunctionalSystem) entities.get("HouseB");
 
         // Create IRIs for the objects we want to create.
-        final IRI event1 = ExampleCommonUtils.mkUserBaseIri();
-        final IRI event2 = ExampleCommonUtils.mkUserBaseIri();
-        final IRI event3 = ExampleCommonUtils.mkUserBaseIri();
-        final IRI event4 = ExampleCommonUtils.mkUserBaseIri();
+        final IRI event1 = new IRI(USER_BASE, "event1");
+        final IRI event2 = new IRI(USER_BASE, "event2");
+        final IRI event3 = new IRI(USER_BASE, "event3");
+        final IRI event4 = new IRI(USER_BASE, "event4");
 
         // Create DbCreateOperations to create the objects and their properties.
         final List<DbCreateOperation> creates = new ArrayList<DbCreateOperation>();

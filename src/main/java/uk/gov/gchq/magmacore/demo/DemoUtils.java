@@ -16,14 +16,21 @@ package uk.gov.gchq.magmacore.demo;
 
 import java.util.List;
 
+import uk.gov.gchq.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
 import uk.gov.gchq.magmacore.service.transformation.DbTransformation;
 
 /**
- * Example data objects.
+ * Utilities for Magma Core demos.
  */
-public class ExampleDataObjects {
+public class DemoUtils {
+
+    /** IriBase for Reference Data Library. */
+    public static final IriBase REF_BASE = new IriBase("rdl", "http://www.semanticweb.org/magma-core/rdl#");
+
+    /** IriBase for User data. */
+    public static final IriBase USER_BASE = new IriBase("user", "http://www.semanticweb.org/magma-core/user#");
 
     /**
      * Populate a {@link MagmaCoreService} database.

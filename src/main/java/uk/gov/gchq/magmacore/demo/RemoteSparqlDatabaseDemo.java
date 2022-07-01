@@ -14,6 +14,8 @@
 
 package uk.gov.gchq.magmacore.demo;
 
+import static uk.gov.gchq.magmacore.demo.DemoUtils.populateExampleData;
+
 import uk.gov.gchq.magmacore.database.MagmaCoreRemoteSparqlDatabase;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
@@ -44,7 +46,7 @@ public final class RemoteSparqlDatabaseDemo {
         final MagmaCoreService mcService = MagmaCoreServiceFactory.attachRemoteSparqlEndpoint(url);
 
         if (populate) {
-            ExampleDataObjects.populateExampleData(mcService);
+            populateExampleData(mcService);
         }
     }
 }

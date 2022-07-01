@@ -14,6 +14,9 @@
 
 package uk.gov.gchq.magmacore.demo;
 
+import static uk.gov.gchq.magmacore.demo.DemoUtils.USER_BASE;
+import static uk.gov.gchq.magmacore.util.UID.uid;
+
 import java.util.List;
 import java.util.Map;
 
@@ -79,16 +82,16 @@ public class ExampleSigns {
         final IRI englishSpeakersIri = new IRI(englishSpeakers.getId());
 
         // Create IRIs for the new entities.
-        final IRI possibleWorld = ExampleCommonUtils.mkUserBaseIri();
-        final IRI person = ExampleCommonUtils.mkUserBaseIri();
-        final IRI wikipediaSign = ExampleCommonUtils.mkUserBaseIri();
-        final IRI britannica = ExampleCommonUtils.mkUserBaseIri();
-        final IRI biography = ExampleCommonUtils.mkUserBaseIri();
-        final IRI stanford = ExampleCommonUtils.mkUserBaseIri();
-        final IRI nationalGeographic = ExampleCommonUtils.mkUserBaseIri();
-        final IRI representationBySign = ExampleCommonUtils.mkUserBaseIri();
-        final IRI startEvent = ExampleCommonUtils.mkUserBaseIri();
-        final IRI endEvent = ExampleCommonUtils.mkUserBaseIri();
+        final IRI possibleWorld = new IRI(USER_BASE, uid());
+        final IRI person = new IRI(USER_BASE, uid());
+        final IRI wikipediaSign = new IRI(USER_BASE, uid());
+        final IRI britannica = new IRI(USER_BASE, uid());
+        final IRI biography = new IRI(USER_BASE, uid());
+        final IRI stanford = new IRI(USER_BASE, uid());
+        final IRI nationalGeographic = new IRI(USER_BASE, uid());
+        final IRI representationBySign = new IRI(USER_BASE, uid());
+        final IRI startEvent = new IRI(USER_BASE, uid());
+        final IRI endEvent = new IRI(USER_BASE, uid());
 
         // Create the set of DbCreateOperations.
         final List<DbCreateOperation> creates = List.of(

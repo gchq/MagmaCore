@@ -14,6 +14,9 @@
 
 package uk.gov.gchq.magmacore.demo;
 
+import static uk.gov.gchq.magmacore.demo.DemoUtils.USER_BASE;
+import static uk.gov.gchq.magmacore.util.UID.uid;
+
 import java.util.List;
 import java.util.Map;
 
@@ -53,11 +56,11 @@ public class ExampleIndividuals {
         final Role domesticPropertyRole = (Role) entities.get("ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE");
 
         // Create IRIs for the objects we want to create.
-        final IRI possibleWorld = ExampleCommonUtils.mkUserBaseIri();
-        final IRI startEvent = ExampleCommonUtils.mkUserBaseIri();
-        final IRI endEvent = ExampleCommonUtils.mkUserBaseIri();
-        final IRI person = ExampleCommonUtils.mkUserBaseIri();
-        final IRI house = ExampleCommonUtils.mkUserBaseIri();
+        final IRI possibleWorld = new IRI(USER_BASE, uid());
+        final IRI startEvent = new IRI(USER_BASE, uid());
+        final IRI endEvent = new IRI(USER_BASE, uid());
+        final IRI person = new IRI(USER_BASE, uid());
+        final IRI house = new IRI(USER_BASE, uid());
 
         // Create DbCreateOperations to create the objects and their properties.
         final List<DbCreateOperation> creates = List.of(

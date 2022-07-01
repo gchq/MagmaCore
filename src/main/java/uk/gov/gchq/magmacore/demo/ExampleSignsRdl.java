@@ -14,6 +14,10 @@
 
 package uk.gov.gchq.magmacore.demo;
 
+import static uk.gov.gchq.magmacore.demo.DemoUtils.REF_BASE;
+import static uk.gov.gchq.magmacore.demo.DemoUtils.USER_BASE;
+import static uk.gov.gchq.magmacore.util.UID.uid;
+
 import java.util.List;
 
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
@@ -35,9 +39,9 @@ public class ExampleSignsRdl {
     public static DbChangeSet createRefDataObjects() {
 
         // Create new unique IRIs for all the objects we need to create.
-        final IRI urlPattern = ExampleCommonUtils.mkRefBaseIri();
-        final IRI description = ExampleCommonUtils.mkRefBaseIri();
-        final IRI englishSpeakers = ExampleCommonUtils.mkUserBaseIri();
+        final IRI urlPattern = new IRI(REF_BASE, uid());
+        final IRI description = new IRI(REF_BASE, uid());
+        final IRI englishSpeakers = new IRI(USER_BASE, uid());
 
         // Add DbCreateOperations to create the objects and their properties.
         final List<DbCreateOperation> creates = List.of(

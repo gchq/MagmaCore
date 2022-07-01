@@ -14,6 +14,9 @@
 
 package uk.gov.gchq.magmacore.demo;
 
+import static uk.gov.gchq.magmacore.demo.DemoUtils.REF_BASE;
+import static uk.gov.gchq.magmacore.util.UID.uid;
+
 import java.util.List;
 
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
@@ -35,21 +38,23 @@ public class ExampleRdl {
     public static DbChangeSet createRefDataObjects() {
 
         // Create new unique IRIs for all the objects we need to create.
-        final IRI viewable = ExampleCommonUtils.mkRefBaseIri();
-        final IRI viewableObject = ExampleCommonUtils.mkRefBaseIri();
-        final IRI viewableAssociation = ExampleCommonUtils.mkRefBaseIri();
-        final IRI kindOfBiologicalSystemHumanComponent = ExampleCommonUtils.mkRefBaseIri();
-        final IRI kindOfPerson = ExampleCommonUtils.mkRefBaseIri();
-        final IRI classOfStateOfPerson = ExampleCommonUtils.mkRefBaseIri();
-        final IRI kindOfFunctionalSystemBuilding = ExampleCommonUtils.mkRefBaseIri();
-        final IRI kindOfFunctionalSystemDomesticPropertyComponent = ExampleCommonUtils.mkRefBaseIri();
-        final IRI kindOfFunctionalSystemDomesticProperty = ExampleCommonUtils.mkRefBaseIri();
-        final IRI classOfStateOfFunctionalSystemDomesticProperty = ExampleCommonUtils.mkRefBaseIri();
-        final IRI naturalMemberOfSocietyRole = ExampleCommonUtils.mkRefBaseIri();
-        final IRI domesticPropertyRole = ExampleCommonUtils.mkRefBaseIri();
-        final IRI domesticOccupantInPropertyRole = ExampleCommonUtils.mkRefBaseIri();
-        final IRI occupierOfPropertyRole = ExampleCommonUtils.mkRefBaseIri();
-        final IRI occupantInPropertyKindOfAssociation = ExampleCommonUtils.mkRefBaseIri();
+        final IRI viewable = new IRI(REF_BASE, uid());
+        final IRI viewableObject = new IRI(REF_BASE, uid());
+        final IRI viewableAssociation = new IRI(REF_BASE, uid());
+        final IRI kindOfBiologicalSystemHumanComponent = new IRI(REF_BASE, uid());
+        final IRI kindOfPerson = new IRI(REF_BASE, uid());
+        final IRI classOfStateOfPerson = new IRI(REF_BASE, uid());
+        final IRI kindOfFunctionalSystemBuilding = new IRI(REF_BASE, uid());
+        final IRI kindOfFunctionalSystemDomesticPropertyComponent = new IRI(REF_BASE,
+                "kindOfFunctionalSystemDomesticPropertyComponent");
+        final IRI kindOfFunctionalSystemDomesticProperty = new IRI(REF_BASE, uid());
+        final IRI classOfStateOfFunctionalSystemDomesticProperty = new IRI(REF_BASE,
+                "classOfStateOfFunctionalSystemDomesticProperty");
+        final IRI naturalMemberOfSocietyRole = new IRI(REF_BASE, uid());
+        final IRI domesticPropertyRole = new IRI(REF_BASE, uid());
+        final IRI domesticOccupantInPropertyRole = new IRI(REF_BASE, uid());
+        final IRI occupierOfPropertyRole = new IRI(REF_BASE, "occupierOfPropertyRole ");
+        final IRI occupantInPropertyKindOfAssociation = new IRI(REF_BASE, uid());
 
         // Add DbCreateOperations to create the objects and their properties.
         final List<DbCreateOperation> creates = List.of(

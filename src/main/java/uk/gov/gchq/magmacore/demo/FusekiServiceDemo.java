@@ -14,6 +14,8 @@
 
 package uk.gov.gchq.magmacore.demo;
 
+import static uk.gov.gchq.magmacore.demo.DemoUtils.populateExampleData;
+
 import org.apache.jena.fuseki.main.FusekiServer;
 import org.apache.jena.fuseki.system.FusekiLogging;
 
@@ -53,7 +55,7 @@ public final class FusekiServiceDemo {
             tdb.begin();
             if (tdb.getDataset().isEmpty()) {
                 // Build example data objects Dataset, transactions are controlled by the MagmaCoreService.
-                ExampleDataObjects.populateExampleData(MagmaCoreServiceFactory.createWithJenaDatabase(tdb));
+                populateExampleData(MagmaCoreServiceFactory.createWithJenaDatabase(tdb));
                 tdb.commit();
             } else {
                 tdb.abort();
