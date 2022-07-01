@@ -18,6 +18,8 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
+import uk.gov.gchq.hqdm.model.Individual;
+import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices;
@@ -36,11 +38,11 @@ public class MagmaCoreServiceTest {
      */
     @Test
     public void test() {
-        final var iri = new IRI(TEST_IRI);
+        final IRI iri = new IRI(TEST_IRI);
 
-        final var db = new MagmaCoreJenaDatabase();
+        final MagmaCoreJenaDatabase db = new MagmaCoreJenaDatabase();
 
-        final var thing = SpatioTemporalExtentServices.createIndividual(TEST_IRI);
+        final Individual thing = SpatioTemporalExtentServices.createIndividual(TEST_IRI);
 
         thing.addValue(HQDM.MEMBER_OF.getIri(), "class1");
 
@@ -55,7 +57,7 @@ public class MagmaCoreServiceTest {
         db.commit();
 
         db.begin();
-        final var thingFromDb = db.get(iri);
+        final Thing thingFromDb = db.get(iri);
         db.commit();
 
         assertNull(thingFromDb);

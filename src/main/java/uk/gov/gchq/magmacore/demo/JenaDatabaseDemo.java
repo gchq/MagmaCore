@@ -19,6 +19,7 @@ import java.util.Map;
 
 import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
@@ -41,7 +42,7 @@ public final class JenaDatabaseDemo {
      */
     public void run() {
         // Instantiate new in-memory Jena database.
-        final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
+        final MagmaCoreService mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
         // Add example data objects to dataset.
         ExampleDataObjects.populateExampleData(mcService);

@@ -20,6 +20,7 @@ import java.util.List;
 
 import uk.gov.gchq.hqdm.model.Participant;
 import uk.gov.gchq.hqdm.model.StateOfOrganization;
+import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
@@ -44,7 +45,7 @@ public class McAssistMultInheritFromDataApp {
                 new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.PARTICIPANT.getIri()));
 
         // Create a new object using the type specification.
-        final var orgState = HqdmObjectFactory.create(uid(), newTypeSpecification);
+        final Thing orgState = HqdmObjectFactory.create(uid(), newTypeSpecification);
 
         // Check that it implements the two interfaces.
         if (orgState instanceof Participant && orgState instanceof StateOfOrganization) {

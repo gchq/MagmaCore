@@ -49,8 +49,9 @@ public class DbTransformation implements Function<MagmaCoreService, MagmaCoreSer
      */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
-        final var transformation = transformations.stream().map(x -> (Function<MagmaCoreService, MagmaCoreService>) x)
-                .reduce(Function::andThen).orElse(Function.identity());
+        final Function<MagmaCoreService, MagmaCoreService> transformation = transformations.stream()
+                .map(t -> (Function<MagmaCoreService, MagmaCoreService>) t).reduce(Function::andThen)
+                .orElse(Function.identity());
 
         return transformation.apply(mcService);
     }
@@ -61,7 +62,7 @@ public class DbTransformation implements Function<MagmaCoreService, MagmaCoreSer
      * @return The inverted {@link DbTransformation}.
      */
     public DbTransformation invert() {
-        final var list = transformations.stream().map(DbChangeSet::invert).collect(Collectors.toList());
+        final List<DbChangeSet> list = transformations.stream().map(DbChangeSet::invert).collect(Collectors.toList());
 
         Collections.reverse(list);
 

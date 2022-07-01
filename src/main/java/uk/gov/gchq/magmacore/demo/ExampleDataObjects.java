@@ -17,6 +17,7 @@ package uk.gov.gchq.magmacore.demo;
 import java.util.List;
 
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
+import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
 import uk.gov.gchq.magmacore.service.transformation.DbTransformation;
 
 /**
@@ -36,19 +37,19 @@ public class ExampleDataObjects {
         // since they both depend on RDL being present, but also the occupancies depend on the
         // individuals being present, so each change set needs to be applied before the next one
         // can be created.
-        final var rdlChangeSet = ExampleRdl.createRefDataObjects();
+        final DbChangeSet rdlChangeSet = ExampleRdl.createRefDataObjects();
 
         // Apply the DbChangeSet
         rdlChangeSet.apply(mcService);
 
         // mcService now contains the RDL needed for the next DbChangeSet
-        final var individualsChangeSet = ExampleIndividuals.addWholeLifeIndividuals(mcService);
+        final DbChangeSet individualsChangeSet = ExampleIndividuals.addWholeLifeIndividuals(mcService);
 
         // Apply the DbChangeSet
         individualsChangeSet.apply(mcService);
 
         // mcService now contains the individuals needed for creating the next DbChangeSet
-        final var occupanciesChangeSet = ExampleAssociations.addHouseOccupancies(mcService);
+        final DbChangeSet occupanciesChangeSet = ExampleAssociations.addHouseOccupancies(mcService);
 
         // Apply the DbChangeSet
         occupanciesChangeSet.apply(mcService);

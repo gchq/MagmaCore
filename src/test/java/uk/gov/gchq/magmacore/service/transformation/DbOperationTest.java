@@ -22,10 +22,12 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.exception.DbTransformationException;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
@@ -44,19 +46,19 @@ public class DbOperationTest {
     public void testCreateAndDelete() {
 
         // Create an operation to add an object with dummy values.
-        final var iri = new IRI(TEST_IRI);
-        final var op1 = new DbCreateOperation(iri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri());
-        final var op2 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
+        final IRI iri = new IRI(TEST_IRI);
+        final DbCreateOperation op1 = new DbCreateOperation(iri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri());
+        final DbCreateOperation op2 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
 
         // Create a database to be updated.
-        final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
+        final MagmaCoreService mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
         // Apply the operation.
         mcService.runInTransaction(op1);
         mcService.runInTransaction(op2);
 
         // Find the thing we just created and assert it's presence.
-        final var thing = mcService.getInTransaction(iri);
+        final Thing thing = mcService.getInTransaction(iri);
 
         assertNotNull(thing);
         assertTrue(thing.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
@@ -64,7 +66,7 @@ public class DbOperationTest {
         // Invert the operation and assert that it is no longer present.
         mcService.runInTransaction(DbCreateOperation.invert(op2));
 
-        final var thingFromDb = mcService.getInTransaction(iri);
+        final Thing thingFromDb = mcService.getInTransaction(iri);
         assertFalse(thingFromDb.hasThisValue(HQDM.MEMBER_OF.getIri(), "class1"));
     }
 
@@ -75,15 +77,15 @@ public class DbOperationTest {
     @Test
     public void testMultipleCreateAndDelete() {
 
-        final var iri = new IRI(TEST_IRI);
+        final IRI iri = new IRI(TEST_IRI);
 
         // Create operations to add an object with dummy values.
-        final var op1 = new DbCreateOperation(iri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri());
-        final var op2 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
-        final var op3 = new DbCreateOperation(iri, HQDM.PART_OF_POSSIBLE_WORLD, "a world");
+        final DbCreateOperation op1 = new DbCreateOperation(iri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri());
+        final DbCreateOperation op2 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
+        final DbCreateOperation op3 = new DbCreateOperation(iri, HQDM.PART_OF_POSSIBLE_WORLD, "a world");
 
         // Create a database to be updated.
-        final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
+        final MagmaCoreService mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
         // Apply the operations.
         mcService.runInTransaction(op1);
@@ -91,7 +93,7 @@ public class DbOperationTest {
         mcService.runInTransaction(op3);
 
         // Find the thing we just created and assert values are present.
-        final var thing = mcService.getInTransaction(iri);
+        final Thing thing = mcService.getInTransaction(iri);
 
         assertNotNull(thing);
         assertTrue(thing.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
@@ -103,7 +105,7 @@ public class DbOperationTest {
         mcService.runInTransaction(DbCreateOperation.invert(op2));
         mcService.runInTransaction(DbCreateOperation.invert(op1));
 
-        final var thingFromDb = mcService.getInTransaction(iri);
+        final Thing thingFromDb = mcService.getInTransaction(iri);
         assertNull(thingFromDb);
     }
 
@@ -113,13 +115,13 @@ public class DbOperationTest {
     @Test(expected = DbTransformationException.class)
     public void testCreateWhenAlreadyPresent() {
 
-        final var iri = new IRI(TEST_IRI);
+        final IRI iri = new IRI(TEST_IRI);
 
         // Create an operation to add an object with dummy values.
-        final var op = new DbCreateOperation(iri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri());
+        final DbCreateOperation op = new DbCreateOperation(iri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri());
 
         // Create a database to be updated.
-        final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
+        final MagmaCoreService mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
         // Apply the operation twice, the second should throw an exception.
         mcService.runInTransaction(op);
@@ -132,13 +134,13 @@ public class DbOperationTest {
     @Test(expected = DbTransformationException.class)
     public void testDeleteWhenNotPresent() {
 
-        final var iri = new IRI(TEST_IRI);
+        final IRI iri = new IRI(TEST_IRI);
 
         // Create an operation to add an object with dummy values.
-        final var op = new DbDeleteOperation(iri, HQDM.INDIVIDUAL, "value");
+        final DbDeleteOperation op = new DbDeleteOperation(iri, HQDM.INDIVIDUAL, "value");
 
         // Create a database to be updated.
-        final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
+        final MagmaCoreService mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
         // Apply the operation, it should throw an exception.
         mcService.runInTransaction(op);
@@ -150,10 +152,10 @@ public class DbOperationTest {
     @Test
     public void testDbCreateEquals() {
 
-        final var iri = new IRI(TEST_IRI);
+        final IRI iri = new IRI(TEST_IRI);
 
-        final var op1 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
-        final var op2 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
+        final DbCreateOperation op1 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
+        final DbCreateOperation op2 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
 
         assertTrue(op1.equals(op2));
         assertEquals(op1.hashCode(), op2.hashCode());
@@ -165,10 +167,10 @@ public class DbOperationTest {
     @Test
     public void testDbDeleteEquals() {
 
-        final var iri = new IRI(TEST_IRI);
+        final IRI iri = new IRI(TEST_IRI);
 
-        final var op1 = new DbDeleteOperation(iri, HQDM.MEMBER_OF, "class1");
-        final var op2 = new DbDeleteOperation(iri, HQDM.MEMBER_OF, "class1");
+        final DbDeleteOperation op1 = new DbDeleteOperation(iri, HQDM.MEMBER_OF, "class1");
+        final DbDeleteOperation op2 = new DbDeleteOperation(iri, HQDM.MEMBER_OF, "class1");
 
         assertTrue(op1.equals(op2));
         assertEquals(op1.hashCode(), op2.hashCode());

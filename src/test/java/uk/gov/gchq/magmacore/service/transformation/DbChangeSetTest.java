@@ -22,9 +22,11 @@ import java.util.List;
 
 import org.junit.Test;
 
+import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
@@ -41,22 +43,22 @@ public class DbChangeSetTest {
     @Test
     public void testApplyAndInvert() {
 
-        final var iri = new IRI(TEST_IRI);
+        final IRI iri = new IRI(TEST_IRI);
 
         // Create operations to add an object with dummy values.
-        final var changes = new DbChangeSet(List.of(),
+        final DbChangeSet changes = new DbChangeSet(List.of(),
                 List.of(new DbCreateOperation(iri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri()),
                         new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1"),
                         new DbCreateOperation(iri, HQDM.PART_OF_POSSIBLE_WORLD, "a world")));
 
         // Create a database to be updated.
-        final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
+        final MagmaCoreService mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
         // Apply the operations.
         mcService.runInTransaction(changes);
 
         // Find the thing we just created and assert values are present.
-        final var thing = mcService.getInTransaction(iri);
+        final Thing thing = mcService.getInTransaction(iri);
 
         assertNotNull(thing);
         assertTrue(thing.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
@@ -66,7 +68,7 @@ public class DbChangeSetTest {
         // Invert the operations, apply them in reverse order and assert they are no longer present.
         mcService.runInTransaction(DbChangeSet.invert(changes));
 
-        final var thingFromDb = mcService.getInTransaction(iri);
+        final Thing thingFromDb = mcService.getInTransaction(iri);
         assertNull(thingFromDb);
     }
 }

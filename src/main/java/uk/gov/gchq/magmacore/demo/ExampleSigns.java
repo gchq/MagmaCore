@@ -15,10 +15,12 @@
 package uk.gov.gchq.magmacore.demo;
 
 import java.util.List;
+import java.util.Map;
 
 import uk.gov.gchq.hqdm.model.Description;
 import uk.gov.gchq.hqdm.model.Pattern;
 import uk.gov.gchq.hqdm.model.RecognizingLanguageCommunity;
+import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
@@ -44,13 +46,13 @@ public class ExampleSigns {
         // since they both depend on RDL being present, but also the occupancies depend on the
         // individuals being present, so each change set needs to be applied before the next one
         // can be created.
-        final var rdlChangeSet = ExampleSignsRdl.createRefDataObjects();
+        final DbChangeSet rdlChangeSet = ExampleSignsRdl.createRefDataObjects();
 
         // Apply the DbChangeSet
         rdlChangeSet.apply(mcService);
 
         // mcService now contains the RDL needed for the next DbChangeSet
-        final var signsChangeSet = addSigns(mcService);
+        final DbChangeSet signsChangeSet = addSigns(mcService);
 
         // Apply the DbChangeSet
         signsChangeSet.apply(mcService);
@@ -66,29 +68,30 @@ public class ExampleSigns {
      * @return {@link DbChangeSet}
      */
     private static DbChangeSet addSigns(final MagmaCoreService mcService) {
-        final var entities = mcService
+        final Map<String, Thing> entities = mcService
                 .findByEntityNameInTransaction(List.of("URL Pattern", "Description By URL", "English Speakers"));
 
         // Find the required classes, kinds, and roles.
-        final var urlPattern = (Pattern) entities.get("URL Pattern");
-        final var descriptionByUrl = (Description) entities.get("Description By URL");
-        final var englishSpeakers = (RecognizingLanguageCommunity) entities.get("English Speakers");
-        final var englishSpeakersIri = new IRI(englishSpeakers.getId());
+        final Pattern urlPattern = (Pattern) entities.get("URL Pattern");
+        final Description descriptionByUrl = (Description) entities.get("Description By URL");
+        final RecognizingLanguageCommunity englishSpeakers = (RecognizingLanguageCommunity) entities
+                .get("English Speakers");
+        final IRI englishSpeakersIri = new IRI(englishSpeakers.getId());
 
         // Create IRIs for the new entities.
-        final var possibleWorld = ExampleCommonUtils.mkUserBaseIri();
-        final var person = ExampleCommonUtils.mkUserBaseIri();
-        final var wikipediaSign = ExampleCommonUtils.mkUserBaseIri();
-        final var brittanica = ExampleCommonUtils.mkUserBaseIri();
-        final var biography = ExampleCommonUtils.mkUserBaseIri();
-        final var stanford = ExampleCommonUtils.mkUserBaseIri();
-        final var nationalGeographic = ExampleCommonUtils.mkUserBaseIri();
-        final var repBySign = ExampleCommonUtils.mkUserBaseIri();
-        final var e1 = ExampleCommonUtils.mkUserBaseIri();
-        final var e2 = ExampleCommonUtils.mkUserBaseIri();
+        final IRI possibleWorld = ExampleCommonUtils.mkUserBaseIri();
+        final IRI person = ExampleCommonUtils.mkUserBaseIri();
+        final IRI wikipediaSign = ExampleCommonUtils.mkUserBaseIri();
+        final IRI britannica = ExampleCommonUtils.mkUserBaseIri();
+        final IRI biography = ExampleCommonUtils.mkUserBaseIri();
+        final IRI stanford = ExampleCommonUtils.mkUserBaseIri();
+        final IRI nationalGeographic = ExampleCommonUtils.mkUserBaseIri();
+        final IRI representationBySign = ExampleCommonUtils.mkUserBaseIri();
+        final IRI startEvent = ExampleCommonUtils.mkUserBaseIri();
+        final IRI endEvent = ExampleCommonUtils.mkUserBaseIri();
 
         // Create the set of DbCreateOperations
-        final var creates = List.of(
+        final List<DbCreateOperation> creates = List.of(
 
                 // Create the possible world that we are working in.
                 new DbCreateOperation(possibleWorld, RDFS.RDF_TYPE, HQDM.POSSIBLE_WORLD.getIri()),
@@ -104,10 +107,10 @@ public class ExampleSigns {
                 new DbCreateOperation(wikipediaSign, HQDM.VALUE_, "https://en.wikipedia.org/wiki/Socrates"),
                 new DbCreateOperation(wikipediaSign, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
 
-                new DbCreateOperation(brittanica, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN.getIri()),
-                new DbCreateOperation(brittanica, HQDM.MEMBER_OF_, urlPattern.getId()),
-                new DbCreateOperation(brittanica, HQDM.VALUE_, "https://www.britannica.com/biography/Socrates"),
-                new DbCreateOperation(brittanica, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(britannica, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN.getIri()),
+                new DbCreateOperation(britannica, HQDM.MEMBER_OF_, urlPattern.getId()),
+                new DbCreateOperation(britannica, HQDM.VALUE_, "https://www.britannica.com/biography/Socrates"),
+                new DbCreateOperation(britannica, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
 
                 new DbCreateOperation(biography, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN.getIri()),
                 new DbCreateOperation(biography, HQDM.MEMBER_OF_, urlPattern.getId()),
@@ -126,30 +129,30 @@ public class ExampleSigns {
                 new DbCreateOperation(nationalGeographic, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
 
                 // Create the representation by signs
-                new DbCreateOperation(repBySign, RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN.getIri()),
-                new DbCreateOperation(repBySign, HQDM.MEMBER_OF_, descriptionByUrl.getId()),
-                new DbCreateOperation(repBySign, HQDM.REPRESENTS, person.getIri()),
-                new DbCreateOperation(repBySign, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(representationBySign, RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN.getIri()),
+                new DbCreateOperation(representationBySign, HQDM.MEMBER_OF_, descriptionByUrl.getId()),
+                new DbCreateOperation(representationBySign, HQDM.REPRESENTS, person.getIri()),
+                new DbCreateOperation(representationBySign, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
 
                 // Add beginning, ending, etc. from `association`
-                new DbCreateOperation(e1, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
-                new DbCreateOperation(e1, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
-                new DbCreateOperation(e1, HQDM.ENTITY_NAME, "2020-01-01T00:00:00"),
+                new DbCreateOperation(startEvent, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
+                new DbCreateOperation(startEvent, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(startEvent, HQDM.ENTITY_NAME, "2020-01-01T00:00:00"),
 
-                new DbCreateOperation(e2, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
-                new DbCreateOperation(e2, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
-                new DbCreateOperation(e2, HQDM.ENTITY_NAME, "2022-12-01T00:00:00"),
+                new DbCreateOperation(endEvent, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
+                new DbCreateOperation(endEvent, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(endEvent, HQDM.ENTITY_NAME, "2022-12-01T00:00:00"),
 
-                new DbCreateOperation(repBySign, HQDM.BEGINNING, e1.getIri()),
-                new DbCreateOperation(repBySign, HQDM.ENDING, e2.getIri()),
+                new DbCreateOperation(representationBySign, HQDM.BEGINNING, startEvent.getIri()),
+                new DbCreateOperation(representationBySign, HQDM.ENDING, endEvent.getIri()),
 
                 // Add the participants
-                new DbCreateOperation(englishSpeakersIri, HQDM.PARTICIPANT_IN, repBySign.getIri()),
-                new DbCreateOperation(wikipediaSign, HQDM.PARTICIPANT_IN, repBySign.getIri()),
-                new DbCreateOperation(brittanica, HQDM.PARTICIPANT_IN, repBySign.getIri()),
-                new DbCreateOperation(biography, HQDM.PARTICIPANT_IN, repBySign.getIri()),
-                new DbCreateOperation(stanford, HQDM.PARTICIPANT_IN, repBySign.getIri()),
-                new DbCreateOperation(nationalGeographic, HQDM.PARTICIPANT_IN, repBySign.getIri()));
+                new DbCreateOperation(englishSpeakersIri, HQDM.PARTICIPANT_IN, representationBySign.getIri()),
+                new DbCreateOperation(wikipediaSign, HQDM.PARTICIPANT_IN, representationBySign.getIri()),
+                new DbCreateOperation(britannica, HQDM.PARTICIPANT_IN, representationBySign.getIri()),
+                new DbCreateOperation(biography, HQDM.PARTICIPANT_IN, representationBySign.getIri()),
+                new DbCreateOperation(stanford, HQDM.PARTICIPANT_IN, representationBySign.getIri()),
+                new DbCreateOperation(nationalGeographic, HQDM.PARTICIPANT_IN, representationBySign.getIri()));
 
         // Create a change set and return it.
         return new DbChangeSet(List.of(), creates);

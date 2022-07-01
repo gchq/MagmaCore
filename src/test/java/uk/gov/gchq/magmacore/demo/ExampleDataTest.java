@@ -18,7 +18,9 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
+import uk.gov.gchq.magmacore.service.transformation.DbTransformation;
 
 /**
  * Exercise the {@link ExampleDataObjects} code during the build.
@@ -30,8 +32,8 @@ public class ExampleDataTest {
      */
     @Test
     public void testWithJenaDatabase() {
-        final var service = MagmaCoreServiceFactory.createWithJenaDatabase();
-        final var transformation = ExampleDataObjects.populateExampleData(service);
+        final MagmaCoreService service = MagmaCoreServiceFactory.createWithJenaDatabase();
+        final DbTransformation transformation = ExampleDataObjects.populateExampleData(service);
 
         assertNotNull(transformation);
     }

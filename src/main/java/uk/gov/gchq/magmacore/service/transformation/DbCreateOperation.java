@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.service.transformation;
 
 import java.util.function.Function;
 
+import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices;
 import uk.gov.gchq.magmacore.exception.DbTransformationException;
@@ -53,10 +54,10 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
      */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
-        final var thing = mcService.get(subject);
+        final Thing thing = mcService.get(subject);
 
         if (thing == null) {
-            final var newThing = SpatioTemporalExtentServices.createThing(subject.getIri());
+            final Thing newThing = SpatioTemporalExtentServices.createThing(subject.getIri());
             newThing.addStringValue(predicate.getIri(), object);
             mcService.create(newThing);
         } else {
@@ -75,11 +76,11 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
     /**
      * Invert an operation.
      *
-     * @param c {@link DbCreateOperation}
+     * @param createOperation {@link DbCreateOperation}
      * @return The inverted {@link DbDeleteOperation}.
      */
-    public static DbDeleteOperation invert(final DbCreateOperation c) {
-        return new DbDeleteOperation(c.subject, c.predicate, c.object);
+    public static DbDeleteOperation invert(final DbCreateOperation createOperation) {
+        return new DbDeleteOperation(createOperation.subject, createOperation.predicate, createOperation.object);
     }
 
     /**

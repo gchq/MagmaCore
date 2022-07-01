@@ -35,30 +35,30 @@ public class MagmaCoreServiceFactory {
     /**
      * Create a Jena database.
      *
-     * @param name a database name String
+     * @param location a database name String
      * @return {@link MagmaCoreService}
      */
-    public static MagmaCoreService createWithJenaDatabase(final String name) {
-        return new MagmaCoreService(new MagmaCoreJenaDatabase(name));
+    public static MagmaCoreService createWithJenaDatabase(final String location) {
+        return new MagmaCoreService(new MagmaCoreJenaDatabase(location));
     }
 
     /**
      * Create a Jena database.
      *
-     * @param db a {@link MagmaCoreJenaDatabase}
+     * @param database a {@link MagmaCoreJenaDatabase}
      * @return {@link MagmaCoreService}
      */
-    public static MagmaCoreService createWithJenaDatabase(final MagmaCoreJenaDatabase db) {
-        return new MagmaCoreService(db);
+    public static MagmaCoreService createWithJenaDatabase(final MagmaCoreJenaDatabase database) {
+        return new MagmaCoreService(database);
     }
 
     /**
      * Attach to a remote SPARQL Endpoint.
      *
-     * @param url the url {@link String}
+     * @param serviceUrl the url {@link String}
      * @return {@link MagmaCoreService}
      */
-    public static MagmaCoreService attachRemoteSparqlEndpoint(final String url) {
-        return new MagmaCoreService(new MagmaCoreRemoteSparqlDatabase(url));
+    public static MagmaCoreService attachRemoteSparqlEndpoint(final String serviceUrl) {
+        return new MagmaCoreService(new MagmaCoreRemoteSparqlDatabase(serviceUrl));
     }
 }

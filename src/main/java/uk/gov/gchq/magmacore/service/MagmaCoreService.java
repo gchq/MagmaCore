@@ -30,34 +30,34 @@ import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 public class MagmaCoreService {
 
     // The service operates on a database.
-    private final MagmaCoreDatabase db;
+    private final MagmaCoreDatabase database;
 
     /**
      * Constructor that requires a {@link MagmaCoreDatabase}.
      *
-     * @param db {@link MagmaCoreDatabase}
+     * @param database {@link MagmaCoreDatabase}
      */
-    MagmaCoreService(final MagmaCoreDatabase db) {
-        this.db = db;
+    MagmaCoreService(final MagmaCoreDatabase database) {
+        this.database = database;
     }
 
     /**
      * Find an object by its ENTITY_NAME.
      *
-     * @param <T>  the return type.
-     * @param name the name {@link String} to search for.
+     * @param <T>        the return type.
+     * @param entityName the name {@link String} to search for.
      * @return the {@link Thing}that was found.
      * @throws RuntimeException if no or multiple results found.
      */
-    public <T> T findByEntityName(final String name) {
-        final var searchResult = db.findByPredicateIriAndStringValue(HQDM.ENTITY_NAME, name);
+    public <T> T findByEntityName(final String entityName) {
+        final List<Thing> searchResult = database.findByPredicateIriAndStringValue(HQDM.ENTITY_NAME, entityName);
 
         if (searchResult.size() == 1) {
             return (T) searchResult.get(0);
         } else if (searchResult.isEmpty()) {
-            throw new RuntimeException("No entity found with name: " + name);
+            throw new RuntimeException("No entity found with name: " + entityName);
         } else {
-            throw new RuntimeException("Multiple entities found with name: " + name);
+            throw new RuntimeException("Multiple entities found with name: " + entityName);
         }
     }
 
@@ -67,7 +67,7 @@ public class MagmaCoreService {
      * @param thing {@link Thing}
      */
     public void create(final Thing thing) {
-        db.create(thing);
+        database.create(thing);
     }
 
     /**
@@ -76,7 +76,7 @@ public class MagmaCoreService {
      * @param thing {@link Thing}
      */
     public void update(final Thing thing) {
-        db.update(thing);
+        database.update(thing);
     }
 
     /**
@@ -86,7 +86,7 @@ public class MagmaCoreService {
      * @return {@link Thing}
      */
     public Thing get(final IRI iri) {
-        return db.get(iri);
+        return database.get(iri);
     }
 
     /**
@@ -97,12 +97,12 @@ public class MagmaCoreService {
      */
     public Thing getInTransaction(final IRI iri) {
         try {
-            db.begin();
-            final var result = db.get(iri);
-            db.commit();
+            database.begin();
+            final Thing result = database.get(iri);
+            database.commit();
             return result;
         } catch (final Exception e) {
-            db.abort();
+            database.abort();
             throw e;
         }
     }
@@ -110,15 +110,15 @@ public class MagmaCoreService {
     /**
      * Run a function in a transaction.
      *
-     * @param f the {@link Function} to run.
+     * @param func the {@link Function} to run.
      */
-    public void runInTransaction(final Function<MagmaCoreService, MagmaCoreService> f) {
+    public void runInTransaction(final Function<MagmaCoreService, MagmaCoreService> func) {
         try {
-            db.begin();
-            f.apply(this);
-            db.commit();
+            database.begin();
+            func.apply(this);
+            database.commit();
         } catch (final Exception e) {
-            db.abort();
+            database.abort();
             throw e;
         }
     }
@@ -126,23 +126,23 @@ public class MagmaCoreService {
     /**
      * Find many entities by name.
      *
-     * @param names a {@link List} of {@link String}
+     * @param entityNames a {@link List} of {@link String}
      * @return a {@link Map} of {@link String} to {@link Thing}
      */
-    public Map<String, Thing> findByEntityNameInTransaction(final List<String> names) {
+    public Map<String, Thing> findByEntityNameInTransaction(final List<String> entityNames) {
         try {
-            db.begin();
-            final var result = new HashMap<String, Thing>();
+            database.begin();
+            final HashMap<String, Thing> result = new HashMap<String, Thing>();
 
-            for (final String name : names) {
+            for (final String name : entityNames) {
                 result.put(name, findByEntityName(name));
             }
 
-            db.commit();
+            database.commit();
 
             return result;
         } catch (final Exception e) {
-            db.abort();
+            database.abort();
             throw e;
         }
     }
