@@ -21,15 +21,15 @@ import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
 import uk.gov.gchq.magmacore.service.transformation.DbTransformation;
 
 /**
- * Functions for creating systems using MagmaCore and HQDM.
+ * Example data objects.
  */
 public class ExampleDataObjects {
 
     /**
-     * A function that populates a database.
+     * Populate a {@link MagmaCoreService} database.
      *
-     * @param mcService a {@link MagmaCoreService}
-     * @return {@link DbTransformation}
+     * @param mcService {@link MagmaCoreService} to populate.
+     * @return {@link DbTransformation} performed.
      */
     public static DbTransformation populateExampleData(final MagmaCoreService mcService) {
 
@@ -39,19 +39,19 @@ public class ExampleDataObjects {
         // can be created.
         final DbChangeSet rdlChangeSet = ExampleRdl.createRefDataObjects();
 
-        // Apply the DbChangeSet
+        // Apply the DbChangeSet.
         rdlChangeSet.apply(mcService);
 
-        // mcService now contains the RDL needed for the next DbChangeSet
+        // mcService now contains the RDL needed for the next DbChangeSet.
         final DbChangeSet individualsChangeSet = ExampleIndividuals.addWholeLifeIndividuals(mcService);
 
-        // Apply the DbChangeSet
+        // Apply the DbChangeSet.
         individualsChangeSet.apply(mcService);
 
-        // mcService now contains the individuals needed for creating the next DbChangeSet
+        // mcService now contains the individuals needed for creating the next DbChangeSet.
         final DbChangeSet occupanciesChangeSet = ExampleAssociations.addHouseOccupancies(mcService);
 
-        // Apply the DbChangeSet
+        // Apply the DbChangeSet.
         occupanciesChangeSet.apply(mcService);
 
         // Combine the DbChangeSets into a DbTransformation and return it as a record of the changes.

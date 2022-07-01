@@ -30,15 +30,15 @@ import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.transformation.DbTransformation;
 
 /**
- * Functions for creating systems using MagmaCore and HQDM.
+ * Example signs.
  */
 public class ExampleSigns {
 
     /**
      * A function that populates a database.
      *
-     * @param mcService a {@link MagmaCoreService}
-     * @return {@link DbTransformation}
+     * @param mcService A {@link MagmaCoreService}.
+     * @return {@link DbTransformation}.
      */
     public static DbTransformation populateExampleData(final MagmaCoreService mcService) {
 
@@ -48,13 +48,13 @@ public class ExampleSigns {
         // can be created.
         final DbChangeSet rdlChangeSet = ExampleSignsRdl.createRefDataObjects();
 
-        // Apply the DbChangeSet
+        // Apply the DbChangeSet.
         rdlChangeSet.apply(mcService);
 
         // mcService now contains the RDL needed for the next DbChangeSet
         final DbChangeSet signsChangeSet = addSigns(mcService);
 
-        // Apply the DbChangeSet
+        // Apply the DbChangeSet.
         signsChangeSet.apply(mcService);
         //
         // Combine the DbChangeSets into a DbTransformation and return it as a record of the changes.
@@ -64,8 +64,8 @@ public class ExampleSigns {
     /**
      * Create a {@link DbChangeSet} to add the representation by sign.
      *
-     * @param mcService {@link MagmaCoreService}
-     * @return {@link DbChangeSet}
+     * @param mcService {@link MagmaCoreService}.
+     * @return {@link DbChangeSet}.
      */
     private static DbChangeSet addSigns(final MagmaCoreService mcService) {
         final Map<String, Thing> entities = mcService
@@ -90,18 +90,18 @@ public class ExampleSigns {
         final IRI startEvent = ExampleCommonUtils.mkUserBaseIri();
         final IRI endEvent = ExampleCommonUtils.mkUserBaseIri();
 
-        // Create the set of DbCreateOperations
+        // Create the set of DbCreateOperations.
         final List<DbCreateOperation> creates = List.of(
 
                 // Create the possible world that we are working in.
                 new DbCreateOperation(possibleWorld, RDFS.RDF_TYPE, HQDM.POSSIBLE_WORLD.getIri()),
                 new DbCreateOperation(possibleWorld, HQDM.ENTITY_NAME, "Example Signs World"),
 
-                // Create the thing represented
+                // Create the thing represented.
                 new DbCreateOperation(person, RDFS.RDF_TYPE, HQDM.PERSON.getIri()),
                 new DbCreateOperation(person, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
 
-                // Create the signs that represent the thing
+                // Create the signs that represent the thing.
                 new DbCreateOperation(wikipediaSign, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN.getIri()),
                 new DbCreateOperation(wikipediaSign, HQDM.MEMBER_OF_, urlPattern.getId()),
                 new DbCreateOperation(wikipediaSign, HQDM.VALUE_, "https://en.wikipedia.org/wiki/Socrates"),
@@ -128,13 +128,13 @@ public class ExampleSigns {
                         "https://www.nationalgeographic.com/culture/article/socrates"),
                 new DbCreateOperation(nationalGeographic, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
 
-                // Create the representation by signs
+                // Create the representation by signs.
                 new DbCreateOperation(representationBySign, RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN.getIri()),
                 new DbCreateOperation(representationBySign, HQDM.MEMBER_OF_, descriptionByUrl.getId()),
                 new DbCreateOperation(representationBySign, HQDM.REPRESENTS, person.getIri()),
                 new DbCreateOperation(representationBySign, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
 
-                // Add beginning, ending, etc. from `association`
+                // Add beginning, ending, etc. from `association`.
                 new DbCreateOperation(startEvent, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
                 new DbCreateOperation(startEvent, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
                 new DbCreateOperation(startEvent, HQDM.ENTITY_NAME, "2020-01-01T00:00:00"),
@@ -146,7 +146,7 @@ public class ExampleSigns {
                 new DbCreateOperation(representationBySign, HQDM.BEGINNING, startEvent.getIri()),
                 new DbCreateOperation(representationBySign, HQDM.ENDING, endEvent.getIri()),
 
-                // Add the participants
+                // Add the participants.
                 new DbCreateOperation(englishSpeakersIri, HQDM.PARTICIPANT_IN, representationBySign.getIri()),
                 new DbCreateOperation(wikipediaSign, HQDM.PARTICIPANT_IN, representationBySign.getIri()),
                 new DbCreateOperation(britannica, HQDM.PARTICIPANT_IN, representationBySign.getIri()),

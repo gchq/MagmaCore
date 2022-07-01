@@ -56,7 +56,7 @@ public final class MagmaCore {
     /**
      * Executes the FusekiServiceDemo.
      *
-     * @param populate true if the dataset should be populated with example data
+     * @param populate {@code true} if the dataset should be populated with example data.
      */
     public static void fuseki(final boolean populate) {
         new FusekiServiceDemo().run(populate);
@@ -65,7 +65,7 @@ public final class MagmaCore {
     /**
      * Executes the RemoteSparqlDatabaseDemo.
      *
-     * @param populate true if the dataset should be populated with example data
+     * @param populate {@code true} if the dataset should be populated with example data.
      */
     public static void remoteSparqlDatabaseDemo(final boolean populate) {
         new RemoteSparqlDatabaseDemo("http://localhost:3330/tdb").run(populate);

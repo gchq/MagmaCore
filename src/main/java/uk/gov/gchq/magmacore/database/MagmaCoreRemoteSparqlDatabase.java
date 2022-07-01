@@ -55,9 +55,9 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     private final RDFConnection connection;
 
     /**
-     * Constructor to create a connection to a SPARQL endpoint.
+     * Constructs a MagmaCoreRemoteSparqlDatabase connection to a SPARQL server.
      *
-     * @param serviceUrl the URL String of the SPARQL update endpoint
+     * @param serviceUrl The URL of the SPARQL update endpoint.
      */
     public MagmaCoreRemoteSparqlDatabase(final String serviceUrl) {
         connection = RDFConnectionRemote.newBuilder().destination(serviceUrl).queryEndpoint("query")
@@ -65,10 +65,11 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     }
 
     /**
-     * Constructor to create a connection to a SPARQL endpoint and load it with a dataset.
+     * Constructs a MagmaCoreRemoteSparqlDatabase connection to a SPARQL server and populates it with
+     * the dataset.
      *
-     * @param serviceUrl the URL String of the SPARQL update endpoint
-     * @param dataset    the Dataset to be loaded into the database
+     * @param serviceUrl The URL String of the SPARQL update endpoint.
+     * @param dataset    The Dataset to be loaded into the database.
      */
     public MagmaCoreRemoteSparqlDatabase(final String serviceUrl, final Dataset dataset) {
         this(serviceUrl);
@@ -261,7 +262,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
         final String predicateVarName = queryResultsList.getVarNames().get(1);
         final String objectVarName = queryResultsList.getVarNames().get(2);
 
-        // Create a map of the triples for each unique subject IRI
+        // Create a map of the triples for each unique subject IRI.
         final List<QueryResult> queryResults = queryResultsList.getQueryResults();
         queryResults.forEach(queryResult -> {
             final String subjectValue = queryResult.get(subjectVarName).toString();

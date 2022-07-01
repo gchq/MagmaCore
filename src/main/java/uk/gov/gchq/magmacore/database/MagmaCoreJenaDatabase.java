@@ -61,14 +61,14 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     private final Dataset dataset;
 
     /**
-     * Instantiate a new in-memory Magma Core Jena dataset.
+     * Constructs a MagmaCoreJenaDatabase with a new in-memory Jena dataset.
      */
     public MagmaCoreJenaDatabase() {
         dataset = TDB2Factory.createDataset();
     }
 
     /**
-     * Instantiate a new in-memory Magma Core Jena database using an existing dataset.
+     * Constructs a MagmaCoreJenaDatabase with an existing Jena dataset.
      *
      * @param dataset Existing in-memory Jena dataset.
      */
@@ -77,18 +77,18 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     }
 
     /**
-     * Create/connect a persistent Jena dataset using Apache TDB2.
+     * Constructs a MagmaCoreJenaDatabase connected to a remote Jena TDB2 dataset.
      *
-     * @param location Path of persistent TDB.
+     * @param location URL of the remote dataset.
      */
     public MagmaCoreJenaDatabase(final String location) {
         dataset = TDB2Factory.connectDataset(location);
     }
 
     /**
-     * Get Jena dataset.
+     * Get the Jena {@link dataset}.
      *
-     * @return The Jena dataset.
+     * @return The Jena {@link dataset}.
      */
     public final Dataset getDataset() {
         return dataset;
@@ -98,7 +98,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * Register a new prefix/namespace mapping which will be used to shorten the print strings for
      * resources in known namespaces.
      *
-     * @param base IRI prefix to register.
+     * @param base {@link IriBase} to register.
      */
     public void register(final IriBase base) {
         PrintUtil.registerPrefix(base.getPrefix(), base.getNamespace());
@@ -124,7 +124,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
             dataset.end();
         }
     }
- 
+
     /**
      * {@inheritDoc}
      */
@@ -135,7 +135,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
             dataset.end();
         }
     }
- 
+
     /**
      * {@inheritDoc}
      */
@@ -144,7 +144,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
         final String drop = "drop all";
         executeUpdate(drop);
     }
- 
+
     /**
      * {@inheritDoc}
      */

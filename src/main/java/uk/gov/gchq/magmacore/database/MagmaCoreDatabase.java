@@ -33,13 +33,13 @@ public interface MagmaCoreDatabase {
     void begin();
 
     /**
-     * Commit a transaction - finish the current transaction and make any changes permanent (if a
+     * Commit a transaction - Finish the current transaction and make any changes permanent (if a
      * "write" transaction).
      */
     void commit();
 
     /**
-     * Abort a transaction - finish the transaction and undo any changes (if a "write" transaction).
+     * Abort a transaction - Finish the transaction and undo any changes (if a "write" transaction).
      */
     void abort();
 
@@ -82,7 +82,7 @@ public interface MagmaCoreDatabase {
      *
      * @param predicateIri IRI of the predicate being queried.
      * @param objectIri    IRI of the object to match.
-     * @return The object(s).
+     * @return The {@link Thing}(s) found.
      */
     List<Thing> findByPredicateIri(IRI predicateIri, IRI objectIri);
 
@@ -90,7 +90,7 @@ public interface MagmaCoreDatabase {
      * Find object(s) that have a specific HQDM-defined predication.
      *
      * @param predicateIri IRI of the HQDM relationship type being queried.
-     * @return The object(s).
+     * @return The {@link Thing}(s) found.
      */
     List<Thing> findByPredicateIriOnly(HqdmIri predicateIri);
 
@@ -99,7 +99,7 @@ public interface MagmaCoreDatabase {
      *
      * @param predicateIri IRI of the predicate being queried.
      * @param value        Case-sensitive string to match.
-     * @return The object(s).
+     * @return The {@link Thing}(s) found.
      */
     List<Thing> findByPredicateIriAndStringValue(IRI predicateIri, String value);
 
@@ -108,7 +108,7 @@ public interface MagmaCoreDatabase {
      *
      * @param predicateIri IRI of the predicate being queried.
      * @param value        Case-insensitive string to match.
-     * @return The object(s).
+     * @return The {@link Thing}(s).
      */
     List<Thing> findByPredicateIriAndStringCaseInsensitive(IRI predicateIri, String value);
 

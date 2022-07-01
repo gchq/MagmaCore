@@ -23,29 +23,29 @@ import java.util.stream.Collectors;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
- * Class representing an invertible ordered sequence of change sets.
+ * An invertible ordered sequence of change sets.
  */
 public class DbTransformation implements Function<MagmaCoreService, MagmaCoreService> {
     private List<DbChangeSet> transformations;
 
     /**
-     * Constructor.
+     * Constructs a DbTransformation with no operations.
      */
     public DbTransformation() {
         this(new LinkedList<>());
     }
 
     /**
-     * Constructor.
+     * Constructs a DbTransformation with a list of transformations.
      *
-     * @param transformations a {@link List} of {@link DbChangeSet}
+     * @param transformations A {@link List} of {@link DbChangeSet}.
      */
     public DbTransformation(final List<DbChangeSet> transformations) {
         this.transformations = transformations;
     }
 
     /**
-     * {@inheritDoc}
+     * Apply the transformation to a {@link MagmaCoreService}.
      */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
@@ -72,7 +72,7 @@ public class DbTransformation implements Function<MagmaCoreService, MagmaCoreSer
     /**
      * Add a DbChangeSet to this transformation.
      *
-     * @param changeSet {@link DbChangeSet}
+     * @param changeSet {@link DbChangeSet} to add.
      */
     public void add(final DbChangeSet changeSet) {
         this.transformations.add(changeSet);

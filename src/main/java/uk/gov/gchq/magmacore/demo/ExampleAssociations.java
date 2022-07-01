@@ -36,20 +36,20 @@ import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
 import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 
 /**
- * Functions for creating systems using MagmaCore and HQDM.
+ * Example associations.
  */
 public class ExampleAssociations {
 
     /**
      * Create a person-occupies-house association.
      *
-     * @param mcService     a {@link MagmaCoreDatabase}
-     * @param creates       {@link List} of {@link DbCreateOperation}
-     * @param possibleWorld a {@link PossibleWorld}
-     * @param person        the {@link Person} occupying the house.
-     * @param house         the house as a {@link FunctionalSystem} that is occupied.
-     * @param beginning     {@link Event}
-     * @param ending        {@link Event}
+     * @param mcService     {@link MagmaCoreDatabase}.
+     * @param creates       {@link List} of {@link DbCreateOperation}.
+     * @param possibleWorld A {@link PossibleWorld}.
+     * @param person        {@link Person} occupying the house.
+     * @param house         The house as a {@link FunctionalSystem} that is occupied.
+     * @param beginning     Beginning {@link Event}.
+     * @param ending        Ending {@link Event}.
      */
     private static void occupyHouse(final MagmaCoreService mcService, final List<DbCreateOperation> creates,
             final PossibleWorld possibleWorld, final Person person, final FunctionalSystem house, final IRI beginning,

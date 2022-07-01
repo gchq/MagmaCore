@@ -26,14 +26,19 @@ public final class RemoteSparqlDatabaseDemo {
 
     private final String url;
 
+    /**
+     * Constructs a RemoteSparqlDatabaseDemo with a remote SPARQL server connection.
+     *
+     * @param url URL of the SPARQL server.
+     */
     public RemoteSparqlDatabaseDemo(final String url) {
         this.url = url;
     }
 
     /**
-     * Run the demo.
+     * Run the RemoteSparqlDatabase demo.
      *
-     * @param populate true if the dataset should be populated with example data
+     * @param populate {@code true} if the dataset should be populated with example data.
      */
     public void run(final boolean populate) {
         final MagmaCoreService mcService = MagmaCoreServiceFactory.attachRemoteSparqlEndpoint(url);

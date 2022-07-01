@@ -35,7 +35,7 @@ public class McAssistMultInheritFromDataApp {
     /**
      * Example program for creating classes dynamically.
      *
-     * @param args an array of Strings.
+     * @param args An array of Strings.
      */
     public static void main(final String[] args) {
 

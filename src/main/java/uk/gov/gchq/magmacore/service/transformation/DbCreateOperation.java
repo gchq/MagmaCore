@@ -23,7 +23,7 @@ import uk.gov.gchq.magmacore.exception.DbTransformationException;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
- * Class representing an invertible operation to create a predicate.
+ * An invertible operation to create a predicate.
  */
 public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreService> {
 
@@ -37,11 +37,11 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
     private String object;
 
     /**
-     * Constructor.
+     * Constructs a DbCreateOperation to create a predicate.
      *
-     * @param subject   {@link IRI}
-     * @param predicate {@link IRI}
-     * @param object    {@link String}
+     * @param subject   Subject {@link IRI}.
+     * @param predicate Predicate {@link IRI}.
+     * @param object    {@link String} value.
      */
     public DbCreateOperation(final IRI subject, final IRI predicate, final String object) {
         this.subject = subject;
@@ -50,7 +50,7 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
     }
 
     /**
-     * {@inheritDoc}
+     * Apply the operation to a {@link MagmaCoreService}.
      */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
@@ -84,9 +84,9 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
     }
 
     /**
-     * Calculate a hashcode.
+     * Calculate the hashcode for this object.
      *
-     * @return int
+     * @return hash code of this object.
      */
     @Override
     public int hashCode() {
@@ -101,8 +101,8 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
     /**
      * Check for equality.
      *
-     * @param obj {@link Object}
-     * @return true if the objects are equal, false otherwise.
+     * @param obj The {@link Object} to compare.
+     * @return {@code true} if the objects are equal, false otherwise.
      */
     @Override
     public boolean equals(final Object obj) {

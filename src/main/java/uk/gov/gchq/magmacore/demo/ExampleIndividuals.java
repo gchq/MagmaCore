@@ -29,15 +29,15 @@ import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
 import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 
 /**
- * Functions for creating systems using MagmaCore and HQDM.
+ * Example invididuals.
  */
 public class ExampleIndividuals {
 
     /**
      * Create a DbChangeSet that adds the whole life individuals.
      *
-     * @param mcService {@link MagmaCoreService}
-     * @return {@link DbChangeSet}
+     * @param mcService {@link MagmaCoreService}.
+     * @return {@link DbChangeSet}.
      */
     public static DbChangeSet addWholeLifeIndividuals(final MagmaCoreService mcService) {
 
@@ -88,8 +88,5 @@ public class ExampleIndividuals {
 
         // Create a change set and return it.
         return new DbChangeSet(List.of(), creates);
-    }
-
-    public ExampleIndividuals() {
     }
 }

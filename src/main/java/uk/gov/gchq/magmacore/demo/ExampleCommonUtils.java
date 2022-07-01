@@ -20,7 +20,7 @@ import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.hqdm.rdf.iri.IriBase;
 
 /**
- * Functions for creating systems using MagmaCore and HQDM.
+ * Utilities for creating example data for the demos.
  */
 public class ExampleCommonUtils {
 
@@ -30,7 +30,7 @@ public class ExampleCommonUtils {
     /**
      * Create a new IRI in the USER_BASE namespace.
      *
-     * @return {@link IRI}
+     * @return {@link IRI}.
      */
     public static IRI mkUserBaseIri() {
         return new IRI(USER_BASE, uid());
@@ -42,7 +42,7 @@ public class ExampleCommonUtils {
     /**
      * Create a new IRI in the REF_BASE namespace.
      *
-     * @return {@link IRI}
+     * @return {@link IRI}.
      */
     public static IRI mkRefBaseIri() {
         return new IRI(REF_BASE, uid());

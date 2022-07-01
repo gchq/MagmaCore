@@ -23,14 +23,14 @@ import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
 import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 
 /**
- * Functions for creating systems using MagmaCore and HQDM.
+ * Example signs reference data.
  */
 public class ExampleSignsRdl {
 
     /**
      * Create a DbChangeSet that adds the RDL.
      *
-     * @return {@link DbChangeSet}
+     * @return {@link DbChangeSet}.
      */
     public static DbChangeSet createRefDataObjects() {
 
@@ -47,11 +47,11 @@ public class ExampleSignsRdl {
                 new DbCreateOperation(description, RDFS.RDF_TYPE, HQDM.DESCRIPTION.getIri()),
                 new DbCreateOperation(description, HQDM.ENTITY_NAME, "Description By URL"),
 
-                // Create the community that recognizes the signs
+                // Create the community that recognizes the signs.
                 new DbCreateOperation(englishSpeakers, RDFS.RDF_TYPE, HQDM.RECOGNIZING_LANGUAGE_COMMUNITY.getIri()),
                 new DbCreateOperation(englishSpeakers, HQDM.ENTITY_NAME, "English Speakers"),
 
-                // Link the description to the Pattern
+                // Link the description to the Pattern.
                 new DbCreateOperation(description, HQDM.CONSISTS_OF_BY_CLASS, urlPattern.getIri())
 
         );

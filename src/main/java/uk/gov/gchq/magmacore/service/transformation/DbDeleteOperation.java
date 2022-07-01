@@ -22,7 +22,7 @@ import uk.gov.gchq.magmacore.exception.DbTransformationException;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
- * Class representing an invertible operation to delete a predicate.
+ * An invertible operation to delete a predicate.
  */
 public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreService> {
     private IRI subject;
@@ -30,11 +30,11 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
     private String object;
 
     /**
-     * Constructor.
+     * Constructs a DbDeleteOperation to delete a predicate.
      *
-     * @param subject   {@link IRI}
-     * @param predicate {@link IRI}
-     * @param object    {@link String}
+     * @param subject   Subject {@link IRI}.
+     * @param predicate Predicate {@link IRI}.
+     * @param object    {@link String} value.
      */
     public DbDeleteOperation(final IRI subject, final IRI predicate, final String object) {
         this.subject = subject;
@@ -43,7 +43,7 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
     }
 
     /**
-     * {@inheritDoc}
+     * Apply the operation to a {@link MagmaCoreService}.
      */
     public MagmaCoreService apply(final MagmaCoreService mcService) {
         final Thing thing = mcService.get(subject);
@@ -61,7 +61,7 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
     /**
      * Invert a {@link DbDeleteOperation}.
      *
-     * @param deleteOperation the {@link DbDeleteOperation}
+     * @param deleteOperation The {@link DbDeleteOperation} to invert.
      * @return The inverted {@link DbCreateOperation}.
      */
     public static DbCreateOperation invert(final DbDeleteOperation deleteOperation) {
@@ -69,9 +69,9 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
     }
 
     /**
-     * Calculate a hashcode.
+     * Calculate the hashcode for this object.
      *
-     * @return int
+     * @return hash code of this object.
      */
     @Override
     public int hashCode() {
@@ -86,8 +86,8 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
     /**
      * Check for equality.
      *
-     * @param obj {@link Object}
-     * @return true if the objects are euqal, false otherwise.
+     * @param obj The {@link Object} to compare.
+     * @return {@code true} if the objects are equal, false otherwise.
      */
     @Override
     public boolean equals(final Object obj) {

@@ -24,39 +24,41 @@ import uk.gov.gchq.magmacore.database.MagmaCoreRemoteSparqlDatabase;
 public class MagmaCoreServiceFactory {
 
     /**
-     * Create a Jena database.
+     * Create a {@link MagmaCoreService} for a new {@link MagmaCoreJenaDatabase}.
      *
-     * @return {@link MagmaCoreService}
+     * @return {@link MagmaCoreService}.
      */
     public static MagmaCoreService createWithJenaDatabase() {
         return new MagmaCoreService(new MagmaCoreJenaDatabase());
     }
 
     /**
-     * Create a Jena database.
+     * Create a {@link MagmaCoreService} for a new {@link MagmaCoreJenaDatabase} with a remote Jena
+     * server.
      *
-     * @param location a database name String
-     * @return {@link MagmaCoreService}
+     * @param location URL of the database.
+     * @return {@link MagmaCoreService}.
      */
     public static MagmaCoreService createWithJenaDatabase(final String location) {
         return new MagmaCoreService(new MagmaCoreJenaDatabase(location));
     }
 
     /**
-     * Create a Jena database.
+     * Create a {@link MagmaCoreService} for an existing {@link MagmaCoreJenaDatabase}.
      *
-     * @param database a {@link MagmaCoreJenaDatabase}
-     * @return {@link MagmaCoreService}
+     * @param database A {@link MagmaCoreJenaDatabase}.
+     * @return {@link MagmaCoreService}.
      */
     public static MagmaCoreService createWithJenaDatabase(final MagmaCoreJenaDatabase database) {
         return new MagmaCoreService(database);
     }
 
     /**
-     * Attach to a remote SPARQL Endpoint.
+     * Create a {@link MagmaCoreService} for a new {@link MagmaCoreRemoteSparqlDatabase} with a SPARQL
+     * server connection.
      *
-     * @param serviceUrl the url {@link String}
-     * @return {@link MagmaCoreService}
+     * @param serviceUrl URL of the SPARQL server.
+     * @return {@link MagmaCoreService}.
      */
     public static MagmaCoreService attachRemoteSparqlEndpoint(final String serviceUrl) {
         return new MagmaCoreService(new MagmaCoreRemoteSparqlDatabase(serviceUrl));

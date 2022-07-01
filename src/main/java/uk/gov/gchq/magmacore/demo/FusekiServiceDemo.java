@@ -42,7 +42,7 @@ public final class FusekiServiceDemo {
     /**
      * Run the example Fuseki server.
      *
-     * @param populate true if the dataset should be populated with example data
+     * @param populate {@code true} if the dataset should be populated with example data.
      */
     public void run(final boolean populate) {
         // Create/connect to persistent TDB.

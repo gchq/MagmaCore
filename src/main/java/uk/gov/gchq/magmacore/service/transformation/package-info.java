@@ -13,6 +13,6 @@
  */
 
 /**
- * Utilities for Magma Core.
+ * Transformations that can be applied to a {@link uk.gov.gchq.magmacore.service.MagmaCoreService}.
  */
-package uk.gov.gchq.magmacore.util;
+package uk.gov.gchq.magmacore.service.transformation;

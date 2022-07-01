@@ -22,17 +22,17 @@ import java.util.stream.Collectors;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
- * Class representing an invertible set of deletes and creates.
+ * An invertible set of delete and create operations.
  */
 public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService> {
     private List<DbDeleteOperation> deletes;
     private List<DbCreateOperation> creates;
 
     /**
-     * Constructor.
+     * Constructs a DbChangeSet with a list of delete and create operations to perform.
      *
-     * @param deletes a {@link List} of {@link DbDeleteOperation}
-     * @param creates a {@link List} of {@link DbCreateOperation}
+     * @param deletes A {@link List} of {@link DbDeleteOperation}.
+     * @param creates A {@link List} of {@link DbCreateOperation}.
      */
     public DbChangeSet(final List<DbDeleteOperation> deletes, final List<DbCreateOperation> creates) {
         this.deletes = deletes;
@@ -40,7 +40,7 @@ public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService>
     }
 
     /**
-     * {@inheritDoc}
+     * Apply the change set to a {@link MagmaCoreService}.
      */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
@@ -59,7 +59,7 @@ public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService>
     /**
      * Invert a {@link DbChangeSet}.
      *
-     * @param changeSet a {@link DbChangeSet}
+     * @param changeSet A {@link DbChangeSet} to invert.
      * @return The inverted {@link DbChangeSet}.
      */
     public static DbChangeSet invert(final DbChangeSet changeSet) {

@@ -23,14 +23,14 @@ import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
 import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 
 /**
- * Functions for creating systems using MagmaCore and HQDM.
+ * Example reference data.
  */
 public class ExampleRdl {
 
     /**
      * Create a DbChangeSet that adds the RDL.
      *
-     * @return {@link DbChangeSet}
+     * @return {@link DbChangeSet}.
      */
     public static DbChangeSet createRefDataObjects() {
 
@@ -129,7 +129,7 @@ public class ExampleRdl {
                 new DbCreateOperation(occupantInPropertyKindOfAssociation, HQDM.ENTITY_NAME,
                         "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION"),
 
-                // Create the class hierarchy
+                // Create the class hierarchy.
                 new DbCreateOperation(viewableObject, HQDM.HAS_SUPERCLASS, viewable.getIri()),
                 new DbCreateOperation(viewableObject, RDFS.RDFS_SUB_CLASS_OF, viewable.getIri()),
 
@@ -149,7 +149,7 @@ public class ExampleRdl {
                 new DbCreateOperation(occupierOfPropertyRole, HQDM.HAS_SUPERCLASS, classOfStateOfPerson.getIri()),
                 new DbCreateOperation(occupierOfPropertyRole, RDFS.RDFS_SUB_CLASS_OF, classOfStateOfPerson.getIri()),
 
-                // Set class memberships
+                // Set class memberships.
                 new DbCreateOperation(kindOfPerson, HQDM.MEMBER_OF, viewableObject.getIri()),
                 new DbCreateOperation(classOfStateOfPerson, HQDM.MEMBER_OF, viewableObject.getIri()),
                 new DbCreateOperation(kindOfFunctionalSystemDomesticProperty, HQDM.MEMBER_OF, viewableObject.getIri()),
@@ -158,13 +158,13 @@ public class ExampleRdl {
                 new DbCreateOperation(occupantInPropertyKindOfAssociation, HQDM.MEMBER_OF,
                         viewableAssociation.getIri()),
 
-                // Set the has component by class predicates
+                // Set the has component by class predicates.
                 new DbCreateOperation(kindOfBiologicalSystemHumanComponent, HQDM.HAS_COMPONENT_BY_CLASS,
                         kindOfPerson.getIri()),
                 new DbCreateOperation(kindOfFunctionalSystemDomesticPropertyComponent, HQDM.HAS_COMPONENT_BY_CLASS,
                         kindOfFunctionalSystemDomesticProperty.getIri()),
 
-                // Set the consists of by class predicates
+                // Set the consists of by class predicates.
                 new DbCreateOperation(domesticOccupantInPropertyRole, HQDM.CONSISTS_OF_BY_CLASS,
                         occupantInPropertyKindOfAssociation.getIri()),
                 new DbCreateOperation(occupierOfPropertyRole, HQDM.CONSISTS_OF_BY_CLASS,
