@@ -25,6 +25,7 @@ import org.junit.Test;
 import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
@@ -34,41 +35,36 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  */
 public class DbChangeSetTest {
 
-    // Dummy IRI for testing.
-    private static final String TEST_IRI = "http://example.com/test#test";
+    private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test");
 
     /**
      * Test that {@link DbChangeSet} can be applied, inverted, and undone.
      */
     @Test
     public void testApplyAndInvert() {
-
-        final IRI iri = new IRI(TEST_IRI);
-
-        // Create operations to add an object with dummy values.
-        final DbChangeSet changes = new DbChangeSet(List.of(),
-                List.of(new DbCreateOperation(iri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri()),
-                        new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1"),
-                        new DbCreateOperation(iri, HQDM.PART_OF_POSSIBLE_WORLD, "a world")));
-
-        // Create a database to be updated.
         final MagmaCoreService mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
-        // Apply the operations.
-        mcService.runInTransaction(changes);
+        // Create operations to add an object with dummy values.
+        final IRI individualIri = new IRI(TEST_BASE, "individual");
+        final DbChangeSet createIndividual = new DbChangeSet(List.of(),
+                List.of(new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri()),
+                        new DbCreateOperation(individualIri, HQDM.MEMBER_OF, "classOfIndividual"),
+                        new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, "possible world")));
 
-        // Find the thing we just created and assert values are present.
-        final Thing thing = mcService.getInTransaction(iri);
+        // Apply the operations to the dataset.
+        mcService.runInTransaction(createIndividual);
 
-        assertNotNull(thing);
-        assertTrue(thing.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
-        assertTrue(thing.hasThisValue(HQDM.MEMBER_OF.getIri(), "class1"));
-        assertTrue(thing.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "a world"));
+        // Find the individual and assert values are present.
+        final Thing individual = mcService.getInTransaction(individualIri);
 
-        // Invert the operations, apply them in reverse order and assert they are no longer present.
-        mcService.runInTransaction(DbChangeSet.invert(changes));
+        assertNotNull(individual);
+        assertTrue(individual.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
+        assertTrue(individual.hasThisValue(HQDM.MEMBER_OF.getIri(), "classOfIndividual"));
+        assertTrue(individual.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "possible world"));
 
-        final Thing thingFromDb = mcService.getInTransaction(iri);
-        assertNull(thingFromDb);
+        // Invert the operations and apply them in reverse order.
+        mcService.runInTransaction(DbChangeSet.invert(createIndividual));
+
+        assertNull(mcService.getInTransaction(individualIri));
     }
 }
