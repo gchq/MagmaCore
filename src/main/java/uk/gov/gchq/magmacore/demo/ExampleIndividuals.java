@@ -44,8 +44,10 @@ public class ExampleIndividuals {
      */
     public static DbChangeSet addWholeLifeIndividuals(final MagmaCoreService mcService) {
 
-        final Map<String, Thing> entities = mcService.findByEntityNameInTransaction(List.of("KIND_OF_PERSON",
-                "NATURAL_MEMBER_OF_SOCIETY_ROLE", "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY",
+        final Map<String, Thing> entities = mcService.findByEntityNameInTransaction(List.of(
+                "KIND_OF_PERSON",
+                "NATURAL_MEMBER_OF_SOCIETY_ROLE",
+                "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY",
                 "ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE"));
 
         // Find the required classes, kinds, and roles.

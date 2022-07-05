@@ -46,10 +46,10 @@ public class DbChangeSetTest {
 
         // Create operations to add an object with dummy values.
         final IRI individualIri = new IRI(TEST_BASE, "individual");
-        final DbChangeSet createIndividual = new DbChangeSet(List.of(),
-                List.of(new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri()),
-                        new DbCreateOperation(individualIri, HQDM.MEMBER_OF, "classOfIndividual"),
-                        new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, "possible world")));
+        final DbChangeSet createIndividual = new DbChangeSet(List.of(), List.of(
+                new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri()),
+                new DbCreateOperation(individualIri, HQDM.MEMBER_OF, "classOfIndividual"),
+                new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, "possible world")));
 
         // Apply the operations to the dataset.
         mcService.runInTransaction(createIndividual);

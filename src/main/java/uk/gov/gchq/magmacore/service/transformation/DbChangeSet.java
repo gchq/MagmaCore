@@ -44,12 +44,16 @@ public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService>
      */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
-        final Function<MagmaCoreService, MagmaCoreService> deleteFunction = deletes.stream()
-                .map(d -> (Function<MagmaCoreService, MagmaCoreService>) d).reduce(Function::andThen)
+        final Function<MagmaCoreService, MagmaCoreService> deleteFunction = deletes
+                .stream()
+                .map(d -> (Function<MagmaCoreService, MagmaCoreService>) d)
+                .reduce(Function::andThen)
                 .orElse(Function.identity());
 
-        final Function<MagmaCoreService, MagmaCoreService> createFunction = creates.stream()
-                .map(c -> (Function<MagmaCoreService, MagmaCoreService>) c).reduce(Function::andThen)
+        final Function<MagmaCoreService, MagmaCoreService> createFunction = creates
+                .stream()
+                .map(c -> (Function<MagmaCoreService, MagmaCoreService>) c)
+                .reduce(Function::andThen)
                 .orElse(Function.identity());
 
         mcService.runInTransaction(deleteFunction.andThen(createFunction));
@@ -63,10 +67,16 @@ public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService>
      * @return The inverted {@link DbChangeSet}.
      */
     public static DbChangeSet invert(final DbChangeSet changeSet) {
-        final List<DbDeleteOperation> newDeletes = changeSet.creates.stream().map(DbCreateOperation::invert)
+        final List<DbDeleteOperation> newDeletes = changeSet.creates
+                .stream()
+                .map(DbCreateOperation::invert)
                 .collect(Collectors.toList());
-        final List<DbCreateOperation> newCreates = changeSet.deletes.stream().map(DbDeleteOperation::invert)
+
+        final List<DbCreateOperation> newCreates = changeSet.deletes
+                .stream()
+                .map(DbDeleteOperation::invert)
                 .collect(Collectors.toList());
+
         Collections.reverse(newDeletes);
         Collections.reverse(newCreates);
         return new DbChangeSet(newDeletes, newCreates);

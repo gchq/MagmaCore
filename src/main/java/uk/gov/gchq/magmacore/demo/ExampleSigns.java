@@ -71,8 +71,10 @@ public class ExampleSigns {
      * @return {@link DbChangeSet}.
      */
     private static DbChangeSet addSigns(final MagmaCoreService mcService) {
-        final Map<String, Thing> entities = mcService
-                .findByEntityNameInTransaction(List.of("URL Pattern", "Description By URL", "English Speakers"));
+        final Map<String, Thing> entities = mcService.findByEntityNameInTransaction(List.of(
+                "URL Pattern",
+                "Description By URL",
+                "English Speakers"));
 
         // Find the required classes, kinds, and roles.
         final Pattern urlPattern = (Pattern) entities.get("URL Pattern");

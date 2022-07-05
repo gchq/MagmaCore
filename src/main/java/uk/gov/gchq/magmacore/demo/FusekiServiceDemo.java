@@ -64,6 +64,10 @@ public final class FusekiServiceDemo {
 
         // Build and start Fuseki server.
         FusekiLogging.setLogging();
-        FusekiServer.create().port(3330).add("/tdb", tdb.getDataset(), true).start();
+        FusekiServer
+                .create()
+                .port(3330)
+                .add("/tdb", tdb.getDataset(), true)
+                .start();
     }
 }

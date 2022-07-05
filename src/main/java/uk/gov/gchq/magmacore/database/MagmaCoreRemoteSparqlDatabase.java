@@ -60,8 +60,13 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      * @param serviceUrl The URL of the SPARQL update endpoint.
      */
     public MagmaCoreRemoteSparqlDatabase(final String serviceUrl) {
-        connection = RDFConnectionRemote.newBuilder().destination(serviceUrl).queryEndpoint("query")
-                .updateEndpoint("update").triplesFormat(RDFFormat.RDFJSON).build();
+        connection = RDFConnectionRemote
+                .newBuilder()
+                .destination(serviceUrl)
+                .queryEndpoint("query")
+                .updateEndpoint("update")
+                .triplesFormat(RDFFormat.RDFJSON)
+                .build();
     }
 
     /**

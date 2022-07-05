@@ -58,10 +58,12 @@ public class ExampleAssociations {
             final PossibleWorld possibleWorld, final Person person, final FunctionalSystem house, final IRI beginning,
             final IRI ending) {
 
-        final Map<String, Thing> entities = mcService.findByEntityNameInTransaction(
-                List.of("CLASS_OF_STATE_OF_PERSON", "STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY",
-                        "OCCUPIER_LOCATED_IN_PROPERTY_ROLE", "DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE",
-                        "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION"));
+        final Map<String, Thing> entities = mcService.findByEntityNameInTransaction(List.of(
+                "CLASS_OF_STATE_OF_PERSON",
+                "STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY",
+                "OCCUPIER_LOCATED_IN_PROPERTY_ROLE",
+                "DOMESTIC_PROPERTY_THAT_IS_OCCUPIED_ROLE",
+                "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION"));
 
         // Find the required classes, kinds, and roles.
         final ClassOfStateOfPerson classOfStateOfPerson = (ClassOfStateOfPerson) entities
