@@ -17,19 +17,19 @@ package uk.gov.gchq.magmacore.util;
 import java.util.UUID;
 
 /**
- * Wrapper for UUID to generate a random UUID {@link String}.
+ * Wrapper for UUID to generate a random UUID.
  */
 public final class UID {
 
-    private UID() {}
+    private UID() {
+    }
 
     /**
      * Create a new random UUID to assign to an object.
      *
-     * @return A Random UUID {@link String}.
+     * @return A Randomly generated UUID.
      */
     public static String uid() {
         return UUID.randomUUID().toString();
     }
-
 }

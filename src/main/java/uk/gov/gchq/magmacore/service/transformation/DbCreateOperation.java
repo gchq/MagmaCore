@@ -16,13 +16,14 @@ package uk.gov.gchq.magmacore.service.transformation;
 
 import java.util.function.Function;
 
+import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices;
 import uk.gov.gchq.magmacore.exception.DbTransformationException;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
- * Class representing an invertible operation to create a predicate.
+ * An invertible operation to create a predicate.
  */
 public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreService> {
 
@@ -36,12 +37,12 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
     private String object;
 
     /**
-     * Constructor.
+     * Constructs a DbCreateOperation to create a predicate.
      *
-     * @param subject {@link IRI}
-     * @param predicate {@link IRI}
-     * @param object {@link String}
-    */
+     * @param subject   Subject {@link IRI}.
+     * @param predicate Predicate {@link IRI}.
+     * @param object    {@link String} value.
+     */
     public DbCreateOperation(final IRI subject, final IRI predicate, final String object) {
         this.subject = subject;
         this.predicate = predicate;
@@ -49,14 +50,14 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
     }
 
     /**
-     * {@inheritDoc}
+     * Apply the operation to a {@link MagmaCoreService}.
      */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
-        final var thing = mcService.get(subject);
+        final Thing thing = mcService.get(subject);
 
         if (thing == null) {
-            final  var newThing = SpatioTemporalExtentServices.createThing(subject.getIri());
+            final Thing newThing = SpatioTemporalExtentServices.createThing(subject.getIri());
             newThing.addStringValue(predicate.getIri(), object);
             mcService.create(newThing);
         } else {
@@ -65,8 +66,7 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
                 mcService.update(thing);
             } else {
                 throw new DbTransformationException(
-                    String.format("Triple already exists: %s, %s, %s", subject, predicate, object)
-                );
+                        String.format("Triple already exists: %s, %s, %s", subject, predicate, object));
             }
         }
 
@@ -76,18 +76,18 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
     /**
      * Invert an operation.
      *
-     * @param c {@link DbCreateOperation}
+     * @param createOperation {@link DbCreateOperation}
      * @return The inverted {@link DbDeleteOperation}.
-    */
-    public static DbDeleteOperation invert(final DbCreateOperation c) {
-        return new DbDeleteOperation(c.subject, c.predicate, c.object);
+     */
+    public static DbDeleteOperation invert(final DbCreateOperation createOperation) {
+        return new DbDeleteOperation(createOperation.subject, createOperation.predicate, createOperation.object);
     }
 
     /**
-     * Calculate a hashcode.
+     * Calculate the hashcode for this object.
      *
-     * @return int
-     * */
+     * @return hash code of this object.
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -101,9 +101,9 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
     /**
      * Check for equality.
      *
-     * @param obj {@link Object}
-     * @return true if the objects are euqal, false otherwise.
-     * */
+     * @param obj The {@link Object} to compare.
+     * @return {@code true} if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
@@ -139,6 +139,4 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
         }
         return true;
     }
-
 }
-

@@ -43,7 +43,7 @@ public class QueryResult {
      * Set either the subject (s), object (o), or predicate (p) of the result triple.
      *
      * @param varName Name of variable within the query result to set.
-     * @param node RDF node to set.
+     * @param node    RDF node to set.
      */
     public final void set(final String varName, final RDFNode node) {
         map.put(varName, node);
@@ -62,8 +62,8 @@ public class QueryResult {
     }
 
     /**
-     * Get the value of an RDF node. This could either be the URI of the node, string literal, or
-     * the local name of the property within this namespace.
+     * Get the value of an RDF node. This could either be the URI of the node, string literal, or the
+     * local name of the property within this namespace.
      *
      * @param node Node to get the value of.
      * @return Value of the RDF node.

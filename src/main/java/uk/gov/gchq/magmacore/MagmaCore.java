@@ -23,7 +23,8 @@ import uk.gov.gchq.magmacore.demo.RemoteSparqlDatabaseDemo;
  */
 public final class MagmaCore {
 
-    private MagmaCore() {}
+    private MagmaCore() {
+    }
 
     /**
      * Executes the selected database example.
@@ -34,28 +35,28 @@ public final class MagmaCore {
         if (args.length == 0) {
             fuseki(true);
         } else {
-          final String option = args[0];
+            final String option = args[0];
 
-          if (option.equals("fuseki")) {
-              fuseki(false);
-          } else if (option.equals("fuseki-populate")) {
-              fuseki(true);
-          } else if (option.equals("remote")) {
-              remoteSparqlDatabaseDemo(false);
-          } else if (option.equals("remote-populate")) {
-            remoteSparqlDatabaseDemo(true);
-          } else if (option.equals("jena")) {
-            jenaDemo();
-          } else {
-            System.out.println("Unknown option: " + option);
-          }
+            if (option.equals("fuseki")) {
+                fuseki(false);
+            } else if (option.equals("fuseki-populate")) {
+                fuseki(true);
+            } else if (option.equals("remote")) {
+                remoteSparqlDatabaseDemo(false);
+            } else if (option.equals("remote-populate")) {
+                remoteSparqlDatabaseDemo(true);
+            } else if (option.equals("jena")) {
+                jenaDemo();
+            } else {
+                System.out.println("Unknown option: " + option);
+            }
         }
     }
 
     /**
      * Executes the FusekiServiceDemo.
      *
-     * @param populate true if the dataset should be populated with example data
+     * @param populate {@code true} if the dataset should be populated with example data.
      */
     public static void fuseki(final boolean populate) {
         new FusekiServiceDemo().run(populate);
@@ -64,7 +65,7 @@ public final class MagmaCore {
     /**
      * Executes the RemoteSparqlDatabaseDemo.
      *
-     * @param populate true if the dataset should be populated with example data
+     * @param populate {@code true} if the dataset should be populated with example data.
      */
     public static void remoteSparqlDatabaseDemo(final boolean populate) {
         new RemoteSparqlDatabaseDemo("http://localhost:3330/tdb").run(populate);
@@ -74,6 +75,6 @@ public final class MagmaCore {
      * Executes the JenaDatabaseDemo.
      */
     public static void jenaDemo() {
-      new JenaDatabaseDemo().run();
+        new JenaDatabaseDemo().run();
     }
 }

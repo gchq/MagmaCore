@@ -25,124 +25,123 @@ import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 
 /**
- * Services exported by the MagmaCore module.
+ * Service for interacting with a {@link MagmaCoreDatabase}.
  */
 public class MagmaCoreService {
 
-    // The service operates on a database.
-    private final MagmaCoreDatabase db;
+    private final MagmaCoreDatabase database;
 
     /**
-     * Constructor that requires a {@link MagmaCoreDatabase}.
+     * Constructs a MagmaCoreService for a {@link MagmaCoreDatabase}.
      *
-     * @param db {@link MagmaCoreDatabase}
+     * @param database {@link MagmaCoreDatabase} to build the service for.
      */
-    MagmaCoreService(final MagmaCoreDatabase db) {
-        this.db = db;
+    MagmaCoreService(final MagmaCoreDatabase database) {
+        this.database = database;
     }
 
     /**
-     * Find an object by its ENTITY_NAME.
+     * Find an object by its {@link HQDM#ENTITY_NAME}.
      *
-     * @param <T> the return type.
-     * @param name the name {@link String} to search for.
-     * @return the {@link Thing}that was found.
-     * @throws RuntimeException if no or multiple results found.
+     * @param <T>        HQDM entity type.
+     * @param entityName Entity name value to search for.
+     * @return {@link Thing} that was found.
+     * @throws RuntimeException If no or multiple results were found.
      */
-    public <T> T findByEntityName(final String name) {
-        final var searchResult = db.findByPredicateIriAndStringValue(HQDM.ENTITY_NAME, name);
+    public <T extends Thing> T findByEntityName(final String entityName) {
+        final List<Thing> searchResult = database.findByPredicateIriAndStringValue(HQDM.ENTITY_NAME, entityName);
 
         if (searchResult.size() == 1) {
             return (T) searchResult.get(0);
         } else if (searchResult.isEmpty()) {
-            throw new RuntimeException("No entity found with name: " + name);
+            throw new RuntimeException("No entity found with name: " + entityName);
         } else {
-            throw new RuntimeException("Multiple entities found with name: " + name);
+            throw new RuntimeException("Multiple entities found with name: " + entityName);
         }
     }
 
     /**
-     * Create a new Thing.
+     * Create a new Thing in the database.
      *
-     * @param thing {@link Thing}
+     * @param thing {@link Thing} to create.
      */
     public void create(final Thing thing) {
-        db.create(thing);
+        database.create(thing);
     }
 
     /**
-     * Update an existing {@link Thing}.
+     * Update an existing {@link Thing} in the database.
      *
-     * @param thing {@link Thing}
+     * @param thing {@link Thing} to update.
      */
     public void update(final Thing thing) {
-        db.update(thing);
+        database.update(thing);
     }
 
     /**
-     * Get a {@link Thing} with the given {@link IRI}.
+     * Get a {@link Thing} by its IRI.
      *
-     * @param iri {@link IRI}
-     * @return {@link Thing}
+     * @param iri IRI of the thing.
+     * @return {@link Thing} to get.
      */
     public Thing get(final IRI iri) {
-        return db.get(iri);
+        return database.get(iri);
     }
 
     /**
-     * Get a {@link Thing} with the given {@link IRI}.
+     * Get a {@link Thing} by its IRI {@link IRI} in a transactional database.
      *
-     * @param iri {@link IRI}
-     * @return {@link Thing}
+     * @param iri {@link IRI} of the {@link Thing}.
+     * @return {@link Thing} to get.
      */
     public Thing getInTransaction(final IRI iri) {
         try {
-            db.begin();
-            final var result = db.get(iri);
-            db.commit();
+            database.begin();
+            final Thing result = database.get(iri);
+            database.commit();
             return result;
         } catch (final Exception e) {
-            db.abort();
+            database.abort();
             throw e;
         }
     }
 
     /**
-     * Run a function in a transaction.
+     * Run a {@link Function} in a transaction.
      *
-     * @param f the {@link Function} to run.
+     * @param func {@link Function} to run.
      */
-    public void runInTransaction(final Function<MagmaCoreService, MagmaCoreService> f) {
+    public void runInTransaction(final Function<MagmaCoreService, MagmaCoreService> func) {
         try {
-            db.begin();
-            f.apply(this);
-            db.commit();
+            database.begin();
+            func.apply(this);
+            database.commit();
         } catch (final Exception e) {
-            db.abort();
+            database.abort();
             throw e;
         }
     }
 
     /**
-     * Find many entities by name.
+     * Find entities by their names.
      *
-     * @param names a {@link List} of {@link String}
-     * @return a {@link Map} of {@link String} to {@link Thing}
+     * @param entityNames {@link List} of entity names.
+     * @return {@link Map} of {@link String} to {@link Thing}.
      */
-    public Map<String, Thing> findByEntityNameInTransaction(final List<String> names) {
+    public Map<String, Thing> findByEntityNameInTransaction(final List<String> entityNames) {
         try {
-            db.begin();
-            final var result = new HashMap<String, Thing>();
+            database.begin();
+            final HashMap<String, Thing> result = new HashMap<String, Thing>();
 
-            for (final String name : names) {
+            for (final String name : entityNames) {
                 result.put(name, findByEntityName(name));
             }
 
-            db.commit();
+            database.commit();
 
             return result;
         } catch (final Exception e) {
-            db.abort();
+            database.abort();
             throw e;
         }
     }

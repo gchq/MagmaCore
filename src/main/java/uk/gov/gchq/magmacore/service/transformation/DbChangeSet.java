@@ -22,39 +22,39 @@ import java.util.stream.Collectors;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
- * Class representing an invertible set of deletes and creates.
+ * An invertible set of delete and create operations.
  */
 public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService> {
     private List<DbDeleteOperation> deletes;
     private List<DbCreateOperation> creates;
 
     /**
-     * Constructor.
+     * Constructs a DbChangeSet with a list of delete and create operations to perform.
      *
-     * @param deletes a {@link List} of {@link DbDeleteOperation}
-     * @param creates a {@link List} of {@link DbCreateOperation}
-    */
+     * @param deletes A {@link List} of {@link DbDeleteOperation}.
+     * @param creates A {@link List} of {@link DbCreateOperation}.
+     */
     public DbChangeSet(final List<DbDeleteOperation> deletes, final List<DbCreateOperation> creates) {
         this.deletes = deletes;
         this.creates = creates;
     }
 
     /**
-     * {@inheritDoc}
+     * Apply the change set to a {@link MagmaCoreService}.
      */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
-        final var deleteFunction = deletes
-            .stream()
-            .map(x -> (Function<MagmaCoreService, MagmaCoreService>) x)
-            .reduce(Function::andThen)
-            .orElse(Function.identity());
+        final Function<MagmaCoreService, MagmaCoreService> deleteFunction = deletes
+                .stream()
+                .map(d -> (Function<MagmaCoreService, MagmaCoreService>) d)
+                .reduce(Function::andThen)
+                .orElse(Function.identity());
 
-        final var createFunction = creates
-            .stream()
-            .map(x -> (Function<MagmaCoreService, MagmaCoreService>) x)
-            .reduce(Function::andThen)
-            .orElse(Function.identity());
+        final Function<MagmaCoreService, MagmaCoreService> createFunction = creates
+                .stream()
+                .map(c -> (Function<MagmaCoreService, MagmaCoreService>) c)
+                .reduce(Function::andThen)
+                .orElse(Function.identity());
 
         mcService.runInTransaction(deleteFunction.andThen(createFunction));
         return mcService;
@@ -63,14 +63,22 @@ public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService>
     /**
      * Invert a {@link DbChangeSet}.
      *
-     * @param c a {@link DbChangeSet}
+     * @param changeSet A {@link DbChangeSet} to invert.
      * @return The inverted {@link DbChangeSet}.
-    */
-    public static DbChangeSet invert(final DbChangeSet c) {
-                final var newDeletes = c.creates.stream().map(DbCreateOperation::invert).collect(Collectors.toList());
-                final var newCreates = c.deletes.stream().map(DbDeleteOperation::invert).collect(Collectors.toList());
-                Collections.reverse(newDeletes);
-                Collections.reverse(newCreates);
+     */
+    public static DbChangeSet invert(final DbChangeSet changeSet) {
+        final List<DbDeleteOperation> newDeletes = changeSet.creates
+                .stream()
+                .map(DbCreateOperation::invert)
+                .collect(Collectors.toList());
+
+        final List<DbCreateOperation> newCreates = changeSet.deletes
+                .stream()
+                .map(DbDeleteOperation::invert)
+                .collect(Collectors.toList());
+
+        Collections.reverse(newDeletes);
+        Collections.reverse(newCreates);
         return new DbChangeSet(newDeletes, newCreates);
     }
 }

@@ -12,13 +12,16 @@
  * the License.
  */
 
-package  uk.gov.gchq.magmacore.demo;
+package uk.gov.gchq.magmacore.demo;
 
 import static org.junit.Assert.assertNotNull;
+import static uk.gov.gchq.magmacore.demo.DemoUtils.populateExampleData;
 
 import org.junit.Test;
 
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
+import uk.gov.gchq.magmacore.service.transformation.DbTransformation;
 
 /**
  * Exercise the {@link ExampleDataObjects} code during the build.
@@ -27,13 +30,11 @@ public class ExampleDataTest {
 
     /**
      * Test the {@link ExampleDataObjects} code.
-     *
-     * */
+     */
     @Test
     public void testWithJenaDatabase() {
-        final var service = MagmaCoreServiceFactory.createWithJenaDatabase();
-        
-        final var transformation = ExampleDataObjects.populateExampleData(service);
+        final MagmaCoreService service = MagmaCoreServiceFactory.createWithJenaDatabase();
+        final DbTransformation transformation = populateExampleData(service);
 
         assertNotNull(transformation);
     }

@@ -23,38 +23,36 @@ import java.util.stream.Collectors;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
- * Class representing an invertible ordered sequence of change sets.
+ * An invertible ordered sequence of change sets.
  */
 public class DbTransformation implements Function<MagmaCoreService, MagmaCoreService> {
     private List<DbChangeSet> transformations;
 
     /**
-     * Constructor.
-     *
-     * @param transformations a {@link List} of {@link DbChangeSet}
-    */
-    public DbTransformation(final List<DbChangeSet> transformations) {
-        this.transformations = transformations;
-    }
-
-    /**
-     * Constructor.
-     *
-    */
+     * Constructs a DbTransformation with no operations.
+     */
     public DbTransformation() {
         this(new LinkedList<>());
     }
 
     /**
-     * {@inheritDoc}
+     * Constructs a DbTransformation with a list of transformations.
+     *
+     * @param transformations A {@link List} of {@link DbChangeSet}.
+     */
+    public DbTransformation(final List<DbChangeSet> transformations) {
+        this.transformations = transformations;
+    }
+
+    /**
+     * Apply the transformation to a {@link MagmaCoreService}.
      */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
-        final var transformation = transformations
-            .stream()
-            .map(x -> (Function<MagmaCoreService, MagmaCoreService>) x)
-            .reduce(Function::andThen)
-            .orElse(Function.identity());
+        final Function<MagmaCoreService, MagmaCoreService> transformation = transformations
+                .stream()
+                .map(t -> (Function<MagmaCoreService, MagmaCoreService>) t).reduce(Function::andThen)
+                .orElse(Function.identity());
 
         return transformation.apply(mcService);
     }
@@ -65,10 +63,10 @@ public class DbTransformation implements Function<MagmaCoreService, MagmaCoreSer
      * @return The inverted {@link DbTransformation}.
      */
     public DbTransformation invert() {
-        final var list = transformations
-            .stream()
-            .map(DbChangeSet::invert)
-            .collect(Collectors.toList());
+        final List<DbChangeSet> list = transformations
+                .stream()
+                .map(DbChangeSet::invert)
+                .collect(Collectors.toList());
 
         Collections.reverse(list);
 
@@ -78,8 +76,8 @@ public class DbTransformation implements Function<MagmaCoreService, MagmaCoreSer
     /**
      * Add a DbChangeSet to this transformation.
      *
-     * @param changeSet {@link DbChangeSet}
-    */
+     * @param changeSet {@link DbChangeSet} to add.
+     */
     public void add(final DbChangeSet changeSet) {
         this.transformations.add(changeSet);
     }

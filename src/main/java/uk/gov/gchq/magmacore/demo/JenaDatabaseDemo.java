@@ -14,23 +14,26 @@
 
 package uk.gov.gchq.magmacore.demo;
 
+import static uk.gov.gchq.magmacore.demo.DemoUtils.populateExampleData;
+
 import java.util.List;
 import java.util.Map;
 
 import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
- * Example use-case scenario for the {@link uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase}.
+ * Example use-case scenario for the {@link MagmaCoreJenaDatabase}.
  *
  * <p>
- * This example demo creates an in-memory {@link MagmaCoreJenaDatabase} populated with the
- * {@link ExampleDataObjects} as RDF triples.
+ * This example demo creates an in-memory {@link MagmaCoreJenaDatabase} populated with the example
+ * data libraries as RDF triples.
  * </p>
  * <p>
- * {@code PersonB1_Bob} can be queried for using the `findByEntityName` method.
- * method. The resulting object(s) of this query are output to the command-line as RDF triples.
+ * {@code PersonB1_Bob} can be queried for using the `findByEntityName` method. method. The
+ * resulting object(s) of this query are output to the command-line as RDF triples.
  * </p>
  *
  */
@@ -41,10 +44,10 @@ public final class JenaDatabaseDemo {
      */
     public void run() {
         // Instantiate new in-memory Jena database.
-        final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
+        final MagmaCoreService mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
         // Add example data objects to dataset.
-        ExampleDataObjects.populateExampleData(mcService);
+        populateExampleData(mcService);
 
         // Query database to check its populated.
         final Map<String, Thing> queryResults = mcService.findByEntityNameInTransaction(List.of("PersonB1_Bob"));

@@ -20,11 +20,12 @@ import java.util.List;
 
 import uk.gov.gchq.hqdm.model.Participant;
 import uk.gov.gchq.hqdm.model.StateOfOrganization;
+import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
-import uk.gov.gchq.hqdm.rdf.Pair;
-import uk.gov.gchq.hqdm.rdf.Triples;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
+import uk.gov.gchq.hqdm.rdf.util.Pair;
+import uk.gov.gchq.hqdm.rdf.util.Triples;
 
 /**
  * Demonstrate how to create a new class dynamically.
@@ -34,18 +35,17 @@ public class McAssistMultInheritFromDataApp {
     /**
      * Example program for creating classes dynamically.
      *
-     * @param args an array of Strings.
+     * @param args An array of Strings.
      */
     public static void main(final String[] args) {
 
         // Create a new type specification.
         final List<Pair<String, String>> newTypeSpecification = List.of(
-            new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.STATE_OF_ORGANIZATION.getIri()),
-            new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.PARTICIPANT.getIri())
-        );
+                new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.STATE_OF_ORGANIZATION.getIri()),
+                new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.PARTICIPANT.getIri()));
 
         // Create a new object using the type specification.
-        final var orgState = HqdmObjectFactory.create(uid(), newTypeSpecification);
+        final Thing orgState = HqdmObjectFactory.create(uid(), newTypeSpecification);
 
         // Check that it implements the two interfaces.
         if (orgState instanceof Participant && orgState instanceof StateOfOrganization) {

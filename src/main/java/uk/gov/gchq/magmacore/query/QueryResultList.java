@@ -26,9 +26,9 @@ public class QueryResultList {
     private List<QueryResult> queryResults;
 
     /**
-     * Construct a new QueryResultList from a list of QueryResults and variable names.
+     * Constructs a new QueryResultList from a list of QueryResults and variable names.
      *
-     * @param varNames Variable names used in the results list.
+     * @param varNames     Variable names used in the results list.
      * @param queryResults Results of the query.
      */
     public QueryResultList(final List<String> varNames, final List<QueryResult> queryResults) {

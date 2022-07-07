@@ -12,7 +12,7 @@
  * the License.
  */
 
-package  uk.gov.gchq.magmacore.service.transformation;
+package uk.gov.gchq.magmacore.service.transformation;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -22,9 +22,12 @@ import java.util.List;
 
 import org.junit.Test;
 
+import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
@@ -32,65 +35,53 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  */
 public class DbTransformationTest {
 
-    // Dummy IRI for testing.
-    private static final String TEST_IRI = "http://example.com/test#test";
+    private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test");
 
     /**
      * Test that multiple DbChangeSets can be applied as a DbTransformation, inverted, and undone.
-     *
-     * */
+     */
     @Test
     public void testApplyAndInvert() {
+        final MagmaCoreService mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
-        final var individualIri = new IRI(TEST_IRI + "1");
-        final var personIri = new IRI(TEST_IRI + "2");
+        final IRI individualIri = new IRI(TEST_BASE, "individual");
+        final IRI personIri = new IRI(TEST_BASE, "person");
 
         // Create operations to add an object with dummy values.
-        final var changes1 = new DbChangeSet(List.of(), List.of(
-            new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri()),
-            new DbCreateOperation(individualIri, HQDM.MEMBER_OF, "class1"),
-            new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, "a world")
-        ));
+        final DbChangeSet createIndividual = new DbChangeSet(List.of(), List.of(
+                new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri()),
+                new DbCreateOperation(individualIri, HQDM.MEMBER_OF, "classOfIndividual"),
+                new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, "possible world")));
 
-        final var changes2 = new DbChangeSet(List.of(), List.of(
-            new DbCreateOperation(personIri, RDFS.RDF_TYPE, HQDM.PERSON.getIri()),
-            new DbCreateOperation(personIri, HQDM.MEMBER_OF, "class2"),
-            new DbCreateOperation(personIri, HQDM.PART_OF_POSSIBLE_WORLD, "another world")
-        ));
+        final DbChangeSet createPerson = new DbChangeSet(List.of(), List.of(
+                new DbCreateOperation(personIri, RDFS.RDF_TYPE, HQDM.PERSON.getIri()),
+                new DbCreateOperation(personIri, HQDM.MEMBER_OF, "classOfPerson"),
+                new DbCreateOperation(personIri, HQDM.PART_OF_POSSIBLE_WORLD, "possible world")));
 
-        final var transformation = new DbTransformation(List.of(
-            changes1,
-            changes2
-        ));
-
-        // Create a database to be updated.
-        final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
+        final DbTransformation transformation = new DbTransformation(List.of(createIndividual, createPerson));
 
         // Apply the operations.
         mcService.runInTransaction(transformation);
 
-        // Find the thing we just created and assert values are present.
-        final var thing1 = mcService.getInTransaction(individualIri);
+        // Find the individual we just created and assert values are present.
+        final Thing individual = mcService.getInTransaction(individualIri);
 
-        assertNotNull(thing1);
-        assertTrue(thing1.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
-        assertTrue(thing1.hasThisValue(HQDM.MEMBER_OF.getIri(), "class1"));
-        assertTrue(thing1.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "a world"));
+        assertNotNull(individual);
+        assertTrue(individual.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
+        assertTrue(individual.hasThisValue(HQDM.MEMBER_OF.getIri(), "classOfIndividual"));
+        assertTrue(individual.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "possible world"));
 
-        final var thing2 = mcService.getInTransaction(personIri);
+        final Thing person = mcService.getInTransaction(personIri);
 
-        assertNotNull(thing2);
-        assertTrue(thing2.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.PERSON.getIri()));
-        assertTrue(thing2.hasThisValue(HQDM.MEMBER_OF.getIri(), "class2"));
-        assertTrue(thing2.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "another world"));
+        assertNotNull(person);
+        assertTrue(person.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.PERSON.getIri()));
+        assertTrue(person.hasThisValue(HQDM.MEMBER_OF.getIri(), "classOfPerson"));
+        assertTrue(person.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "possible world"));
 
         // Invert the operations, apply them in reverse order and assert they are no longer present.
         mcService.runInTransaction(transformation.invert());
 
-        final var thing1FromDb = mcService.getInTransaction(individualIri);
-        assertNull(thing1FromDb);
-
-        final var thing2FromDb = mcService.getInTransaction(personIri);
-        assertNull(thing2FromDb);
+        assertNull(mcService.getInTransaction(individualIri));
+        assertNull(mcService.getInTransaction(personIri));
     }
 }

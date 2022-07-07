@@ -12,14 +12,17 @@
  * the License.
  */
 
-package  uk.gov.gchq.magmacore.service;
+package uk.gov.gchq.magmacore.service;
 
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
+import uk.gov.gchq.hqdm.model.Individual;
+import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices;
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
 
@@ -28,37 +31,34 @@ import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
  */
 public class MagmaCoreServiceTest {
 
-    // Dummy IRI for testing.
-    private static final String TEST_IRI = "http://example.com/test#test";
+    private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test");
 
     /**
      * Test that triples can be deleted.
-     *
-     * */
+     */
     @Test
     public void test() {
-        final var iri = new IRI(TEST_IRI);
+        final MagmaCoreJenaDatabase database = new MagmaCoreJenaDatabase();
 
-        final var db = new MagmaCoreJenaDatabase();
+        final IRI individualIri = new IRI(TEST_BASE, "individual");
+        final Individual individual = SpatioTemporalExtentServices.createIndividual(individualIri.getIri());
 
-        final var thing = SpatioTemporalExtentServices.createIndividual(TEST_IRI);
+        individual.addValue(HQDM.MEMBER_OF.getIri(), "classOfIndividual");
 
-        thing.addValue(HQDM.MEMBER_OF.getIri(), "class1");
+        database.begin();
+        database.create(individual);
+        database.commit();
 
-        db.begin();
-        db.create(thing);
-        db.commit();
+        individual.removeValue(HQDM.MEMBER_OF.getIri(), "classOfIndividual");
 
-        thing.removeValue(HQDM.MEMBER_OF.getIri(), "class1");
+        database.begin();
+        database.update(individual);
+        database.commit();
 
-        db.begin();
-        db.update(thing);
-        db.commit();
+        database.begin();
+        final Thing individualFromDb = database.get(individualIri);
+        database.commit();
 
-        db.begin();
-        final var thingFromDb = db.get(iri);
-        db.commit();
-
-        assertNull(thingFromDb);
+        assertNull(individualFromDb);
     }
 }

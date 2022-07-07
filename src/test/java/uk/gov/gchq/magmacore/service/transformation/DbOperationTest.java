@@ -12,7 +12,7 @@
  * the License.
  */
 
-package  uk.gov.gchq.magmacore.service.transformation;
+package uk.gov.gchq.magmacore.service.transformation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -22,10 +22,13 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.exception.DbTransformationException;
+import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
@@ -33,148 +36,145 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  */
 public class DbOperationTest {
 
-    // Dummy IRI for testing.
-    private static final String TEST_IRI = "http://example.com/test#test";
+    private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test");
 
     /**
-     * Test that DbCreateOperations can be applied to a database and can also be
-     * inverted and used to undo the {@link DbCreateOperation}.
-     * */
+     * Test that DbCreateOperations can be applied to a database and can also be inverted and used to
+     * undo the {@link DbCreateOperation}.
+     */
     @Test
     public void testCreateAndDelete() {
+        final MagmaCoreService mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
         // Create an operation to add an object with dummy values.
-        final var iri = new IRI(TEST_IRI);
-        final var op1 = new DbCreateOperation(iri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri());
-        final var op2 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
+        final IRI individualIri = new IRI(TEST_BASE, "individual");
 
-        // Create a database to be updated.
-        final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
+        final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, RDFS.RDF_TYPE,
+                HQDM.INDIVIDUAL.getIri());
+        final DbCreateOperation createIndividualMemberOf = new DbCreateOperation(individualIri, HQDM.MEMBER_OF,
+                "classOfIndividual");
 
-        // Apply the operation.
-        mcService.runInTransaction(op1);
-        mcService.runInTransaction(op2);
+        // Apply the operations.
+        mcService.runInTransaction(createIndividual);
+        mcService.runInTransaction(createIndividualMemberOf);
 
-        // Find the thing we just created and assert it's presence.
-        final var thing = mcService.getInTransaction(iri);
+        // Find the individual and assert it's presence.
+        final Thing individual = mcService.getInTransaction(individualIri);
 
-        assertNotNull(thing);
-        assertTrue(thing.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
+        assertNotNull(individual);
+        assertTrue(individual.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
 
         // Invert the operation and assert that it is no longer present.
-        mcService.runInTransaction(DbCreateOperation.invert(op2));
+        mcService.runInTransaction(DbCreateOperation.invert(createIndividualMemberOf));
 
-        final var thingFromDb = mcService.getInTransaction(iri);
-        assertFalse(thingFromDb.hasThisValue(HQDM.MEMBER_OF.getIri(), "class1"));
+        final Thing individualFromDb = mcService.getInTransaction(individualIri);
+        assertFalse(individualFromDb.hasThisValue(HQDM.MEMBER_OF.getIri(), "classOfIndividual"));
     }
 
     /**
-     * Test that multiple DbCreateOperations can be applied to a database and can also be
-     * inverted and used to undo the {@link DbCreateOperation}.
-     * */
+     * Test that multiple DbCreateOperations can be applied to a database and can also be inverted and
+     * used to undo the {@link DbCreateOperation}.
+     */
     @Test
     public void testMultipleCreateAndDelete() {
+        final MagmaCoreService mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
-        final var iri = new IRI(TEST_IRI);
+        final IRI individualIri = new IRI(TEST_BASE, "individual");
 
-        // Create operations to add an object with dummy values.
-    final var op1 = new DbCreateOperation(iri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri());
-    final var op2 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
-    final var op3 = new DbCreateOperation(iri, HQDM.PART_OF_POSSIBLE_WORLD, "a world");
+        // Create operations to create an object.
+        final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, RDFS.RDF_TYPE,
+                HQDM.INDIVIDUAL.getIri());
+        final DbCreateOperation createIndividualMemberOf = new DbCreateOperation(individualIri, HQDM.MEMBER_OF,
+                "classOfIndividual");
+        final DbCreateOperation createIndividualPartOfPossibleWorld = new DbCreateOperation(individualIri,
+                HQDM.PART_OF_POSSIBLE_WORLD, "possible world");
 
-        // Create a database to be updated.
-        final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
-
-        // Apply the operations.
-        mcService.runInTransaction(op1);
-        mcService.runInTransaction(op2);
-        mcService.runInTransaction(op3);
+        // Apply the operations to the dataset.
+        mcService.runInTransaction(createIndividual);
+        mcService.runInTransaction(createIndividualMemberOf);
+        mcService.runInTransaction(createIndividualPartOfPossibleWorld);
 
         // Find the thing we just created and assert values are present.
-        final var thing = mcService.getInTransaction(iri);
+        final Thing individual = mcService.getInTransaction(individualIri);
 
-        assertNotNull(thing);
-        assertTrue(thing.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
-        assertTrue(thing.hasThisValue(HQDM.MEMBER_OF.getIri(), "class1"));
-        assertTrue(thing.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "a world"));
+        assertNotNull(individual);
+        assertTrue(individual.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
+        assertTrue(individual.hasThisValue(HQDM.MEMBER_OF.getIri(), "classOfIndividual"));
+        assertTrue(individual.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "possible world"));
 
         // Invert two of the operations, apply them in reverse order and assert they are no longer present.
-        mcService.runInTransaction(DbCreateOperation.invert(op3));
-        mcService.runInTransaction(DbCreateOperation.invert(op2));
-        mcService.runInTransaction(DbCreateOperation.invert(op1));
+        mcService.runInTransaction(DbCreateOperation.invert(createIndividualPartOfPossibleWorld));
+        mcService.runInTransaction(DbCreateOperation.invert(createIndividualMemberOf));
+        mcService.runInTransaction(DbCreateOperation.invert(createIndividual));
 
-        final var thingFromDb = mcService.getInTransaction(iri);
-        assertNull(thingFromDb);
+        final Thing individualFromDb = mcService.getInTransaction(individualIri);
+        assertNull(individualFromDb);
     }
 
     /**
      * Test that we get an exception when trying to create something that already exists.
-     *
-     * */
+     */
     @Test(expected = DbTransformationException.class)
     public void testCreateWhenAlreadyPresent() {
+        final MagmaCoreService mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
-        final var iri = new IRI(TEST_IRI);
+        final IRI individualIri = new IRI(TEST_BASE, "individual");
 
         // Create an operation to add an object with dummy values.
-        final var op = new DbCreateOperation(iri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri());
-
-        // Create a database to be updated.
-        final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
+        final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, RDFS.RDF_TYPE,
+                HQDM.INDIVIDUAL.getIri());
 
         // Apply the operation twice, the second should throw an exception.
-        mcService.runInTransaction(op);
-        mcService.runInTransaction(op);
+        mcService.runInTransaction(createIndividual);
+        mcService.runInTransaction(createIndividual);
     }
 
     /**
      * Test that we get an exception when trying to delete something that does not exist.
-     *
-     * */
+     */
     @Test(expected = DbTransformationException.class)
     public void testDeleteWhenNotPresent() {
+        final MagmaCoreService mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
 
-        final var iri = new IRI(TEST_IRI);
+        final IRI individualIri = new IRI(TEST_BASE, "individual");
 
         // Create an operation to add an object with dummy values.
-        final var op = new DbDeleteOperation(iri, HQDM.INDIVIDUAL, "value");
-
-        // Create a database to be updated.
-        final var mcService = MagmaCoreServiceFactory.createWithJenaDatabase();
+        final DbDeleteOperation deleteIndividual = new DbDeleteOperation(individualIri, HQDM.INDIVIDUAL,
+                "value not present");
 
         // Apply the operation, it should throw an exception.
-        mcService.runInTransaction(op);
+        mcService.runInTransaction(deleteIndividual);
     }
 
     /**
      * Test the equals method for {@link DbCreateOperation}.
-     *
-     * */
+     */
     @Test
     public void testDbCreateEquals() {
+        final IRI individualIri = new IRI(TEST_BASE, "individual");
 
-        final var iri = new IRI(TEST_IRI);
+        final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, HQDM.MEMBER_OF,
+                "classOfIndividual");
+        final DbCreateOperation deleteIndividual = new DbCreateOperation(individualIri, HQDM.MEMBER_OF,
+                "classOfIndividual");
 
-        final var op1 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
-        final var op2 = new DbCreateOperation(iri, HQDM.MEMBER_OF, "class1");
-
-        assertTrue(op1.equals(op2));
-        assertEquals(op1.hashCode(), op2.hashCode());
+        assertTrue(createIndividual.equals(deleteIndividual));
+        assertEquals(createIndividual.hashCode(), deleteIndividual.hashCode());
     }
 
     /**
      * Test the equals method for {@link DbDeleteOperation}.
-     *
-     * */
+     */
     @Test
     public void testDbDeleteEquals() {
+        final IRI individualIri = new IRI(TEST_BASE, "individual");
 
-        final var iri = new IRI(TEST_IRI);
+        final DbDeleteOperation deleteIndividual = new DbDeleteOperation(individualIri, HQDM.MEMBER_OF,
+                "classOfIndividual");
+        final DbDeleteOperation deleteAbsentIndividual = new DbDeleteOperation(individualIri, HQDM.MEMBER_OF,
+                "classOfIndividual");
 
-        final var op1 = new DbDeleteOperation(iri, HQDM.MEMBER_OF, "class1");
-        final var op2 = new DbDeleteOperation(iri, HQDM.MEMBER_OF, "class1");
-
-        assertTrue(op1.equals(op2));
-        assertEquals(op1.hashCode(), op2.hashCode());
+        assertTrue(deleteIndividual.equals(deleteAbsentIndividual));
+        assertEquals(deleteIndividual.hashCode(), deleteAbsentIndividual.hashCode());
     }
 }

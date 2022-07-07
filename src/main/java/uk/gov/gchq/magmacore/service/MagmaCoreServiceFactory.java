@@ -18,48 +18,49 @@ import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
 import uk.gov.gchq.magmacore.database.MagmaCoreRemoteSparqlDatabase;
 
 /**
- * Factory for creating MagmaCoreService instances. This 
- * removes the need to expose MagmaCoreDatabase interface to
- * clients of the library.
+ * Factory for creating MagmaCoreService instances. This removes the need to expose
+ * MagmaCoreDatabase interface to clients of the library.
  */
 public class MagmaCoreServiceFactory {
 
     /**
-     * Create a Jena database.
+     * Create a {@link MagmaCoreService} for a new {@link MagmaCoreJenaDatabase}.
      *
-     * @return {@link MagmaCoreService}
-    */
+     * @return {@link MagmaCoreService}.
+     */
     public static MagmaCoreService createWithJenaDatabase() {
         return new MagmaCoreService(new MagmaCoreJenaDatabase());
     }
 
     /**
-     * Create a Jena database.
+     * Create a {@link MagmaCoreService} for a new {@link MagmaCoreJenaDatabase} with a remote Jena
+     * server.
      *
-     * @param name a database name String
-     * @return {@link MagmaCoreService}
-    */
-    public static MagmaCoreService createWithJenaDatabase(final String name) {
-        return new MagmaCoreService(new MagmaCoreJenaDatabase(name));
+     * @param location URL of the database.
+     * @return {@link MagmaCoreService}.
+     */
+    public static MagmaCoreService createWithJenaDatabase(final String location) {
+        return new MagmaCoreService(new MagmaCoreJenaDatabase(location));
     }
 
     /**
-     * Create a Jena database.
+     * Create a {@link MagmaCoreService} for an existing {@link MagmaCoreJenaDatabase}.
      *
-     * @param db a {@link MagmaCoreJenaDatabase}
-     * @return {@link MagmaCoreService}
-    */
-    public static MagmaCoreService createWithJenaDatabase(final MagmaCoreJenaDatabase db) {
-        return new MagmaCoreService(db);
+     * @param database A {@link MagmaCoreJenaDatabase}.
+     * @return {@link MagmaCoreService}.
+     */
+    public static MagmaCoreService createWithJenaDatabase(final MagmaCoreJenaDatabase database) {
+        return new MagmaCoreService(database);
     }
 
     /**
-     * Attach to a remote SPARQL Endpoint.
+     * Create a {@link MagmaCoreService} for a new {@link MagmaCoreRemoteSparqlDatabase} with a SPARQL
+     * server connection.
      *
-     * @param url the url {@link String}
-     * @return {@link MagmaCoreService}
-    */
-    public static MagmaCoreService attachRemoteSparqlEndpoint(final String url) {
-        return new MagmaCoreService(new MagmaCoreRemoteSparqlDatabase(url));
+     * @param serviceUrl URL of the SPARQL server.
+     * @return {@link MagmaCoreService}.
+     */
+    public static MagmaCoreService attachRemoteSparqlEndpoint(final String serviceUrl) {
+        return new MagmaCoreService(new MagmaCoreRemoteSparqlDatabase(serviceUrl));
     }
 }

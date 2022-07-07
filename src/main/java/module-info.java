@@ -15,7 +15,7 @@
 /**
  * Module dependencies.
  */
-module MagmaCore.service.main {
+module uk.gov.gchq.magmacore {
     requires uk.gov.gchq.hqdm.core;
     requires transitive uk.gov.gchq.hqdm.rdf;
     requires org.apache.jena.arq;

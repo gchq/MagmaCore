@@ -16,12 +16,13 @@ package uk.gov.gchq.magmacore.service.transformation;
 
 import java.util.function.Function;
 
+import uk.gov.gchq.hqdm.model.Thing;
 import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.exception.DbTransformationException;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**
- * Class representing an invertible operation to delete a predicate.
+ * An invertible operation to delete a predicate.
  */
 public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreService> {
     private IRI subject;
@@ -29,12 +30,12 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
     private String object;
 
     /**
-     * Constructor.
+     * Constructs a DbDeleteOperation to delete a predicate.
      *
-     * @param subject {@link IRI}
-     * @param predicate {@link IRI}
-     * @param object {@link String}
-    */
+     * @param subject   Subject {@link IRI}.
+     * @param predicate Predicate {@link IRI}.
+     * @param object    {@link String} value.
+     */
     public DbDeleteOperation(final IRI subject, final IRI predicate, final String object) {
         this.subject = subject;
         this.predicate = predicate;
@@ -42,10 +43,10 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
     }
 
     /**
-     * {@inheritDoc}
+     * Apply the operation to a {@link MagmaCoreService}.
      */
     public MagmaCoreService apply(final MagmaCoreService mcService) {
-        final var thing = mcService.get(subject);
+        final Thing thing = mcService.get(subject);
 
         if (thing != null && thing.hasThisValue(predicate.getIri(), object)) {
             thing.removeValue(predicate.getIri(), object);
@@ -54,25 +55,24 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
         }
 
         throw new DbTransformationException(
-                String.format("Triple not found for delete: %s, %s, %s", subject, predicate, object)
-                );
+                String.format("Triple not found for delete: %s, %s, %s", subject, predicate, object));
     }
 
     /**
      * Invert a {@link DbDeleteOperation}.
      *
-     * @param d the {@link DbDeleteOperation}
+     * @param deleteOperation The {@link DbDeleteOperation} to invert.
      * @return The inverted {@link DbCreateOperation}.
-    */
-    public static DbCreateOperation invert(final DbDeleteOperation d) {
-        return new DbCreateOperation(d.subject, d.predicate, d.object);
+     */
+    public static DbCreateOperation invert(final DbDeleteOperation deleteOperation) {
+        return new DbCreateOperation(deleteOperation.subject, deleteOperation.predicate, deleteOperation.object);
     }
 
     /**
-     * Calculate a hashcode.
+     * Calculate the hashcode for this object.
      *
-     * @return int
-     * */
+     * @return hash code of this object.
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -86,9 +86,9 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
     /**
      * Check for equality.
      *
-     * @param obj {@link Object}
-     * @return true if the objects are euqal, false otherwise.
-     * */
+     * @param obj The {@link Object} to compare.
+     * @return {@code true} if the objects are equal, false otherwise.
+     */
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
@@ -124,5 +124,4 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
         }
         return true;
     }
-
 }

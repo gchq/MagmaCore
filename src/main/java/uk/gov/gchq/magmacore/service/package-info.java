@@ -13,6 +13,6 @@
  */
 
 /**
- * Utilities for Magma Core.
+ * Services for interacting with Magma Core Databases.
  */
-package uk.gov.gchq.magmacore.util;
+package uk.gov.gchq.magmacore.service;
