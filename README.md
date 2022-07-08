@@ -19,19 +19,6 @@ An introduction to Magma Core and the [HQDM Java object library](https://github.
 - [Java 15](https://openjdk.java.net/projects/jdk/15/) - Core language
 - [Maven](https://maven.apache.org/) - Dependency management
 
-## Setup
-
-- To run Magma Core, run `mvn compile exec:java -Dexec.mainClass="uk.gov.gchq.magmacore.MagmaCore"`. This will execute the fuseki example from the `demo` package. It will populate the database with example data if it is empty. The Fuseki server is accessible at `localhost:3330/tdb`
-  - The dataset can then be queried via a web browser by going to `http://localhost:3330/tdb/sparql?query=SELECT ?s ?p ?o WHERE {?s ?p ?o.}`
-  - This can also be done via curl on the command line using: `curl -X POST -d "query=select ?s ?p ?o where { ?s ?p ?o . }" localhost:3330/tdb/query`
-- You can also run the examples using `mvn compile exec:java -Dexec.mainClass="uk.gov.gchq.magmacore.MagmaCore" -Dexec.args=XXX` where XXX is one of:
-  - `fuseki` - same as no arguments except this does not populate the database with example data.
-  - `fuseki-populate` - same as no arguments.
-  - `remote` - connects to a local SPARQL endpoint on `http://localhost:3330/tdb`, i.e. the `fuseki` server if executed in a separate shell session.
-  - `remote-populate` - connects to a local SPARQL endpoint on `http://localhost:3330/tdb`, i.e. the `fuseki` server if executed in a separate shell session. It will populate the database with example data.
-  - `jena` - executes the Apache Jena database demo.
-- Alternatively, if you are using an IDE, you should be able to run the main method in MagmaCore.java from the editor.
-
 ## Contributing
 
 We welcome contributions to the project. Detailed information on our ways of working can be found [here](CONTRIBUTING.md).
