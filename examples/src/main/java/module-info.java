@@ -17,7 +17,7 @@
  * server.
  */
 module uk.gov.gchq.magmacore.examples {
-    requires uk.gov.gchq.hqdm.core;
+    requires uk.gov.gchq.hqdm;
     requires uk.gov.gchq.hqdm.rdf;
     requires uk.gov.gchq.magmacore;
 

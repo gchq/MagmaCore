@@ -24,11 +24,11 @@
       <artifactId>core</artifactId>
     </dependency>
     <dependency>
-      <groupId>uk.gov.gchq.hqdm</groupId>
-      <artifactId>hqdm-core</artifactId>
+      <groupId>uk.gov.gchq.magma-core</groupId>
+      <artifactId>hqdm</artifactId>
     </dependency>  
     <dependency>
-      <groupId>uk.gov.gchq.hqdm</groupId>
+      <groupId>uk.gov.gchq.magma-core</groupId>
       <artifactId>hqdm-rdf</artifactId>
     </dependency>
     <dependency>

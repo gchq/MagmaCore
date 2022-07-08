@@ -12,12 +12,26 @@ This code release is a contribution to support the adoption of data models that 
 
 ## Getting Started
 
-An introduction to Magma Core and the [HQDM Java object library](https://github.com/gchq/HQDM) is provided in the [Magma Core Wiki](https://github.com/gchq/MagmaCore/wiki).
+An introduction to Magma Core is provided in the [Magma Core Wiki](https://github.com/gchq/MagmaCore/wiki).
 
 ### Prerequisites
 
 - [Java 15](https://openjdk.java.net/projects/jdk/15/) - Core language
 - [Maven](https://maven.apache.org/) - Dependency management
+
+### Inclusion in other projects
+
+Magma Core can be incorporated into other maven projects using the following dependency:
+
+```xml
+<dependency>
+  <groupId>uk.gov.gchq.magmacore</groupId>
+  <artifactId>core</artifactId>
+  <version>1.0</version>
+</dependency>
+```
+
+_Magma Core is not currently hosted on Maven Central, so a local install of this repository will be required._
 
 ## Contributing
 
