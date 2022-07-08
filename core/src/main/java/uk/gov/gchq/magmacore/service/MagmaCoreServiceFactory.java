@@ -44,16 +44,6 @@ public class MagmaCoreServiceFactory {
     }
 
     /**
-     * Create a {@link MagmaCoreService} for an existing {@link MagmaCoreJenaDatabase}.
-     *
-     * @param database A {@link MagmaCoreJenaDatabase}.
-     * @return {@link MagmaCoreService}.
-     */
-    public static MagmaCoreService createWithJenaDatabase(final MagmaCoreJenaDatabase database) {
-        return new MagmaCoreService(database);
-    }
-
-    /**
      * Create a {@link MagmaCoreService} for a new {@link MagmaCoreRemoteSparqlDatabase} with a SPARQL
      * server connection.
      *
