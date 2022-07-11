@@ -15,11 +15,11 @@
 /**
  * Classes for constructing HQDM objects as RDF triples.
  */
-module uk.gov.gchq.hqdm.rdf {
-    requires transitive uk.gov.gchq.hqdm;
+module uk.gov.gchq.magmacore.hqdm.rdf {
+    requires transitive uk.gov.gchq.magmacore.hqdm;
 
-    exports uk.gov.gchq.hqdm.rdf.exception;
-    exports uk.gov.gchq.hqdm.rdf.iri;
-    exports uk.gov.gchq.hqdm.rdf.util;
-    exports uk.gov.gchq.hqdm.rdf;
+    exports uk.gov.gchq.magmacore.hqdm.rdf.exception;
+    exports uk.gov.gchq.magmacore.hqdm.rdf.iri;
+    exports uk.gov.gchq.magmacore.hqdm.rdf.util;
+    exports uk.gov.gchq.magmacore.hqdm.rdf;
 }

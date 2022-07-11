@@ -15,8 +15,8 @@
 /**
  * Classes for constructing HQDM objects in java.
  */
-module uk.gov.gchq.hqdm {
-    exports uk.gov.gchq.hqdm.exception;
-    exports uk.gov.gchq.hqdm.model;
-    exports uk.gov.gchq.hqdm.services;
+module uk.gov.gchq.magmacore.hqdm {
+    exports uk.gov.gchq.magmacore.hqdm.exception;
+    exports uk.gov.gchq.magmacore.hqdm.model;
+    exports uk.gov.gchq.magmacore.hqdm.services;
 }

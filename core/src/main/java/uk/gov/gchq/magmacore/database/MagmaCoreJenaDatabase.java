@@ -43,14 +43,14 @@ import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
 import org.apache.jena.util.PrintUtil;
 
-import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
-import uk.gov.gchq.hqdm.rdf.iri.HqdmIri;
-import uk.gov.gchq.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.hqdm.rdf.iri.IriBase;
-import uk.gov.gchq.hqdm.rdf.util.Pair;
 import uk.gov.gchq.magmacore.database.query.QueryResult;
 import uk.gov.gchq.magmacore.database.query.QueryResultList;
+import uk.gov.gchq.magmacore.hqdm.model.Thing;
+import uk.gov.gchq.magmacore.hqdm.rdf.HqdmObjectFactory;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
+import uk.gov.gchq.magmacore.hqdm.rdf.util.Pair;
 
 /**
  * Apache Jena triplestore to store HQDM objects as RDF triples either as an in-memory Jena dataset

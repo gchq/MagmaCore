@@ -25,8 +25,8 @@ module uk.gov.gchq.magmacore {
     requires org.apache.jena.tdb2;
     requires com.fasterxml.jackson.annotation;
 
-    requires uk.gov.gchq.hqdm;
-    requires transitive uk.gov.gchq.hqdm.rdf;
+    requires uk.gov.gchq.magmacore.hqdm;
+    requires transitive uk.gov.gchq.magmacore.hqdm.rdf;
 
     exports uk.gov.gchq.magmacore.service;
     exports uk.gov.gchq.magmacore.service.transformation;

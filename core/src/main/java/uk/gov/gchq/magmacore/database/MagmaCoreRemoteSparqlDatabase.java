@@ -39,13 +39,13 @@ import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.RDFFormat;
 import org.apache.jena.util.PrintUtil;
 
-import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.rdf.HqdmObjectFactory;
-import uk.gov.gchq.hqdm.rdf.iri.HqdmIri;
-import uk.gov.gchq.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.hqdm.rdf.util.Pair;
 import uk.gov.gchq.magmacore.database.query.QueryResult;
 import uk.gov.gchq.magmacore.database.query.QueryResultList;
+import uk.gov.gchq.magmacore.hqdm.model.Thing;
+import uk.gov.gchq.magmacore.hqdm.rdf.HqdmObjectFactory;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.util.Pair;
 
 /**
  * Connection to a remote SPARQL endpoint.
@@ -60,13 +60,8 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      * @param serviceUrl The URL of the SPARQL update endpoint.
      */
     public MagmaCoreRemoteSparqlDatabase(final String serviceUrl) {
-        connection = RDFConnectionRemote
-                .newBuilder()
-                .destination(serviceUrl)
-                .queryEndpoint("query")
-                .updateEndpoint("update")
-                .triplesFormat(RDFFormat.RDFJSON)
-                .build();
+        connection = RDFConnectionRemote.newBuilder().destination(serviceUrl).queryEndpoint("query")
+                .updateEndpoint("update").triplesFormat(RDFFormat.RDFJSON).build();
     }
 
     /**

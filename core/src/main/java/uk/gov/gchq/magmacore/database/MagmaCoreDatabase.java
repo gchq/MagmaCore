@@ -17,9 +17,9 @@ package uk.gov.gchq.magmacore.database;
 import java.io.PrintStream;
 import java.util.List;
 
-import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.rdf.iri.HqdmIri;
-import uk.gov.gchq.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.model.Thing;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * Interface defining CRUD operations and generic queries for Magma Core data collections.

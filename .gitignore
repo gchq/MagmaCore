@@ -12,6 +12,7 @@ out
 *.ttl
 .DS_Store
 .factorypath
+.devcontainer
 
 
 # Compiled class file

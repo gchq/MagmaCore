@@ -22,11 +22,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.rdf.iri.HQDM;
-import uk.gov.gchq.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.hqdm.rdf.iri.IriBase;
-import uk.gov.gchq.hqdm.rdf.iri.RDFS;
+import uk.gov.gchq.magmacore.hqdm.model.Thing;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
@@ -46,10 +46,10 @@ public class DbChangeSetTest {
 
         // Create operations to add an object with dummy values.
         final IRI individualIri = new IRI(TEST_BASE, "individual");
-        final DbChangeSet createIndividual = new DbChangeSet(List.of(), List.of(
-                new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri()),
-                new DbCreateOperation(individualIri, HQDM.MEMBER_OF, "classOfIndividual"),
-                new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, "possible world")));
+        final DbChangeSet createIndividual = new DbChangeSet(List.of(),
+                List.of(new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri()),
+                        new DbCreateOperation(individualIri, HQDM.MEMBER_OF, "classOfIndividual"),
+                        new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, "possible world")));
 
         // Apply the operations to the dataset.
         mcService.runInTransaction(createIndividual);

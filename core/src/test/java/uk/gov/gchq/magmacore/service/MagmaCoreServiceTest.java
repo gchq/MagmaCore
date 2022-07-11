@@ -18,13 +18,13 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import uk.gov.gchq.hqdm.model.Individual;
-import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.rdf.iri.HQDM;
-import uk.gov.gchq.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.hqdm.rdf.iri.IriBase;
-import uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices;
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
+import uk.gov.gchq.magmacore.hqdm.model.Individual;
+import uk.gov.gchq.magmacore.hqdm.model.Thing;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Check that {@link MagmaCoreService} works correctly.
