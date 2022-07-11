@@ -10,6 +10,13 @@ This code release is a contribution to support the adoption of data models that 
 
 \* Dr. West was not involved in the creation of this project. GCHQ are grateful for his open contributions to the field of ontology and data quality management.
 
+
+## The High Quality Data Model for Data Integration in Java
+
+HQDM contains the replication of an openly available data model based on key ontological foundations to enable the consistent integration of data. The HQDM Java package comprises a set of Java classes and respective interfaces, 230 in total, to replicate the entity-relationship model published by Dr Matthew West as the [High Quality Data Model Framework](http://www.informationjunction.co.uk/hqdm_framework/). This class model can be used to create extensions of the entity types, based on the founding ontological commitments and logical restrictions (such as cardinalities), and instances of those types all in Java application code. This, in theory at least, provides a framework for the consistent representation of almost anything that is, or could be, real\*. All the data model patterns published in the HQDM framework are supported by the HQDM package. The object properties are constructed around a top-level Java HQDM Object class with some root attributes to enable class-instances to be managed in a database. The choice of database can be left to the user but the structure of the attributes is optimised for the use of [Linked Data IRIs](https://www.w3.org/TR/rdf11-concepts/#section-IRIs) and [RDF triples](https://www.w3.org/TR/rdf11-concepts/#section-triples) to represent HQDM object relationships and other object properties as predicates. All of the HQDM objects can be created and searched using the HQDMObject methods and collections can be handled using the Object Factory. To complement this there is an OWL version of the HQDM data model that is a close match for the original EXPRESS model and the HQDM Java package.
+
+\* This is a gross simplification, but it characterises the goal of the model and in use it has proved to be very capable. The UK's National Digital Twin programme is developing a model that aims to address this goal with even more rigour, called the Foundation Data Model (FDM). Data created using HQDM is likely to be mappable to the FDM with low mapping (due to similar ontological commitments).
+
 ## Getting Started
 
 An introduction to Magma Core is provided in the [Magma Core Wiki](https://github.com/gchq/MagmaCore/wiki).
