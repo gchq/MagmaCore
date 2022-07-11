@@ -16,10 +16,10 @@ package uk.gov.gchq.magmacore.examples.util;
 
 import java.util.List;
 
-import uk.gov.gchq.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.magmacore.examples.data.ExampleAssociations;
 import uk.gov.gchq.magmacore.examples.data.ExampleIndividuals;
 import uk.gov.gchq.magmacore.examples.data.ExampleRdl;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
 import uk.gov.gchq.magmacore.service.transformation.DbTransformation;

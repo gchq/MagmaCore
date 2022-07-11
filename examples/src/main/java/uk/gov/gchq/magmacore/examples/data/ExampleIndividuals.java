@@ -20,13 +20,13 @@ import static uk.gov.gchq.magmacore.util.UID.uid;
 import java.util.List;
 import java.util.Map;
 
-import uk.gov.gchq.hqdm.model.KindOfFunctionalSystem;
-import uk.gov.gchq.hqdm.model.KindOfPerson;
-import uk.gov.gchq.hqdm.model.Role;
-import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.rdf.iri.HQDM;
-import uk.gov.gchq.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.hqdm.rdf.iri.RDFS;
+import uk.gov.gchq.magmacore.hqdm.model.KindOfFunctionalSystem;
+import uk.gov.gchq.magmacore.hqdm.model.KindOfPerson;
+import uk.gov.gchq.magmacore.hqdm.model.Role;
+import uk.gov.gchq.magmacore.hqdm.model.Thing;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
 import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
@@ -44,10 +44,8 @@ public class ExampleIndividuals {
      */
     public static DbChangeSet addWholeLifeIndividuals(final MagmaCoreService mcService) {
 
-        final Map<String, Thing> entities = mcService.findByEntityNameInTransaction(List.of(
-                "KIND_OF_PERSON",
-                "NATURAL_MEMBER_OF_SOCIETY_ROLE",
-                "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY",
+        final Map<String, Thing> entities = mcService.findByEntityNameInTransaction(List.of("KIND_OF_PERSON",
+                "NATURAL_MEMBER_OF_SOCIETY_ROLE", "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY",
                 "ACCEPTED_PLACE_OF_SEMI_PERMANENT_HABITATION_ROLE"));
 
         // Find the required classes, kinds, and roles.

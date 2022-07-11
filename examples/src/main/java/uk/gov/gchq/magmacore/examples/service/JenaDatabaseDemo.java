@@ -19,7 +19,7 @@ import static uk.gov.gchq.magmacore.examples.util.DemoUtils.populateExampleData;
 import java.util.List;
 import java.util.Map;
 
-import uk.gov.gchq.hqdm.model.Thing;
+import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 

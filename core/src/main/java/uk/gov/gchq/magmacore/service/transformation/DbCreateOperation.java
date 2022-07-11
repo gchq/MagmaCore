@@ -16,10 +16,10 @@ package uk.gov.gchq.magmacore.service.transformation;
 
 import java.util.function.Function;
 
-import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.hqdm.services.SpatioTemporalExtentServices;
 import uk.gov.gchq.magmacore.exception.DbTransformationException;
+import uk.gov.gchq.magmacore.hqdm.model.Thing;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 
 /**

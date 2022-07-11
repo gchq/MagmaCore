@@ -19,10 +19,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import uk.gov.gchq.hqdm.model.Thing;
-import uk.gov.gchq.hqdm.rdf.iri.HQDM;
-import uk.gov.gchq.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
+import uk.gov.gchq.magmacore.hqdm.model.Thing;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * Service for interacting with a {@link MagmaCoreDatabase}.
@@ -61,7 +61,7 @@ public class MagmaCoreService {
     }
 
     /**
-     * Create a new Thing in the database.
+     * Create a new {@link Thing} in the database.
      *
      * @param thing {@link Thing} to create.
      */
@@ -89,7 +89,7 @@ public class MagmaCoreService {
     }
 
     /**
-     * Get a {@link Thing} by its IRI {@link IRI} in a transactional database.
+     * Get a {@link Thing} by its {@link IRI} in a transactional database.
      *
      * @param iri {@link IRI} of the {@link Thing}.
      * @return {@link Thing} to get.
