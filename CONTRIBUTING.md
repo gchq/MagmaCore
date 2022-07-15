@@ -43,6 +43,8 @@ Where possible a pull request should correlate to a single GitHub issue. An issu
 
 Please ensure your coding style is consistent with rest of the project and follows our coding standards and best practices.
 
+> A `java-formatter.xml` configuration file is provided in the root of the project. Please include this in for editor settings when developing Magma Core.
+
 Checkstyle is run as part of `mvn install` so you should ensure your code is compliant with these rules. The project will not build if there are checkstyle errors.
 
 In particular please ensure you have adhered to the following:
