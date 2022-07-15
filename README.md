@@ -23,7 +23,7 @@ An introduction to Magma Core is provided in the [Magma Core Wiki](https://githu
 
 ### Prerequisites
 
-- [Java 15](https://openjdk.java.net/projects/jdk/15/) - Core language
+- [Java 17](https://openjdk.java.net/projects/jdk/17/) - Core language
 - [Maven](https://maven.apache.org/) - Dependency management
 
 ### Inclusion in other projects
