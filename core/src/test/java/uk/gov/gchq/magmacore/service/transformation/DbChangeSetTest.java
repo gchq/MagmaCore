@@ -46,10 +46,13 @@ public class DbChangeSetTest {
 
         // Create operations to add an object with dummy values.
         final IRI individualIri = new IRI(TEST_BASE, "individual");
+        final IRI classOfIndividualIri = new IRI(TEST_BASE, "classOfIndividual");
+        final IRI possibleWorldIri = new IRI(TEST_BASE, "possible_world");
+
         final DbChangeSet createIndividual = new DbChangeSet(List.of(),
-                List.of(new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri()),
-                        new DbCreateOperation(individualIri, HQDM.MEMBER_OF, "classOfIndividual"),
-                        new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, "possible world")));
+                List.of(new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL),
+                        new DbCreateOperation(individualIri, HQDM.MEMBER_OF, classOfIndividualIri),
+                        new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri)));
 
         // Apply the operations to the dataset.
         mcService.runInTransaction(createIndividual);
@@ -58,9 +61,9 @@ public class DbChangeSetTest {
         final Thing individual = mcService.getInTransaction(individualIri);
 
         assertNotNull(individual);
-        assertTrue(individual.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
-        assertTrue(individual.hasThisValue(HQDM.MEMBER_OF.getIri(), "classOfIndividual"));
-        assertTrue(individual.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "possible world"));
+        assertTrue(individual.hasThisValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL));
+        assertTrue(individual.hasThisValue(HQDM.MEMBER_OF, classOfIndividualIri));
+        assertTrue(individual.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri));
 
         // Invert the operations and apply them in reverse order.
         mcService.runInTransaction(DbChangeSet.invert(createIndividual));
