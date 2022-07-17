@@ -330,7 +330,6 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     private final List<Thing> toTopObjects(final QueryResultList queryResultsList) {
         final Map<RDFNode, List<Pair<Object, Object>>> objectMap = new HashMap<>();
         final List<String> varNames = (List<String>) queryResultsList.getVarNames();
-
         final String subjectVarName = varNames.get(0);
         final String predicateVarName = varNames.get(1);
         final String objectVarName = varNames.get(2);
