@@ -46,17 +46,20 @@ public class DbTransformationTest {
 
         final IRI individualIri = new IRI(TEST_BASE, "individual");
         final IRI personIri = new IRI(TEST_BASE, "person");
+        final IRI classOfIndividualIri = new IRI(TEST_BASE, "classOfIndividual");
+        final IRI classOfPersonIri = new IRI(TEST_BASE, "classOfPerson");
+        final IRI possibleWorldIri = new IRI(TEST_BASE, "possible_world");
 
         // Create operations to add an object with dummy values.
         final DbChangeSet createIndividual = new DbChangeSet(List.of(),
-                List.of(new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL.getIri()),
-                        new DbCreateOperation(individualIri, HQDM.MEMBER_OF, "classOfIndividual"),
-                        new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, "possible world")));
+                List.of(new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL),
+                        new DbCreateOperation(individualIri, HQDM.MEMBER_OF, classOfIndividualIri),
+                        new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri)));
 
         final DbChangeSet createPerson = new DbChangeSet(List.of(),
-                List.of(new DbCreateOperation(personIri, RDFS.RDF_TYPE, HQDM.PERSON.getIri()),
-                        new DbCreateOperation(personIri, HQDM.MEMBER_OF, "classOfPerson"),
-                        new DbCreateOperation(personIri, HQDM.PART_OF_POSSIBLE_WORLD, "possible world")));
+                List.of(new DbCreateOperation(personIri, RDFS.RDF_TYPE, HQDM.PERSON),
+                        new DbCreateOperation(personIri, HQDM.MEMBER_OF, classOfPersonIri),
+                        new DbCreateOperation(personIri, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri)));
 
         final DbTransformation transformation = new DbTransformation(List.of(createIndividual, createPerson));
 
@@ -67,16 +70,16 @@ public class DbTransformationTest {
         final Thing individual = mcService.getInTransaction(individualIri);
 
         assertNotNull(individual);
-        assertTrue(individual.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
-        assertTrue(individual.hasThisValue(HQDM.MEMBER_OF.getIri(), "classOfIndividual"));
-        assertTrue(individual.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "possible world"));
+        assertTrue(individual.hasThisValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL));
+        assertTrue(individual.hasThisValue(HQDM.MEMBER_OF, classOfIndividualIri));
+        assertTrue(individual.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri));
 
         final Thing person = mcService.getInTransaction(personIri);
 
         assertNotNull(person);
-        assertTrue(person.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.PERSON.getIri()));
-        assertTrue(person.hasThisValue(HQDM.MEMBER_OF.getIri(), "classOfPerson"));
-        assertTrue(person.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "possible world"));
+        assertTrue(person.hasThisValue(RDFS.RDF_TYPE, HQDM.PERSON));
+        assertTrue(person.hasThisValue(HQDM.MEMBER_OF, classOfPersonIri));
+        assertTrue(person.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri));
 
         // Invert the operations, apply them in reverse order and assert they are no longer present.
         mcService.runInTransaction(transformation.invert());

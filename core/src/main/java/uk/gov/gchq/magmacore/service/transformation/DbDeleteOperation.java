@@ -27,16 +27,16 @@ import uk.gov.gchq.magmacore.service.MagmaCoreService;
 public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreService> {
     private IRI subject;
     private IRI predicate;
-    private String object;
+    private Object object;
 
     /**
      * Constructs a DbDeleteOperation to delete a predicate.
      *
      * @param subject   Subject {@link IRI}.
      * @param predicate Predicate {@link IRI}.
-     * @param object    {@link String} value.
+     * @param object    {@link Object} value.
      */
-    public DbDeleteOperation(final IRI subject, final IRI predicate, final String object) {
+    public DbDeleteOperation(final IRI subject, final IRI predicate, final Object object) {
         this.subject = subject;
         this.predicate = predicate;
         this.object = object;
@@ -48,8 +48,8 @@ public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreSe
     public MagmaCoreService apply(final MagmaCoreService mcService) {
         final Thing thing = mcService.get(subject);
 
-        if (thing != null && thing.hasThisValue(predicate.getIri(), object)) {
-            thing.removeValue(predicate.getIri(), object);
+        if (thing != null && thing.hasThisValue(predicate, object)) {
+            thing.removeValue(predicate, object);
             mcService.update(thing);
             return mcService;
         }
