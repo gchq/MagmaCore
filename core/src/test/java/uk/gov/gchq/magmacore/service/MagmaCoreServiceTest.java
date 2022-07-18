@@ -22,7 +22,6 @@ import static org.junit.Assert.assertNull;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import org.apache.jena.query.Dataset;
 import org.junit.Test;
 
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
@@ -260,19 +259,5 @@ public class MagmaCoreServiceTest {
         db.create(repBySign2);
 
         db.commit();
-
-        dump((MagmaCoreJenaDatabase) db);
-    }
-
-    /**
-     * TO-DO: DELETE ME.
-     *
-     * @param db {@link MagmaCoreJenaDatabase}
-     */
-    private void dump(final MagmaCoreJenaDatabase db) {
-        db.begin();
-        final Dataset ds = db.getDataset();
-        ds.getDefaultModel().write(System.out);
-        db.abort();
     }
 }
