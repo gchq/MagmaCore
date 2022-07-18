@@ -42,6 +42,9 @@ public class PredicatesTest {
 
     private static final IriBase BASE = new IriBase("base", "http://test.co.uk/base#");
 
+    private static LocalDateTime begin = LocalDateTime.now().minusDays(1L);
+    private static LocalDateTime end = LocalDateTime.now().plusDays(1L);
+
     /**
      * Check that we get the default value when there is no ENTITY_NAME that can be parsed to an
      * Instant.
@@ -65,10 +68,9 @@ public class PredicatesTest {
     public void testGetInstantWithValuePresent() {
         final Event event = SpatioTemporalExtentServices.createEvent("test_id");
         final LocalDateTime now = LocalDateTime.now();
-        final LocalDateTime then = LocalDateTime.MAX;
-        event.addValue(HQDM.ENTITY_NAME.getIri(), now.toString());
+        event.addValue(HQDM.ENTITY_NAME, now.toString());
 
-        final LocalDateTime value = Predicates.getInstant(event, then);
+        final LocalDateTime value = Predicates.getInstant(event, end);
 
         assertEquals(now, value);
     }
@@ -81,12 +83,11 @@ public class PredicatesTest {
     @Test
     public void testGetInstantWithInvalidValuePresent() {
         final Event event = SpatioTemporalExtentServices.createEvent("test_id");
-        final LocalDateTime then = LocalDateTime.MAX;
-        event.addValue(HQDM.ENTITY_NAME.getIri(), "oops");
+        event.addValue(HQDM.ENTITY_NAME, "oops");
 
-        final LocalDateTime value = Predicates.getInstant(event, then);
+        final LocalDateTime value = Predicates.getInstant(event, end);
 
-        assertEquals(then, value);
+        assertEquals(end, value);
     }
 
     /**
@@ -97,24 +98,24 @@ public class PredicatesTest {
     public void testIsValidAtPointInTimeBetweenBeginAndEnd() {
         final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
 
-        // `now` is bwteen the MIN and MAX LocalDateTime values.
+        // `now` is between two LocalDateTime values.
         final LocalDateTime now = LocalDateTime.now();
         final PointInTime pointInTime = SpatioTemporalExtentServices.createPointInTime("test_point_in_time");
-        pointInTime.addStringValue(HQDM.ENTITY_NAME.getIri(), now.toString());
+        pointInTime.addStringValue(HQDM.ENTITY_NAME, now.toString());
 
         // Create an object with a BEGINNING and an ENDING
         final Person person = SpatioTemporalExtentServices.createPerson("test_person");
         final PointInTime begin = SpatioTemporalExtentServices.createPointInTime(new IRI(BASE, "beginning").toString());
         final PointInTime end = SpatioTemporalExtentServices.createPointInTime(new IRI(BASE, "ending").toString());
 
-        person.addValue(RDFS.RDF_TYPE.getIri(), HQDM.PERSON.getIri());
-        person.addValue(HQDM.BEGINNING.getIri(), begin.getId());
-        person.addValue(HQDM.ENDING.getIri(), end.getId());
+        person.addValue(RDFS.RDF_TYPE, HQDM.PERSON);
+        person.addValue(HQDM.BEGINNING, new IRI(begin.getId()));
+        person.addValue(HQDM.ENDING, new IRI(end.getId()));
 
-        begin.addValue(RDFS.RDF_TYPE.getIri(), HQDM.POINT_IN_TIME.getIri());
-        begin.addValue(HQDM.ENTITY_NAME.getIri(), LocalDateTime.MIN.toString());
-        end.addValue(RDFS.RDF_TYPE.getIri(), HQDM.POINT_IN_TIME.getIri());
-        end.addValue(HQDM.ENTITY_NAME.getIri(), LocalDateTime.MAX.toString());
+        begin.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
+        begin.addValue(HQDM.ENTITY_NAME, begin.toString());
+        end.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
+        end.addValue(HQDM.ENTITY_NAME, end.toString());
 
         db.begin();
 
@@ -138,23 +139,23 @@ public class PredicatesTest {
         final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
 
         // This is the BEGINNING of the object.
-        final LocalDateTime when = LocalDateTime.MIN;
+        final LocalDateTime when = begin;
         final PointInTime pointInTime = SpatioTemporalExtentServices.createPointInTime("test_point_in_time");
-        pointInTime.addStringValue(HQDM.ENTITY_NAME.getIri(), when.toString());
+        pointInTime.addStringValue(HQDM.ENTITY_NAME, when.toString());
 
         // Create an object with a BEGINNING and an ENDING
         final Person person = SpatioTemporalExtentServices.createPerson("test_person");
         final PointInTime begin = SpatioTemporalExtentServices.createPointInTime(new IRI(BASE, "beginning").toString());
         final PointInTime end = SpatioTemporalExtentServices.createPointInTime(new IRI(BASE, "ending").toString());
 
-        person.addValue(RDFS.RDF_TYPE.getIri(), HQDM.PERSON.getIri());
-        person.addValue(HQDM.BEGINNING.getIri(), begin.getId());
-        person.addValue(HQDM.ENDING.getIri(), end.getId());
+        person.addValue(RDFS.RDF_TYPE, HQDM.PERSON);
+        person.addValue(HQDM.BEGINNING, new IRI(begin.getId()));
+        person.addValue(HQDM.ENDING, new IRI(end.getId()));
 
-        begin.addValue(RDFS.RDF_TYPE.getIri(), HQDM.POINT_IN_TIME.getIri());
-        begin.addValue(HQDM.ENTITY_NAME.getIri(), LocalDateTime.MIN.toString());
-        end.addValue(RDFS.RDF_TYPE.getIri(), HQDM.POINT_IN_TIME.getIri());
-        end.addValue(HQDM.ENTITY_NAME.getIri(), LocalDateTime.MAX.toString());
+        begin.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
+        begin.addValue(HQDM.ENTITY_NAME, begin.toString());
+        end.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
+        end.addValue(HQDM.ENTITY_NAME, end.toString());
 
         db.begin();
 
@@ -178,23 +179,23 @@ public class PredicatesTest {
         final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
 
         // This is the ENDING of the object.
-        final LocalDateTime when = LocalDateTime.MAX;
+        final LocalDateTime when = end;
         final PointInTime pointInTime = SpatioTemporalExtentServices.createPointInTime("test_point_in_time");
-        pointInTime.addStringValue(HQDM.ENTITY_NAME.getIri(), when.toString());
+        pointInTime.addStringValue(HQDM.ENTITY_NAME, when.toString());
 
         // Create an object with a BEGINNING and an ENDING
         final Person person = SpatioTemporalExtentServices.createPerson("test_person");
         final PointInTime begin = SpatioTemporalExtentServices.createPointInTime(new IRI(BASE, "beginning").toString());
         final PointInTime end = SpatioTemporalExtentServices.createPointInTime(new IRI(BASE, "ending").toString());
 
-        person.addValue(RDFS.RDF_TYPE.getIri(), HQDM.PERSON.getIri());
-        person.addValue(HQDM.BEGINNING.getIri(), begin.getId());
-        person.addValue(HQDM.ENDING.getIri(), end.getId());
+        person.addValue(RDFS.RDF_TYPE, HQDM.PERSON);
+        person.addValue(HQDM.BEGINNING, new IRI(begin.getId()));
+        person.addValue(HQDM.ENDING, new IRI(end.getId()));
 
-        begin.addValue(RDFS.RDF_TYPE.getIri(), HQDM.POINT_IN_TIME.getIri());
-        begin.addValue(HQDM.ENTITY_NAME.getIri(), LocalDateTime.MIN.toString());
-        end.addValue(RDFS.RDF_TYPE.getIri(), HQDM.POINT_IN_TIME.getIri());
-        end.addValue(HQDM.ENTITY_NAME.getIri(), LocalDateTime.MAX.toString());
+        begin.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
+        begin.addValue(HQDM.ENTITY_NAME, begin.toString());
+        end.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
+        end.addValue(HQDM.ENTITY_NAME, end.toString());
 
         db.begin();
 
@@ -218,23 +219,23 @@ public class PredicatesTest {
         final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
 
         // This is the ENDING of the object.
-        final LocalDateTime when = LocalDateTime.MIN;
+        final LocalDateTime when = begin;
         final PointInTime pointInTime = SpatioTemporalExtentServices.createPointInTime("test_point_in_time");
-        pointInTime.addStringValue(HQDM.ENTITY_NAME.getIri(), when.toString());
+        pointInTime.addStringValue(HQDM.ENTITY_NAME, when.toString());
 
         // Create an object with a BEGINNING and an ENDING
         final Person person = SpatioTemporalExtentServices.createPerson("test_person");
         final PointInTime begin = SpatioTemporalExtentServices.createPointInTime(new IRI(BASE, "beginning").toString());
         final PointInTime end = SpatioTemporalExtentServices.createPointInTime(new IRI(BASE, "ending").toString());
 
-        person.addValue(RDFS.RDF_TYPE.getIri(), HQDM.PERSON.getIri());
-        person.addValue(HQDM.BEGINNING.getIri(), begin.getId());
-        person.addValue(HQDM.ENDING.getIri(), end.getId());
+        person.addValue(RDFS.RDF_TYPE, HQDM.PERSON);
+        person.addValue(HQDM.BEGINNING, new IRI(begin.getId()));
+        person.addValue(HQDM.ENDING, new IRI(end.getId()));
 
-        begin.addValue(RDFS.RDF_TYPE.getIri(), HQDM.POINT_IN_TIME.getIri());
-        begin.addValue(HQDM.ENTITY_NAME.getIri(), LocalDateTime.now().toString());
-        end.addValue(RDFS.RDF_TYPE.getIri(), HQDM.POINT_IN_TIME.getIri());
-        end.addValue(HQDM.ENTITY_NAME.getIri(), LocalDateTime.MAX.toString());
+        begin.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
+        begin.addValue(HQDM.ENTITY_NAME, LocalDateTime.now().toString());
+        end.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
+        end.addValue(HQDM.ENTITY_NAME, end.toString());
 
         db.begin();
 
@@ -258,23 +259,23 @@ public class PredicatesTest {
         final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
 
         // This is the ENDING of the object.
-        final LocalDateTime when = LocalDateTime.MAX;
+        final LocalDateTime when = end;
         final PointInTime pointInTime = SpatioTemporalExtentServices.createPointInTime("test_point_in_time");
-        pointInTime.addStringValue(HQDM.ENTITY_NAME.getIri(), when.toString());
+        pointInTime.addStringValue(HQDM.ENTITY_NAME, when.toString());
 
         // Create an object with a BEGINNING and an ENDING
         final Person person = SpatioTemporalExtentServices.createPerson("test_person");
         final PointInTime begin = SpatioTemporalExtentServices.createPointInTime(new IRI(BASE, "beginning").toString());
         final PointInTime end = SpatioTemporalExtentServices.createPointInTime(new IRI(BASE, "ending").toString());
 
-        person.addValue(RDFS.RDF_TYPE.getIri(), HQDM.PERSON.getIri());
-        person.addValue(HQDM.BEGINNING.getIri(), begin.getId());
-        person.addValue(HQDM.ENDING.getIri(), end.getId());
+        person.addValue(RDFS.RDF_TYPE, HQDM.PERSON);
+        person.addValue(HQDM.BEGINNING, new IRI(begin.getId()));
+        person.addValue(HQDM.ENDING, new IRI(end.getId()));
 
-        begin.addValue(RDFS.RDF_TYPE.getIri(), HQDM.POINT_IN_TIME.getIri());
-        begin.addValue(HQDM.ENTITY_NAME.getIri(), LocalDateTime.MIN.toString());
-        end.addValue(RDFS.RDF_TYPE.getIri(), HQDM.POINT_IN_TIME.getIri());
-        end.addValue(HQDM.ENTITY_NAME.getIri(), LocalDateTime.now().toString());
+        begin.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
+        begin.addValue(HQDM.ENTITY_NAME, begin.toString());
+        end.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
+        end.addValue(HQDM.ENTITY_NAME, LocalDateTime.now().toString());
 
         db.begin();
 

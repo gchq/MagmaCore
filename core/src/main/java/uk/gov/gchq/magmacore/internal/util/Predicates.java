@@ -49,8 +49,8 @@ public final class Predicates {
             final PointInTime pointInTime) {
         return thing -> {
             // Get the beginning and ending of the thing
-            final Set<Object> beginningId = thing.value(HQDM.BEGINNING.getIri());
-            final Set<Object> endingId = thing.value(HQDM.ENDING.getIri());
+            final Set<Object> beginningId = thing.value(HQDM.BEGINNING);
+            final Set<Object> endingId = thing.value(HQDM.ENDING);
 
             final LocalDateTime beginning;
             final LocalDateTime ending;
@@ -71,7 +71,7 @@ public final class Predicates {
 
             // Get the requested PointInTime Instant
             final LocalDateTime when = LocalDateTime
-                    .parse(pointInTime.value(HQDM.ENTITY_NAME.getIri()).iterator().next().toString());
+                    .parse(pointInTime.value(HQDM.ENTITY_NAME).iterator().next().toString());
             return (when.equals(beginning) || when.isAfter(beginning))
                     && (when.equals(ending) || when.isBefore(ending));
         };
@@ -85,7 +85,7 @@ public final class Predicates {
      * @return an {@link Instant}
      */
     public static LocalDateTime getInstant(final Thing thing, final LocalDateTime defaultValue) {
-        final var values = thing.value(HQDM.ENTITY_NAME.getIri());
+        final var values = thing.value(HQDM.ENTITY_NAME);
         if (values != null && values.size() == 1) {
             try {
                 return LocalDateTime.parse(values.iterator().next().toString());

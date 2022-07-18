@@ -70,13 +70,13 @@ public class MagmaCoreServiceTest {
         final IRI individualIri = new IRI(TEST_BASE, "individual");
         final Individual individual = SpatioTemporalExtentServices.createIndividual(individualIri.getIri());
 
-        individual.addValue(HQDM.MEMBER_OF.getIri(), "classOfIndividual");
+        individual.addValue(HQDM.MEMBER_OF, "classOfIndividual");
 
         database.begin();
         database.create(individual);
         database.commit();
 
-        individual.removeValue(HQDM.MEMBER_OF.getIri(), "classOfIndividual");
+        individual.removeValue(HQDM.MEMBER_OF, "classOfIndividual");
 
         database.begin();
         database.update(individual);
@@ -107,7 +107,7 @@ public class MagmaCoreServiceTest {
 
         // Create the PointInTime we're looking for
         final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
-        now.addValue(HQDM.ENTITY_NAME.getIri(), LocalDateTime.now().toString());
+        now.addValue(HQDM.ENTITY_NAME, LocalDateTime.now().toString());
 
         // Find the required Things by sign in a transaction.
         db.begin();
@@ -138,104 +138,104 @@ public class MagmaCoreServiceTest {
         // Create RecognizingLanguageCommunities
         community1 = SpatioTemporalExtentServices
                 .createRecognizingLanguageCommunity(new IRI(TEST_BASE, "community1").getIri());
-        community1.addValue(RDFS.RDF_TYPE.getIri(), HQDM.RECOGNIZING_LANGUAGE_COMMUNITY.getIri());
+        community1.addValue(RDFS.RDF_TYPE, HQDM.RECOGNIZING_LANGUAGE_COMMUNITY);
 
         community2 = SpatioTemporalExtentServices
                 .createRecognizingLanguageCommunity(new IRI(TEST_BASE, "community2").getIri());
-        community2.addValue(RDFS.RDF_TYPE.getIri(), HQDM.RECOGNIZING_LANGUAGE_COMMUNITY.getIri());
+        community2.addValue(RDFS.RDF_TYPE, HQDM.RECOGNIZING_LANGUAGE_COMMUNITY);
 
         // Create Patterns
         pattern1 = SpatioTemporalExtentServices.createPattern(new IRI(TEST_BASE, "pattern1").getIri());
-        pattern1.addValue(RDFS.RDF_TYPE.getIri(), HQDM.PATTERN.getIri());
+        pattern1.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
 
         pattern2 = SpatioTemporalExtentServices.createPattern(new IRI(TEST_BASE, "pattern2").getIri());
-        pattern2.addValue(RDFS.RDF_TYPE.getIri(), HQDM.PATTERN.getIri());
+        pattern2.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
 
         // Create RepresentationByPatterns
         final RepresentationByPattern repByPattern1 = SpatioTemporalExtentServices
                 .createRepresentationByPattern(new IRI(TEST_BASE, "repByPattern1").getIri());
-        repByPattern1.addValue(RDFS.RDF_TYPE.getIri(), HQDM.REPRESENTATION_BY_PATTERN.getIri());
+        repByPattern1.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_PATTERN);
 
         final RepresentationByPattern repByPattern2 = SpatioTemporalExtentServices
                 .createRepresentationByPattern(new IRI(TEST_BASE, "repByPattern2").getIri());
-        repByPattern2.addValue(RDFS.RDF_TYPE.getIri(), HQDM.REPRESENTATION_BY_PATTERN.getIri());
+        repByPattern2.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_PATTERN);
 
         // Add the relationships for the patterns etc.
 
-        repByPattern1.addValue(HQDM.CONSISTS_OF_IN_MEMBERS.getIri(), community1.getId());
-        repByPattern2.addValue(HQDM.CONSISTS_OF_IN_MEMBERS.getIri(), community2.getId());
+        repByPattern1.addValue(HQDM.CONSISTS_OF_IN_MEMBERS, new IRI(community1.getId()));
+        repByPattern2.addValue(HQDM.CONSISTS_OF_IN_MEMBERS, new IRI(community2.getId()));
 
-        repByPattern1.addValue(HQDM.CONSISTS_OF_BY_CLASS.getIri(), pattern1.getId());
-        repByPattern2.addValue(HQDM.CONSISTS_OF_BY_CLASS.getIri(), pattern2.getId());
+        repByPattern1.addValue(HQDM.CONSISTS_OF_BY_CLASS, new IRI(pattern1.getId()));
+        repByPattern2.addValue(HQDM.CONSISTS_OF_BY_CLASS, new IRI(pattern2.getId()));
 
         // Create People
         person1 = SpatioTemporalExtentServices.createPerson(new IRI(TEST_BASE, "person1").getIri());
-        person1.addValue(RDFS.RDF_TYPE.getIri(), HQDM.PERSON.getIri());
+        person1.addValue(RDFS.RDF_TYPE, HQDM.PERSON);
 
         person2 = SpatioTemporalExtentServices.createPerson(new IRI(TEST_BASE, "person2").getIri());
-        person2.addValue(RDFS.RDF_TYPE.getIri(), HQDM.PERSON.getIri());
+        person2.addValue(RDFS.RDF_TYPE, HQDM.PERSON);
 
         // Create States for the People
         stateOfPerson1 = SpatioTemporalExtentServices
                 .createStateOfPerson(new IRI(TEST_BASE, "stateOfPerson1").getIri());
-        stateOfPerson1.addValue(RDFS.RDF_TYPE.getIri(), HQDM.STATE_OF_PERSON.getIri());
-        stateOfPerson1.addValue(HQDM.TEMPORAL_PART_OF.getIri(), person1.getId());
+        stateOfPerson1.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_PERSON);
+        stateOfPerson1.addValue(HQDM.TEMPORAL_PART_OF, new IRI(person1.getId()));
 
         stateOfPerson2 = SpatioTemporalExtentServices
                 .createStateOfPerson(new IRI(TEST_BASE, "stateOfPerson2").getIri());
-        stateOfPerson2.addValue(RDFS.RDF_TYPE.getIri(), HQDM.STATE_OF_PERSON.getIri());
-        stateOfPerson2.addValue(HQDM.TEMPORAL_PART_OF.getIri(), person2.getId());
+        stateOfPerson2.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_PERSON);
+        stateOfPerson2.addValue(HQDM.TEMPORAL_PART_OF, new IRI(person2.getId()));
 
         // Create signs
         final Sign sign1 = SpatioTemporalExtentServices.createSign(new IRI(TEST_BASE, "sign1").getIri());
-        sign1.addValue(RDFS.RDF_TYPE.getIri(), HQDM.SIGN.getIri());
-        sign1.addValue(HQDM.VALUE_.getIri(), "person1");
+        sign1.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
+        sign1.addValue(HQDM.VALUE_, "person1");
 
         final Sign sign2 = SpatioTemporalExtentServices.createSign(new IRI(TEST_BASE, "sign2").getIri());
-        sign2.addValue(RDFS.RDF_TYPE.getIri(), HQDM.SIGN.getIri());
-        sign2.addValue(HQDM.VALUE_.getIri(), "person2");
+        sign2.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
+        sign2.addValue(HQDM.VALUE_, "person2");
 
         // Create states for the Signs
         final StateOfSign stateOfSign1 = SpatioTemporalExtentServices
                 .createStateOfSign(new IRI(TEST_BASE, "stateOfSign1").getIri());
-        stateOfSign1.addValue(RDFS.RDF_TYPE.getIri(), HQDM.STATE_OF_SIGN.getIri());
-        stateOfSign1.addValue(HQDM.TEMPORAL_PART_OF.getIri(), sign1.getId());
+        stateOfSign1.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN);
+        stateOfSign1.addValue(HQDM.TEMPORAL_PART_OF, new IRI(sign1.getId()));
 
         final StateOfSign stateOfSign2 = SpatioTemporalExtentServices
                 .createStateOfSign(new IRI(TEST_BASE, "stateOfSign2").getIri());
-        stateOfSign2.addValue(RDFS.RDF_TYPE.getIri(), HQDM.STATE_OF_SIGN.getIri());
-        stateOfSign2.addValue(HQDM.TEMPORAL_PART_OF.getIri(), sign2.getId());
+        stateOfSign2.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN);
+        stateOfSign2.addValue(HQDM.TEMPORAL_PART_OF, new IRI(sign2.getId()));
 
         // Create Events for the BEGINNING and ENDING
         final PointInTime begin = SpatioTemporalExtentServices.createPointInTime(new IRI(TEST_BASE, "begin").getIri());
         final PointInTime end = SpatioTemporalExtentServices.createPointInTime(new IRI(TEST_BASE, "end").getIri());
 
-        begin.addStringValue(RDFS.RDF_TYPE.getIri(), HQDM.POINT_IN_TIME.getIri());
-        end.addStringValue(RDFS.RDF_TYPE.getIri(), HQDM.POINT_IN_TIME.getIri());
+        begin.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
+        end.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
 
-        begin.addStringValue(HQDM.ENTITY_NAME.getIri(), LocalDateTime.MIN.toString());
-        end.addStringValue(HQDM.ENTITY_NAME.getIri(), LocalDateTime.MAX.toString());
+        begin.addStringValue(HQDM.ENTITY_NAME, LocalDateTime.now().minusDays(1L).toString());
+        end.addStringValue(HQDM.ENTITY_NAME, LocalDateTime.now().plusDays(1L).toString());
 
         // Create RepresentationBySigns
         final RepresentationBySign repBySign1 = SpatioTemporalExtentServices
                 .createRepresentationBySign(new IRI(TEST_BASE, "repBySign1").getIri());
-        repBySign1.addValue(RDFS.RDF_TYPE.getIri(), HQDM.REPRESENTATION_BY_SIGN.getIri());
-        repBySign1.addValue(HQDM.REPRESENTS.getIri(), stateOfPerson1.getId());
-        repBySign1.addValue(HQDM.MEMBER_OF_.getIri(), repByPattern1.getId());
-        repBySign1.addValue(HQDM.BEGINNING.getIri(), begin.getId());
-        repBySign1.addValue(HQDM.ENDING.getIri(), end.getId());
-        community1.addValue(HQDM.PARTICIPANT_IN.getIri(), repBySign1.getId());
-        stateOfSign1.addValue(HQDM.PARTICIPANT_IN.getIri(), repBySign1.getId());
+        repBySign1.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN);
+        repBySign1.addValue(HQDM.REPRESENTS, new IRI(stateOfPerson1.getId()));
+        repBySign1.addValue(HQDM.MEMBER_OF_, new IRI(repByPattern1.getId()));
+        repBySign1.addValue(HQDM.BEGINNING, new IRI(begin.getId()));
+        repBySign1.addValue(HQDM.ENDING, new IRI(end.getId()));
+        community1.addValue(HQDM.PARTICIPANT_IN, new IRI(repBySign1.getId()));
+        stateOfSign1.addValue(HQDM.PARTICIPANT_IN, new IRI(repBySign1.getId()));
 
         final RepresentationBySign repBySign2 = SpatioTemporalExtentServices
                 .createRepresentationBySign(new IRI(TEST_BASE, "repBySign2").getIri());
-        repBySign2.addValue(RDFS.RDF_TYPE.getIri(), HQDM.REPRESENTATION_BY_SIGN.getIri());
-        repBySign2.addValue(HQDM.REPRESENTS.getIri(), stateOfPerson2.getId());
-        repBySign2.addValue(HQDM.MEMBER_OF_.getIri(), repByPattern2.getId());
-        repBySign2.addValue(HQDM.BEGINNING.getIri(), begin.getId());
-        repBySign2.addValue(HQDM.ENDING.getIri(), end.getId());
-        community2.addValue(HQDM.PARTICIPANT_IN.getIri(), repBySign2.getId());
-        stateOfSign2.addValue(HQDM.PARTICIPANT_IN.getIri(), repBySign2.getId());
+        repBySign2.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN);
+        repBySign2.addValue(HQDM.REPRESENTS, new IRI(stateOfPerson2.getId()));
+        repBySign2.addValue(HQDM.MEMBER_OF_, new IRI(repByPattern2.getId()));
+        repBySign2.addValue(HQDM.BEGINNING, new IRI(begin.getId()));
+        repBySign2.addValue(HQDM.ENDING, new IRI(end.getId()));
+        community2.addValue(HQDM.PARTICIPANT_IN, new IRI(repBySign2.getId()));
+        stateOfSign2.addValue(HQDM.PARTICIPANT_IN, new IRI(repBySign2.getId()));
 
         // Persist all objects
         db.begin();

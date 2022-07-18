@@ -73,15 +73,15 @@ public class MagmaCoreService {
             final PointInTime pointInTime) throws MagmaCoreException {
 
         // Find the RepresentationByPattern
-        final List<Thing> repByPatternThings = database.findByPredicateIriAndStringValue(HQDM.CONSISTS_OF_BY_CLASS,
-                pattern.getId());
+        final List<Thing> repByPatternThings = database.findByPredicateIri(HQDM.CONSISTS_OF_BY_CLASS,
+                new IRI(pattern.getId()));
         if (repByPatternThings.size() != 1) {
             throw new MagmaCoreException(
                     String.format("Expected 1 RepresentationByPattern for Pattern %s, but found %s", pattern.getId(),
                             repByPatternThings.size()));
         }
 
-        final String repByPatternId = repByPatternThings.get(0).getId();
+        final IRI repByPatternIri = new IRI(repByPatternThings.get(0).getId());
 
         // Find the Things with the given value and filter out anything that isn't a sign.
         final Stream<Thing> signs = database.findByPredicateIriAndStringValue(HQDM.VALUE_, value)
@@ -90,7 +90,7 @@ public class MagmaCoreService {
 
         // Find the states of these signs
         final List<Thing> signStates = signs
-                .map(thing -> database.findByPredicateIriAndStringValue(HQDM.TEMPORAL_PART_OF, thing.getId()))
+                .map(sign -> database.findByPredicateIri(HQDM.TEMPORAL_PART_OF, new IRI(sign.getId())))
                 .reduce(new ArrayList<>(), (accumulator, things) -> {
                     accumulator.addAll(things);
                     return accumulator;
@@ -99,31 +99,29 @@ public class MagmaCoreService {
         // Map the states to RepresentationBySign objects
         final Stream<Thing> repBySignThings = signStates
                 .stream()
-                .map(signState -> signState.value(HQDM.PARTICIPANT_IN.getIri()))
+                .map(signState -> signState.value(HQDM.PARTICIPANT_IN))
                 .reduce(new HashSet<Object>(), (accumulator, things) -> {
                     accumulator.addAll(things);
                     return accumulator;
                 })
                 .stream()
-                .map(obj -> obj.toString())
-                .map(repBySignId -> database.get(new IRI(repBySignId)))
+                .map(repBySignIri -> database.get((IRI) repBySignIri))
 
                 // Filter to those with the correct RepresentationByPattern and RecognizingLanguageCommunity
-                .filter(repBySign -> community.hasThisValue(HQDM.PARTICIPANT_IN.getIri(),
-                        repBySign.getId()) && repBySign.hasThisValue(HQDM.MEMBER_OF_.getIri(), repByPatternId))
+                .filter(repBySign -> community.hasThisValue(HQDM.PARTICIPANT_IN,
+                        new IRI(repBySign.getId())) && repBySign.hasThisValue(HQDM.MEMBER_OF_, repByPatternIri))
 
                 // Filter to those valid at the specified PointInTime.
                 .filter(Predicates.isValidAtPointInTime(database, pointInTime));
 
         // Map the RepresentationBySign Things to the Things they represent.
-        return repBySignThings.map(repBySign -> repBySign.value(HQDM.REPRESENTS.getIri()))
+        return repBySignThings.map(repBySign -> repBySign.value(HQDM.REPRESENTS))
                 .reduce(new HashSet<Object>(), (accumulator, things) -> {
                     accumulator.addAll(things);
                     return accumulator;
                 })
                 .stream()
-                .map(obj -> obj.toString())
-                .map(thingId -> database.get(new IRI(thingId)))
+                .map(thingId -> database.get((IRI) thingId))
                 .collect(Collectors.toSet());
 
     }
