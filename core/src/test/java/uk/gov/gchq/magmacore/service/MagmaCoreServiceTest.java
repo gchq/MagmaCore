@@ -18,6 +18,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -125,10 +126,77 @@ public class MagmaCoreServiceTest {
 
         assertEquals(stateOfPerson1.getId(), personState1.getId());
         assertEquals(stateOfPerson2.getId(), personState2.getId());
+
+        final Set<Object> parent1 = personState1.value(HQDM.TEMPORAL_PART_OF);
+        final Set<Object> parent2 = personState2.value(HQDM.TEMPORAL_PART_OF);
+
+        // Check that the `temporal_part_of` relationship is correct.
+        assertEquals(1, parent1.size());
+        assertEquals(1, parent2.size());
+
+        assertEquals(person1.getId(), ((IRI) parent1.iterator().next()).getIri());
+        assertEquals(person2.getId(), ((IRI) parent2.iterator().next()).getIri());
+    }
+
+    /**
+     * Check that we get an empty result if the sign value is null.
+     */
+    @Test
+    public void testFindBySignWithNullSignValue() throws MagmaCoreException {
+
+        // Create and populate an in-memory database.
+        final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
+        createSignPattern(db);
+
+        // Use it to create the services
+        final MagmaCoreService service = new MagmaCoreService(db);
+
+        // Create the PointInTime we're looking for
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        now.addValue(HQDM.ENTITY_NAME, LocalDateTime.now().toString());
+
+        // Find the required Things by sign in a transaction.
+        db.begin();
+        final Set<? extends Thing> found = service.findBySignValue(community1, pattern1, null, now);
+        db.commit();
+
+        assertNotNull(found);
+        assertTrue(found.isEmpty());
+    }
+
+    /**
+     * Check that we get an empty result if the pointInTime does not have an ENTITY_NAME.
+     */
+    @Test
+    public void testFindBySignWithBadPointInTime() throws MagmaCoreException {
+
+        // Create and populate an in-memory database.
+        final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
+        createSignPattern(db);
+
+        // Use it to create the services
+        final MagmaCoreService service = new MagmaCoreService(db);
+
+        // Create the PointInTime we're looking for
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+
+        // Find the required Things by sign in a transaction.
+        db.begin();
+        final Set<? extends Thing> found = service.findBySignValue(community1, pattern1, "person1", now);
+        db.commit();
+
+        assertNotNull(found);
+        assertTrue(found.isEmpty());
     }
 
     /**
      * Populate a {@link MagmaCoreDatabase} with an instance of the sign pattern.
+     *
+     * <p>
+     * This will create two {@link RepresentationBySign} associations that each use a String to
+     * represent a {@link StateOfPerson}, but for different {@link Pattern} and
+     * {@link RecognizingLanguageCommunity} objects.
+     * </p>
      *
      * @param db a {@link MagmaCoreDatabase}
      */
@@ -159,7 +227,7 @@ public class MagmaCoreServiceTest {
                 .createRepresentationByPattern(new IRI(TEST_BASE, "repByPattern2").getIri());
         repByPattern2.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_PATTERN);
 
-        // Add the relationships for the patterns etc.
+        // Add the relationships for the patterns and communities.
 
         repByPattern1.addValue(HQDM.CONSISTS_OF_IN_MEMBERS, new IRI(community1.getId()));
         repByPattern2.addValue(HQDM.CONSISTS_OF_IN_MEMBERS, new IRI(community2.getId()));
@@ -205,7 +273,7 @@ public class MagmaCoreServiceTest {
         stateOfSign2.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN);
         stateOfSign2.addValue(HQDM.TEMPORAL_PART_OF, new IRI(sign2.getId()));
 
-        // Create Events for the BEGINNING and ENDING
+        // Create Events for the BEGINNING and ENDING of the RepresentationBySigns
         final PointInTime begin = SpatioTemporalExtentServices.createPointInTime(new IRI(TEST_BASE, "begin").getIri());
         final PointInTime end = SpatioTemporalExtentServices.createPointInTime(new IRI(TEST_BASE, "end").getIri());
 
@@ -215,14 +283,17 @@ public class MagmaCoreServiceTest {
         begin.addStringValue(HQDM.ENTITY_NAME, LocalDateTime.now().minusDays(1L).toString());
         end.addStringValue(HQDM.ENTITY_NAME, LocalDateTime.now().plusDays(1L).toString());
 
+        final IRI objectId = new IRI(begin.getId());
+        final IRI objectId2 = new IRI(end.getId());
+
         // Create RepresentationBySigns
         final RepresentationBySign repBySign1 = SpatioTemporalExtentServices
                 .createRepresentationBySign(new IRI(TEST_BASE, "repBySign1").getIri());
         repBySign1.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN);
         repBySign1.addValue(HQDM.REPRESENTS, new IRI(stateOfPerson1.getId()));
         repBySign1.addValue(HQDM.MEMBER_OF_, new IRI(repByPattern1.getId()));
-        repBySign1.addValue(HQDM.BEGINNING, new IRI(begin.getId()));
-        repBySign1.addValue(HQDM.ENDING, new IRI(end.getId()));
+        repBySign1.addValue(HQDM.BEGINNING, objectId);
+        repBySign1.addValue(HQDM.ENDING, objectId2);
         community1.addValue(HQDM.PARTICIPANT_IN, new IRI(repBySign1.getId()));
         stateOfSign1.addValue(HQDM.PARTICIPANT_IN, new IRI(repBySign1.getId()));
 
@@ -231,8 +302,8 @@ public class MagmaCoreServiceTest {
         repBySign2.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN);
         repBySign2.addValue(HQDM.REPRESENTS, new IRI(stateOfPerson2.getId()));
         repBySign2.addValue(HQDM.MEMBER_OF_, new IRI(repByPattern2.getId()));
-        repBySign2.addValue(HQDM.BEGINNING, new IRI(begin.getId()));
-        repBySign2.addValue(HQDM.ENDING, new IRI(end.getId()));
+        repBySign2.addValue(HQDM.BEGINNING, objectId);
+        repBySign2.addValue(HQDM.ENDING, objectId2);
         community2.addValue(HQDM.PARTICIPANT_IN, new IRI(repBySign2.getId()));
         stateOfSign2.addValue(HQDM.PARTICIPANT_IN, new IRI(repBySign2.getId()));
 

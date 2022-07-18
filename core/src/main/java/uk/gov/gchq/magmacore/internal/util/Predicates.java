@@ -70,10 +70,21 @@ public final class Predicates {
             }
 
             // Get the requested PointInTime Instant
-            final LocalDateTime when = LocalDateTime
-                    .parse(pointInTime.value(HQDM.ENTITY_NAME).iterator().next().toString());
-            return (when.equals(beginning) || when.isAfter(beginning))
-                    && (when.equals(ending) || when.isBefore(ending));
+            final Set<Object> entityNameValues = pointInTime.value(HQDM.ENTITY_NAME);
+
+            // Try parsing the ENTITY_NAME if there is one otherwise return false.
+            if (entityNameValues != null && entityNameValues.size() == 1) {
+                try {
+                    final LocalDateTime when = LocalDateTime.parse(entityNameValues.iterator().next().toString());
+                    return (when.equals(beginning) || when.isAfter(beginning))
+                            && (when.equals(ending) || when.isBefore(ending));
+                } catch (final DateTimeParseException exc) {
+                    // This can happen if called with a Thing that isn't an Event.
+                    return false;
+                }
+            } else {
+                return false;
+            }
         };
     }
 
