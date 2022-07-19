@@ -39,8 +39,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.internal.util.Predicates;
-import uk.gov.gchq.magmacore.service.dto.AssociationDetails;
-import uk.gov.gchq.magmacore.service.dto.AssociationDetails.ParticipantDetails;
+import uk.gov.gchq.magmacore.service.dto.ParticipantDetails;
 
 /**
  * Service for interacting with a {@link MagmaCoreDatabase}.
@@ -60,15 +59,16 @@ public class MagmaCoreService {
 
     /**
      * Find the details of participants in associations of a specific kind between two
-     * {@link Individuals} objects.
+     * {@link Individuals} objects at a point in time.
      *
      * @param individual1 the first {@link Individual}
      * @param individual2 the second {@link Individual}
      * @param kind        the {@link KindOfAssociation}
+     * @param pointInTime the {@link PointInTime} that the associations should exist.
      * @return a {@link Set} of {@link AssociationDetails}
      */
     public Set<ParticipantDetails> findParticipantDetails(final Individual individual1, final Individual individual2,
-            final KindOfAssociation kind) {
+            final KindOfAssociation kind, final PointInTime pointInTime) {
 
         final IRI kindIri = new IRI(kind.getId());
 
@@ -78,7 +78,7 @@ public class MagmaCoreService {
                 .filter(state -> state.hasValue(HQDM.PARTICIPANT_IN))
                 .collect(Collectors.toList());
 
-        // Find the states of individual1 that are PARTICIPANTs in something.
+        // Find the states of individual2 that are PARTICIPANTs in something.
         final List<Thing> statesOfIndividual2 = database
                 .findByPredicateIri(HQDM.TEMPORAL_PART_OF, new IRI(individual2.getId())).stream()
                 .filter(state -> state.hasValue(HQDM.PARTICIPANT_IN))
@@ -88,10 +88,13 @@ public class MagmaCoreService {
         final List<Thing> associations1 = getAssociationsOfKindForIndividual(statesOfIndividual1, kindIri);
         final List<Thing> associations2 = getAssociationsOfKindForIndividual(statesOfIndividual2, kindIri);
 
-        // Find the association IDs that are common between the two lists.
+        // Find the associations that are common between the two lists.
         final List<String> intersection = associations1.stream()
                 .distinct()
                 .filter(associations2::contains)
+                // Make sure the associations are valid at the requested PointInTime.
+                .filter(Predicates.isValidAtPointInTime(database, pointInTime))
+                // Get the Association IDs and collect to a List
                 .map(a -> a.getId())
                 .collect(Collectors.toList());
 
@@ -110,7 +113,7 @@ public class MagmaCoreService {
                 // Map them to ParticipantDetails objects.
                 .map(p -> {
                     // Get the Roles of the Participant.
-                    final Set<Role> roles = p.value(HQDM.ROLE)
+                    final Set<Role> roles = p.value(HQDM.MEMBER_OF_KIND)
                             .stream()
                             .map(o -> (IRI) o)
                             .map(roleIri -> database.get(roleIri))
@@ -134,14 +137,16 @@ public class MagmaCoreService {
         // Find the associations for the states that are of the right kind.
         return statesOfIndividual
                 .stream()
+                // Get the association IDs and gather them to a single list
                 .map(state -> state.value(HQDM.PARTICIPANT_IN))
-                .reduce(new HashSet<Object>(), (acc, things) -> {
-                    acc.addAll(things);
+                .reduce(new HashSet<Object>(), (acc, iris) -> {
+                    acc.addAll(iris);
                     return acc;
                 })
                 .stream()
+                // Get the Associations using the IRIs and filter for the required KindOfAssociation
                 .map(iri -> database.get((IRI) iri))
-                .filter(association -> association.hasThisValue(HQDM.KIND_OF_ASSOCIATION, kindIri))
+                .filter(association -> association.hasThisValue(HQDM.MEMBER_OF_KIND, kindIri))
                 .collect(Collectors.toList());
     }
 
