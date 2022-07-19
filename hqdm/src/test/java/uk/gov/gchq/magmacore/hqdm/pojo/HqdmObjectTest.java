@@ -14,6 +14,8 @@
 
 package uk.gov.gchq.magmacore.hqdm.pojo;
 
+import static org.junit.Assert.assertEquals;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -76,5 +78,19 @@ public class HqdmObjectTest {
         // Remove the test predicate and make sure it is no longer present.
         thing.removeValue("test-predicate", "test-value");
         Assert.assertFalse(thing.hasThisValue("test-predicate", "test-value"));
+    }
+
+    /**
+     * Confirm that to objects with the same IDs are considered the same thing.
+     */
+    @Test
+    public void testTwoObjectsAreEqual() {
+        final var thing1 = new ThingImpl("thing1");
+        thing1.addValue("test-predicate", "test-value");
+
+        final var thing2 = new ThingImpl("thing1");
+        thing2.addValue("test-predicate2", "test-value2");
+
+        assertEquals(thing1, thing2);
     }
 }

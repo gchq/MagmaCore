@@ -214,9 +214,6 @@ public abstract class HqdmObject implements Thing {
         if (!(object instanceof HqdmObject)) {
             return false;
         }
-        if (!super.equals(object)) {
-            return false;
-        }
         final HqdmObject that = (HqdmObject) object;
         return Objects.equals(id, that.id);
     }
