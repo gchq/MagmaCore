@@ -15,9 +15,12 @@
 package uk.gov.gchq.magmacore.hqdm.pojo;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,6 +28,7 @@ import org.junit.Test;
 import uk.gov.gchq.magmacore.hqdm.model.PointInTime;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
+import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.model.impl.PointInTimeImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.PossibleWorldImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.SpatioTemporalExtentImpl;
@@ -85,12 +89,30 @@ public class HqdmObjectTest {
      */
     @Test
     public void testTwoObjectsAreEqual() {
-        final var thing1 = new ThingImpl("thing1");
+        final Thing thing1 = new ThingImpl("thing1");
         thing1.addValue("test-predicate", "test-value");
 
-        final var thing2 = new ThingImpl("thing1");
+        final Thing thing2 = new ThingImpl("thing1");
         thing2.addValue("test-predicate2", "test-value2");
 
         assertEquals(thing1, thing2);
+    }
+
+    /**
+     * Test that a {@link Set} that contains a {@link Thing} with the same ID is found by the contains
+     * method.
+     */
+    @Test
+    public void testSetContainsHqdmObject() {
+        final Thing thing1 = new ThingImpl("thing1");
+        thing1.addValue("test-predicate", "test-value");
+
+        final SpatioTemporalExtent thing2 = new SpatioTemporalExtentImpl("thing1");
+        thing2.addValue("test-predicate2", "test-value2");
+
+        final Set<Thing> things = new HashSet<>();
+        things.add(thing2);
+
+        assertTrue(things.contains(thing1));
     }
 }

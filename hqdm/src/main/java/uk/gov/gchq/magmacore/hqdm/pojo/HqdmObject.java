@@ -225,6 +225,6 @@ public abstract class HqdmObject implements Thing {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id);
+        return id.hashCode();
     }
 }
