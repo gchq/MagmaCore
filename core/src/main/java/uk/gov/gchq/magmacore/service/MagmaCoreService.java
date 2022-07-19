@@ -26,14 +26,21 @@ import java.util.stream.Stream;
 
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 import uk.gov.gchq.magmacore.exception.MagmaCoreException;
+import uk.gov.gchq.magmacore.hqdm.model.Association;
+import uk.gov.gchq.magmacore.hqdm.model.Individual;
+import uk.gov.gchq.magmacore.hqdm.model.KindOfAssociation;
+import uk.gov.gchq.magmacore.hqdm.model.Participant;
 import uk.gov.gchq.magmacore.hqdm.model.Pattern;
 import uk.gov.gchq.magmacore.hqdm.model.PointInTime;
 import uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern;
+import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.internal.util.Predicates;
+import uk.gov.gchq.magmacore.service.dto.AssociationDetails;
+import uk.gov.gchq.magmacore.service.dto.AssociationDetails.ParticipantDetails;
 
 /**
  * Service for interacting with a {@link MagmaCoreDatabase}.
@@ -49,6 +56,93 @@ public class MagmaCoreService {
      */
     MagmaCoreService(final MagmaCoreDatabase database) {
         this.database = database;
+    }
+
+    /**
+     * Find the details of participants in associations of a specific kind between two
+     * {@link Individuals} objects.
+     *
+     * @param individual1 the first {@link Individual}
+     * @param individual2 the second {@link Individual}
+     * @param kind        the {@link KindOfAssociation}
+     * @return a {@link Set} of {@link AssociationDetails}
+     */
+    public Set<ParticipantDetails> findParticipantDetails(final Individual individual1, final Individual individual2,
+            final KindOfAssociation kind) {
+
+        final IRI kindIri = new IRI(kind.getId());
+
+        // Find the states of individual1 that are PARTICIPANTs in something.
+        final List<Thing> statesOfIndividual1 = database
+                .findByPredicateIri(HQDM.TEMPORAL_PART_OF, new IRI(individual1.getId())).stream()
+                .filter(state -> state.hasValue(HQDM.PARTICIPANT_IN))
+                .collect(Collectors.toList());
+
+        // Find the states of individual1 that are PARTICIPANTs in something.
+        final List<Thing> statesOfIndividual2 = database
+                .findByPredicateIri(HQDM.TEMPORAL_PART_OF, new IRI(individual2.getId())).stream()
+                .filter(state -> state.hasValue(HQDM.PARTICIPANT_IN))
+                .collect(Collectors.toList());
+
+        // Get the associations that each of the states participates in.
+        final List<Thing> associations1 = getAssociationsOfKindForIndividual(statesOfIndividual1, kindIri);
+        final List<Thing> associations2 = getAssociationsOfKindForIndividual(statesOfIndividual2, kindIri);
+
+        // Find the association IDs that are common between the two lists.
+        final List<String> intersection = associations1.stream()
+                .distinct()
+                .filter(associations2::contains)
+                .map(a -> a.getId())
+                .collect(Collectors.toList());
+
+        // Process all of the participants.
+        final List<Thing> allParticipants = new ArrayList<>();
+        allParticipants.addAll(statesOfIndividual1);
+        allParticipants.addAll(statesOfIndividual2);
+
+        return allParticipants
+                .stream()
+                // Filter to only those in the common associations.
+                .filter(p -> {
+                    final String id = ((IRI) p.value(HQDM.PARTICIPANT_IN).iterator().next()).getIri();
+                    return intersection.contains(id);
+                })
+                // Map them to ParticipantDetails objects.
+                .map(p -> {
+                    // Get the Roles of the Participant.
+                    final Set<Role> roles = p.value(HQDM.ROLE)
+                            .stream()
+                            .map(o -> (IRI) o)
+                            .map(roleIri -> database.get(roleIri))
+                            .map(role -> (Role) role)
+                            .collect(Collectors.toSet());
+                    return new ParticipantDetails((Participant) p, roles);
+                })
+                .collect(Collectors.toSet());
+
+    }
+
+    /**
+     * Find the {@link Association} of the specified {@link KindOfAssociation} from the {@link Thing}
+     * provided.
+     *
+     * @param statesOfIndividual {@link List} of {@link Thing}
+     * @param kindIri            the {@link KindOfAssociation}
+     * @return a {@link List} of {@link Thing}
+     */
+    private List<Thing> getAssociationsOfKindForIndividual(final List<Thing> statesOfIndividual, final IRI kindIri) {
+        // Find the associations for the states that are of the right kind.
+        return statesOfIndividual
+                .stream()
+                .map(state -> state.value(HQDM.PARTICIPANT_IN))
+                .reduce(new HashSet<Object>(), (acc, things) -> {
+                    acc.addAll(things);
+                    return acc;
+                })
+                .stream()
+                .map(iri -> database.get((IRI) iri))
+                .filter(association -> association.hasThisValue(HQDM.KIND_OF_ASSOCIATION, kindIri))
+                .collect(Collectors.toList());
     }
 
     /**
