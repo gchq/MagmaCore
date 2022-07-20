@@ -236,10 +236,10 @@ public class MagmaCoreServiceFindParticipantDetailsTest {
         final Association person2WorkerForPerson3 = SpatioTemporalExtentServices
                 .createAssociation(person2WorkerForPerson3Iri.getIri());
 
-        person1UserOfSystem1.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ASSOCIATION);
-        person2UserOfSystem2.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ASSOCIATION);
-        person1WorkerForPerson2.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ASSOCIATION);
-        person2WorkerForPerson3.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ASSOCIATION);
+        person1UserOfSystem1.addValue(RDFS.RDF_TYPE, HQDM.ASSOCIATION);
+        person2UserOfSystem2.addValue(RDFS.RDF_TYPE, HQDM.ASSOCIATION);
+        person1WorkerForPerson2.addValue(RDFS.RDF_TYPE, HQDM.ASSOCIATION);
+        person2WorkerForPerson3.addValue(RDFS.RDF_TYPE, HQDM.ASSOCIATION);
 
         person1UserOfSystem1.addValue(HQDM.MEMBER_OF_KIND, userAssociationKindIri);
         person2UserOfSystem2.addValue(HQDM.MEMBER_OF_KIND, userAssociationKindIri);
