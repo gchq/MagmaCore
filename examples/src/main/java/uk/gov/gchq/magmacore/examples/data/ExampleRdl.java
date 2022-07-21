@@ -53,7 +53,7 @@ public class ExampleRdl {
         final IRI naturalMemberOfSocietyRole = new IRI(REF_BASE, uid());
         final IRI domesticPropertyRole = new IRI(REF_BASE, uid());
         final IRI domesticOccupantInPropertyRole = new IRI(REF_BASE, uid());
-        final IRI occupierOfPropertyRole = new IRI(REF_BASE, "occupierOfPropertyRole ");
+        final IRI occupierOfPropertyRole = new IRI(REF_BASE, "occupierOfPropertyRole");
         final IRI occupantInPropertyKindOfAssociation = new IRI(REF_BASE, uid());
 
         // Add DbCreateOperations to create the objects and their properties.
