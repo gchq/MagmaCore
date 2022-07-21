@@ -26,6 +26,7 @@ import org.apache.jena.query.Dataset;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
+import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.RDFNode;
@@ -140,9 +141,15 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
 
         final Resource resource = model.createResource(object.getId());
 
-        object.getPredicates().forEach((iri, predicates) -> predicates.forEach(
-                predicate -> resource.addProperty(model.createProperty(iri.toString()), predicate.toString())));
-
+        object.getPredicates()
+                .forEach((iri, predicates) -> predicates.forEach(value -> {
+                    if (value instanceof IRI) {
+                        final Resource valueResource = model.createResource(value.toString());
+                        resource.addProperty(model.createProperty(iri.toString()), valueResource);
+                    } else {
+                        resource.addProperty(model.createProperty(iri.toString()), value.toString());
+                    }
+                }));
         connection.load(model);
     }
 
@@ -257,27 +264,38 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     }
 
     private final List<Thing> toTopObjects(final QueryResultList queryResultsList) {
-        final Map<String, List<Pair<String, String>>> objectMap = new HashMap<>();
-        final String subjectVarName = queryResultsList.getVarNames().get(0);
-        final String predicateVarName = queryResultsList.getVarNames().get(1);
-        final String objectVarName = queryResultsList.getVarNames().get(2);
+        final Map<RDFNode, List<Pair<Object, Object>>> objectMap = new HashMap<>();
+        final List<String> varNames = (List<String>) queryResultsList.getVarNames();
 
-        // Create a map of the triples for each unique subject IRI.
+        final String subjectVarName = varNames.get(0);
+        final String predicateVarName = varNames.get(1);
+        final String objectVarName = varNames.get(2);
+
+        // Create a map of the triples for each unique subject IRI
         final List<QueryResult> queryResults = queryResultsList.getQueryResults();
         queryResults.forEach(queryResult -> {
-            final String subjectValue = queryResult.get(subjectVarName).toString();
-            final String predicateValue = queryResult.get(predicateVarName).toString();
-            final String objectValue = queryResult.get(objectVarName).toString();
+            final RDFNode subjectValue = queryResult.get(subjectVarName);
+            final RDFNode predicateValue = queryResult.get(predicateVarName);
+            final RDFNode objectValue = queryResult.get(objectVarName);
 
-            List<Pair<String, String>> dataModelObject = objectMap.get(subjectValue);
+            List<Pair<Object, Object>> dataModelObject = objectMap.get(subjectValue);
             if (dataModelObject == null) {
                 dataModelObject = new ArrayList<>();
                 objectMap.put(subjectValue, dataModelObject);
             }
-            dataModelObject.add(new Pair<>(predicateValue, objectValue));
+            if (objectValue instanceof Literal) {
+                dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()), objectValue.toString()));
+            } else if (objectValue instanceof Resource) {
+                dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()), new IRI(objectValue.toString())));
+            } else {
+                throw new RuntimeException("objectValue is of unknown type: " + objectValue.getClass());
+            }
         });
 
-        return objectMap.entrySet().stream().map(entry -> HqdmObjectFactory.create(entry.getKey(), entry.getValue()))
+        return objectMap
+                .entrySet()
+                .stream()
+                .map(entry -> HqdmObjectFactory.create(new IRI(entry.getKey().toString()), entry.getValue()))
                 .collect(Collectors.toList());
     }
 

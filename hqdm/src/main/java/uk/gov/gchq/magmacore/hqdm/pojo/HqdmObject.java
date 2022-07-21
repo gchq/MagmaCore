@@ -29,7 +29,7 @@ public abstract class HqdmObject implements Thing {
 
     private String id;
 
-    private final Map<String, Set<Object>> predicates = new HashMap<>();
+    private final Map<Object, Set<Object>> predicates = new HashMap<>();
 
     /**
      * Constructs a new {@code HqdmObject}.
@@ -57,25 +57,25 @@ public abstract class HqdmObject implements Thing {
     /**
      * {@inheritDoc}
      */
-    public Map<String, Set<Object>> getPredicates() {
+    public Map<Object, Set<Object>> getPredicates() {
         return predicates;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void setPredicates(final Map<String, Set<Object>> predicates) {
+    public void setPredicates(final Map<Object, Set<Object>> predicates) {
         // Convert some values to Strings if necessary - required when deserializing the
         // object.
         if (!predicates.isEmpty()) {
             this.predicates.clear();
-            for (final Map.Entry<String, Set<Object>> entry : predicates.entrySet()) {
+            for (final Map.Entry<Object, Set<Object>> entry : predicates.entrySet()) {
                 final Object value = entry.getValue().iterator().next();
-                final String key = entry.getKey();
+                final Object key = entry.getKey();
                 if (value instanceof Map) {
                     final Map valueMap = (Map) value;
                     this.predicates.remove(key);
-                    this.addValue(key, new String(valueMap.get("id").toString()));
+                    this.addValue(key, valueMap.get("id"));
                 } else {
                     this.predicates.put(key, entry.getValue());
                 }
@@ -86,14 +86,14 @@ public abstract class HqdmObject implements Thing {
     /**
      * {@inheritDoc}
      */
-    public Set<Object> value(final String predicateId) {
+    public Set<Object> value(final Object predicateId) {
         return predicates.get(predicateId);
     }
 
     /**
      * {@inheritDoc}
      */
-    public void addValue(final String predicateId, final String objectId) {
+    public void addValue(final Object predicateId, final Object objectId) {
         final Set<Object> values = predicates.computeIfAbsent(predicateId, k -> new HashSet<>());
         values.add(objectId);
     }
@@ -101,7 +101,7 @@ public abstract class HqdmObject implements Thing {
     /**
      * {@inheritDoc}
      */
-    public void addStringValue(final String predicateId, final String value) {
+    public void addStringValue(final Object predicateId, final String value) {
         final Set<Object> values = predicates.computeIfAbsent(predicateId, k -> new HashSet<>());
         values.add(value);
     }
@@ -109,7 +109,7 @@ public abstract class HqdmObject implements Thing {
     /**
      * {@inheritDoc}
      */
-    public void addRealValue(final String predicateId, final double value) {
+    public void addRealValue(final Object predicateId, final double value) {
         final Set<Object> values = predicates.computeIfAbsent(predicateId, k -> new HashSet<>());
         values.add(value);
     }
@@ -117,7 +117,7 @@ public abstract class HqdmObject implements Thing {
     /**
      * {@inheritDoc}
      */
-    public void removeValue(final String predicateId, final String value) {
+    public void removeValue(final Object predicateId, final Object value) {
         if (predicates.containsKey(predicateId)) {
             final var v = predicates.get(predicateId);
             if (v.contains(value)) {
@@ -129,14 +129,14 @@ public abstract class HqdmObject implements Thing {
     /**
      * {@inheritDoc}
      */
-    public boolean hasValue(final String predicateId) {
+    public boolean hasValue(final Object predicateId) {
         return predicates.containsKey(predicateId);
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean hasThisValue(final String predicateId, final String objectId) {
+    public boolean hasThisValue(final Object predicateId, final Object objectId) {
         final Set<Object> values = predicates.get(predicateId);
         return values != null && values.contains(objectId);
     }
@@ -144,7 +144,7 @@ public abstract class HqdmObject implements Thing {
     /**
      * {@inheritDoc}
      */
-    public boolean hasThisStringValue(final String predicateId, final String value) {
+    public boolean hasThisStringValue(final Object predicateId, final String value) {
         final Set<Object> values = predicates.get(predicateId);
         return values != null && values.contains(value);
     }
@@ -152,7 +152,7 @@ public abstract class HqdmObject implements Thing {
     /**
      * {@inheritDoc}
      */
-    public boolean hasThisStringValueIgnoreCase(final String predicateId, final String value) {
+    public boolean hasThisStringValueIgnoreCase(final Object predicateId, final String value) {
         final Set<Object> values = predicates.get(predicateId);
         if (values != null) {
             for (final Object object : values) {
@@ -167,7 +167,7 @@ public abstract class HqdmObject implements Thing {
     /**
      * {@inheritDoc}
      */
-    public boolean hasThisStringValueFuzzy(final String predicateId, final String value) {
+    public boolean hasThisStringValueFuzzy(final Object predicateId, final String value) {
         final Set<Object> values = predicates.get(predicateId);
         if (values != null) {
             for (final Object object : values) {

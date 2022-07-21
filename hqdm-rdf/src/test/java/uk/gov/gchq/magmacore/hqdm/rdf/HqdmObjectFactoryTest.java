@@ -26,7 +26,6 @@ import org.junit.Test;
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Participant;
 import uk.gov.gchq.magmacore.hqdm.model.Person;
-import uk.gov.gchq.magmacore.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
@@ -48,11 +47,11 @@ public class HqdmObjectFactoryTest {
 
         // Create a new person with an ENTITY_NAME.
         final var person = HqdmObjectFactory.create(HQDM.PERSON, personIri);
-        person.addValue(HQDM.ENTITY_NAME.getIri(), personId);
+        person.addValue(HQDM.ENTITY_NAME, personId);
 
         // Assert the ENTITY_NAME and person IRI are as expected.
         assertNotNull(person);
-        assertEquals(Set.of(personId), person.value(HQDM.ENTITY_NAME.getIri()));
+        assertEquals(Set.of(personId), person.value(HQDM.ENTITY_NAME));
         assertEquals(personIri.getIri(), person.getId());
     }
 
@@ -76,15 +75,15 @@ public class HqdmObjectFactoryTest {
         final var personId = "person1";
         final var personIri = new IRI(HQDM.HQDM, personId);
 
-        final var person = HqdmObjectFactory.create(personIri.getIri(),
-                List.of(new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.PERSON.getIri()),
-                        new Pair<>(HQDM.ENTITY_NAME.getIri(), personId),
-                        new Pair<>(HQDM.MEMBER_OF_KIND.getIri(), "PERSON_KIND")));
+        final var person = HqdmObjectFactory.create(personIri,
+                List.of(new Pair<>(RDFS.RDF_TYPE, HQDM.PERSON),
+                        new Pair<>(HQDM.ENTITY_NAME, personId),
+                        new Pair<>(HQDM.MEMBER_OF_KIND, "PERSON_KIND")));
 
         // Assert the values are correct.
         assertNotNull(person);
-        assertEquals(Set.of(personId), person.value(HQDM.ENTITY_NAME.getIri()));
-        assertEquals(Set.of("PERSON_KIND"), person.value(HQDM.MEMBER_OF_KIND.getIri()));
+        assertEquals(Set.of(personId), person.value(HQDM.ENTITY_NAME));
+        assertEquals(Set.of("PERSON_KIND"), person.value(HQDM.MEMBER_OF_KIND));
         assertEquals(personIri.getIri(), person.getId());
     }
 
@@ -97,16 +96,16 @@ public class HqdmObjectFactoryTest {
         final var personId = "person1";
         final var personIri = new IRI(HQDM.HQDM, personId);
 
-        final var person = HqdmObjectFactory.create(personIri.getIri(),
-                List.of(new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.PERSON.getIri()),
-                        new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.PARTICIPANT.getIri()),
-                        new Pair<>(HQDM.ENTITY_NAME.getIri(), personId)));
+        final var person = HqdmObjectFactory.create(personIri,
+                List.of(new Pair<>(RDFS.RDF_TYPE, HQDM.PERSON),
+                        new Pair<>(RDFS.RDF_TYPE, HQDM.PARTICIPANT),
+                        new Pair<>(HQDM.ENTITY_NAME, personId)));
 
         // Assert the values are correct.
         assertNotNull(person);
         assertTrue(person instanceof Person);
         assertTrue(person instanceof Participant);
-        assertEquals(Set.of(personId), person.value(HQDM.ENTITY_NAME.getIri()));
+        assertEquals(Set.of(personId), person.value(HQDM.ENTITY_NAME));
         assertEquals(personIri.getIri(), person.getId());
     }
 }

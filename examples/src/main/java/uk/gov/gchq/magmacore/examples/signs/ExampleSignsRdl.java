@@ -45,18 +45,18 @@ public class ExampleSignsRdl {
 
         // Add DbCreateOperations to create the objects and their properties.
         final List<DbCreateOperation> creates = List.of(
-                new DbCreateOperation(urlPattern, RDFS.RDF_TYPE, HQDM.PATTERN.getIri()),
+                new DbCreateOperation(urlPattern, RDFS.RDF_TYPE, HQDM.PATTERN),
                 new DbCreateOperation(urlPattern, HQDM.ENTITY_NAME, "URL Pattern"),
 
-                new DbCreateOperation(description, RDFS.RDF_TYPE, HQDM.DESCRIPTION.getIri()),
+                new DbCreateOperation(description, RDFS.RDF_TYPE, HQDM.DESCRIPTION),
                 new DbCreateOperation(description, HQDM.ENTITY_NAME, "Description By URL"),
 
                 // Create the community that recognizes the signs.
-                new DbCreateOperation(englishSpeakers, RDFS.RDF_TYPE, HQDM.RECOGNIZING_LANGUAGE_COMMUNITY.getIri()),
+                new DbCreateOperation(englishSpeakers, RDFS.RDF_TYPE, HQDM.RECOGNIZING_LANGUAGE_COMMUNITY),
                 new DbCreateOperation(englishSpeakers, HQDM.ENTITY_NAME, "English Speakers"),
 
                 // Link the description to the Pattern.
-                new DbCreateOperation(description, HQDM.CONSISTS_OF_BY_CLASS, urlPattern.getIri())
+                new DbCreateOperation(description, HQDM.CONSISTS_OF_BY_CLASS, urlPattern)
 
         );
 

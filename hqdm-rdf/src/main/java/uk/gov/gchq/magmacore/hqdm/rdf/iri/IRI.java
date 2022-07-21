@@ -70,11 +70,13 @@ public class IRI {
     /**
      * Convert a {@link String} to an IRI.
      *
-     * @param iri {@link String}
+     * @param rawIri {@link String}
      * @throws IriException if the {@link String} is not a valid URL.
      */
-    private void fromString(final String iri) throws IriException {
+    private void fromString(final String rawIri) throws IriException {
+        final String iri = rawIri.trim();
         try {
+
             new URL(iri);
             this.iri = iri;
         } catch (final MalformedURLException m) {
