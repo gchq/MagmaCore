@@ -17,6 +17,8 @@ package uk.gov.gchq.magmacore.database;
 import java.io.PrintStream;
 import java.util.List;
 
+import org.apache.jena.riot.Lang;
+
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
@@ -118,4 +120,12 @@ public interface MagmaCoreDatabase {
      * @param out Output stream to dump to.
      */
     void dump(PrintStream out);
+
+    /**
+     * Write the database as TTL using the {@link PrintStream} and {@link org.apache.jena.riot.Lang}.
+     *
+     * @param out a {@link PrintStream}
+     * @param language a {@link Lang}
+     */
+    void dump(final PrintStream out, final Lang language);
 }

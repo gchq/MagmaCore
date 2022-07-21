@@ -14,6 +14,7 @@
 
 package uk.gov.gchq.magmacore.service;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,6 +24,8 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.apache.jena.riot.Lang;
 
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 import uk.gov.gchq.magmacore.exception.MagmaCoreException;
@@ -329,5 +332,14 @@ public class MagmaCoreService {
             database.abort();
             throw e;
         }
+    }
+
+    /**
+     * Dump the database to TTL format.
+     *
+     * @param out a {@link PrintStream}
+     */
+    public void exportTtl(final PrintStream out) {
+        database.dump(out, Lang.TTL);
     }
 }

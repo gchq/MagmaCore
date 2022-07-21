@@ -119,7 +119,6 @@ public class MagmaCoreServiceFindParticipantDetailsTest {
         // Check that the Roles are correct (no assumptions about the order of ParticipantDetails
         // in the Set).
 
-        assertTrue(found1Details1.roles.contains(userRole));
         assertTrue(found1Details1.roles.contains(userRole) || found1Details1.roles.contains(systemRole));
         assertTrue(found1Details2.roles.contains(userRole) || found1Details2.roles.contains(systemRole));
 
@@ -139,7 +138,6 @@ public class MagmaCoreServiceFindParticipantDetailsTest {
         // Check that the Roles are correct (no assumptions about the order of ParticipantDetails
         // in the Set).
 
-        assertTrue(found2Details1.roles.contains(userRole));
         assertTrue(found2Details1.roles.contains(userRole) || found2Details1.roles.contains(systemRole));
         assertTrue(found2Details2.roles.contains(userRole) || found2Details2.roles.contains(systemRole));
 
