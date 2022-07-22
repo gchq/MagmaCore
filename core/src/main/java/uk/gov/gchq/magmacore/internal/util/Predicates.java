@@ -55,14 +55,14 @@ public final class Predicates {
             final LocalDateTime beginning;
             final LocalDateTime ending;
 
-            if (beginningId.size() > 0) {
+            if (beginningId != null && beginningId.size() > 0) {
                 final Thing event = database.get(new IRI(beginningId.iterator().next().toString()));
                 beginning = Predicates.getInstant(event, LocalDateTime.MIN);
             } else {
                 beginning = LocalDateTime.MIN;
             }
 
-            if (endingId.size() > 0) {
+            if (endingId != null && endingId.size() > 0) {
                 final Thing event = database.get(new IRI(endingId.iterator().next().toString()));
                 ending = Predicates.getInstant(event, LocalDateTime.MAX);
             } else {
