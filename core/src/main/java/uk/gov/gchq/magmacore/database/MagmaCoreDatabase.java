@@ -22,6 +22,8 @@ import org.apache.jena.riot.Lang;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
+import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
 
 /**
  * Interface defining CRUD operations and generic queries for Magma Core data collections.
@@ -66,6 +68,13 @@ public interface MagmaCoreDatabase {
     void create(Thing object);
 
     /**
+     * Apply a set of creates to the dabatase.
+     *
+     * @param creates a {@link List} of {@link DbDeleteOperation}
+     */
+    void create(List<DbCreateOperation> creates);
+
+    /**
      * Update an existing entity within the collection.
      *
      * @param object The HQDM object being updated.
@@ -78,6 +87,13 @@ public interface MagmaCoreDatabase {
      * @param object Entity to delete.
      */
     void delete(Thing object);
+
+    /**
+     * Apply a set of deletes to the dabatase.
+     *
+     * @param deletes a {@link List} of {@link DbDeleteOperation}
+     */
+    void delete(List<DbDeleteOperation> deletes);
 
     /**
      * Find object(s) that have a specific object associated with them.
@@ -124,7 +140,7 @@ public interface MagmaCoreDatabase {
     /**
      * Write the database as TTL using the {@link PrintStream} and {@link org.apache.jena.riot.Lang}.
      *
-     * @param out a {@link PrintStream}
+     * @param out      a {@link PrintStream}
      * @param language a {@link Lang}
      */
     void dump(final PrintStream out, final Lang language);

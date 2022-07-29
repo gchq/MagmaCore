@@ -35,7 +35,7 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  */
 public class DbChangeSetTest {
 
-    private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test");
+    private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
 
     /**
      * Test that {@link DbChangeSet} can be applied, inverted, and undone.

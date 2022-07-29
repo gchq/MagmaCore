@@ -25,9 +25,9 @@ import uk.gov.gchq.magmacore.service.MagmaCoreService;
  * An invertible operation to delete a predicate.
  */
 public class DbDeleteOperation implements Function<MagmaCoreService, MagmaCoreService> {
-    private IRI subject;
-    private IRI predicate;
-    private Object object;
+    public final IRI subject;
+    public final IRI predicate;
+    public final Object object;
 
     /**
      * Constructs a DbDeleteOperation to delete a predicate.

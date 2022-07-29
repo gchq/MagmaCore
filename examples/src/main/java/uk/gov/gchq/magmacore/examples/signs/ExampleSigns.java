@@ -52,13 +52,13 @@ public class ExampleSigns {
         final DbChangeSet rdlChangeSet = ExampleSignsRdl.createRefDataObjects();
 
         // Apply the DbChangeSet.
-        rdlChangeSet.apply(mcService);
+        mcService.runInTransaction(rdlChangeSet);
 
         // mcService now contains the RDL needed for the next DbChangeSet
         final DbChangeSet signsChangeSet = addSigns(mcService);
 
         // Apply the DbChangeSet.
-        signsChangeSet.apply(mcService);
+        mcService.runInTransaction(signsChangeSet);
         //
         // Combine the DbChangeSets into a DbTransformation and return it as a record of the changes.
         return new DbTransformation(List.of(rdlChangeSet, signsChangeSet));

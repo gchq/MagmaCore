@@ -30,6 +30,7 @@ import org.apache.jena.query.TxnType;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
@@ -48,6 +49,8 @@ import uk.gov.gchq.magmacore.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.util.Pair;
+import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
+import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
 
 /**
  * Connection to a remote SPARQL endpoint.
@@ -159,6 +162,30 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
+    public void create(final List<DbCreateOperation> creates) {
+        final Model forCreation = ModelFactory.createDefaultModel();
+
+        creates.forEach(create -> {
+            final Resource s = forCreation.createResource(create.subject.getIri());
+            final Property p = forCreation.createProperty(create.predicate.getIri());
+            final Object value = create.object;
+
+            final RDFNode o;
+            if (value instanceof IRI) {
+                o = forCreation.createResource(value.toString());
+            } else {
+                o = forCreation.createLiteral(value.toString());
+            }
+            forCreation.add(forCreation.createStatement(s, p, o));
+        });
+
+        connection.load(forCreation);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void update(final Thing object) {
         delete(object);
         create(object);
@@ -170,6 +197,41 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     @Override
     public void delete(final Thing object) {
         executeUpdate(String.format("delete {<%s> ?p ?o} WHERE {<%s> ?p ?o}", object.getId(), object.getId()));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void delete(final List<DbDeleteOperation> deletes) {
+        if (deletes.isEmpty()) {
+            return;
+        }
+
+        final StringBuilder statement = new StringBuilder();
+        statement.append("delete data { ");
+        deletes.forEach(delete -> {
+            statement.append("<");
+            statement.append(delete.subject.getIri());
+            statement.append("> ");
+
+            statement.append("<");
+            statement.append(delete.predicate.getIri());
+            statement.append("> ");
+
+            if (delete.object instanceof IRI) {
+                statement.append("<");
+                statement.append(delete.object.toString());
+                statement.append(">.");
+            } else {
+                statement.append("\"");
+                statement.append(delete.object.toString());
+                statement.append("\".");
+            }
+        });
+        statement.append("}");
+
+        executeUpdate(statement.toString());
     }
 
     /**

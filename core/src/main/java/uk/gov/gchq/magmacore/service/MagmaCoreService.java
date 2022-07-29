@@ -43,6 +43,8 @@ import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.internal.util.Predicates;
 import uk.gov.gchq.magmacore.service.dto.ParticipantDetails;
+import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
+import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
 
 /**
  * Service for interacting with a {@link MagmaCoreDatabase}.
@@ -267,6 +269,17 @@ public class MagmaCoreService {
     }
 
     /**
+     * Apply a set of deletes then a set of creates to the database.
+     *
+     * @param deletes a {@link List} of {@link DbDeleteOperation}
+     * @param creates a {@link List} of {@link DbCreateOperation}
+     */
+    public void update(final List<DbDeleteOperation> deletes, final List<DbCreateOperation> creates) {
+        database.delete(deletes);
+        database.create(creates);
+    }
+
+    /**
      * Get a {@link Thing} by its IRI.
      *
      * @param iri IRI of the thing.
@@ -342,4 +355,5 @@ public class MagmaCoreService {
     public void exportTtl(final PrintStream out) {
         database.dump(out, Lang.TTL);
     }
+
 }

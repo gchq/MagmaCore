@@ -28,13 +28,13 @@ import uk.gov.gchq.magmacore.service.MagmaCoreService;
 public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreService> {
 
     // The IRI of the Thing we're referring to.
-    private IRI subject;
+    public final IRI subject;
 
     // The IRI of the property we're referring to.
-    private IRI predicate;
+    public final IRI predicate;
 
     // The value of the property we're referring to.
-    private Object object;
+    public final Object object;
 
     /**
      * Constructs a DbCreateOperation to create a predicate.
