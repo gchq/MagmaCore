@@ -25,8 +25,8 @@ import uk.gov.gchq.magmacore.service.MagmaCoreService;
  * An invertible set of delete and create operations.
  */
 public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService> {
-    private List<DbDeleteOperation> deletes;
-    private List<DbCreateOperation> creates;
+    List<DbDeleteOperation> deletes;
+    List<DbCreateOperation> creates;
 
     /**
      * Constructs a DbChangeSet with a list of delete and create operations to perform.
