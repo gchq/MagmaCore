@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.apache.jena.riot.Lang;
 
+import uk.gov.gchq.magmacore.database.query.QueryResultList;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
@@ -144,4 +145,20 @@ public interface MagmaCoreDatabase {
      * @param language a {@link Lang}
      */
     void dump(final PrintStream out, final Lang language);
+
+    /**
+     * Perform a SPARQL query on the dataset.
+     *
+     * @param sparqlQueryString SPARQL query to execute.
+     * @return Results of the query.
+     */
+    QueryResultList executeQuery(final String sparqlQueryString);
+
+    /**
+     * Convert a {@link QueryResultList} to a {@link List} of {@link Thing}.
+     *
+     * @param queryResultsList {@link QueryResultList}
+     * @return a {@link List} of {@link Thing}
+     */
+    List<Thing> toTopObjects(final QueryResultList queryResultsList);
 }

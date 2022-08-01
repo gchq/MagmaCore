@@ -317,7 +317,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * @param sparqlQueryString SPARQL query to execute.
      * @return Results of the query.
      */
-    protected QueryResultList executeQuery(final String sparqlQueryString) {
+    public QueryResultList executeQuery(final String sparqlQueryString) {
         final Query query = QueryFactory.create(sparqlQueryString);
         final QueryExecution queryExec = QueryExecutionFactory.create(query, dataset);
         return getQueryResultList(queryExec);
@@ -349,7 +349,13 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
         return queryResultList;
     }
 
-    private final List<Thing> toTopObjects(final QueryResultList queryResultsList) {
+    /**
+     * Convert a {@link QueryResultList} to a {@link List} of {@link Thing}.
+     *
+     * @param queryResultsList {@link QueryResultList}
+     * @return a {@link List} of {@link Thing}
+     */
+    public final List<Thing> toTopObjects(final QueryResultList queryResultsList) {
         final Map<RDFNode, List<Pair<Object, Object>>> objectMap = new HashMap<>();
         final List<String> varNames = (List<String>) queryResultsList.getVarNames();
 

@@ -86,4 +86,9 @@ public class QueryResult {
         }
         return "";
     }
+
+    @Override
+    public String toString() {
+        return "QueryResult [map=" + map + "]";
+    }
 }

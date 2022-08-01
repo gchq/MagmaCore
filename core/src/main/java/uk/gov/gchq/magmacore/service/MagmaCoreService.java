@@ -15,6 +15,7 @@
 package uk.gov.gchq.magmacore.service;
 
 import java.io.PrintStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,11 +26,13 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.riot.Lang;
 
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
+import uk.gov.gchq.magmacore.database.query.QueryResult;
+import uk.gov.gchq.magmacore.database.query.QueryResultList;
 import uk.gov.gchq.magmacore.exception.MagmaCoreException;
-import uk.gov.gchq.magmacore.hqdm.model.Association;
 import uk.gov.gchq.magmacore.hqdm.model.Individual;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfAssociation;
 import uk.gov.gchq.magmacore.hqdm.model.Participant;
@@ -50,6 +53,66 @@ import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
  * Service for interacting with a {@link MagmaCoreDatabase}.
  */
 public class MagmaCoreService {
+
+    private static final String FIND_PARTICIPANT_DETAILS_QUERY = """
+            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+            select distinct ?s ?p ?o ?start ?finish
+            where {
+                {
+                    SELECT ?s ?p ?o ?start ?finish
+                    WHERE {
+                        BIND( <%s> as ?ind1)
+                        BIND( <%s> as ?ind2)
+                        BIND( <%s> as ?kind)
+
+                        ?s hqdm:temporal_part_of ?ind1;
+                            hqdm:participant_in ?assoc1;
+                            ?p ?o.
+                        ?i2stat hqdm:temporal_part_of ?ind2;
+                            hqdm:participant_in ?assoc1;
+                            ?i2statp ?i2stato.
+                        ?assoc1 hqdm:member_of_kind ?kind.
+                        OPTIONAL {
+                            ?assoc1 hqdm:beginning ?begin.
+                            ?begin hqdm:data_EntityName ?start
+                        }
+                        OPTIONAL {
+                            ?assoc1 hqdm:ending ?end.
+                            ?end hqdm:data_EntityName ?finish
+                        }
+                    }
+                }
+                UNION
+                {
+                    SELECT  ?s ?p ?o ?start ?finish
+                    WHERE {
+                        BIND( <%s> as ?ind1)
+                        BIND( <%s> as ?ind2)
+                        BIND( <%s> as ?kind)
+
+                        ?i2stat hqdm:temporal_part_of ?ind1;
+                            hqdm:participant_in ?assoc1;
+                            ?i2statp ?i2stato.
+                        ?s hqdm:temporal_part_of ?ind2;
+                            hqdm:participant_in ?assoc1;
+                            ?p ?o.
+                        ?assoc1 hqdm:member_of_kind ?kind.
+                        OPTIONAL {
+                            ?assoc1 hqdm:beginning ?begin.
+                            ?begin hqdm:data_EntityName ?start
+                        }
+                        OPTIONAL {
+                            ?assoc1 hqdm:ending ?end.
+                            ?end hqdm:data_EntityName ?finish.
+                        }
+                    }
+                }
+            }
+            order by ?s ?p ?o
+                    """;
 
     private final MagmaCoreDatabase database;
 
@@ -75,46 +138,35 @@ public class MagmaCoreService {
     public Set<ParticipantDetails> findParticipantDetails(final Individual individual1, final Individual individual2,
             final KindOfAssociation kind, final PointInTime pointInTime) {
 
+        final IRI individual1Iri = new IRI(individual1.getId());
+        final IRI individual2Iri = new IRI(individual2.getId());
         final IRI kindIri = new IRI(kind.getId());
+        final LocalDateTime when = LocalDateTime
+                .parse(pointInTime.value(HQDM.ENTITY_NAME).iterator().next().toString());
 
-        // Find the states of individual1 that are PARTICIPANTs in something.
-        final List<Thing> statesOfIndividual1 = database
-                .findByPredicateIri(HQDM.TEMPORAL_PART_OF, new IRI(individual1.getId())).stream()
-                .filter(state -> state.hasValue(HQDM.PARTICIPANT_IN))
-                .collect(Collectors.toList());
+        final QueryResultList queryResultList = database
+                .executeQuery(String.format(FIND_PARTICIPANT_DETAILS_QUERY, individual1Iri, individual2Iri, kindIri,
+                        individual1Iri, individual2Iri, kindIri));
 
-        // Find the states of individual2 that are PARTICIPANTs in something.
-        final List<Thing> statesOfIndividual2 = database
-                .findByPredicateIri(HQDM.TEMPORAL_PART_OF, new IRI(individual2.getId())).stream()
-                .filter(state -> state.hasValue(HQDM.PARTICIPANT_IN))
-                .collect(Collectors.toList());
+        // Filter by the pointInTime
+        final List<QueryResult> queryResults = queryResultList.getQueryResults()
+                .stream()
+                .filter(qr -> {
+                    final RDFNode start = qr.get("start");
+                    final RDFNode finish = qr.get("finish");
+                    final LocalDateTime from = (start != null) ? LocalDateTime.parse(start.toString())
+                            : LocalDateTime.MIN;
+                    final LocalDateTime to = (finish != null) ? LocalDateTime.parse(finish.toString())
+                            : LocalDateTime.MAX;
 
-        // Get the associations that each of the states participates in.
-        final List<Thing> associations1 = getAssociationsOfKindForIndividual(statesOfIndividual1, kindIri);
-        final List<Thing> associations2 = getAssociationsOfKindForIndividual(statesOfIndividual2, kindIri);
-
-        // Find the associations that are common between the two lists.
-        final List<String> intersection = associations1.stream()
-                .distinct()
-                .filter(associations2::contains)
-                // Make sure the associations are valid at the requested PointInTime.
-                .filter(Predicates.isValidAtPointInTime(database, pointInTime))
-                // Get the Association IDs and collect to a List
-                .map(a -> a.getId())
+                    return (when.equals(from) || when.isAfter(from))
+                            && (when.equals(to) || when.isBefore(to));
+                })
                 .collect(Collectors.toList());
 
         // Process all of the participants.
-        final List<Thing> allParticipants = new ArrayList<>();
-        allParticipants.addAll(statesOfIndividual1);
-        allParticipants.addAll(statesOfIndividual2);
-
-        return allParticipants
+        return database.toTopObjects(new QueryResultList(queryResultList.getVarNames(), queryResults))
                 .stream()
-                // Filter to only those in the common associations.
-                .filter(p -> {
-                    final String id = ((IRI) p.value(HQDM.PARTICIPANT_IN).iterator().next()).getIri();
-                    return intersection.contains(id);
-                })
                 // Map them to ParticipantDetails objects.
                 .map(p -> {
                     // Get the Roles of the Participant.
@@ -128,31 +180,6 @@ public class MagmaCoreService {
                 })
                 .collect(Collectors.toSet());
 
-    }
-
-    /**
-     * Find the {@link Association} of the specified {@link KindOfAssociation} from the {@link Thing}
-     * provided.
-     *
-     * @param statesOfIndividual {@link List} of {@link Thing}
-     * @param kindIri            the {@link KindOfAssociation}
-     * @return a {@link List} of {@link Thing}
-     */
-    private List<Thing> getAssociationsOfKindForIndividual(final List<Thing> statesOfIndividual, final IRI kindIri) {
-        // Find the associations for the states that are of the right kind.
-        return statesOfIndividual
-                .stream()
-                // Get the association IDs and gather them to a single list
-                .map(state -> state.value(HQDM.PARTICIPANT_IN))
-                .reduce(new HashSet<Object>(), (acc, iris) -> {
-                    acc.addAll(iris);
-                    return acc;
-                })
-                .stream()
-                // Get the Associations using the IRIs and filter for the required KindOfAssociation
-                .map(iri -> database.get((IRI) iri))
-                .filter(association -> association.hasThisValue(HQDM.MEMBER_OF_KIND, kindIri))
-                .collect(Collectors.toList());
     }
 
     /**

@@ -111,6 +111,7 @@ public class MagmaCoreServiceFindParticipantDetailsTest {
 
         // Check that the participant IDs are correct (no assumptions about the order of ParticipantDetails
         // in the Set).
+
         assertTrue(person1State1.getId().equals(found1Details1.participant.getId())
                 || system1State1.getId().equals(found1Details1.participant.getId()));
         assertTrue(person1State1.getId().equals(found1Details2.participant.getId())
