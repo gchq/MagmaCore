@@ -42,6 +42,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.service.dto.ParticipantDetails;
+import uk.gov.gchq.magmacore.service.sparql.MagmaCoreServiceQueries;
 import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
 
@@ -49,94 +50,6 @@ import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
  * Service for interacting with a {@link MagmaCoreDatabase}.
  */
 public class MagmaCoreService {
-
-    private static final String FIND_BY_SIGN_VALUE_QUERY = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
-            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-
-
-            SELECT ?s ?p ?o ?start ?finish
-            WHERE {
-                BIND("%s" as ?signvalue)
-                BIND(<%s> as ?rlc)
-                BIND(<%s> as ?pattern)
-
-                ?sign hqdm:value_ ?signvalue;
-                    hqdm:member_of_ ?pattern.
-                ?sos hqdm:temporal_part_of ?sign;
-                    hqdm:participant_in ?repBySign.
-                ?rlc hqdm:participant_in ?repBySign.
-                ?repBySign hqdm:represents ?s.
-                ?s ?p ?o.
-                OPTIONAL {
-                    ?repBySign hqdm:beginning ?begin.
-                    ?begin hqdm:data_EntityName ?start.
-                    ?repBySign hqdm:ending ?end.
-                    ?end hqdm:data_EntityName ?finish.
-                }
-
-            }
-                    """;
-
-    private static final String FIND_PARTICIPANT_DETAILS_QUERY = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
-            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-
-            select distinct ?s ?p ?o ?start ?finish
-            where {
-                {
-                    SELECT ?s ?p ?o ?start ?finish
-                    WHERE {
-                        BIND( <%s> as ?ind1)
-                        BIND( <%s> as ?ind2)
-                        BIND( <%s> as ?kind)
-
-                        ?s hqdm:temporal_part_of ?ind1;
-                            hqdm:participant_in ?assoc1;
-                            ?p ?o.
-                        ?i2stat hqdm:temporal_part_of ?ind2;
-                            hqdm:participant_in ?assoc1;
-                            ?i2statp ?i2stato.
-                        ?assoc1 hqdm:member_of_kind ?kind.
-                        OPTIONAL {
-                            ?assoc1 hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start
-                        }
-                        OPTIONAL {
-                            ?assoc1 hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish
-                        }
-                    }
-                }
-                UNION
-                {
-                    SELECT  ?s ?p ?o ?start ?finish
-                    WHERE {
-                        BIND( <%s> as ?ind1)
-                        BIND( <%s> as ?ind2)
-                        BIND( <%s> as ?kind)
-
-                        ?i2stat hqdm:temporal_part_of ?ind1;
-                            hqdm:participant_in ?assoc1;
-                            ?i2statp ?i2stato.
-                        ?s hqdm:temporal_part_of ?ind2;
-                            hqdm:participant_in ?assoc1;
-                            ?p ?o.
-                        ?assoc1 hqdm:member_of_kind ?kind.
-                        OPTIONAL {
-                            ?assoc1 hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start
-                        }
-                        OPTIONAL {
-                            ?assoc1 hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish.
-                        }
-                    }
-                }
-            }
-            order by ?s ?p ?o
-                    """;
 
     private final MagmaCoreDatabase database;
 
@@ -166,7 +79,8 @@ public class MagmaCoreService {
                 .parse(pointInTime.value(HQDM.ENTITY_NAME).iterator().next().toString());
 
         final QueryResultList queryResultList = database
-                .executeQuery(String.format(FIND_PARTICIPANT_DETAILS_QUERY, individual1.getId(), individual2.getId(),
+                .executeQuery(String.format(MagmaCoreServiceQueries.FIND_PARTICIPANT_DETAILS_QUERY, individual1.getId(),
+                        individual2.getId(),
                         kind.getId(), individual1.getId(), individual2.getId(), kind.getId()));
 
         // Filter by the pointInTime
@@ -232,7 +146,7 @@ public class MagmaCoreService {
         final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
 
         final QueryResultList queryResultList = database
-                .executeQuery(String.format(FIND_BY_SIGN_VALUE_QUERY,
+                .executeQuery(String.format(MagmaCoreServiceQueries.FIND_BY_SIGN_VALUE_QUERY,
                         value,
                         community.getId(),
                         pattern.getId()));
