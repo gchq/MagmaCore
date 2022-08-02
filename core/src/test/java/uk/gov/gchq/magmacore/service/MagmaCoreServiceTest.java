@@ -21,6 +21,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
@@ -111,8 +112,8 @@ public class MagmaCoreServiceTest {
 
         // Find the required Things by sign in a transaction.
         db.begin();
-        final Set<? extends Thing> found1 = service.findBySignValue(community1, pattern1, "person1", now);
-        final Set<? extends Thing> found2 = service.findBySignValue(community2, pattern2, "person2", now);
+        final List<? extends Thing> found1 = service.findBySignValue(community1, pattern1, "person1", now);
+        final List<? extends Thing> found2 = service.findBySignValue(community2, pattern2, "person2", now);
         db.commit();
 
         // Assert the results are correct.
@@ -157,7 +158,7 @@ public class MagmaCoreServiceTest {
 
         // Find the required Things by sign in a transaction.
         db.begin();
-        final Set<? extends Thing> found = service.findBySignValue(community1, pattern1, null, now);
+        final List<? extends Thing> found = service.findBySignValue(community1, pattern1, null, now);
         db.commit();
 
         assertNotNull(found);
@@ -182,7 +183,7 @@ public class MagmaCoreServiceTest {
 
         // Find the required Things by sign in a transaction.
         db.begin();
-        final Set<? extends Thing> found = service.findBySignValue(community1, pattern1, "person1", now);
+        final List<? extends Thing> found = service.findBySignValue(community1, pattern1, "person1", now);
         db.commit();
 
         assertNotNull(found);
@@ -203,19 +204,24 @@ public class MagmaCoreServiceTest {
     private void createSignPattern(final MagmaCoreDatabase db) {
 
         // Create RecognizingLanguageCommunities
+        final IRI community1Iri = new IRI(TEST_BASE, "community1");
+
         community1 = SpatioTemporalExtentServices
-                .createRecognizingLanguageCommunity(new IRI(TEST_BASE, "community1").getIri());
+                .createRecognizingLanguageCommunity(community1Iri.getIri());
         community1.addValue(RDFS.RDF_TYPE, HQDM.RECOGNIZING_LANGUAGE_COMMUNITY);
 
+        final IRI community2Iri = new IRI(TEST_BASE, "community2");
         community2 = SpatioTemporalExtentServices
-                .createRecognizingLanguageCommunity(new IRI(TEST_BASE, "community2").getIri());
+                .createRecognizingLanguageCommunity(community2Iri.getIri());
         community2.addValue(RDFS.RDF_TYPE, HQDM.RECOGNIZING_LANGUAGE_COMMUNITY);
 
         // Create Patterns
-        pattern1 = SpatioTemporalExtentServices.createPattern(new IRI(TEST_BASE, "pattern1").getIri());
+        final IRI pattern1Iri = new IRI(TEST_BASE, "pattern1");
+        pattern1 = SpatioTemporalExtentServices.createPattern(pattern1Iri.getIri());
         pattern1.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
 
-        pattern2 = SpatioTemporalExtentServices.createPattern(new IRI(TEST_BASE, "pattern2").getIri());
+        final IRI pattern2Iri = new IRI(TEST_BASE, "pattern2");
+        pattern2 = SpatioTemporalExtentServices.createPattern(pattern2Iri.getIri());
         pattern2.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
 
         // Create RepresentationByPatterns
@@ -256,10 +262,12 @@ public class MagmaCoreServiceTest {
         // Create signs
         final Sign sign1 = SpatioTemporalExtentServices.createSign(new IRI(TEST_BASE, "sign1").getIri());
         sign1.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
+        sign1.addValue(HQDM.MEMBER_OF_, pattern1Iri);
         sign1.addValue(HQDM.VALUE_, "person1");
 
         final Sign sign2 = SpatioTemporalExtentServices.createSign(new IRI(TEST_BASE, "sign2").getIri());
         sign2.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
+        sign2.addValue(HQDM.MEMBER_OF_, pattern2Iri);
         sign2.addValue(HQDM.VALUE_, "person2");
 
         // Create states for the Signs

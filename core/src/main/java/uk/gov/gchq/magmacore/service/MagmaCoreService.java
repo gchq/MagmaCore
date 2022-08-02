@@ -16,15 +16,12 @@ package uk.gov.gchq.magmacore.service;
 
 import java.io.PrintStream;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.riot.Lang;
@@ -44,7 +41,6 @@ import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.internal.util.Predicates;
 import uk.gov.gchq.magmacore.service.dto.ParticipantDetails;
 import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
@@ -53,6 +49,34 @@ import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
  * Service for interacting with a {@link MagmaCoreDatabase}.
  */
 public class MagmaCoreService {
+
+    private static final String FIND_BY_SIGN_VALUE_QUERY = """
+            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+
+            SELECT ?s ?p ?o ?start ?finish
+            WHERE {
+                BIND("%s" as ?signvalue)
+                BIND(<%s> as ?rlc)
+                BIND(<%s> as ?pattern)
+
+                ?sign hqdm:value_ ?signvalue;
+                    hqdm:member_of_ ?pattern.
+                ?sos hqdm:temporal_part_of ?sign;
+                    hqdm:participant_in ?repBySign.
+                ?rlc hqdm:participant_in ?repBySign.
+                ?repBySign hqdm:represents ?s.
+                ?s ?p ?o.
+                OPTIONAL {
+                    ?repBySign hqdm:beginning ?begin.
+                    ?begin hqdm:data_EntityName ?start.
+                    ?repBySign hqdm:ending ?end.
+                    ?end hqdm:data_EntityName ?finish.
+                }
+
+            }
+                    """;
 
     private static final String FIND_PARTICIPANT_DETAILS_QUERY = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
@@ -138,15 +162,12 @@ public class MagmaCoreService {
     public Set<ParticipantDetails> findParticipantDetails(final Individual individual1, final Individual individual2,
             final KindOfAssociation kind, final PointInTime pointInTime) {
 
-        final IRI individual1Iri = new IRI(individual1.getId());
-        final IRI individual2Iri = new IRI(individual2.getId());
-        final IRI kindIri = new IRI(kind.getId());
         final LocalDateTime when = LocalDateTime
                 .parse(pointInTime.value(HQDM.ENTITY_NAME).iterator().next().toString());
 
         final QueryResultList queryResultList = database
-                .executeQuery(String.format(FIND_PARTICIPANT_DETAILS_QUERY, individual1Iri, individual2Iri, kindIri,
-                        individual1Iri, individual2Iri, kindIri));
+                .executeQuery(String.format(FIND_PARTICIPANT_DETAILS_QUERY, individual1.getId(), individual2.getId(),
+                        kind.getId(), individual1.getId(), individual2.getId(), kind.getId()));
 
         // Filter by the pointInTime
         final List<QueryResult> queryResults = queryResultList.getQueryResults()
@@ -194,66 +215,45 @@ public class MagmaCoreService {
      * @param pattern     the {@link Pattern} the sign conforms to.
      * @param value       {@link String} the sign value to look for.
      * @param pointInTime {@link PointInTime} the point in time we are interested in.
-     * @return {@link Set} of {@link Thing} represented by the value.
+     * @return {@link List} of {@link Thing} represented by the value.
      * @throws MagmaCoreException if the number of {@link RepresentationByPattern} found is not 1
      */
-    public Set<? extends Thing> findBySignValue(
+    public List<? extends Thing> findBySignValue(
             final RecognizingLanguageCommunity community,
             final Pattern pattern,
             final String value,
             final PointInTime pointInTime) throws MagmaCoreException {
 
-        // Find the RepresentationByPattern
-        final List<Thing> repByPatternThings = database.findByPredicateIri(HQDM.CONSISTS_OF_BY_CLASS,
-                new IRI(pattern.getId()));
-        if (repByPatternThings.size() != 1) {
-            throw new MagmaCoreException(
-                    String.format("Expected 1 RepresentationByPattern for Pattern %s, but found %s", pattern.getId(),
-                            repByPatternThings.size()));
+        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
+        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+            return List.of();
         }
 
-        final IRI repByPatternIri = new IRI(repByPatternThings.get(0).getId());
+        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
 
-        // Find the Things with the given value and filter out anything that isn't a sign.
-        final Stream<Thing> signs = database.findByPredicateIriAndStringValue(HQDM.VALUE_, value)
+        final QueryResultList queryResultList = database
+                .executeQuery(String.format(FIND_BY_SIGN_VALUE_QUERY,
+                        value,
+                        community.getId(),
+                        pattern.getId()));
+        //
+        // Filter by the pointInTime
+        final List<QueryResult> queryResults = queryResultList.getQueryResults()
                 .stream()
-                .filter(Predicates.isSign);
+                .filter(qr -> {
+                    final RDFNode start = qr.get("start");
+                    final RDFNode finish = qr.get("finish");
+                    final LocalDateTime from = (start != null) ? LocalDateTime.parse(start.toString())
+                            : LocalDateTime.MIN;
+                    final LocalDateTime to = (finish != null) ? LocalDateTime.parse(finish.toString())
+                            : LocalDateTime.MAX;
 
-        // Find the states of these signs
-        final List<Thing> signStates = signs
-                .map(sign -> database.findByPredicateIri(HQDM.TEMPORAL_PART_OF, new IRI(sign.getId())))
-                .reduce(new ArrayList<>(), (accumulator, things) -> {
-                    accumulator.addAll(things);
-                    return accumulator;
-                });
-
-        // Map the states to RepresentationBySign objects
-        final Stream<Thing> repBySignThings = signStates
-                .stream()
-                .map(signState -> signState.value(HQDM.PARTICIPANT_IN))
-                .reduce(new HashSet<Object>(), (accumulator, things) -> {
-                    accumulator.addAll(things);
-                    return accumulator;
+                    return (when.equals(from) || when.isAfter(from))
+                            && (when.equals(to) || when.isBefore(to));
                 })
-                .stream()
-                .map(repBySignIri -> database.get((IRI) repBySignIri))
+                .collect(Collectors.toList());
 
-                // Filter to those with the correct RepresentationByPattern and RecognizingLanguageCommunity
-                .filter(repBySign -> community.hasThisValue(HQDM.PARTICIPANT_IN,
-                        new IRI(repBySign.getId())) && repBySign.hasThisValue(HQDM.MEMBER_OF_, repByPatternIri))
-
-                // Filter to those valid at the specified PointInTime.
-                .filter(Predicates.isValidAtPointInTime(database, pointInTime));
-
-        // Map the RepresentationBySign Things to the Things they represent.
-        return repBySignThings.map(repBySign -> repBySign.value(HQDM.REPRESENTS))
-                .reduce(new HashSet<Object>(), (accumulator, things) -> {
-                    accumulator.addAll(things);
-                    return accumulator;
-                })
-                .stream()
-                .map(thingId -> database.get((IRI) thingId))
-                .collect(Collectors.toSet());
+        return database.toTopObjects(new QueryResultList(queryResultList.getVarNames(), queryResults));
 
     }
 
