@@ -127,4 +127,90 @@ public class MagmaCoreServiceQueries {
             }
             order by ?s ?p ?o
                     """;
+
+    /**
+     * This query finds objects of a specified type and kind, along with the signs of a specified
+     * {@link uk.gov.gchq.magmacore.hqdm.model.Pattern} that represent them.
+     * <p>
+     * It needs two groups of three parameters:
+     * <ol>
+     * <li>the rdf:type IRI String</li>
+     * <li>the kind IRI String</li>
+     * <li>the sign pattern IRI String</li>
+     * </ol>
+     * </p>
+     * <p>
+     * The result includes `hqdm:value_` predicates for the signValues.
+     * </p>
+     */
+    public static final String FIND_OBJECTS_BY_TYPE_AND_SIGN_PATTERN = """
+            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+            select distinct *
+            where {
+                {
+                    SELECT ?s ?p ?o ?start ?finish
+                    WHERE {
+                    BIND(<%s> as ?type)
+                    BIND(<%s> as ?kind)
+                    BIND(<%s> as ?pattern)
+
+                    ?s a ?type;
+                        hqdm:member_of_kind ?kind;
+                    ?p ?o.
+                    ?st hqdm:temporal_part_of ?s.
+                    ?repBySign hqdm:represents ?st.
+                    ?signst hqdm:participant_in ?repBySign;
+                        a hqdm:state_of_sign;
+                        hqdm:temporal_part_of ?sign.
+                    ?sign hqdm:value_ ?signvalue;
+                        hqdm:member_of_ ?pattern.
+
+                    OPTIONAL {
+                        ?repBySign hqdm:beginning ?begin.
+                        ?begin hqdm:data_EntityName ?start
+                        }
+                    OPTIONAL {
+                        ?repBySign hqdm:ending ?end.
+                        ?end hqdm:data_EntityName ?finish
+                        }
+
+                    }
+                }
+                UNION
+                {
+                    SELECT ?s ?p ?o ?start ?finish
+                    WHERE {
+                        BIND(<%s> as ?type)
+                        BIND(<%s> as ?kind)
+                        BIND(<%s> as ?pattern)
+
+                        ?s a ?type;
+                            hqdm:member_of_kind ?kind;
+                            ?pr ?ob.
+                        ?st hqdm:temporal_part_of ?s.
+                        ?repBySign hqdm:represents ?st.
+                        ?signst hqdm:participant_in ?repBySign;
+                            a hqdm:state_of_sign;
+                            hqdm:temporal_part_of ?sign.
+                        ?sign hqdm:value_ ?o;
+                            ?p ?o;
+                            hqdm:member_of_ ?pattern.
+
+                    OPTIONAL {
+                        ?repBySign hqdm:beginning ?begin.
+                        ?begin hqdm:data_EntityName ?start
+                        }
+                    OPTIONAL {
+                        ?repBySign hqdm:ending ?end.
+                        ?end hqdm:data_EntityName ?finish
+                        }
+
+                    }
+                }
+            }
+            order by ?s ?p ?o
+
+                        """;
 }

@@ -84,23 +84,10 @@ public class MagmaCoreService {
                         kind.getId(), individual1.getId(), individual2.getId(), kind.getId()));
 
         // Filter by the pointInTime
-        final List<QueryResult> queryResults = queryResultList.getQueryResults()
-                .stream()
-                .filter(qr -> {
-                    final RDFNode start = qr.get("start");
-                    final RDFNode finish = qr.get("finish");
-                    final LocalDateTime from = (start != null) ? LocalDateTime.parse(start.toString())
-                            : LocalDateTime.MIN;
-                    final LocalDateTime to = (finish != null) ? LocalDateTime.parse(finish.toString())
-                            : LocalDateTime.MAX;
-
-                    return (when.equals(from) || when.isAfter(from))
-                            && (when.equals(to) || when.isBefore(to));
-                })
-                .collect(Collectors.toList());
+        final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
 
         // Process all of the participants.
-        return database.toTopObjects(new QueryResultList(queryResultList.getVarNames(), queryResults))
+        return database.toTopObjects(queryResults)
                 .stream()
                 // Map them to ParticipantDetails objects.
                 .map(p -> {
@@ -115,6 +102,32 @@ public class MagmaCoreService {
                 })
                 .collect(Collectors.toSet());
 
+    }
+
+    /**
+     * Filter a {@link QueryResultList} by a {@link PointInTime}. The {@link QueryResultList} should
+     * have `start` and `finish` columns to allow filtering.
+     *
+     * @param when            {@link LocalDateTime}
+     * @param queryResultList {@link QueryResultList}
+     * @return {@link QueryResultList}
+     */
+    private QueryResultList filterByPointInTime(final LocalDateTime when, final QueryResultList queryResultList) {
+        final List<QueryResult> queryResults = queryResultList.getQueryResults()
+                .stream()
+                .filter(qr -> {
+                    final RDFNode start = qr.get("start");
+                    final RDFNode finish = qr.get("finish");
+                    final LocalDateTime from = (start != null) ? LocalDateTime.parse(start.toString())
+                            : LocalDateTime.MIN;
+                    final LocalDateTime to = (finish != null) ? LocalDateTime.parse(finish.toString())
+                            : LocalDateTime.MAX;
+
+                    return (when.equals(from) || when.isAfter(from))
+                            && (when.equals(to) || when.isBefore(to));
+                })
+                .collect(Collectors.toList());
+        return new QueryResultList(queryResultList.getVarNames(), queryResults);
     }
 
     /**
@@ -150,25 +163,43 @@ public class MagmaCoreService {
                         value,
                         community.getId(),
                         pattern.getId()));
-        //
+
         // Filter by the pointInTime
-        final List<QueryResult> queryResults = queryResultList.getQueryResults()
-                .stream()
-                .filter(qr -> {
-                    final RDFNode start = qr.get("start");
-                    final RDFNode finish = qr.get("finish");
-                    final LocalDateTime from = (start != null) ? LocalDateTime.parse(start.toString())
-                            : LocalDateTime.MIN;
-                    final LocalDateTime to = (finish != null) ? LocalDateTime.parse(finish.toString())
-                            : LocalDateTime.MAX;
+        final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
 
-                    return (when.equals(from) || when.isAfter(from))
-                            && (when.equals(to) || when.isBefore(to));
-                })
-                .collect(Collectors.toList());
+        return database.toTopObjects(queryResults);
+    }
 
-        return database.toTopObjects(new QueryResultList(queryResultList.getVarNames(), queryResults));
+    /**
+     * Find Things of a giver rdf:type and Kind and their signs that are of a particular pattern.
+     *
+     * @param type        IRI
+     * @param kind        IRI
+     * @param pattern     IRI
+     * @param pointInTime {@link PointInTime}
+     * @return a {@link List} of {@link Thing}
+     */
+    final List<? extends Thing> findByTypeKindAndSignPattern(
+            final IRI type,
+            final IRI kind,
+            final IRI pattern,
+            final PointInTime pointInTime) {
 
+        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
+        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+            return List.of();
+        }
+
+        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+
+        final QueryResultList queryResultList = database
+                .executeQuery(String.format(MagmaCoreServiceQueries.FIND_OBJECTS_BY_TYPE_AND_SIGN_PATTERN,
+                        type, kind, pattern, type, kind, pattern));
+
+        // Filter by the pointInTime
+        final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
+
+        return database.toTopObjects(queryResults);
     }
 
     /**
