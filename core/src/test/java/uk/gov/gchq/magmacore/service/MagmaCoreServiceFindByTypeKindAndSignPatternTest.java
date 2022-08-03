@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -48,6 +49,16 @@ public class MagmaCoreServiceFindByTypeKindAndSignPatternTest {
         // Assert the results are correct.
         assertNotNull(things);
         assertEquals(1, things.size());
-        assertEquals(new IRI(SignPatternTestData.TEST_BASE, "person1").getIri(), things.get(0).getId());
+
+        final Thing person = things.get(0);
+        final String personIri = new IRI(SignPatternTestData.TEST_BASE, "person1").getIri();
+        assertEquals(personIri, person.getId());
+
+        // This query augments its object with HQDM.VALUE predicates for the current Sign values for the
+        // object.
+        final Set<Object> values = person.value(HQDM.VALUE_);
+        assertNotNull(values);
+        assertEquals(1, values.size());
+        assertEquals("person1", values.iterator().next().toString());
     }
 }
