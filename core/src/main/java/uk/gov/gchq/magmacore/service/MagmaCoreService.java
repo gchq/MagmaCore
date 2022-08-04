@@ -251,7 +251,6 @@ public class MagmaCoreService {
     }
 
     /**
-     * 
      * Create a new {@link Thing} in the database.
      *
      * @param thing {@link Thing} to create.
