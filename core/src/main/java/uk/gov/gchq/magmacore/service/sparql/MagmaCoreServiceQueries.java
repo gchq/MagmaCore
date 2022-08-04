@@ -213,4 +213,89 @@ public class MagmaCoreServiceQueries {
             order by ?s ?p ?o
 
                         """;
+
+    /**
+     * Find Individuals with states participting in associations of a specified kind, their roles and
+     * signs.
+     * <p>
+     * The Kind IRI is needed in 3 places, e.g. String.format(FIND_BY_KIND_OF_ASSOCIATION, iri, iri,
+     * iri).
+     * </p>
+     */
+    public static final String FIND_BY_KIND_OF_ASSOCIATION = """
+            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+
+            select ?s ?p ?o  ?start ?finish
+            where
+            {
+                {
+                    select distinct ?s ?p ?o ?start ?finish
+                    WHERE {
+                        BIND(<%s> as ?kind_of_association)
+                        ?association hqdm:member_of_kind ?kind_of_association.
+                        ?participant hqdm:participant_in ?association;
+                            hqdm:member_of_kind ?role;
+                            hqdm:temporal_part_of ?s.
+                        ?s ?p ?o.
+                        OPTIONAL {
+                            ?association hqdm:beginning ?begin.
+                            ?begin hqdm:data_EntityName ?start.
+                        }
+                        OPTIONAL {
+                            ?association hqdm:ending ?end.
+                            ?end hqdm:data_EntityName ?finish.
+                        }
+                    }
+                }
+                UNION
+                {
+                    select distinct ?s ?p ?o ?start ?finish
+                    WHERE {
+                        BIND(<%s> as ?kind_of_association)
+                        ?association hqdm:member_of_kind ?kind_of_association.
+                        ?participant hqdm:participant_in ?association;
+                            hqdm:member_of_kind ?role;
+                            hqdm:temporal_part_of ?s.
+                        ?role hqdm:data_EntityName ?o;
+                        ?p ?o.
+                        OPTIONAL {
+                            ?association hqdm:beginning ?begin.
+                            ?begin hqdm:data_EntityName ?start.
+                        }
+                        OPTIONAL {
+                            ?association hqdm:ending ?end.
+                            ?end hqdm:data_EntityName ?finish.
+                        }
+                    }
+                }
+                UNION
+                {
+                    select distinct ?s ?p ?o ?start ?finish
+                    WHERE {
+                        BIND(<%s> as ?kind_of_association)
+                        ?association hqdm:member_of_kind ?kind_of_association.
+                        ?participant hqdm:participant_in ?association;
+                            hqdm:temporal_part_of ?individual.
+                        ?temporal_part hqdm:temporal_part_of ?individual.
+                        ?state_of_individual hqdm:temporal_part_of ?individual.
+                        ?repBySign hqdm:represents ?state_of_individual.
+                        ?repBySign a hqdm:representation_by_sign.
+                        ?state_of_individual hqdm:temporal_part_of ?s.
+                        ?state_of_sign hqdm:participant_in ?repBySign;
+                            hqdm:temporal_part_of ?sign.
+                        ?sign hqdm:value_ ?o;
+                            ?p ?o.
+                        OPTIONAL {
+                            ?repBySign hqdm:beginning ?begin.
+                            ?begin hqdm:data_EntityName ?start.
+                        }
+                        OPTIONAL {
+                            ?repBySign hqdm:ending ?end.
+                            ?end hqdm:data_EntityName ?finish.
+                        }
+                    }
+                }
+            }
+            order by ?s ?p ?o
+                        """;
 }

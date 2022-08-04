@@ -179,7 +179,7 @@ public class MagmaCoreService {
      * @param pointInTime {@link PointInTime}
      * @return a {@link List} of {@link Thing}
      */
-    final List<? extends Thing> findByTypeKindAndSignPattern(
+    public List<? extends Thing> findByTypeKindAndSignPattern(
             final IRI type,
             final IRI kind,
             final IRI pattern,
@@ -203,6 +203,34 @@ public class MagmaCoreService {
     }
 
     /**
+     * Find Individuals with states participting in associations of a specified kind, their roles and
+     * signs.
+     *
+     * @param kindOfAssociation {@link IRI}
+     * @param pointInTime       {@link PointInTime}
+     * @return {@link List} of {@link Thing}
+     */
+    public List<? extends Thing> findByKindOfAssociation(final IRI kindOfAssociation, final PointInTime pointInTime) {
+
+        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
+        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+            return List.of();
+        }
+
+        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+
+        final QueryResultList queryResultList = database
+                .executeQuery(String.format(MagmaCoreServiceQueries.FIND_BY_KIND_OF_ASSOCIATION,
+                        kindOfAssociation, kindOfAssociation, kindOfAssociation));
+
+        // Filter by the pointInTime
+        final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
+
+        return database.toTopObjects(queryResults);
+
+    }
+
+    /**
      * Find an object by its {@link HQDM#ENTITY_NAME}.
      *
      * @param <T>        HQDM entity type.
@@ -223,6 +251,7 @@ public class MagmaCoreService {
     }
 
     /**
+     * 
      * Create a new {@link Thing} in the database.
      *
      * @param thing {@link Thing} to create.
