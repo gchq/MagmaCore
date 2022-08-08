@@ -161,4 +161,12 @@ public interface MagmaCoreDatabase {
      * @return a {@link List} of {@link Thing}
      */
     List<Thing> toTopObjects(final QueryResultList queryResultsList);
+
+    /**
+     * Execute a CONSTRUCT query.
+     *
+     * @param query a CONSTRUCT query {@link String}
+     * @return a {@link List} of {@link Thing}
+     */
+    List<Thing> executeConstruct(final String query);
 }

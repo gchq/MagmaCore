@@ -301,6 +301,22 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     }
 
     /**
+     * Execute a CONSTRUCT query.
+     *
+     * @param sparqlQueryString a CONSTRUCT query {@link String}
+     * @return a {@link List} of {@link Thing}
+     */
+    public List<Thing> executeConstruct(final String sparqlQueryString) {
+        final Query query = QueryFactory.create(sparqlQueryString);
+        final QueryExecution queryExec = QueryExecutionFactory.create(query, dataset);
+
+        final Model model = queryExec.execConstruct();
+        final Query selectAllQuery = QueryFactory.create("select ?s ?p ?o where { ?s ?p ?o. }");
+        final QueryExecution selectAllQueryExec = QueryExecutionFactory.create(selectAllQuery, model);
+        return toTopObjects(getQueryResultList(selectAllQueryExec));
+    }
+
+    /**
      * Perform an update query on the dataset.
      *
      * @param statement SPARQL update query to execute.

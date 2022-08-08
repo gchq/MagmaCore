@@ -16,6 +16,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PointInTime;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -39,27 +40,34 @@ public class MagmaCoreServiceFindByKindOfAssociationTest {
 
         // Find the required Things by sign in a transaction.
         db.begin();
-        final List<? extends Thing> things = service
+        final List<? extends Thing> participants = service
                 .findByKindOfAssociation(AssociationPatternTestData.userAssociationKindIri, now);
 
         db.commit();
 
         // Assert the results are correct.
-        assertNotNull(things);
-        assertEquals(2, things.size());
+        assertNotNull(participants);
+        assertEquals(4, participants.size());
+
+        // Filter for person Things
+        final List<? extends Thing> people = participants
+                .stream()
+                .filter(p -> p.hasThisValue(RDFS.RDF_TYPE, HQDM.PERSON))
+                .toList();
+
+        assertEquals(2, people.size());
 
         final String person1Iri = new IRI(AssociationPatternTestData.TEST_BASE, "person1").getIri();
         final String person2Iri = new IRI(AssociationPatternTestData.TEST_BASE, "person2").getIri();
 
-        things.forEach(person -> {
+        people.forEach(person -> {
             assertTrue(person1Iri.equals(person.getId()) || person2Iri.equals(person.getId()));
 
             // This query augments its object with HQDM.VALUE predicates for the current Sign values for the
             // object.
 
-            System.out.println(person);
-
             final Set<Object> values = person.value(HQDM.VALUE_);
+
             assertNotNull(values);
             assertEquals(1, values.size());
 
@@ -68,4 +76,5 @@ public class MagmaCoreServiceFindByKindOfAssociationTest {
             assertEquals(1, names.size());
         });
     }
+
 }

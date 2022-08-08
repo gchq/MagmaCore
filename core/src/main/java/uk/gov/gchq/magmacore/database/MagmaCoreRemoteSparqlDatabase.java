@@ -280,6 +280,16 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     }
 
     /**
+     * Execute a CONSTRUCT query.
+     *
+     * @param sparqlQueryString a CONSTRUCT query {@link String}
+     * @return a List of {@link Thing}
+     */
+    public List<Thing> executeConstruct(final String sparqlQueryString) {
+        return toTopObjects(executeQuery(sparqlQueryString));
+    }
+
+    /**
      * Perform an update query on the dataset.
      *
      * @param statement SPARQL update query to execute.
