@@ -225,11 +225,11 @@ public class MagmaCoreServiceQueries {
     public static final String FIND_BY_KIND_OF_ASSOCIATION = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
-            select ?s ?p ?o  ?start ?finish
+            select ?s ?p ?o
             where
             {
                 {
-                    select distinct ?s ?p ?o ?start ?finish
+                    select distinct ?s ?p ?o
                     WHERE {
                         BIND(<%s> as ?kind_of_association)
                         ?association hqdm:member_of_kind ?kind_of_association.
@@ -237,19 +237,11 @@ public class MagmaCoreServiceQueries {
                             hqdm:member_of_kind ?role;
                             hqdm:temporal_part_of ?s.
                         ?s ?p ?o.
-                        OPTIONAL {
-                            ?association hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start.
-                        }
-                        OPTIONAL {
-                            ?association hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish.
-                        }
                     }
                 }
                 UNION
                 {
-                    select distinct ?s ?p ?o ?start ?finish
+                    select distinct ?s ?p ?o
                     WHERE {
                         BIND(<%s> as ?kind_of_association)
                         ?association hqdm:member_of_kind ?kind_of_association.
@@ -257,42 +249,25 @@ public class MagmaCoreServiceQueries {
                             hqdm:member_of_kind ?role;
                             hqdm:temporal_part_of ?s.
                         ?role hqdm:data_EntityName ?o;
-                        ?p ?o.
-                        OPTIONAL {
-                            ?association hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start.
-                        }
-                        OPTIONAL {
-                            ?association hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish.
-                        }
+                            ?p ?o.
                     }
                 }
                 UNION
                 {
-                    select distinct ?s ?p ?o ?start ?finish
+                    select distinct ?s ?p ?o
                     WHERE {
                         BIND(<%s> as ?kind_of_association)
-                        ?association hqdm:member_of_kind ?kind_of_association.
                         ?participant hqdm:participant_in ?association;
-                            hqdm:temporal_part_of ?individual.
-                        ?temporal_part hqdm:temporal_part_of ?individual.
-                        ?state_of_individual hqdm:temporal_part_of ?individual.
+                            hqdm:temporal_part_of ?s.
+                        ?state_of_individual hqdm:temporal_part_of ?s.
                         ?repBySign hqdm:represents ?state_of_individual.
                         ?repBySign a hqdm:representation_by_sign.
-                        ?state_of_individual hqdm:temporal_part_of ?s.
                         ?state_of_sign hqdm:participant_in ?repBySign;
+                            a hqdm:state_of_sign;
                             hqdm:temporal_part_of ?sign.
                         ?sign hqdm:value_ ?o;
                             ?p ?o.
-                        OPTIONAL {
-                            ?repBySign hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start.
-                        }
-                        OPTIONAL {
-                            ?repBySign hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish.
-                        }
+
                     }
                 }
             }
