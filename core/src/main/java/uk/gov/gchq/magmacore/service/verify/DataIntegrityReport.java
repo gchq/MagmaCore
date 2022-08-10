@@ -1,6 +1,10 @@
-package uk.gov.gchq.magmacore.service;
+package uk.gov.gchq.magmacore.service.verify;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
+import uk.gov.gchq.magmacore.hqdm.model.Thing;
 
 /**
  * Check an HQDM model for missing predicates.
@@ -542,28 +546,32 @@ public class DataIntegrityReport {
      * Verify a HQDM Data Model.
      *
      * @param db {@link MagmaCoreDatabase}
+     * @return a {@link List} of {@link Thing} that represent data integrity errors.
      */
-    public static void verify(final MagmaCoreDatabase db) {
+    public static List<Thing> verify(final MagmaCoreDatabase db) {
         db.begin();
 
-        System.out.println(db.executeConstruct(CHECK_POSSIBLE_WORLD_MEMBERSHIP));
-        System.out.println(db.executeConstruct(CHECK_MISSING_PARTICIPANT_ROLES));
-        System.out.println(db.executeConstruct(CHECK_MISSING_DATA_ENTITY_NAME));
-        System.out.println(db.executeConstruct(CHECK_STATE_TEMPORAL_PART_OF));
-        System.out.println(db.executeConstruct(CHECK_SIGN_MEMBER_OF_PATTERN));
-        System.out.println(db.executeConstruct(CHECK_REP_BY_PATTERN_CONSISTS_OF_BY_CLASS));
-        System.out.println(db.executeConstruct(CHECK_REP_BY_SIGN_CONSISTS_OF));
-        System.out.println(db.executeConstruct(CHECK_REP_BY_SIGN_REPRESENTS));
-        System.out.println(db.executeConstruct(CHECK_STATE_OF_SIGN_PRTICIPANT_IN));
-        System.out.println(db.executeConstruct(CHECK_REP_BY_SIGN_MEMBER_OF));
-        System.out.println(db.executeConstruct(CHECK_REP_BY_SIGN_HAS_SIGN_PARTICIPANT));
-        System.out.println(db.executeConstruct(CHECK_REP_BY_SIGN_HAS_COMMUNITY_PARTICIPANT));
-        System.out.println(db.executeConstruct(CHECK_ROLE_PART_OF_BY_CLASS_));
-        System.out.println(db.executeConstruct(CHECK_ASSOCIATION_MEMBER_OF_KIND));
-        System.out.println(db.executeConstruct(CHECK_REP_BY_PATTERN_CONSISTS_OF_IN_MEMBERS));
-        System.out.println(db.executeConstruct(CHECK_SIGN_VALUE_));
+        final List<Thing> errors = new ArrayList<>();
+
+        errors.addAll(db.executeConstruct(CHECK_POSSIBLE_WORLD_MEMBERSHIP));
+        errors.addAll(db.executeConstruct(CHECK_MISSING_PARTICIPANT_ROLES));
+        errors.addAll(db.executeConstruct(CHECK_MISSING_DATA_ENTITY_NAME));
+        errors.addAll(db.executeConstruct(CHECK_STATE_TEMPORAL_PART_OF));
+        errors.addAll(db.executeConstruct(CHECK_SIGN_MEMBER_OF_PATTERN));
+        errors.addAll(db.executeConstruct(CHECK_REP_BY_PATTERN_CONSISTS_OF_BY_CLASS));
+        errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_CONSISTS_OF));
+        errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_REPRESENTS));
+        errors.addAll(db.executeConstruct(CHECK_STATE_OF_SIGN_PRTICIPANT_IN));
+        errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_MEMBER_OF));
+        errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_HAS_SIGN_PARTICIPANT));
+        errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_HAS_COMMUNITY_PARTICIPANT));
+        errors.addAll(db.executeConstruct(CHECK_ROLE_PART_OF_BY_CLASS_));
+        errors.addAll(db.executeConstruct(CHECK_ASSOCIATION_MEMBER_OF_KIND));
+        errors.addAll(db.executeConstruct(CHECK_REP_BY_PATTERN_CONSISTS_OF_IN_MEMBERS));
+        errors.addAll(db.executeConstruct(CHECK_SIGN_VALUE_));
 
         db.abort();
 
+        return errors;
     }
 }

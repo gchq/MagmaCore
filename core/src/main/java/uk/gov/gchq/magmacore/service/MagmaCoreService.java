@@ -45,6 +45,7 @@ import uk.gov.gchq.magmacore.service.dto.ParticipantDetails;
 import uk.gov.gchq.magmacore.service.sparql.MagmaCoreServiceQueries;
 import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
+import uk.gov.gchq.magmacore.service.verify.DataIntegrityReport;
 
 /**
  * Service for interacting with a {@link MagmaCoreDatabase}.
@@ -356,4 +357,12 @@ public class MagmaCoreService {
         database.dump(out, Lang.TTL);
     }
 
+    /**
+     * Verify that the model in the database matches how we want to use HQDM.
+     *
+     * @return a {@link List} of {@link Thing} representing model integrity errors.
+     */
+    public List<Thing> verifyModel() {
+        return DataIntegrityReport.verify(database);
+    }
 }

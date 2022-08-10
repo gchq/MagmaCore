@@ -23,7 +23,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.jena.query.Dataset;
+import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.query.TxnType;
@@ -286,7 +289,12 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      * @return a List of {@link Thing}
      */
     public List<Thing> executeConstruct(final String sparqlQueryString) {
-        return toTopObjects(executeQuery(sparqlQueryString));
+        final QueryExecution queryExec = connection.query(sparqlQueryString);
+
+        final Model model = queryExec.execConstruct();
+        final Query selectAllQuery = QueryFactory.create("select ?s ?p ?o where { ?s ?p ?o. }");
+        final QueryExecution selectAllQueryExec = QueryExecutionFactory.create(selectAllQuery, model);
+        return toTopObjects(getQueryResultList(selectAllQueryExec));
     }
 
     /**
