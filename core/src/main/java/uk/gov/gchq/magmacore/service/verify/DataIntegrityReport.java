@@ -392,7 +392,23 @@ public class DataIntegrityReport {
               FILTER(!bound(?repByPattern))
             }
             """;
-    private static final String CHECK_REP_BY_SIGN_CONSISTS_OF = """
+    private static final String CHECK_REP_BY_SIGN_CONSISTS_OF_COMMUNITY = """
+            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+
+            construct {
+              ?s hqdm:error_missing_consists_of_ "Should have a consists_of_ from Rep By Sign.".
+              ?s a hqdm:representation_by_sign.
+            }
+            where {
+                ?s a hqdm:representation_by_sign.
+                OPTIONAL {
+                  ?s hqdm:consists_of_ ?community.
+                }
+
+              FILTER(!bound(?community))
+            }
+            """;
+    private static final String CHECK_REP_BY_SIGN_CONSISTS_OF_SIGN = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
             construct {
@@ -559,7 +575,8 @@ public class DataIntegrityReport {
         errors.addAll(db.executeConstruct(CHECK_STATE_TEMPORAL_PART_OF));
         errors.addAll(db.executeConstruct(CHECK_SIGN_MEMBER_OF_PATTERN));
         errors.addAll(db.executeConstruct(CHECK_REP_BY_PATTERN_CONSISTS_OF_BY_CLASS));
-        errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_CONSISTS_OF));
+        errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_CONSISTS_OF_COMMUNITY));
+        errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_CONSISTS_OF_SIGN));
         errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_REPRESENTS));
         errors.addAll(db.executeConstruct(CHECK_STATE_OF_SIGN_PRTICIPANT_IN));
         errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_MEMBER_OF));
