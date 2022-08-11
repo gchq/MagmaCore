@@ -429,15 +429,21 @@ public class DataIntegrityReport {
 
             construct {
               ?s hqdm:error_missing_consists_of_in_members "Should have a consists_of_in_members from Rep By Pattern.".
-              ?s a hqdm:representation_by_pattern.
+              ?s a ?type.
             }
             where {
-                ?s a hqdm:representation_by_pattern.
+                ?s a ?type.
                 OPTIONAL {
                   ?s hqdm:consists_of_in_members ?community.
                 }
 
               FILTER(!bound(?community))
+                  FILTER(?type in (
+                              hqdm:representation_by_pattern,
+                              hqdm:identification,
+                              hqdm:definition,
+                              hqdm:description
+                              ))
             }
             """;
     private static final String CHECK_REP_BY_SIGN_REPRESENTS = """
