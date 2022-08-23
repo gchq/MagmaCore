@@ -343,6 +343,7 @@ public class MagmaCoreServiceQueries {
                     select distinct ?s ?p ?o
                     WHERE {
                         BIND(<%s> as ?kind_of_association)
+                        ?association hqdm:member_of_kind ?kind_of_association.
                         ?participant hqdm:participant_in ?association;
                             hqdm:temporal_part_of ?s.
                         ?state_of_individual hqdm:temporal_part_of ?s.
