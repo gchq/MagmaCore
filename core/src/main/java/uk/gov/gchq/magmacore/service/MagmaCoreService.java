@@ -172,6 +172,38 @@ public class MagmaCoreService {
     }
 
     /**
+     * Find Things of a giver rdf:type and Class and their signs that are of a particular pattern.
+     *
+     * @param type        IRI
+     * @param clazz       IRI
+     * @param pattern     IRI
+     * @param pointInTime {@link PointInTime}
+     * @return a {@link List} of {@link Thing}
+     */
+    public List<? extends Thing> findByTypeClassAndSignPattern(
+            final IRI type,
+            final IRI clazz,
+            final IRI pattern,
+            final PointInTime pointInTime) {
+
+        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
+        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+            return List.of();
+        }
+
+        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+
+        final QueryResultList queryResultList = database
+                .executeQuery(String.format(MagmaCoreServiceQueries.FIND_OBJECTS_BY_TYPE_CLASS_AND_SIGN_PATTERN,
+                        type, clazz, pattern, type, clazz, pattern));
+
+        // Filter by the pointInTime
+        final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
+
+        return database.toTopObjects(queryResults);
+    }
+
+    /**
      * Find Things of a giver rdf:type and Kind and their signs that are of a particular pattern.
      *
      * @param type        IRI
@@ -223,6 +255,37 @@ public class MagmaCoreService {
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_BY_KIND_OF_ASSOCIATION,
                         kindOfAssociation, kindOfAssociation, kindOfAssociation));
+
+        // Filter by the pointInTime
+        final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
+
+        return database.toTopObjects(queryResults);
+
+    }
+
+    /**
+     * Find the items associated to an item by an association of a specified kind at a point in time.
+     *
+     * @param item              IRI
+     * @param kindOfAssociation IRI
+     * @param pointInTime       {@link PointInTime}
+     * @return {@link List} of {@link Thing}
+     */
+    public List<? extends Thing> findAssociated(final IRI item, final IRI kindOfAssociation,
+            final PointInTime pointInTime) {
+
+        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
+        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+            return List.of();
+        }
+
+        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+
+        final QueryResultList queryResultList = database
+                .executeQuery(String.format(MagmaCoreServiceQueries.FIND_ASSOCIATED,
+                        kindOfAssociation, item, item,
+                        kindOfAssociation, item, item,
+                        kindOfAssociation, item, item));
 
         // Filter by the pointInTime
         final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
