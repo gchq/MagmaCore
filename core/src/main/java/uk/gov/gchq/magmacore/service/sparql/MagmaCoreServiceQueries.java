@@ -53,6 +53,8 @@ public class MagmaCoreServiceQueries {
                 OPTIONAL {
                     ?repBySign hqdm:beginning ?begin.
                     ?begin hqdm:data_EntityName ?start.
+                }
+                OPTIONAL {
                     ?repBySign hqdm:ending ?end.
                     ?end hqdm:data_EntityName ?finish.
                 }
