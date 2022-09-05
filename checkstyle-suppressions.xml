@@ -9,7 +9,7 @@
   <suppress checks="AbbreviationAsWordInName" files="UID\.java" />
 
   <!-- examples suppressions -->
-  <suppress checks="LineLength" files="ExampleDataObjects.java|ExampleRdl.java|ExampleAssociations.java" />
+  <suppress checks="LineLength" files="ExampleDataObjects.java|ExampleRdl.java|ExampleAssociations.java|MagmaCoreService.java" />
   <suppress checks="MethodLength" files="ExampleDataObjects.java" />
 
   <!-- hqdm-core suppressions -->

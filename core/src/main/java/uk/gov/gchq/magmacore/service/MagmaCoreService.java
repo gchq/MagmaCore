@@ -295,6 +295,74 @@ public class MagmaCoreService {
     }
 
     /**
+     * A case-sensitive search for entities in a specified class with a sign containing the given text.
+     *
+     * @param text        the String to search for.
+     * @param classIri    the IRI of the class that the entities should be a member_of.
+     * @param pointInTime when the entities should have the matching sign.
+     * @return a {@link List} of {@link Thing}
+     */
+    public List<? extends Thing> findByPartialSignAndClassCaseSensitive(final String text, final IRI classIri,
+            final PointInTime pointInTime) {
+
+        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
+        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+            return List.of();
+        }
+
+        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+
+        final QueryResultList queryResultList = database
+                .executeQuery(
+                        String.format(MagmaCoreServiceQueries.FIND_MEMBERS_OF_CLASS_BY_PARTIAL_SIGN_CASE_SENSITIVE,
+                                text, classIri,
+                                text, classIri,
+                                text, classIri));
+
+        // Filter by the pointInTime
+        final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
+
+        return database.toTopObjects(queryResults);
+
+    }
+
+    /**
+     * A case-sensitive search for entities in a specified class with a sign containing the given text
+     * that are parts of a given whole.
+     *
+     * @param wholeIri    the object that the required entities are composed into
+     * @param text        the String to search for.
+     * @param classIri    the IRI of the class that the entities should be a member_of.
+     * @param pointInTime when the entities should have the matching sign.
+     * @return a {@link List} of {@link Thing}
+     */
+    public List<? extends Thing> findByPartialSignCompositionAndClassCaseSensitive(final IRI wholeIri,
+            final String text, final IRI classIri,
+            final PointInTime pointInTime) {
+
+        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
+        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+            return List.of();
+        }
+
+        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+
+        final QueryResultList queryResultList = database
+                .executeQuery(
+                        String.format(
+                                MagmaCoreServiceQueries.FIND_MEMBERS_OF_CLASS_BY_COMPOSITION_AND_PARTIAL_SIGN_CASE_SENSITIVE,
+                                text, classIri, wholeIri,
+                                text, classIri, wholeIri,
+                                text, classIri, wholeIri));
+
+        // Filter by the pointInTime
+        final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
+
+        return database.toTopObjects(queryResults);
+
+    }
+
+    /**
      * Find an object by its {@link HQDM#ENTITY_NAME}.
      *
      * @param <T>        HQDM entity type.
