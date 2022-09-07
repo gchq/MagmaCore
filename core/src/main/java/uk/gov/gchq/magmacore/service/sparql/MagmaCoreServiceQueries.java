@@ -618,4 +618,42 @@ public class MagmaCoreServiceQueries {
             order by ?s ?p ?o
 
             """;
+
+    /**
+     * Find the signs for an entity and the pattern and representaion by pattern ENTITY_NAMES.
+     */
+    public static final String FIND_SIGNS_FOR_ENTITY = """
+            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+            SELECT distinct ?sign_value ?pattern_name ?rep_by_pattern_name ?start ?finish
+            WHERE
+            {
+                {
+                    SELECT *
+                    WHERE {
+                        BIND(<%s> as ?s)
+                        ?state_of_s hqdm:temporal_part_of ?s.
+                        ?rep_by_sign hqdm:represents ?state_of_s;
+                            hqdm:member_of_ ?rep_by_pattern.
+                        ?rep_by_pattern hqdm:data_EntityName ?rep_by_pattern_name.
+                        ?state_of_sign hqdm:participant_in ?rep_by_sign;
+                            a hqdm:state_of_sign;
+                            hqdm:temporal_part_of ?sign.
+                        ?sign hqdm:value_ ?sign_value;
+                            hqdm:member_of_ ?pattern.
+                        ?pattern hqdm:data_EntityName ?pattern_name.
+                        OPTIONAL {
+                            ?rep_by_sign hqdm:beginning ?begin.
+                            ?begin hqdm:data_EntityName ?start.
+                        }
+                        OPTIONAL {
+                            ?rep_by_sign hqdm:ending ?end.
+                            ?end hqdm:data_EntityName ?finish.
+                        }
+
+                    }
+                }
+            }
+            """;
 }

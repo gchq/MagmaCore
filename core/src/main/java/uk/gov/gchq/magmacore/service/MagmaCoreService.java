@@ -42,6 +42,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.service.dto.ParticipantDetails;
+import uk.gov.gchq.magmacore.service.dto.SignPatternDto;
 import uk.gov.gchq.magmacore.service.sparql.MagmaCoreServiceQueries;
 import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
@@ -347,19 +348,57 @@ public class MagmaCoreService {
 
         final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
 
-        final QueryResultList queryResultList = database
-                .executeQuery(
-                        String.format(
-                                MagmaCoreServiceQueries.FIND_MEMBERS_OF_CLASS_BY_COMPOSITION_AND_PARTIAL_SIGN_CASE_SENSITIVE,
-                                text, classIri, wholeIri,
-                                text, classIri, wholeIri,
-                                text, classIri, wholeIri));
+        final QueryResultList queryResultList = database.executeQuery(String.format(
+                MagmaCoreServiceQueries.FIND_MEMBERS_OF_CLASS_BY_COMPOSITION_AND_PARTIAL_SIGN_CASE_SENSITIVE,
+                text, classIri, wholeIri,
+                text, classIri, wholeIri,
+                text, classIri, wholeIri));
 
         // Filter by the pointInTime
         final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
 
         return database.toTopObjects(queryResults);
 
+    }
+
+    /**
+     * Find the signs and their patterns for an entity.
+     *
+     * @param entityIri   the entity {@link IRI}
+     * @param pointInTime a {@link PointInTime}
+     * @return a {@link List} of {@link SignPatternDto} objects
+     */
+    public List<SignPatternDto> findSignsForEntity(final IRI entityIri, final PointInTime pointInTime) {
+
+        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
+        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+            return List.of();
+        }
+
+        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+
+        final QueryResultList queryResultList = database.executeQuery(String.format(
+                MagmaCoreServiceQueries.FIND_SIGNS_FOR_ENTITY, entityIri));
+
+        // Filter by the pointInTime
+        final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
+        return queryResults.getQueryResults()
+                .stream()
+                .map(MagmaCoreService::toSignPatternDto)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Convert a specific Query Result into a SignPatternDto.
+     *
+     * @param qr {@link QueryResult}
+     * @return {@link SignPatternDto}
+     */
+    private static SignPatternDto toSignPatternDto(final QueryResult qr) {
+        return new SignPatternDto(
+                qr.get("sign_value").toString(),
+                qr.get("pattern_name").toString(),
+                qr.get("rep_by_pattern_name").toString());
     }
 
     /**
@@ -380,6 +419,16 @@ public class MagmaCoreService {
         } else {
             throw new RuntimeException("Multiple entities found with name: " + entityName);
         }
+    }
+
+    /**
+     * Find members of a given class.
+     *
+     * @param classIri the class {@link IRI}
+     * @return a {@link List} of {@link Thing}
+     */
+    public List<? extends Thing> findByClass(final IRI classIri) {
+        return database.findByPredicateIri(HQDM.MEMBER_OF, classIri);
     }
 
     /**
