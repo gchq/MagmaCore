@@ -30,7 +30,6 @@ public final class HQDM {
     public static final HqdmIri ENTITY_ID = new HqdmIri(HQDM, "data_uniqueID");
 
     /** A human-interpretable name for a particular HQDM entity. */
-    @Deprecated
     public static final HqdmIri ENTITY_NAME = new HqdmIri(HQDM, "data_EntityName");
 
     // =======================================================================
