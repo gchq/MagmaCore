@@ -40,6 +40,7 @@ import uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.service.dto.ParticipantDetails;
 import uk.gov.gchq.magmacore.service.dto.SignPatternDto;
@@ -374,6 +375,25 @@ public class MagmaCoreService {
                 .stream()
                 .map(MagmaCoreService::toSignPatternDto)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Find the Thing referenced by a field value where the thing is a member of the given class.
+     *
+     * @param fieldIri   the HQDM pedicate IRI.
+     * @param fieldValue the field value - typically a {@link String} or {@link IRI}
+     * @param classIri   the class {@link IRI}
+     * @return a {@link List} of {@link Thing}
+     */
+    public List<? extends Thing> findByFieldValueAndClass(
+            final HqdmIri fieldIri,
+            final Object fieldValue,
+            final IRI classIri) {
+
+        final QueryResultList queryResultList = database.executeQuery(String.format(
+                MagmaCoreServiceQueries.FIND_BY_FIELD_VALUE_AND_CLASS, fieldIri, fieldValue, classIri));
+
+        return database.toTopObjects(queryResultList);
     }
 
     /**

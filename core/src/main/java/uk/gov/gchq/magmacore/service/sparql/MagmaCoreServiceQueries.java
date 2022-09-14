@@ -656,4 +656,19 @@ public class MagmaCoreServiceQueries {
                 }
             }
             """;
+
+    public static final String FIND_BY_FIELD_VALUE_AND_CLASS = """
+            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+            SELECT ?s ?p ?o
+            WHERE {
+                BIND(<%s> as ?part)
+                BIND(<%s> as ?partThing)
+                BIND(<%s> as ?class)
+
+                ?s ?part ?partThing;
+                    ?p ?o.
+            }
+            """;
 }
