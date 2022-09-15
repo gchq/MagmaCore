@@ -15,7 +15,7 @@
 package uk.gov.gchq.magmacore.service;
 
 import java.io.PrintStream;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,7 +78,7 @@ public class MagmaCoreService {
     public Set<ParticipantDetails> findParticipantDetails(final Individual individual1, final Individual individual2,
             final KindOfAssociation kind, final PointInTime pointInTime) {
 
-        final LocalDateTime when = LocalDateTime
+        final Instant when = Instant
                 .parse(pointInTime.value(HQDM.ENTITY_NAME).iterator().next().toString());
 
         final QueryResultList queryResultList = database
@@ -111,20 +111,20 @@ public class MagmaCoreService {
      * Filter a {@link QueryResultList} by a {@link PointInTime}. The {@link QueryResultList} should
      * have `start` and `finish` columns to allow filtering.
      *
-     * @param when            {@link LocalDateTime}
+     * @param when            {@link Instant}
      * @param queryResultList {@link QueryResultList}
      * @return {@link QueryResultList}
      */
-    private QueryResultList filterByPointInTime(final LocalDateTime when, final QueryResultList queryResultList) {
+    private QueryResultList filterByPointInTime(final Instant when, final QueryResultList queryResultList) {
         final List<QueryResult> queryResults = queryResultList.getQueryResults()
                 .stream()
                 .filter(qr -> {
                     final RDFNode start = qr.get("start");
                     final RDFNode finish = qr.get("finish");
-                    final LocalDateTime from = (start != null) ? LocalDateTime.parse(start.toString())
-                            : LocalDateTime.MIN;
-                    final LocalDateTime to = (finish != null) ? LocalDateTime.parse(finish.toString())
-                            : LocalDateTime.MAX;
+                    final Instant from = (start != null) ? Instant.parse(start.toString())
+                            : Instant.MIN;
+                    final Instant to = (finish != null) ? Instant.parse(finish.toString())
+                            : Instant.MAX;
 
                     return (when.equals(from) || when.isAfter(from))
                             && (when.equals(to) || when.isBefore(to));
@@ -159,7 +159,7 @@ public class MagmaCoreService {
             return List.of();
         }
 
-        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
 
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_BY_SIGN_VALUE_QUERY,
@@ -193,7 +193,7 @@ public class MagmaCoreService {
             return List.of();
         }
 
-        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
 
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_OBJECTS_BY_TYPE_CLASS_AND_SIGN_PATTERN,
@@ -225,7 +225,7 @@ public class MagmaCoreService {
             return List.of();
         }
 
-        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
 
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_OBJECTS_BY_TYPE_AND_SIGN_PATTERN,
@@ -252,7 +252,7 @@ public class MagmaCoreService {
             return List.of();
         }
 
-        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
 
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_BY_KIND_OF_ASSOCIATION,
@@ -300,7 +300,7 @@ public class MagmaCoreService {
             return List.of();
         }
 
-        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
 
         final QueryResultList queryResultList = database
                 .executeQuery(
@@ -335,7 +335,7 @@ public class MagmaCoreService {
             return List.of();
         }
 
-        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
 
         final QueryResultList queryResultList = database.executeQuery(String.format(
                 MagmaCoreServiceQueries.FIND_MEMBERS_OF_CLASS_BY_COMPOSITION_AND_PARTIAL_SIGN_CASE_SENSITIVE,
@@ -364,7 +364,7 @@ public class MagmaCoreService {
             return List.of();
         }
 
-        final LocalDateTime when = LocalDateTime.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
 
         final QueryResultList queryResultList = database.executeQuery(String.format(
                 MagmaCoreServiceQueries.FIND_SIGNS_FOR_ENTITY, entityIri));

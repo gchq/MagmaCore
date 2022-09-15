@@ -18,7 +18,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.function.Predicate;
 
 import org.junit.Test;
@@ -42,8 +44,8 @@ public class PredicatesTest {
 
     private static final IriBase BASE = new IriBase("base", "http://test.co.uk/base#");
 
-    private static LocalDateTime begin = LocalDateTime.now().minusDays(1L);
-    private static LocalDateTime end = LocalDateTime.now().plusDays(1L);
+    private static Instant begin = LocalDateTime.now().minusDays(1L).toInstant(ZoneOffset.UTC);
+    private static Instant end = LocalDateTime.now().plusDays(1L).toInstant(ZoneOffset.UTC);
 
     /**
      * Check that we get the default value when there is no ENTITY_NAME that can be parsed to an
@@ -53,8 +55,8 @@ public class PredicatesTest {
     @Test
     public void testGetInstantWithNoValuePresent() {
         final Event event = SpatioTemporalExtentServices.createEvent("test_id");
-        final LocalDateTime now = LocalDateTime.now();
-        final LocalDateTime value = Predicates.getInstant(event, now);
+        final Instant now = Instant.now();
+        final Instant value = Predicates.getInstant(event, now);
 
         assertEquals(now, value);
     }
@@ -67,10 +69,10 @@ public class PredicatesTest {
     @Test
     public void testGetInstantWithValuePresent() {
         final Event event = SpatioTemporalExtentServices.createEvent("test_id");
-        final LocalDateTime now = LocalDateTime.now();
+        final Instant now = Instant.now();
         event.addValue(HQDM.ENTITY_NAME, now.toString());
 
-        final LocalDateTime value = Predicates.getInstant(event, end);
+        final Instant value = Predicates.getInstant(event, end);
 
         assertEquals(now, value);
     }
@@ -85,7 +87,7 @@ public class PredicatesTest {
         final Event event = SpatioTemporalExtentServices.createEvent("test_id");
         event.addValue(HQDM.ENTITY_NAME, "oops");
 
-        final LocalDateTime value = Predicates.getInstant(event, end);
+        final Instant value = Predicates.getInstant(event, end);
 
         assertEquals(end, value);
     }
@@ -98,8 +100,8 @@ public class PredicatesTest {
     public void testIsValidAtPointInTimeBetweenBeginAndEnd() {
         final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
 
-        // `now` is between two LocalDateTime values.
-        final LocalDateTime now = LocalDateTime.now();
+        // `now` is between two Instant values.
+        final Instant now = Instant.now();
         final PointInTime pointInTime = SpatioTemporalExtentServices.createPointInTime("test_point_in_time");
         pointInTime.addStringValue(HQDM.ENTITY_NAME, now.toString());
 
@@ -139,7 +141,7 @@ public class PredicatesTest {
         final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
 
         // This is the BEGINNING of the object.
-        final LocalDateTime when = begin;
+        final Instant when = begin;
         final PointInTime pointInTime = SpatioTemporalExtentServices.createPointInTime("test_point_in_time");
         pointInTime.addStringValue(HQDM.ENTITY_NAME, when.toString());
 
@@ -179,7 +181,7 @@ public class PredicatesTest {
         final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
 
         // This is the ENDING of the object.
-        final LocalDateTime when = end;
+        final Instant when = end;
         final PointInTime pointInTime = SpatioTemporalExtentServices.createPointInTime("test_point_in_time");
         pointInTime.addStringValue(HQDM.ENTITY_NAME, when.toString());
 
@@ -219,7 +221,7 @@ public class PredicatesTest {
         final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
 
         // This is the ENDING of the object.
-        final LocalDateTime when = begin;
+        final Instant when = begin;
         final PointInTime pointInTime = SpatioTemporalExtentServices.createPointInTime("test_point_in_time");
         pointInTime.addStringValue(HQDM.ENTITY_NAME, when.toString());
 
@@ -233,7 +235,7 @@ public class PredicatesTest {
         person.addValue(HQDM.ENDING, new IRI(end.getId()));
 
         begin.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
-        begin.addValue(HQDM.ENTITY_NAME, LocalDateTime.now().toString());
+        begin.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
         end.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
         end.addValue(HQDM.ENTITY_NAME, end.toString());
 
@@ -259,7 +261,7 @@ public class PredicatesTest {
         final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
 
         // This is the ENDING of the object.
-        final LocalDateTime when = end;
+        final Instant when = end;
         final PointInTime pointInTime = SpatioTemporalExtentServices.createPointInTime("test_point_in_time");
         pointInTime.addStringValue(HQDM.ENTITY_NAME, when.toString());
 
@@ -275,7 +277,7 @@ public class PredicatesTest {
         begin.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
         begin.addValue(HQDM.ENTITY_NAME, begin.toString());
         end.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
-        end.addValue(HQDM.ENTITY_NAME, LocalDateTime.now().toString());
+        end.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         db.begin();
 

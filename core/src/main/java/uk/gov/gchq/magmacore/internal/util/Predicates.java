@@ -15,7 +15,6 @@
 package uk.gov.gchq.magmacore.internal.util;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -52,21 +51,21 @@ public final class Predicates {
             final Set<Object> beginningId = thing.value(HQDM.BEGINNING);
             final Set<Object> endingId = thing.value(HQDM.ENDING);
 
-            final LocalDateTime beginning;
-            final LocalDateTime ending;
+            final Instant beginning;
+            final Instant ending;
 
             if (beginningId != null && beginningId.size() > 0) {
                 final Thing event = database.get(new IRI(beginningId.iterator().next().toString()));
-                beginning = Predicates.getInstant(event, LocalDateTime.MIN);
+                beginning = Predicates.getInstant(event, Instant.MIN);
             } else {
-                beginning = LocalDateTime.MIN;
+                beginning = Instant.MIN;
             }
 
             if (endingId != null && endingId.size() > 0) {
                 final Thing event = database.get(new IRI(endingId.iterator().next().toString()));
-                ending = Predicates.getInstant(event, LocalDateTime.MAX);
+                ending = Predicates.getInstant(event, Instant.MAX);
             } else {
-                ending = LocalDateTime.MAX;
+                ending = Instant.MAX;
             }
 
             // Get the requested PointInTime Instant
@@ -75,7 +74,7 @@ public final class Predicates {
             // Try parsing the ENTITY_NAME if there is one otherwise return false.
             if (entityNameValues != null && entityNameValues.size() == 1) {
                 try {
-                    final LocalDateTime when = LocalDateTime.parse(entityNameValues.iterator().next().toString());
+                    final Instant when = Instant.parse(entityNameValues.iterator().next().toString());
                     return (when.equals(beginning) || when.isAfter(beginning))
                             && (when.equals(ending) || when.isBefore(ending));
                 } catch (final DateTimeParseException exc) {
@@ -95,11 +94,11 @@ public final class Predicates {
      * @param defaultValue the default {@link Instant}
      * @return an {@link Instant}
      */
-    public static LocalDateTime getInstant(final Thing thing, final LocalDateTime defaultValue) {
+    public static Instant getInstant(final Thing thing, final Instant defaultValue) {
         final var values = thing.value(HQDM.ENTITY_NAME);
         if (values != null && values.size() == 1) {
             try {
-                return LocalDateTime.parse(values.iterator().next().toString());
+                return Instant.parse(values.iterator().next().toString());
             } catch (final DateTimeParseException exc) {
                 // This can happen if called with a Thing that isn't an Event.
                 return defaultValue;

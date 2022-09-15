@@ -19,7 +19,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
@@ -57,20 +57,20 @@ public class MagmaCoreServiceFindParticipantDetailsTest {
 
         // Create the PointInTime we're looking for
         final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
-        now.addValue(HQDM.ENTITY_NAME, LocalDateTime.now().toString());
+        now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
         db.begin();
         final Set<ParticipantDetails> found1 = service.findParticipantDetails(
                 AssociationPatternTestData.person1,
-                AssociationPatternTestData.system1, 
-                AssociationPatternTestData.userAssociationKind, 
+                AssociationPatternTestData.system1,
+                AssociationPatternTestData.userAssociationKind,
                 now);
 
         final Set<ParticipantDetails> found2 = service.findParticipantDetails(
                 AssociationPatternTestData.person2,
-                AssociationPatternTestData.system2, 
-                AssociationPatternTestData.userAssociationKind, 
+                AssociationPatternTestData.system2,
+                AssociationPatternTestData.userAssociationKind,
                 now);
         db.commit();
 

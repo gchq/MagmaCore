@@ -17,8 +17,7 @@ package uk.gov.gchq.magmacore.hqdm.pojo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,8 +41,8 @@ public class HqdmObjectTest {
     @Test
     public void testDateTimeFormattingForTriples() {
         final PossibleWorld possibleWorld = new PossibleWorldImpl("World");
-        final String beginDateTime = LocalDateTime.now().toString();
-        final String endDate = LocalDate.now().toString();
+        final String beginDateTime = Instant.now().toString();
+        final String endDate = Instant.now().toString();
 
         final PointInTime beginEvent = new PointInTimeImpl(beginDateTime);
 

@@ -15,6 +15,7 @@
 package uk.gov.gchq.magmacore.service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 import uk.gov.gchq.magmacore.hqdm.model.Pattern;
@@ -151,8 +152,8 @@ public class SignPatternTestData {
         begin.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
         end.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
 
-        begin.addStringValue(HQDM.ENTITY_NAME, LocalDateTime.now().minusDays(1L).toString());
-        end.addStringValue(HQDM.ENTITY_NAME, LocalDateTime.now().plusDays(1L).toString());
+        begin.addStringValue(HQDM.ENTITY_NAME, LocalDateTime.now().minusDays(1L).toInstant(ZoneOffset.UTC).toString());
+        end.addStringValue(HQDM.ENTITY_NAME, LocalDateTime.now().plusDays(1L).toInstant(ZoneOffset.UTC).toString());
 
         final IRI objectId = new IRI(begin.getId());
         final IRI objectId2 = new IRI(end.getId());

@@ -3,7 +3,7 @@ package uk.gov.gchq.magmacore.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +34,7 @@ public class MagmaCoreServiceFindByTypeKindAndSignPatternTest {
 
         // Create the PointInTime we're looking for
         final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
-        now.addValue(HQDM.ENTITY_NAME, LocalDateTime.now().toString());
+        now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
         db.begin();
