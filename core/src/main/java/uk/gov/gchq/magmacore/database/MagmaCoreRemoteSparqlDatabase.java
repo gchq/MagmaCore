@@ -14,6 +14,7 @@
 
 package uk.gov.gchq.magmacore.database;
 
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -410,5 +411,20 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     public final void dump(final PrintStream out, final Lang language) {
         final Dataset dataset = connection.fetchDataset();
         RDFDataMgr.write(out, dataset.getDefaultModel(), language);
+    }
+
+    /**
+     * Import data into the model.
+     *
+     * @param in       {@link InputStream} to read from.
+     * @param language RDF language syntax to output data as.
+     */
+    public final void load(final InputStream in, final Lang language) {
+        begin();
+        final Dataset dataset = connection.fetchDataset();
+        final Model model = dataset.getDefaultModel();
+        RDFDataMgr.read(model, in, language);
+        connection.load(model);
+        commit();
     }
 }

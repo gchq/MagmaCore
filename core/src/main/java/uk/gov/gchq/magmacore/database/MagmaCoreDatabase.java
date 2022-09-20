@@ -14,6 +14,7 @@
 
 package uk.gov.gchq.magmacore.database;
 
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.List;
 
@@ -145,6 +146,14 @@ public interface MagmaCoreDatabase {
      * @param language a {@link Lang}
      */
     void dump(final PrintStream out, final Lang language);
+
+    /**
+     * Import data into the model.
+     *
+     * @param in       {@link InputStream} to read from.
+     * @param language RDF language syntax to output data as.
+     */
+    void load(final InputStream in, final Lang language);
 
     /**
      * Perform a SPARQL query on the dataset.

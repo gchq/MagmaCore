@@ -14,6 +14,7 @@
 
 package uk.gov.gchq.magmacore.database;
 
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -433,5 +434,18 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
         begin();
         RDFDataMgr.write(out, dataset.getDefaultModel(), language);
         abort();
+    }
+
+    /**
+     * Import data into the model.
+     *
+     * @param in       {@link InputStream} to read from.
+     * @param language RDF language syntax to output data as.
+     */
+    public final void load(final InputStream in, final Lang language) {
+        begin();
+        final Model model = dataset.getDefaultModel();
+        RDFDataMgr.read(model, in, language);
+        commit();
     }
 }

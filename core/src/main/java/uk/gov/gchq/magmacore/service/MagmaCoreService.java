@@ -14,6 +14,7 @@
 
 package uk.gov.gchq.magmacore.service;
 
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.time.Instant;
 import java.util.HashMap;
@@ -543,6 +544,15 @@ public class MagmaCoreService {
      */
     public void exportTtl(final PrintStream out) {
         database.dump(out, Lang.TTL);
+    }
+
+    /**
+     * Load TTL data from an {@link InputStream}. 
+     *
+     * @param in an {@link InputStream} of TTL data.
+     */
+    public void importTtl(final InputStream in) {
+        database.load(in, Lang.TTL);
     }
 
     /**
