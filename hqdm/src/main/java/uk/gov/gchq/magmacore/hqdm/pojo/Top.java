@@ -39,24 +39,24 @@ public interface Top {
     /**
      * Get the predications of the HQDM object.
      *
-     * @return Map of HQDM objects and String predicates of the entity.
+     * @return Map of HQDM objects and Object predicates of the entity.
      */
-    Map<String, Set<Object>> getPredicates();
+    Map<Object, Set<Object>> getPredicates();
 
     /**
      * Set the predications of the HQDM object.
      *
      * @param predicates Predicates of the HQDM object.
      */
-    void setPredicates(Map<String, Set<Object>> predicates);
+    void setPredicates(Map<Object, Set<Object>> predicates);
 
     /**
-     * Get predicate value(s) by predicate String.
+     * Get predicate value(s) by predicate Object.
      *
      * @param predicateId Predicate ID.
-     * @return Set of predicate values (Strings or string-literals).
+     * @return Set of predicate values (Object or string-literals).
      */
-    Set<Object> value(String predicateId);
+    Set<Object> value(Object predicateId);
 
     /**
      * Add predicate and object String reference to entity.
@@ -64,31 +64,31 @@ public interface Top {
      * @param predicateId Predicate ID.
      * @param objectId    ID of the object.
      */
-    void addValue(String predicateId, String objectId);
+    void addValue(Object predicateId, Object objectId);
 
     /**
-     * Add predicate String and string value to object.
+     * Add predicate Object and string value to object.
      *
      * @param predicateId Predicate ID.
      * @param value       String value.
      */
-    void addStringValue(String predicateId, String value);
+    void addStringValue(Object predicateId, String value);
 
     /**
-     * Add predicate String and real number value to object.
+     * Add predicate Object and real number value to object.
      *
      * @param predicateId Predicate ID.
      * @param value       Real number value.
      */
-    void addRealValue(String predicateId, double value);
+    void addRealValue(Object predicateId, double value);
 
     /**
      * Remove a predicate value.
      *
      * @param predicateId The ID of the predicate.
-     * @param value       The {@link String} value to be removed.
+     * @param value       The {@link Object} value to be removed.
      */
-    void removeValue(String predicateId, String value);
+    void removeValue(Object predicateId, Object value);
 
     /**
      * Does the entity have a given predicate.
@@ -96,7 +96,7 @@ public interface Top {
      * @param predicateId Predicate ID.
      * @return {@code true} if has predicate value.
      */
-    boolean hasValue(String predicateId);
+    boolean hasValue(Object predicateId);
 
     /**
      * Does the entity have a given predicate and object value.
@@ -105,7 +105,7 @@ public interface Top {
      * @param objectId    ID of the object.
      * @return {@code true} if has this object value.
      */
-    boolean hasThisValue(String predicateId, String objectId);
+    boolean hasThisValue(Object predicateId, Object objectId);
 
     /**
      * Does the entity have a given predicate and string value.
@@ -114,7 +114,7 @@ public interface Top {
      * @param value       String value.
      * @return {@code true} if has this string value.
      */
-    boolean hasThisStringValue(String predicateId, String value);
+    boolean hasThisStringValue(Object predicateId, String value);
 
     /**
      * Does the entity have a given predicate and string value (case-insensitive).
@@ -123,7 +123,7 @@ public interface Top {
      * @param value       Case-insensitive string value.
      * @return {@code true} if has this string value.
      */
-    boolean hasThisStringValueIgnoreCase(String predicateId, String value);
+    boolean hasThisStringValueIgnoreCase(Object predicateId, String value);
 
     /**
      * Does the entity have a given predicate and string value.
@@ -132,5 +132,5 @@ public interface Top {
      * @param value       String value.
      * @return {@code true} if has fuzzy string value.
      */
-    boolean hasThisStringValueFuzzy(String predicateId, String value);
+    boolean hasThisStringValueFuzzy(Object predicateId, String value);
 }

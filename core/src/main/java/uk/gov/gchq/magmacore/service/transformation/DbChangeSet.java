@@ -25,8 +25,8 @@ import uk.gov.gchq.magmacore.service.MagmaCoreService;
  * An invertible set of delete and create operations.
  */
 public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService> {
-    private List<DbDeleteOperation> deletes;
-    private List<DbCreateOperation> creates;
+    List<DbDeleteOperation> deletes;
+    List<DbCreateOperation> creates;
 
     /**
      * Constructs a DbChangeSet with a list of delete and create operations to perform.
@@ -44,19 +44,7 @@ public class DbChangeSet implements Function<MagmaCoreService, MagmaCoreService>
      */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
-        final Function<MagmaCoreService, MagmaCoreService> deleteFunction = deletes
-                .stream()
-                .map(d -> (Function<MagmaCoreService, MagmaCoreService>) d)
-                .reduce(Function::andThen)
-                .orElse(Function.identity());
-
-        final Function<MagmaCoreService, MagmaCoreService> createFunction = creates
-                .stream()
-                .map(c -> (Function<MagmaCoreService, MagmaCoreService>) c)
-                .reduce(Function::andThen)
-                .orElse(Function.identity());
-
-        mcService.runInTransaction(deleteFunction.andThen(createFunction));
+        mcService.update(deletes, creates);
         return mcService;
     }
 

@@ -28,22 +28,22 @@ import uk.gov.gchq.magmacore.service.MagmaCoreService;
 public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreService> {
 
     // The IRI of the Thing we're referring to.
-    private IRI subject;
+    public final IRI subject;
 
     // The IRI of the property we're referring to.
-    private IRI predicate;
+    public final IRI predicate;
 
     // The value of the property we're referring to.
-    private String object;
+    public final Object object;
 
     /**
      * Constructs a DbCreateOperation to create a predicate.
      *
      * @param subject   Subject {@link IRI}.
      * @param predicate Predicate {@link IRI}.
-     * @param object    {@link String} value.
+     * @param object    {@link Object} value.
      */
-    public DbCreateOperation(final IRI subject, final IRI predicate, final String object) {
+    public DbCreateOperation(final IRI subject, final IRI predicate, final Object object) {
         this.subject = subject;
         this.predicate = predicate;
         this.object = object;
@@ -58,11 +58,11 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
 
         if (thing == null) {
             final Thing newThing = SpatioTemporalExtentServices.createThing(subject.getIri());
-            newThing.addStringValue(predicate.getIri(), object);
+            newThing.addValue(predicate, object);
             mcService.create(newThing);
         } else {
-            if (!thing.hasThisValue(predicate.getIri(), object)) {
-                thing.addValue(predicate.getIri(), object);
+            if (!thing.hasThisValue(predicate, object)) {
+                thing.addValue(predicate, object);
                 mcService.update(thing);
             } else {
                 throw new DbTransformationException(

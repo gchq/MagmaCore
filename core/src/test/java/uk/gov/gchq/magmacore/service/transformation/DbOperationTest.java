@@ -48,11 +48,12 @@ public class DbOperationTest {
 
         // Create an operation to add an object with dummy values.
         final IRI individualIri = new IRI(TEST_BASE, "individual");
+        final IRI classOfIndividualIri = new IRI(TEST_BASE, "classOfIndividual");
 
         final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, RDFS.RDF_TYPE,
-                HQDM.INDIVIDUAL.getIri());
+                HQDM.INDIVIDUAL);
         final DbCreateOperation createIndividualMemberOf = new DbCreateOperation(individualIri, HQDM.MEMBER_OF,
-                "classOfIndividual");
+                classOfIndividualIri);
 
         // Apply the operations.
         mcService.runInTransaction(createIndividual);
@@ -62,13 +63,13 @@ public class DbOperationTest {
         final Thing individual = mcService.getInTransaction(individualIri);
 
         assertNotNull(individual);
-        assertTrue(individual.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
+        assertTrue(individual.hasThisValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL));
 
         // Invert the operation and assert that it is no longer present.
         mcService.runInTransaction(DbCreateOperation.invert(createIndividualMemberOf));
 
         final Thing individualFromDb = mcService.getInTransaction(individualIri);
-        assertFalse(individualFromDb.hasThisValue(HQDM.MEMBER_OF.getIri(), "classOfIndividual"));
+        assertFalse(individualFromDb.hasThisValue(HQDM.MEMBER_OF, classOfIndividualIri));
     }
 
     /**
@@ -83,7 +84,7 @@ public class DbOperationTest {
 
         // Create operations to create an object.
         final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, RDFS.RDF_TYPE,
-                HQDM.INDIVIDUAL.getIri());
+                HQDM.INDIVIDUAL);
         final DbCreateOperation createIndividualMemberOf = new DbCreateOperation(individualIri, HQDM.MEMBER_OF,
                 "classOfIndividual");
         final DbCreateOperation createIndividualPartOfPossibleWorld = new DbCreateOperation(individualIri,
@@ -98,9 +99,9 @@ public class DbOperationTest {
         final Thing individual = mcService.getInTransaction(individualIri);
 
         assertNotNull(individual);
-        assertTrue(individual.hasThisValue(RDFS.RDF_TYPE.getIri(), HQDM.INDIVIDUAL.getIri()));
-        assertTrue(individual.hasThisValue(HQDM.MEMBER_OF.getIri(), "classOfIndividual"));
-        assertTrue(individual.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD.getIri(), "possible world"));
+        assertTrue(individual.hasThisValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL));
+        assertTrue(individual.hasThisValue(HQDM.MEMBER_OF, "classOfIndividual"));
+        assertTrue(individual.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD, "possible world"));
 
         // Invert two of the operations, apply them in reverse order and assert they are no longer present.
         mcService.runInTransaction(DbCreateOperation.invert(createIndividualPartOfPossibleWorld));
@@ -122,7 +123,7 @@ public class DbOperationTest {
 
         // Create an operation to add an object with dummy values.
         final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, RDFS.RDF_TYPE,
-                HQDM.INDIVIDUAL.getIri());
+                HQDM.INDIVIDUAL);
 
         // Apply the operation twice, the second should throw an exception.
         mcService.runInTransaction(createIndividual);

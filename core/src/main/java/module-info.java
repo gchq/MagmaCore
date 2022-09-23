@@ -29,6 +29,7 @@ module uk.gov.gchq.magmacore {
     requires transitive uk.gov.gchq.magmacore.hqdm.rdf;
 
     exports uk.gov.gchq.magmacore.service;
+    exports uk.gov.gchq.magmacore.service.dto;
     exports uk.gov.gchq.magmacore.service.transformation;
     exports uk.gov.gchq.magmacore.exception;
     exports uk.gov.gchq.magmacore.util;

@@ -23,6 +23,7 @@ import uk.gov.gchq.magmacore.hqdm.model.StateOfOrganization;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.rdf.util.Pair;
 import uk.gov.gchq.magmacore.hqdm.rdf.util.Triples;
@@ -40,12 +41,12 @@ public class McAssistMultInheritFromDataApp {
     public static void main(final String[] args) {
 
         // Create a new type specification.
-        final List<Pair<String, String>> newTypeSpecification = List.of(
-                new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.STATE_OF_ORGANIZATION.getIri()),
-                new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.PARTICIPANT.getIri()));
+        final List<Pair<Object, Object>> newTypeSpecification = List.of(
+                new Pair<>(RDFS.RDF_TYPE, HQDM.STATE_OF_ORGANIZATION),
+                new Pair<>(RDFS.RDF_TYPE, HQDM.PARTICIPANT));
 
         // Create a new object using the type specification.
-        final Thing orgState = HqdmObjectFactory.create(uid(), newTypeSpecification);
+        final Thing orgState = HqdmObjectFactory.create(new IRI(uid()), newTypeSpecification);
 
         // Check that it implements the two interfaces.
         if (orgState instanceof Participant && orgState instanceof StateOfOrganization) {
