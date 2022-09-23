@@ -2,6 +2,21 @@
 <!DOCTYPE suppressions PUBLIC "-//Checkstyle//DTD Suppressions 1.2//EN" "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 
 <suppressions>
-  <suppress checks="Indentation|HiddenField" files="\.java" />
-  <suppress checks="MethodLength|LineLength" files="ExampleDataObjects.java" />
+  <!-- global suppressions -->
+  <suppress checks="AvoidStarImport" files="\.java" />
+
+  <!-- core suppressions -->
+  <suppress checks="AbbreviationAsWordInName" files="UID\.java" />
+
+  <!-- examples suppressions -->
+  <suppress checks="LineLength" files="ExampleDataObjects.java|ExampleRdl.java|ExampleAssociations.java" />
+  <suppress checks="MethodLength" files="ExampleDataObjects.java" />
+
+  <!-- hqdm-core suppressions -->
+  <suppress checks="MethodName" files="impl/*" />
+  <suppress checks="TypeName" files="Function_.java" />
+
+  <!-- hqdm-rdf suppressions -->
+  <suppress checks="ConstantName" files="HQDM.java" />
+  <suppress checks="AbbreviationAsWordInName" files="IRI.java|HQDM.java|RDFS.java|UID.java" />
 </suppressions>
