@@ -58,20 +58,18 @@ public class SignPatternTestData {
      * {@link RecognizingLanguageCommunity} objects.
      * </p>
      *
-     * @param db a {@link MagmaCoreDatabase}
+     * @param db A {@link MagmaCoreDatabase}.
      */
     static void createSignPattern(final MagmaCoreDatabase db) {
 
         // Create RecognizingLanguageCommunities
         final IRI community1Iri = new IRI(TEST_BASE, "community1");
 
-        community1 = SpatioTemporalExtentServices
-                .createRecognizingLanguageCommunity(community1Iri.getIri());
+        community1 = SpatioTemporalExtentServices.createRecognizingLanguageCommunity(community1Iri.getIri());
         community1.addValue(RDFS.RDF_TYPE, HQDM.RECOGNIZING_LANGUAGE_COMMUNITY);
 
         final IRI community2Iri = new IRI(TEST_BASE, "community2");
-        community2 = SpatioTemporalExtentServices
-                .createRecognizingLanguageCommunity(community2Iri.getIri());
+        community2 = SpatioTemporalExtentServices.createRecognizingLanguageCommunity(community2Iri.getIri());
         community2.addValue(RDFS.RDF_TYPE, HQDM.RECOGNIZING_LANGUAGE_COMMUNITY);
 
         // Create Patterns

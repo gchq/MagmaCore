@@ -120,10 +120,8 @@ public class ExampleAssociations {
                         new IRI(possibleWorld.getId())));
         creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.MEMBER_OF_KIND,
                 new IRI(occupantInPropertyKindOfAssociation.getId())));
-        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT,
-                houseParticipant));
-        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT,
-                personParticipant));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT, houseParticipant));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT, personParticipant));
         creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.BEGINNING, beginning));
         creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.ENDING, ending));
     }

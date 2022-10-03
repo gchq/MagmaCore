@@ -50,7 +50,6 @@ public class PredicatesTest {
     /**
      * Check that we get the default value when there is no ENTITY_NAME that can be parsed to an
      * Instant.
-     *
      */
     @Test
     public void testGetInstantWithNoValuePresent() {
@@ -64,7 +63,6 @@ public class PredicatesTest {
     /**
      * Check that we get the correct value when there is an ENTITY_NAME that can be parsed to an
      * Instant.
-     *
      */
     @Test
     public void testGetInstantWithValuePresent() {
@@ -80,7 +78,6 @@ public class PredicatesTest {
     /**
      * Check that we get the default value when there is an ENTITY_NAME that cannot be parsed to an
      * Instant.
-     *
      */
     @Test
     public void testGetInstantWithInvalidValuePresent() {

@@ -84,16 +84,14 @@ public class ExampleRdl {
                 new DbCreateOperation(classOfStateOfPerson, RDFS.RDF_TYPE, RDFS.RDFS_CLASS),
                 new DbCreateOperation(classOfStateOfPerson, HQDM.ENTITY_NAME, "CLASS_OF_STATE_OF_PERSON"),
 
-                new DbCreateOperation(kindOfFunctionalSystemBuilding, RDFS.RDF_TYPE,
-                        HQDM.KIND_OF_FUNCTIONAL_SYSTEM),
+                new DbCreateOperation(kindOfFunctionalSystemBuilding, RDFS.RDF_TYPE, HQDM.KIND_OF_FUNCTIONAL_SYSTEM),
                 new DbCreateOperation(kindOfFunctionalSystemBuilding, RDFS.RDF_TYPE, RDFS.RDFS_CLASS),
                 new DbCreateOperation(kindOfFunctionalSystemBuilding, HQDM.ENTITY_NAME,
                         "KIND_OF_FUNCTIONAL_SYSTEM_BUILDING"),
 
                 new DbCreateOperation(kindOfFunctionalSystemDomesticPropertyComponent, RDFS.RDF_TYPE,
                         HQDM.KIND_OF_FUNCTIONAL_SYSTEM_COMPONENT),
-                new DbCreateOperation(kindOfFunctionalSystemDomesticPropertyComponent, RDFS.RDF_TYPE,
-                        RDFS.RDFS_CLASS),
+                new DbCreateOperation(kindOfFunctionalSystemDomesticPropertyComponent, RDFS.RDF_TYPE, RDFS.RDFS_CLASS),
                 new DbCreateOperation(kindOfFunctionalSystemDomesticPropertyComponent, HQDM.ENTITY_NAME,
                         "KIND_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY_COMPONENT"),
 
@@ -105,8 +103,7 @@ public class ExampleRdl {
 
                 new DbCreateOperation(classOfStateOfFunctionalSystemDomesticProperty, RDFS.RDF_TYPE,
                         HQDM.CLASS_OF_STATE_OF_FUNCTIONAL_SYSTEM),
-                new DbCreateOperation(classOfStateOfFunctionalSystemDomesticProperty, RDFS.RDF_TYPE,
-                        RDFS.RDFS_CLASS),
+                new DbCreateOperation(classOfStateOfFunctionalSystemDomesticProperty, RDFS.RDF_TYPE, RDFS.RDFS_CLASS),
                 new DbCreateOperation(classOfStateOfFunctionalSystemDomesticProperty, HQDM.ENTITY_NAME,
                         "STATE_OF_FUNCTIONAL_SYSTEM_DOMESTIC_PROPERTY"),
 
@@ -128,8 +125,7 @@ public class ExampleRdl {
                 new DbCreateOperation(occupierOfPropertyRole, RDFS.RDF_TYPE, RDFS.RDFS_CLASS),
                 new DbCreateOperation(occupierOfPropertyRole, HQDM.ENTITY_NAME, "OCCUPIER_LOCATED_IN_PROPERTY_ROLE"),
 
-                new DbCreateOperation(occupantInPropertyKindOfAssociation, RDFS.RDF_TYPE,
-                        HQDM.KIND_OF_ASSOCIATION),
+                new DbCreateOperation(occupantInPropertyKindOfAssociation, RDFS.RDF_TYPE, HQDM.KIND_OF_ASSOCIATION),
                 new DbCreateOperation(occupantInPropertyKindOfAssociation, RDFS.RDF_TYPE, RDFS.RDFS_CLASS),
                 new DbCreateOperation(occupantInPropertyKindOfAssociation, HQDM.ENTITY_NAME,
                         "OCCUPANT_LOCATED_IN_VOLUME_ENCLOSED_BY_PROPERTY_ASSOCIATION"),
@@ -146,10 +142,8 @@ public class ExampleRdl {
                 new DbCreateOperation(kindOfFunctionalSystemDomesticProperty, RDFS.RDFS_SUB_CLASS_OF,
                         kindOfFunctionalSystemBuilding),
 
-                new DbCreateOperation(domesticOccupantInPropertyRole, HQDM.HAS_SUPERCLASS,
-                        domesticPropertyRole),
-                new DbCreateOperation(domesticOccupantInPropertyRole, RDFS.RDFS_SUB_CLASS_OF,
-                        domesticPropertyRole),
+                new DbCreateOperation(domesticOccupantInPropertyRole, HQDM.HAS_SUPERCLASS, domesticPropertyRole),
+                new DbCreateOperation(domesticOccupantInPropertyRole, RDFS.RDFS_SUB_CLASS_OF, domesticPropertyRole),
 
                 new DbCreateOperation(occupierOfPropertyRole, HQDM.HAS_SUPERCLASS, classOfStateOfPerson),
                 new DbCreateOperation(occupierOfPropertyRole, RDFS.RDFS_SUB_CLASS_OF, classOfStateOfPerson),
@@ -158,14 +152,11 @@ public class ExampleRdl {
                 new DbCreateOperation(kindOfPerson, HQDM.MEMBER_OF, viewableObject),
                 new DbCreateOperation(classOfStateOfPerson, HQDM.MEMBER_OF, viewableObject),
                 new DbCreateOperation(kindOfFunctionalSystemDomesticProperty, HQDM.MEMBER_OF, viewableObject),
-                new DbCreateOperation(classOfStateOfFunctionalSystemDomesticProperty, HQDM.MEMBER_OF,
-                        viewableObject),
-                new DbCreateOperation(occupantInPropertyKindOfAssociation, HQDM.MEMBER_OF,
-                        viewableAssociation),
+                new DbCreateOperation(classOfStateOfFunctionalSystemDomesticProperty, HQDM.MEMBER_OF, viewableObject),
+                new DbCreateOperation(occupantInPropertyKindOfAssociation, HQDM.MEMBER_OF, viewableAssociation),
 
                 // Set the has component by class predicates.
-                new DbCreateOperation(kindOfBiologicalSystemHumanComponent, HQDM.HAS_COMPONENT_BY_CLASS,
-                        kindOfPerson),
+                new DbCreateOperation(kindOfBiologicalSystemHumanComponent, HQDM.HAS_COMPONENT_BY_CLASS, kindOfPerson),
                 new DbCreateOperation(kindOfFunctionalSystemDomesticPropertyComponent, HQDM.HAS_COMPONENT_BY_CLASS,
                         kindOfFunctionalSystemDomesticProperty),
 

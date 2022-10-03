@@ -40,14 +40,14 @@ public final class Predicates {
     /**
      * Create a {@link Predicate} to check whether a thing exists at a {@link PointInTime}.
      *
-     * @param database    a {@link MagmaCoreDatabase} instance
-     * @param pointInTime the {@link PointInTime}
-     * @return a {@link Predicate}
+     * @param database    A {@link MagmaCoreDatabase} instance.
+     * @param pointInTime The {@link PointInTime}.
+     * @return A {@link Predicate}.
      */
     public static Predicate<Thing> isValidAtPointInTime(final MagmaCoreDatabase database,
             final PointInTime pointInTime) {
         return thing -> {
-            // Get the beginning and ending of the thing
+            // Get the beginning and ending of the thing.
             final Set<Object> beginningId = thing.value(HQDM.BEGINNING);
             final Set<Object> endingId = thing.value(HQDM.ENDING);
 
@@ -68,7 +68,7 @@ public final class Predicates {
                 ending = Instant.MAX;
             }
 
-            // Get the requested PointInTime Instant
+            // Get the requested PointInTime Instant.
             final Set<Object> entityNameValues = pointInTime.value(HQDM.ENTITY_NAME);
 
             // Try parsing the ENTITY_NAME if there is one otherwise return false.
@@ -90,9 +90,9 @@ public final class Predicates {
     /**
      * Get the {@link Instant} or return the default value.
      *
-     * @param thing        the {@link Thing} of interest.
-     * @param defaultValue the default {@link Instant}
-     * @return an {@link Instant}
+     * @param thing        The {@link Thing} of interest.
+     * @param defaultValue The default {@link Instant}.
+     * @return An {@link Instant}.
      */
     public static Instant getInstant(final Thing thing, final Instant defaultValue) {
         final var values = thing.value(HQDM.ENTITY_NAME);

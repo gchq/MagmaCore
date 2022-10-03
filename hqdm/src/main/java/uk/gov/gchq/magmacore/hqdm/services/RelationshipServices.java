@@ -40,7 +40,7 @@ import uk.gov.gchq.magmacore.hqdm.model.impl.UnitOfMeasureImpl;
  */
 public class RelationshipServices {
     /**
-     * Create a Specialization with an String.
+     * Create a {@link Specialization} with an String.
      *
      * @param id ID of the Specialization.
      * @return A Specialization instance.
@@ -50,7 +50,7 @@ public class RelationshipServices {
     }
 
     /**
-     * Create a Scale with an String.
+     * Create a {@link Scale} with an String.
      *
      * @param id ID of the Scale.
      * @return A Scale instance.
@@ -60,7 +60,7 @@ public class RelationshipServices {
     }
 
     /**
-     * Create a UnitOfMeasure with an String.
+     * Create a {@link UnitOfMeasure} with an String.
      *
      * @param id ID of the UnitOfMeasure.
      * @return A UnitOfMeasure instance.
@@ -70,9 +70,9 @@ public class RelationshipServices {
     }
 
     /**
-     * Create a Function_ with an String.
+     * Create a {@link Function_} with an String.
      *
-     * @param id ID of the .
+     * @param id ID of the Function_.
      * @return A Function_ instance.
      */
     public static Function_ createFunction(final String id) {
@@ -80,7 +80,7 @@ public class RelationshipServices {
     }
 
     /**
-     * Create a Classification with an String.
+     * Create a {@link Classification} with an String.
      *
      * @param id ID of the Classification.
      * @return A Classification instance.
@@ -90,7 +90,7 @@ public class RelationshipServices {
     }
 
     /**
-     * Create a TemporalComposition with an String.
+     * Create a {@link TemporalComposition} with an String.
      *
      * @param id ID of the TemporalComposition.
      * @return A TemporalComposition instance.
@@ -100,7 +100,7 @@ public class RelationshipServices {
     }
 
     /**
-     * Create a Composition with an String.
+     * Create a {@link Composition} with an String.
      *
      * @param id ID of the Composition.
      * @return A Composition instance.
@@ -110,7 +110,7 @@ public class RelationshipServices {
     }
 
     /**
-     * Create a Aggregation with an String.
+     * Create a {@link Aggregation} with an String.
      *
      * @param id ID of the Aggregation.
      * @return A Aggregation instance.
@@ -120,7 +120,7 @@ public class RelationshipServices {
     }
 
     /**
-     * Create a Relationship with an String.
+     * Create a {@link Relationship} with an String.
      *
      * @param id ID of the Relationship.
      * @return A Relationship instance.
@@ -130,7 +130,7 @@ public class RelationshipServices {
     }
 
     /**
-     * Create a DefinedRelationship with an String.
+     * Create a {@link DefinedRelationship} with an String.
      *
      * @param id ID of the DefinedRelationship.
      * @return A DefinedRelationship instance.

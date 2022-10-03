@@ -70,7 +70,7 @@ public interface MagmaCoreDatabase {
     void create(Thing object);
 
     /**
-     * Apply a set of creates to the dabatase.
+     * Apply a set of creates to the database.
      *
      * @param creates a {@link List} of {@link DbDeleteOperation}
      */
@@ -91,7 +91,7 @@ public interface MagmaCoreDatabase {
     void delete(Thing object);
 
     /**
-     * Apply a set of deletes to the dabatase.
+     * Apply a set of deletes to the database.
      *
      * @param deletes a {@link List} of {@link DbDeleteOperation}
      */

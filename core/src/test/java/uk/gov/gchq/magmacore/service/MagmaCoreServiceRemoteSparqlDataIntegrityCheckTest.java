@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Thing;
 public class MagmaCoreServiceRemoteSparqlDataIntegrityCheckTest {
 
     /**
-     * Test Data Integrity Checks for a remote sparql service.
+     * Test Data Integrity Checks for a remote SPARQL service.
      */
     @Ignore
     public void test() {

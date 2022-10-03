@@ -24,7 +24,7 @@ public class MagmaCoreServiceQueries {
      * {@link uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity} and
      * {@link uk.gov.gchq.magmacore.hqdm.model.Pattern}.
      * <p>
-     * It needs three parameters privided using String.format() - the sign value {@link String}, the
+     * It needs three parameters provided using String.format() - the sign value {@link String}, the
      * {@link uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity} IRI {@link String}, and the
      * {@link uk.gov.gchq.magmacore.hqdm.model.Pattern} IRI String.
      * </p>
@@ -60,7 +60,7 @@ public class MagmaCoreServiceQueries {
                 }
 
             }
-                    """;
+            """;
 
     /**
      * This query finds PARTICIPANTS in associations of a specified kind between two individuals.
@@ -128,7 +128,7 @@ public class MagmaCoreServiceQueries {
                 }
             }
             order by ?s ?p ?o
-                    """;
+            """;
 
     /**
      * This query finds objects of a specified type and kind, along with the signs of a specified
@@ -213,8 +213,7 @@ public class MagmaCoreServiceQueries {
                 }
             }
             order by ?s ?p ?o
-
-                        """;
+            """;
 
     /**
      * This query finds objects of a specified type and kind, along with the signs of a specified
@@ -299,11 +298,10 @@ public class MagmaCoreServiceQueries {
                 }
             }
             order by ?s ?p ?o
-
-                        """;
+            """;
 
     /**
-     * Find Individuals with states participting in associations of a specified kind, their roles and
+     * Find Individuals with states participating in associations of a specified kind, their roles and
      * signs.
      * <p>
      * The Kind IRI is needed in 3 places, e.g. String.format(FIND_BY_KIND_OF_ASSOCIATION, iri, iri,
@@ -361,8 +359,11 @@ public class MagmaCoreServiceQueries {
                 }
             }
             order by ?s ?p ?o
-                        """;
+            """;
 
+    /**
+     * TODO: Comment.
+     */
     public static final String FIND_ASSOCIATED = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -421,7 +422,8 @@ public class MagmaCoreServiceQueries {
                 }
             }
             order by ?s ?p ?o
-                            """;
+            """;
+
     /**
      * Search for items whose sign contains some text and are members of a specific class.
      */
@@ -514,7 +516,7 @@ public class MagmaCoreServiceQueries {
 
             }
             order by ?s ?p ?o
-                                            """;
+            """;
 
     /**
      * A partial search by sign for entities composed into a whole entity.
@@ -616,11 +618,10 @@ public class MagmaCoreServiceQueries {
                 }
             }
             order by ?s ?p ?o
-
             """;
 
     /**
-     * Find the signs for an entity and the pattern and representaion by pattern ENTITY_NAMES.
+     * Find the signs for an entity and the pattern and representation by pattern ENTITY_NAMES.
      */
     public static final String FIND_SIGNS_FOR_ENTITY = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
@@ -657,6 +658,9 @@ public class MagmaCoreServiceQueries {
             }
             """;
 
+    /**
+     * TODO: Comment.
+     */
     public static final String FIND_BY_FIELD_VALUE_AND_CLASS = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>

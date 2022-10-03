@@ -27,13 +27,13 @@ import uk.gov.gchq.magmacore.service.MagmaCoreService;
  */
 public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreService> {
 
-    // The IRI of the Thing we're referring to.
+    /** The IRI of the Thing we're referring to. */
     public final IRI subject;
 
-    // The IRI of the property we're referring to.
+    /** The IRI of the property we're referring to. */
     public final IRI predicate;
 
-    // The value of the property we're referring to.
+    /** The value of the property we're referring to. */
     public final Object object;
 
     /**

@@ -68,19 +68,18 @@ public class MagmaCoreService {
 
     /**
      * Find the details of participants in associations of a specific kind between two
-     * {@link Individuals} objects at a point in time.
+     * {@link Individual} objects at a point in time.
      *
-     * @param individual1 the first {@link Individual}
-     * @param individual2 the second {@link Individual}
-     * @param kind        the {@link KindOfAssociation}
-     * @param pointInTime the {@link PointInTime} that the associations should exist.
-     * @return a {@link Set} of {@link AssociationDetails}
+     * @param individual1 The first {@link Individual}.
+     * @param individual2 The second {@link Individual}.
+     * @param kind        The {@link KindOfAssociation}.
+     * @param pointInTime The {@link PointInTime} that the associations should exist.
+     * @return A {@link Set} of {@link ParticipantDetails}.
      */
     public Set<ParticipantDetails> findParticipantDetails(final Individual individual1, final Individual individual2,
             final KindOfAssociation kind, final PointInTime pointInTime) {
 
-        final Instant when = Instant
-                .parse(pointInTime.value(HQDM.ENTITY_NAME).iterator().next().toString());
+        final Instant when = Instant.parse(pointInTime.value(HQDM.ENTITY_NAME).iterator().next().toString());
 
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_PARTICIPANT_DETAILS_QUERY, individual1.getId(),
@@ -105,16 +104,15 @@ public class MagmaCoreService {
                     return new ParticipantDetails((Participant) p, roles);
                 })
                 .collect(Collectors.toSet());
-
     }
 
     /**
      * Filter a {@link QueryResultList} by a {@link PointInTime}. The {@link QueryResultList} should
      * have `start` and `finish` columns to allow filtering.
      *
-     * @param when            {@link Instant}
-     * @param queryResultList {@link QueryResultList}
-     * @return {@link QueryResultList}
+     * @param when            {@link Instant}.
+     * @param queryResultList {@link QueryResultList}.
+     * @return {@link QueryResultList}.
      */
     private QueryResultList filterByPointInTime(final Instant when, final QueryResultList queryResultList) {
         final List<QueryResult> queryResults = queryResultList.getQueryResults()
@@ -142,12 +140,12 @@ public class MagmaCoreService {
      * allowed the execution of such queries.
      * </p>
      *
-     * @param community   the {@link RecognizingLanguageCommunity} that recognises the sign value.
-     * @param pattern     the {@link Pattern} the sign conforms to.
+     * @param community   The {@link RecognizingLanguageCommunity} that recognizes the sign value.
+     * @param pattern     The {@link Pattern} the sign conforms to.
      * @param value       {@link String} the sign value to look for.
      * @param pointInTime {@link PointInTime} the point in time we are interested in.
      * @return {@link List} of {@link Thing} represented by the value.
-     * @throws MagmaCoreException if the number of {@link RepresentationByPattern} found is not 1
+     * @throws MagmaCoreException if the number of {@link RepresentationByPattern} found is not 1.
      */
     public List<? extends Thing> findBySignValue(
             final RecognizingLanguageCommunity community,
@@ -177,11 +175,11 @@ public class MagmaCoreService {
     /**
      * Find Things of a giver rdf:type and Class and their signs that are of a particular pattern.
      *
-     * @param type        IRI
-     * @param clazz       IRI
-     * @param pattern     IRI
-     * @param pointInTime {@link PointInTime}
-     * @return a {@link List} of {@link Thing}
+     * @param type        IRI.
+     * @param clazz       IRI.
+     * @param pattern     IRI.
+     * @param pointInTime {@link PointInTime}.
+     * @return A {@link List} of {@link Thing}.
      */
     public List<? extends Thing> findByTypeClassAndSignPattern(
             final IRI type,
@@ -209,11 +207,11 @@ public class MagmaCoreService {
     /**
      * Find Things of a giver rdf:type and Kind and their signs that are of a particular pattern.
      *
-     * @param type        IRI
-     * @param kind        IRI
-     * @param pattern     IRI
-     * @param pointInTime {@link PointInTime}
-     * @return a {@link List} of {@link Thing}
+     * @param type        IRI.
+     * @param kind        IRI.
+     * @param pattern     IRI.
+     * @param pointInTime {@link PointInTime}.
+     * @return A {@link List} of {@link Thing}.
      */
     public List<? extends Thing> findByTypeKindAndSignPattern(
             final IRI type,
@@ -239,12 +237,12 @@ public class MagmaCoreService {
     }
 
     /**
-     * Find Individuals with states participting in associations of a specified kind, their roles and
+     * Find Individuals with states participating in associations of a specified kind, their roles and
      * signs.
      *
-     * @param kindOfAssociation {@link IRI}
-     * @param pointInTime       {@link PointInTime}
-     * @return {@link List} of {@link Thing}
+     * @param kindOfAssociation {@link IRI}.
+     * @param pointInTime       {@link PointInTime}.
+     * @return A {@link List} of {@link Thing}.
      */
     public List<? extends Thing> findByKindOfAssociation(final IRI kindOfAssociation, final PointInTime pointInTime) {
 
@@ -288,10 +286,10 @@ public class MagmaCoreService {
     /**
      * A case-sensitive search for entities in a specified class with a sign containing the given text.
      *
-     * @param text        the String to search for.
-     * @param classIri    the IRI of the class that the entities should be a member_of.
-     * @param pointInTime when the entities should have the matching sign.
-     * @return a {@link List} of {@link Thing}
+     * @param text        The String to search for.
+     * @param classIri    The IRI of the class that the entities should be a member_of.
+     * @param pointInTime When the entities should have the matching sign.
+     * @return A {@link List} of {@link Thing}.
      */
     public List<? extends Thing> findByPartialSignAndClassCaseSensitive(final String text, final IRI classIri,
             final PointInTime pointInTime) {
@@ -321,11 +319,11 @@ public class MagmaCoreService {
      * A case-sensitive search for entities in a specified class with a sign containing the given text
      * that are parts of a given whole.
      *
-     * @param wholeIri    the object that the required entities are composed into
-     * @param text        the String to search for.
-     * @param classIri    the IRI of the class that the entities should be a member_of.
-     * @param pointInTime when the entities should have the matching sign.
-     * @return a {@link List} of {@link Thing}
+     * @param wholeIri    The object that the required entities are composed into.
+     * @param text        The String to search for.
+     * @param classIri    The IRI of the class that the entities should be a member_of.
+     * @param pointInTime When the entities should have the matching sign.
+     * @return A {@link List} of {@link Thing}.
      */
     public List<? extends Thing> findByPartialSignCompositionAndClassCaseSensitive(final IRI wholeIri,
             final String text, final IRI classIri,
@@ -354,9 +352,9 @@ public class MagmaCoreService {
     /**
      * Find the signs and their patterns for an entity.
      *
-     * @param entityIri   the entity {@link IRI}
-     * @param pointInTime a {@link PointInTime}
-     * @return a {@link List} of {@link SignPatternDto} objects
+     * @param entityIri   The entity {@link IRI}.
+     * @param pointInTime A {@link PointInTime}.
+     * @return A {@link List} of {@link SignPatternDto} objects.
      */
     public List<SignPatternDto> findSignsForEntity(final IRI entityIri, final PointInTime pointInTime) {
 
@@ -381,10 +379,10 @@ public class MagmaCoreService {
     /**
      * Find the Thing referenced by a field value where the thing is a member of the given class.
      *
-     * @param fieldIri   the HQDM pedicate IRI.
-     * @param fieldValue the field value - typically a {@link String} or {@link IRI}
-     * @param classIri   the class {@link IRI}
-     * @return a {@link List} of {@link Thing}
+     * @param fieldIri   The HQDM predicate IRI.
+     * @param fieldValue The field value - typically a {@link String} or {@link IRI}.
+     * @param classIri   The class {@link IRI}.
+     * @return A {@link List} of {@link Thing}.
      */
     public List<? extends Thing> findByFieldValueAndClass(
             final HqdmIri fieldIri,
@@ -400,8 +398,8 @@ public class MagmaCoreService {
     /**
      * Convert a specific Query Result into a SignPatternDto.
      *
-     * @param qr {@link QueryResult}
-     * @return {@link SignPatternDto}
+     * @param qr {@link QueryResult}.
+     * @return {@link SignPatternDto}.
      */
     private static SignPatternDto toSignPatternDto(final QueryResult qr) {
         return new SignPatternDto(
@@ -433,8 +431,8 @@ public class MagmaCoreService {
     /**
      * Find members of a given class.
      *
-     * @param classIri the class {@link IRI}
-     * @return a {@link List} of {@link Thing}
+     * @param classIri The class {@link IRI}.
+     * @return A {@link List} of {@link Thing}.
      */
     public List<? extends Thing> findByClass(final IRI classIri) {
         return database.findByPredicateIri(HQDM.MEMBER_OF, classIri);
@@ -461,8 +459,8 @@ public class MagmaCoreService {
     /**
      * Apply a set of deletes then a set of creates to the database.
      *
-     * @param deletes a {@link List} of {@link DbDeleteOperation}
-     * @param creates a {@link List} of {@link DbCreateOperation}
+     * @param deletes A {@link List} of {@link DbDeleteOperation}.
+     * @param creates A {@link List} of {@link DbCreateOperation}.
      */
     public void update(final List<DbDeleteOperation> deletes, final List<DbCreateOperation> creates) {
         database.delete(deletes);
@@ -540,16 +538,16 @@ public class MagmaCoreService {
     /**
      * Dump the database to TTL format.
      *
-     * @param out a {@link PrintStream}
+     * @param out A {@link PrintStream}.
      */
     public void exportTtl(final PrintStream out) {
         database.dump(out, Lang.TTL);
     }
 
     /**
-     * Load TTL data from an {@link InputStream}. 
+     * Load TTL data from an {@link InputStream}.
      *
-     * @param in an {@link InputStream} of TTL data.
+     * @param in An {@link InputStream} of TTL data.
      */
     public void importTtl(final InputStream in) {
         database.load(in, Lang.TTL);
@@ -558,7 +556,7 @@ public class MagmaCoreService {
     /**
      * Verify that the model in the database matches how we want to use HQDM.
      *
-     * @return a {@link List} of {@link Thing} representing model integrity errors.
+     * @return A {@link List} of {@link Thing} representing model integrity errors.
      */
     public List<Thing> verifyModel() {
         return DataIntegrityReport.verify(database);

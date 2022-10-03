@@ -175,15 +175,14 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
 
         final Resource resource = defaultModel.createResource(object.getId());
 
-        object.getPredicates()
-                .forEach((iri, predicates) -> predicates.forEach(value -> {
-                    if (value instanceof IRI) {
-                        final Resource valueResource = defaultModel.createResource(value.toString());
-                        resource.addProperty(defaultModel.createProperty(iri.toString()), valueResource);
-                    } else {
-                        resource.addProperty(defaultModel.createProperty(iri.toString()), value.toString());
-                    }
-                }));
+        object.getPredicates().forEach((iri, predicates) -> predicates.forEach(value -> {
+            if (value instanceof IRI) {
+                final Resource valueResource = defaultModel.createResource(value.toString());
+                resource.addProperty(defaultModel.createProperty(iri.toString()), valueResource);
+            } else {
+                resource.addProperty(defaultModel.createProperty(iri.toString()), value.toString());
+            }
+        }));
     }
 
     /**

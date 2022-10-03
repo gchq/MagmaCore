@@ -115,7 +115,7 @@ public final class HqdmObjectFactory {
         return (java.lang.Class<T>[]) classes.toArray(new java.lang.Class<?>[] {});
     }
 
-    // A statically initialised Map of IRIs to HQDM classes.
+    // A statically initialized Map of IRIs to HQDM classes.
     private static final Map<IRI, java.lang.Class<? extends Thing>> iriToClassMap = new HashMap<>(250);
 
     static {

@@ -139,6 +139,7 @@ public class DataIntegrityReport {
             ))
             }
             """;
+
     private static final String CHECK_MISSING_PARTICIPANT_ROLES = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -159,7 +160,8 @@ public class DataIntegrityReport {
 
             FILTER(!bound(?kind))
             }
-                                """;
+            """;
+
     private static final String CHECK_POSSIBLE_WORLD_MEMBERSHIP = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -341,6 +343,7 @@ public class DataIntegrityReport {
                 ))
             }
             """;
+
     private static final String CHECK_SIGN_VALUE_ = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -358,6 +361,7 @@ public class DataIntegrityReport {
               FILTER(!bound(?v))
             }
             """;
+
     private static final String CHECK_SIGN_MEMBER_OF_PATTERN = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -375,6 +379,7 @@ public class DataIntegrityReport {
               FILTER(!bound(?pattern))
             }
             """;
+
     private static final String CHECK_REP_BY_PATTERN_CONSISTS_OF_BY_CLASS = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -392,6 +397,7 @@ public class DataIntegrityReport {
               FILTER(!bound(?repByPattern))
             }
             """;
+
     private static final String CHECK_REP_BY_SIGN_CONSISTS_OF_COMMUNITY = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -408,6 +414,7 @@ public class DataIntegrityReport {
               FILTER(!bound(?community))
             }
             """;
+
     private static final String CHECK_REP_BY_SIGN_CONSISTS_OF_SIGN = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -424,6 +431,7 @@ public class DataIntegrityReport {
               FILTER(!bound(?state_of_sign))
             }
             """;
+
     private static final String CHECK_REP_BY_PATTERN_CONSISTS_OF_IN_MEMBERS = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -446,6 +454,7 @@ public class DataIntegrityReport {
                               ))
             }
             """;
+
     private static final String CHECK_REP_BY_SIGN_REPRESENTS = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -462,6 +471,7 @@ public class DataIntegrityReport {
               FILTER(!bound(?thing))
             }
             """;
+
     private static final String CHECK_STATE_OF_SIGN_PRTICIPANT_IN = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -478,6 +488,7 @@ public class DataIntegrityReport {
               FILTER(!bound(?repBySign))
             }
             """;
+
     private static final String CHECK_REP_BY_SIGN_MEMBER_OF = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -494,6 +505,7 @@ public class DataIntegrityReport {
               FILTER(!bound(?repByPattern))
             }
             """;
+
     private static final String CHECK_REP_BY_SIGN_HAS_SIGN_PARTICIPANT = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -511,6 +523,7 @@ public class DataIntegrityReport {
               FILTER(!bound(?sign))
             }
             """;
+
     private static final String CHECK_REP_BY_SIGN_HAS_COMMUNITY_PARTICIPANT = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -529,6 +542,7 @@ public class DataIntegrityReport {
               FILTER(!bound(?community))
             }
             """;
+
     private static final String CHECK_ROLE_PART_OF_BY_CLASS_ = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -546,6 +560,7 @@ public class DataIntegrityReport {
               FILTER(!bound(?kind_of_association))
             }
             """;
+
     private static final String CHECK_ASSOCIATION_MEMBER_OF_KIND = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
@@ -567,8 +582,8 @@ public class DataIntegrityReport {
     /**
      * Verify a HQDM Data Model.
      *
-     * @param db {@link MagmaCoreDatabase}
-     * @return a {@link List} of {@link Thing} that represent data integrity errors.
+     * @param db {@link MagmaCoreDatabase}.
+     * @return A {@link List} of {@link Thing} that represent data integrity errors.
      */
     public static List<Thing> verify(final MagmaCoreDatabase db) {
         db.begin();

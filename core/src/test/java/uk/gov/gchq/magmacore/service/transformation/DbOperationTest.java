@@ -50,8 +50,7 @@ public class DbOperationTest {
         final IRI individualIri = new IRI(TEST_BASE, "individual");
         final IRI classOfIndividualIri = new IRI(TEST_BASE, "classOfIndividual");
 
-        final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, RDFS.RDF_TYPE,
-                HQDM.INDIVIDUAL);
+        final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
         final DbCreateOperation createIndividualMemberOf = new DbCreateOperation(individualIri, HQDM.MEMBER_OF,
                 classOfIndividualIri);
 
@@ -83,8 +82,7 @@ public class DbOperationTest {
         final IRI individualIri = new IRI(TEST_BASE, "individual");
 
         // Create operations to create an object.
-        final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, RDFS.RDF_TYPE,
-                HQDM.INDIVIDUAL);
+        final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
         final DbCreateOperation createIndividualMemberOf = new DbCreateOperation(individualIri, HQDM.MEMBER_OF,
                 "classOfIndividual");
         final DbCreateOperation createIndividualPartOfPossibleWorld = new DbCreateOperation(individualIri,
@@ -122,8 +120,7 @@ public class DbOperationTest {
         final IRI individualIri = new IRI(TEST_BASE, "individual");
 
         // Create an operation to add an object with dummy values.
-        final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, RDFS.RDF_TYPE,
-                HQDM.INDIVIDUAL);
+        final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
 
         // Apply the operation twice, the second should throw an exception.
         mcService.runInTransaction(createIndividual);

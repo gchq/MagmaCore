@@ -109,7 +109,7 @@ public class IRI {
      * Compare to another {@code Object}.
      *
      * @param object Object to compare.
-     * @return True if
+     * @return {@code true} if this object is the same as the {@code object} argument.
      */
     @Override
     public boolean equals(final Object object) {
