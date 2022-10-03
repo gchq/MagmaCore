@@ -472,7 +472,7 @@ public class DataIntegrityReport {
             }
             """;
 
-    private static final String CHECK_STATE_OF_SIGN_PRTICIPANT_IN = """
+    private static final String CHECK_STATE_OF_SIGN_PARTICIPANT_IN = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
             construct {
@@ -599,7 +599,7 @@ public class DataIntegrityReport {
         errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_CONSISTS_OF_COMMUNITY));
         errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_CONSISTS_OF_SIGN));
         errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_REPRESENTS));
-        errors.addAll(db.executeConstruct(CHECK_STATE_OF_SIGN_PRTICIPANT_IN));
+        errors.addAll(db.executeConstruct(CHECK_STATE_OF_SIGN_PARTICIPANT_IN));
         errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_MEMBER_OF));
         errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_HAS_SIGN_PARTICIPANT));
         errors.addAll(db.executeConstruct(CHECK_REP_BY_SIGN_HAS_COMMUNITY_PARTICIPANT));
