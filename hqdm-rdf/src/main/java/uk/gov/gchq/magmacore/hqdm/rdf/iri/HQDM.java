@@ -25,10 +25,6 @@ public final class HQDM {
     /** HQDM namespace. */
     public static final IriBase HQDM = new IriBase("hqdm", "http://www.semanticweb.org/hqdm#");
 
-    /** A unique identifier for a particular HQDM entity. */
-    @Deprecated
-    public static final HqdmIri ENTITY_ID = new HqdmIri(HQDM, "data_uniqueID");
-
     /** A human-interpretable name for a particular HQDM entity. */
     public static final HqdmIri ENTITY_NAME = new HqdmIri(HQDM, "data_EntityName");
 
