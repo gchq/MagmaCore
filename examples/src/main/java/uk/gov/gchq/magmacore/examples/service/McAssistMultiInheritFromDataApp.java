@@ -31,7 +31,7 @@ import uk.gov.gchq.magmacore.hqdm.rdf.util.Triples;
 /**
  * Demonstrate how to create a new class dynamically.
  */
-public class McAssistMultInheritFromDataApp {
+public class McAssistMultiInheritFromDataApp {
 
     /**
      * Example program for creating classes dynamically.
