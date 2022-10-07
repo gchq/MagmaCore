@@ -80,47 +80,50 @@ public class ExampleAssociations {
         final IRI houseOccupiedAssociation = new IRI(USER_BASE, uid());
 
         // Create DbCreateOperations to create the objects and their properties.
-        creates.add(new DbCreateOperation(personState, RDFS.RDF_TYPE, HQDM.STATE_OF_PERSON.getIri()));
-        creates.add(new DbCreateOperation(personState, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
-        creates.add(new DbCreateOperation(personState, HQDM.MEMBER_OF, classOfStateOfPerson.getId()));
-        creates.add(new DbCreateOperation(personState, HQDM.TEMPORAL_PART_OF, person.getId()));
-        creates.add(new DbCreateOperation(personState, HQDM.BEGINNING, beginning.getIri()));
-        creates.add(new DbCreateOperation(personState, HQDM.ENDING, ending.getIri()));
+        creates.add(new DbCreateOperation(personState, RDFS.RDF_TYPE, HQDM.STATE_OF_PERSON));
+        creates.add(new DbCreateOperation(personState, HQDM.PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId())));
+        creates.add(new DbCreateOperation(personState, HQDM.MEMBER_OF, new IRI(classOfStateOfPerson.getId())));
+        creates.add(new DbCreateOperation(personState, HQDM.TEMPORAL_PART_OF, new IRI(person.getId())));
+        creates.add(new DbCreateOperation(personState, HQDM.BEGINNING, beginning));
+        creates.add(new DbCreateOperation(personState, HQDM.ENDING, ending));
 
-        creates.add(new DbCreateOperation(houseState, RDFS.RDF_TYPE, HQDM.STATE_OF_FUNCTIONAL_SYSTEM.getIri()));
-        creates.add(new DbCreateOperation(houseState, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
+        creates.add(new DbCreateOperation(houseState, RDFS.RDF_TYPE, HQDM.STATE_OF_FUNCTIONAL_SYSTEM));
+        creates.add(new DbCreateOperation(houseState, HQDM.PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId())));
         creates.add(new DbCreateOperation(houseState, HQDM.MEMBER_OF,
-                classOfStateOfFunctionalSystemDomesticProperty.getId()));
-        creates.add(new DbCreateOperation(houseState, HQDM.TEMPORAL_PART_OF, house.getId()));
-        creates.add(new DbCreateOperation(houseState, HQDM.BEGINNING, beginning.getIri()));
-        creates.add(new DbCreateOperation(houseState, HQDM.ENDING, ending.getIri()));
+                new IRI(classOfStateOfFunctionalSystemDomesticProperty.getId())));
+        creates.add(new DbCreateOperation(houseState, HQDM.TEMPORAL_PART_OF, new IRI(house.getId())));
+        creates.add(new DbCreateOperation(houseState, HQDM.BEGINNING, beginning));
+        creates.add(new DbCreateOperation(houseState, HQDM.ENDING, ending));
 
-        creates.add(new DbCreateOperation(personParticipant, RDFS.RDF_TYPE, HQDM.PARTICIPANT.getIri()));
-        creates.add(new DbCreateOperation(personParticipant, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
-        creates.add(new DbCreateOperation(personParticipant, HQDM.MEMBER_OF_KIND, occupierOfPropertyRole.getId()));
-        creates.add(new DbCreateOperation(personParticipant, HQDM.TEMPORAL_PART_OF, personState.getIri()));
-        creates.add(new DbCreateOperation(personParticipant, HQDM.BEGINNING, beginning.getIri()));
-        creates.add(new DbCreateOperation(personParticipant, HQDM.ENDING, ending.getIri()));
-
-        creates.add(new DbCreateOperation(houseParticipant, RDFS.RDF_TYPE, HQDM.PARTICIPANT.getIri()));
-        creates.add(new DbCreateOperation(houseParticipant, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
+        creates.add(new DbCreateOperation(personParticipant, RDFS.RDF_TYPE, HQDM.PARTICIPANT));
         creates.add(
-                new DbCreateOperation(houseParticipant, HQDM.MEMBER_OF_KIND, domesticOccupantInPropertyRole.getId()));
-        creates.add(new DbCreateOperation(houseParticipant, HQDM.TEMPORAL_PART_OF, houseState.getIri()));
-        creates.add(new DbCreateOperation(houseParticipant, HQDM.BEGINNING, beginning.getIri()));
-        creates.add(new DbCreateOperation(houseParticipant, HQDM.ENDING, ending.getIri()));
-
-        creates.add(new DbCreateOperation(houseOccupiedAssociation, RDFS.RDF_TYPE, HQDM.ASSOCIATION.getIri()));
+                new DbCreateOperation(personParticipant, HQDM.PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId())));
         creates.add(
-                new DbCreateOperation(houseOccupiedAssociation, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
+                new DbCreateOperation(personParticipant, HQDM.MEMBER_OF_KIND, new IRI(occupierOfPropertyRole.getId())));
+        creates.add(new DbCreateOperation(personParticipant, HQDM.TEMPORAL_PART_OF, personState));
+        creates.add(new DbCreateOperation(personParticipant, HQDM.BEGINNING, beginning));
+        creates.add(new DbCreateOperation(personParticipant, HQDM.ENDING, ending));
+
+        creates.add(new DbCreateOperation(houseParticipant, RDFS.RDF_TYPE, HQDM.PARTICIPANT));
+        creates.add(
+                new DbCreateOperation(houseParticipant, HQDM.PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId())));
+        creates.add(
+                new DbCreateOperation(houseParticipant, HQDM.MEMBER_OF_KIND,
+                        new IRI(domesticOccupantInPropertyRole.getId())));
+        creates.add(new DbCreateOperation(houseParticipant, HQDM.TEMPORAL_PART_OF, houseState));
+        creates.add(new DbCreateOperation(houseParticipant, HQDM.BEGINNING, beginning));
+        creates.add(new DbCreateOperation(houseParticipant, HQDM.ENDING, ending));
+
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, RDFS.RDF_TYPE, HQDM.ASSOCIATION));
+        creates.add(
+                new DbCreateOperation(houseOccupiedAssociation, HQDM.PART_OF_POSSIBLE_WORLD,
+                        new IRI(possibleWorld.getId())));
         creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.MEMBER_OF_KIND,
-                occupantInPropertyKindOfAssociation.getId()));
-        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT,
-                houseParticipant.getIri()));
-        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT,
-                personParticipant.getIri()));
-        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.BEGINNING, beginning.getIri()));
-        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.ENDING, ending.getIri()));
+                new IRI(occupantInPropertyKindOfAssociation.getId())));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT, houseParticipant));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.CONSISTS_OF_PARTICIPANT, personParticipant));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.BEGINNING, beginning));
+        creates.add(new DbCreateOperation(houseOccupiedAssociation, HQDM.ENDING, ending));
     }
 
     /**
@@ -149,20 +152,20 @@ public class ExampleAssociations {
 
         // Create DbCreateOperations to create the objects and their properties.
         final List<DbCreateOperation> creates = new ArrayList<DbCreateOperation>();
-        creates.add(new DbCreateOperation(event1, RDFS.RDF_TYPE, HQDM.EVENT.getIri()));
-        creates.add(new DbCreateOperation(event1, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
+        creates.add(new DbCreateOperation(event1, RDFS.RDF_TYPE, HQDM.EVENT));
+        creates.add(new DbCreateOperation(event1, HQDM.PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId())));
         creates.add(new DbCreateOperation(event1, HQDM.ENTITY_NAME, "2020-08-15T17:50:00"));
 
-        creates.add(new DbCreateOperation(event2, RDFS.RDF_TYPE, HQDM.EVENT.getIri()));
-        creates.add(new DbCreateOperation(event2, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
+        creates.add(new DbCreateOperation(event2, RDFS.RDF_TYPE, HQDM.EVENT));
+        creates.add(new DbCreateOperation(event2, HQDM.PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId())));
         creates.add(new DbCreateOperation(event2, HQDM.ENTITY_NAME, "2020-08-15T19:21:00"));
 
-        creates.add(new DbCreateOperation(event3, RDFS.RDF_TYPE, HQDM.EVENT.getIri()));
-        creates.add(new DbCreateOperation(event3, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
+        creates.add(new DbCreateOperation(event3, RDFS.RDF_TYPE, HQDM.EVENT));
+        creates.add(new DbCreateOperation(event3, HQDM.PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId())));
         creates.add(new DbCreateOperation(event3, HQDM.ENTITY_NAME, "2020-08-16T22:33:00"));
 
-        creates.add(new DbCreateOperation(event4, RDFS.RDF_TYPE, HQDM.EVENT.getIri()));
-        creates.add(new DbCreateOperation(event4, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId()));
+        creates.add(new DbCreateOperation(event4, RDFS.RDF_TYPE, HQDM.EVENT));
+        creates.add(new DbCreateOperation(event4, HQDM.PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId())));
         creates.add(new DbCreateOperation(event4, HQDM.ENTITY_NAME, "2020-08-17T10:46:00"));
 
         // Add more DbCreateOperations to create the required associations.

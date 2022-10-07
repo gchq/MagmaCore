@@ -63,30 +63,30 @@ public final class HqdmObjectFactory {
      * @return The constructed HQDM object.
      * @throws HqdmException If the HqdmObject could not be built.
      */
-    public static Thing create(final String iri, final List<Pair<String, String>> pairs) throws HqdmException {
+    public static Thing create(final IRI iri, final List<Pair<Object, Object>> pairs) throws HqdmException {
         try {
             final List<IRI> iris = new ArrayList<>();
-            for (final Pair<String, String> pair : pairs.stream()
-                    .filter(pair -> pair.getLeft().equals(RDF_TYPE.toString()))
-                    .filter(pair -> pair.getRight().startsWith(HQDM.HQDM.getNamespace()))
+            for (final Pair<Object, Object> pair : pairs.stream()
+                    .filter(pair -> pair.getLeft().equals(RDF_TYPE))
+                    .filter(pair -> pair.getRight().toString().startsWith(HQDM.HQDM.getNamespace()))
                     .collect(Collectors.toList())) {
-                iris.add(new IRI(pair.getRight()));
+                iris.add((IRI) pair.getRight());
             }
 
             if (!iris.isEmpty()) {
                 final Thing result;
 
                 if (iris.size() == 1) {
-                    result = mapToThing(iris.get(0).getResource(), new IRI(iri));
+                    result = mapToThing(iris.get(0).getResource(), iri);
                 } else {
-                    result = DynamicObjects.create(iri, Thing.class, irisToClasses(iris));
+                    result = DynamicObjects.create(iri.toString(), Thing.class, irisToClasses(iris));
                 }
 
-                for (final Pair<String, String> pair : pairs) {
-                    if (pair.getRight().startsWith("http")) {
+                for (final Pair<Object, Object> pair : pairs) {
+                    if (pair.getRight() instanceof IRI) {
                         result.addValue(pair.getLeft(), pair.getRight());
                     } else {
-                        result.addStringValue(pair.getLeft(), pair.getRight());
+                        result.addStringValue(pair.getLeft(), pair.getRight().toString());
                     }
                 }
                 return result;
@@ -115,7 +115,7 @@ public final class HqdmObjectFactory {
         return (java.lang.Class<T>[]) classes.toArray(new java.lang.Class<?>[] {});
     }
 
-    // A statically initialised Map of IRIs to HQDM classes.
+    // A statically initialized Map of IRIs to HQDM classes.
     private static final Map<IRI, java.lang.Class<? extends Thing>> iriToClassMap = new HashMap<>(250);
 
     static {

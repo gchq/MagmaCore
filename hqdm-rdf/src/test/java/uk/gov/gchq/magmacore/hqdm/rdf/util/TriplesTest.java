@@ -24,8 +24,6 @@ import uk.gov.gchq.magmacore.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
-import uk.gov.gchq.magmacore.hqdm.rdf.util.Pair;
-import uk.gov.gchq.magmacore.hqdm.rdf.util.Triples;
 
 /**
  * Tests for the {@link Triples} class.
@@ -34,9 +32,9 @@ public class TriplesTest {
 
     private static final String EXPECTED1 = """
             <http://www.semanticweb.org/hqdm#person1> <http://www.semanticweb.org/hqdm#member_of_kind> \"\"\"PERSON_KIND\"\"\"^^<http://www.w3.org/2001/XMLSchema#string>;
-            <http://www.semanticweb.org/hqdm#data_EntityName> \"\"\"person1\"\"\"^^<http://www.w3.org/2001/XMLSchema#string>;
-            <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> \"\"\"http://www.semanticweb.org/hqdm#participant\"\"\"^^<http://www.w3.org/2001/XMLSchema#string>;
-            <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> \"\"\"http://www.semanticweb.org/hqdm#person\"\"\"^^<http://www.w3.org/2001/XMLSchema#string>.
+            <http://www.semanticweb.org/hqdm#data_EntityName> <http://www.semanticweb.org/hqdm#person1>;
+            <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.semanticweb.org/hqdm#participant>;
+            <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.semanticweb.org/hqdm#person>.
             """;
 
     /**
@@ -48,15 +46,15 @@ public class TriplesTest {
         final var personId = "person1";
         final var personIri = new IRI(HQDM.HQDM, personId);
 
-        final var person = HqdmObjectFactory.create(personIri.getIri(),
-                List.of(new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.PERSON.getIri()),
-                        new Pair<>(RDFS.RDF_TYPE.getIri(), HQDM.PARTICIPANT.getIri()),
-                        new Pair<>(HQDM.ENTITY_NAME.getIri(), personId),
-                        new Pair<>(HQDM.MEMBER_OF_KIND.getIri(), "PERSON_KIND")));
+        final var person = HqdmObjectFactory.create(personIri,
+                List.of(new Pair<>(RDFS.RDF_TYPE, HQDM.PERSON),
+                        new Pair<>(RDFS.RDF_TYPE, HQDM.PARTICIPANT),
+                        new Pair<>(HQDM.ENTITY_NAME, personIri),
+                        new Pair<>(HQDM.MEMBER_OF_KIND, "PERSON_KIND")));
 
         // Convert the object to a triples string.
         final var triples = Triples.toTriples(person);
-
+        System.out.println(triples);
         // Assert the values are correct.
         assertEquals(EXPECTED1, triples);
     }

@@ -14,6 +14,7 @@
 
 package uk.gov.gchq.magmacore.database;
 
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,11 +24,17 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.jena.query.Dataset;
+import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
+import org.apache.jena.query.TxnType;
+import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
@@ -46,6 +53,8 @@ import uk.gov.gchq.magmacore.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.util.Pair;
+import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
+import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
 
 /**
  * Connection to a remote SPARQL endpoint.
@@ -82,7 +91,8 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      */
     public final void begin() {
         if (!connection.isInTransaction()) {
-            connection.begin();
+            // The default TxnType.READ_PROMOTE is not supported.
+            connection.begin(TxnType.WRITE);
         }
     }
 
@@ -140,10 +150,39 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
 
         final Resource resource = model.createResource(object.getId());
 
-        object.getPredicates().forEach((iri, predicates) -> predicates.forEach(
-                predicate -> resource.addProperty(model.createProperty(iri.toString()), predicate.toString())));
-
+        object.getPredicates().forEach((iri, predicates) -> predicates.forEach(value -> {
+            if (value instanceof IRI) {
+                final Resource valueResource = model.createResource(value.toString());
+                resource.addProperty(model.createProperty(iri.toString()), valueResource);
+            } else {
+                resource.addProperty(model.createProperty(iri.toString()), value.toString());
+            }
+        }));
         connection.load(model);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void create(final List<DbCreateOperation> creates) {
+        final Model forCreation = ModelFactory.createDefaultModel();
+
+        creates.forEach(create -> {
+            final Resource s = forCreation.createResource(create.subject.getIri());
+            final Property p = forCreation.createProperty(create.predicate.getIri());
+            final Object value = create.object;
+
+            final RDFNode o;
+            if (value instanceof IRI) {
+                o = forCreation.createResource(value.toString());
+            } else {
+                o = forCreation.createLiteral(value.toString());
+            }
+            forCreation.add(forCreation.createStatement(s, p, o));
+        });
+
+        connection.load(forCreation);
     }
 
     /**
@@ -161,6 +200,41 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     @Override
     public void delete(final Thing object) {
         executeUpdate(String.format("delete {<%s> ?p ?o} WHERE {<%s> ?p ?o}", object.getId(), object.getId()));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void delete(final List<DbDeleteOperation> deletes) {
+        if (deletes.isEmpty()) {
+            return;
+        }
+
+        final StringBuilder statement = new StringBuilder();
+        statement.append("delete data { ");
+        deletes.forEach(delete -> {
+            statement.append("<");
+            statement.append(delete.subject.getIri());
+            statement.append("> ");
+
+            statement.append("<");
+            statement.append(delete.predicate.getIri());
+            statement.append("> ");
+
+            if (delete.object instanceof IRI) {
+                statement.append("<");
+                statement.append(delete.object.toString());
+                statement.append(">.");
+            } else {
+                statement.append("\"");
+                statement.append(delete.object.toString());
+                statement.append("\".");
+            }
+        });
+        statement.append("}");
+
+        executeUpdate(statement.toString());
     }
 
     /**
@@ -209,6 +283,21 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     }
 
     /**
+     * Execute a CONSTRUCT query.
+     *
+     * @param sparqlQueryString a CONSTRUCT query {@link String}
+     * @return a List of {@link Thing}
+     */
+    public List<Thing> executeConstruct(final String sparqlQueryString) {
+        final QueryExecution queryExec = connection.query(sparqlQueryString);
+
+        final Model model = queryExec.execConstruct();
+        final Query selectAllQuery = QueryFactory.create("select ?s ?p ?o where { ?s ?p ?o. }");
+        final QueryExecution selectAllQueryExec = QueryExecutionFactory.create(selectAllQuery, model);
+        return toTopObjects(getQueryResultList(selectAllQueryExec));
+    }
+
+    /**
      * Perform an update query on the dataset.
      *
      * @param statement SPARQL update query to execute.
@@ -225,7 +314,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      * @param sparqlQueryString SPARQL query to execute.
      * @return Results of the query.
      */
-    protected QueryResultList executeQuery(final String sparqlQueryString) {
+    public QueryResultList executeQuery(final String sparqlQueryString) {
         final QueryExecution queryExec = connection.query(sparqlQueryString);
         return getQueryResultList(queryExec);
     }
@@ -256,28 +345,44 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
         return queryResultList;
     }
 
-    private final List<Thing> toTopObjects(final QueryResultList queryResultsList) {
-        final Map<String, List<Pair<String, String>>> objectMap = new HashMap<>();
-        final String subjectVarName = queryResultsList.getVarNames().get(0);
-        final String predicateVarName = queryResultsList.getVarNames().get(1);
-        final String objectVarName = queryResultsList.getVarNames().get(2);
+    /**
+     * Convert a {@link QueryResultList} to a {@link List} of {@link Thing}.
+     *
+     * @param queryResultsList {@link QueryResultList}
+     * @return a {@link List} of {@link Thing}
+     */
+    public final List<Thing> toTopObjects(final QueryResultList queryResultsList) {
+        final Map<RDFNode, List<Pair<Object, Object>>> objectMap = new HashMap<>();
+        final List<String> varNames = (List<String>) queryResultsList.getVarNames();
+        final String subjectVarName = varNames.get(0);
+        final String predicateVarName = varNames.get(1);
+        final String objectVarName = varNames.get(2);
 
-        // Create a map of the triples for each unique subject IRI.
+        // Create a map of the triples for each unique subject IRI
         final List<QueryResult> queryResults = queryResultsList.getQueryResults();
         queryResults.forEach(queryResult -> {
-            final String subjectValue = queryResult.get(subjectVarName).toString();
-            final String predicateValue = queryResult.get(predicateVarName).toString();
-            final String objectValue = queryResult.get(objectVarName).toString();
+            final RDFNode subjectValue = queryResult.get(subjectVarName);
+            final RDFNode predicateValue = queryResult.get(predicateVarName);
+            final RDFNode objectValue = queryResult.get(objectVarName);
 
-            List<Pair<String, String>> dataModelObject = objectMap.get(subjectValue);
+            List<Pair<Object, Object>> dataModelObject = objectMap.get(subjectValue);
             if (dataModelObject == null) {
                 dataModelObject = new ArrayList<>();
                 objectMap.put(subjectValue, dataModelObject);
             }
-            dataModelObject.add(new Pair<>(predicateValue, objectValue));
+            if (objectValue instanceof Literal) {
+                dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()), objectValue.toString()));
+            } else if (objectValue instanceof Resource) {
+                dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()), new IRI(objectValue.toString())));
+            } else {
+                throw new RuntimeException("objectValue is of unknown type: " + objectValue.getClass());
+            }
         });
 
-        return objectMap.entrySet().stream().map(entry -> HqdmObjectFactory.create(entry.getKey(), entry.getValue()))
+        return objectMap
+                .entrySet()
+                .stream()
+                .map(entry -> HqdmObjectFactory.create(new IRI(entry.getKey().toString()), entry.getValue()))
                 .collect(Collectors.toList());
     }
 
@@ -305,5 +410,20 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     public final void dump(final PrintStream out, final Lang language) {
         final Dataset dataset = connection.fetchDataset();
         RDFDataMgr.write(out, dataset.getDefaultModel(), language);
+    }
+
+    /**
+     * Import data into the model.
+     *
+     * @param in       {@link InputStream} to read from.
+     * @param language RDF language syntax to output data as.
+     */
+    public final void load(final InputStream in, final Lang language) {
+        begin();
+        final Dataset dataset = connection.fetchDataset();
+        final Model model = dataset.getDefaultModel();
+        RDFDataMgr.read(model, in, language);
+        connection.load(model);
+        commit();
     }
 }

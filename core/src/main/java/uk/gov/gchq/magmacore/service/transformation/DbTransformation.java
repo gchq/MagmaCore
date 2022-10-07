@@ -14,6 +14,7 @@
 
 package uk.gov.gchq.magmacore.service.transformation;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -49,12 +50,16 @@ public class DbTransformation implements Function<MagmaCoreService, MagmaCoreSer
      */
     @Override
     public MagmaCoreService apply(final MagmaCoreService mcService) {
-        final Function<MagmaCoreService, MagmaCoreService> transformation = transformations
-                .stream()
-                .map(t -> (Function<MagmaCoreService, MagmaCoreService>) t).reduce(Function::andThen)
-                .orElse(Function.identity());
+        final List<DbDeleteOperation> deletes = new ArrayList<>();
+        final List<DbCreateOperation> creates = new ArrayList<>();
 
-        return transformation.apply(mcService);
+        transformations.stream().forEach(changeSet -> {
+            deletes.addAll(changeSet.deletes);
+            creates.addAll(changeSet.creates);
+        });
+
+        mcService.update(deletes, creates);
+        return mcService;
     }
 
     /**

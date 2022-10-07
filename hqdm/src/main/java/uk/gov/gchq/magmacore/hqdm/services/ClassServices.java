@@ -23,7 +23,7 @@ import uk.gov.gchq.magmacore.hqdm.model.impl.*;
  */
 public class ClassServices {
     /**
-     * Create a Class with an String.
+     * Create a {@link Class} with an String.
      *
      * @param id ID of the Class.
      * @return A Class instance.
@@ -33,7 +33,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfAbstractObject with an String.
+     * Create a {@link ClassOfAbstractObject} with an String.
      *
      * @param id ID of the ClassOfAbstractObject.
      * @return A ClassOfAbstractObject instance.
@@ -43,7 +43,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfActivity with an String.
+     * Create a {@link ClassOfActivity} with an String.
      *
      * @param id ID of the ClassOfActivity.
      * @return A ClassOfActivity instance.
@@ -53,7 +53,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfAgreeContract with an String.
+     * Create a {@link ClassOfAgreeContract} with an String.
      *
      * @param id ID of the ClassOfAgreeContract.
      * @return A ClassOfAgreeContract instance.
@@ -63,7 +63,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfAgreementExecution with an String.
+     * Create a {@link ClassOfAgreementExecution} with an String.
      *
      * @param id ID of the ClassOfAgreementExecution.
      * @return A ClassOfAgreementExecution instance.
@@ -73,7 +73,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfAgreementProcess with an String.
+     * Create a {@link ClassOfAgreementProcess} with an String.
      *
      * @param id ID of the ClassOfAgreementProcess.
      * @return A ClassOfAgreementProcess instance.
@@ -83,7 +83,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfAmountOfMoney with an String.
+     * Create a {@link ClassOfAmountOfMoney} with an String.
      *
      * @param id ID of the ClassOfAmountOfMoney.
      * @return A ClassOfAmountOfMoney instance.
@@ -93,7 +93,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfAssociation with an String.
+     * Create a {@link ClassOfAssociation} with an String.
      *
      * @param id ID of the ClassOfAssociation.
      * @return A ClassOfAssociation instance.
@@ -103,7 +103,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfBiologicalObject with an String.
+     * Create a {@link ClassOfBiologicalObject} with an String.
      *
      * @param id ID of the ClassOfBiologicalObject.
      * @return A ClassOfBiologicalObject instance.
@@ -113,7 +113,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfBiologicalSystem with an String.
+     * Create a {@link ClassOfBiologicalSystem} with an String.
      *
      * @param id ID of the ClassOfBiologicalSystem.
      * @return A ClassOfBiologicalSystem instance.
@@ -123,7 +123,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfBiologicalSystemComponent with an String.
+     * Create a {@link ClassOfBiologicalSystemComponent} with an String.
      *
      * @param id ID of the ClassOfBiologicalSystemComponent.
      * @return A ClassOfBiologicalSystemComponent instance.
@@ -133,7 +133,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfClass with an String.
+     * Create a {@link ClassOfClass} with an String.
      *
      * @param id ID of the ClassOfClass.
      * @return A ClassOfClass instance.
@@ -143,7 +143,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfClassOfSpatioTemporalExtent with an String.
+     * Create a {@link ClassOfClassOfSpatioTemporalExtent} with an String.
      *
      * @param id ID of the ClassOfClassOfSpatioTemporalExtent.
      * @return A ClassOfClassOfSpatioTemporalExtent instance.
@@ -153,7 +153,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfContractExecution with an String.
+     * Create a {@link ClassOfContractExecution} with an String.
      *
      * @param id ID of the ClassOfContractExecution.
      * @return A ClassOfContractExecution instance.
@@ -163,7 +163,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfContractProcess with an String.
+     * Create a {@link ClassOfContractProcess} with an String.
      *
      * @param id ID of the ClassOfContractProcess.
      * @return A ClassOfContractProcess instance.
@@ -173,7 +173,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfEvent with an String.
+     * Create a {@link ClassOfEvent} with an String.
      *
      * @param id ID of the ClassOfEvent.
      * @return A ClassOfEvent instance.
@@ -183,7 +183,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfFunctionalObject with an String.
+     * Create a {@link ClassOfFunctionalObject} with an String.
      *
      * @param id ID of the ClassOfFunctionalObject.
      * @return A ClassOfFunctionalObject instance.
@@ -193,7 +193,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfFunctionalSystem with an String.
+     * Create a {@link ClassOfFunctionalSystem} with an String.
      *
      * @param id ID of the ClassOfFunctionalSystem.
      * @return A ClassOfFunctionalSystem instance.
@@ -203,7 +203,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfFunctionalSystemComponent with an String.
+     * Create a {@link ClassOfFunctionalSystemComponent} with an String.
      *
      * @param id ID of the ClassOfFunctionalSystemComponent.
      * @return A ClassOfFunctionalSystemComponent instance.
@@ -213,7 +213,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfInPlaceBiologicalComponent with an String.
+     * Create a {@link ClassOfInPlaceBiologicalComponent} with an String.
      *
      * @param id ID of the ClassOfInPlaceBiologicalComponent.
      * @return A ClassOfInPlaceBiologicalComponent instance.
@@ -223,7 +223,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfIndividual with an String.
+     * Create a {@link ClassOfIndividual} with an String.
      *
      * @param id ID of the ClassOfIndividual.
      * @return A ClassOfIndividual instance.
@@ -233,7 +233,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfInstalledFunctionalSystemComponent with an String.
+     * Create a {@link ClassOfInstalledFunctionalSystemComponent} with an String.
      *
      * @param id ID of the ClassOfInstalledFunctionalSystemComponent.
      * @return A ClassOfInstalledFunctionalSystemComponent instance.
@@ -244,7 +244,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfInstalledObject with an String.
+     * Create a {@link ClassOfInstalledObject} with an String.
      *
      * @param id ID of the ClassOfInstalledObject.
      * @return A ClassOfInstalledObject instance.
@@ -254,7 +254,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfIntentionallyConstructedObject with an String.
+     * Create a {@link ClassOfIntentionallyConstructedObject} with an String.
      *
      * @param id ID of the ClassOfIntentionallyConstructedObject.
      * @return A ClassOfIntentionallyConstructedObject instance.
@@ -264,7 +264,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfOffer with an String.
+     * Create a {@link ClassOfOffer} with an String.
      *
      * @param id ID of the ClassOfOffer.
      * @return A ClassOfOffer instance.
@@ -274,7 +274,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfOrdinaryBiologicalObject with an String.
+     * Create a {@link ClassOfOrdinaryBiologicalObject} with an String.
      *
      * @param id ID of the ClassOfOrdinaryBiologicalObject.
      * @return A ClassOfOrdinaryBiologicalObject instance.
@@ -284,7 +284,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfOrdinaryFunctionalObject with an String.
+     * Create a {@link ClassOfOrdinaryFunctionalObject} with an String.
      *
      * @param id ID of the ClassOfOrdinaryFunctionalObject.
      * @return A ClassOfOrdinaryFunctionalObject instance.
@@ -294,7 +294,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfOrdinaryPhysicalObject with an String.
+     * Create a {@link ClassOfOrdinaryPhysicalObject} with an String.
      *
      * @param id ID of the ClassOfOrdinaryPhysicalObject.
      * @return A ClassOfOrdinaryPhysicalObject instance.
@@ -304,7 +304,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfOrganization with an String.
+     * Create a {@link ClassOfOrganization} with an String.
      *
      * @param id ID of the ClassOfOrganization.
      * @return A ClassOfOrganization instance.
@@ -314,7 +314,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfOrganizationComponent with an String.
+     * Create a {@link ClassOfOrganizationComponent} with an String.
      *
      * @param id ID of the ClassOfOrganizationComponent.
      * @return A ClassOfOrganizationComponent instance.
@@ -324,7 +324,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfParticipant with an String.
+     * Create a {@link ClassOfParticipant} with an String.
      *
      * @param id ID of the ClassOfParticipant.
      * @return A ClassOfParticipant instance.
@@ -334,7 +334,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfParty with an String.
+     * Create a {@link ClassOfParty} with an String.
      *
      * @param id ID of the ClassOfParty.
      * @return A ClassOfParty instance.
@@ -344,7 +344,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfPeriodOfTime with an String.
+     * Create a {@link ClassOfPeriodOfTime} with an String.
      *
      * @param id ID of the ClassOfPeriodOfTime.
      * @return A ClassOfPeriodOfTime instance.
@@ -354,7 +354,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfPerson with an String.
+     * Create a {@link ClassOfPerson} with an String.
      *
      * @param id ID of the ClassOfPerson.
      * @return A ClassOfPerson instance.
@@ -364,7 +364,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfPersonInPosition with an String.
+     * Create a {@link ClassOfPersonInPosition} with an String.
      *
      * @param id ID of the ClassOfPersonInPosition.
      * @return A ClassOfPersonInPosition instance.
@@ -374,7 +374,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfPhysicalObject with an String.
+     * Create a {@link ClassOfPhysicalObject} with an String.
      *
      * @param id ID of the ClassOfPhysicalObject.
      * @return A ClassOfPhysicalObject instance.
@@ -384,7 +384,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfPhysicalProperty with an String.
+     * Create a {@link ClassOfPhysicalProperty} with an String.
      *
      * @param id ID of the ClassOfPhysicalProperty.
      * @return A ClassOfPhysicalProperty instance.
@@ -394,7 +394,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfPhysicalQuantity with an String.
+     * Create a {@link ClassOfPhysicalQuantity} with an String.
      *
      * @param id ID of the ClassOfPhysicalQuantity.
      * @return A ClassOfPhysicalQuantity instance.
@@ -404,7 +404,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfPointInTime with an String.
+     * Create a {@link ClassOfPointInTime} with an String.
      *
      * @param id ID of the ClassOfPointInTime.
      * @return A ClassOfPointInTime instance.
@@ -414,7 +414,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfPosition with an String.
+     * Create a {@link ClassOfPosition} with an String.
      *
      * @param id ID of the ClassOfPosition.
      * @return A ClassOfPosition instance.
@@ -424,7 +424,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfPossibleWorld with an String.
+     * Create a {@link ClassOfPossibleWorld} with an String.
      *
      * @param id ID of the ClassOfPossibleWorld.
      * @return A ClassOfPossibleWorld instance.
@@ -434,7 +434,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfReachingAgreement with an String.
+     * Create a {@link ClassOfReachingAgreement} with an String.
      *
      * @param id ID of the ClassOfReachingAgreement.
      * @return A ClassOfReachingAgreement instance.
@@ -444,7 +444,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfRelationship with an String.
+     * Create a {@link ClassOfRelationship} with an String.
      *
      * @param id ID of the ClassOfRelationship.
      * @return A ClassOfRelationship instance.
@@ -454,7 +454,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfRepresentation with an String.
+     * Create a {@link ClassOfRepresentation} with an String.
      *
      * @param id ID of the ClassOfRepresentation.
      * @return A ClassOfRepresentation instance.
@@ -464,7 +464,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfSalesProductInstance with an String.
+     * Create a {@link ClassOfSalesProductInstance} with an String.
      *
      * @param id ID of the ClassOfSalesProductInstance.
      * @return A ClassOfSalesProductInstance instance.
@@ -474,7 +474,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfSign with an String.
+     * Create a {@link ClassOfSign} with an String.
      *
      * @param id ID of the ClassOfSign.
      * @return A ClassOfSign instance.
@@ -484,7 +484,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfSociallyConstructedActivity with an String.
+     * Create a {@link ClassOfSociallyConstructedActivity} with an String.
      *
      * @param id ID of the ClassOfSociallyConstructedActivity.
      * @return A ClassOfSociallyConstructedActivity instance.
@@ -494,7 +494,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfSociallyConstructedObject with an String.
+     * Create a {@link ClassOfSociallyConstructedObject} with an String.
      *
      * @param id ID of the ClassOfSociallyConstructedObject.
      * @return A ClassOfSociallyConstructedObject instance.
@@ -504,7 +504,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfSpatioTemporalExtent with an String.
+     * Create a {@link ClassOfSpatioTemporalExtent} with an String.
      *
      * @param id ID of the ClassOfSpatioTemporalExtent.
      * @return A ClassOfSpatioTemporalExtent instance.
@@ -514,7 +514,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfState with an String.
+     * Create a {@link ClassOfState} with an String.
      *
      * @param id ID of the ClassOfState.
      * @return A ClassOfState instance.
@@ -524,7 +524,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfActivity with an String.
+     * Create a {@link ClassOfStateOfActivity} with an String.
      *
      * @param id ID of the ClassOfStateOfActivity.
      * @return A ClassOfStateOfActivity instance.
@@ -534,7 +534,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfAmountOfMoney with an String.
+     * Create a {@link ClassOfStateOfAmountOfMoney} with an String.
      *
      * @param id ID of the ClassOfStateOfAmountOfMoney.
      * @return A ClassOfStateOfAmountOfMoney instance.
@@ -544,7 +544,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfAssociation with an String.
+     * Create a {@link ClassOfStateOfAssociation} with an String.
      *
      * @param id ID of the ClassOfStateOfAssociation.
      * @return A ClassOfStateOfAssociation instance.
@@ -554,7 +554,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfBiologicalObject with an String.
+     * Create a {@link ClassOfStateOfBiologicalObject} with an String.
      *
      * @param id ID of the ClassOfStateOfBiologicalObject.
      * @return A ClassOfStateOfBiologicalObject instance.
@@ -564,7 +564,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfBiologicalSystem with an String.
+     * Create a {@link ClassOfStateOfBiologicalSystem} with an String.
      *
      * @param id ID of the ClassOfStateOfBiologicalSystem.
      * @return A ClassOfStateOfBiologicalSystem instance.
@@ -574,7 +574,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfBiologicalSystemComponent with an String.
+     * Create a {@link ClassOfStateOfBiologicalSystemComponent} with an String.
      *
      * @param id ID of the ClassOfStateOfBiologicalSystemComponent.
      * @return A ClassOfStateOfBiologicalSystemComponent instance.
@@ -585,7 +585,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfFunctionalObject with an String.
+     * Create a {@link ClassOfStateOfFunctionalObject} with an String.
      *
      * @param id ID of the ClassOfStateOfFunctionalObject.
      * @return A ClassOfStateOfFunctionalObject instance.
@@ -595,7 +595,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfFunctionalSystem with an String.
+     * Create a {@link ClassOfStateOfFunctionalSystem} with an String.
      *
      * @param id ID of the ClassOfStateOfFunctionalSystem.
      * @return A ClassOfStateOfFunctionalSystem instance.
@@ -605,7 +605,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfFunctionalSystemComponent with an String.
+     * Create a {@link ClassOfStateOfFunctionalSystemComponent} with an String.
      *
      * @param id ID of the ClassOfStateOfFunctionalSystemComponent.
      * @return A ClassOfStateOfFunctionalSystemComponent instance.
@@ -616,7 +616,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfIntentionallyConstructedObject with an String.
+     * Create a {@link ClassOfStateOfIntentionallyConstructedObject} with an String.
      *
      * @param id ID of the ClassOfStateOfIntentionallyConstructedObject.
      * @return A ClassOfStateOfIntentionallyConstructedObject instance.
@@ -627,7 +627,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfOrdinaryBiologicalObject with an String.
+     * Create a {@link ClassOfStateOfOrdinaryBiologicalObject} with an String.
      *
      * @param id ID of the ClassOfStateOfOrdinaryBiologicalObject.
      * @return A ClassOfStateOfOrdinaryBiologicalObject instance.
@@ -637,7 +637,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfOrdinaryFunctionalObject with an String.
+     * Create a {@link ClassOfStateOfOrdinaryFunctionalObject} with an String.
      *
      * @param id ID of the ClassOfStateOfOrdinaryFunctionalObject.
      * @return A ClassOfStateOfOrdinaryFunctionalObject instance.
@@ -647,7 +647,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfOrdinaryPhysicalObject with an String.
+     * Create a {@link ClassOfStateOfOrdinaryPhysicalObject} with an String.
      *
      * @param id ID of the ClassOfStateOfOrdinaryPhysicalObject.
      * @return A ClassOfStateOfOrdinaryPhysicalObject instance.
@@ -657,7 +657,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfOrganization with an String.
+     * Create a {@link ClassOfStateOfOrganization} with an String.
      *
      * @param id ID of the ClassOfStateOfOrganization.
      * @return A ClassOfStateOfOrganization instance.
@@ -667,7 +667,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfOrganizationComponent with an String.
+     * Create a {@link ClassOfStateOfOrganizationComponent} with an String.
      *
      * @param id ID of the ClassOfStateOfOrganizationComponent.
      * @return A ClassOfStateOfOrganizationComponent instance.
@@ -677,7 +677,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfParty with an String.
+     * Create a {@link ClassOfStateOfParty} with an String.
      *
      * @param id ID of the ClassOfStateOfParty.
      * @return A ClassOfStateOfParty instance.
@@ -687,7 +687,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfPerson with an String.
+     * Create a {@link ClassOfStateOfPerson} with an String.
      *
      * @param id ID of the ClassOfStateOfPerson.
      * @return A ClassOfStateOfPerson instance.
@@ -697,7 +697,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfPhysicalObject with an String.
+     * Create a {@link ClassOfStateOfPhysicalObject} with an String.
      *
      * @param id ID of the ClassOfStateOfPhysicalObject.
      * @return A ClassOfStateOfPhysicalObject instance.
@@ -707,7 +707,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfPosition with an String.
+     * Create a {@link ClassOfStateOfPosition} with an String.
      *
      * @param id ID of the ClassOfStateOfPosition.
      * @return A ClassOfStateOfPosition instance.
@@ -717,7 +717,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfSalesProductInstance with an String.
+     * Create a {@link ClassOfStateOfSalesProductInstance} with an String.
      *
      * @param id ID of the ClassOfStateOfSalesProductInstance.
      * @return A ClassOfStateOfSalesProductInstance instance.
@@ -727,7 +727,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfSign with an String.
+     * Create a {@link ClassOfStateOfSign} with an String.
      *
      * @param id ID of the ClassOfStateOfSign.
      * @return A ClassOfStateOfSign instance.
@@ -737,7 +737,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfSociallyConstructedActivity with an String.
+     * Create a {@link ClassOfStateOfSociallyConstructedActivity} with an String.
      *
      * @param id ID of the ClassOfStateOfSociallyConstructedActivity.
      * @return A ClassOfStateOfSociallyConstructedActivity instance.
@@ -748,7 +748,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfSociallyConstructedObject with an String.
+     * Create a {@link ClassOfStateOfSociallyConstructedObject} with an String.
      *
      * @param id ID of the ClassOfStateOfSociallyConstructedObject.
      * @return A ClassOfStateOfSociallyConstructedObject instance.
@@ -759,7 +759,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfSystem with an String.
+     * Create a {@link ClassOfStateOfSystem} with an String.
      *
      * @param id ID of the ClassOfStateOfSystem.
      * @return A ClassOfStateOfSystem instance.
@@ -769,7 +769,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfStateOfSystemComponent with an String.
+     * Create a {@link ClassOfStateOfSystemComponent} with an String.
      *
      * @param id ID of the ClassOfStateOfSystemComponent.
      * @return A ClassOfStateOfSystemComponent instance.
@@ -779,7 +779,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfSystem with an String.
+     * Create a {@link ClassOfSystem} with an String.
      *
      * @param id ID of the ClassOfSystem.
      * @return A ClassOfSystem instance.
@@ -789,7 +789,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a ClassOfSystemComponent with an String.
+     * Create a {@link ClassOfSystemComponent} with an String.
      *
      * @param id ID of the ClassOfSystemComponent.
      * @return A ClassOfSystemComponent instance.
@@ -799,7 +799,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfActivity with an String.
+     * Create a {@link KindOfActivity} with an String.
      *
      * @param id ID of the KindOfActivity.
      * @return A KindOfActivity instance.
@@ -809,7 +809,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfAssociation with an String.
+     * Create a {@link KindOfAssociation} with an String.
      *
      * @param id ID of the KindOfAssociation.
      * @return A KindOfAssociation instance.
@@ -819,7 +819,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfBiologicalObject with an String.
+     * Create a {@link KindOfBiologicalObject} with an String.
      *
      * @param id ID of the KindOfBiologicalObject.
      * @return A KindOfBiologicalObject instance.
@@ -829,7 +829,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfBiologicalSystem with an String.
+     * Create a {@link KindOfBiologicalSystem} with an String.
      *
      * @param id ID of the KindOfBiologicalSystem.
      * @return A KindOfBiologicalSystem instance.
@@ -839,7 +839,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfBiologicalSystemComponent with an String.
+     * Create a {@link KindOfBiologicalSystemComponent} with an String.
      *
      * @param id ID of the KindOfBiologicalSystemComponent.
      * @return A KindOfBiologicalSystemComponent instance.
@@ -849,7 +849,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfFunctionalObject with an String.
+     * Create a {@link KindOfFunctionalObject} with an String.
      *
      * @param id ID of the KindOfFunctionalObject.
      * @return A KindOfFunctionalObject instance.
@@ -859,7 +859,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfFunctionalSystem with an String.
+     * Create a {@link KindOfFunctionalSystem} with an String.
      *
      * @param id ID of the KindOfFunctionalSystem.
      * @return A KindOfFunctionalSystem instance.
@@ -869,7 +869,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfFunctionalSystemComponent with an String.
+     * Create a {@link KindOfFunctionalSystemComponent} with an String.
      *
      * @param id ID of the KindOfFunctionalSystemComponent.
      * @return A KindOfFunctionalSystemComponent instance.
@@ -879,7 +879,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfIndividual with an String.
+     * Create a {@link KindOfIndividual} with an String.
      *
      * @param id ID of the KindOfIndividual.
      * @return A KindOfIndividual instance.
@@ -889,7 +889,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfIntentionallyConstructedObject with an String.
+     * Create a {@link KindOfIntentionallyConstructedObject} with an String.
      *
      * @param id ID of the KindOfIntentionallyConstructedObject.
      * @return A KindOfIntentionallyConstructedObject instance.
@@ -899,7 +899,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfOrdinaryBiologicalObject with an String.
+     * Create a {@link KindOfOrdinaryBiologicalObject} with an String.
      *
      * @param id ID of the KindOfOrdinaryBiologicalObject.
      * @return A KindOfOrdinaryBiologicalObject instance.
@@ -909,7 +909,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfOrdinaryFunctionalObject with an String.
+     * Create a {@link KindOfOrdinaryFunctionalObject} with an String.
      *
      * @param id ID of the KindOfOrdinaryFunctionalObject.
      * @return A KindOfOrdinaryFunctionalObject instance.
@@ -919,7 +919,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfOrdinaryPhysicalObject with an String.
+     * Create a {@link KindOfOrdinaryPhysicalObject} with an String.
      *
      * @param id ID of the KindOfOrdinaryPhysicalObject.
      * @return A KindOfOrdinaryPhysicalObject instance.
@@ -929,7 +929,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfOrganization with an String.
+     * Create a {@link KindOfOrganization} with an String.
      *
      * @param id ID of the KindOfOrganization.
      * @return A KindOfOrganization instance.
@@ -939,7 +939,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfOrganizationComponent with an String.
+     * Create a {@link KindOfOrganizationComponent} with an String.
      *
      * @param id ID of the KindOfOrganizationComponent.
      * @return A KindOfOrganizationComponent instance.
@@ -949,7 +949,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfParty with an String.
+     * Create a {@link KindOfParty} with an String.
      *
      * @param id ID of the KindOfParty.
      * @return A KindOfParty instance.
@@ -959,7 +959,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfPerson with an String.
+     * Create a {@link KindOfPerson} with an String.
      *
      * @param id ID of the KindOfPerson.
      * @return A KindOfPerson instance.
@@ -969,7 +969,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfPhysicalObject with an String.
+     * Create a {@link KindOfPhysicalObject} with an String.
      *
      * @param id ID of the KindOfPhysicalObject.
      * @return A KindOfPhysicalObject instance.
@@ -979,7 +979,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfPhysicalProperty with an String.
+     * Create a {@link KindOfPhysicalProperty} with an String.
      *
      * @param id ID of the KindOfPhysicalProperty.
      * @return A KindOfPhysicalProperty instance.
@@ -989,7 +989,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfPhysicalQuantity with an String.
+     * Create a {@link KindOfPhysicalQuantity} with an String.
      *
      * @param id ID of the KindOfPhysicalQuantity.
      * @return A KindOfPhysicalQuantity instance.
@@ -999,7 +999,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfPosition with an String.
+     * Create a {@link KindOfPosition} with an String.
      *
      * @param id ID of the KindOfPosition.
      * @return A KindOfPosition instance.
@@ -1009,7 +1009,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfRelationshipWithRestriction with an String.
+     * Create a {@link KindOfRelationshipWithRestriction} with an String.
      *
      * @param id ID of the KindOfRelationshipWithRestriction.
      * @return A KindOfRelationshipWithRestriction instance.
@@ -1019,7 +1019,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfRelationshipWithSignature with an String.
+     * Create a {@link KindOfRelationshipWithSignature} with an String.
      *
      * @param id ID of the KindOfRelationshipWithSignature.
      * @return A KindOfRelationshipWithSignature instance.
@@ -1029,7 +1029,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfSociallyConstructedObject with an String.
+     * Create a {@link KindOfSociallyConstructedObject} with an String.
      *
      * @param id ID of the KindOfSociallyConstructedObject.
      * @return A KindOfSociallyConstructedObject instance.
@@ -1039,7 +1039,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfSystem with an String.
+     * Create a {@link KindOfSystem} with an String.
      *
      * @param id ID of the KindOfSystem.
      * @return A KindOfSystem instance.
@@ -1049,7 +1049,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a KindOfSystemComponent with an String.
+     * Create a {@link KindOfSystemComponent} with an String.
      *
      * @param id ID of the KindOfSystemComponent.
      * @return A KindOfSystemComponent instance.
@@ -1059,7 +1059,7 @@ public class ClassServices {
     }
 
     /**
-     * Create a Role with an String.
+     * Create a {@link Role} with an String.
      *
      * @param id ID of the Role.
      * @return A Role instance.
