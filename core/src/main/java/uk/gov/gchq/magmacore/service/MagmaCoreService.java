@@ -17,6 +17,7 @@ package uk.gov.gchq.magmacore.service;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.time.Instant;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,8 +47,10 @@ import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.service.dto.ParticipantDetails;
 import uk.gov.gchq.magmacore.service.dto.SignPatternDto;
 import uk.gov.gchq.magmacore.service.sparql.MagmaCoreServiceQueries;
+import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
 import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
+import uk.gov.gchq.magmacore.service.transformation.DbTransformation;
 import uk.gov.gchq.magmacore.service.verify.DataIntegrityReport;
 
 /**
@@ -445,6 +448,43 @@ public class MagmaCoreService {
      */
     public void create(final Thing thing) {
         database.create(thing);
+    }
+
+    /**
+     * Convert a {@link Collection} of {@link Thing} objects to a {@link DbTransformation} that can be
+     * used to persist them. Typically this should be followed by a call to `runInTransaction`.
+     *
+     * @param things a {@link Collection} of {@link Thing} objects to be persisted.
+     * @return {@link DbTransformation}
+     */
+    public DbTransformation createDbTransformation(final Collection<? extends Thing> things) {
+        return new DbTransformation(things.stream()
+                .map(MagmaCoreService::toDbChangeSet)
+                .toList());
+    }
+
+    /**
+     * Convert a {@link Thing} to a {@link DbChangeSet} by creating a {@link DbCreateOperation} for each
+     * of its predicate valiues.
+     *
+     * @param thing a {@link Thing}
+     * @return a {@link DbChangeSet}
+     */
+    private static DbChangeSet toDbChangeSet(final Thing thing) {
+
+        // Map the Thing's predicates to DbCreateOperation objects.
+        final IRI iri = new IRI(thing.getId());
+        final List<DbCreateOperation> creates = thing.getPredicates()
+                .entrySet()
+                .stream()
+                .flatMap(entry -> entry.getValue()
+                        .stream()
+                        .map(value -> {
+                            return new DbCreateOperation(iri, (IRI) entry.getKey(), value);
+                        }))
+                .toList();
+
+        return new DbChangeSet(List.of(), creates);
     }
 
     /**
