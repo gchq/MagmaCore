@@ -21,7 +21,7 @@ import uk.gov.gchq.magmacore.service.transformation.DbTransformation;
  */
 public class MagmaCoreServiceCreateDbTransformationTest {
 
-    private static final String TEST_IRI = "http://trillian.co.uk/test#newThing";
+    private static final String TEST_IRI = "http://example.com/test#newThing";
     private static final String TEST_ENTITY_NAME = "TEST ENTITY";
 
     /**
