@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>uk.gov.gchq.magma-core</groupId>
+    <artifactId>magma-core</artifactId>
+    <version>2.1.1-SNAPSHOT</version>
+  </parent>
+
+  <groupId>uk.gov.gchq.magma-core</groupId>
+  <artifactId>core</artifactId>
+  <version>2.1.1-SNAPSHOT</version>
+
+  <name>core</name>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>17</maven.compiler.release>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>uk.gov.gchq.magma-core</groupId>
+      <artifactId>hqdm</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>uk.gov.gchq.magma-core</groupId>
+      <artifactId>hqdm-rdf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.jena</groupId>
+      <artifactId>apache-jena-libs</artifactId>
+      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-jdk14</artifactId>
+    </dependency>
+  </dependencies>
+</project>
