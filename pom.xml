@@ -57,7 +57,7 @@
   <distributionManagement>
     <repository>
       <uniqueVersion>false</uniqueVersion>
-      <id>local</id>
+      <id>local-file-system</id>
       <name>Local File System</name>
       <url>file:releases</url>
       <layout>default</layout>
