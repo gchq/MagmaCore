@@ -22,7 +22,7 @@ import java.util.Map;
 
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.model.impl.ThingImpl;
-import uk.gov.gchq.magmacore.hqdm.pojo.Top;
+import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
 
 /**
  * Service for creating dynamic proxies.
@@ -85,7 +85,7 @@ public class DynamicObjects {
             this.target = target;
 
             // Cache the methods to be proxied.
-            for (final Method method : Top.class.getDeclaredMethods()) {
+            for (final Method method : HqdmObject.class.getMethods()) {
                 this.methods.put(method.getName(), method);
             }
         }

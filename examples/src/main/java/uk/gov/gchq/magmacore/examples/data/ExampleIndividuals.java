@@ -64,30 +64,31 @@ public class ExampleIndividuals {
 
         // Create DbCreateOperations to create the objects and their properties.
         final List<DbCreateOperation> creates = List.of(
-                new DbCreateOperation(possibleWorld, RDFS.RDF_TYPE, HQDM.POSSIBLE_WORLD.getIri()),
+                new DbCreateOperation(possibleWorld, RDFS.RDF_TYPE, HQDM.POSSIBLE_WORLD),
                 new DbCreateOperation(possibleWorld, HQDM.ENTITY_NAME, "Example1_World"),
 
-                new DbCreateOperation(startEvent, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
-                new DbCreateOperation(startEvent, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(startEvent, RDFS.RDF_TYPE, HQDM.EVENT),
+                new DbCreateOperation(startEvent, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld),
                 new DbCreateOperation(startEvent, HQDM.ENTITY_NAME, "1991-02-18T00:00:00"),
 
-                new DbCreateOperation(endEvent, RDFS.RDF_TYPE, HQDM.EVENT.getIri()),
-                new DbCreateOperation(endEvent, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(endEvent, RDFS.RDF_TYPE, HQDM.EVENT),
+                new DbCreateOperation(endEvent, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld),
                 new DbCreateOperation(endEvent, HQDM.ENTITY_NAME, "1972-06-01T00:00:00"),
 
-                new DbCreateOperation(person, RDFS.RDF_TYPE, HQDM.PERSON.getIri()),
-                new DbCreateOperation(person, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(person, RDFS.RDF_TYPE, HQDM.PERSON),
+                new DbCreateOperation(person, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld),
                 new DbCreateOperation(person, HQDM.ENTITY_NAME, "PersonB1_Bob"),
-                new DbCreateOperation(person, HQDM.MEMBER_OF_KIND, kindOfPerson.getId()),
-                new DbCreateOperation(person, HQDM.NATURAL_ROLE, personRole.getId()),
-                new DbCreateOperation(person, HQDM.BEGINNING, startEvent.getIri()),
+                new DbCreateOperation(person, HQDM.MEMBER_OF_KIND, new IRI(kindOfPerson.getId())),
+                new DbCreateOperation(person, HQDM.NATURAL_ROLE, new IRI(personRole.getId())),
+                new DbCreateOperation(person, HQDM.BEGINNING, startEvent),
 
-                new DbCreateOperation(house, RDFS.RDF_TYPE, HQDM.FUNCTIONAL_SYSTEM.getIri()),
-                new DbCreateOperation(house, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getIri()),
+                new DbCreateOperation(house, RDFS.RDF_TYPE, HQDM.FUNCTIONAL_SYSTEM),
+                new DbCreateOperation(house, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld),
                 new DbCreateOperation(house, HQDM.ENTITY_NAME, "HouseB"),
-                new DbCreateOperation(house, HQDM.MEMBER_OF_KIND, kindOfFunctionalSystemDomesticProperty.getId()),
-                new DbCreateOperation(house, HQDM.INTENDED_ROLE, domesticPropertyRole.getId()),
-                new DbCreateOperation(house, HQDM.BEGINNING, endEvent.getIri()));
+                new DbCreateOperation(house, HQDM.MEMBER_OF_KIND,
+                        new IRI(kindOfFunctionalSystemDomesticProperty.getId())),
+                new DbCreateOperation(house, HQDM.INTENDED_ROLE, new IRI(domesticPropertyRole.getId())),
+                new DbCreateOperation(house, HQDM.BEGINNING, endEvent));
 
         // Create a change set and return it.
         return new DbChangeSet(List.of(), creates);

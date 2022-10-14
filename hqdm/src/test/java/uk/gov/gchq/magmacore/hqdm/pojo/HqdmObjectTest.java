@@ -14,8 +14,12 @@
 
 package uk.gov.gchq.magmacore.hqdm.pojo;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,6 +27,7 @@ import org.junit.Test;
 import uk.gov.gchq.magmacore.hqdm.model.PointInTime;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
+import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.model.impl.PointInTimeImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.PossibleWorldImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.SpatioTemporalExtentImpl;
@@ -36,8 +41,8 @@ public class HqdmObjectTest {
     @Test
     public void testDateTimeFormattingForTriples() {
         final PossibleWorld possibleWorld = new PossibleWorldImpl("World");
-        final String beginDateTime = LocalDateTime.now().toString();
-        final String endDate = LocalDate.now().toString();
+        final String beginDateTime = Instant.now().toString();
+        final String endDate = Instant.now().toString();
 
         final PointInTime beginEvent = new PointInTimeImpl(beginDateTime);
 
@@ -76,5 +81,37 @@ public class HqdmObjectTest {
         // Remove the test predicate and make sure it is no longer present.
         thing.removeValue("test-predicate", "test-value");
         Assert.assertFalse(thing.hasThisValue("test-predicate", "test-value"));
+    }
+
+    /**
+     * Confirm that to objects with the same IDs are considered the same thing.
+     */
+    @Test
+    public void testTwoObjectsAreEqual() {
+        final Thing thing1 = new ThingImpl("thing1");
+        thing1.addValue("test-predicate", "test-value");
+
+        final Thing thing2 = new ThingImpl("thing1");
+        thing2.addValue("test-predicate2", "test-value2");
+
+        assertEquals(thing1, thing2);
+    }
+
+    /**
+     * Test that a {@link Set} that contains a {@link Thing} with the same ID is found by the contains
+     * method.
+     */
+    @Test
+    public void testSetContainsHqdmObject() {
+        final Thing thing1 = new ThingImpl("thing1");
+        thing1.addValue("test-predicate", "test-value");
+
+        final SpatioTemporalExtent thing2 = new SpatioTemporalExtentImpl("thing1");
+        thing2.addValue("test-predicate2", "test-value2");
+
+        final Set<Thing> things = new HashSet<>();
+        things.add(thing2);
+
+        assertTrue(things.contains(thing1));
     }
 }

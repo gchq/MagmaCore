@@ -21,6 +21,11 @@ import java.util.List;
  */
 public class QueryResultList {
 
+    @Override
+    public String toString() {
+        return "QueryResultList [queryResults=" + queryResults + ", varNames=" + varNames + "]";
+    }
+
     private List<String> varNames;
 
     private List<QueryResult> queryResults;
