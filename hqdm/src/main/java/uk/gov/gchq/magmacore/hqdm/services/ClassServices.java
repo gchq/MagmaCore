@@ -799,6 +799,16 @@ public class ClassServices {
     }
 
     /**
+     * Create a {@link EnumeratedClass} with an String.
+     *
+     * @param id ID of the EnumeratedClass.
+     * @return A EnumeratedClass instance.
+     */
+    public static EnumeratedClass createEnumeratedClass(final String id) {
+        return new EnumeratedClassImpl(id);
+    }
+
+    /**
      * Create a {@link KindOfActivity} with an String.
      *
      * @param id ID of the KindOfActivity.
