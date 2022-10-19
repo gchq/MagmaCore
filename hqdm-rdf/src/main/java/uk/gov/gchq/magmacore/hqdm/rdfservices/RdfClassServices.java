@@ -969,6 +969,18 @@ public class RdfClassServices {
     }
 
     /**
+     * Create a {@link EnumeratedClass} with an String.
+     *
+     * @param id ID of the EnumeratedClass.
+     * @return A EnumeratedClass instance.
+     */
+    public static EnumeratedClass createEnumeratedClass(final String id) {
+        final EnumeratedClass result = ClassServices.createEnumeratedClass(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ENUMERATED_CLASS);
+        return result;
+    }
+
+    /**
      * Create a {@link KindOfActivity} with an String.
      *
      * @param id ID of the KindOfActivity.
