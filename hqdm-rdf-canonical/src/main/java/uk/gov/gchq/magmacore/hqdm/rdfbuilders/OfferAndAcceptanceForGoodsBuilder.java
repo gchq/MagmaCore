@@ -50,7 +50,7 @@ import uk.gov.gchq.magmacore.hqdm.model.SaleOfGoods;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of OfferAndAcceptanceForGoods.
@@ -65,7 +65,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @param iri IRI of the OfferAndAcceptanceForGoods.
      */
     public OfferAndAcceptanceForGoodsBuilder(final IRI iri) {
-        offerAndAcceptanceForGoods = SpatioTemporalExtentServices.createOfferAndAcceptanceForGoods(iri.getIri());
+        offerAndAcceptanceForGoods = RdfSpatioTemporalExtentServices.createOfferAndAcceptanceForGoods(iri.getIri());
     }
 
     /**

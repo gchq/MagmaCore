@@ -40,7 +40,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Price;
 import uk.gov.gchq.magmacore.hqdm.model.ProductOffering;
 import uk.gov.gchq.magmacore.hqdm.model.SalesProduct;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of ProductOffering.
@@ -55,7 +55,7 @@ public class ProductOfferingBuilder {
      * @param iri IRI of the ProductOffering.
      */
     public ProductOfferingBuilder(final IRI iri) {
-        productOffering = SpatioTemporalExtentServices.createProductOffering(iri.getIri());
+        productOffering = RdfSpatioTemporalExtentServices.createProductOffering(iri.getIri());
     }
 
     /**

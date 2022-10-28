@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership;
 import uk.gov.gchq.magmacore.hqdm.model.Transferee;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Transferee.
@@ -53,7 +53,7 @@ public class TransfereeBuilder {
      * @param iri IRI of the Transferee.
      */
     public TransfereeBuilder(final IRI iri) {
-        transferee = SpatioTemporalExtentServices.createTransferee(iri.getIri());
+        transferee = RdfSpatioTemporalExtentServices.createTransferee(iri.getIri());
     }
 
     /**

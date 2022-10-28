@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfReachingAgreement;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfReachingAgreement.
@@ -47,7 +47,7 @@ public class ClassOfReachingAgreementBuilder {
      * @param iri IRI of the ClassOfReachingAgreement.
      */
     public ClassOfReachingAgreementBuilder(final IRI iri) {
-        classOfReachingAgreement = ClassServices.createClassOfReachingAgreement(iri.getIri());
+        classOfReachingAgreement = RdfClassServices.createClassOfReachingAgreement(iri.getIri());
     }
 
     /**

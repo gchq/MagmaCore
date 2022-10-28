@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfActivity;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of KindOfActivity.
@@ -49,7 +49,7 @@ public class KindOfActivityBuilder {
      * @param iri IRI of the KindOfActivity.
      */
     public KindOfActivityBuilder(final IRI iri) {
-        kindOfActivity = ClassServices.createKindOfActivity(iri.getIri());
+        kindOfActivity = RdfClassServices.createKindOfActivity(iri.getIri());
     }
 
     /**

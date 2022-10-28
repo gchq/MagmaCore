@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfInstalledFunctionalSystemComponent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfInstalledFunctionalSystemComponent.
@@ -44,7 +44,7 @@ public class ClassOfInstalledFunctionalSystemComponentBuilder {
      * @param iri IRI of the ClassOfInstalledFunctionalSystemComponent.
      */
     public ClassOfInstalledFunctionalSystemComponentBuilder(final IRI iri) {
-        classOfInstalledFunctionalSystemComponent = ClassServices
+        classOfInstalledFunctionalSystemComponent = RdfClassServices
                 .createClassOfInstalledFunctionalSystemComponent(iri.getIri());
     }
 

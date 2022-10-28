@@ -23,7 +23,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfRelationship.
@@ -38,7 +38,7 @@ public class ClassOfRelationshipBuilder {
      * @param iri IRI of the ClassOfRelationship.
      */
     public ClassOfRelationshipBuilder(final IRI iri) {
-        classOfRelationship = ClassServices.createClassOfRelationship(iri.getIri());
+        classOfRelationship = RdfClassServices.createClassOfRelationship(iri.getIri());
     }
 
     /**

@@ -22,7 +22,7 @@ import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfClass.
@@ -37,7 +37,7 @@ public class ClassOfClassBuilder {
      * @param iri IRI of the ClassOfClass.
      */
     public ClassOfClassBuilder(final IRI iri) {
-        classOfClass = ClassServices.createClassOfClass(iri.getIri());
+        classOfClass = RdfClassServices.createClassOfClass(iri.getIri());
     }
 
     /**

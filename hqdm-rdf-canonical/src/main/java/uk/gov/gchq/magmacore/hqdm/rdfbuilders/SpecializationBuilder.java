@@ -24,7 +24,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.Specialization;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
 
 /**
  * Builder for constructing instances of Specialization.
@@ -39,7 +39,7 @@ public class SpecializationBuilder {
      * @param iri IRI of the Specialization.
      */
     public SpecializationBuilder(final IRI iri) {
-        specialization = RelationshipServices.createSpecialization(iri.getIri());
+        specialization = RdfRelationshipServices.createSpecialization(iri.getIri());
     }
 
     /**

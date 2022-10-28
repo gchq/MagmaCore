@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfActivity;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfActivity.
@@ -49,7 +49,7 @@ public class StateOfActivityBuilder {
      * @param iri IRI of the StateOfActivity.
      */
     public StateOfActivityBuilder(final IRI iri) {
-        stateOfActivity = SpatioTemporalExtentServices.createStateOfActivity(iri.getIri());
+        stateOfActivity = RdfSpatioTemporalExtentServices.createStateOfActivity(iri.getIri());
     }
 
     /**

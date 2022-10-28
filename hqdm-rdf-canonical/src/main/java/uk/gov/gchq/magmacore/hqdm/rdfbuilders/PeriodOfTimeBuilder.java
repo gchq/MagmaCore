@@ -35,7 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PeriodOfTime;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of PeriodOfTime.
@@ -50,7 +50,7 @@ public class PeriodOfTimeBuilder {
      * @param iri IRI of the PeriodOfTime.
      */
     public PeriodOfTimeBuilder(final IRI iri) {
-        periodOfTime = SpatioTemporalExtentServices.createPeriodOfTime(iri.getIri());
+        periodOfTime = RdfSpatioTemporalExtentServices.createPeriodOfTime(iri.getIri());
     }
 
     /**

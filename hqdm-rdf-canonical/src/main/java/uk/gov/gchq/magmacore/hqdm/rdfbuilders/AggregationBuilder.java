@@ -25,7 +25,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
 
 /**
  * Builder for constructing instances of Aggregation.
@@ -40,7 +40,7 @@ public class AggregationBuilder {
      * @param iri IRI of the Aggregation.
      */
     public AggregationBuilder(final IRI iri) {
-        aggregation = RelationshipServices.createAggregation(iri.getIri());
+        aggregation = RdfRelationshipServices.createAggregation(iri.getIri());
     }
 
     /**

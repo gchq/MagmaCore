@@ -49,7 +49,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of OfferForGoods.
@@ -64,7 +64,7 @@ public class OfferForGoodsBuilder {
      * @param iri IRI of the OfferForGoods.
      */
     public OfferForGoodsBuilder(final IRI iri) {
-        offerForGoods = SpatioTemporalExtentServices.createOfferForGoods(iri.getIri());
+        offerForGoods = RdfSpatioTemporalExtentServices.createOfferForGoods(iri.getIri());
     }
 
     /**

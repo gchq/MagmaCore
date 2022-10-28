@@ -30,7 +30,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfPhysicalQuantity;
 import uk.gov.gchq.magmacore.hqdm.model.PhysicalQuantity;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of PhysicalQuantity.
@@ -45,7 +45,7 @@ public class PhysicalQuantityBuilder {
      * @param iri IRI of the PhysicalQuantity.
      */
     public PhysicalQuantityBuilder(final IRI iri) {
-        physicalQuantity = SpatioTemporalExtentServices.createPhysicalQuantity(iri.getIri());
+        physicalQuantity = RdfSpatioTemporalExtentServices.createPhysicalQuantity(iri.getIri());
     }
 
     /**

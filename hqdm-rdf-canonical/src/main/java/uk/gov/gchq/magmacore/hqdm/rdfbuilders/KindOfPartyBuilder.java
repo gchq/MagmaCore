@@ -30,7 +30,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfParty;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfSystemComponent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of KindOfParty.
@@ -45,7 +45,7 @@ public class KindOfPartyBuilder {
      * @param iri IRI of the KindOfParty.
      */
     public KindOfPartyBuilder(final IRI iri) {
-        kindOfParty = ClassServices.createKindOfParty(iri.getIri());
+        kindOfParty = RdfClassServices.createKindOfParty(iri.getIri());
     }
 
     /**

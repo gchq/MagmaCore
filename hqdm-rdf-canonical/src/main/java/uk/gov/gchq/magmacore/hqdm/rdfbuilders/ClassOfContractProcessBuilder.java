@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfContractProcess;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfReachingAgreement;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfContractProcess.
@@ -47,7 +47,7 @@ public class ClassOfContractProcessBuilder {
      * @param iri IRI of the ClassOfContractProcess.
      */
     public ClassOfContractProcessBuilder(final IRI iri) {
-        classOfContractProcess = ClassServices.createClassOfContractProcess(iri.getIri());
+        classOfContractProcess = RdfClassServices.createClassOfContractProcess(iri.getIri());
     }
 
     /**

@@ -24,7 +24,7 @@ import uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of RepresentationByPattern.
@@ -39,7 +39,7 @@ public class RepresentationByPatternBuilder {
      * @param iri IRI of the RepresentationByPattern.
      */
     public RepresentationByPatternBuilder(final IRI iri) {
-        representationByPattern = SpatioTemporalExtentServices.createRepresentationByPattern(iri.getIri());
+        representationByPattern = RdfSpatioTemporalExtentServices.createRepresentationByPattern(iri.getIri());
     }
 
     /**

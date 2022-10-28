@@ -55,7 +55,7 @@ import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership;
 import uk.gov.gchq.magmacore.hqdm.model.Transferee;
 import uk.gov.gchq.magmacore.hqdm.model.Transferor;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of TransferOfOwnership.
@@ -70,7 +70,7 @@ public class TransferOfOwnershipBuilder {
      * @param iri IRI of the TransferOfOwnership.
      */
     public TransferOfOwnershipBuilder(final IRI iri) {
-        transferOfOwnership = SpatioTemporalExtentServices.createTransferOfOwnership(iri.getIri());
+        transferOfOwnership = RdfSpatioTemporalExtentServices.createTransferOfOwnership(iri.getIri());
     }
 
     /**

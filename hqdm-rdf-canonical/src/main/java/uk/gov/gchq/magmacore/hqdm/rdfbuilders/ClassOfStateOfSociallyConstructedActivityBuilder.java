@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfStateOfSociallyConstructedActivity;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfStateOfSociallyConstructedActivity.
@@ -44,7 +44,7 @@ public class ClassOfStateOfSociallyConstructedActivityBuilder {
      * @param iri IRI of the ClassOfStateOfSociallyConstructedActivity.
      */
     public ClassOfStateOfSociallyConstructedActivityBuilder(final IRI iri) {
-        classOfStateOfSociallyConstructedActivity = ClassServices
+        classOfStateOfSociallyConstructedActivity = RdfClassServices
                 .createClassOfStateOfSociallyConstructedActivity(iri.getIri());
     }
 

@@ -36,7 +36,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfIntentionallyConstructedObject;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of IntentionallyConstructedObject.
@@ -51,7 +51,7 @@ public class IntentionallyConstructedObjectBuilder {
      * @param iri IRI of the IntentionallyConstructedObject.
      */
     public IntentionallyConstructedObjectBuilder(final IRI iri) {
-        intentionallyConstructedObject = SpatioTemporalExtentServices
+        intentionallyConstructedObject = RdfSpatioTemporalExtentServices
                 .createIntentionallyConstructedObject(iri.getIri());
     }
 

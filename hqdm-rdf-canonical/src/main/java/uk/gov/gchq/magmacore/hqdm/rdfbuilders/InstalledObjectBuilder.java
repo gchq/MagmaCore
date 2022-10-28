@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.OrdinaryPhysicalObject;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of InstalledObject.
@@ -49,7 +49,7 @@ public class InstalledObjectBuilder {
      * @param iri IRI of the InstalledObject.
      */
     public InstalledObjectBuilder(final IRI iri) {
-        installedObject = SpatioTemporalExtentServices.createInstalledObject(iri.getIri());
+        installedObject = RdfSpatioTemporalExtentServices.createInstalledObject(iri.getIri());
     }
 
     /**

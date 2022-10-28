@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfFunctionalSystem;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfFunctionalSystem.
@@ -49,7 +49,7 @@ public class StateOfFunctionalSystemBuilder {
      * @param iri IRI of the StateOfFunctionalSystem.
      */
     public StateOfFunctionalSystemBuilder(final IRI iri) {
-        stateOfFunctionalSystem = SpatioTemporalExtentServices.createStateOfFunctionalSystem(iri.getIri());
+        stateOfFunctionalSystem = RdfSpatioTemporalExtentServices.createStateOfFunctionalSystem(iri.getIri());
     }
 
     /**

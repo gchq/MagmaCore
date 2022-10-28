@@ -31,7 +31,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.SalesProduct;
 import uk.gov.gchq.magmacore.hqdm.model.SalesProductVersion;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of SalesProductVersion.
@@ -46,7 +46,7 @@ public class SalesProductVersionBuilder {
      * @param iri IRI of the SalesProductVersion.
      */
     public SalesProductVersionBuilder(final IRI iri) {
-        salesProductVersion = SpatioTemporalExtentServices.createSalesProductVersion(iri.getIri());
+        salesProductVersion = RdfSpatioTemporalExtentServices.createSalesProductVersion(iri.getIri());
     }
 
     /**

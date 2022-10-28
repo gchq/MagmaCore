@@ -23,7 +23,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.model.EnumeratedClass;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of EnumeratedClass.
@@ -38,7 +38,7 @@ public class EnumeratedClassBuilder {
      * @param iri IRI of the EnumeratedClass.
      */
     public EnumeratedClassBuilder(final IRI iri) {
-        enumeratedClass = ClassServices.createEnumeratedClass(iri.getIri());
+        enumeratedClass = RdfClassServices.createEnumeratedClass(iri.getIri());
     }
 
     /**

@@ -37,7 +37,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Plan;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Plan.
@@ -52,7 +52,7 @@ public class PlanBuilder {
      * @param iri IRI of the Plan.
      */
     public PlanBuilder(final IRI iri) {
-        plan = SpatioTemporalExtentServices.createPlan(iri.getIri());
+        plan = RdfSpatioTemporalExtentServices.createPlan(iri.getIri());
     }
 
     /**

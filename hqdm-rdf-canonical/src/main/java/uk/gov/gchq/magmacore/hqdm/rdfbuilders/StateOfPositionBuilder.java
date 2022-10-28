@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfPosition;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfPosition.
@@ -49,7 +49,7 @@ public class StateOfPositionBuilder {
      * @param iri IRI of the StateOfPosition.
      */
     public StateOfPositionBuilder(final IRI iri) {
-        stateOfPosition = SpatioTemporalExtentServices.createStateOfPosition(iri.getIri());
+        stateOfPosition = RdfSpatioTemporalExtentServices.createStateOfPosition(iri.getIri());
     }
 
     /**

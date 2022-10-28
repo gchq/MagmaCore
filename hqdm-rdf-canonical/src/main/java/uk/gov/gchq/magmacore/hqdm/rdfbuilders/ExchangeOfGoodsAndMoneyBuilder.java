@@ -50,7 +50,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership;
 import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnershipOfMoney;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of ExchangeOfGoodsAndMoney.
@@ -65,7 +65,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @param iri IRI of the ExchangeOfGoodsAndMoney.
      */
     public ExchangeOfGoodsAndMoneyBuilder(final IRI iri) {
-        exchangeOfGoodsAndMoney = SpatioTemporalExtentServices.createExchangeOfGoodsAndMoney(iri.getIri());
+        exchangeOfGoodsAndMoney = RdfSpatioTemporalExtentServices.createExchangeOfGoodsAndMoney(iri.getIri());
     }
 
     /**

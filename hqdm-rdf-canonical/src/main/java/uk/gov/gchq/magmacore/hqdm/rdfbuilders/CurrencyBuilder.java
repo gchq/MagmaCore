@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Currency;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Currency.
@@ -43,7 +43,7 @@ public class CurrencyBuilder {
      * @param iri IRI of the Currency.
      */
     public CurrencyBuilder(final IRI iri) {
-        currency = SpatioTemporalExtentServices.createCurrency(iri.getIri());
+        currency = RdfSpatioTemporalExtentServices.createCurrency(iri.getIri());
     }
 
     /**

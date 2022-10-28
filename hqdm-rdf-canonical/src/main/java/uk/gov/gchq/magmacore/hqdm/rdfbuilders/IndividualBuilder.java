@@ -35,7 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfIndividual;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Individual.
@@ -50,7 +50,7 @@ public class IndividualBuilder {
      * @param iri IRI of the Individual.
      */
     public IndividualBuilder(final IRI iri) {
-        individual = SpatioTemporalExtentServices.createIndividual(iri.getIri());
+        individual = RdfSpatioTemporalExtentServices.createIndividual(iri.getIri());
     }
 
     /**

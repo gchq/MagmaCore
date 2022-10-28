@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of FunctionalObject.
@@ -53,7 +53,7 @@ public class FunctionalObjectBuilder {
      * @param iri IRI of the FunctionalObject.
      */
     public FunctionalObjectBuilder(final IRI iri) {
-        functionalObject = SpatioTemporalExtentServices.createFunctionalObject(iri.getIri());
+        functionalObject = RdfSpatioTemporalExtentServices.createFunctionalObject(iri.getIri());
     }
 
     /**

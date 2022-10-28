@@ -26,7 +26,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfPhysicalQuantity;
 import uk.gov.gchq.magmacore.hqdm.model.Scale;
 import uk.gov.gchq.magmacore.hqdm.model.UnitOfMeasure;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
 
 /**
  * Builder for constructing instances of Scale.
@@ -41,7 +41,7 @@ public class ScaleBuilder {
      * @param iri IRI of the Scale.
      */
     public ScaleBuilder(final IRI iri) {
-        scale = RelationshipServices.createScale(iri.getIri());
+        scale = RdfRelationshipServices.createScale(iri.getIri());
     }
 
     /**

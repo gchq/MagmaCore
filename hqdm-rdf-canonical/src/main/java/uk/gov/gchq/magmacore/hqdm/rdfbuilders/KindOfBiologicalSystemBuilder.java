@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfBiologicalSystem;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfBiologicalSystemComponent;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of KindOfBiologicalSystem.
@@ -47,7 +47,7 @@ public class KindOfBiologicalSystemBuilder {
      * @param iri IRI of the KindOfBiologicalSystem.
      */
     public KindOfBiologicalSystemBuilder(final IRI iri) {
-        kindOfBiologicalSystem = ClassServices.createKindOfBiologicalSystem(iri.getIri());
+        kindOfBiologicalSystem = RdfClassServices.createKindOfBiologicalSystem(iri.getIri());
     }
 
     /**

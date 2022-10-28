@@ -20,7 +20,7 @@ import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Thing.
@@ -35,7 +35,7 @@ public class ThingBuilder {
      * @param iri IRI of the Thing.
      */
     public ThingBuilder(final IRI iri) {
-        thing = SpatioTemporalExtentServices.createThing(iri.getIri());
+        thing = RdfSpatioTemporalExtentServices.createThing(iri.getIri());
     }
 
     /**

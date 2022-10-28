@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Participant;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Association.
@@ -53,7 +53,7 @@ public class AssociationBuilder {
      * @param iri IRI of the Association.
      */
     public AssociationBuilder(final IRI iri) {
-        association = SpatioTemporalExtentServices.createAssociation(iri.getIri());
+        association = RdfSpatioTemporalExtentServices.createAssociation(iri.getIri());
     }
 
     /**

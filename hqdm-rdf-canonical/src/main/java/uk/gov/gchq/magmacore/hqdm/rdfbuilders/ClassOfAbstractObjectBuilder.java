@@ -23,7 +23,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfAbstractObject;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfAbstractObject.
@@ -38,7 +38,7 @@ public class ClassOfAbstractObjectBuilder {
      * @param iri IRI of the ClassOfAbstractObject.
      */
     public ClassOfAbstractObjectBuilder(final IRI iri) {
-        classOfAbstractObject = ClassServices.createClassOfAbstractObject(iri.getIri());
+        classOfAbstractObject = RdfClassServices.createClassOfAbstractObject(iri.getIri());
     }
 
     /**

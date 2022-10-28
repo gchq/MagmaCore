@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfActivity;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfAssociation;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of Role.
@@ -47,7 +47,7 @@ public class RoleBuilder {
      * @param iri IRI of the Role.
      */
     public RoleBuilder(final IRI iri) {
-        role = ClassServices.createRole(iri.getIri());
+        role = RdfClassServices.createRole(iri.getIri());
     }
 
     /**

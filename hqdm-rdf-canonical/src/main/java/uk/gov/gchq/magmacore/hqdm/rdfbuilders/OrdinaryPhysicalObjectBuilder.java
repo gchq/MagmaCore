@@ -36,7 +36,7 @@ import uk.gov.gchq.magmacore.hqdm.model.OrdinaryPhysicalObject;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of OrdinaryPhysicalObject.
@@ -51,7 +51,7 @@ public class OrdinaryPhysicalObjectBuilder {
      * @param iri IRI of the OrdinaryPhysicalObject.
      */
     public OrdinaryPhysicalObjectBuilder(final IRI iri) {
-        ordinaryPhysicalObject = SpatioTemporalExtentServices.createOrdinaryPhysicalObject(iri.getIri());
+        ordinaryPhysicalObject = RdfSpatioTemporalExtentServices.createOrdinaryPhysicalObject(iri.getIri());
     }
 
     /**

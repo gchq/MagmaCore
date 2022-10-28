@@ -48,7 +48,7 @@ import uk.gov.gchq.magmacore.hqdm.model.SociallyConstructedActivity;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of SociallyConstructedActivity.
@@ -63,7 +63,7 @@ public class SociallyConstructedActivityBuilder {
      * @param iri IRI of the SociallyConstructedActivity.
      */
     public SociallyConstructedActivityBuilder(final IRI iri) {
-        sociallyConstructedActivity = SpatioTemporalExtentServices.createSociallyConstructedActivity(iri.getIri());
+        sociallyConstructedActivity = RdfSpatioTemporalExtentServices.createSociallyConstructedActivity(iri.getIri());
     }
 
     /**

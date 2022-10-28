@@ -55,7 +55,7 @@ import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnershipOfMoney;
 import uk.gov.gchq.magmacore.hqdm.model.Transferee;
 import uk.gov.gchq.magmacore.hqdm.model.Transferor;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of TransferOfOwnershipOfMoney.
@@ -70,7 +70,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @param iri IRI of the TransferOfOwnershipOfMoney.
      */
     public TransferOfOwnershipOfMoneyBuilder(final IRI iri) {
-        transferOfOwnershipOfMoney = SpatioTemporalExtentServices.createTransferOfOwnershipOfMoney(iri.getIri());
+        transferOfOwnershipOfMoney = RdfSpatioTemporalExtentServices.createTransferOfOwnershipOfMoney(iri.getIri());
     }
 
     /**

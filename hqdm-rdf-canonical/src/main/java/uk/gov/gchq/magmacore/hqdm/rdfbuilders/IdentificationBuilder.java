@@ -24,7 +24,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Pattern;
 import uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Identification.
@@ -39,7 +39,7 @@ public class IdentificationBuilder {
      * @param iri IRI of the Identification.
      */
     public IdentificationBuilder(final IRI iri) {
-        identification = SpatioTemporalExtentServices.createIdentification(iri.getIri());
+        identification = RdfSpatioTemporalExtentServices.createIdentification(iri.getIri());
     }
 
     /**
