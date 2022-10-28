@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.InPlaceBiologicalComponent;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of InPlaceBiologicalComponent.
@@ -49,7 +49,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @param iri IRI of the InPlaceBiologicalComponent.
      */
     public InPlaceBiologicalComponentBuilder(final IRI iri) {
-        inPlaceBiologicalComponent = SpatioTemporalExtentServices.createInPlaceBiologicalComponent(iri.getIri());
+        inPlaceBiologicalComponent = RdfSpatioTemporalExtentServices.createInPlaceBiologicalComponent(iri.getIri());
     }
 
     /**

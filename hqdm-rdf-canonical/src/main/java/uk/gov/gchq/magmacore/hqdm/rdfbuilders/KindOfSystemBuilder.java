@@ -30,7 +30,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfSystem;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfSystemComponent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of KindOfSystem.
@@ -45,7 +45,7 @@ public class KindOfSystemBuilder {
      * @param iri IRI of the KindOfSystem.
      */
     public KindOfSystemBuilder(final IRI iri) {
-        kindOfSystem = ClassServices.createKindOfSystem(iri.getIri());
+        kindOfSystem = RdfClassServices.createKindOfSystem(iri.getIri());
     }
 
     /**

@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.SalesProductInstance;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfSalesProductInstance;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfSalesProductInstance.
@@ -49,7 +49,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @param iri IRI of the StateOfSalesProductInstance.
      */
     public StateOfSalesProductInstanceBuilder(final IRI iri) {
-        stateOfSalesProductInstance = SpatioTemporalExtentServices.createStateOfSalesProductInstance(iri.getIri());
+        stateOfSalesProductInstance = RdfSpatioTemporalExtentServices.createStateOfSalesProductInstance(iri.getIri());
     }
 
     /**

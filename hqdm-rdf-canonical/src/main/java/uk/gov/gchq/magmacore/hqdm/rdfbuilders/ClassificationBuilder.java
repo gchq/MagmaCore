@@ -25,7 +25,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.Classification;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
 
 /**
  * Builder for constructing instances of Classification.
@@ -40,7 +40,7 @@ public class ClassificationBuilder {
      * @param iri IRI of the Classification.
      */
     public ClassificationBuilder(final IRI iri) {
-        classification = RelationshipServices.createClassification(iri.getIri());
+        classification = RdfRelationshipServices.createClassification(iri.getIri());
     }
 
     /**

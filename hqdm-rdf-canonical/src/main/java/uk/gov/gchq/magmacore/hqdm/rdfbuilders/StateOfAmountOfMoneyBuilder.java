@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfAmountOfMoney;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfAmountOfMoney.
@@ -49,7 +49,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @param iri IRI of the StateOfAmountOfMoney.
      */
     public StateOfAmountOfMoneyBuilder(final IRI iri) {
-        stateOfAmountOfMoney = SpatioTemporalExtentServices.createStateOfAmountOfMoney(iri.getIri());
+        stateOfAmountOfMoney = RdfSpatioTemporalExtentServices.createStateOfAmountOfMoney(iri.getIri());
     }
 
     /**

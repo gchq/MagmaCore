@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PointInTime;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of PointInTime.
@@ -47,7 +47,7 @@ public class PointInTimeBuilder {
      * @param iri IRI of the PointInTime.
      */
     public PointInTimeBuilder(final IRI iri) {
-        pointInTime = SpatioTemporalExtentServices.createPointInTime(iri.getIri());
+        pointInTime = RdfSpatioTemporalExtentServices.createPointInTime(iri.getIri());
     }
 
     /**

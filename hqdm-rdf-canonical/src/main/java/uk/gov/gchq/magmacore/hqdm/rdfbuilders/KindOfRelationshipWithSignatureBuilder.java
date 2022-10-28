@@ -24,7 +24,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfRelationshipWithSignature;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of KindOfRelationshipWithSignature.
@@ -39,7 +39,7 @@ public class KindOfRelationshipWithSignatureBuilder {
      * @param iri IRI of the KindOfRelationshipWithSignature.
      */
     public KindOfRelationshipWithSignatureBuilder(final IRI iri) {
-        kindOfRelationshipWithSignature = ClassServices.createKindOfRelationshipWithSignature(iri.getIri());
+        kindOfRelationshipWithSignature = RdfClassServices.createKindOfRelationshipWithSignature(iri.getIri());
     }
 
     /**

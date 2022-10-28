@@ -40,7 +40,7 @@ import uk.gov.gchq.magmacore.hqdm.model.RepresentationBySign;
 import uk.gov.gchq.magmacore.hqdm.model.Sign;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Sign.
@@ -55,7 +55,7 @@ public class SignBuilder {
      * @param iri IRI of the Sign.
      */
     public SignBuilder(final IRI iri) {
-        sign = SpatioTemporalExtentServices.createSign(iri.getIri());
+        sign = RdfSpatioTemporalExtentServices.createSign(iri.getIri());
     }
 
     /**

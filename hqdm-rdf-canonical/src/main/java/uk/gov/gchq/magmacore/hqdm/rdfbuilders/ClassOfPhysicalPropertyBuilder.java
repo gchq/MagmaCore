@@ -23,7 +23,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfPhysicalProperty;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfPhysicalProperty.
@@ -38,7 +38,7 @@ public class ClassOfPhysicalPropertyBuilder {
      * @param iri IRI of the ClassOfPhysicalProperty.
      */
     public ClassOfPhysicalPropertyBuilder(final IRI iri) {
-        classOfPhysicalProperty = ClassServices.createClassOfPhysicalProperty(iri.getIri());
+        classOfPhysicalProperty = RdfClassServices.createClassOfPhysicalProperty(iri.getIri());
     }
 
     /**

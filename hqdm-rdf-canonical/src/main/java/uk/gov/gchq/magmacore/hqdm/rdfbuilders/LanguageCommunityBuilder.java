@@ -35,7 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.LanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of LanguageCommunity.
@@ -50,7 +50,7 @@ public class LanguageCommunityBuilder {
      * @param iri IRI of the LanguageCommunity.
      */
     public LanguageCommunityBuilder(final IRI iri) {
-        languageCommunity = SpatioTemporalExtentServices.createLanguageCommunity(iri.getIri());
+        languageCommunity = RdfSpatioTemporalExtentServices.createLanguageCommunity(iri.getIri());
     }
 
     /**

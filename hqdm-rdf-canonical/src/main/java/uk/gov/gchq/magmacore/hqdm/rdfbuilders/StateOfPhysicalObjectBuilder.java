@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfPhysicalObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfPhysicalObject.
@@ -49,7 +49,7 @@ public class StateOfPhysicalObjectBuilder {
      * @param iri IRI of the StateOfPhysicalObject.
      */
     public StateOfPhysicalObjectBuilder(final IRI iri) {
-        stateOfPhysicalObject = SpatioTemporalExtentServices.createStateOfPhysicalObject(iri.getIri());
+        stateOfPhysicalObject = RdfSpatioTemporalExtentServices.createStateOfPhysicalObject(iri.getIri());
     }
 
     /**

@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Event;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of BeginningOfOwnership.
@@ -47,7 +47,7 @@ public class BeginningOfOwnershipBuilder {
      * @param iri IRI of the BeginningOfOwnership.
      */
     public BeginningOfOwnershipBuilder(final IRI iri) {
-        beginningOfOwnership = SpatioTemporalExtentServices.createBeginningOfOwnership(iri.getIri());
+        beginningOfOwnership = RdfSpatioTemporalExtentServices.createBeginningOfOwnership(iri.getIri());
     }
 
     /**

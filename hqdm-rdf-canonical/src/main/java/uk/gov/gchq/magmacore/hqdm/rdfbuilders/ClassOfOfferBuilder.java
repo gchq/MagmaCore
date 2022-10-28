@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfOffer;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfReachingAgreement;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfOffer.
@@ -47,7 +47,7 @@ public class ClassOfOfferBuilder {
      * @param iri IRI of the ClassOfOffer.
      */
     public ClassOfOfferBuilder(final IRI iri) {
-        classOfOffer = ClassServices.createClassOfOffer(iri.getIri());
+        classOfOffer = RdfClassServices.createClassOfOffer(iri.getIri());
     }
 
     /**

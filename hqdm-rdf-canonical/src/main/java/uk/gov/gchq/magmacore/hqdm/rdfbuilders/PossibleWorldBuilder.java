@@ -36,7 +36,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfIndividual;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of PossibleWorld.
@@ -51,7 +51,7 @@ public class PossibleWorldBuilder {
      * @param iri IRI of the PossibleWorld.
      */
     public PossibleWorldBuilder(final IRI iri) {
-        possibleWorld = SpatioTemporalExtentServices.createPossibleWorld(iri.getIri());
+        possibleWorld = RdfSpatioTemporalExtentServices.createPossibleWorld(iri.getIri());
     }
 
     /**

@@ -26,7 +26,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.model.Classification;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfRelationshipWithRestriction;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of KindOfRelationshipWithRestriction.
@@ -41,7 +41,7 @@ public class KindOfRelationshipWithRestrictionBuilder {
      * @param iri IRI of the KindOfRelationshipWithRestriction.
      */
     public KindOfRelationshipWithRestrictionBuilder(final IRI iri) {
-        kindOfRelationshipWithRestriction = ClassServices.createKindOfRelationshipWithRestriction(iri.getIri());
+        kindOfRelationshipWithRestriction = RdfClassServices.createKindOfRelationshipWithRestriction(iri.getIri());
     }
 
     /**

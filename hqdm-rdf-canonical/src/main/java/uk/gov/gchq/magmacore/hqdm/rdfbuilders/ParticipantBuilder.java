@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Participant.
@@ -53,7 +53,7 @@ public class ParticipantBuilder {
      * @param iri IRI of the Participant.
      */
     public ParticipantBuilder(final IRI iri) {
-        participant = SpatioTemporalExtentServices.createParticipant(iri.getIri());
+        participant = RdfSpatioTemporalExtentServices.createParticipant(iri.getIri());
     }
 
     /**

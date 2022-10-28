@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfBiologicalSystem;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfBiologicalSystem.
@@ -49,7 +49,7 @@ public class StateOfBiologicalSystemBuilder {
      * @param iri IRI of the StateOfBiologicalSystem.
      */
     public StateOfBiologicalSystemBuilder(final IRI iri) {
-        stateOfBiologicalSystem = SpatioTemporalExtentServices.createStateOfBiologicalSystem(iri.getIri());
+        stateOfBiologicalSystem = RdfSpatioTemporalExtentServices.createStateOfBiologicalSystem(iri.getIri());
     }
 
     /**

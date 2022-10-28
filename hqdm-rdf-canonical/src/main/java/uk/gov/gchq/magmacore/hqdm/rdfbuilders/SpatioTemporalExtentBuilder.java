@@ -31,7 +31,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Event;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of SpatioTemporalExtent.
@@ -46,7 +46,7 @@ public class SpatioTemporalExtentBuilder {
      * @param iri IRI of the SpatioTemporalExtent.
      */
     public SpatioTemporalExtentBuilder(final IRI iri) {
-        spatioTemporalExtent = SpatioTemporalExtentServices.createSpatioTemporalExtent(iri.getIri());
+        spatioTemporalExtent = RdfSpatioTemporalExtentServices.createSpatioTemporalExtent(iri.getIri());
     }
 
     /**

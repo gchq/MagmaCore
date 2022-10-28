@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfPhysicalObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of KindOfPhysicalObject.
@@ -43,7 +43,7 @@ public class KindOfPhysicalObjectBuilder {
      * @param iri IRI of the KindOfPhysicalObject.
      */
     public KindOfPhysicalObjectBuilder(final IRI iri) {
-        kindOfPhysicalObject = ClassServices.createKindOfPhysicalObject(iri.getIri());
+        kindOfPhysicalObject = RdfClassServices.createKindOfPhysicalObject(iri.getIri());
     }
 
     /**

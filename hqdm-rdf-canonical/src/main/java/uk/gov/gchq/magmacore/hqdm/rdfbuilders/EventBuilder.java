@@ -31,7 +31,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Event;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Event.
@@ -46,7 +46,7 @@ public class EventBuilder {
      * @param iri IRI of the Event.
      */
     public EventBuilder(final IRI iri) {
-        event = SpatioTemporalExtentServices.createEvent(iri.getIri());
+        event = RdfSpatioTemporalExtentServices.createEvent(iri.getIri());
     }
 
     /**

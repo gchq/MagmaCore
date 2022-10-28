@@ -25,7 +25,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.Composition;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
 
 /**
  * Builder for constructing instances of Composition.
@@ -40,7 +40,7 @@ public class CompositionBuilder {
      * @param iri IRI of the Composition.
      */
     public CompositionBuilder(final IRI iri) {
-        composition = RelationshipServices.createComposition(iri.getIri());
+        composition = RdfRelationshipServices.createComposition(iri.getIri());
     }
 
     /**

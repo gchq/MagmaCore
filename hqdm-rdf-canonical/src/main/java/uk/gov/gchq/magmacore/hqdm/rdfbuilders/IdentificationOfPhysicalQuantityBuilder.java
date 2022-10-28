@@ -25,7 +25,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PhysicalQuantity;
 import uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.model.Scale;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of IdentificationOfPhysicalQuantity.
@@ -40,7 +40,7 @@ public class IdentificationOfPhysicalQuantityBuilder {
      * @param iri IRI of the IdentificationOfPhysicalQuantity.
      */
     public IdentificationOfPhysicalQuantityBuilder(final IRI iri) {
-        identificationOfPhysicalQuantity = SpatioTemporalExtentServices
+        identificationOfPhysicalQuantity = RdfSpatioTemporalExtentServices
                 .createIdentificationOfPhysicalQuantity(iri.getIri());
     }
 

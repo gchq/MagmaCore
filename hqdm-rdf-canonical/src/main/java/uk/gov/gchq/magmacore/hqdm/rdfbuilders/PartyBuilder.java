@@ -35,7 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Party;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Party.
@@ -50,7 +50,7 @@ public class PartyBuilder {
      * @param iri IRI of the Party.
      */
     public PartyBuilder(final IRI iri) {
-        party = SpatioTemporalExtentServices.createParty(iri.getIri());
+        party = RdfSpatioTemporalExtentServices.createParty(iri.getIri());
     }
 
     /**

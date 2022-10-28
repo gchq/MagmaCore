@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Price;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Price.
@@ -43,7 +43,7 @@ public class PriceBuilder {
      * @param iri IRI of the Price.
      */
     public PriceBuilder(final IRI iri) {
-        price = SpatioTemporalExtentServices.createPrice(iri.getIri());
+        price = RdfSpatioTemporalExtentServices.createPrice(iri.getIri());
     }
 
     /**

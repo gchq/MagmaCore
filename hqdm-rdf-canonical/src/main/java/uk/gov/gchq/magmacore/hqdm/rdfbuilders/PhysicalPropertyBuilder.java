@@ -30,7 +30,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfPhysicalProperty;
 import uk.gov.gchq.magmacore.hqdm.model.PhysicalProperty;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of PhysicalProperty.
@@ -45,7 +45,7 @@ public class PhysicalPropertyBuilder {
      * @param iri IRI of the PhysicalProperty.
      */
     public PhysicalPropertyBuilder(final IRI iri) {
-        physicalProperty = SpatioTemporalExtentServices.createPhysicalProperty(iri.getIri());
+        physicalProperty = RdfSpatioTemporalExtentServices.createPhysicalProperty(iri.getIri());
     }
 
     /**

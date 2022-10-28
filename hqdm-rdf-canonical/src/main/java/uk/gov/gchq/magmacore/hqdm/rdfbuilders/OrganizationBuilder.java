@@ -35,7 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Organization;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Organization.
@@ -50,7 +50,7 @@ public class OrganizationBuilder {
      * @param iri IRI of the Organization.
      */
     public OrganizationBuilder(final IRI iri) {
-        organization = SpatioTemporalExtentServices.createOrganization(iri.getIri());
+        organization = RdfSpatioTemporalExtentServices.createOrganization(iri.getIri());
     }
 
     /**

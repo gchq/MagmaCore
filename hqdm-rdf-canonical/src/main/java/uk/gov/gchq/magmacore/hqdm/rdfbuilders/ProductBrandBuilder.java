@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ProductBrand;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of ProductBrand.
@@ -43,7 +43,7 @@ public class ProductBrandBuilder {
      * @param iri IRI of the ProductBrand.
      */
     public ProductBrandBuilder(final IRI iri) {
-        productBrand = SpatioTemporalExtentServices.createProductBrand(iri.getIri());
+        productBrand = RdfSpatioTemporalExtentServices.createProductBrand(iri.getIri());
     }
 
     /**

@@ -19,7 +19,7 @@ import uk.gov.gchq.magmacore.hqdm.model.AbstractObject;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of AbstractObject.
@@ -34,7 +34,7 @@ public class AbstractObjectBuilder {
      * @param iri IRI of the AbstractObject.
      */
     public AbstractObjectBuilder(final IRI iri) {
-        abstractObject = SpatioTemporalExtentServices.createAbstractObject(iri.getIri());
+        abstractObject = RdfSpatioTemporalExtentServices.createAbstractObject(iri.getIri());
     }
 
     /**

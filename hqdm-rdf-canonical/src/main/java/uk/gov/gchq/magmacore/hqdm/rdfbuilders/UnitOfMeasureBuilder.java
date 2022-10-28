@@ -22,7 +22,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.UnitOfMeasure;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
 
 /**
  * Builder for constructing instances of UnitOfMeasure.
@@ -37,7 +37,7 @@ public class UnitOfMeasureBuilder {
      * @param iri IRI of the UnitOfMeasure.
      */
     public UnitOfMeasureBuilder(final IRI iri) {
-        unitOfMeasure = RelationshipServices.createUnitOfMeasure(iri.getIri());
+        unitOfMeasure = RdfRelationshipServices.createUnitOfMeasure(iri.getIri());
     }
 
     /**

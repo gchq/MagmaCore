@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Employer.
@@ -53,7 +53,7 @@ public class EmployerBuilder {
      * @param iri IRI of the Employer.
      */
     public EmployerBuilder(final IRI iri) {
-        employer = SpatioTemporalExtentServices.createEmployer(iri.getIri());
+        employer = RdfSpatioTemporalExtentServices.createEmployer(iri.getIri());
     }
 
     /**

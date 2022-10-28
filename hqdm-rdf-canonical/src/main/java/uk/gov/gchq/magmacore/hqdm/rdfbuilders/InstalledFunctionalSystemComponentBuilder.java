@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.InstalledFunctionalSystemComponent;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of InstalledFunctionalSystemComponent.
@@ -49,7 +49,7 @@ public class InstalledFunctionalSystemComponentBuilder {
      * @param iri IRI of the InstalledFunctionalSystemComponent.
      */
     public InstalledFunctionalSystemComponentBuilder(final IRI iri) {
-        installedFunctionalSystemComponent = SpatioTemporalExtentServices
+        installedFunctionalSystemComponent = RdfSpatioTemporalExtentServices
                 .createInstalledFunctionalSystemComponent(iri.getIri());
     }
 

@@ -30,7 +30,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfState;
 import uk.gov.gchq.magmacore.hqdm.model.RequirementSpecification;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of RequirementSpecification.
@@ -45,7 +45,7 @@ public class RequirementSpecificationBuilder {
      * @param iri IRI of the RequirementSpecification.
      */
     public RequirementSpecificationBuilder(final IRI iri) {
-        requirementSpecification = SpatioTemporalExtentServices.createRequirementSpecification(iri.getIri());
+        requirementSpecification = RdfSpatioTemporalExtentServices.createRequirementSpecification(iri.getIri());
     }
 
     /**

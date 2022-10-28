@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfBiologicalObject;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of BiologicalSystemComponent.
@@ -53,7 +53,7 @@ public class BiologicalSystemComponentBuilder {
      * @param iri IRI of the BiologicalSystemComponent.
      */
     public BiologicalSystemComponentBuilder(final IRI iri) {
-        biologicalSystemComponent = SpatioTemporalExtentServices.createBiologicalSystemComponent(iri.getIri());
+        biologicalSystemComponent = RdfSpatioTemporalExtentServices.createBiologicalSystemComponent(iri.getIri());
     }
 
     /**

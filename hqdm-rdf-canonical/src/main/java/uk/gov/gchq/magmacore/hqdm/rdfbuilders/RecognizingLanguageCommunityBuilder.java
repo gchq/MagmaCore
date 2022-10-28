@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.RepresentationBySign;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of RecognizingLanguageCommunity.
@@ -53,7 +53,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @param iri IRI of the RecognizingLanguageCommunity.
      */
     public RecognizingLanguageCommunityBuilder(final IRI iri) {
-        recognizingLanguageCommunity = SpatioTemporalExtentServices.createRecognizingLanguageCommunity(iri.getIri());
+        recognizingLanguageCommunity = RdfSpatioTemporalExtentServices.createRecognizingLanguageCommunity(iri.getIri());
     }
 
     /**

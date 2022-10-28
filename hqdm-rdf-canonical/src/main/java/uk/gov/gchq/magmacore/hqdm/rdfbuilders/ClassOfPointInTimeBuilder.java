@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfPointInTime;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfPointInTime.
@@ -43,7 +43,7 @@ public class ClassOfPointInTimeBuilder {
      * @param iri IRI of the ClassOfPointInTime.
      */
     public ClassOfPointInTimeBuilder(final IRI iri) {
-        classOfPointInTime = ClassServices.createClassOfPointInTime(iri.getIri());
+        classOfPointInTime = RdfClassServices.createClassOfPointInTime(iri.getIri());
     }
 
     /**

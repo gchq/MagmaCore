@@ -26,7 +26,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Classification;
 import uk.gov.gchq.magmacore.hqdm.model.DefinedRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfRelationshipWithSignature;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
 
 /**
  * Builder for constructing instances of DefinedRelationship.
@@ -41,7 +41,7 @@ public class DefinedRelationshipBuilder {
      * @param iri IRI of the DefinedRelationship.
      */
     public DefinedRelationshipBuilder(final IRI iri) {
-        definedRelationship = RelationshipServices.createDefinedRelationship(iri.getIri());
+        definedRelationship = RdfRelationshipServices.createDefinedRelationship(iri.getIri());
     }
 
     /**

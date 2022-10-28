@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfEvent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfEvent.
@@ -43,7 +43,7 @@ public class ClassOfEventBuilder {
      * @param iri IRI of the ClassOfEvent.
      */
     public ClassOfEventBuilder(final IRI iri) {
-        classOfEvent = ClassServices.createClassOfEvent(iri.getIri());
+        classOfEvent = RdfClassServices.createClassOfEvent(iri.getIri());
     }
 
     /**

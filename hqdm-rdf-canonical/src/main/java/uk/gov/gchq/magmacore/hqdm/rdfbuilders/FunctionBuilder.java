@@ -22,7 +22,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.Function_;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
 
 /**
  * Builder for constructing instances of Function.
@@ -37,7 +37,7 @@ public class FunctionBuilder {
      * @param iri IRI of the Function.
      */
     public FunctionBuilder(final IRI iri) {
-        function = RelationshipServices.createFunction(iri.getIri());
+        function = RdfRelationshipServices.createFunction(iri.getIri());
     }
 
     /**

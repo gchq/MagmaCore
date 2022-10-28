@@ -48,7 +48,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of ContractExecution.
@@ -63,7 +63,7 @@ public class ContractExecutionBuilder {
      * @param iri IRI of the ContractExecution.
      */
     public ContractExecutionBuilder(final IRI iri) {
-        contractExecution = SpatioTemporalExtentServices.createContractExecution(iri.getIri());
+        contractExecution = RdfSpatioTemporalExtentServices.createContractExecution(iri.getIri());
     }
 
     /**

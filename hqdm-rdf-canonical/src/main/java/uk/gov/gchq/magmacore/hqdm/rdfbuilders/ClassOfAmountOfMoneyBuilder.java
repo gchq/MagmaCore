@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfAmountOfMoney.
@@ -43,7 +43,7 @@ public class ClassOfAmountOfMoneyBuilder {
      * @param iri IRI of the ClassOfAmountOfMoney.
      */
     public ClassOfAmountOfMoneyBuilder(final IRI iri) {
-        classOfAmountOfMoney = ClassServices.createClassOfAmountOfMoney(iri.getIri());
+        classOfAmountOfMoney = RdfClassServices.createClassOfAmountOfMoney(iri.getIri());
     }
 
     /**

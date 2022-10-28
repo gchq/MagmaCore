@@ -50,7 +50,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ReachingAgreement;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of ContractProcess.
@@ -65,7 +65,7 @@ public class ContractProcessBuilder {
      * @param iri IRI of the ContractProcess.
      */
     public ContractProcessBuilder(final IRI iri) {
-        contractProcess = SpatioTemporalExtentServices.createContractProcess(iri.getIri());
+        contractProcess = RdfSpatioTemporalExtentServices.createContractProcess(iri.getIri());
     }
 
     /**

@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfStateOfParty;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfStateOfParty.
@@ -43,7 +43,7 @@ public class ClassOfStateOfPartyBuilder {
      * @param iri IRI of the ClassOfStateOfParty.
      */
     public ClassOfStateOfPartyBuilder(final IRI iri) {
-        classOfStateOfParty = ClassServices.createClassOfStateOfParty(iri.getIri());
+        classOfStateOfParty = RdfClassServices.createClassOfStateOfParty(iri.getIri());
     }
 
     /**

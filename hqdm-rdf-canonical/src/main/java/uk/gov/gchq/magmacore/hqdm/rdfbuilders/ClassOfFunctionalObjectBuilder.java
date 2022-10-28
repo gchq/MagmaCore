@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfFunctionalObject;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of ClassOfFunctionalObject.
@@ -43,7 +43,7 @@ public class ClassOfFunctionalObjectBuilder {
      * @param iri IRI of the ClassOfFunctionalObject.
      */
     public ClassOfFunctionalObjectBuilder(final IRI iri) {
-        classOfFunctionalObject = ClassServices.createClassOfFunctionalObject(iri.getIri());
+        classOfFunctionalObject = RdfClassServices.createClassOfFunctionalObject(iri.getIri());
     }
 
     /**

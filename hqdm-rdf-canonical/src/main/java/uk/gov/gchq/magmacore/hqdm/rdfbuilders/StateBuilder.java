@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.State;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of State.
@@ -49,7 +49,7 @@ public class StateBuilder {
      * @param iri IRI of the State.
      */
     public StateBuilder(final IRI iri) {
-        state = SpatioTemporalExtentServices.createState(iri.getIri());
+        state = RdfSpatioTemporalExtentServices.createState(iri.getIri());
     }
 
     /**
