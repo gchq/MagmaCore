@@ -420,7 +420,7 @@ public class MagmaCoreService {
      * @throws RuntimeException If no or multiple results were found.
      */
     public <T extends Thing> T findByEntityName(final String entityName) {
-        final List<Thing> searchResult = database.findByPredicateIriAndStringValue(HQDM.ENTITY_NAME, entityName);
+        final List<Thing> searchResult = findByPredicateIriAndValue(HQDM.ENTITY_NAME, entityName);
 
         if (searchResult.size() == 1) {
             return (T) searchResult.get(0);
@@ -429,6 +429,31 @@ public class MagmaCoreService {
         } else {
             throw new RuntimeException("Multiple entities found with name: " + entityName);
         }
+    }
+
+    /**
+     * Find objects by a predicate.
+     *
+     * @param <T>       HQDM entity type.
+     * @param predicate the predicate {@link IRI}
+     * @return a List of {@link Thing} that were found.
+     */
+    public <T extends Thing> List<T> findByPredicateIriOnly(final IRI predicate) {
+        final List<T> searchResult = (List<T>) database.findByPredicateIriOnly(predicate);
+        return searchResult;
+    }
+
+    /**
+     * Find objects by a predicate value.
+     *
+     * @param <T>       HQDM entity type.
+     * @param predicate the predicate {@link IRI}
+     * @param value     The value of the predicate.
+     * @return a List of {@link Thing} that were found.
+     */
+    public <T extends Thing> List<T> findByPredicateIriAndValue(final IRI predicate, final Object value) {
+        final List<T> searchResult = (List<T>) database.findByPredicateIriAndValue(predicate, value);
+        return searchResult;
     }
 
     /**
