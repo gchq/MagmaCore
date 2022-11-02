@@ -51,7 +51,6 @@ import uk.gov.gchq.magmacore.database.query.QueryResult;
 import uk.gov.gchq.magmacore.database.query.QueryResultList;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.HqdmObjectFactory;
-import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.magmacore.hqdm.rdf.util.Pair;
@@ -270,7 +269,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
-    public List<Thing> findByPredicateIriOnly(final HqdmIri predicateIri) {
+    public List<Thing> findByPredicateIriOnly(final IRI predicateIri) {
         final String query = "SELECT ?s ?p ?o WHERE {{select ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
                 + predicateIri.toString() + "> ?o.}}}";
         final QueryResultList list = executeQuery(query);
@@ -281,7 +280,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
-    public List<Thing> findByPredicateIriAndStringValue(final IRI predicateIri, final String value) {
+    public List<Thing> findByPredicateIriAndValue(final IRI predicateIri, final Object value) {
         final String query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString() + "> \"\"\"" + value
                 + "\"\"\".}";
         final QueryResultList list = executeQuery(query);
