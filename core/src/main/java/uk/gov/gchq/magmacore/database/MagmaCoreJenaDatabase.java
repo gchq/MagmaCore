@@ -58,8 +58,8 @@ import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
 
 /**
- * Apache Jena triplestore to store HQDM objects as RDF triples either as an in-memory Jena dataset
- * or persistent TDB triplestore.
+ * Apache Jena triplestore to store HQDM objects as RDF triples either as an
+ * in-memory Jena dataset or persistent TDB triplestore.
  */
 public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
 
@@ -100,8 +100,8 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     }
 
     /**
-     * Register a new prefix/namespace mapping which will be used to shorten the print strings for
-     * resources in known namespaces.
+     * Register a new prefix/namespace mapping which will be used to shorten the
+     * print strings for resources in known namespaces.
      *
      * @param base {@link IriBase} to register.
      */
@@ -281,8 +281,15 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      */
     @Override
     public List<Thing> findByPredicateIriAndValue(final IRI predicateIri, final Object value) {
-        final String query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString() + "> \"\"\"" + value
-                + "\"\"\".}";
+        final String query;
+
+        if (value instanceof IRI) {
+            query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString() + "> <" + value
+                    + ">.}";
+        } else {
+            query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString() + "> \"\"\"" + value
+                    + "\"\"\".}";
+        }
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -339,7 +346,8 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     }
 
     /**
-     * Execute a SPARQL query and construct a list of HQDM objects from the resulting RDF triples.
+     * Execute a SPARQL query and construct a list of HQDM objects from the
+     * resulting RDF triples.
      *
      * @param queryExec SPARQL query to execute.
      * @return Results of the query.

@@ -439,8 +439,7 @@ public class MagmaCoreService {
      * @return a List of {@link Thing} that were found.
      */
     public <T extends Thing> List<T> findByPredicateIriOnly(final IRI predicate) {
-        final List<T> searchResult = (List<T>) database.findByPredicateIriOnly(predicate);
-        return searchResult;
+        return (List<T>) database.findByPredicateIriOnly(predicate);
     }
 
     /**
@@ -452,8 +451,7 @@ public class MagmaCoreService {
      * @return a List of {@link Thing} that were found.
      */
     public <T extends Thing> List<T> findByPredicateIriAndValue(final IRI predicate, final Object value) {
-        final List<T> searchResult = (List<T>) database.findByPredicateIriAndValue(predicate, value);
-        return searchResult;
+        return (List<T>) database.findByPredicateIriAndValue(predicate, value);
     }
 
     /**

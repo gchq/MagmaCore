@@ -35,6 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.StateOfPerson;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -72,9 +73,11 @@ public class MagmaCoreServiceTest {
     }
 
     /**
-     * Test that findBySignValue can be used to find the right Things represented by a sign value for
+     * Test that findBySignValue can be used to find the right Things represented by
+     * a sign value for
      * the given {@link uk.gov.gchq.magmacore.hqdm.model.Pattern} and
-     * {@link uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity} at the given
+     * {@link uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity} at the
+     * given
      * {@link uk.gov.gchq.magmacore.hqdm.model.PointInTime}.
      */
     @Test
@@ -150,7 +153,8 @@ public class MagmaCoreServiceTest {
     }
 
     /**
-     * Check that we get an empty result if the pointInTime does not have an ENTITY_NAME.
+     * Check that we get an empty result if the pointInTime does not have an
+     * ENTITY_NAME.
      */
     @Test
     public void testFindBySignWithBadPointInTime() throws MagmaCoreException {
@@ -174,4 +178,60 @@ public class MagmaCoreServiceTest {
         assertNotNull(found);
         assertTrue(found.isEmpty());
     }
+
+    /**
+     * Test that entities can be found by predicate only or predicate and value.
+     */
+    @Test
+    public void testFindByPredicateOnly() {
+        final MagmaCoreService svc = MagmaCoreServiceFactory.createWithJenaDatabase();
+
+        final IRI individual1Iri = new IRI(SignPatternTestData.TEST_BASE, "individual1");
+        final IRI individual2Iri = new IRI(SignPatternTestData.TEST_BASE, "individual2");
+        final Individual individual1 = SpatioTemporalExtentServices.createIndividual(individual1Iri.getIri());
+        final Individual individual2 = SpatioTemporalExtentServices.createIndividual(individual2Iri.getIri());
+
+        individual1.addValue(HQDM.MEMBER_OF, "classOfIndividual");
+        individual2.addValue(HQDM.MEMBER_OF_KIND, "kindOfIndividual");
+        individual1.addValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
+        individual2.addValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
+
+        // Create two objects.
+        svc.runInTransaction(mc -> {
+            mc.create(individual1);
+            mc.create(individual2);
+            return mc;
+        });
+
+        // Find individual2 since it's the only one with MEMBER_OF_KIND
+        svc.runInTransaction(mc -> {
+            final List<Thing> result = mc.findByPredicateIriOnly(HQDM.MEMBER_OF_KIND);
+
+            assertEquals(1, result.size());
+            assertTrue(result.contains(individual2));
+            return mc;
+        });
+
+        // Find both individuals by RDF_TYPE IRI object.
+        svc.runInTransaction(mc -> {
+            final List<Thing> result = mc.findByPredicateIriAndValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
+
+            assertEquals(2, result.size());
+            assertTrue(result.contains(individual1));
+            assertTrue(result.contains(individual2));
+
+            return mc;
+        });
+
+        // Find individual1 by a String value
+        svc.runInTransaction(mc -> {
+            final List<Thing> result = mc.findByPredicateIriAndValue(HQDM.MEMBER_OF, "classOfIndividual");
+
+            assertEquals(1, result.size());
+            assertTrue(result.contains(individual1));
+
+            return mc;
+        });
+    }
+
 }
