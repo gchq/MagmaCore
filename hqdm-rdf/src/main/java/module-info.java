@@ -22,4 +22,5 @@ module uk.gov.gchq.magmacore.hqdm.rdf {
     exports uk.gov.gchq.magmacore.hqdm.rdf.iri;
     exports uk.gov.gchq.magmacore.hqdm.rdf.util;
     exports uk.gov.gchq.magmacore.hqdm.rdf;
+    exports uk.gov.gchq.magmacore.hqdm.rdfservices;
 }
