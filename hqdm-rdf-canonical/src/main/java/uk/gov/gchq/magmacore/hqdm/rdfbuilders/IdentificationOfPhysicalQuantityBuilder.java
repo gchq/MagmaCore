@@ -58,8 +58,8 @@ public class IdentificationOfPhysicalQuantityBuilder {
 
     /**
      * A relationship type where a {@link RecognizingLanguageCommunity} is a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PARTICIPANT_IN} each
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#MEMBER_OF} one or more
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PARTICIPANT_IN} each
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
      * {@link uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern}.
      *
      * @param recognizingLanguageCommunity The RecognizingLanguageCommunity.
@@ -73,7 +73,7 @@ public class IdentificationOfPhysicalQuantityBuilder {
     }
 
     /**
-     * A relationship type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#MEMBER_OF} an
+     * A relationship type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} an
      * {@link IdentificationOfPhysicalQuantity} represents exactly one {@link PhysicalQuantity}.
      *
      * @param physicalQuantity The PhysicalQuantity.

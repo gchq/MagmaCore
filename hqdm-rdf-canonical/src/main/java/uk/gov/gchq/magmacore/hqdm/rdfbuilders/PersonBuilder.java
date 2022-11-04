@@ -73,7 +73,7 @@ public class PersonBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PART_OF} relationship type where a
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
      * {@link SpatioTemporalExtent} has exactly one {@link Event} that is its beginning.
      *
      * @param event The Event.
@@ -88,7 +88,7 @@ public class PersonBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
@@ -100,7 +100,7 @@ public class PersonBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PART_OF} relationship type where a
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
      * {@link SpatioTemporalExtent} has exactly one {@link Event} that is its ending.
      *
      * @param event The Event.
@@ -124,8 +124,8 @@ public class PersonBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#MEMBER_OF} relationship type where a
-     * {@link Person} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#MEMBER_OF} one or more
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where a
+     * {@link Person} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
      * {@link ClassOfPerson}.
      *
      * @param classOfPerson The ClassOfPerson.
@@ -137,8 +137,8 @@ public class PersonBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#MEMBER_OF_KIND} relationship type where a
-     * {@link Person} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#MEMBER_OF} one or more
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF_KIND} relationship type where a
+     * {@link Person} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
      * {@link KindOfPerson}.
      *
      * @param kindOfPerson The KindOfPerson.
@@ -150,13 +150,13 @@ public class PersonBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#MEMBER_OF} relationship type where a
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where a
      * {@link uk.gov.gchq.magmacore.hqdm.model.BiologicalSystem} has a natural {@link Role} that it
      * plays.
      *
      * <p>
      * Example: My circulatory system has the
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#NATURAL_ROLE} of circulating blood around the
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#NATURAL_ROLE} of circulating blood around the
      * body.
      * </p>
      *
@@ -169,7 +169,7 @@ public class PersonBuilder {
     }
 
     /**
-     * An {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#AGGREGATED_INTO} relationship type where a
+     * An {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#AGGREGATED_INTO} relationship type where a
      * {@link SpatioTemporalExtent} may be part of another and the whole has emergent properties and is
      * more than just the sum of its parts.
      *
@@ -182,13 +182,13 @@ public class PersonBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PART_OF}
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
      * one or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PART_OF} any other
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
      * {@link SpatioTemporalExtent}.
      * </p>
      *
@@ -201,7 +201,7 @@ public class PersonBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PART_OF} relationship type where a
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
      * {@link SpatioTemporalExtent} may be a temporal part of one or more other
      * {@link SpatioTemporalExtent}.
      *
@@ -214,9 +214,9 @@ public class PersonBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#TEMPORAL_PART_OF} relationship type where a
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} relationship type where a
      * {@link uk.gov.gchq.magmacore.hqdm.model.StateOfOrdinaryBiologicalObject} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#TEMPORAL_PART_OF} one or more
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more
      * {@link OrdinaryBiologicalObject}.
      *
      * @param ordinaryBiologicalObject The OrdinaryBiologicalObject.

@@ -43,11 +43,11 @@ public class IdentificationBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#CONSISTS_OF_BY_CLASS} relationship type
-     * where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#MEMBER_OF} the
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_BY_CLASS} relationship type
+     * where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} the
      * {@link uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern} has a
      * {@link uk.gov.gchq.magmacore.hqdm.model.Sign} that is a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#MEMBER_OF} the {@link Pattern}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} the {@link Pattern}.
      *
      * @param pattern The Pattern.
      * @return This builder.
@@ -59,8 +59,8 @@ public class IdentificationBuilder {
 
     /**
      * A relationship type where a {@link RecognizingLanguageCommunity} is a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PARTICIPANT_IN} each
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#MEMBER_OF} one or more
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PARTICIPANT_IN} each
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
      * {@link uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern}.
      *
      * @param recognizingLanguageCommunity The RecognizingLanguageCommunity.
@@ -75,7 +75,7 @@ public class IdentificationBuilder {
 
     /**
      * A relationship type where the thing is represented by each
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#MEMBER_OF} the
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} the
      * {@link uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern}.
      *
      * @param thing The Thing.
