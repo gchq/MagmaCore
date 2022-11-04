@@ -62,7 +62,7 @@ public class SpatioTemporalExtentBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PART_OF} relationship type where a
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
      * {@link SpatioTemporalExtent} has exactly one {@link Event} that is its beginning.
      *
      * @param event The Event.
@@ -85,7 +85,7 @@ public class SpatioTemporalExtentBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PART_OF} relationship type where a
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
      * {@link SpatioTemporalExtent} has exactly one {@link Event} that is its ending.
      *
      * @param event The Event.
@@ -109,8 +109,8 @@ public class SpatioTemporalExtentBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#MEMBER_OF} relationship type where a
-     * {@link SpatioTemporalExtent} is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#MEMBER_OF} a
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where a
+     * {@link SpatioTemporalExtent} is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
@@ -123,7 +123,7 @@ public class SpatioTemporalExtentBuilder {
     }
 
     /**
-     * An {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#AGGREGATED_INTO}relationship type where a
+     * An {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#AGGREGATED_INTO}relationship type where a
      * {@link SpatioTemporalExtent} may be part of another and the whole has emergent properties and is
      * more than just the sum of its parts.
      *
@@ -136,8 +136,8 @@ public class SpatioTemporalExtentBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PART_OF}
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
      * one or more {@link PossibleWorld}.
      *
      * @param possibleWorld The PossibleWorld.
@@ -149,7 +149,7 @@ public class SpatioTemporalExtentBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI.HQDM#PART_OF} relationship type where a
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
      * {@link SpatioTemporalExtent} may be a temporal part of one or more other
      * {@link SpatioTemporalExtent}.
      *
