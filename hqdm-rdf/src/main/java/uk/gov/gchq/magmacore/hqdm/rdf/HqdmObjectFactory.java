@@ -579,6 +579,8 @@ public final class HqdmObjectFactory {
                 return SpatioTemporalExtentServices.createEmployment(iri.getIri());
             case "ending_of_ownership":
                 return SpatioTemporalExtentServices.createEndingOfOwnership(iri.getIri());
+            case "enumerated_class":
+                return ClassServices.createEnumeratedClass(iri.getIri());
             case "event":
                 return SpatioTemporalExtentServices.createEvent(iri.getIri());
             case "exchange_of_goods_and_money":
@@ -827,7 +829,6 @@ public final class HqdmObjectFactory {
                 return SpatioTemporalExtentServices.createTransferor(iri.getIri());
             case "unit_of_measure":
                 return RelationshipServices.createUnitOfMeasure(iri.getIri());
-            case "enumerated_class":
             case "participant_in_activity_or_association":
             default:
                 throw new HqdmException("Unknown type name: " + typeName);
