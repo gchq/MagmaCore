@@ -89,8 +89,7 @@ public class HqdmObjectFactoryTest {
 
     /**
      * Test successfully creating an object with a list of predicates and multiple
-     * HQDM interfaces as
-     * rdf:type.
+     * HQDM interfaces as rdf:type.
      */
     @Test
     public void testCreateObjectWithMultipleInterfacesSuccess() {
