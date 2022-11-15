@@ -42,7 +42,6 @@ import uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
-import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.service.dto.ParticipantDetails;
 import uk.gov.gchq.magmacore.service.dto.SignPatternDto;
@@ -388,7 +387,7 @@ public class MagmaCoreService {
      * @return A {@link List} of {@link Thing}.
      */
     public List<? extends Thing> findByFieldValueAndClass(
-            final HqdmIri fieldIri,
+            final IRI fieldIri,
             final Object fieldValue,
             final IRI classIri) {
 
