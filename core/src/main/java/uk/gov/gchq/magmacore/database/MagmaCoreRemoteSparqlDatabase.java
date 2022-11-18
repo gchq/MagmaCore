@@ -263,8 +263,15 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      */
     @Override
     public List<Thing> findByPredicateIriAndValue(final IRI predicateIri, final Object value) {
-        final String query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString() + "> \"\"\"" + value
-                + "\"\"\".}";
+        final String query;
+
+        if (value instanceof IRI) {
+            query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString() + "> <" + value
+                    + ">.}";
+        } else {
+            query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString() + "> \"\"\"" + value
+                    + "\"\"\".}";
+        }
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
