@@ -22,7 +22,6 @@ import org.apache.jena.riot.Lang;
 
 import uk.gov.gchq.magmacore.database.query.QueryResultList;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
-import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
@@ -112,16 +111,16 @@ public interface MagmaCoreDatabase {
      * @param predicateIri IRI of the HQDM relationship type being queried.
      * @return The {@link Thing}(s) found.
      */
-    List<Thing> findByPredicateIriOnly(HqdmIri predicateIri);
+    List<Thing> findByPredicateIriOnly(IRI predicateIri);
 
     /**
-     * Find object(s) that have a specific case-sensitive string-value attribute associated with them.
+     * Find object(s) that have a specific value attribute associated with them.
      *
      * @param predicateIri IRI of the predicate being queried.
-     * @param value        Case-sensitive string to match.
+     * @param value        Object to match.
      * @return The {@link Thing}(s) found.
      */
-    List<Thing> findByPredicateIriAndStringValue(IRI predicateIri, String value);
+    List<Thing> findByPredicateIriAndValue(IRI predicateIri, Object value);
 
     /**
      * Find object(s) that have a specific string-value attribute associated with them.

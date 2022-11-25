@@ -42,7 +42,6 @@ import uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
-import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.service.dto.ParticipantDetails;
 import uk.gov.gchq.magmacore.service.dto.SignPatternDto;
@@ -388,7 +387,7 @@ public class MagmaCoreService {
      * @return A {@link List} of {@link Thing}.
      */
     public List<? extends Thing> findByFieldValueAndClass(
-            final HqdmIri fieldIri,
+            final IRI fieldIri,
             final Object fieldValue,
             final IRI classIri) {
 
@@ -420,7 +419,7 @@ public class MagmaCoreService {
      * @throws RuntimeException If no or multiple results were found.
      */
     public <T extends Thing> T findByEntityName(final String entityName) {
-        final List<Thing> searchResult = database.findByPredicateIriAndStringValue(HQDM.ENTITY_NAME, entityName);
+        final List<Thing> searchResult = findByPredicateIriAndValue(HQDM.ENTITY_NAME, entityName);
 
         if (searchResult.size() == 1) {
             return (T) searchResult.get(0);
@@ -429,6 +428,29 @@ public class MagmaCoreService {
         } else {
             throw new RuntimeException("Multiple entities found with name: " + entityName);
         }
+    }
+
+    /**
+     * Find objects by a predicate.
+     *
+     * @param <T>       HQDM entity type.
+     * @param predicate the predicate {@link IRI}
+     * @return a List of {@link Thing} that were found.
+     */
+    public <T extends Thing> List<T> findByPredicateIriOnly(final IRI predicate) {
+        return (List<T>) database.findByPredicateIriOnly(predicate);
+    }
+
+    /**
+     * Find objects by a predicate value.
+     *
+     * @param <T>       HQDM entity type.
+     * @param predicate the predicate {@link IRI}
+     * @param value     The value of the predicate.
+     * @return a List of {@link Thing} that were found.
+     */
+    public <T extends Thing> List<T> findByPredicateIriAndValue(final IRI predicate, final Object value) {
+        return (List<T>) database.findByPredicateIriAndValue(predicate, value);
     }
 
     /**

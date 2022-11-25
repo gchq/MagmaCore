@@ -51,7 +51,6 @@ import uk.gov.gchq.magmacore.database.query.QueryResult;
 import uk.gov.gchq.magmacore.database.query.QueryResultList;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.HqdmObjectFactory;
-import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.magmacore.hqdm.rdf.util.Pair;
@@ -59,8 +58,8 @@ import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
 
 /**
- * Apache Jena triplestore to store HQDM objects as RDF triples either as an in-memory Jena dataset
- * or persistent TDB triplestore.
+ * Apache Jena triplestore to store HQDM objects as RDF triples either as an
+ * in-memory Jena dataset or persistent TDB triplestore.
  */
 public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
 
@@ -101,8 +100,8 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     }
 
     /**
-     * Register a new prefix/namespace mapping which will be used to shorten the print strings for
-     * resources in known namespaces.
+     * Register a new prefix/namespace mapping which will be used to shorten the
+     * print strings for resources in known namespaces.
      *
      * @param base {@link IriBase} to register.
      */
@@ -270,7 +269,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
-    public List<Thing> findByPredicateIriOnly(final HqdmIri predicateIri) {
+    public List<Thing> findByPredicateIriOnly(final IRI predicateIri) {
         final String query = "SELECT ?s ?p ?o WHERE {{select ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
                 + predicateIri.toString() + "> ?o.}}}";
         final QueryResultList list = executeQuery(query);
@@ -281,9 +280,16 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
-    public List<Thing> findByPredicateIriAndStringValue(final IRI predicateIri, final String value) {
-        final String query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString() + "> \"\"\"" + value
-                + "\"\"\".}";
+    public List<Thing> findByPredicateIriAndValue(final IRI predicateIri, final Object value) {
+        final String query;
+
+        if (value instanceof IRI) {
+            query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString() + "> <" + value
+                    + ">.}";
+        } else {
+            query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString() + "> \"\"\"" + value
+                    + "\"\"\".}";
+        }
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -340,7 +346,8 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     }
 
     /**
-     * Execute a SPARQL query and construct a list of HQDM objects from the resulting RDF triples.
+     * Execute a SPARQL query and construct a list of HQDM objects from the
+     * resulting RDF triples.
      *
      * @param queryExec SPARQL query to execute.
      * @return Results of the query.

@@ -88,8 +88,8 @@ public class HqdmObjectFactoryTest {
     }
 
     /**
-     * Test successfully creating an object with a list of predicates and multiple HQDM interfaces as
-     * rdf:type.
+     * Test successfully creating an object with a list of predicates and multiple
+     * HQDM interfaces as rdf:type.
      */
     @Test
     public void testCreateObjectWithMultipleInterfacesSuccess() {
@@ -107,5 +107,16 @@ public class HqdmObjectFactoryTest {
         assertTrue(person instanceof Participant);
         assertEquals(Set.of(personId), person.value(HQDM.ENTITY_NAME));
         assertEquals(personIri.getIri(), person.getId());
+    }
+
+    /**
+     * Test creating the enumerated_class entity type.
+     */
+    @Test
+    public void testCreatEnumeratedClass() {
+        final var id = "enum_class";
+        final var iri = new IRI(HQDM.HQDM, id);
+        final var clss = HqdmObjectFactory.create(HQDM.ENUMERATED_CLASS, iri);
+        assertEquals(iri.getIri(), clss.getId());
     }
 }
