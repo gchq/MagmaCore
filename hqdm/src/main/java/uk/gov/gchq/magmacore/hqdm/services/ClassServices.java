@@ -799,6 +799,26 @@ public class ClassServices {
     }
 
     /**
+     * Create a {@link Definition} with an String.
+     *
+     * @param id ID of the Definition.
+     * @return A Definition instance.
+     */
+    public static Definition createDefinition(final String id) {
+        return new DefinitionImpl(id);
+    }
+
+    /**
+     * Create a {@link Description} with an String.
+     *
+     * @param id ID of the Description.
+     * @return A Description instance.
+     */
+    public static Description createDescription(final String id) {
+        return new DescriptionImpl(id);
+    }
+
+    /**
      * Create a {@link EnumeratedClass} with an String.
      *
      * @param id ID of the EnumeratedClass.
@@ -1066,6 +1086,36 @@ public class ClassServices {
      */
     public static KindOfSystemComponent createKindOfSystemComponent(final String id) {
         return new KindOfSystemComponentImpl(id);
+    }
+
+    /**
+     * Create a {@link Identification} with an String.
+     *
+     * @param id ID of the Identification.
+     * @return A Identification instance.
+     */
+    public static Identification createIdentification(final String id) {
+        return new IdentificationImpl(id);
+    }
+
+    /**
+     * Create a {@link Pattern} with an String.
+     *
+     * @param id ID of the Pattern.
+     * @return A Pattern instance.
+     */
+    public static Pattern createPattern(final String id) {
+        return new PatternImpl(id);
+    }
+
+    /**
+     * Create a {@link RepresentationByPattern} with an String.
+     *
+     * @param id ID of the RepresentationByPattern.
+     * @return A RepresentationByPattern instance.
+     */
+    public static RepresentationByPattern createRepresentationByPattern(final String id) {
+        return new RepresentationByPatternImpl(id);
     }
 
     /**

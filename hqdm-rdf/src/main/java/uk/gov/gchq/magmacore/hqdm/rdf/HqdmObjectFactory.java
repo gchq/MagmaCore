@@ -568,9 +568,9 @@ public final class HqdmObjectFactory {
             case "defined_relationship":
                 return RelationshipServices.createDefinedRelationship(iri.getIri());
             case "definition":
-                return SpatioTemporalExtentServices.createDefinition(iri.getIri());
+                return ClassServices.createDefinition(iri.getIri());
             case "description":
-                return SpatioTemporalExtentServices.createDescription(iri.getIri());
+                return ClassServices.createDescription(iri.getIri());
             case "employee":
                 return SpatioTemporalExtentServices.createEmployee(iri.getIri());
             case "employer":
@@ -594,7 +594,7 @@ public final class HqdmObjectFactory {
             case "functional_system_component":
                 return SpatioTemporalExtentServices.createFunctionalSystemComponent(iri.getIri());
             case "identification":
-                return SpatioTemporalExtentServices.createIdentification(iri.getIri());
+                return ClassServices.createIdentification(iri.getIri());
             case "identification_of_physical_quantity":
                 return SpatioTemporalExtentServices.createIdentificationOfPhysicalQuantity(iri.getIri());
             case "individual":
@@ -690,7 +690,7 @@ public final class HqdmObjectFactory {
             case "party":
                 return SpatioTemporalExtentServices.createParty(iri.getIri());
             case "pattern":
-                return SpatioTemporalExtentServices.createPattern(iri.getIri());
+                return ClassServices.createPattern(iri.getIri());
             case "period_of_time":
                 return SpatioTemporalExtentServices.createPeriodOfTime(iri.getIri());
             case "person":
@@ -728,7 +728,7 @@ public final class HqdmObjectFactory {
             case "relationship":
                 return RelationshipServices.createRelationship(iri.getIri());
             case "representation_by_pattern":
-                return SpatioTemporalExtentServices.createRepresentationByPattern(iri.getIri());
+                return ClassServices.createRepresentationByPattern(iri.getIri());
             case "representation_by_sign":
                 return SpatioTemporalExtentServices.createRepresentationBySign(iri.getIri());
             case "requirement":

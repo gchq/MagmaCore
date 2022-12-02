@@ -193,26 +193,6 @@ public class SpatioTemporalExtentServices {
     }
 
     /**
-     * Create a {@link Definition} with an String.
-     *
-     * @param id ID of the Definition.
-     * @return A Definition instance.
-     */
-    public static Definition createDefinition(final String id) {
-        return new DefinitionImpl(id);
-    }
-
-    /**
-     * Create a {@link Description} with an String.
-     *
-     * @param id ID of the Description.
-     * @return A Description instance.
-     */
-    public static Description createDescription(final String id) {
-        return new DescriptionImpl(id);
-    }
-
-    /**
      * Create a {@link Employee} with an String.
      *
      * @param id ID of the Employee.
@@ -300,16 +280,6 @@ public class SpatioTemporalExtentServices {
      */
     public static FunctionalSystemComponent createFunctionalSystemComponent(final String id) {
         return new FunctionalSystemComponentImpl(id);
-    }
-
-    /**
-     * Create a {@link Identification} with an String.
-     *
-     * @param id ID of the Identification.
-     * @return A Identification instance.
-     */
-    public static Identification createIdentification(final String id) {
-        return new IdentificationImpl(id);
     }
 
     /**
@@ -533,16 +503,6 @@ public class SpatioTemporalExtentServices {
     }
 
     /**
-     * Create a {@link Pattern} with an String.
-     *
-     * @param id ID of the Pattern.
-     * @return A Pattern instance.
-     */
-    public static Pattern createPattern(final String id) {
-        return new PatternImpl(id);
-    }
-
-    /**
      * Create a {@link PeriodOfTime} with an String.
      *
      * @param id ID of the PeriodOfTime.
@@ -710,16 +670,6 @@ public class SpatioTemporalExtentServices {
      */
     public static RecognizingLanguageCommunity createRecognizingLanguageCommunity(final String id) {
         return new RecognizingLanguageCommunityImpl(id);
-    }
-
-    /**
-     * Create a {@link RepresentationByPattern} with an String.
-     *
-     * @param id ID of the RepresentationByPattern.
-     * @return A RepresentationByPattern instance.
-     */
-    public static RepresentationByPattern createRepresentationByPattern(final String id) {
-        return new RepresentationByPatternImpl(id);
     }
 
     /**
