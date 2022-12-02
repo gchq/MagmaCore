@@ -31,6 +31,7 @@ import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -74,19 +75,19 @@ public class SignPatternTestData {
 
         // Create Patterns
         final IRI pattern1Iri = new IRI(TEST_BASE, "pattern1");
-        pattern1 = SpatioTemporalExtentServices.createPattern(pattern1Iri.getIri());
+        pattern1 = ClassServices.createPattern(pattern1Iri.getIri());
         pattern1.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
 
         final IRI pattern2Iri = new IRI(TEST_BASE, "pattern2");
-        pattern2 = SpatioTemporalExtentServices.createPattern(pattern2Iri.getIri());
+        pattern2 = ClassServices.createPattern(pattern2Iri.getIri());
         pattern2.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
 
         // Create RepresentationByPatterns
-        final RepresentationByPattern repByPattern1 = SpatioTemporalExtentServices
+        final RepresentationByPattern repByPattern1 = ClassServices
                 .createRepresentationByPattern(new IRI(TEST_BASE, "repByPattern1").getIri());
         repByPattern1.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_PATTERN);
 
-        final RepresentationByPattern repByPattern2 = SpatioTemporalExtentServices
+        final RepresentationByPattern repByPattern2 = ClassServices
                 .createRepresentationByPattern(new IRI(TEST_BASE, "repByPattern2").getIri());
         repByPattern2.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_PATTERN);
 
