@@ -286,6 +286,34 @@ public class MagmaCoreService {
     }
 
     /**
+     * Find the items associated to an item by an association of a specified kind that are valid at a PointInTime.
+     *
+     * @param item              IRI
+     * @param kindOfAssociation IRI
+     * @param pointInTime {@link PointInTime}
+     * @return {@link List} of {@link Thing}
+     */
+    public List<? extends Thing> findAssociated(final IRI item, final IRI kindOfAssociation, final PointInTime pointInTime) {
+
+        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
+        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+            return List.of();
+        }
+
+        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+
+        final QueryResultList queryResultList = database
+                .executeQuery(String.format(MagmaCoreServiceQueries.FIND_ASSOCIATED,
+                        kindOfAssociation, item, item,
+                        kindOfAssociation, item, item,
+                        kindOfAssociation, item, item));
+
+        final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
+        return database.toTopObjects(queryResults);
+
+    }
+
+    /**
      * A case-sensitive search for entities in a specified class with a sign containing the given text.
      *
      * @param text        The String to search for.
