@@ -347,6 +347,40 @@ public class MagmaCoreService {
 
     /**
      * A case-sensitive search for entities in a specified class with a sign containing the given text
+     * that are referenced by an activity.
+     *
+     * @param wholeIri    The object that the required entities are composed into.
+     * @param text        The String to search for.
+     * @param classIri    The IRI of the class that the entities should be a member_of.
+     * @param pointInTime When the entities should have the matching sign.
+     * @return A {@link List} of {@link Thing}.
+     */
+    public List<? extends Thing> findByPartialSignByActivityReferenceAndClassCaseSensitive(final IRI wholeIri,
+            final String text, final IRI classIri,
+            final PointInTime pointInTime) {
+
+        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
+        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+            return List.of();
+        }
+
+        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+
+        final QueryResultList queryResultList = database.executeQuery(String.format(
+                MagmaCoreServiceQueries.FIND_MEMBERS_OF_CLASS_BY_ACTIVITY_AND_PARTIAL_SIGN_CASE_SENSITIVE,
+                text, classIri, wholeIri,
+                text, classIri, wholeIri,
+                text, classIri, wholeIri));
+
+        // Filter by the pointInTime
+        final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
+
+        return database.toTopObjects(queryResults);
+
+    }
+
+    /**
+     * A case-sensitive search for entities in a specified class with a sign containing the given text
      * that are parts of a given whole.
      *
      * @param wholeIri    The object that the required entities are composed into.
