@@ -519,6 +519,105 @@ public class MagmaCoreServiceQueries {
             """;
 
     /**
+     * A partial search by sign for entities referenced by an Activity.
+     */
+    public static final String FIND_MEMBERS_OF_CLASS_BY_ACTIVITY_AND_PARTIAL_SIGN_CASE_SENSITIVE = """
+            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+            SELECT distinct ?s ?p ?o ?start ?finish
+            WHERE {
+            {
+                SELECT ?s ?p ?o ?start ?finish
+                WHERE {
+                    BIND("%s" as ?text)
+                    BIND(<%s> as ?class)
+                    BIND(<%s> as ?topicId)
+
+                    ?sign hqdm:value_ ?signvalue;
+                        hqdm:member_of_ ?pattern.
+                    FILTER(CONTAINS(str(?signvalue), ?text))
+                    ?sos hqdm:temporal_part_of ?sign;
+                        hqdm:participant_in ?repBySign.
+                    ?rlc hqdm:participant_in ?repBySign.
+                    ?repBySign hqdm:represents ?state.
+                    ?state hqdm:temporal_part_of ?s.
+                    ?s hqdm:member_of ?class.
+                    ?topicId hqdm:references ?s.
+                    ?s ?p ?o.
+                    OPTIONAL {
+                        ?repBySign hqdm:beginning ?begin.
+                        ?begin hqdm:data_EntityName ?start.
+                    }
+                    OPTIONAL {
+                        ?repBySign hqdm:ending ?end.
+                        ?end hqdm:data_EntityName ?finish.
+                    }
+                    }
+                }
+                UNION
+                {
+                SELECT ?s (hqdm:value_ as ?p) ?o ?start ?finish
+                WHERE {
+                    BIND("%s" as ?text)
+                    BIND(<%s> as ?class)
+                    BIND(<%s> as ?topicId)
+
+                    ?sign hqdm:value_ ?o;
+                        hqdm:member_of_ ?pattern.
+                    FILTER(CONTAINS(str(?o), ?text))
+                    ?sos hqdm:temporal_part_of ?sign;
+                        hqdm:participant_in ?repBySign.
+                    ?rlc hqdm:participant_in ?repBySign.
+                    ?repBySign hqdm:represents ?state.
+                    ?state hqdm:temporal_part_of ?s.
+                    ?s hqdm:member_of ?class.
+                    ?topicId hqdm:references ?s.
+                    OPTIONAL {
+                        ?repBySign hqdm:beginning ?begin.
+                        ?begin hqdm:data_EntityName ?start.
+                    }
+                    OPTIONAL {
+                        ?repBySign hqdm:ending ?end.
+                        ?end hqdm:data_EntityName ?finish.
+                    }
+                    }
+                }
+                UNION
+                {
+                SELECT ?s (hqdm:data_EntityName as ?p) ?o ?start ?finish
+                WHERE {
+                    BIND("%s" as ?text)
+                    BIND(<%s> as ?class)
+                    BIND(<%s> as ?topicId)
+
+                    ?sign hqdm:value_ ?signValue;
+                        hqdm:member_of_ ?pattern.
+                    FILTER(CONTAINS(str(?signValue), ?text))
+                    ?sos hqdm:temporal_part_of ?sign;
+                        hqdm:participant_in ?repBySign.
+                    ?rlc hqdm:participant_in ?repBySign.
+                    ?repBySign hqdm:represents ?state.
+                    ?state hqdm:temporal_part_of ?s.
+                    ?s hqdm:member_of ?class.
+                    ?topicId hqdm:references ?s.
+                    ?s hqdm:member_of_kind ?kind.
+                    ?kind hqdm:data_EntityName ?o.
+                    OPTIONAL {
+                        ?repBySign hqdm:beginning ?begin.
+                        ?begin hqdm:data_EntityName ?start.
+                    }
+                    OPTIONAL {
+                        ?repBySign hqdm:ending ?end.
+                        ?end hqdm:data_EntityName ?finish.
+                    }
+                    }
+                }
+            }
+            order by ?s ?p ?o
+            """;
+
+    /**
      * A partial search by sign for entities composed into a whole entity.
      */
     public static final String FIND_MEMBERS_OF_CLASS_BY_COMPOSITION_AND_PARTIAL_SIGN_CASE_SENSITIVE = """
