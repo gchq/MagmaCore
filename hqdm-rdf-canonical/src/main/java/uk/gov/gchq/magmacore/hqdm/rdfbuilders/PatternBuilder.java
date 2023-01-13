@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Pattern;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of Pattern.
@@ -43,7 +43,7 @@ public class PatternBuilder {
      * @param iri IRI of the Pattern.
      */
     public PatternBuilder(final IRI iri) {
-        pattern = RdfSpatioTemporalExtentServices.createPattern(iri.getIri());
+        pattern = RdfClassServices.createPattern(iri.getIri());
     }
 
     /**

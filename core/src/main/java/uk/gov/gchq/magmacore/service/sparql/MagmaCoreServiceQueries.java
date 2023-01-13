@@ -362,66 +362,92 @@ public class MagmaCoreServiceQueries {
             """;
 
     /**
-     * TODO: Comment.
+     * Find things associated to a given thing by an association of a given kind.
      */
     public static final String FIND_ASSOCIATED = """
             PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
 
-            select ?s ?p ?o
+
+            select ?s ?p ?o ?start ?finish
             where
             {
                 {
-                    select distinct ?s ?p ?o
-                        WHERE {
-                            BIND(<%s> as ?kind_of_association)
-                            ?from hqdm:temporal_part_of <%s>;
-                                hqdm:participant_in ?association.
-                            ?association hqdm:member_of_kind ?kind_of_association.
-                            ?participant hqdm:participant_in ?association;
-                                hqdm:temporal_part_of ?s.
-                            ?s ?p ?o.
-                            FILTER(?s != <%s>)
-                        }
-                }
-                UNION
-                {
-                    select distinct ?s ?p ?o
-                        WHERE {
-                            BIND(<%s> as ?kind_of_association)
-                            ?from hqdm:temporal_part_of <%s>;
-                                hqdm:participant_in ?association.
-                            ?association hqdm:member_of_kind ?kind_of_association.
-                            ?participant hqdm:participant_in ?association;
-                                hqdm:temporal_part_of ?s;
-                                hqdm:member_of_kind ?role.
-                            FILTER(?s != <%s>)
-                            ?role hqdm:data_EntityName ?o;
-                                ?p ?o.
-                        }
-                }
-                UNION
-                {
-                    select distinct ?s ?p ?o
-                        WHERE {
-                            BIND(<%s> as ?kind_of_association)
-                            ?from hqdm:temporal_part_of <%s>;
-                                hqdm:participant_in ?association.
-                            ?association hqdm:member_of_kind ?kind_of_association.
-                            ?participant hqdm:participant_in ?association;
-                                hqdm:temporal_part_of ?s.
-                            FILTER(?s != <%s>)
-                            ?state_of_individual hqdm:temporal_part_of ?s.
-                            ?repBySign hqdm:represents ?state_of_individual.
-                            ?repBySign a hqdm:representation_by_sign.
-                            ?state_of_sign hqdm:participant_in ?repBySign;
-                                a hqdm:state_of_sign;
-                                hqdm:temporal_part_of ?sign.
-                            ?sign hqdm:value_ ?o;
-                                ?p ?o.
-                        }
+                select distinct ?s ?p ?o ?start ?finish
+                WHERE {
+                    BIND(<%s> as ?kind_of_association)
+                    ?from hqdm:temporal_part_of <%s>;
+                        hqdm:participant_in ?association.
+                    ?association hqdm:member_of_kind ?kind_of_association.
+                    ?participant hqdm:participant_in ?association;
+                        hqdm:temporal_part_of ?s.
+                    ?s ?p ?o.
+                    FILTER(?s != <%s>)
+                    OPTIONAL {
+                        ?association hqdm:beginning ?begin.
+                        ?begin hqdm:data_EntityName ?start.
+                    }
+                    OPTIONAL {
+                        ?association hqdm:ending ?end.
+                        ?end hqdm:data_EntityName ?finish.
+                    }
                 }
             }
-            order by ?s ?p ?o
+            UNION
+            {
+                select distinct ?s ?p ?o ?start ?finish
+                WHERE {
+                    BIND(<%s> as ?kind_of_association)
+                    ?from hqdm:temporal_part_of <%s>;
+                        hqdm:participant_in ?association.
+                    ?association hqdm:member_of_kind ?kind_of_association.
+                    ?participant hqdm:participant_in ?association;
+                        hqdm:temporal_part_of ?s;
+                    hqdm:member_of_kind ?role.
+                    FILTER(?s != <%s>)
+                    OPTIONAL {
+                        ?association hqdm:beginning ?begin.
+                        ?begin hqdm:data_EntityName ?start.
+                    }
+                    OPTIONAL {
+                        ?association hqdm:ending ?end.
+                        ?end hqdm:data_EntityName ?finish.
+                    }
+                    ?role hqdm:data_EntityName ?o;
+                    ?p ?o.
+                }
+            }
+            UNION
+            {
+                select distinct ?s ?p ?o ?start ?finish
+                WHERE {
+                    BIND(<%s> as ?kind_of_association)
+                    ?from hqdm:temporal_part_of <%s>;
+                        hqdm:participant_in ?association.
+                    ?association hqdm:member_of_kind ?kind_of_association.
+                    ?participant hqdm:participant_in ?association;
+                        hqdm:temporal_part_of ?s.
+                    FILTER(?s != <%s>)
+                    ?state_of_individual hqdm:temporal_part_of ?s.
+                    ?repBySign hqdm:represents ?state_of_individual.
+                    ?repBySign a hqdm:representation_by_sign.
+                    ?state_of_sign hqdm:participant_in ?repBySign;
+                        a hqdm:state_of_sign;
+                    hqdm:temporal_part_of ?sign.
+                    OPTIONAL {
+                        ?association hqdm:beginning ?begin.
+                        ?begin hqdm:data_EntityName ?start.
+                    }
+                    OPTIONAL {
+                        ?association hqdm:ending ?end.
+                        ?end hqdm:data_EntityName ?finish.
+                    }
+                    ?sign hqdm:value_ ?o;
+                        ?p ?o.
+                }
+            }
+        }
+        order by ?s ?p ?o
+
             """;
 
     /**
