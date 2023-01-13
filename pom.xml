@@ -56,13 +56,11 @@
 
   <distributionManagement>
     <repository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>local-file-system</id>
-      <name>Local File System</name>
-      <url>file:releases</url>
-      <layout>default</layout>
+      <id>github</id>
+      <name>GitHub GCHQ Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/gchq/MagmaCore</url>
     </repository>
-  </distributionManagement>
+   </distributionManagement>
 
   <dependencyManagement>
     <dependencies>
