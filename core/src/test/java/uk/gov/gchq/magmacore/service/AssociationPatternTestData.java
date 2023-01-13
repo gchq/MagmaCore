@@ -261,12 +261,12 @@ public class AssociationPatternTestData {
 
         // Add signs to name the people, re-using person states for brevity.
         final IRI patternIri = new IRI(TEST_BASE, UID.uid());
-        final Pattern pattern = SpatioTemporalExtentServices.createPattern(patternIri.getIri());
+        final Pattern pattern = ClassServices.createPattern(patternIri.getIri());
         pattern.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
         pattern.addValue(HQDM.ENTITY_NAME, "pattern");
 
         final IRI repByPatternIri = new IRI(TEST_BASE, UID.uid());
-        final RepresentationByPattern repByPattern = SpatioTemporalExtentServices
+        final RepresentationByPattern repByPattern = ClassServices
                 .createRepresentationByPattern(repByPatternIri.getIri());
         repByPattern.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_PATTERN);
         repByPattern.addValue(HQDM.CONSISTS_OF_BY_CLASS, patternIri);

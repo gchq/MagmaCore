@@ -24,7 +24,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Definition;
 import uk.gov.gchq.magmacore.hqdm.model.Pattern;
 import uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
 
 /**
  * Builder for constructing instances of Definition.
@@ -39,7 +39,7 @@ public class DefinitionBuilder {
      * @param iri IRI of the Definition.
      */
     public DefinitionBuilder(final IRI iri) {
-        definition = RdfSpatioTemporalExtentServices.createDefinition(iri.getIri());
+        definition = RdfClassServices.createDefinition(iri.getIri());
     }
 
     /**

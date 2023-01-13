@@ -229,30 +229,6 @@ public class RdfSpatioTemporalExtentServices {
     }
 
     /**
-     * Create a {@link Definition} with an String.
-     *
-     * @param id ID of the Definition.
-     * @return A Definition instance.
-     */
-    public static Definition createDefinition(final String id) {
-        final Definition result = SpatioTemporalExtentServices.createDefinition(id);
-        result.addValue(RDFS.RDF_TYPE, HQDM.DEFINITION);
-        return result;
-    }
-
-    /**
-     * Create a {@link Description} with an String.
-     *
-     * @param id ID of the Description.
-     * @return A Description instance.
-     */
-    public static Description createDescription(final String id) {
-        final Description result = SpatioTemporalExtentServices.createDescription(id);
-        result.addValue(RDFS.RDF_TYPE, HQDM.DESCRIPTION);
-        return result;
-    }
-
-    /**
      * Create a {@link Employee} with an String.
      *
      * @param id ID of the Employee.
@@ -357,18 +333,6 @@ public class RdfSpatioTemporalExtentServices {
     public static FunctionalSystemComponent createFunctionalSystemComponent(final String id) {
         final FunctionalSystemComponent result = SpatioTemporalExtentServices.createFunctionalSystemComponent(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.FUNCTIONAL_SYSTEM_COMPONENT);
-        return result;
-    }
-
-    /**
-     * Create a {@link Identification} with an String.
-     *
-     * @param id ID of the Identification.
-     * @return A Identification instance.
-     */
-    public static Identification createIdentification(final String id) {
-        final Identification result = SpatioTemporalExtentServices.createIdentification(id);
-        result.addValue(RDFS.RDF_TYPE, HQDM.IDENTIFICATION);
         return result;
     }
 
@@ -641,18 +605,6 @@ public class RdfSpatioTemporalExtentServices {
     }
 
     /**
-     * Create a {@link Pattern} with an String.
-     *
-     * @param id ID of the Pattern.
-     * @return A Pattern instance.
-     */
-    public static Pattern createPattern(final String id) {
-        final Pattern result = SpatioTemporalExtentServices.createPattern(id);
-        result.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
-        return result;
-    }
-
-    /**
      * Create a {@link PeriodOfTime} with an String.
      *
      * @param id ID of the PeriodOfTime.
@@ -853,18 +805,6 @@ public class RdfSpatioTemporalExtentServices {
     public static RecognizingLanguageCommunity createRecognizingLanguageCommunity(final String id) {
         final RecognizingLanguageCommunity result = SpatioTemporalExtentServices.createRecognizingLanguageCommunity(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.RECOGNIZING_LANGUAGE_COMMUNITY);
-        return result;
-    }
-
-    /**
-     * Create a {@link RepresentationByPattern} with an String.
-     *
-     * @param id ID of the RepresentationByPattern.
-     * @return A RepresentationByPattern instance.
-     */
-    public static RepresentationByPattern createRepresentationByPattern(final String id) {
-        final RepresentationByPattern result = SpatioTemporalExtentServices.createRepresentationByPattern(id);
-        result.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_PATTERN);
         return result;
     }
 
