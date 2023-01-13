@@ -30,10 +30,10 @@ import uk.gov.gchq.magmacore.service.transformation.DbTransformation;
 public class DemoUtils {
 
     /** IriBase for Reference Data Library. */
-    public static final IriBase REF_BASE = new IriBase("rdl", "http://www.semanticweb.org/magma-core/rdl#");
+    public static final IriBase REF_BASE = new IriBase("rdl", "https://github.com/gchq/MagmaCore/rdl#");
 
     /** IriBase for User data. */
-    public static final IriBase USER_BASE = new IriBase("user", "http://www.semanticweb.org/magma-core/user#");
+    public static final IriBase USER_BASE = new IriBase("user", "https://github.com/gchq/MagmaCore/user#");
 
     /**
      * Populate a {@link MagmaCoreService} database.
