@@ -33,7 +33,7 @@ public class MagmaCoreServiceQueries {
      * </p>
      */
     public static final String FIND_BY_SIGN_VALUE_QUERY = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 
@@ -71,7 +71,7 @@ public class MagmaCoreServiceQueries {
      * </p>
      */
     public static final String FIND_PARTICIPANT_DETAILS_QUERY = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
@@ -146,7 +146,7 @@ public class MagmaCoreServiceQueries {
      * </p>
      */
     public static final String FIND_OBJECTS_BY_TYPE_CLASS_AND_SIGN_PATTERN = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
             select distinct *
@@ -231,7 +231,7 @@ public class MagmaCoreServiceQueries {
      * </p>
      */
     public static final String FIND_OBJECTS_BY_TYPE_AND_SIGN_PATTERN = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
             select distinct *
@@ -304,12 +304,11 @@ public class MagmaCoreServiceQueries {
      * Find Individuals with states participating in associations of a specified kind, their roles and
      * signs.
      * <p>
-     * The Kind IRI is needed in 3 places, e.g. String.format(FIND_BY_KIND_OF_ASSOCIATION, iri, iri,
-     * iri).
+     * The Kind IRI is needed in 3 places, e.g. {@code String.format(FIND_BY_KIND_OF_ASSOCIATION, iri, iri, iri)}.
      * </p>
      */
     public static final String FIND_BY_KIND_OF_ASSOCIATION = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             select ?s ?p ?o
             where
@@ -365,7 +364,7 @@ public class MagmaCoreServiceQueries {
      * Find things associated to a given thing by an association of a given kind.
      */
     public static final String FIND_ASSOCIATED = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
 
             select ?s ?p ?o ?start ?finish
@@ -454,7 +453,7 @@ public class MagmaCoreServiceQueries {
      * Search for items whose sign contains some text and are members of a specific class.
      */
     public static final String FIND_MEMBERS_OF_CLASS_BY_PARTIAL_SIGN_CASE_SENSITIVE = """
-                PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+                PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
                 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
                 SELECT distinct ?s ?p ?o ?start ?finish
@@ -647,7 +646,7 @@ public class MagmaCoreServiceQueries {
      * A partial search by sign for entities composed into a whole entity.
      */
     public static final String FIND_MEMBERS_OF_CLASS_BY_COMPOSITION_AND_PARTIAL_SIGN_CASE_SENSITIVE = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
             SELECT distinct ?s ?p ?o ?start ?finish
@@ -749,7 +748,7 @@ public class MagmaCoreServiceQueries {
      * Find the signs for an entity and the pattern and representation by pattern ENTITY_NAMES.
      */
     public static final String FIND_SIGNS_FOR_ENTITY = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
             SELECT distinct ?sign_value ?pattern_name ?rep_by_pattern_name ?start ?finish
@@ -787,7 +786,7 @@ public class MagmaCoreServiceQueries {
      * TODO: Comment.
      */
     public static final String FIND_BY_FIELD_VALUE_AND_CLASS = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
             SELECT ?s ?p ?o

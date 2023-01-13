@@ -23,7 +23,7 @@ public final class HQDM {
     }
 
     /** HQDM namespace. */
-    public static final IriBase HQDM = new IriBase("hqdm", "http://www.semanticweb.org/hqdm#");
+    public static final IriBase HQDM = new IriBase("hqdm", "https://hqdmtop.github.io/hqdm#");
 
     /** A human-interpretable name for a particular HQDM entity. */
     public static final HqdmIri ENTITY_NAME = new HqdmIri(HQDM, "data_EntityName");

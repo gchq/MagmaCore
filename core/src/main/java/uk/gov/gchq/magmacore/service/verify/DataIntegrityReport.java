@@ -12,7 +12,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Thing;
 public class DataIntegrityReport {
 
     private static final String CHECK_MISSING_DATA_ENTITY_NAME = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
             ?s hqdm:error_missing_entity_name "Should have a data_EntityName.".
@@ -141,7 +141,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_MISSING_PARTICIPANT_ROLES = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
             ?s hqdm:error_participant_with_no_role "Should be a member_of_kind of a role.".
@@ -163,7 +163,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_POSSIBLE_WORLD_MEMBERSHIP = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
             construct {
@@ -299,7 +299,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_STATE_TEMPORAL_PART_OF = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_temporal_part_of "Should be a temporal_part_of some individual.".
@@ -345,7 +345,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_SIGN_VALUE_ = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_value_ "Should have a value_ for a sign.".
@@ -363,7 +363,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_SIGN_MEMBER_OF_PATTERN = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_member_of_ "Should be a member_of_ of some pattern.".
@@ -381,7 +381,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_PATTERN_CONSISTS_OF_BY_CLASS = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_consists_of_by_class
@@ -399,7 +399,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_SIGN_CONSISTS_OF_COMMUNITY = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_consists_of_ "Should have a consists_of_ from Rep By Sign.".
@@ -416,7 +416,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_SIGN_CONSISTS_OF_SIGN = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_consists_of "Should have a consists_of from Rep By Sign.".
@@ -433,7 +433,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_PATTERN_CONSISTS_OF_IN_MEMBERS = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_consists_of_in_members "Should have a consists_of_in_members from Rep By Pattern.".
@@ -456,7 +456,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_SIGN_REPRESENTS = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_represents "Should have a represents from Rep By Sign.".
@@ -473,7 +473,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_STATE_OF_SIGN_PARTICIPANT_IN = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_sign_participant_in "Should have a participant_in to Rep By Sign.".
@@ -490,7 +490,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_SIGN_MEMBER_OF = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_member_of_ "Should have a member_of_ to Rep By Pattern.".
@@ -507,7 +507,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_SIGN_HAS_SIGN_PARTICIPANT = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_sign "Should have a state_of_sign as a participant_in this Rep By Sign.".
@@ -525,7 +525,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_SIGN_HAS_COMMUNITY_PARTICIPANT = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_community
@@ -544,7 +544,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_ROLE_PART_OF_BY_CLASS_ = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_part_of_by_class_ "Should have a part_of_by_class_ to a kind_of_association.".
@@ -562,7 +562,7 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_ASSOCIATION_MEMBER_OF_KIND = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
 
             construct {
               ?s hqdm:error_missing_kind_of_association "Should have a member_of_kind to a kind_of_association.".
