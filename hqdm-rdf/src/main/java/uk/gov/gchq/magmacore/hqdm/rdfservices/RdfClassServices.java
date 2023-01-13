@@ -969,6 +969,30 @@ public class RdfClassServices {
     }
 
     /**
+     * Create a {@link Definition} with an String.
+     *
+     * @param id ID of the Definition.
+     * @return A Definition instance.
+     */
+    public static Definition createDefinition(final String id) {
+        final Definition result = ClassServices.createDefinition(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.DEFINITION);
+        return result;
+    }
+
+    /**
+     * Create a {@link Description} with an String.
+     *
+     * @param id ID of the Description.
+     * @return A Description instance.
+     */
+    public static Description createDescription(final String id) {
+        final Description result = ClassServices.createDescription(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.DESCRIPTION);
+        return result;
+    }
+
+    /**
      * Create a {@link EnumeratedClass} with an String.
      *
      * @param id ID of the EnumeratedClass.
@@ -1291,6 +1315,42 @@ public class RdfClassServices {
     public static KindOfSystemComponent createKindOfSystemComponent(final String id) {
         final KindOfSystemComponent result = ClassServices.createKindOfSystemComponent(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_SYSTEM_COMPONENT);
+        return result;
+    }
+
+    /**
+     * Create a {@link Identification} with an String.
+     *
+     * @param id ID of the Identification.
+     * @return A Identification instance.
+     */
+    public static Identification createIdentification(final String id) {
+        final Identification result = ClassServices.createIdentification(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.IDENTIFICATION);
+        return result;
+    }
+
+    /**
+     * Create a {@link Pattern} with an String.
+     *
+     * @param id ID of the Pattern.
+     * @return A Pattern instance.
+     */
+    public static Pattern createPattern(final String id) {
+        final Pattern result = ClassServices.createPattern(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
+        return result;
+    }
+
+    /**
+     * Create a {@link RepresentationByPattern} with an String.
+     *
+     * @param id ID of the RepresentationByPattern.
+     * @return A RepresentationByPattern instance.
+     */
+    public static RepresentationByPattern createRepresentationByPattern(final String id) {
+        final RepresentationByPattern result = ClassServices.createRepresentationByPattern(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_PATTERN);
         return result;
     }
 
