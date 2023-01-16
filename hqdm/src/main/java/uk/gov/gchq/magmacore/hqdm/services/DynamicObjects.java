@@ -57,12 +57,7 @@ public class DynamicObjects {
      */
     public static <T extends Thing, U extends Thing> U implementInterfaces(final T thing,
             final java.lang.Class<U> returnType, final java.lang.Class<T>[] classes) {
-        try {
-            return (U) Proxy.newProxyInstance(ClassServices.class.getClassLoader(), classes, new ThingHandler(thing));
-
-        } catch (final Exception e) {
-            return null;
-        }
+        return (U) Proxy.newProxyInstance(ClassServices.class.getClassLoader(), classes, new ThingHandler(thing));
     }
 
     /**
