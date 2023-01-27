@@ -18,8 +18,10 @@ import static uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS.RDF_TYPE;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
@@ -65,7 +67,7 @@ public final class HqdmObjectFactory {
      */
     public static Thing create(final IRI iri, final List<Pair<Object, Object>> pairs) throws HqdmException {
         try {
-            final List<IRI> iris = new ArrayList<>();
+            final Set<IRI> iris = new HashSet<>();
             for (final Pair<Object, Object> pair : pairs.stream()
                     .filter(pair -> pair.getLeft().equals(RDF_TYPE))
                     .filter(pair -> pair.getRight().toString().startsWith(HQDM.HQDM.getNamespace()))
@@ -77,7 +79,7 @@ public final class HqdmObjectFactory {
                 final Thing result;
 
                 if (iris.size() == 1) {
-                    result = mapToThing(iris.get(0).getResource(), iri);
+                    result = mapToThing(iris.iterator().next().getResource(), iri);
                 } else {
                     result = DynamicObjects.create(iri.toString(), Thing.class, irisToClasses(iris));
                 }
@@ -104,7 +106,7 @@ public final class HqdmObjectFactory {
      * @param iris List of {@link IRI}.
      * @return Array of Class.
      */
-    private static <T extends Thing> java.lang.Class<T>[] irisToClasses(final List<IRI> iris) {
+    private static <T extends Thing> java.lang.Class<T>[] irisToClasses(final Set<IRI> iris) {
         final List<java.lang.Class<? extends Thing>> classes = new ArrayList<>(3);
 
         // It will be a small list so just iterate it.
