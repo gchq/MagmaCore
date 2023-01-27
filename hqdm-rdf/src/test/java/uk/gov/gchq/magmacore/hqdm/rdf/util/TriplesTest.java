@@ -31,10 +31,10 @@ import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 public class TriplesTest {
 
     private static final String EXPECTED1 = """
-            <http://www.semanticweb.org/hqdm#person1> <http://www.semanticweb.org/hqdm#member_of_kind> \"\"\"PERSON_KIND\"\"\"^^<http://www.w3.org/2001/XMLSchema#string>;
-            <http://www.semanticweb.org/hqdm#data_EntityName> <http://www.semanticweb.org/hqdm#person1>;
-            <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.semanticweb.org/hqdm#participant>;
-            <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.semanticweb.org/hqdm#person>.
+            <https://hqdmtop.github.io/hqdm#person1> <https://hqdmtop.github.io/hqdm#member_of_kind> \"\"\"PERSON_KIND\"\"\"^^<http://www.w3.org/2001/XMLSchema#string>;
+            <https://hqdmtop.github.io/hqdm#data_EntityName> <https://hqdmtop.github.io/hqdm#person1>;
+            <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://hqdmtop.github.io/hqdm#person>;
+            <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://hqdmtop.github.io/hqdm#participant>.
             """;
 
     /**
