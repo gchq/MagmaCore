@@ -547,7 +547,7 @@ public class MagmaCoreServiceQueries {
      * A partial search by sign for entities referenced by an Activity.
      */
     public static final String FIND_MEMBERS_OF_CLASS_BY_ACTIVITY_AND_PARTIAL_SIGN_CASE_SENSITIVE = """
-            PREFIX hqdm: <http://www.semanticweb.org/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
             SELECT distinct ?s ?p ?o ?start ?finish
