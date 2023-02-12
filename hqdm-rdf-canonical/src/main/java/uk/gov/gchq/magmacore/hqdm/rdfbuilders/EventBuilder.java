@@ -61,7 +61,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        event.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.event.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -73,7 +73,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder beginning(final Event event) {
-        event.addValue(BEGINNING, new IRI(event.getId()));
+        this.event.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -88,7 +88,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        event.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.event.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -100,7 +100,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder ending(final Event event) {
-        event.addValue(ENDING, new IRI(event.getId()));
+        this.event.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -112,7 +112,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder member__Of(final Class clazz) {
-        event.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.event.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -125,7 +125,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder member_Of(final ClassOfEvent classOfEvent) {
-        event.addValue(MEMBER_OF, new IRI(classOfEvent.getId()));
+        this.event.addValue(MEMBER_OF, new IRI(classOfEvent.getId()));
         return this;
     }
 
@@ -138,7 +138,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        event.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.event.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -157,7 +157,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        event.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.event.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -170,7 +170,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        event.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.event.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -181,35 +181,35 @@ public class EventBuilder {
      * @throws HqdmException If the Event is missing any mandatory properties.
      */
     public Event build() throws HqdmException {
-        if (event.hasValue(AGGREGATED_INTO)
-                && event.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.event.hasValue(AGGREGATED_INTO)
+                && this.event.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (event.hasValue(BEGINNING)
-                && event.value(BEGINNING).isEmpty()) {
+        if (this.event.hasValue(BEGINNING)
+                && this.event.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (event.hasValue(ENDING)
-                && event.value(ENDING).isEmpty()) {
+        if (this.event.hasValue(ENDING)
+                && this.event.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (event.hasValue(MEMBER__OF)
-                && event.value(MEMBER__OF).isEmpty()) {
+        if (this.event.hasValue(MEMBER__OF)
+                && this.event.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (event.hasValue(MEMBER_OF)
-                && event.value(MEMBER_OF).isEmpty()) {
+        if (this.event.hasValue(MEMBER_OF)
+                && this.event.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (event.hasValue(PART__OF)
-                && event.value(PART__OF).isEmpty()) {
+        if (this.event.hasValue(PART__OF)
+                && this.event.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!event.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.event.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (event.hasValue(TEMPORAL__PART_OF)
-                && event.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.event.hasValue(TEMPORAL__PART_OF)
+                && this.event.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         return event;

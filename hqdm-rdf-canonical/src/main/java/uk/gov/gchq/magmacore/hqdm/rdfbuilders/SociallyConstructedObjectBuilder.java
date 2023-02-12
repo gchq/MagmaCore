@@ -66,7 +66,7 @@ public class SociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final SociallyConstructedObjectBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        sociallyConstructedObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.sociallyConstructedObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -78,7 +78,7 @@ public class SociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final SociallyConstructedObjectBuilder beginning(final Event event) {
-        sociallyConstructedObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.sociallyConstructedObject.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -93,7 +93,7 @@ public class SociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final SociallyConstructedObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        sociallyConstructedObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.sociallyConstructedObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -105,7 +105,7 @@ public class SociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final SociallyConstructedObjectBuilder ending(final Event event) {
-        sociallyConstructedObject.addValue(ENDING, new IRI(event.getId()));
+        this.sociallyConstructedObject.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -117,7 +117,7 @@ public class SociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final SociallyConstructedObjectBuilder member__Of(final Class clazz) {
-        sociallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.sociallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -132,7 +132,7 @@ public class SociallyConstructedObjectBuilder {
      */
     public final SociallyConstructedObjectBuilder member_Of(
             final ClassOfSociallyConstructedObject classOfSociallyConstructedObject) {
-        sociallyConstructedObject.addValue(MEMBER_OF,
+        this.sociallyConstructedObject.addValue(MEMBER_OF,
                 new IRI(classOfSociallyConstructedObject.getId()));
         return this;
     }
@@ -148,7 +148,7 @@ public class SociallyConstructedObjectBuilder {
      */
     public final SociallyConstructedObjectBuilder member_Of_Kind(
             final KindOfSociallyConstructedObject kindOfSociallyConstructedObject) {
-        sociallyConstructedObject.addValue(MEMBER_OF_KIND,
+        this.sociallyConstructedObject.addValue(MEMBER_OF_KIND,
                 new IRI(kindOfSociallyConstructedObject.getId()));
         return this;
     }
@@ -162,7 +162,7 @@ public class SociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final SociallyConstructedObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        sociallyConstructedObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.sociallyConstructedObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -181,7 +181,7 @@ public class SociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final SociallyConstructedObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        sociallyConstructedObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.sociallyConstructedObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -194,7 +194,7 @@ public class SociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final SociallyConstructedObjectBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        sociallyConstructedObject.addValue(TEMPORAL__PART_OF,
+        this.sociallyConstructedObject.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -218,7 +218,7 @@ public class SociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final SociallyConstructedObjectBuilder temporal_Part_Of(final Individual individual) {
-        sociallyConstructedObject.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.sociallyConstructedObject.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -229,43 +229,43 @@ public class SociallyConstructedObjectBuilder {
      * @throws HqdmException If the SociallyConstructedObject is missing any mandatory properties.
      */
     public SociallyConstructedObject build() throws HqdmException {
-        if (sociallyConstructedObject.hasValue(AGGREGATED_INTO)
-                && sociallyConstructedObject.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.sociallyConstructedObject.hasValue(AGGREGATED_INTO)
+                && this.sociallyConstructedObject.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (sociallyConstructedObject.hasValue(BEGINNING)
-                && sociallyConstructedObject.value(BEGINNING).isEmpty()) {
+        if (this.sociallyConstructedObject.hasValue(BEGINNING)
+                && this.sociallyConstructedObject.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (sociallyConstructedObject.hasValue(ENDING)
-                && sociallyConstructedObject.value(ENDING).isEmpty()) {
+        if (this.sociallyConstructedObject.hasValue(ENDING)
+                && this.sociallyConstructedObject.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (sociallyConstructedObject.hasValue(MEMBER__OF)
-                && sociallyConstructedObject.value(MEMBER__OF).isEmpty()) {
+        if (this.sociallyConstructedObject.hasValue(MEMBER__OF)
+                && this.sociallyConstructedObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (sociallyConstructedObject.hasValue(MEMBER_OF)
-                && sociallyConstructedObject.value(MEMBER_OF).isEmpty()) {
+        if (this.sociallyConstructedObject.hasValue(MEMBER_OF)
+                && this.sociallyConstructedObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (sociallyConstructedObject.hasValue(MEMBER_OF_KIND)
-                && sociallyConstructedObject.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.sociallyConstructedObject.hasValue(MEMBER_OF_KIND)
+                && this.sociallyConstructedObject.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (sociallyConstructedObject.hasValue(PART__OF)
-                && sociallyConstructedObject.value(PART__OF).isEmpty()) {
+        if (this.sociallyConstructedObject.hasValue(PART__OF)
+                && this.sociallyConstructedObject.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!sociallyConstructedObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.sociallyConstructedObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (sociallyConstructedObject.hasValue(TEMPORAL__PART_OF)
-                && sociallyConstructedObject.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.sociallyConstructedObject.hasValue(TEMPORAL__PART_OF)
+                && this.sociallyConstructedObject.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (sociallyConstructedObject.hasValue(TEMPORAL_PART_OF)
-                && sociallyConstructedObject.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.sociallyConstructedObject.hasValue(TEMPORAL_PART_OF)
+                && this.sociallyConstructedObject.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return sociallyConstructedObject;

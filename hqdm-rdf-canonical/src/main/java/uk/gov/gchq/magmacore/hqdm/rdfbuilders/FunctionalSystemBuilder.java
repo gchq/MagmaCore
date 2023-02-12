@@ -68,7 +68,7 @@ public class FunctionalSystemBuilder {
      * @return This builder.
      */
     public final FunctionalSystemBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        functionalSystem.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.functionalSystem.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class FunctionalSystemBuilder {
      * @return This builder.
      */
     public final FunctionalSystemBuilder beginning(final Event event) {
-        functionalSystem.addValue(BEGINNING, new IRI(event.getId()));
+        this.functionalSystem.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -95,7 +95,7 @@ public class FunctionalSystemBuilder {
      * @return This builder.
      */
     public final FunctionalSystemBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        functionalSystem.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.functionalSystem.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -107,7 +107,7 @@ public class FunctionalSystemBuilder {
      * @return This builder.
      */
     public final FunctionalSystemBuilder ending(final Event event) {
-        functionalSystem.addValue(ENDING, new IRI(event.getId()));
+        this.functionalSystem.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class FunctionalSystemBuilder {
      * @return This builder.
      */
     public final FunctionalSystemBuilder intended_Role_M(final Role role) {
-        functionalSystem.addValue(INTENDED_ROLE, new IRI(role.getId()));
+        this.functionalSystem.addValue(INTENDED_ROLE, new IRI(role.getId()));
         return this;
     }
 
@@ -131,7 +131,7 @@ public class FunctionalSystemBuilder {
      * @return This builder.
      */
     public final FunctionalSystemBuilder member__Of(final Class clazz) {
-        functionalSystem.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.functionalSystem.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -144,7 +144,7 @@ public class FunctionalSystemBuilder {
      * @return This builder.
      */
     public final FunctionalSystemBuilder member_Of(final ClassOfFunctionalSystem classOfFunctionalSystem) {
-        functionalSystem.addValue(MEMBER_OF, new IRI(classOfFunctionalSystem.getId()));
+        this.functionalSystem.addValue(MEMBER_OF, new IRI(classOfFunctionalSystem.getId()));
         return this;
     }
 
@@ -157,7 +157,7 @@ public class FunctionalSystemBuilder {
      * @return This builder.
      */
     public final FunctionalSystemBuilder member_Of_Kind(final KindOfFunctionalSystem kindOfFunctionalSystem) {
-        functionalSystem.addValue(MEMBER_OF_KIND, new IRI(kindOfFunctionalSystem.getId()));
+        this.functionalSystem.addValue(MEMBER_OF_KIND, new IRI(kindOfFunctionalSystem.getId()));
         return this;
     }
 
@@ -170,7 +170,7 @@ public class FunctionalSystemBuilder {
      * @return This builder.
      */
     public final FunctionalSystemBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        functionalSystem.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.functionalSystem.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -189,7 +189,7 @@ public class FunctionalSystemBuilder {
      * @return This builder.
      */
     public final FunctionalSystemBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        functionalSystem.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.functionalSystem.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -202,7 +202,7 @@ public class FunctionalSystemBuilder {
      * @return This builder.
      */
     public final FunctionalSystemBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        functionalSystem.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.functionalSystem.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -215,7 +215,7 @@ public class FunctionalSystemBuilder {
      * @return This builder.
      */
     public final FunctionalSystemBuilder temporal_Part_Of(final System system) {
-        functionalSystem.addValue(TEMPORAL_PART_OF, new IRI(system.getId()));
+        this.functionalSystem.addValue(TEMPORAL_PART_OF, new IRI(system.getId()));
         return this;
     }
 
@@ -226,46 +226,46 @@ public class FunctionalSystemBuilder {
      * @throws HqdmException If the FunctionalSystem is missing any mandatory properties.
      */
     public FunctionalSystem build() throws HqdmException {
-        if (functionalSystem.hasValue(AGGREGATED_INTO)
-                && functionalSystem.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.functionalSystem.hasValue(AGGREGATED_INTO)
+                && this.functionalSystem.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (functionalSystem.hasValue(BEGINNING)
-                && functionalSystem.value(BEGINNING).isEmpty()) {
+        if (this.functionalSystem.hasValue(BEGINNING)
+                && this.functionalSystem.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (functionalSystem.hasValue(ENDING)
-                && functionalSystem.value(ENDING).isEmpty()) {
+        if (this.functionalSystem.hasValue(ENDING)
+                && this.functionalSystem.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (!functionalSystem.hasValue(INTENDED_ROLE)) {
+        if (!this.functionalSystem.hasValue(INTENDED_ROLE)) {
             throw new HqdmException("Property Not Set: intended_role");
         }
-        if (functionalSystem.hasValue(MEMBER__OF)
-                && functionalSystem.value(MEMBER__OF).isEmpty()) {
+        if (this.functionalSystem.hasValue(MEMBER__OF)
+                && this.functionalSystem.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (functionalSystem.hasValue(MEMBER_OF)
-                && functionalSystem.value(MEMBER_OF).isEmpty()) {
+        if (this.functionalSystem.hasValue(MEMBER_OF)
+                && this.functionalSystem.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (functionalSystem.hasValue(MEMBER_OF_KIND)
-                && functionalSystem.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.functionalSystem.hasValue(MEMBER_OF_KIND)
+                && this.functionalSystem.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (functionalSystem.hasValue(PART__OF)
-                && functionalSystem.value(PART__OF).isEmpty()) {
+        if (this.functionalSystem.hasValue(PART__OF)
+                && this.functionalSystem.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!functionalSystem.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.functionalSystem.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (functionalSystem.hasValue(TEMPORAL__PART_OF)
-                && functionalSystem.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.functionalSystem.hasValue(TEMPORAL__PART_OF)
+                && this.functionalSystem.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (functionalSystem.hasValue(TEMPORAL_PART_OF)
-                && functionalSystem.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.functionalSystem.hasValue(TEMPORAL_PART_OF)
+                && this.functionalSystem.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return functionalSystem;

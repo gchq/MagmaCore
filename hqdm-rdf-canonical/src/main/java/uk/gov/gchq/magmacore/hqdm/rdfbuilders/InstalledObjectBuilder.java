@@ -64,7 +64,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        installedObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.installedObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder beginning(final Event event) {
-        installedObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.installedObject.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        installedObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.installedObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -103,7 +103,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder ending(final Event event) {
-        installedObject.addValue(ENDING, new IRI(event.getId()));
+        this.installedObject.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder member__Of(final Class clazz) {
-        installedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.installedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -128,7 +128,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder member_Of(final ClassOfInstalledObject classOfInstalledObject) {
-        installedObject.addValue(MEMBER_OF, new IRI(classOfInstalledObject.getId()));
+        this.installedObject.addValue(MEMBER_OF, new IRI(classOfInstalledObject.getId()));
         return this;
     }
 
@@ -141,7 +141,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        installedObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.installedObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -160,7 +160,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        installedObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.installedObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -173,7 +173,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        installedObject.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.installedObject.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -187,7 +187,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder temporal_Part_Of(final OrdinaryPhysicalObject ordinaryPhysicalObject) {
-        installedObject.addValue(TEMPORAL_PART_OF, new IRI(ordinaryPhysicalObject.getId()));
+        this.installedObject.addValue(TEMPORAL_PART_OF, new IRI(ordinaryPhysicalObject.getId()));
         return this;
     }
 
@@ -198,39 +198,39 @@ public class InstalledObjectBuilder {
      * @throws HqdmException If the InstalledObject is missing any mandatory properties.
      */
     public InstalledObject build() throws HqdmException {
-        if (installedObject.hasValue(AGGREGATED_INTO)
-                && installedObject.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.installedObject.hasValue(AGGREGATED_INTO)
+                && this.installedObject.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (installedObject.hasValue(BEGINNING)
-                && installedObject.value(BEGINNING).isEmpty()) {
+        if (this.installedObject.hasValue(BEGINNING)
+                && this.installedObject.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (installedObject.hasValue(ENDING)
-                && installedObject.value(ENDING).isEmpty()) {
+        if (this.installedObject.hasValue(ENDING)
+                && this.installedObject.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (installedObject.hasValue(MEMBER__OF)
-                && installedObject.value(MEMBER__OF).isEmpty()) {
+        if (this.installedObject.hasValue(MEMBER__OF)
+                && this.installedObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (installedObject.hasValue(MEMBER_OF)
-                && installedObject.value(MEMBER_OF).isEmpty()) {
+        if (this.installedObject.hasValue(MEMBER_OF)
+                && this.installedObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (installedObject.hasValue(PART__OF)
-                && installedObject.value(PART__OF).isEmpty()) {
+        if (this.installedObject.hasValue(PART__OF)
+                && this.installedObject.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!installedObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.installedObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (installedObject.hasValue(TEMPORAL__PART_OF)
-                && installedObject.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.installedObject.hasValue(TEMPORAL__PART_OF)
+                && this.installedObject.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (installedObject.hasValue(TEMPORAL_PART_OF)
-                && installedObject.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.installedObject.hasValue(TEMPORAL_PART_OF)
+                && this.installedObject.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return installedObject;

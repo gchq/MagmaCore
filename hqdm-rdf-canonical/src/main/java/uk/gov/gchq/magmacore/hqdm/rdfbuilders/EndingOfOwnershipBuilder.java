@@ -47,7 +47,7 @@ public class EndingOfOwnershipBuilder {
      * @param iri IRI of the EndingOfOwnership.
      */
     public EndingOfOwnershipBuilder(final IRI iri) {
-        endingOfOwnership = RdfSpatioTemporalExtentServices.createEndingOfOwnership(iri.getIri());
+        this.endingOfOwnership = RdfSpatioTemporalExtentServices.createEndingOfOwnership(iri.getIri());
     }
 
     /**
@@ -62,7 +62,7 @@ public class EndingOfOwnershipBuilder {
      * @return This builder.
      */
     public final EndingOfOwnershipBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        endingOfOwnership.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.endingOfOwnership.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -74,7 +74,7 @@ public class EndingOfOwnershipBuilder {
      * @return This builder.
      */
     public final EndingOfOwnershipBuilder beginning(final Event event) {
-        endingOfOwnership.addValue(BEGINNING, new IRI(event.getId()));
+        this.endingOfOwnership.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -89,7 +89,7 @@ public class EndingOfOwnershipBuilder {
      * @return This builder.
      */
     public final EndingOfOwnershipBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        endingOfOwnership.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.endingOfOwnership.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -101,7 +101,7 @@ public class EndingOfOwnershipBuilder {
      * @return This builder.
      */
     public final EndingOfOwnershipBuilder ending(final Event event) {
-        endingOfOwnership.addValue(ENDING, new IRI(event.getId()));
+        this.endingOfOwnership.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -113,7 +113,7 @@ public class EndingOfOwnershipBuilder {
      * @return This builder.
      */
     public final EndingOfOwnershipBuilder member__Of(final Class clazz) {
-        endingOfOwnership.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.endingOfOwnership.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -126,7 +126,7 @@ public class EndingOfOwnershipBuilder {
      * @return This builder.
      */
     public final EndingOfOwnershipBuilder member_Of(final ClassOfEvent classOfEvent) {
-        endingOfOwnership.addValue(MEMBER_OF, new IRI(classOfEvent.getId()));
+        this.endingOfOwnership.addValue(MEMBER_OF, new IRI(classOfEvent.getId()));
         return this;
     }
 
@@ -139,7 +139,7 @@ public class EndingOfOwnershipBuilder {
      * @return This builder.
      */
     public final EndingOfOwnershipBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        endingOfOwnership.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.endingOfOwnership.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -158,7 +158,7 @@ public class EndingOfOwnershipBuilder {
      * @return This builder.
      */
     public final EndingOfOwnershipBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        endingOfOwnership.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.endingOfOwnership.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -171,7 +171,7 @@ public class EndingOfOwnershipBuilder {
      * @return This builder.
      */
     public final EndingOfOwnershipBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        endingOfOwnership.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.endingOfOwnership.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -182,37 +182,37 @@ public class EndingOfOwnershipBuilder {
      * @throws HqdmException If the EndingOfOwnership is missing any mandatory properties.
      */
     public EndingOfOwnership build() throws HqdmException {
-        if (endingOfOwnership.hasValue(AGGREGATED_INTO)
-                && endingOfOwnership.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.endingOfOwnership.hasValue(AGGREGATED_INTO)
+                && this.endingOfOwnership.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (endingOfOwnership.hasValue(BEGINNING)
-                && endingOfOwnership.value(BEGINNING).isEmpty()) {
+        if (this.endingOfOwnership.hasValue(BEGINNING)
+                && this.endingOfOwnership.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (endingOfOwnership.hasValue(ENDING)
-                && endingOfOwnership.value(ENDING).isEmpty()) {
+        if (this.endingOfOwnership.hasValue(ENDING)
+                && this.endingOfOwnership.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (endingOfOwnership.hasValue(MEMBER__OF)
-                && endingOfOwnership.value(MEMBER__OF).isEmpty()) {
+        if (this.endingOfOwnership.hasValue(MEMBER__OF)
+                && this.endingOfOwnership.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (endingOfOwnership.hasValue(MEMBER_OF)
-                && endingOfOwnership.value(MEMBER_OF).isEmpty()) {
+        if (this.endingOfOwnership.hasValue(MEMBER_OF)
+                && this.endingOfOwnership.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (endingOfOwnership.hasValue(PART__OF)
-                && endingOfOwnership.value(PART__OF).isEmpty()) {
+        if (this.endingOfOwnership.hasValue(PART__OF)
+                && this.endingOfOwnership.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!endingOfOwnership.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.endingOfOwnership.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (endingOfOwnership.hasValue(TEMPORAL__PART_OF)
-                && endingOfOwnership.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.endingOfOwnership.hasValue(TEMPORAL__PART_OF)
+                && this.endingOfOwnership.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        return endingOfOwnership;
+        return this.endingOfOwnership;
     }
 }

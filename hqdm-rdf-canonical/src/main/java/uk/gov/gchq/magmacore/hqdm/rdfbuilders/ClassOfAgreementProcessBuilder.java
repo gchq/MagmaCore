@@ -47,7 +47,7 @@ public class ClassOfAgreementProcessBuilder {
      * @param iri IRI of the ClassOfAgreementProcess.
      */
     public ClassOfAgreementProcessBuilder(final IRI iri) {
-        classOfAgreementProcess = RdfClassServices.createClassOfAgreementProcess(iri.getIri());
+        this.classOfAgreementProcess = RdfClassServices.createClassOfAgreementProcess(iri.getIri());
     }
 
     /**
@@ -63,7 +63,7 @@ public class ClassOfAgreementProcessBuilder {
      */
     public final ClassOfAgreementProcessBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfAgreementProcess.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfAgreementProcess.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -76,7 +76,7 @@ public class ClassOfAgreementProcessBuilder {
      * @return This builder.
      */
     public final ClassOfAgreementProcessBuilder has_Superclass(final Class clazz) {
-        classOfAgreementProcess.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfAgreementProcess.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -88,7 +88,7 @@ public class ClassOfAgreementProcessBuilder {
      * @return This builder.
      */
     public final ClassOfAgreementProcessBuilder member__Of(final Class clazz) {
-        classOfAgreementProcess.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfAgreementProcess.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -101,7 +101,7 @@ public class ClassOfAgreementProcessBuilder {
      * @return This builder.
      */
     public final ClassOfAgreementProcessBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfAgreementProcess.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfAgreementProcess.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class ClassOfAgreementProcessBuilder {
      */
     public final ClassOfAgreementProcessBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfAgreementProcess.addValue(MEMBER_OF_,
+        this.classOfAgreementProcess.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -132,7 +132,7 @@ public class ClassOfAgreementProcessBuilder {
      */
     public final ClassOfAgreementProcessBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfAgreementProcess.addValue(PART__OF_BY_CLASS,
+        this.classOfAgreementProcess.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -149,7 +149,7 @@ public class ClassOfAgreementProcessBuilder {
      */
     public final ClassOfAgreementProcessBuilder part_Of_By_Class(
             final ClassOfReachingAgreement classOfReachingAgreement) {
-        classOfAgreementProcess.addValue(PART_OF_BY_CLASS,
+        this.classOfAgreementProcess.addValue(PART_OF_BY_CLASS,
                 new IRI(classOfReachingAgreement.getId()));
         return this;
     }
@@ -167,7 +167,7 @@ public class ClassOfAgreementProcessBuilder {
      */
     public final ClassOfAgreementProcessBuilder part_Of_By_Class_(
             final ClassOfAgreementExecution classOfAgreementExecution) {
-        classOfAgreementProcess.addValue(PART_OF_BY_CLASS_,
+        this.classOfAgreementProcess.addValue(PART_OF_BY_CLASS_,
                 new IRI(classOfAgreementExecution.getId()));
         return this;
     }
@@ -179,34 +179,34 @@ public class ClassOfAgreementProcessBuilder {
      * @throws HqdmException If the ClassOfAgreementProcess is missing any mandatory properties.
      */
     public ClassOfAgreementProcess build() throws HqdmException {
-        if (classOfAgreementProcess.hasValue(HAS_SUPERCLASS)
-                && classOfAgreementProcess.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfAgreementProcess.hasValue(HAS_SUPERCLASS)
+                && this.classOfAgreementProcess.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfAgreementProcess.hasValue(MEMBER__OF)
-                && classOfAgreementProcess.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfAgreementProcess.hasValue(MEMBER__OF)
+                && this.classOfAgreementProcess.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfAgreementProcess.hasValue(MEMBER_OF)
-                && classOfAgreementProcess.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfAgreementProcess.hasValue(MEMBER_OF)
+                && this.classOfAgreementProcess.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfAgreementProcess.hasValue(MEMBER_OF_)
-                && classOfAgreementProcess.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfAgreementProcess.hasValue(MEMBER_OF_)
+                && this.classOfAgreementProcess.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfAgreementProcess.hasValue(PART__OF_BY_CLASS)
-                && classOfAgreementProcess.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfAgreementProcess.hasValue(PART__OF_BY_CLASS)
+                && this.classOfAgreementProcess.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (classOfAgreementProcess.hasValue(PART_OF_BY_CLASS)
-                && classOfAgreementProcess.value(PART_OF_BY_CLASS).isEmpty()) {
+        if (this.classOfAgreementProcess.hasValue(PART_OF_BY_CLASS)
+                && this.classOfAgreementProcess.value(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
-        if (classOfAgreementProcess.hasValue(PART_OF_BY_CLASS_)
-                && classOfAgreementProcess.value(PART_OF_BY_CLASS_).isEmpty()) {
+        if (this.classOfAgreementProcess.hasValue(PART_OF_BY_CLASS_)
+                && this.classOfAgreementProcess.value(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
-        return classOfAgreementProcess;
+        return this.classOfAgreementProcess;
     }
 }

@@ -59,7 +59,7 @@ public class PriceBuilder {
      */
     public final PriceBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        price.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.price.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -71,7 +71,7 @@ public class PriceBuilder {
      * @return This builder.
      */
     public final PriceBuilder has_Superclass(final Class clazz) {
-        price.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.price.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -83,7 +83,7 @@ public class PriceBuilder {
      * @return This builder.
      */
     public final PriceBuilder member__Of(final Class clazz) {
-        price.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.price.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -96,7 +96,7 @@ public class PriceBuilder {
      * @return This builder.
      */
     public final PriceBuilder member_Of(final ClassOfClass classOfClass) {
-        price.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.price.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -110,7 +110,7 @@ public class PriceBuilder {
      */
     public final PriceBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        price.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.price.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -126,7 +126,7 @@ public class PriceBuilder {
      */
     public final PriceBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        price.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.price.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -137,24 +137,24 @@ public class PriceBuilder {
      * @throws HqdmException If the Price is missing any mandatory properties.
      */
     public Price build() throws HqdmException {
-        if (price.hasValue(HAS_SUPERCLASS)
-                && price.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.price.hasValue(HAS_SUPERCLASS)
+                && this.price.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (price.hasValue(MEMBER__OF)
-                && price.value(MEMBER__OF).isEmpty()) {
+        if (this.price.hasValue(MEMBER__OF)
+                && this.price.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (price.hasValue(MEMBER_OF)
-                && price.value(MEMBER_OF).isEmpty()) {
+        if (this.price.hasValue(MEMBER_OF)
+                && this.price.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (price.hasValue(MEMBER_OF_)
-                && price.value(MEMBER_OF_).isEmpty()) {
+        if (this.price.hasValue(MEMBER_OF_)
+                && this.price.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (price.hasValue(PART__OF_BY_CLASS)
-                && price.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.price.hasValue(PART__OF_BY_CLASS)
+                && this.price.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return price;

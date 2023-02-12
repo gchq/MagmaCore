@@ -47,7 +47,7 @@ public class ClassOfContractProcessBuilder {
      * @param iri IRI of the ClassOfContractProcess.
      */
     public ClassOfContractProcessBuilder(final IRI iri) {
-        classOfContractProcess = RdfClassServices.createClassOfContractProcess(iri.getIri());
+        this.classOfContractProcess = RdfClassServices.createClassOfContractProcess(iri.getIri());
     }
 
     /**
@@ -63,7 +63,7 @@ public class ClassOfContractProcessBuilder {
      */
     public final ClassOfContractProcessBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfContractProcess.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfContractProcess.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -76,7 +76,7 @@ public class ClassOfContractProcessBuilder {
      * @return This builder.
      */
     public final ClassOfContractProcessBuilder has_Superclass(final Class clazz) {
-        classOfContractProcess.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfContractProcess.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -88,7 +88,7 @@ public class ClassOfContractProcessBuilder {
      * @return This builder.
      */
     public final ClassOfContractProcessBuilder member__Of(final Class clazz) {
-        classOfContractProcess.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfContractProcess.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -101,7 +101,7 @@ public class ClassOfContractProcessBuilder {
      * @return This builder.
      */
     public final ClassOfContractProcessBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfContractProcess.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfContractProcess.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class ClassOfContractProcessBuilder {
      */
     public final ClassOfContractProcessBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfContractProcess.addValue(MEMBER_OF_,
+        this.classOfContractProcess.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -132,7 +132,7 @@ public class ClassOfContractProcessBuilder {
      */
     public final ClassOfContractProcessBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfContractProcess.addValue(PART__OF_BY_CLASS,
+        this.classOfContractProcess.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -149,7 +149,7 @@ public class ClassOfContractProcessBuilder {
      */
     public final ClassOfContractProcessBuilder part_Of_By_Class(
             final ClassOfReachingAgreement classOfReachingAgreement) {
-        classOfContractProcess.addValue(PART_OF_BY_CLASS,
+        this.classOfContractProcess.addValue(PART_OF_BY_CLASS,
                 new IRI(classOfReachingAgreement.getId()));
         return this;
     }
@@ -167,7 +167,7 @@ public class ClassOfContractProcessBuilder {
      */
     public final ClassOfContractProcessBuilder part_Of_By_Class_(
             final ClassOfAgreementExecution classOfAgreementExecution) {
-        classOfContractProcess.addValue(PART_OF_BY_CLASS_,
+        this.classOfContractProcess.addValue(PART_OF_BY_CLASS_,
                 new IRI(classOfAgreementExecution.getId()));
         return this;
     }
@@ -179,34 +179,34 @@ public class ClassOfContractProcessBuilder {
      * @throws HqdmException If the ClassOfContractProcess is missing any mandatory properties.
      */
     public ClassOfContractProcess build() throws HqdmException {
-        if (classOfContractProcess.hasValue(HAS_SUPERCLASS)
-                && classOfContractProcess.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfContractProcess.hasValue(HAS_SUPERCLASS)
+                && this.classOfContractProcess.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfContractProcess.hasValue(MEMBER__OF)
-                && classOfContractProcess.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfContractProcess.hasValue(MEMBER__OF)
+                && this.classOfContractProcess.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfContractProcess.hasValue(MEMBER_OF)
-                && classOfContractProcess.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfContractProcess.hasValue(MEMBER_OF)
+                && this.classOfContractProcess.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfContractProcess.hasValue(MEMBER_OF_)
-                && classOfContractProcess.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfContractProcess.hasValue(MEMBER_OF_)
+                && this.classOfContractProcess.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfContractProcess.hasValue(PART__OF_BY_CLASS)
-                && classOfContractProcess.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfContractProcess.hasValue(PART__OF_BY_CLASS)
+                && this.classOfContractProcess.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (classOfContractProcess.hasValue(PART_OF_BY_CLASS)
-                && classOfContractProcess.value(PART_OF_BY_CLASS).isEmpty()) {
+        if (this.classOfContractProcess.hasValue(PART_OF_BY_CLASS)
+                && this.classOfContractProcess.value(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
-        if (classOfContractProcess.hasValue(PART_OF_BY_CLASS_)
-                && classOfContractProcess.value(PART_OF_BY_CLASS_).isEmpty()) {
+        if (this.classOfContractProcess.hasValue(PART_OF_BY_CLASS_)
+                && this.classOfContractProcess.value(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
-        return classOfContractProcess;
+        return this.classOfContractProcess;
     }
 }

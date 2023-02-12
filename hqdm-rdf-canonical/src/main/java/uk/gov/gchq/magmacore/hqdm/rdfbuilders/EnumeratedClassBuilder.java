@@ -49,7 +49,7 @@ public class EnumeratedClassBuilder {
      * @return This builder.
      */
     public final EnumeratedClassBuilder has_Superclass(final Class clazz) {
-        enumeratedClass.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.enumeratedClass.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -61,7 +61,7 @@ public class EnumeratedClassBuilder {
      * @return This builder.
      */
     public final EnumeratedClassBuilder member__Of(final Class clazz) {
-        enumeratedClass.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.enumeratedClass.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -74,7 +74,7 @@ public class EnumeratedClassBuilder {
      * @return This builder.
      */
     public final EnumeratedClassBuilder member_Of(final ClassOfClass classOfClass) {
-        enumeratedClass.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.enumeratedClass.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -85,16 +85,16 @@ public class EnumeratedClassBuilder {
      * @throws HqdmException If the EnumeratedClass is missing any mandatory properties.
      */
     public EnumeratedClass build() throws HqdmException {
-        if (enumeratedClass.hasValue(HAS_SUPERCLASS)
-                && enumeratedClass.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.enumeratedClass.hasValue(HAS_SUPERCLASS)
+                && this.enumeratedClass.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (enumeratedClass.hasValue(MEMBER__OF)
-                && enumeratedClass.value(MEMBER__OF).isEmpty()) {
+        if (this.enumeratedClass.hasValue(MEMBER__OF)
+                && this.enumeratedClass.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (enumeratedClass.hasValue(MEMBER_OF)
-                && enumeratedClass.value(MEMBER_OF).isEmpty()) {
+        if (this.enumeratedClass.hasValue(MEMBER_OF)
+                && this.enumeratedClass.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return enumeratedClass;

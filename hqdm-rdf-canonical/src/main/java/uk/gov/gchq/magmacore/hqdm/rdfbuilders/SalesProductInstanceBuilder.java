@@ -67,7 +67,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        salesProductInstance.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.salesProductInstance.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -79,7 +79,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder beginning(final Event event) {
-        salesProductInstance.addValue(BEGINNING, new IRI(event.getId()));
+        this.salesProductInstance.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -94,7 +94,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        salesProductInstance.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.salesProductInstance.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -106,7 +106,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder ending(final Event event) {
-        salesProductInstance.addValue(ENDING, new IRI(event.getId()));
+        this.salesProductInstance.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -118,7 +118,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder intended_Role_M(final Role role) {
-        salesProductInstance.addValue(INTENDED_ROLE, new IRI(role.getId()));
+        this.salesProductInstance.addValue(INTENDED_ROLE, new IRI(role.getId()));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder member__Of(final Class clazz) {
-        salesProductInstance.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.salesProductInstance.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -145,7 +145,7 @@ public class SalesProductInstanceBuilder {
      */
     public final SalesProductInstanceBuilder member_Of(
             final ClassOfSalesProductInstance classOfSalesProductInstance) {
-        salesProductInstance.addValue(MEMBER_OF, new IRI(classOfSalesProductInstance.getId()));
+        this.salesProductInstance.addValue(MEMBER_OF, new IRI(classOfSalesProductInstance.getId()));
         return this;
     }
 
@@ -160,7 +160,7 @@ public class SalesProductInstanceBuilder {
      */
     public final SalesProductInstanceBuilder member_Of_Kind(
             final KindOfOrdinaryFunctionalObject kindOfOrdinaryFunctionalObject) {
-        salesProductInstance.addValue(MEMBER_OF_KIND,
+        this.salesProductInstance.addValue(MEMBER_OF_KIND,
                 new IRI(kindOfOrdinaryFunctionalObject.getId()));
         return this;
     }
@@ -174,7 +174,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        salesProductInstance.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.salesProductInstance.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -193,7 +193,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        salesProductInstance.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.salesProductInstance.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -206,7 +206,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        salesProductInstance.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.salesProductInstance.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -220,7 +220,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder temporal_Part_Of(final SalesProductInstance salesProductInstance) {
-        salesProductInstance.addValue(TEMPORAL_PART_OF, new IRI(salesProductInstance.getId()));
+        this.salesProductInstance.addValue(TEMPORAL_PART_OF, new IRI(salesProductInstance.getId()));
         return this;
     }
 
@@ -231,46 +231,46 @@ public class SalesProductInstanceBuilder {
      * @throws HqdmException If the SalesProductInstance is missing any mandatory properties.
      */
     public SalesProductInstance build() throws HqdmException {
-        if (salesProductInstance.hasValue(AGGREGATED_INTO)
-                && salesProductInstance.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.salesProductInstance.hasValue(AGGREGATED_INTO)
+                && this.salesProductInstance.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (salesProductInstance.hasValue(BEGINNING)
-                && salesProductInstance.value(BEGINNING).isEmpty()) {
+        if (this.salesProductInstance.hasValue(BEGINNING)
+                && this.salesProductInstance.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (salesProductInstance.hasValue(ENDING)
-                && salesProductInstance.value(ENDING).isEmpty()) {
+        if (this.salesProductInstance.hasValue(ENDING)
+                && this.salesProductInstance.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (!salesProductInstance.hasValue(INTENDED_ROLE)) {
+        if (!this.salesProductInstance.hasValue(INTENDED_ROLE)) {
             throw new HqdmException("Property Not Set: intended_role");
         }
-        if (salesProductInstance.hasValue(MEMBER__OF)
-                && salesProductInstance.value(MEMBER__OF).isEmpty()) {
+        if (this.salesProductInstance.hasValue(MEMBER__OF)
+                && this.salesProductInstance.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (salesProductInstance.hasValue(MEMBER_OF)
-                && salesProductInstance.value(MEMBER_OF).isEmpty()) {
+        if (this.salesProductInstance.hasValue(MEMBER_OF)
+                && this.salesProductInstance.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (salesProductInstance.hasValue(MEMBER_OF_KIND)
-                && salesProductInstance.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.salesProductInstance.hasValue(MEMBER_OF_KIND)
+                && this.salesProductInstance.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (salesProductInstance.hasValue(PART__OF)
-                && salesProductInstance.value(PART__OF).isEmpty()) {
+        if (this.salesProductInstance.hasValue(PART__OF)
+                && this.salesProductInstance.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!salesProductInstance.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.salesProductInstance.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (salesProductInstance.hasValue(TEMPORAL__PART_OF)
-                && salesProductInstance.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.salesProductInstance.hasValue(TEMPORAL__PART_OF)
+                && this.salesProductInstance.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (salesProductInstance.hasValue(TEMPORAL_PART_OF)
-                && salesProductInstance.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.salesProductInstance.hasValue(TEMPORAL_PART_OF)
+                && this.salesProductInstance.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return salesProductInstance;

@@ -49,7 +49,7 @@ public class KindOfPhysicalPropertyBuilder {
      * @return This builder.
      */
     public final KindOfPhysicalPropertyBuilder has_Superclass(final Class clazz) {
-        kindOfPhysicalProperty.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfPhysicalProperty.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -61,7 +61,7 @@ public class KindOfPhysicalPropertyBuilder {
      * @return This builder.
      */
     public final KindOfPhysicalPropertyBuilder member__Of(final Class clazz) {
-        kindOfPhysicalProperty.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfPhysicalProperty.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -74,7 +74,7 @@ public class KindOfPhysicalPropertyBuilder {
      * @return This builder.
      */
     public final KindOfPhysicalPropertyBuilder member_Of(final ClassOfClass classOfClass) {
-        kindOfPhysicalProperty.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfPhysicalProperty.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -85,16 +85,16 @@ public class KindOfPhysicalPropertyBuilder {
      * @throws HqdmException If the KindOfPhysicalProperty is missing any mandatory properties.
      */
     public KindOfPhysicalProperty build() throws HqdmException {
-        if (kindOfPhysicalProperty.hasValue(HAS_SUPERCLASS)
-                && kindOfPhysicalProperty.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.kindOfPhysicalProperty.hasValue(HAS_SUPERCLASS)
+                && this.kindOfPhysicalProperty.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (kindOfPhysicalProperty.hasValue(MEMBER__OF)
-                && kindOfPhysicalProperty.value(MEMBER__OF).isEmpty()) {
+        if (this.kindOfPhysicalProperty.hasValue(MEMBER__OF)
+                && this.kindOfPhysicalProperty.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (kindOfPhysicalProperty.hasValue(MEMBER_OF)
-                && kindOfPhysicalProperty.value(MEMBER_OF).isEmpty()) {
+        if (this.kindOfPhysicalProperty.hasValue(MEMBER_OF)
+                && this.kindOfPhysicalProperty.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return kindOfPhysicalProperty;

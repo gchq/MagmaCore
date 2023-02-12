@@ -66,7 +66,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        possibleWorld.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.possibleWorld.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -78,7 +78,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder beginning(final Event event) {
-        possibleWorld.addValue(BEGINNING, new IRI(event.getId()));
+        this.possibleWorld.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -93,7 +93,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        possibleWorld.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.possibleWorld.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -105,7 +105,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder ending(final Event event) {
-        possibleWorld.addValue(ENDING, new IRI(event.getId()));
+        this.possibleWorld.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -117,7 +117,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder member__Of(final Class clazz) {
-        possibleWorld.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.possibleWorld.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder member_Of(final ClassOfPossibleWorld classOfPossibleWorld) {
-        possibleWorld.addValue(MEMBER_OF, new IRI(classOfPossibleWorld.getId()));
+        this.possibleWorld.addValue(MEMBER_OF, new IRI(classOfPossibleWorld.getId()));
         return this;
     }
 
@@ -143,7 +143,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder member_Of_Kind(final KindOfIndividual kindOfIndividual) {
-        possibleWorld.addValue(MEMBER_OF_KIND, new IRI(kindOfIndividual.getId()));
+        this.possibleWorld.addValue(MEMBER_OF_KIND, new IRI(kindOfIndividual.getId()));
         return this;
     }
 
@@ -156,7 +156,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        possibleWorld.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.possibleWorld.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -175,7 +175,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        possibleWorld.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.possibleWorld.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -188,7 +188,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        possibleWorld.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.possibleWorld.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -211,7 +211,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder temporal_Part_Of(final Individual individual) {
-        possibleWorld.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.possibleWorld.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -225,7 +225,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder temporal_Part_Of_(final PossibleWorld possibleWorld) {
-        possibleWorld.addValue(TEMPORAL_PART_OF_, new IRI(possibleWorld.getId()));
+        this.possibleWorld.addValue(TEMPORAL_PART_OF_, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -236,47 +236,47 @@ public class PossibleWorldBuilder {
      * @throws HqdmException If the PossibleWorld is missing any mandatory properties.
      */
     public PossibleWorld build() throws HqdmException {
-        if (possibleWorld.hasValue(AGGREGATED_INTO)
-                && possibleWorld.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.possibleWorld.hasValue(AGGREGATED_INTO)
+                && this.possibleWorld.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (possibleWorld.hasValue(BEGINNING)
-                && possibleWorld.value(BEGINNING).isEmpty()) {
+        if (this.possibleWorld.hasValue(BEGINNING)
+                && this.possibleWorld.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (possibleWorld.hasValue(ENDING)
-                && possibleWorld.value(ENDING).isEmpty()) {
+        if (this.possibleWorld.hasValue(ENDING)
+                && this.possibleWorld.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (possibleWorld.hasValue(MEMBER__OF)
-                && possibleWorld.value(MEMBER__OF).isEmpty()) {
+        if (this.possibleWorld.hasValue(MEMBER__OF)
+                && this.possibleWorld.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (possibleWorld.hasValue(MEMBER_OF)
-                && possibleWorld.value(MEMBER_OF).isEmpty()) {
+        if (this.possibleWorld.hasValue(MEMBER_OF)
+                && this.possibleWorld.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (possibleWorld.hasValue(MEMBER_OF_KIND)
-                && possibleWorld.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.possibleWorld.hasValue(MEMBER_OF_KIND)
+                && this.possibleWorld.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (possibleWorld.hasValue(PART__OF)
-                && possibleWorld.value(PART__OF).isEmpty()) {
+        if (this.possibleWorld.hasValue(PART__OF)
+                && this.possibleWorld.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!possibleWorld.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.possibleWorld.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (possibleWorld.hasValue(TEMPORAL__PART_OF)
-                && possibleWorld.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.possibleWorld.hasValue(TEMPORAL__PART_OF)
+                && this.possibleWorld.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (possibleWorld.hasValue(TEMPORAL_PART_OF)
-                && possibleWorld.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.possibleWorld.hasValue(TEMPORAL_PART_OF)
+                && this.possibleWorld.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        if (possibleWorld.hasValue(TEMPORAL_PART_OF_)
-                && possibleWorld.value(TEMPORAL_PART_OF_).isEmpty()) {
+        if (this.possibleWorld.hasValue(TEMPORAL_PART_OF_)
+                && this.possibleWorld.value(TEMPORAL_PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of_");
         }
         return possibleWorld;

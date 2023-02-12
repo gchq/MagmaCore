@@ -64,7 +64,7 @@ public class StateOfActivityBuilder {
      * @return This builder.
      */
     public final StateOfActivityBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfActivity.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfActivity.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfActivityBuilder {
      * @return This builder.
      */
     public final StateOfActivityBuilder beginning(final Event event) {
-        stateOfActivity.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfActivity.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfActivityBuilder {
      * @return This builder.
      */
     public final StateOfActivityBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfActivity.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfActivity.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfActivityBuilder {
      * @return This builder.
      */
     public final StateOfActivityBuilder ending(final Event event) {
-        stateOfActivity.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfActivity.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfActivityBuilder {
      * @return This builder.
      */
     public final StateOfActivityBuilder member__Of(final Class clazz) {
-        stateOfActivity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfActivity.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -128,7 +128,7 @@ public class StateOfActivityBuilder {
      * @return This builder.
      */
     public final StateOfActivityBuilder member_Of(final ClassOfStateOfActivity classOfStateOfActivity) {
-        stateOfActivity.addValue(MEMBER_OF, new IRI(classOfStateOfActivity.getId()));
+        this.stateOfActivity.addValue(MEMBER_OF, new IRI(classOfStateOfActivity.getId()));
         return this;
     }
 
@@ -141,7 +141,7 @@ public class StateOfActivityBuilder {
      * @return This builder.
      */
     public final StateOfActivityBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfActivity.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfActivity.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -160,7 +160,7 @@ public class StateOfActivityBuilder {
      * @return This builder.
      */
     public final StateOfActivityBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfActivity.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfActivity.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -173,7 +173,7 @@ public class StateOfActivityBuilder {
      * @return This builder.
      */
     public final StateOfActivityBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfActivity.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfActivity.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -187,7 +187,7 @@ public class StateOfActivityBuilder {
      * @return This builder.
      */
     public final StateOfActivityBuilder temporal_Part_Of(final Activity activity) {
-        stateOfActivity.addValue(TEMPORAL_PART_OF, new IRI(activity.getId()));
+        this.stateOfActivity.addValue(TEMPORAL_PART_OF, new IRI(activity.getId()));
         return this;
     }
 
@@ -198,39 +198,39 @@ public class StateOfActivityBuilder {
      * @throws HqdmException If the StateOfActivity is missing any mandatory properties.
      */
     public StateOfActivity build() throws HqdmException {
-        if (stateOfActivity.hasValue(AGGREGATED_INTO)
-                && stateOfActivity.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfActivity.hasValue(AGGREGATED_INTO)
+                && this.stateOfActivity.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfActivity.hasValue(BEGINNING)
-                && stateOfActivity.value(BEGINNING).isEmpty()) {
+        if (this.stateOfActivity.hasValue(BEGINNING)
+                && this.stateOfActivity.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfActivity.hasValue(ENDING)
-                && stateOfActivity.value(ENDING).isEmpty()) {
+        if (this.stateOfActivity.hasValue(ENDING)
+                && this.stateOfActivity.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfActivity.hasValue(MEMBER__OF)
-                && stateOfActivity.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfActivity.hasValue(MEMBER__OF)
+                && this.stateOfActivity.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfActivity.hasValue(MEMBER_OF)
-                && stateOfActivity.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfActivity.hasValue(MEMBER_OF)
+                && this.stateOfActivity.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfActivity.hasValue(PART__OF)
-                && stateOfActivity.value(PART__OF).isEmpty()) {
+        if (this.stateOfActivity.hasValue(PART__OF)
+                && this.stateOfActivity.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfActivity.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfActivity.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfActivity.hasValue(TEMPORAL__PART_OF)
-                && stateOfActivity.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfActivity.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfActivity.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfActivity.hasValue(TEMPORAL_PART_OF)
-                && stateOfActivity.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfActivity.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfActivity.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfActivity;

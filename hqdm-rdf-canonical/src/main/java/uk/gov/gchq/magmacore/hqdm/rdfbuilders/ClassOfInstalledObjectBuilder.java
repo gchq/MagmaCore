@@ -43,7 +43,7 @@ public class ClassOfInstalledObjectBuilder {
      * @param iri IRI of the ClassOfInstalledObject.
      */
     public ClassOfInstalledObjectBuilder(final IRI iri) {
-        classOfInstalledObject = RdfClassServices.createClassOfInstalledObject(iri.getIri());
+        this.classOfInstalledObject = RdfClassServices.createClassOfInstalledObject(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfInstalledObjectBuilder {
      */
     public final ClassOfInstalledObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfInstalledObject.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfInstalledObject.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfInstalledObjectBuilder {
      * @return This builder.
      */
     public final ClassOfInstalledObjectBuilder has_Superclass(final Class clazz) {
-        classOfInstalledObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfInstalledObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfInstalledObjectBuilder {
      * @return This builder.
      */
     public final ClassOfInstalledObjectBuilder member__Of(final Class clazz) {
-        classOfInstalledObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfInstalledObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfInstalledObjectBuilder {
      * @return This builder.
      */
     public final ClassOfInstalledObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfInstalledObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfInstalledObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfInstalledObjectBuilder {
      */
     public final ClassOfInstalledObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfInstalledObject.addValue(MEMBER_OF_,
+        this.classOfInstalledObject.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class ClassOfInstalledObjectBuilder {
      */
     public final ClassOfInstalledObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfInstalledObject.addValue(PART__OF_BY_CLASS,
+        this.classOfInstalledObject.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -140,26 +140,26 @@ public class ClassOfInstalledObjectBuilder {
      * @throws HqdmException If the ClassOfInstalledObject is missing any mandatory properties.
      */
     public ClassOfInstalledObject build() throws HqdmException {
-        if (classOfInstalledObject.hasValue(HAS_SUPERCLASS)
-                && classOfInstalledObject.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfInstalledObject.hasValue(HAS_SUPERCLASS)
+                && this.classOfInstalledObject.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfInstalledObject.hasValue(MEMBER__OF)
-                && classOfInstalledObject.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfInstalledObject.hasValue(MEMBER__OF)
+                && this.classOfInstalledObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfInstalledObject.hasValue(MEMBER_OF)
-                && classOfInstalledObject.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfInstalledObject.hasValue(MEMBER_OF)
+                && this.classOfInstalledObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfInstalledObject.hasValue(MEMBER_OF_)
-                && classOfInstalledObject.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfInstalledObject.hasValue(MEMBER_OF_)
+                && this.classOfInstalledObject.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfInstalledObject.hasValue(PART__OF_BY_CLASS)
-                && classOfInstalledObject.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfInstalledObject.hasValue(PART__OF_BY_CLASS)
+                && this.classOfInstalledObject.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfInstalledObject;
+        return this.classOfInstalledObject;
     }
 }

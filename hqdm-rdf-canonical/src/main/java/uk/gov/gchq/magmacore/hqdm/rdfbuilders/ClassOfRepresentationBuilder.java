@@ -35,7 +35,7 @@ public class ClassOfRepresentationBuilder {
      * @param iri IRI of the ClassOfRepresentation.
      */
     public ClassOfRepresentationBuilder(final IRI iri) {
-        classOfRepresentation = RdfClassServices.createClassOfRepresentation(iri.getIri());
+        this.classOfRepresentation = RdfClassServices.createClassOfRepresentation(iri.getIri());
     }
 
     /**
@@ -46,7 +46,7 @@ public class ClassOfRepresentationBuilder {
      * @return This builder.
      */
     public final ClassOfRepresentationBuilder has_Superclass(final Class clazz) {
-        classOfRepresentation.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfRepresentation.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -57,10 +57,10 @@ public class ClassOfRepresentationBuilder {
      * @throws HqdmException If the ClassOfRepresentation is missing any mandatory properties.
      */
     public ClassOfRepresentation build() throws HqdmException {
-        if (classOfRepresentation.hasValue(HAS_SUPERCLASS)
-                && classOfRepresentation.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfRepresentation.hasValue(HAS_SUPERCLASS)
+                && this.classOfRepresentation.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        return classOfRepresentation;
+        return this.classOfRepresentation;
     }
 }

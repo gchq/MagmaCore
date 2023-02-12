@@ -64,7 +64,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        inPlaceBiologicalComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.inPlaceBiologicalComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder beginning(final Event event) {
-        inPlaceBiologicalComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.inPlaceBiologicalComponent.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        inPlaceBiologicalComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.inPlaceBiologicalComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -103,7 +103,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder ending(final Event event) {
-        inPlaceBiologicalComponent.addValue(ENDING, new IRI(event.getId()));
+        this.inPlaceBiologicalComponent.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder member__Of(final Class clazz) {
-        inPlaceBiologicalComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.inPlaceBiologicalComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class InPlaceBiologicalComponentBuilder {
      */
     public final InPlaceBiologicalComponentBuilder member_Of(
             final ClassOfInPlaceBiologicalComponent classOfInPlaceBiologicalComponent) {
-        inPlaceBiologicalComponent.addValue(MEMBER_OF,
+        this.inPlaceBiologicalComponent.addValue(MEMBER_OF,
                 new IRI(classOfInPlaceBiologicalComponent.getId()));
         return this;
     }
@@ -144,7 +144,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        inPlaceBiologicalComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.inPlaceBiologicalComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -163,7 +163,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        inPlaceBiologicalComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.inPlaceBiologicalComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -176,7 +176,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        inPlaceBiologicalComponent.addValue(TEMPORAL__PART_OF,
+        this.inPlaceBiologicalComponent.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -192,7 +192,7 @@ public class InPlaceBiologicalComponentBuilder {
      */
     public final InPlaceBiologicalComponentBuilder temporal_Part_Of(
             final BiologicalSystemComponent biologicalSystemComponent) {
-        inPlaceBiologicalComponent.addValue(TEMPORAL_PART_OF,
+        this.inPlaceBiologicalComponent.addValue(TEMPORAL_PART_OF,
                 new IRI(biologicalSystemComponent.getId()));
         return this;
     }
@@ -205,39 +205,39 @@ public class InPlaceBiologicalComponentBuilder {
      * @throws HqdmException If the InPlaceBiologicalComponent is missing any mandatory properties.
      */
     public InPlaceBiologicalComponent build() throws HqdmException {
-        if (inPlaceBiologicalComponent.hasValue(AGGREGATED_INTO)
-                && inPlaceBiologicalComponent.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.inPlaceBiologicalComponent.hasValue(AGGREGATED_INTO)
+                && this.inPlaceBiologicalComponent.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (inPlaceBiologicalComponent.hasValue(BEGINNING)
-                && inPlaceBiologicalComponent.value(BEGINNING).isEmpty()) {
+        if (this.inPlaceBiologicalComponent.hasValue(BEGINNING)
+                && this.inPlaceBiologicalComponent.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (inPlaceBiologicalComponent.hasValue(ENDING)
-                && inPlaceBiologicalComponent.value(ENDING).isEmpty()) {
+        if (this.inPlaceBiologicalComponent.hasValue(ENDING)
+                && this.inPlaceBiologicalComponent.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (inPlaceBiologicalComponent.hasValue(MEMBER__OF)
-                && inPlaceBiologicalComponent.value(MEMBER__OF).isEmpty()) {
+        if (this.inPlaceBiologicalComponent.hasValue(MEMBER__OF)
+                && this.inPlaceBiologicalComponent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (inPlaceBiologicalComponent.hasValue(MEMBER_OF)
-                && inPlaceBiologicalComponent.value(MEMBER_OF).isEmpty()) {
+        if (this.inPlaceBiologicalComponent.hasValue(MEMBER_OF)
+                && this.inPlaceBiologicalComponent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (inPlaceBiologicalComponent.hasValue(PART__OF)
-                && inPlaceBiologicalComponent.value(PART__OF).isEmpty()) {
+        if (this.inPlaceBiologicalComponent.hasValue(PART__OF)
+                && this.inPlaceBiologicalComponent.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!inPlaceBiologicalComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.inPlaceBiologicalComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (inPlaceBiologicalComponent.hasValue(TEMPORAL__PART_OF)
-                && inPlaceBiologicalComponent.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.inPlaceBiologicalComponent.hasValue(TEMPORAL__PART_OF)
+                && this.inPlaceBiologicalComponent.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (inPlaceBiologicalComponent.hasValue(TEMPORAL_PART_OF)
-                && inPlaceBiologicalComponent.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.inPlaceBiologicalComponent.hasValue(TEMPORAL_PART_OF)
+                && this.inPlaceBiologicalComponent.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return inPlaceBiologicalComponent;

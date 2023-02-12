@@ -64,7 +64,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSalesProductInstance.addValue(AGGREGATED_INTO,
+        this.stateOfSalesProductInstance.addValue(AGGREGATED_INTO,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -77,7 +77,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder beginning(final Event event) {
-        stateOfSalesProductInstance.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfSalesProductInstance.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSalesProductInstance.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSalesProductInstance.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder ending(final Event event) {
-        stateOfSalesProductInstance.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfSalesProductInstance.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -116,7 +116,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder member__Of(final Class clazz) {
-        stateOfSalesProductInstance.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfSalesProductInstance.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -131,7 +131,7 @@ public class StateOfSalesProductInstanceBuilder {
      */
     public final StateOfSalesProductInstanceBuilder member_Of(
             final ClassOfStateOfSalesProductInstance classOfStateOfSalesProductInstance) {
-        stateOfSalesProductInstance.addValue(MEMBER_OF,
+        this.stateOfSalesProductInstance.addValue(MEMBER_OF,
                 new IRI(classOfStateOfSalesProductInstance.getId()));
         return this;
     }
@@ -145,7 +145,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSalesProductInstance.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSalesProductInstance.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -164,7 +164,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfSalesProductInstance.addValue(PART_OF_POSSIBLE_WORLD,
+        this.stateOfSalesProductInstance.addValue(PART_OF_POSSIBLE_WORLD,
                 new IRI(possibleWorld.getId()));
         return this;
     }
@@ -178,7 +178,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSalesProductInstance.addValue(TEMPORAL__PART_OF,
+        this.stateOfSalesProductInstance.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -193,7 +193,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder temporal_Part_Of(final SalesProductInstance salesProductInstance) {
-        stateOfSalesProductInstance.addValue(TEMPORAL_PART_OF,
+        this.stateOfSalesProductInstance.addValue(TEMPORAL_PART_OF,
                 new IRI(salesProductInstance.getId()));
         return this;
     }
@@ -206,39 +206,39 @@ public class StateOfSalesProductInstanceBuilder {
      * @throws HqdmException If the StateOfSalesProductInstance is missing any mandatory properties.
      */
     public StateOfSalesProductInstance build() throws HqdmException {
-        if (stateOfSalesProductInstance.hasValue(AGGREGATED_INTO)
-                && stateOfSalesProductInstance.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfSalesProductInstance.hasValue(AGGREGATED_INTO)
+                && this.stateOfSalesProductInstance.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfSalesProductInstance.hasValue(BEGINNING)
-                && stateOfSalesProductInstance.value(BEGINNING).isEmpty()) {
+        if (this.stateOfSalesProductInstance.hasValue(BEGINNING)
+                && this.stateOfSalesProductInstance.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfSalesProductInstance.hasValue(ENDING)
-                && stateOfSalesProductInstance.value(ENDING).isEmpty()) {
+        if (this.stateOfSalesProductInstance.hasValue(ENDING)
+                && this.stateOfSalesProductInstance.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfSalesProductInstance.hasValue(MEMBER__OF)
-                && stateOfSalesProductInstance.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfSalesProductInstance.hasValue(MEMBER__OF)
+                && this.stateOfSalesProductInstance.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfSalesProductInstance.hasValue(MEMBER_OF)
-                && stateOfSalesProductInstance.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfSalesProductInstance.hasValue(MEMBER_OF)
+                && this.stateOfSalesProductInstance.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfSalesProductInstance.hasValue(PART__OF)
-                && stateOfSalesProductInstance.value(PART__OF).isEmpty()) {
+        if (this.stateOfSalesProductInstance.hasValue(PART__OF)
+                && this.stateOfSalesProductInstance.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfSalesProductInstance.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfSalesProductInstance.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfSalesProductInstance.hasValue(TEMPORAL__PART_OF)
-                && stateOfSalesProductInstance.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfSalesProductInstance.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfSalesProductInstance.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfSalesProductInstance.hasValue(TEMPORAL_PART_OF)
-                && stateOfSalesProductInstance.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfSalesProductInstance.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfSalesProductInstance.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfSalesProductInstance;

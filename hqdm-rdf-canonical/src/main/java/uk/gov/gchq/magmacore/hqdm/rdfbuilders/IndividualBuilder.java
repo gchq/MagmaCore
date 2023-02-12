@@ -65,7 +65,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        individual.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.individual.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -77,7 +77,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder beginning(final Event event) {
-        individual.addValue(BEGINNING, new IRI(event.getId()));
+        this.individual.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        individual.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.individual.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder ending(final Event event) {
-        individual.addValue(ENDING, new IRI(event.getId()));
+        this.individual.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -116,7 +116,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder member__Of(final Class clazz) {
-        individual.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.individual.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -129,7 +129,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder member_Of(final ClassOfIndividual classOfIndividual) {
-        individual.addValue(MEMBER_OF, new IRI(classOfIndividual.getId()));
+        this.individual.addValue(MEMBER_OF, new IRI(classOfIndividual.getId()));
         return this;
     }
 
@@ -142,7 +142,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder member_Of_Kind(final KindOfIndividual kindOfIndividual) {
-        individual.addValue(MEMBER_OF_KIND, new IRI(kindOfIndividual.getId()));
+        this.individual.addValue(MEMBER_OF_KIND, new IRI(kindOfIndividual.getId()));
         return this;
     }
 
@@ -155,7 +155,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        individual.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.individual.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -174,7 +174,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        individual.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.individual.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -187,7 +187,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        individual.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.individual.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -210,7 +210,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder temporal_Part_Of(final Individual individual) {
-        individual.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.individual.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -221,43 +221,43 @@ public class IndividualBuilder {
      * @throws HqdmException If the Individual is missing any mandatory properties.
      */
     public Individual build() throws HqdmException {
-        if (individual.hasValue(AGGREGATED_INTO)
-                && individual.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.individual.hasValue(AGGREGATED_INTO)
+                && this.individual.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (individual.hasValue(BEGINNING)
-                && individual.value(BEGINNING).isEmpty()) {
+        if (this.individual.hasValue(BEGINNING)
+                && this.individual.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (individual.hasValue(ENDING)
-                && individual.value(ENDING).isEmpty()) {
+        if (this.individual.hasValue(ENDING)
+                && this.individual.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (individual.hasValue(MEMBER__OF)
-                && individual.value(MEMBER__OF).isEmpty()) {
+        if (this.individual.hasValue(MEMBER__OF)
+                && this.individual.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (individual.hasValue(MEMBER_OF)
-                && individual.value(MEMBER_OF).isEmpty()) {
+        if (this.individual.hasValue(MEMBER_OF)
+                && this.individual.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (individual.hasValue(MEMBER_OF_KIND)
-                && individual.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.individual.hasValue(MEMBER_OF_KIND)
+                && this.individual.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (individual.hasValue(PART__OF)
-                && individual.value(PART__OF).isEmpty()) {
+        if (this.individual.hasValue(PART__OF)
+                && this.individual.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!individual.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.individual.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (individual.hasValue(TEMPORAL__PART_OF)
-                && individual.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.individual.hasValue(TEMPORAL__PART_OF)
+                && this.individual.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (individual.hasValue(TEMPORAL_PART_OF)
-                && individual.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.individual.hasValue(TEMPORAL_PART_OF)
+                && this.individual.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return individual;

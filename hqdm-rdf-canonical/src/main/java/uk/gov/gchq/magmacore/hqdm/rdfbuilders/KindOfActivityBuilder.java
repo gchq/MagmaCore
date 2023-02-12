@@ -61,7 +61,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder causes_By_Class(final ClassOfEvent classOfEvent) {
-        kindOfActivity.addValue(CAUSES_BY_CLASS, new IRI(classOfEvent.getId()));
+        this.kindOfActivity.addValue(CAUSES_BY_CLASS, new IRI(classOfEvent.getId()));
         return this;
     }
 
@@ -78,7 +78,7 @@ public class KindOfActivityBuilder {
      */
     public final KindOfActivityBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfActivity.addValue(CONSISTS__OF_BY_CLASS,
+        this.kindOfActivity.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -93,7 +93,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder consists_Of_By_Class(final Role role) {
-        kindOfActivity.addValue(CONSISTS_OF_BY_CLASS, new IRI(role.getId()));
+        this.kindOfActivity.addValue(CONSISTS_OF_BY_CLASS, new IRI(role.getId()));
         return this;
     }
 
@@ -106,7 +106,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder determines_By_Class(final Class clazz) {
-        kindOfActivity.addValue(DETERMINES_BY_CLASS, new IRI(clazz.getId()));
+        this.kindOfActivity.addValue(DETERMINES_BY_CLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -118,7 +118,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder has_Superclass(final Class clazz) {
-        kindOfActivity.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfActivity.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder member__Of(final Class clazz) {
-        kindOfActivity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfActivity.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -143,7 +143,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder member_Of(final ClassOfClass classOfClass) {
-        kindOfActivity.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfActivity.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -157,7 +157,7 @@ public class KindOfActivityBuilder {
      */
     public final KindOfActivityBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        kindOfActivity.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.kindOfActivity.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -173,7 +173,7 @@ public class KindOfActivityBuilder {
      */
     public final KindOfActivityBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfActivity.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.kindOfActivity.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -186,7 +186,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder references_By_Class(final Class clazz) {
-        kindOfActivity.addValue(REFERENCES_BY_CLASS, new IRI(clazz.getId()));
+        this.kindOfActivity.addValue(REFERENCES_BY_CLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -197,36 +197,36 @@ public class KindOfActivityBuilder {
      * @throws HqdmException If the KindOfActivity is missing any mandatory properties.
      */
     public KindOfActivity build() throws HqdmException {
-        if (kindOfActivity.hasValue(CAUSES_BY_CLASS)
-                && kindOfActivity.value(CAUSES_BY_CLASS).isEmpty()) {
+        if (this.kindOfActivity.hasValue(CAUSES_BY_CLASS)
+                && this.kindOfActivity.value(CAUSES_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: causes_by_class");
         }
-        if (kindOfActivity.hasValue(DETERMINES_BY_CLASS)
-                && kindOfActivity.value(DETERMINES_BY_CLASS).isEmpty()) {
+        if (this.kindOfActivity.hasValue(DETERMINES_BY_CLASS)
+                && this.kindOfActivity.value(DETERMINES_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: determines_by_class");
         }
-        if (kindOfActivity.hasValue(HAS_SUPERCLASS)
-                && kindOfActivity.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.kindOfActivity.hasValue(HAS_SUPERCLASS)
+                && this.kindOfActivity.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (kindOfActivity.hasValue(MEMBER__OF)
-                && kindOfActivity.value(MEMBER__OF).isEmpty()) {
+        if (this.kindOfActivity.hasValue(MEMBER__OF)
+                && this.kindOfActivity.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (kindOfActivity.hasValue(MEMBER_OF)
-                && kindOfActivity.value(MEMBER_OF).isEmpty()) {
+        if (this.kindOfActivity.hasValue(MEMBER_OF)
+                && this.kindOfActivity.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (kindOfActivity.hasValue(MEMBER_OF_)
-                && kindOfActivity.value(MEMBER_OF_).isEmpty()) {
+        if (this.kindOfActivity.hasValue(MEMBER_OF_)
+                && this.kindOfActivity.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (kindOfActivity.hasValue(PART__OF_BY_CLASS)
-                && kindOfActivity.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.kindOfActivity.hasValue(PART__OF_BY_CLASS)
+                && this.kindOfActivity.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (kindOfActivity.hasValue(REFERENCES_BY_CLASS)
-                && kindOfActivity.value(REFERENCES_BY_CLASS).isEmpty()) {
+        if (this.kindOfActivity.hasValue(REFERENCES_BY_CLASS)
+                && this.kindOfActivity.value(REFERENCES_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: references_by_class");
         }
         return kindOfActivity;

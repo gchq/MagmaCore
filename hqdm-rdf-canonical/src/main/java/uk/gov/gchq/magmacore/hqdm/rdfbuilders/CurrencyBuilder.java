@@ -43,7 +43,7 @@ public class CurrencyBuilder {
      * @param iri IRI of the Currency.
      */
     public CurrencyBuilder(final IRI iri) {
-        currency = RdfSpatioTemporalExtentServices.createCurrency(iri.getIri());
+        this.currency = RdfSpatioTemporalExtentServices.createCurrency(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class CurrencyBuilder {
      */
     public final CurrencyBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        currency.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.currency.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -71,7 +71,7 @@ public class CurrencyBuilder {
      * @return This builder.
      */
     public final CurrencyBuilder has_Superclass(final Class clazz) {
-        currency.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.currency.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -83,7 +83,7 @@ public class CurrencyBuilder {
      * @return This builder.
      */
     public final CurrencyBuilder member__Of(final Class clazz) {
-        currency.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.currency.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -96,7 +96,7 @@ public class CurrencyBuilder {
      * @return This builder.
      */
     public final CurrencyBuilder member_Of(final ClassOfClass classOfClass) {
-        currency.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.currency.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -110,7 +110,7 @@ public class CurrencyBuilder {
      */
     public final CurrencyBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        currency.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.currency.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -126,7 +126,7 @@ public class CurrencyBuilder {
      */
     public final CurrencyBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        currency.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.currency.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -137,26 +137,26 @@ public class CurrencyBuilder {
      * @throws HqdmException If the Currency is missing any mandatory properties.
      */
     public Currency build() throws HqdmException {
-        if (currency.hasValue(HAS_SUPERCLASS)
-                && currency.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.currency.hasValue(HAS_SUPERCLASS)
+                && this.currency.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (currency.hasValue(MEMBER__OF)
-                && currency.value(MEMBER__OF).isEmpty()) {
+        if (this.currency.hasValue(MEMBER__OF)
+                && this.currency.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (currency.hasValue(MEMBER_OF)
-                && currency.value(MEMBER_OF).isEmpty()) {
+        if (this.currency.hasValue(MEMBER_OF)
+                && this.currency.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (currency.hasValue(MEMBER_OF_)
-                && currency.value(MEMBER_OF_).isEmpty()) {
+        if (this.currency.hasValue(MEMBER_OF_)
+                && this.currency.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (currency.hasValue(PART__OF_BY_CLASS)
-                && currency.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.currency.hasValue(PART__OF_BY_CLASS)
+                && this.currency.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return currency;
+        return this.currency;
     }
 }

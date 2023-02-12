@@ -43,7 +43,7 @@ public class ClassOfStateOfSystemComponentBuilder {
      * @param iri IRI of the ClassOfStateOfSystemComponent.
      */
     public ClassOfStateOfSystemComponentBuilder(final IRI iri) {
-        classOfStateOfSystemComponent = RdfClassServices.createClassOfStateOfSystemComponent(iri.getIri());
+        this.classOfStateOfSystemComponent = RdfClassServices.createClassOfStateOfSystemComponent(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfStateOfSystemComponentBuilder {
      */
     public final ClassOfStateOfSystemComponentBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfSystemComponent.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfStateOfSystemComponent.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfStateOfSystemComponentBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSystemComponentBuilder has_Superclass(final Class clazz) {
-        classOfStateOfSystemComponent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfStateOfSystemComponent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfStateOfSystemComponentBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSystemComponentBuilder member__Of(final Class clazz) {
-        classOfStateOfSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfStateOfSystemComponentBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSystemComponentBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfStateOfSystemComponent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfStateOfSystemComponent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfStateOfSystemComponentBuilder {
      */
     public final ClassOfStateOfSystemComponentBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfStateOfSystemComponent.addValue(MEMBER_OF_,
+        this.classOfStateOfSystemComponent.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class ClassOfStateOfSystemComponentBuilder {
      */
     public final ClassOfStateOfSystemComponentBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfSystemComponent.addValue(PART__OF_BY_CLASS,
+        this.classOfStateOfSystemComponent.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -141,26 +141,26 @@ public class ClassOfStateOfSystemComponentBuilder {
      * @throws HqdmException If the ClassOfStateOfSystemComponent is missing any mandatory properties.
      */
     public ClassOfStateOfSystemComponent build() throws HqdmException {
-        if (classOfStateOfSystemComponent.hasValue(HAS_SUPERCLASS)
-                && classOfStateOfSystemComponent.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfStateOfSystemComponent.hasValue(HAS_SUPERCLASS)
+                && this.classOfStateOfSystemComponent.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfStateOfSystemComponent.hasValue(MEMBER__OF)
-                && classOfStateOfSystemComponent.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfStateOfSystemComponent.hasValue(MEMBER__OF)
+                && this.classOfStateOfSystemComponent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfStateOfSystemComponent.hasValue(MEMBER_OF)
-                && classOfStateOfSystemComponent.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfStateOfSystemComponent.hasValue(MEMBER_OF)
+                && this.classOfStateOfSystemComponent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfStateOfSystemComponent.hasValue(MEMBER_OF_)
-                && classOfStateOfSystemComponent.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfStateOfSystemComponent.hasValue(MEMBER_OF_)
+                && this.classOfStateOfSystemComponent.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfStateOfSystemComponent.hasValue(PART__OF_BY_CLASS)
-                && classOfStateOfSystemComponent.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfStateOfSystemComponent.hasValue(PART__OF_BY_CLASS)
+                && this.classOfStateOfSystemComponent.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfStateOfSystemComponent;
+        return this.classOfStateOfSystemComponent;
     }
 }

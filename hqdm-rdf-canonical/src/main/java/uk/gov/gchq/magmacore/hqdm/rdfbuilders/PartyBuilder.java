@@ -65,7 +65,7 @@ public class PartyBuilder {
      * @return This builder.
      */
     public final PartyBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        party.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.party.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -77,7 +77,7 @@ public class PartyBuilder {
      * @return This builder.
      */
     public final PartyBuilder beginning(final Event event) {
-        party.addValue(BEGINNING, new IRI(event.getId()));
+        this.party.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class PartyBuilder {
      * @return This builder.
      */
     public final PartyBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        party.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.party.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class PartyBuilder {
      * @return This builder.
      */
     public final PartyBuilder ending(final Event event) {
-        party.addValue(ENDING, new IRI(event.getId()));
+        this.party.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -116,7 +116,7 @@ public class PartyBuilder {
      * @return This builder.
      */
     public final PartyBuilder member__Of(final Class clazz) {
-        party.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.party.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -129,7 +129,7 @@ public class PartyBuilder {
      * @return This builder.
      */
     public final PartyBuilder member_Of(final ClassOfParty classOfParty) {
-        party.addValue(MEMBER_OF, new IRI(classOfParty.getId()));
+        this.party.addValue(MEMBER_OF, new IRI(classOfParty.getId()));
         return this;
     }
 
@@ -142,7 +142,7 @@ public class PartyBuilder {
      * @return This builder.
      */
     public final PartyBuilder member_Of_Kind(final KindOfParty kindOfParty) {
-        party.addValue(MEMBER_OF_KIND, new IRI(kindOfParty.getId()));
+        this.party.addValue(MEMBER_OF_KIND, new IRI(kindOfParty.getId()));
         return this;
     }
 
@@ -155,7 +155,7 @@ public class PartyBuilder {
      * @return This builder.
      */
     public final PartyBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        party.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.party.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -174,7 +174,7 @@ public class PartyBuilder {
      * @return This builder.
      */
     public final PartyBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        party.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.party.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -187,7 +187,7 @@ public class PartyBuilder {
      * @return This builder.
      */
     public final PartyBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        party.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.party.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -200,7 +200,7 @@ public class PartyBuilder {
      * @return This builder.
      */
     public final PartyBuilder temporal_Part_Of(final Party party) {
-        party.addValue(TEMPORAL_PART_OF, new IRI(party.getId()));
+        this.party.addValue(TEMPORAL_PART_OF, new IRI(party.getId()));
         return this;
     }
 
@@ -211,43 +211,43 @@ public class PartyBuilder {
      * @throws HqdmException If the Party is missing any mandatory properties.
      */
     public Party build() throws HqdmException {
-        if (party.hasValue(AGGREGATED_INTO)
-                && party.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.party.hasValue(AGGREGATED_INTO)
+                && this.party.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (party.hasValue(BEGINNING)
-                && party.value(BEGINNING).isEmpty()) {
+        if (this.party.hasValue(BEGINNING)
+                && this.party.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (party.hasValue(ENDING)
-                && party.value(ENDING).isEmpty()) {
+        if (this.party.hasValue(ENDING)
+                && this.party.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (party.hasValue(MEMBER__OF)
-                && party.value(MEMBER__OF).isEmpty()) {
+        if (this.party.hasValue(MEMBER__OF)
+                && this.party.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (party.hasValue(MEMBER_OF)
-                && party.value(MEMBER_OF).isEmpty()) {
+        if (this.party.hasValue(MEMBER_OF)
+                && this.party.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (party.hasValue(MEMBER_OF_KIND)
-                && party.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.party.hasValue(MEMBER_OF_KIND)
+                && this.party.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (party.hasValue(PART__OF)
-                && party.value(PART__OF).isEmpty()) {
+        if (this.party.hasValue(PART__OF)
+                && this.party.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!party.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.party.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (party.hasValue(TEMPORAL__PART_OF)
-                && party.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.party.hasValue(TEMPORAL__PART_OF)
+                && this.party.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (party.hasValue(TEMPORAL_PART_OF)
-                && party.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.party.hasValue(TEMPORAL_PART_OF)
+                && this.party.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return party;

@@ -66,7 +66,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder class_Of_Offered_M(final SalesProduct salesProduct) {
-        productOffering.addValue(CLASS_OF_OFFERED, new IRI(salesProduct.getId()));
+        this.productOffering.addValue(CLASS_OF_OFFERED, new IRI(salesProduct.getId()));
         return this;
     }
 
@@ -78,7 +78,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder consideration_By_Class_M(final Price price) {
-        productOffering.addValue(CONSIDERATION_BY_CLASS, new IRI(price.getId()));
+        this.productOffering.addValue(CONSIDERATION_BY_CLASS, new IRI(price.getId()));
         return this;
     }
 
@@ -95,7 +95,7 @@ public class ProductOfferingBuilder {
      */
     public final ProductOfferingBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        productOffering.addValue(CONSISTS__OF_BY_CLASS,
+        this.productOffering.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -108,7 +108,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder has_Superclass(final Class clazz) {
-        productOffering.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.productOffering.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -120,7 +120,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder member__Of(final Class clazz) {
-        productOffering.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.productOffering.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -133,7 +133,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder member_Of(final ClassOfClass classOfClass) {
-        productOffering.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.productOffering.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -147,7 +147,7 @@ public class ProductOfferingBuilder {
      */
     public final ProductOfferingBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        productOffering.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.productOffering.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -159,7 +159,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder offeror_M(final Party party) {
-        productOffering.addValue(OFFEROR, new IRI(party.getId()));
+        this.productOffering.addValue(OFFEROR, new IRI(party.getId()));
         return this;
     }
 
@@ -175,7 +175,7 @@ public class ProductOfferingBuilder {
      */
     public final ProductOfferingBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        productOffering.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.productOffering.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -191,7 +191,7 @@ public class ProductOfferingBuilder {
      */
     public final ProductOfferingBuilder part_Of_By_Class(
             final ClassOfReachingAgreement classOfReachingAgreement) {
-        productOffering.addValue(PART_OF_BY_CLASS, new IRI(classOfReachingAgreement.getId()));
+        this.productOffering.addValue(PART_OF_BY_CLASS, new IRI(classOfReachingAgreement.getId()));
         return this;
     }
 
@@ -208,7 +208,7 @@ public class ProductOfferingBuilder {
      */
     public final ProductOfferingBuilder part_Of_By_Class_(
             final ClassOfAgreementExecution classOfAgreementExecution) {
-        productOffering.addValue(PART_OF_BY_CLASS_, new IRI(classOfAgreementExecution.getId()));
+        this.productOffering.addValue(PART_OF_BY_CLASS_, new IRI(classOfAgreementExecution.getId()));
         return this;
     }
 
@@ -220,7 +220,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder period_Offered_M(final PeriodOfTime periodOfTime) {
-        productOffering.addValue(PERIOD_OFFERED, new IRI(periodOfTime.getId()));
+        this.productOffering.addValue(PERIOD_OFFERED, new IRI(periodOfTime.getId()));
         return this;
     }
 
@@ -231,44 +231,44 @@ public class ProductOfferingBuilder {
      * @throws HqdmException If the ProductOffering is missing any mandatory properties.
      */
     public ProductOffering build() throws HqdmException {
-        if (!productOffering.hasValue(CLASS_OF_OFFERED)) {
+        if (!this.productOffering.hasValue(CLASS_OF_OFFERED)) {
             throw new HqdmException("Property Not Set: class_of_offered");
         }
-        if (!productOffering.hasValue(CONSIDERATION_BY_CLASS)) {
+        if (!this.productOffering.hasValue(CONSIDERATION_BY_CLASS)) {
             throw new HqdmException("Property Not Set: consideration_by_class");
         }
-        if (productOffering.hasValue(HAS_SUPERCLASS)
-                && productOffering.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.productOffering.hasValue(HAS_SUPERCLASS)
+                && this.productOffering.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (productOffering.hasValue(MEMBER__OF)
-                && productOffering.value(MEMBER__OF).isEmpty()) {
+        if (this.productOffering.hasValue(MEMBER__OF)
+                && this.productOffering.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (productOffering.hasValue(MEMBER_OF)
-                && productOffering.value(MEMBER_OF).isEmpty()) {
+        if (this.productOffering.hasValue(MEMBER_OF)
+                && this.productOffering.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (productOffering.hasValue(MEMBER_OF_)
-                && productOffering.value(MEMBER_OF_).isEmpty()) {
+        if (this.productOffering.hasValue(MEMBER_OF_)
+                && this.productOffering.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (!productOffering.hasValue(OFFEROR)) {
+        if (!this.productOffering.hasValue(OFFEROR)) {
             throw new HqdmException("Property Not Set: offeror");
         }
-        if (productOffering.hasValue(PART__OF_BY_CLASS)
-                && productOffering.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.productOffering.hasValue(PART__OF_BY_CLASS)
+                && this.productOffering.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (productOffering.hasValue(PART_OF_BY_CLASS)
-                && productOffering.value(PART_OF_BY_CLASS).isEmpty()) {
+        if (this.productOffering.hasValue(PART_OF_BY_CLASS)
+                && this.productOffering.value(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
-        if (productOffering.hasValue(PART_OF_BY_CLASS_)
-                && productOffering.value(PART_OF_BY_CLASS_).isEmpty()) {
+        if (this.productOffering.hasValue(PART_OF_BY_CLASS_)
+                && this.productOffering.value(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
-        if (!productOffering.hasValue(PERIOD_OFFERED)) {
+        if (!this.productOffering.hasValue(PERIOD_OFFERED)) {
             throw new HqdmException("Property Not Set: period_offered");
         }
         return productOffering;

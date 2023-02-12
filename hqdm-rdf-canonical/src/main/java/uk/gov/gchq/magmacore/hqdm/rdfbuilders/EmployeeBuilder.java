@@ -53,7 +53,7 @@ public class EmployeeBuilder {
      * @param iri IRI of the Employee.
      */
     public EmployeeBuilder(final IRI iri) {
-        employee = RdfSpatioTemporalExtentServices.createEmployee(iri.getIri());
+        this.employee = RdfSpatioTemporalExtentServices.createEmployee(iri.getIri());
     }
 
     /**
@@ -68,7 +68,7 @@ public class EmployeeBuilder {
      * @return This builder.
      */
     public final EmployeeBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        employee.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.employee.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class EmployeeBuilder {
      * @return This builder.
      */
     public final EmployeeBuilder beginning(final Event event) {
-        employee.addValue(BEGINNING, new IRI(event.getId()));
+        this.employee.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -95,7 +95,7 @@ public class EmployeeBuilder {
      * @return This builder.
      */
     public final EmployeeBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        employee.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.employee.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -107,7 +107,7 @@ public class EmployeeBuilder {
      * @return This builder.
      */
     public final EmployeeBuilder ending(final Event event) {
-        employee.addValue(ENDING, new IRI(event.getId()));
+        this.employee.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class EmployeeBuilder {
      * @return This builder.
      */
     public final EmployeeBuilder member__Of(final Class clazz) {
-        employee.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.employee.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -133,7 +133,7 @@ public class EmployeeBuilder {
      * @return This builder.
      */
     public final EmployeeBuilder member_Of(final ClassOfStateOfPerson classOfStateOfPerson) {
-        employee.addValue(MEMBER_OF, new IRI(classOfStateOfPerson.getId()));
+        this.employee.addValue(MEMBER_OF, new IRI(classOfStateOfPerson.getId()));
         return this;
     }
 
@@ -146,7 +146,7 @@ public class EmployeeBuilder {
      * @return This builder.
      */
     public final EmployeeBuilder member_Of_Kind_M(final Role role) {
-        employee.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
+        this.employee.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
         return this;
     }
 
@@ -159,7 +159,7 @@ public class EmployeeBuilder {
      * @return This builder.
      */
     public final EmployeeBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        employee.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.employee.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -178,7 +178,7 @@ public class EmployeeBuilder {
      * @return This builder.
      */
     public final EmployeeBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        employee.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.employee.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -191,7 +191,7 @@ public class EmployeeBuilder {
      * @return This builder.
      */
     public final EmployeeBuilder participant_In_M(final Employment employment) {
-        employee.addValue(PARTICIPANT_IN, new IRI(employment.getId()));
+        this.employee.addValue(PARTICIPANT_IN, new IRI(employment.getId()));
         return this;
     }
 
@@ -204,7 +204,7 @@ public class EmployeeBuilder {
      * @return This builder.
      */
     public final EmployeeBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        employee.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.employee.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -217,7 +217,7 @@ public class EmployeeBuilder {
      * @return This builder.
      */
     public final EmployeeBuilder temporal_Part_Of(final Person person) {
-        employee.addValue(TEMPORAL_PART_OF, new IRI(person.getId()));
+        this.employee.addValue(TEMPORAL_PART_OF, new IRI(person.getId()));
         return this;
     }
 
@@ -228,47 +228,47 @@ public class EmployeeBuilder {
      * @throws HqdmException If the Employee is missing any mandatory properties.
      */
     public Employee build() throws HqdmException {
-        if (employee.hasValue(AGGREGATED_INTO)
-                && employee.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.employee.hasValue(AGGREGATED_INTO)
+                && this.employee.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (employee.hasValue(BEGINNING)
-                && employee.value(BEGINNING).isEmpty()) {
+        if (this.employee.hasValue(BEGINNING)
+                && this.employee.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (employee.hasValue(ENDING)
-                && employee.value(ENDING).isEmpty()) {
+        if (this.employee.hasValue(ENDING)
+                && this.employee.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (employee.hasValue(MEMBER__OF)
-                && employee.value(MEMBER__OF).isEmpty()) {
+        if (this.employee.hasValue(MEMBER__OF)
+                && this.employee.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (employee.hasValue(MEMBER_OF)
-                && employee.value(MEMBER_OF).isEmpty()) {
+        if (this.employee.hasValue(MEMBER_OF)
+                && this.employee.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!employee.hasValue(MEMBER_OF_KIND)) {
+        if (!this.employee.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (employee.hasValue(PART__OF)
-                && employee.value(PART__OF).isEmpty()) {
+        if (this.employee.hasValue(PART__OF)
+                && this.employee.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!employee.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.employee.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (!employee.hasValue(PARTICIPANT_IN)) {
+        if (!this.employee.hasValue(PARTICIPANT_IN)) {
             throw new HqdmException("Property Not Set: participant_in");
         }
-        if (employee.hasValue(TEMPORAL__PART_OF)
-                && employee.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.employee.hasValue(TEMPORAL__PART_OF)
+                && this.employee.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (employee.hasValue(TEMPORAL_PART_OF)
-                && employee.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.employee.hasValue(TEMPORAL_PART_OF)
+                && this.employee.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        return employee;
+        return this.employee;
     }
 }

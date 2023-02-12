@@ -64,7 +64,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfAmountOfMoney.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfAmountOfMoney.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder beginning(final Event event) {
-        stateOfAmountOfMoney.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfAmountOfMoney.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfAmountOfMoney.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfAmountOfMoney.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder ending(final Event event) {
-        stateOfAmountOfMoney.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfAmountOfMoney.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder member__Of(final Class clazz) {
-        stateOfAmountOfMoney.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfAmountOfMoney.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class StateOfAmountOfMoneyBuilder {
      */
     public final StateOfAmountOfMoneyBuilder member_Of(
             final ClassOfStateOfAmountOfMoney classOfStateOfAmountOfMoney) {
-        stateOfAmountOfMoney.addValue(MEMBER_OF, new IRI(classOfStateOfAmountOfMoney.getId()));
+        this.stateOfAmountOfMoney.addValue(MEMBER_OF, new IRI(classOfStateOfAmountOfMoney.getId()));
         return this;
     }
 
@@ -143,7 +143,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfAmountOfMoney.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfAmountOfMoney.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -162,7 +162,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfAmountOfMoney.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfAmountOfMoney.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -175,7 +175,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfAmountOfMoney.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfAmountOfMoney.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -189,7 +189,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder temporal_Part_Of(final AmountOfMoney amountOfMoney) {
-        stateOfAmountOfMoney.addValue(TEMPORAL_PART_OF, new IRI(amountOfMoney.getId()));
+        this.stateOfAmountOfMoney.addValue(TEMPORAL_PART_OF, new IRI(amountOfMoney.getId()));
         return this;
     }
 
@@ -200,39 +200,39 @@ public class StateOfAmountOfMoneyBuilder {
      * @throws HqdmException If the StateOfAmountOfMoney is missing any mandatory properties.
      */
     public StateOfAmountOfMoney build() throws HqdmException {
-        if (stateOfAmountOfMoney.hasValue(AGGREGATED_INTO)
-                && stateOfAmountOfMoney.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfAmountOfMoney.hasValue(AGGREGATED_INTO)
+                && this.stateOfAmountOfMoney.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfAmountOfMoney.hasValue(BEGINNING)
-                && stateOfAmountOfMoney.value(BEGINNING).isEmpty()) {
+        if (this.stateOfAmountOfMoney.hasValue(BEGINNING)
+                && this.stateOfAmountOfMoney.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfAmountOfMoney.hasValue(ENDING)
-                && stateOfAmountOfMoney.value(ENDING).isEmpty()) {
+        if (this.stateOfAmountOfMoney.hasValue(ENDING)
+                && this.stateOfAmountOfMoney.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfAmountOfMoney.hasValue(MEMBER__OF)
-                && stateOfAmountOfMoney.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfAmountOfMoney.hasValue(MEMBER__OF)
+                && this.stateOfAmountOfMoney.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfAmountOfMoney.hasValue(MEMBER_OF)
-                && stateOfAmountOfMoney.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfAmountOfMoney.hasValue(MEMBER_OF)
+                && this.stateOfAmountOfMoney.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfAmountOfMoney.hasValue(PART__OF)
-                && stateOfAmountOfMoney.value(PART__OF).isEmpty()) {
+        if (this.stateOfAmountOfMoney.hasValue(PART__OF)
+                && this.stateOfAmountOfMoney.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfAmountOfMoney.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfAmountOfMoney.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfAmountOfMoney.hasValue(TEMPORAL__PART_OF)
-                && stateOfAmountOfMoney.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfAmountOfMoney.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfAmountOfMoney.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfAmountOfMoney.hasValue(TEMPORAL_PART_OF)
-                && stateOfAmountOfMoney.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfAmountOfMoney.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfAmountOfMoney.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfAmountOfMoney;

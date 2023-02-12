@@ -52,7 +52,7 @@ public class RepresentationByPatternBuilder {
      * @return This builder.
      */
     public final RepresentationByPatternBuilder consists_Of_By_Class_M(final Pattern pattern) {
-        representationByPattern.addValue(CONSISTS_OF_BY_CLASS, new IRI(pattern.getId()));
+        this.representationByPattern.addValue(CONSISTS_OF_BY_CLASS, new IRI(pattern.getId()));
         return this;
     }
 
@@ -67,7 +67,7 @@ public class RepresentationByPatternBuilder {
      */
     public final RepresentationByPatternBuilder consists_Of_In_Members_M(
             final RecognizingLanguageCommunity recognizingLanguageCommunity) {
-        representationByPattern.addValue(CONSISTS_OF_IN_MEMBERS,
+        this.representationByPattern.addValue(CONSISTS_OF_IN_MEMBERS,
                 new IRI(recognizingLanguageCommunity.getId()));
         return this;
     }
@@ -81,7 +81,7 @@ public class RepresentationByPatternBuilder {
      * @return This builder.
      */
     public final RepresentationByPatternBuilder represented_M(final Thing thing) {
-        representationByPattern.addValue(REPRESENTED, new IRI(thing.getId()));
+        this.representationByPattern.addValue(REPRESENTED, new IRI(thing.getId()));
         return this;
     }
 
@@ -92,13 +92,13 @@ public class RepresentationByPatternBuilder {
      * @throws HqdmException If the RepresentationByPattern is missing any mandatory properties.
      */
     public RepresentationByPattern build() throws HqdmException {
-        if (!representationByPattern.hasValue(CONSISTS_OF_BY_CLASS)) {
+        if (!this.representationByPattern.hasValue(CONSISTS_OF_BY_CLASS)) {
             throw new HqdmException("Property Not Set: consists_of_by_class");
         }
-        if (!representationByPattern.hasValue(CONSISTS_OF_IN_MEMBERS)) {
+        if (!this.representationByPattern.hasValue(CONSISTS_OF_IN_MEMBERS)) {
             throw new HqdmException("Property Not Set: consists_of_in_members");
         }
-        if (!representationByPattern.hasValue(REPRESENTED)) {
+        if (!this.representationByPattern.hasValue(REPRESENTED)) {
             throw new HqdmException("Property Not Set: represented");
         }
         return representationByPattern;

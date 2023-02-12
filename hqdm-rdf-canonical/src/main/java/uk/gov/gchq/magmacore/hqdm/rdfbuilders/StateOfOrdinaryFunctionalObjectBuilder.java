@@ -66,7 +66,7 @@ public class StateOfOrdinaryFunctionalObjectBuilder {
      */
     public final StateOfOrdinaryFunctionalObjectBuilder aggregated_Into(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrdinaryFunctionalObject.addValue(AGGREGATED_INTO,
+        this.stateOfOrdinaryFunctionalObject.addValue(AGGREGATED_INTO,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -79,7 +79,7 @@ public class StateOfOrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryFunctionalObjectBuilder beginning(final Event event) {
-        stateOfOrdinaryFunctionalObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfOrdinaryFunctionalObject.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -94,7 +94,7 @@ public class StateOfOrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryFunctionalObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrdinaryFunctionalObject.addValue(CONSISTS__OF,
+        this.stateOfOrdinaryFunctionalObject.addValue(CONSISTS__OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -107,7 +107,7 @@ public class StateOfOrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryFunctionalObjectBuilder ending(final Event event) {
-        stateOfOrdinaryFunctionalObject.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfOrdinaryFunctionalObject.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class StateOfOrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryFunctionalObjectBuilder member__Of(final Class clazz) {
-        stateOfOrdinaryFunctionalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfOrdinaryFunctionalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -135,7 +135,7 @@ public class StateOfOrdinaryFunctionalObjectBuilder {
     @SuppressWarnings("LineLength")
     public final StateOfOrdinaryFunctionalObjectBuilder member_Of(
             final ClassOfStateOfOrdinaryFunctionalObject classOfStateOfOrdinaryFunctionalObject) {
-        stateOfOrdinaryFunctionalObject.addValue(MEMBER_OF,
+        this.stateOfOrdinaryFunctionalObject.addValue(MEMBER_OF,
                 new IRI(classOfStateOfOrdinaryFunctionalObject.getId()));
         return this;
     }
@@ -149,7 +149,7 @@ public class StateOfOrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryFunctionalObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrdinaryFunctionalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfOrdinaryFunctionalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -168,7 +168,7 @@ public class StateOfOrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryFunctionalObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfOrdinaryFunctionalObject.addValue(PART_OF_POSSIBLE_WORLD,
+        this.stateOfOrdinaryFunctionalObject.addValue(PART_OF_POSSIBLE_WORLD,
                 new IRI(possibleWorld.getId()));
         return this;
     }
@@ -183,7 +183,7 @@ public class StateOfOrdinaryFunctionalObjectBuilder {
      */
     public final StateOfOrdinaryFunctionalObjectBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrdinaryFunctionalObject.addValue(TEMPORAL__PART_OF,
+        this.stateOfOrdinaryFunctionalObject.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -198,7 +198,7 @@ public class StateOfOrdinaryFunctionalObjectBuilder {
      */
     public final StateOfOrdinaryFunctionalObjectBuilder temporal_Part_Of(
             final OrdinaryFunctionalObject ordinaryFunctionalObject) {
-        stateOfOrdinaryFunctionalObject.addValue(TEMPORAL_PART_OF,
+        this.stateOfOrdinaryFunctionalObject.addValue(TEMPORAL_PART_OF,
                 new IRI(ordinaryFunctionalObject.getId()));
         return this;
     }
@@ -211,39 +211,39 @@ public class StateOfOrdinaryFunctionalObjectBuilder {
      * @throws HqdmException If the StateOfOrdinaryFunctionalObject is missing any mandatory properties.
      */
     public StateOfOrdinaryFunctionalObject build() throws HqdmException {
-        if (stateOfOrdinaryFunctionalObject.hasValue(AGGREGATED_INTO)
-                && stateOfOrdinaryFunctionalObject.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfOrdinaryFunctionalObject.hasValue(AGGREGATED_INTO)
+                && this.stateOfOrdinaryFunctionalObject.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfOrdinaryFunctionalObject.hasValue(BEGINNING)
-                && stateOfOrdinaryFunctionalObject.value(BEGINNING).isEmpty()) {
+        if (this.stateOfOrdinaryFunctionalObject.hasValue(BEGINNING)
+                && this.stateOfOrdinaryFunctionalObject.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfOrdinaryFunctionalObject.hasValue(ENDING)
-                && stateOfOrdinaryFunctionalObject.value(ENDING).isEmpty()) {
+        if (this.stateOfOrdinaryFunctionalObject.hasValue(ENDING)
+                && this.stateOfOrdinaryFunctionalObject.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfOrdinaryFunctionalObject.hasValue(MEMBER__OF)
-                && stateOfOrdinaryFunctionalObject.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfOrdinaryFunctionalObject.hasValue(MEMBER__OF)
+                && this.stateOfOrdinaryFunctionalObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfOrdinaryFunctionalObject.hasValue(MEMBER_OF)
-                && stateOfOrdinaryFunctionalObject.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfOrdinaryFunctionalObject.hasValue(MEMBER_OF)
+                && this.stateOfOrdinaryFunctionalObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfOrdinaryFunctionalObject.hasValue(PART__OF)
-                && stateOfOrdinaryFunctionalObject.value(PART__OF).isEmpty()) {
+        if (this.stateOfOrdinaryFunctionalObject.hasValue(PART__OF)
+                && this.stateOfOrdinaryFunctionalObject.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfOrdinaryFunctionalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfOrdinaryFunctionalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfOrdinaryFunctionalObject.hasValue(TEMPORAL__PART_OF)
-                && stateOfOrdinaryFunctionalObject.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfOrdinaryFunctionalObject.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfOrdinaryFunctionalObject.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfOrdinaryFunctionalObject.hasValue(TEMPORAL_PART_OF)
-                && stateOfOrdinaryFunctionalObject.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfOrdinaryFunctionalObject.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfOrdinaryFunctionalObject.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfOrdinaryFunctionalObject;

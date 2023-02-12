@@ -63,7 +63,7 @@ public class ContractExecutionBuilder {
      * @param iri IRI of the ContractExecution.
      */
     public ContractExecutionBuilder(final IRI iri) {
-        contractExecution = RdfSpatioTemporalExtentServices.createContractExecution(iri.getIri());
+        this.contractExecution = RdfSpatioTemporalExtentServices.createContractExecution(iri.getIri());
     }
 
     /**
@@ -78,7 +78,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        contractExecution.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.contractExecution.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -90,7 +90,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder beginning(final Event event) {
-        contractExecution.addValue(BEGINNING, new IRI(event.getId()));
+        this.contractExecution.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -101,7 +101,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder causes_M(final Event event) {
-        contractExecution.addValue(CAUSES, new IRI(event.getId()));
+        this.contractExecution.addValue(CAUSES, new IRI(event.getId()));
         return this;
     }
 
@@ -116,7 +116,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        contractExecution.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.contractExecution.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -129,7 +129,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder consists_Of(final Activity activity) {
-        contractExecution.addValue(CONSISTS_OF, new IRI(activity.getId()));
+        this.contractExecution.addValue(CONSISTS_OF, new IRI(activity.getId()));
         return this;
     }
 
@@ -142,7 +142,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder consists_Of_Participant(final Participant participant) {
-        contractExecution.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.contractExecution.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
         return this;
     }
 
@@ -154,7 +154,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder determines(final Thing thing) {
-        contractExecution.addValue(DETERMINES, new IRI(thing.getId()));
+        this.contractExecution.addValue(DETERMINES, new IRI(thing.getId()));
         return this;
     }
 
@@ -166,7 +166,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder ending(final Event event) {
-        contractExecution.addValue(ENDING, new IRI(event.getId()));
+        this.contractExecution.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -177,7 +177,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder member__Of(final Class clazz) {
-        contractExecution.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.contractExecution.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -190,7 +190,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder member_Of(final ClassOfContractExecution classOfContractExecution) {
-        contractExecution.addValue(MEMBER_OF, new IRI(classOfContractExecution.getId()));
+        this.contractExecution.addValue(MEMBER_OF, new IRI(classOfContractExecution.getId()));
         return this;
     }
 
@@ -203,7 +203,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        contractExecution.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.contractExecution.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
         return this;
     }
 
@@ -216,7 +216,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        contractExecution.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.contractExecution.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -229,7 +229,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder part_Of_M(final ContractProcess contractProcess) {
-        contractExecution.addValue(PART_OF, new IRI(contractProcess.getId()));
+        this.contractExecution.addValue(PART_OF, new IRI(contractProcess.getId()));
         return this;
     }
 
@@ -243,7 +243,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder part_Of_(final AgreementExecution agreementExecution) {
-        contractExecution.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.contractExecution.addValue(PART_OF_, new IRI(agreementExecution.getId()));
         return this;
     }
 
@@ -262,7 +262,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        contractExecution.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.contractExecution.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -273,7 +273,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder references(final Thing thing) {
-        contractExecution.addValue(REFERENCES, new IRI(thing.getId()));
+        this.contractExecution.addValue(REFERENCES, new IRI(thing.getId()));
         return this;
     }
 
@@ -286,7 +286,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        contractExecution.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.contractExecution.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -309,7 +309,7 @@ public class ContractExecutionBuilder {
      * @return This builder.
      */
     public final ContractExecutionBuilder temporal_Part_Of(final Individual individual) {
-        contractExecution.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.contractExecution.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -320,62 +320,62 @@ public class ContractExecutionBuilder {
      * @throws HqdmException If the ContractExecution is missing any mandatory properties.
      */
     public ContractExecution build() throws HqdmException {
-        if (contractExecution.hasValue(AGGREGATED_INTO)
-                && contractExecution.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.contractExecution.hasValue(AGGREGATED_INTO)
+                && this.contractExecution.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (contractExecution.hasValue(BEGINNING)
-                && contractExecution.value(BEGINNING).isEmpty()) {
+        if (this.contractExecution.hasValue(BEGINNING)
+                && this.contractExecution.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!contractExecution.hasValue(CAUSES)) {
+        if (!this.contractExecution.hasValue(CAUSES)) {
             throw new HqdmException("Property Not Set: causes");
         }
-        if (contractExecution.hasValue(DETERMINES)
-                && contractExecution.value(DETERMINES).isEmpty()) {
+        if (this.contractExecution.hasValue(DETERMINES)
+                && this.contractExecution.value(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
-        if (contractExecution.hasValue(ENDING)
-                && contractExecution.value(ENDING).isEmpty()) {
+        if (this.contractExecution.hasValue(ENDING)
+                && this.contractExecution.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (contractExecution.hasValue(MEMBER__OF)
-                && contractExecution.value(MEMBER__OF).isEmpty()) {
+        if (this.contractExecution.hasValue(MEMBER__OF)
+                && this.contractExecution.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (contractExecution.hasValue(MEMBER_OF)
-                && contractExecution.value(MEMBER_OF).isEmpty()) {
+        if (this.contractExecution.hasValue(MEMBER_OF)
+                && this.contractExecution.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!contractExecution.hasValue(MEMBER_OF_KIND)) {
+        if (!this.contractExecution.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (contractExecution.hasValue(PART__OF)
-                && contractExecution.value(PART__OF).isEmpty()) {
+        if (this.contractExecution.hasValue(PART__OF)
+                && this.contractExecution.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!contractExecution.hasValue(PART_OF)) {
+        if (!this.contractExecution.hasValue(PART_OF)) {
             throw new HqdmException("Property Not Set: part_of");
         }
-        if (contractExecution.hasValue(PART_OF_)
-                && contractExecution.value(PART_OF_).isEmpty()) {
+        if (this.contractExecution.hasValue(PART_OF_)
+                && this.contractExecution.value(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
-        if (!contractExecution.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.contractExecution.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (contractExecution.hasValue(REFERENCES)
-                && contractExecution.value(REFERENCES).isEmpty()) {
+        if (this.contractExecution.hasValue(REFERENCES)
+                && this.contractExecution.value(REFERENCES).isEmpty()) {
             throw new HqdmException("Property Not Set: references");
         }
-        if (contractExecution.hasValue(TEMPORAL__PART_OF)
-                && contractExecution.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.contractExecution.hasValue(TEMPORAL__PART_OF)
+                && this.contractExecution.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (contractExecution.hasValue(TEMPORAL_PART_OF)
-                && contractExecution.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.contractExecution.hasValue(TEMPORAL_PART_OF)
+                && this.contractExecution.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        return contractExecution;
+        return this.contractExecution;
     }
 }

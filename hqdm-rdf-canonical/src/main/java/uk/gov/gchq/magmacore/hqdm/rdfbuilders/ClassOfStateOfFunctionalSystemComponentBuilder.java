@@ -44,7 +44,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
      * @param iri IRI of the ClassOfStateOfFunctionalSystemComponent.
      */
     public ClassOfStateOfFunctionalSystemComponentBuilder(final IRI iri) {
-        classOfStateOfFunctionalSystemComponent = RdfClassServices
+        this.classOfStateOfFunctionalSystemComponent = RdfClassServices
                 .createClassOfStateOfFunctionalSystemComponent(iri.getIri());
     }
 
@@ -61,7 +61,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
      */
     public final ClassOfStateOfFunctionalSystemComponentBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfFunctionalSystemComponent.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfStateOfFunctionalSystemComponent.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -74,7 +74,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfFunctionalSystemComponentBuilder has_Superclass(final Class clazz) {
-        classOfStateOfFunctionalSystemComponent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfStateOfFunctionalSystemComponent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -86,7 +86,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfFunctionalSystemComponentBuilder member__Of(final Class clazz) {
-        classOfStateOfFunctionalSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfFunctionalSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -99,7 +99,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfFunctionalSystemComponentBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfStateOfFunctionalSystemComponent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfStateOfFunctionalSystemComponent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -113,7 +113,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
      */
     public final ClassOfStateOfFunctionalSystemComponentBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfStateOfFunctionalSystemComponent.addValue(MEMBER_OF_,
+        this.classOfStateOfFunctionalSystemComponent.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -130,7 +130,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
      */
     public final ClassOfStateOfFunctionalSystemComponentBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfFunctionalSystemComponent.addValue(PART__OF_BY_CLASS,
+        this.classOfStateOfFunctionalSystemComponent.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -144,28 +144,28 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
      *                       properties.
      */
     public ClassOfStateOfFunctionalSystemComponent build() throws HqdmException {
-        if (classOfStateOfFunctionalSystemComponent.hasValue(HAS_SUPERCLASS)
-                && classOfStateOfFunctionalSystemComponent.value(HAS_SUPERCLASS)
+        if (this.classOfStateOfFunctionalSystemComponent.hasValue(HAS_SUPERCLASS)
+                && this.classOfStateOfFunctionalSystemComponent.value(HAS_SUPERCLASS)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfStateOfFunctionalSystemComponent.hasValue(MEMBER__OF)
-                && classOfStateOfFunctionalSystemComponent.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfStateOfFunctionalSystemComponent.hasValue(MEMBER__OF)
+                && this.classOfStateOfFunctionalSystemComponent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfStateOfFunctionalSystemComponent.hasValue(MEMBER_OF)
-                && classOfStateOfFunctionalSystemComponent.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfStateOfFunctionalSystemComponent.hasValue(MEMBER_OF)
+                && this.classOfStateOfFunctionalSystemComponent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfStateOfFunctionalSystemComponent.hasValue(MEMBER_OF_)
-                && classOfStateOfFunctionalSystemComponent.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfStateOfFunctionalSystemComponent.hasValue(MEMBER_OF_)
+                && this.classOfStateOfFunctionalSystemComponent.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfStateOfFunctionalSystemComponent.hasValue(PART__OF_BY_CLASS)
-                && classOfStateOfFunctionalSystemComponent.value(PART__OF_BY_CLASS)
+        if (this.classOfStateOfFunctionalSystemComponent.hasValue(PART__OF_BY_CLASS)
+                && this.classOfStateOfFunctionalSystemComponent.value(PART__OF_BY_CLASS)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfStateOfFunctionalSystemComponent;
+        return this.classOfStateOfFunctionalSystemComponent;
     }
 }

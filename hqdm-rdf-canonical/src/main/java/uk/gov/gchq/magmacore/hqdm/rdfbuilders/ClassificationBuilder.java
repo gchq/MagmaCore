@@ -40,7 +40,7 @@ public class ClassificationBuilder {
      * @param iri IRI of the Classification.
      */
     public ClassificationBuilder(final IRI iri) {
-        classification = RdfRelationshipServices.createClassification(iri.getIri());
+        this.classification = RdfRelationshipServices.createClassification(iri.getIri());
     }
 
     /**
@@ -50,7 +50,7 @@ public class ClassificationBuilder {
      * @return This builder.
      */
     public final ClassificationBuilder classifier_M(final Class clazz) {
-        classification.addValue(CLASSIFIER, new IRI(clazz.getId()));
+        this.classification.addValue(CLASSIFIER, new IRI(clazz.getId()));
         return this;
     }
 
@@ -61,7 +61,7 @@ public class ClassificationBuilder {
      * @return This builder.
      */
     public final ClassificationBuilder member_M(final Thing thing) {
-        classification.addValue(MEMBER, new IRI(thing.getId()));
+        this.classification.addValue(MEMBER, new IRI(thing.getId()));
         return this;
     }
 
@@ -77,7 +77,7 @@ public class ClassificationBuilder {
      * @return This builder.
      */
     public final ClassificationBuilder member__Of(final Class clazz) {
-        classification.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classification.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -89,7 +89,7 @@ public class ClassificationBuilder {
      * @return This builder.
      */
     public final ClassificationBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        classification.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.classification.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
         return this;
     }
 
@@ -100,20 +100,20 @@ public class ClassificationBuilder {
      * @throws HqdmException If the Classification is missing any mandatory properties.
      */
     public Classification build() throws HqdmException {
-        if (!classification.hasValue(CLASSIFIER)) {
+        if (!this.classification.hasValue(CLASSIFIER)) {
             throw new HqdmException("Property Not Set: classifier");
         }
-        if (!classification.hasValue(MEMBER)) {
+        if (!this.classification.hasValue(MEMBER)) {
             throw new HqdmException("Property Not Set: member");
         }
-        if (classification.hasValue(MEMBER__OF)
-                && classification.value(MEMBER__OF).isEmpty()) {
+        if (this.classification.hasValue(MEMBER__OF)
+                && this.classification.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classification.hasValue(MEMBER_OF)
-                && classification.value(MEMBER_OF).isEmpty()) {
+        if (this.classification.hasValue(MEMBER_OF)
+                && this.classification.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        return classification;
+        return this.classification;
     }
 }

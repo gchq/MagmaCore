@@ -51,7 +51,7 @@ public class TemporalCompositionBuilder {
      * @return This builder.
      */
     public final TemporalCompositionBuilder member__Of(final Class clazz) {
-        temporalComposition.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.temporalComposition.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -64,7 +64,7 @@ public class TemporalCompositionBuilder {
      * @return This builder.
      */
     public final TemporalCompositionBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        temporalComposition.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.temporalComposition.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class TemporalCompositionBuilder {
      * @return This builder.
      */
     public final TemporalCompositionBuilder part_M(final SpatioTemporalExtent spatioTemporalExtent) {
-        temporalComposition.addValue(PART, new IRI(spatioTemporalExtent.getId()));
+        this.temporalComposition.addValue(PART, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -88,7 +88,7 @@ public class TemporalCompositionBuilder {
      * @return This builder.
      */
     public final TemporalCompositionBuilder whole_M(final SpatioTemporalExtent spatioTemporalExtent) {
-        temporalComposition.addValue(WHOLE, new IRI(spatioTemporalExtent.getId()));
+        this.temporalComposition.addValue(WHOLE, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -99,18 +99,18 @@ public class TemporalCompositionBuilder {
      * @throws HqdmException If the TemporalComposition is missing any mandatory properties.
      */
     public TemporalComposition build() throws HqdmException {
-        if (temporalComposition.hasValue(MEMBER__OF)
-                && temporalComposition.value(MEMBER__OF).isEmpty()) {
+        if (this.temporalComposition.hasValue(MEMBER__OF)
+                && this.temporalComposition.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (temporalComposition.hasValue(MEMBER_OF)
-                && temporalComposition.value(MEMBER_OF).isEmpty()) {
+        if (this.temporalComposition.hasValue(MEMBER_OF)
+                && this.temporalComposition.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!temporalComposition.hasValue(PART)) {
+        if (!this.temporalComposition.hasValue(PART)) {
             throw new HqdmException("Property Not Set: part");
         }
-        if (!temporalComposition.hasValue(WHOLE)) {
+        if (!this.temporalComposition.hasValue(WHOLE)) {
             throw new HqdmException("Property Not Set: whole");
         }
         return temporalComposition;

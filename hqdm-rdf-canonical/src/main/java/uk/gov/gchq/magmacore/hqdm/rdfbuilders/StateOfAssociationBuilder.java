@@ -64,7 +64,7 @@ public class StateOfAssociationBuilder {
      * @return This builder.
      */
     public final StateOfAssociationBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfAssociation.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfAssociation.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfAssociationBuilder {
      * @return This builder.
      */
     public final StateOfAssociationBuilder beginning(final Event event) {
-        stateOfAssociation.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfAssociation.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfAssociationBuilder {
      * @return This builder.
      */
     public final StateOfAssociationBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfAssociation.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfAssociation.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfAssociationBuilder {
      * @return This builder.
      */
     public final StateOfAssociationBuilder ending(final Event event) {
-        stateOfAssociation.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfAssociation.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfAssociationBuilder {
      * @return This builder.
      */
     public final StateOfAssociationBuilder member__Of(final Class clazz) {
-        stateOfAssociation.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfAssociation.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -128,7 +128,7 @@ public class StateOfAssociationBuilder {
      * @return This builder.
      */
     public final StateOfAssociationBuilder member_Of(final ClassOfStateOfAssociation classOfStateOfAssociation) {
-        stateOfAssociation.addValue(MEMBER_OF, new IRI(classOfStateOfAssociation.getId()));
+        this.stateOfAssociation.addValue(MEMBER_OF, new IRI(classOfStateOfAssociation.getId()));
         return this;
     }
 
@@ -141,7 +141,7 @@ public class StateOfAssociationBuilder {
      * @return This builder.
      */
     public final StateOfAssociationBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfAssociation.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfAssociation.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -160,7 +160,7 @@ public class StateOfAssociationBuilder {
      * @return This builder.
      */
     public final StateOfAssociationBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfAssociation.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfAssociation.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -173,7 +173,7 @@ public class StateOfAssociationBuilder {
      * @return This builder.
      */
     public final StateOfAssociationBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfAssociation.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfAssociation.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -187,7 +187,7 @@ public class StateOfAssociationBuilder {
      * @return This builder.
      */
     public final StateOfAssociationBuilder temporal_Part_Of(final Association association) {
-        stateOfAssociation.addValue(TEMPORAL_PART_OF, new IRI(association.getId()));
+        this.stateOfAssociation.addValue(TEMPORAL_PART_OF, new IRI(association.getId()));
         return this;
     }
 
@@ -198,39 +198,39 @@ public class StateOfAssociationBuilder {
      * @throws HqdmException If the StateOfAssociation is missing any mandatory properties.
      */
     public StateOfAssociation build() throws HqdmException {
-        if (stateOfAssociation.hasValue(AGGREGATED_INTO)
-                && stateOfAssociation.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfAssociation.hasValue(AGGREGATED_INTO)
+                && this.stateOfAssociation.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfAssociation.hasValue(BEGINNING)
-                && stateOfAssociation.value(BEGINNING).isEmpty()) {
+        if (this.stateOfAssociation.hasValue(BEGINNING)
+                && this.stateOfAssociation.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfAssociation.hasValue(ENDING)
-                && stateOfAssociation.value(ENDING).isEmpty()) {
+        if (this.stateOfAssociation.hasValue(ENDING)
+                && this.stateOfAssociation.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfAssociation.hasValue(MEMBER__OF)
-                && stateOfAssociation.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfAssociation.hasValue(MEMBER__OF)
+                && this.stateOfAssociation.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfAssociation.hasValue(MEMBER_OF)
-                && stateOfAssociation.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfAssociation.hasValue(MEMBER_OF)
+                && this.stateOfAssociation.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfAssociation.hasValue(PART__OF)
-                && stateOfAssociation.value(PART__OF).isEmpty()) {
+        if (this.stateOfAssociation.hasValue(PART__OF)
+                && this.stateOfAssociation.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfAssociation.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfAssociation.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfAssociation.hasValue(TEMPORAL__PART_OF)
-                && stateOfAssociation.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfAssociation.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfAssociation.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfAssociation.hasValue(TEMPORAL_PART_OF)
-                && stateOfAssociation.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfAssociation.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfAssociation.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfAssociation;

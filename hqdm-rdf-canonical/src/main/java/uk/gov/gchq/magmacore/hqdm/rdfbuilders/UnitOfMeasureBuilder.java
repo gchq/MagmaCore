@@ -48,7 +48,7 @@ public class UnitOfMeasureBuilder {
      * @return This builder.
      */
     public final UnitOfMeasureBuilder member__Of(final Class clazz) {
-        unitOfMeasure.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.unitOfMeasure.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -61,7 +61,7 @@ public class UnitOfMeasureBuilder {
      * @return This builder.
      */
     public final UnitOfMeasureBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        unitOfMeasure.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.unitOfMeasure.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
         return this;
     }
 
@@ -72,12 +72,12 @@ public class UnitOfMeasureBuilder {
      * @throws HqdmException If the UnitOfMeasure is missing any mandatory properties.
      */
     public UnitOfMeasure build() throws HqdmException {
-        if (unitOfMeasure.hasValue(MEMBER__OF)
-                && unitOfMeasure.value(MEMBER__OF).isEmpty()) {
+        if (this.unitOfMeasure.hasValue(MEMBER__OF)
+                && this.unitOfMeasure.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (unitOfMeasure.hasValue(MEMBER_OF)
-                && unitOfMeasure.value(MEMBER_OF).isEmpty()) {
+        if (this.unitOfMeasure.hasValue(MEMBER_OF)
+                && this.unitOfMeasure.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return unitOfMeasure;

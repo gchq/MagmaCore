@@ -38,7 +38,7 @@ public class ClassOfPhysicalQuantityBuilder {
      * @param iri IRI of the ClassOfPhysicalQuantity.
      */
     public ClassOfPhysicalQuantityBuilder(final IRI iri) {
-        classOfPhysicalQuantity = RdfClassServices.createClassOfPhysicalQuantity(iri.getIri());
+        this.classOfPhysicalQuantity = RdfClassServices.createClassOfPhysicalQuantity(iri.getIri());
     }
 
     /**
@@ -49,7 +49,7 @@ public class ClassOfPhysicalQuantityBuilder {
      * @return This builder.
      */
     public final ClassOfPhysicalQuantityBuilder has_Superclass(final Class clazz) {
-        classOfPhysicalQuantity.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfPhysicalQuantity.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -61,7 +61,7 @@ public class ClassOfPhysicalQuantityBuilder {
      * @return This builder.
      */
     public final ClassOfPhysicalQuantityBuilder member__Of(final Class clazz) {
-        classOfPhysicalQuantity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfPhysicalQuantity.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -74,7 +74,7 @@ public class ClassOfPhysicalQuantityBuilder {
      * @return This builder.
      */
     public final ClassOfPhysicalQuantityBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfPhysicalQuantity.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfPhysicalQuantity.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -85,18 +85,18 @@ public class ClassOfPhysicalQuantityBuilder {
      * @throws HqdmException If the ClassOfPhysicalQuantity is missing any mandatory properties.
      */
     public ClassOfPhysicalQuantity build() throws HqdmException {
-        if (classOfPhysicalQuantity.hasValue(HAS_SUPERCLASS)
-                && classOfPhysicalQuantity.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfPhysicalQuantity.hasValue(HAS_SUPERCLASS)
+                && this.classOfPhysicalQuantity.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfPhysicalQuantity.hasValue(MEMBER__OF)
-                && classOfPhysicalQuantity.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfPhysicalQuantity.hasValue(MEMBER__OF)
+                && this.classOfPhysicalQuantity.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfPhysicalQuantity.hasValue(MEMBER_OF)
-                && classOfPhysicalQuantity.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfPhysicalQuantity.hasValue(MEMBER_OF)
+                && this.classOfPhysicalQuantity.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        return classOfPhysicalQuantity;
+        return this.classOfPhysicalQuantity;
     }
 }

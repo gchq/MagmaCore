@@ -53,7 +53,7 @@ public class IdentificationBuilder {
      * @return This builder.
      */
     public final IdentificationBuilder consists_Of_By_Class_M(final Pattern pattern) {
-        identification.addValue(CONSISTS_OF_BY_CLASS, new IRI(pattern.getId()));
+        this.identification.addValue(CONSISTS_OF_BY_CLASS, new IRI(pattern.getId()));
         return this;
     }
 
@@ -68,7 +68,7 @@ public class IdentificationBuilder {
      */
     public final IdentificationBuilder consists_Of_In_Members_M(
             final RecognizingLanguageCommunity recognizingLanguageCommunity) {
-        identification.addValue(CONSISTS_OF_IN_MEMBERS,
+        this.identification.addValue(CONSISTS_OF_IN_MEMBERS,
                 new IRI(recognizingLanguageCommunity.getId()));
         return this;
     }
@@ -82,7 +82,7 @@ public class IdentificationBuilder {
      * @return This builder.
      */
     public final IdentificationBuilder represented_M(final Thing thing) {
-        identification.addValue(REPRESENTED, new IRI(thing.getId()));
+        this.identification.addValue(REPRESENTED, new IRI(thing.getId()));
         return this;
     }
 
@@ -93,13 +93,13 @@ public class IdentificationBuilder {
      * @throws HqdmException If the Identification is missing any mandatory properties.
      */
     public Identification build() throws HqdmException {
-        if (!identification.hasValue(CONSISTS_OF_BY_CLASS)) {
+        if (!this.identification.hasValue(CONSISTS_OF_BY_CLASS)) {
             throw new HqdmException("Property Not Set: consists_of_by_class");
         }
-        if (!identification.hasValue(CONSISTS_OF_IN_MEMBERS)) {
+        if (!this.identification.hasValue(CONSISTS_OF_IN_MEMBERS)) {
             throw new HqdmException("Property Not Set: consists_of_in_members");
         }
-        if (!identification.hasValue(REPRESENTED)) {
+        if (!this.identification.hasValue(REPRESENTED)) {
             throw new HqdmException("Property Not Set: represented");
         }
         return identification;

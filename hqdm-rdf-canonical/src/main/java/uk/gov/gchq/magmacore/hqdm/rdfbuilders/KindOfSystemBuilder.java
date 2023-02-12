@@ -61,7 +61,7 @@ public class KindOfSystemBuilder {
      */
     public final KindOfSystemBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfSystem.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.kindOfSystem.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class KindOfSystemBuilder {
      */
     public final KindOfSystemBuilder has_Component_By_Class_M(
             final KindOfSystemComponent kindOfSystemComponent) {
-        kindOfSystem.addValue(HAS_COMPONENT_BY_CLASS, new IRI(kindOfSystemComponent.getId()));
+        this.kindOfSystem.addValue(HAS_COMPONENT_BY_CLASS, new IRI(kindOfSystemComponent.getId()));
         return this;
     }
 
@@ -88,7 +88,7 @@ public class KindOfSystemBuilder {
      * @return This builder.
      */
     public final KindOfSystemBuilder has_Superclass(final Class clazz) {
-        kindOfSystem.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfSystem.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -100,7 +100,7 @@ public class KindOfSystemBuilder {
      * @return This builder.
      */
     public final KindOfSystemBuilder member__Of(final Class clazz) {
-        kindOfSystem.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfSystem.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -113,7 +113,7 @@ public class KindOfSystemBuilder {
      * @return This builder.
      */
     public final KindOfSystemBuilder member_Of(final ClassOfClass classOfClass) {
-        kindOfSystem.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfSystem.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -127,7 +127,7 @@ public class KindOfSystemBuilder {
      */
     public final KindOfSystemBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        kindOfSystem.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.kindOfSystem.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -143,7 +143,7 @@ public class KindOfSystemBuilder {
      */
     public final KindOfSystemBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfSystem.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.kindOfSystem.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -154,27 +154,27 @@ public class KindOfSystemBuilder {
      * @throws HqdmException If the KindOfSystem is missing any mandatory properties.
      */
     public KindOfSystem build() throws HqdmException {
-        if (!kindOfSystem.hasValue(HAS_COMPONENT_BY_CLASS)) {
+        if (!this.kindOfSystem.hasValue(HAS_COMPONENT_BY_CLASS)) {
             throw new HqdmException("Property Not Set: has_component_by_class");
         }
-        if (kindOfSystem.hasValue(HAS_SUPERCLASS)
-                && kindOfSystem.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.kindOfSystem.hasValue(HAS_SUPERCLASS)
+                && this.kindOfSystem.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (kindOfSystem.hasValue(MEMBER__OF)
-                && kindOfSystem.value(MEMBER__OF).isEmpty()) {
+        if (this.kindOfSystem.hasValue(MEMBER__OF)
+                && this.kindOfSystem.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (kindOfSystem.hasValue(MEMBER_OF)
-                && kindOfSystem.value(MEMBER_OF).isEmpty()) {
+        if (this.kindOfSystem.hasValue(MEMBER_OF)
+                && this.kindOfSystem.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (kindOfSystem.hasValue(MEMBER_OF_)
-                && kindOfSystem.value(MEMBER_OF_).isEmpty()) {
+        if (this.kindOfSystem.hasValue(MEMBER_OF_)
+                && this.kindOfSystem.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (kindOfSystem.hasValue(PART__OF_BY_CLASS)
-                && kindOfSystem.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.kindOfSystem.hasValue(PART__OF_BY_CLASS)
+                && this.kindOfSystem.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return kindOfSystem;

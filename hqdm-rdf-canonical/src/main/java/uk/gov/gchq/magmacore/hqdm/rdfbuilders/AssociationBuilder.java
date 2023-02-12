@@ -53,7 +53,7 @@ public class AssociationBuilder {
      * @param iri IRI of the Association.
      */
     public AssociationBuilder(final IRI iri) {
-        association = RdfSpatioTemporalExtentServices.createAssociation(iri.getIri());
+        this.association = RdfSpatioTemporalExtentServices.createAssociation(iri.getIri());
     }
 
     /**
@@ -68,7 +68,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        association.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.association.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder beginning(final Event event) {
-        association.addValue(BEGINNING, new IRI(event.getId()));
+        this.association.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -95,7 +95,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        association.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.association.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -107,7 +107,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder consists_Of_Participant(final Participant participant) {
-        association.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.association.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder ending(final Event event) {
-        association.addValue(ENDING, new IRI(event.getId()));
+        this.association.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -131,7 +131,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder member__Of(final Class clazz) {
-        association.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.association.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -144,7 +144,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder member_Of(final ClassOfAssociation classOfAssociation) {
-        association.addValue(MEMBER_OF, new IRI(classOfAssociation.getId()));
+        this.association.addValue(MEMBER_OF, new IRI(classOfAssociation.getId()));
         return this;
     }
 
@@ -157,7 +157,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder member_Of_Kind_M(final KindOfAssociation kindOfAssociation) {
-        association.addValue(MEMBER_OF_KIND, new IRI(kindOfAssociation.getId()));
+        this.association.addValue(MEMBER_OF_KIND, new IRI(kindOfAssociation.getId()));
         return this;
     }
 
@@ -170,7 +170,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        association.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.association.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -189,7 +189,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        association.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.association.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -202,7 +202,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        association.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.association.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -225,7 +225,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder temporal_Part_Of(final Individual individual) {
-        association.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.association.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -236,44 +236,44 @@ public class AssociationBuilder {
      * @throws HqdmException If the Association is missing any mandatory properties.
      */
     public Association build() throws HqdmException {
-        if (association.hasValue(AGGREGATED_INTO)
-                && association.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.association.hasValue(AGGREGATED_INTO)
+                && this.association.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (association.hasValue(BEGINNING)
-                && association.value(BEGINNING).isEmpty()) {
+        if (this.association.hasValue(BEGINNING)
+                && this.association.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (association.hasValue(ENDING)
-                && association.value(ENDING).isEmpty()) {
+        if (this.association.hasValue(ENDING)
+                && this.association.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (association.hasValue(MEMBER__OF)
-                && association.value(MEMBER__OF).isEmpty()) {
+        if (this.association.hasValue(MEMBER__OF)
+                && this.association.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (association.hasValue(MEMBER_OF)
-                && association.value(MEMBER_OF).isEmpty()) {
+        if (this.association.hasValue(MEMBER_OF)
+                && this.association.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!association.hasValue(MEMBER_OF_KIND)) {
+        if (!this.association.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (association.hasValue(PART__OF)
-                && association.value(PART__OF).isEmpty()) {
+        if (this.association.hasValue(PART__OF)
+                && this.association.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!association.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.association.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (association.hasValue(TEMPORAL__PART_OF)
-                && association.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.association.hasValue(TEMPORAL__PART_OF)
+                && this.association.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (association.hasValue(TEMPORAL_PART_OF)
-                && association.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.association.hasValue(TEMPORAL_PART_OF)
+                && this.association.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        return association;
+        return this.association;
     }
 }
