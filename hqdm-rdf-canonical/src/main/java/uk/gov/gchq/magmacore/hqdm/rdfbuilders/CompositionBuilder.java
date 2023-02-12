@@ -40,7 +40,7 @@ public class CompositionBuilder {
      * @param iri IRI of the Composition.
      */
     public CompositionBuilder(final IRI iri) {
-        composition = RdfRelationshipServices.createComposition(iri.getIri());
+        this.composition = RdfRelationshipServices.createComposition(iri.getIri());
     }
 
     /**
@@ -51,7 +51,7 @@ public class CompositionBuilder {
      * @return This builder.
      */
     public final CompositionBuilder member__Of(final Class clazz) {
-        composition.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.composition.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -64,7 +64,7 @@ public class CompositionBuilder {
      * @return This builder.
      */
     public final CompositionBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        composition.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.composition.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class CompositionBuilder {
      * @return This builder.
      */
     public final CompositionBuilder part_M(final SpatioTemporalExtent spatioTemporalExtent) {
-        composition.addValue(PART, new IRI(spatioTemporalExtent.getId()));
+        this.composition.addValue(PART, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -88,7 +88,7 @@ public class CompositionBuilder {
      * @return This builder.
      */
     public final CompositionBuilder whole_M(final SpatioTemporalExtent spatioTemporalExtent) {
-        composition.addValue(WHOLE, new IRI(spatioTemporalExtent.getId()));
+        this.composition.addValue(WHOLE, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -99,20 +99,20 @@ public class CompositionBuilder {
      * @throws HqdmException If the Composition is missing any mandatory properties.
      */
     public Composition build() throws HqdmException {
-        if (composition.hasValue(MEMBER__OF)
-                && composition.value(MEMBER__OF).isEmpty()) {
+        if (this.composition.hasValue(MEMBER__OF)
+                && this.composition.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (composition.hasValue(MEMBER_OF)
-                && composition.value(MEMBER_OF).isEmpty()) {
+        if (this.composition.hasValue(MEMBER_OF)
+                && this.composition.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!composition.hasValue(PART)) {
+        if (!this.composition.hasValue(PART)) {
             throw new HqdmException("Property Not Set: part");
         }
-        if (!composition.hasValue(WHOLE)) {
+        if (!this.composition.hasValue(WHOLE)) {
             throw new HqdmException("Property Not Set: whole");
         }
-        return composition;
+        return this.composition;
     }
 }

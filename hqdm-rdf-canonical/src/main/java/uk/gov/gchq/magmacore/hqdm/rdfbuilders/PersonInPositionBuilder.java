@@ -64,7 +64,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        personInPosition.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.personInPosition.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder beginning(final Event event) {
-        personInPosition.addValue(BEGINNING, new IRI(event.getId()));
+        this.personInPosition.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        personInPosition.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.personInPosition.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -103,7 +103,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder ending(final Event event) {
-        personInPosition.addValue(ENDING, new IRI(event.getId()));
+        this.personInPosition.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder member__Of(final Class clazz) {
-        personInPosition.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.personInPosition.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -128,7 +128,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder member_Of(final ClassOfPersonInPosition classOfPersonInPosition) {
-        personInPosition.addValue(MEMBER_OF, new IRI(classOfPersonInPosition.getId()));
+        this.personInPosition.addValue(MEMBER_OF, new IRI(classOfPersonInPosition.getId()));
         return this;
     }
 
@@ -141,7 +141,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        personInPosition.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.personInPosition.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -160,7 +160,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        personInPosition.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.personInPosition.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -173,7 +173,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        personInPosition.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.personInPosition.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -187,7 +187,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder temporal_Part_Of(final Position position) {
-        personInPosition.addValue(TEMPORAL_PART_OF, new IRI(position.getId()));
+        this.personInPosition.addValue(TEMPORAL_PART_OF, new IRI(position.getId()));
         return this;
     }
 
@@ -198,39 +198,39 @@ public class PersonInPositionBuilder {
      * @throws HqdmException If the PersonInPosition is missing any mandatory properties.
      */
     public PersonInPosition build() throws HqdmException {
-        if (personInPosition.hasValue(AGGREGATED_INTO)
-                && personInPosition.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.personInPosition.hasValue(AGGREGATED_INTO)
+                && this.personInPosition.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (personInPosition.hasValue(BEGINNING)
-                && personInPosition.value(BEGINNING).isEmpty()) {
+        if (this.personInPosition.hasValue(BEGINNING)
+                && this.personInPosition.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (personInPosition.hasValue(ENDING)
-                && personInPosition.value(ENDING).isEmpty()) {
+        if (this.personInPosition.hasValue(ENDING)
+                && this.personInPosition.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (personInPosition.hasValue(MEMBER__OF)
-                && personInPosition.value(MEMBER__OF).isEmpty()) {
+        if (this.personInPosition.hasValue(MEMBER__OF)
+                && this.personInPosition.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (personInPosition.hasValue(MEMBER_OF)
-                && personInPosition.value(MEMBER_OF).isEmpty()) {
+        if (this.personInPosition.hasValue(MEMBER_OF)
+                && this.personInPosition.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (personInPosition.hasValue(PART__OF)
-                && personInPosition.value(PART__OF).isEmpty()) {
+        if (this.personInPosition.hasValue(PART__OF)
+                && this.personInPosition.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!personInPosition.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.personInPosition.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (personInPosition.hasValue(TEMPORAL__PART_OF)
-                && personInPosition.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.personInPosition.hasValue(TEMPORAL__PART_OF)
+                && this.personInPosition.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (personInPosition.hasValue(TEMPORAL_PART_OF)
-                && personInPosition.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.personInPosition.hasValue(TEMPORAL_PART_OF)
+                && this.personInPosition.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return personInPosition;

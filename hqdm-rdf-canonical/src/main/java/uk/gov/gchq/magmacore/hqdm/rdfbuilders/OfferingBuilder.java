@@ -66,7 +66,7 @@ public class OfferingBuilder {
      * @return This builder.
      */
     public final OfferingBuilder class_Of_Offered_M(final ClassOfIndividual classOfIndividual) {
-        offering.addValue(CLASS_OF_OFFERED, new IRI(classOfIndividual.getId()));
+        this.offering.addValue(CLASS_OF_OFFERED, new IRI(classOfIndividual.getId()));
         return this;
     }
 
@@ -78,7 +78,7 @@ public class OfferingBuilder {
      * @return This builder.
      */
     public final OfferingBuilder consideration_By_Class_M(final Price price) {
-        offering.addValue(CONSIDERATION_BY_CLASS, new IRI(price.getId()));
+        this.offering.addValue(CONSIDERATION_BY_CLASS, new IRI(price.getId()));
         return this;
     }
 
@@ -95,7 +95,7 @@ public class OfferingBuilder {
      */
     public final OfferingBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        offering.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.offering.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -107,7 +107,7 @@ public class OfferingBuilder {
      * @return This builder.
      */
     public final OfferingBuilder has_Superclass(final Class clazz) {
-        offering.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.offering.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class OfferingBuilder {
      * @return This builder.
      */
     public final OfferingBuilder member__Of(final Class clazz) {
-        offering.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.offering.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -132,7 +132,7 @@ public class OfferingBuilder {
      * @return This builder.
      */
     public final OfferingBuilder member_Of(final ClassOfClass classOfClass) {
-        offering.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.offering.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -146,7 +146,7 @@ public class OfferingBuilder {
      */
     public final OfferingBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        offering.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.offering.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -158,7 +158,7 @@ public class OfferingBuilder {
      * @return This builder.
      */
     public final OfferingBuilder offeror_M(final Party party) {
-        offering.addValue(OFFEROR, new IRI(party.getId()));
+        this.offering.addValue(OFFEROR, new IRI(party.getId()));
         return this;
     }
 
@@ -174,7 +174,7 @@ public class OfferingBuilder {
      */
     public final OfferingBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        offering.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.offering.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -190,7 +190,7 @@ public class OfferingBuilder {
      */
     public final OfferingBuilder part_Of_By_Class(
             final ClassOfReachingAgreement classOfReachingAgreement) {
-        offering.addValue(PART_OF_BY_CLASS, new IRI(classOfReachingAgreement.getId()));
+        this.offering.addValue(PART_OF_BY_CLASS, new IRI(classOfReachingAgreement.getId()));
         return this;
     }
 
@@ -207,7 +207,7 @@ public class OfferingBuilder {
      */
     public final OfferingBuilder part_Of_By_Class_(
             final ClassOfAgreementExecution classOfAgreementExecution) {
-        offering.addValue(PART_OF_BY_CLASS_, new IRI(classOfAgreementExecution.getId()));
+        this.offering.addValue(PART_OF_BY_CLASS_, new IRI(classOfAgreementExecution.getId()));
         return this;
     }
 
@@ -218,7 +218,7 @@ public class OfferingBuilder {
      * @return This builder.
      */
     public final OfferingBuilder period_Offered_M(final PeriodOfTime periodOfTime) {
-        offering.addValue(PERIOD_OFFERED, new IRI(periodOfTime.getId()));
+        this.offering.addValue(PERIOD_OFFERED, new IRI(periodOfTime.getId()));
         return this;
     }
 
@@ -229,44 +229,44 @@ public class OfferingBuilder {
      * @throws HqdmException If the Offering is missing any mandatory properties.
      */
     public Offering build() throws HqdmException {
-        if (!offering.hasValue(CLASS_OF_OFFERED)) {
+        if (!this.offering.hasValue(CLASS_OF_OFFERED)) {
             throw new HqdmException("Property Not Set: class_of_offered");
         }
-        if (!offering.hasValue(CONSIDERATION_BY_CLASS)) {
+        if (!this.offering.hasValue(CONSIDERATION_BY_CLASS)) {
             throw new HqdmException("Property Not Set: consideration_by_class");
         }
-        if (offering.hasValue(HAS_SUPERCLASS)
-                && offering.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.offering.hasValue(HAS_SUPERCLASS)
+                && this.offering.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (offering.hasValue(MEMBER__OF)
-                && offering.value(MEMBER__OF).isEmpty()) {
+        if (this.offering.hasValue(MEMBER__OF)
+                && this.offering.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (offering.hasValue(MEMBER_OF)
-                && offering.value(MEMBER_OF).isEmpty()) {
+        if (this.offering.hasValue(MEMBER_OF)
+                && this.offering.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (offering.hasValue(MEMBER_OF_)
-                && offering.value(MEMBER_OF_).isEmpty()) {
+        if (this.offering.hasValue(MEMBER_OF_)
+                && this.offering.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (!offering.hasValue(OFFEROR)) {
+        if (!this.offering.hasValue(OFFEROR)) {
             throw new HqdmException("Property Not Set: offeror");
         }
-        if (offering.hasValue(PART__OF_BY_CLASS)
-                && offering.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.offering.hasValue(PART__OF_BY_CLASS)
+                && this.offering.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (offering.hasValue(PART_OF_BY_CLASS)
-                && offering.value(PART_OF_BY_CLASS).isEmpty()) {
+        if (this.offering.hasValue(PART_OF_BY_CLASS)
+                && this.offering.value(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
-        if (offering.hasValue(PART_OF_BY_CLASS_)
-                && offering.value(PART_OF_BY_CLASS_).isEmpty()) {
+        if (this.offering.hasValue(PART_OF_BY_CLASS_)
+                && this.offering.value(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
-        if (!offering.hasValue(PERIOD_OFFERED)) {
+        if (!this.offering.hasValue(PERIOD_OFFERED)) {
             throw new HqdmException("Property Not Set: period_offered");
         }
         return offering;

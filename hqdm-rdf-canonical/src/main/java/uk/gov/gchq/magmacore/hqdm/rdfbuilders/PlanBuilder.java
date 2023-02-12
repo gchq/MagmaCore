@@ -67,7 +67,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        plan.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.plan.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -79,7 +79,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder beginning(final Event event) {
-        plan.addValue(BEGINNING, new IRI(event.getId()));
+        this.plan.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -94,7 +94,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        plan.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.plan.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -106,7 +106,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder ending(final Event event) {
-        plan.addValue(ENDING, new IRI(event.getId()));
+        this.plan.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -118,7 +118,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder member__Of(final Class clazz) {
-        plan.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.plan.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -131,7 +131,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder member_Of(final ClassOfPossibleWorld classOfPossibleWorld) {
-        plan.addValue(MEMBER_OF, new IRI(classOfPossibleWorld.getId()));
+        this.plan.addValue(MEMBER_OF, new IRI(classOfPossibleWorld.getId()));
         return this;
     }
 
@@ -144,7 +144,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder member_Of_Kind(final KindOfIndividual kindOfIndividual) {
-        plan.addValue(MEMBER_OF_KIND, new IRI(kindOfIndividual.getId()));
+        this.plan.addValue(MEMBER_OF_KIND, new IRI(kindOfIndividual.getId()));
         return this;
     }
 
@@ -157,7 +157,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        plan.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.plan.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -176,7 +176,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        plan.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.plan.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -189,7 +189,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        plan.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.plan.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -212,7 +212,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder temporal_Part_Of(final Individual individual) {
-        plan.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.plan.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -226,7 +226,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder temporal_Part_Of_(final PossibleWorld possibleWorld) {
-        plan.addValue(TEMPORAL_PART_OF_, new IRI(possibleWorld.getId()));
+        this.plan.addValue(TEMPORAL_PART_OF_, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -237,47 +237,47 @@ public class PlanBuilder {
      * @throws HqdmException If the Plan is missing any mandatory properties.
      */
     public Plan build() throws HqdmException {
-        if (plan.hasValue(AGGREGATED_INTO)
-                && plan.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.plan.hasValue(AGGREGATED_INTO)
+                && this.plan.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (plan.hasValue(BEGINNING)
-                && plan.value(BEGINNING).isEmpty()) {
+        if (this.plan.hasValue(BEGINNING)
+                && this.plan.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (plan.hasValue(ENDING)
-                && plan.value(ENDING).isEmpty()) {
+        if (this.plan.hasValue(ENDING)
+                && this.plan.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (plan.hasValue(MEMBER__OF)
-                && plan.value(MEMBER__OF).isEmpty()) {
+        if (this.plan.hasValue(MEMBER__OF)
+                && this.plan.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (plan.hasValue(MEMBER_OF)
-                && plan.value(MEMBER_OF).isEmpty()) {
+        if (this.plan.hasValue(MEMBER_OF)
+                && this.plan.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (plan.hasValue(MEMBER_OF_KIND)
-                && plan.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.plan.hasValue(MEMBER_OF_KIND)
+                && this.plan.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (plan.hasValue(PART__OF)
-                && plan.value(PART__OF).isEmpty()) {
+        if (this.plan.hasValue(PART__OF)
+                && this.plan.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!plan.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.plan.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (plan.hasValue(TEMPORAL__PART_OF)
-                && plan.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.plan.hasValue(TEMPORAL__PART_OF)
+                && this.plan.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (plan.hasValue(TEMPORAL_PART_OF)
-                && plan.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.plan.hasValue(TEMPORAL_PART_OF)
+                && this.plan.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        if (plan.hasValue(TEMPORAL_PART_OF_)
-                && plan.value(TEMPORAL_PART_OF_).isEmpty()) {
+        if (this.plan.hasValue(TEMPORAL_PART_OF_)
+                && this.plan.value(TEMPORAL_PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of_");
         }
         return plan;

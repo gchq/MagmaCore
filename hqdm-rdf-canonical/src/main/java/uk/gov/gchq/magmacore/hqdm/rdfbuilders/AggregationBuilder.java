@@ -40,7 +40,7 @@ public class AggregationBuilder {
      * @param iri IRI of the Aggregation.
      */
     public AggregationBuilder(final IRI iri) {
-        aggregation = RdfRelationshipServices.createAggregation(iri.getIri());
+        this.aggregation = RdfRelationshipServices.createAggregation(iri.getIri());
     }
 
     /**
@@ -51,7 +51,7 @@ public class AggregationBuilder {
      * @return This builder.
      */
     public final AggregationBuilder member__Of(final Class clazz) {
-        aggregation.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.aggregation.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -64,7 +64,7 @@ public class AggregationBuilder {
      * @return This builder.
      */
     public final AggregationBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        aggregation.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.aggregation.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class AggregationBuilder {
      * @return This builder.
      */
     public final AggregationBuilder part_M(final SpatioTemporalExtent spatioTemporalExtent) {
-        aggregation.addValue(PART, new IRI(spatioTemporalExtent.getId()));
+        this.aggregation.addValue(PART, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -88,7 +88,7 @@ public class AggregationBuilder {
      * @return This builder.
      */
     public final AggregationBuilder whole_M(final SpatioTemporalExtent spatioTemporalExtent) {
-        aggregation.addValue(WHOLE, new IRI(spatioTemporalExtent.getId()));
+        this.aggregation.addValue(WHOLE, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -99,20 +99,20 @@ public class AggregationBuilder {
      * @throws HqdmException If the Aggregation is missing any mandatory properties.
      */
     public Aggregation build() throws HqdmException {
-        if (aggregation.hasValue(MEMBER__OF)
-                && aggregation.value(MEMBER__OF).isEmpty()) {
+        if (this.aggregation.hasValue(MEMBER__OF)
+                && this.aggregation.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (aggregation.hasValue(MEMBER_OF)
-                && aggregation.value(MEMBER_OF).isEmpty()) {
+        if (this.aggregation.hasValue(MEMBER_OF)
+                && this.aggregation.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!aggregation.hasValue(PART)) {
+        if (!this.aggregation.hasValue(PART)) {
             throw new HqdmException("Property Not Set: part");
         }
-        if (!aggregation.hasValue(WHOLE)) {
+        if (!this.aggregation.hasValue(WHOLE)) {
             throw new HqdmException("Property Not Set: whole");
         }
-        return aggregation;
+        return this.aggregation;
     }
 }

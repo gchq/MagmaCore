@@ -65,7 +65,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryPhysicalObjectBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrdinaryPhysicalObject.addValue(AGGREGATED_INTO,
+        this.stateOfOrdinaryPhysicalObject.addValue(AGGREGATED_INTO,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -78,7 +78,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryPhysicalObjectBuilder beginning(final Event event) {
-        stateOfOrdinaryPhysicalObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfOrdinaryPhysicalObject.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -93,7 +93,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryPhysicalObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrdinaryPhysicalObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfOrdinaryPhysicalObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -105,7 +105,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryPhysicalObjectBuilder ending(final Event event) {
-        stateOfOrdinaryPhysicalObject.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfOrdinaryPhysicalObject.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -117,7 +117,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryPhysicalObjectBuilder member__Of(final Class clazz) {
-        stateOfOrdinaryPhysicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfOrdinaryPhysicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -132,7 +132,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      */
     public final StateOfOrdinaryPhysicalObjectBuilder member_Of(
             final ClassOfStateOfOrdinaryPhysicalObject classOfStateOfOrdinaryPhysicalObject) {
-        stateOfOrdinaryPhysicalObject.addValue(MEMBER_OF,
+        this.stateOfOrdinaryPhysicalObject.addValue(MEMBER_OF,
                 new IRI(classOfStateOfOrdinaryPhysicalObject.getId()));
         return this;
     }
@@ -146,7 +146,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryPhysicalObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrdinaryPhysicalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfOrdinaryPhysicalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -165,7 +165,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryPhysicalObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfOrdinaryPhysicalObject.addValue(PART_OF_POSSIBLE_WORLD,
+        this.stateOfOrdinaryPhysicalObject.addValue(PART_OF_POSSIBLE_WORLD,
                 new IRI(possibleWorld.getId()));
         return this;
     }
@@ -180,7 +180,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      */
     public final StateOfOrdinaryPhysicalObjectBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrdinaryPhysicalObject.addValue(TEMPORAL__PART_OF,
+        this.stateOfOrdinaryPhysicalObject.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -196,7 +196,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      */
     public final StateOfOrdinaryPhysicalObjectBuilder temporal_Part_Of(
             final OrdinaryPhysicalObject ordinaryPhysicalObject) {
-        stateOfOrdinaryPhysicalObject.addValue(TEMPORAL_PART_OF,
+        this.stateOfOrdinaryPhysicalObject.addValue(TEMPORAL_PART_OF,
                 new IRI(ordinaryPhysicalObject.getId()));
         return this;
     }
@@ -209,39 +209,39 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @throws HqdmException If the StateOfOrdinaryPhysicalObject is missing any mandatory properties.
      */
     public StateOfOrdinaryPhysicalObject build() throws HqdmException {
-        if (stateOfOrdinaryPhysicalObject.hasValue(AGGREGATED_INTO)
-                && stateOfOrdinaryPhysicalObject.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfOrdinaryPhysicalObject.hasValue(AGGREGATED_INTO)
+                && this.stateOfOrdinaryPhysicalObject.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfOrdinaryPhysicalObject.hasValue(BEGINNING)
-                && stateOfOrdinaryPhysicalObject.value(BEGINNING).isEmpty()) {
+        if (this.stateOfOrdinaryPhysicalObject.hasValue(BEGINNING)
+                && this.stateOfOrdinaryPhysicalObject.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfOrdinaryPhysicalObject.hasValue(ENDING)
-                && stateOfOrdinaryPhysicalObject.value(ENDING).isEmpty()) {
+        if (this.stateOfOrdinaryPhysicalObject.hasValue(ENDING)
+                && this.stateOfOrdinaryPhysicalObject.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfOrdinaryPhysicalObject.hasValue(MEMBER__OF)
-                && stateOfOrdinaryPhysicalObject.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfOrdinaryPhysicalObject.hasValue(MEMBER__OF)
+                && this.stateOfOrdinaryPhysicalObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfOrdinaryPhysicalObject.hasValue(MEMBER_OF)
-                && stateOfOrdinaryPhysicalObject.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfOrdinaryPhysicalObject.hasValue(MEMBER_OF)
+                && this.stateOfOrdinaryPhysicalObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfOrdinaryPhysicalObject.hasValue(PART__OF)
-                && stateOfOrdinaryPhysicalObject.value(PART__OF).isEmpty()) {
+        if (this.stateOfOrdinaryPhysicalObject.hasValue(PART__OF)
+                && this.stateOfOrdinaryPhysicalObject.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfOrdinaryPhysicalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfOrdinaryPhysicalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfOrdinaryPhysicalObject.hasValue(TEMPORAL__PART_OF)
-                && stateOfOrdinaryPhysicalObject.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfOrdinaryPhysicalObject.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfOrdinaryPhysicalObject.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfOrdinaryPhysicalObject.hasValue(TEMPORAL_PART_OF)
-                && stateOfOrdinaryPhysicalObject.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfOrdinaryPhysicalObject.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfOrdinaryPhysicalObject.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfOrdinaryPhysicalObject;

@@ -43,7 +43,7 @@ public class ClassOfPositionBuilder {
      * @param iri IRI of the ClassOfPosition.
      */
     public ClassOfPositionBuilder(final IRI iri) {
-        classOfPosition = RdfClassServices.createClassOfPosition(iri.getIri());
+        this.classOfPosition = RdfClassServices.createClassOfPosition(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfPositionBuilder {
      */
     public final ClassOfPositionBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfPosition.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfPosition.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfPositionBuilder {
      * @return This builder.
      */
     public final ClassOfPositionBuilder has_Superclass(final Class clazz) {
-        classOfPosition.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfPosition.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfPositionBuilder {
      * @return This builder.
      */
     public final ClassOfPositionBuilder member__Of(final Class clazz) {
-        classOfPosition.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfPosition.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfPositionBuilder {
      * @return This builder.
      */
     public final ClassOfPositionBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfPosition.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfPosition.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfPositionBuilder {
      */
     public final ClassOfPositionBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfPosition.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.classOfPosition.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -127,7 +127,7 @@ public class ClassOfPositionBuilder {
      */
     public final ClassOfPositionBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfPosition.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfPosition.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -138,26 +138,26 @@ public class ClassOfPositionBuilder {
      * @throws HqdmException If the ClassOfPosition is missing any mandatory properties.
      */
     public ClassOfPosition build() throws HqdmException {
-        if (classOfPosition.hasValue(HAS_SUPERCLASS)
-                && classOfPosition.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfPosition.hasValue(HAS_SUPERCLASS)
+                && this.classOfPosition.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfPosition.hasValue(MEMBER__OF)
-                && classOfPosition.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfPosition.hasValue(MEMBER__OF)
+                && this.classOfPosition.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfPosition.hasValue(MEMBER_OF)
-                && classOfPosition.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfPosition.hasValue(MEMBER_OF)
+                && this.classOfPosition.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfPosition.hasValue(MEMBER_OF_)
-                && classOfPosition.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfPosition.hasValue(MEMBER_OF_)
+                && this.classOfPosition.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfPosition.hasValue(PART__OF_BY_CLASS)
-                && classOfPosition.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfPosition.hasValue(PART__OF_BY_CLASS)
+                && this.classOfPosition.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfPosition;
+        return this.classOfPosition;
     }
 }

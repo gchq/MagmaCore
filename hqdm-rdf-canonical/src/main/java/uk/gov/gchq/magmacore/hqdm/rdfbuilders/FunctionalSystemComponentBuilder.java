@@ -70,7 +70,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        functionalSystemComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.functionalSystemComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -82,7 +82,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder beginning(final Event event) {
-        functionalSystemComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.functionalSystemComponent.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -94,7 +94,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder component_Of_M(final FunctionalSystem functionalSystem) {
-        functionalSystemComponent.addValue(COMPONENT_OF, new IRI(functionalSystem.getId()));
+        this.functionalSystemComponent.addValue(COMPONENT_OF, new IRI(functionalSystem.getId()));
         return this;
     }
 
@@ -109,7 +109,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        functionalSystemComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.functionalSystemComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -121,7 +121,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder ending(final Event event) {
-        functionalSystemComponent.addValue(ENDING, new IRI(event.getId()));
+        this.functionalSystemComponent.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -133,7 +133,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder intended_Role_M(final Role role) {
-        functionalSystemComponent.addValue(INTENDED_ROLE, new IRI(role.getId()));
+        this.functionalSystemComponent.addValue(INTENDED_ROLE, new IRI(role.getId()));
         return this;
     }
 
@@ -145,7 +145,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder member__Of(final Class clazz) {
-        functionalSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.functionalSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -160,7 +160,7 @@ public class FunctionalSystemComponentBuilder {
      */
     public final FunctionalSystemComponentBuilder member_Of(
             final ClassOfFunctionalSystemComponent classOfFunctionalSystemComponent) {
-        functionalSystemComponent.addValue(MEMBER_OF,
+        this.functionalSystemComponent.addValue(MEMBER_OF,
                 new IRI(classOfFunctionalSystemComponent.getId()));
         return this;
     }
@@ -176,7 +176,7 @@ public class FunctionalSystemComponentBuilder {
      */
     public final FunctionalSystemComponentBuilder member_Of_Kind_M(
             final KindOfFunctionalSystemComponent kindOfFunctionalSystemComponent) {
-        functionalSystemComponent.addValue(MEMBER_OF_KIND,
+        this.functionalSystemComponent.addValue(MEMBER_OF_KIND,
                 new IRI(kindOfFunctionalSystemComponent.getId()));
         return this;
     }
@@ -190,7 +190,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        functionalSystemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.functionalSystemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -209,7 +209,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        functionalSystemComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.functionalSystemComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -222,7 +222,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        functionalSystemComponent.addValue(TEMPORAL__PART_OF,
+        this.functionalSystemComponent.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -246,7 +246,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder temporal_Part_Of(final Individual individual) {
-        functionalSystemComponent.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.functionalSystemComponent.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -257,48 +257,48 @@ public class FunctionalSystemComponentBuilder {
      * @throws HqdmException If the FunctionalSystemComponent is missing any mandatory properties.
      */
     public FunctionalSystemComponent build() throws HqdmException {
-        if (functionalSystemComponent.hasValue(AGGREGATED_INTO)
-                && functionalSystemComponent.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.functionalSystemComponent.hasValue(AGGREGATED_INTO)
+                && this.functionalSystemComponent.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (functionalSystemComponent.hasValue(BEGINNING)
-                && functionalSystemComponent.value(BEGINNING).isEmpty()) {
+        if (this.functionalSystemComponent.hasValue(BEGINNING)
+                && this.functionalSystemComponent.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!functionalSystemComponent.hasValue(COMPONENT_OF)) {
+        if (!this.functionalSystemComponent.hasValue(COMPONENT_OF)) {
             throw new HqdmException("Property Not Set: component_of");
         }
-        if (functionalSystemComponent.hasValue(ENDING)
-                && functionalSystemComponent.value(ENDING).isEmpty()) {
+        if (this.functionalSystemComponent.hasValue(ENDING)
+                && this.functionalSystemComponent.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (!functionalSystemComponent.hasValue(INTENDED_ROLE)) {
+        if (!this.functionalSystemComponent.hasValue(INTENDED_ROLE)) {
             throw new HqdmException("Property Not Set: intended_role");
         }
-        if (functionalSystemComponent.hasValue(MEMBER__OF)
-                && functionalSystemComponent.value(MEMBER__OF).isEmpty()) {
+        if (this.functionalSystemComponent.hasValue(MEMBER__OF)
+                && this.functionalSystemComponent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (functionalSystemComponent.hasValue(MEMBER_OF)
-                && functionalSystemComponent.value(MEMBER_OF).isEmpty()) {
+        if (this.functionalSystemComponent.hasValue(MEMBER_OF)
+                && this.functionalSystemComponent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!functionalSystemComponent.hasValue(MEMBER_OF_KIND)) {
+        if (!this.functionalSystemComponent.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (functionalSystemComponent.hasValue(PART__OF)
-                && functionalSystemComponent.value(PART__OF).isEmpty()) {
+        if (this.functionalSystemComponent.hasValue(PART__OF)
+                && this.functionalSystemComponent.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!functionalSystemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.functionalSystemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (functionalSystemComponent.hasValue(TEMPORAL__PART_OF)
-                && functionalSystemComponent.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.functionalSystemComponent.hasValue(TEMPORAL__PART_OF)
+                && this.functionalSystemComponent.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (functionalSystemComponent.hasValue(TEMPORAL_PART_OF)
-                && functionalSystemComponent.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.functionalSystemComponent.hasValue(TEMPORAL_PART_OF)
+                && this.functionalSystemComponent.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return functionalSystemComponent;

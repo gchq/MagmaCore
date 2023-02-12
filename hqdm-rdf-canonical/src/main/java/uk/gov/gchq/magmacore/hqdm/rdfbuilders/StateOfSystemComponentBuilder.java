@@ -64,7 +64,7 @@ public class StateOfSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfSystemComponentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSystemComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSystemComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfSystemComponentBuilder beginning(final Event event) {
-        stateOfSystemComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfSystemComponent.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfSystemComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSystemComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSystemComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfSystemComponentBuilder ending(final Event event) {
-        stateOfSystemComponent.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfSystemComponent.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfSystemComponentBuilder member__Of(final Class clazz) {
-        stateOfSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class StateOfSystemComponentBuilder {
      */
     public final StateOfSystemComponentBuilder member_Of(
             final ClassOfStateOfSystemComponent classOfStateOfSystemComponent) {
-        stateOfSystemComponent.addValue(MEMBER_OF, new IRI(classOfStateOfSystemComponent.getId()));
+        this.stateOfSystemComponent.addValue(MEMBER_OF, new IRI(classOfStateOfSystemComponent.getId()));
         return this;
     }
 
@@ -143,7 +143,7 @@ public class StateOfSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfSystemComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSystemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSystemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -162,7 +162,7 @@ public class StateOfSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfSystemComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfSystemComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfSystemComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -175,7 +175,7 @@ public class StateOfSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfSystemComponentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSystemComponent.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSystemComponent.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -189,7 +189,7 @@ public class StateOfSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfSystemComponentBuilder temporal_Part_Of(final SystemComponent systemComponent) {
-        stateOfSystemComponent.addValue(TEMPORAL_PART_OF, new IRI(systemComponent.getId()));
+        this.stateOfSystemComponent.addValue(TEMPORAL_PART_OF, new IRI(systemComponent.getId()));
         return this;
     }
 
@@ -200,39 +200,39 @@ public class StateOfSystemComponentBuilder {
      * @throws HqdmException If the StateOfSystemComponent is missing any mandatory properties.
      */
     public StateOfSystemComponent build() throws HqdmException {
-        if (stateOfSystemComponent.hasValue(AGGREGATED_INTO)
-                && stateOfSystemComponent.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfSystemComponent.hasValue(AGGREGATED_INTO)
+                && this.stateOfSystemComponent.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfSystemComponent.hasValue(BEGINNING)
-                && stateOfSystemComponent.value(BEGINNING).isEmpty()) {
+        if (this.stateOfSystemComponent.hasValue(BEGINNING)
+                && this.stateOfSystemComponent.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfSystemComponent.hasValue(ENDING)
-                && stateOfSystemComponent.value(ENDING).isEmpty()) {
+        if (this.stateOfSystemComponent.hasValue(ENDING)
+                && this.stateOfSystemComponent.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfSystemComponent.hasValue(MEMBER__OF)
-                && stateOfSystemComponent.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfSystemComponent.hasValue(MEMBER__OF)
+                && this.stateOfSystemComponent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfSystemComponent.hasValue(MEMBER_OF)
-                && stateOfSystemComponent.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfSystemComponent.hasValue(MEMBER_OF)
+                && this.stateOfSystemComponent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfSystemComponent.hasValue(PART__OF)
-                && stateOfSystemComponent.value(PART__OF).isEmpty()) {
+        if (this.stateOfSystemComponent.hasValue(PART__OF)
+                && this.stateOfSystemComponent.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfSystemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfSystemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfSystemComponent.hasValue(TEMPORAL__PART_OF)
-                && stateOfSystemComponent.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfSystemComponent.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfSystemComponent.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfSystemComponent.hasValue(TEMPORAL_PART_OF)
-                && stateOfSystemComponent.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfSystemComponent.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfSystemComponent.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfSystemComponent;

@@ -66,7 +66,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      */
     public final StateOfBiologicalSystemComponentBuilder aggregated_Into(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfBiologicalSystemComponent.addValue(AGGREGATED_INTO,
+        this.stateOfBiologicalSystemComponent.addValue(AGGREGATED_INTO,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -79,7 +79,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalSystemComponentBuilder beginning(final Event event) {
-        stateOfBiologicalSystemComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfBiologicalSystemComponent.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -94,7 +94,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalSystemComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfBiologicalSystemComponent.addValue(CONSISTS__OF,
+        this.stateOfBiologicalSystemComponent.addValue(CONSISTS__OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -107,7 +107,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalSystemComponentBuilder ending(final Event event) {
-        stateOfBiologicalSystemComponent.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfBiologicalSystemComponent.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalSystemComponentBuilder member__Of(final Class clazz) {
-        stateOfBiologicalSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfBiologicalSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -135,7 +135,7 @@ public class StateOfBiologicalSystemComponentBuilder {
     @SuppressWarnings("LineLength")
     public final StateOfBiologicalSystemComponentBuilder member_Of(
             final ClassOfStateOfBiologicalSystemComponent classOfStateOfBiologicalSystemComponent) {
-        stateOfBiologicalSystemComponent.addValue(MEMBER_OF,
+        this.stateOfBiologicalSystemComponent.addValue(MEMBER_OF,
                 new IRI(classOfStateOfBiologicalSystemComponent.getId()));
         return this;
     }
@@ -149,7 +149,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalSystemComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfBiologicalSystemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfBiologicalSystemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -168,7 +168,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalSystemComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfBiologicalSystemComponent.addValue(PART_OF_POSSIBLE_WORLD,
+        this.stateOfBiologicalSystemComponent.addValue(PART_OF_POSSIBLE_WORLD,
                 new IRI(possibleWorld.getId()));
         return this;
     }
@@ -183,7 +183,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      */
     public final StateOfBiologicalSystemComponentBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfBiologicalSystemComponent.addValue(TEMPORAL__PART_OF,
+        this.stateOfBiologicalSystemComponent.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -199,7 +199,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      */
     public final StateOfBiologicalSystemComponentBuilder temporal_Part_Of(
             final BiologicalSystemComponent biologicalSystemComponent) {
-        stateOfBiologicalSystemComponent.addValue(TEMPORAL_PART_OF,
+        this.stateOfBiologicalSystemComponent.addValue(TEMPORAL_PART_OF,
                 new IRI(biologicalSystemComponent.getId()));
         return this;
     }
@@ -213,39 +213,39 @@ public class StateOfBiologicalSystemComponentBuilder {
      *                       properties.
      */
     public StateOfBiologicalSystemComponent build() throws HqdmException {
-        if (stateOfBiologicalSystemComponent.hasValue(AGGREGATED_INTO)
-                && stateOfBiologicalSystemComponent.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfBiologicalSystemComponent.hasValue(AGGREGATED_INTO)
+                && this.stateOfBiologicalSystemComponent.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfBiologicalSystemComponent.hasValue(BEGINNING)
-                && stateOfBiologicalSystemComponent.value(BEGINNING).isEmpty()) {
+        if (this.stateOfBiologicalSystemComponent.hasValue(BEGINNING)
+                && this.stateOfBiologicalSystemComponent.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfBiologicalSystemComponent.hasValue(ENDING)
-                && stateOfBiologicalSystemComponent.value(ENDING).isEmpty()) {
+        if (this.stateOfBiologicalSystemComponent.hasValue(ENDING)
+                && this.stateOfBiologicalSystemComponent.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfBiologicalSystemComponent.hasValue(MEMBER__OF)
-                && stateOfBiologicalSystemComponent.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfBiologicalSystemComponent.hasValue(MEMBER__OF)
+                && this.stateOfBiologicalSystemComponent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfBiologicalSystemComponent.hasValue(MEMBER_OF)
-                && stateOfBiologicalSystemComponent.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfBiologicalSystemComponent.hasValue(MEMBER_OF)
+                && this.stateOfBiologicalSystemComponent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfBiologicalSystemComponent.hasValue(PART__OF)
-                && stateOfBiologicalSystemComponent.value(PART__OF).isEmpty()) {
+        if (this.stateOfBiologicalSystemComponent.hasValue(PART__OF)
+                && this.stateOfBiologicalSystemComponent.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfBiologicalSystemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfBiologicalSystemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfBiologicalSystemComponent.hasValue(TEMPORAL__PART_OF)
-                && stateOfBiologicalSystemComponent.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfBiologicalSystemComponent.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfBiologicalSystemComponent.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfBiologicalSystemComponent.hasValue(TEMPORAL_PART_OF)
-                && stateOfBiologicalSystemComponent.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfBiologicalSystemComponent.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfBiologicalSystemComponent.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfBiologicalSystemComponent;

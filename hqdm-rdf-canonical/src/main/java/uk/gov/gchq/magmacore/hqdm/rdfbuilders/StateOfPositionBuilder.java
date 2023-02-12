@@ -64,7 +64,7 @@ public class StateOfPositionBuilder {
      * @return This builder.
      */
     public final StateOfPositionBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfPosition.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfPosition.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfPositionBuilder {
      * @return This builder.
      */
     public final StateOfPositionBuilder beginning(final Event event) {
-        stateOfPosition.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfPosition.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfPositionBuilder {
      * @return This builder.
      */
     public final StateOfPositionBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfPosition.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfPosition.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfPositionBuilder {
      * @return This builder.
      */
     public final StateOfPositionBuilder ending(final Event event) {
-        stateOfPosition.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfPosition.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfPositionBuilder {
      * @return This builder.
      */
     public final StateOfPositionBuilder member__Of(final Class clazz) {
-        stateOfPosition.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfPosition.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -128,7 +128,7 @@ public class StateOfPositionBuilder {
      * @return This builder.
      */
     public final StateOfPositionBuilder member_Of(final ClassOfStateOfPosition classOfStateOfPosition) {
-        stateOfPosition.addValue(MEMBER_OF, new IRI(classOfStateOfPosition.getId()));
+        this.stateOfPosition.addValue(MEMBER_OF, new IRI(classOfStateOfPosition.getId()));
         return this;
     }
 
@@ -141,7 +141,7 @@ public class StateOfPositionBuilder {
      * @return This builder.
      */
     public final StateOfPositionBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfPosition.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfPosition.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -160,7 +160,7 @@ public class StateOfPositionBuilder {
      * @return This builder.
      */
     public final StateOfPositionBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfPosition.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfPosition.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -173,7 +173,7 @@ public class StateOfPositionBuilder {
      * @return This builder.
      */
     public final StateOfPositionBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfPosition.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfPosition.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -187,7 +187,7 @@ public class StateOfPositionBuilder {
      * @return This builder.
      */
     public final StateOfPositionBuilder temporal_Part_Of(final Position position) {
-        stateOfPosition.addValue(TEMPORAL_PART_OF, new IRI(position.getId()));
+        this.stateOfPosition.addValue(TEMPORAL_PART_OF, new IRI(position.getId()));
         return this;
     }
 
@@ -198,39 +198,39 @@ public class StateOfPositionBuilder {
      * @throws HqdmException If the StateOfPosition is missing any mandatory properties.
      */
     public StateOfPosition build() throws HqdmException {
-        if (stateOfPosition.hasValue(AGGREGATED_INTO)
-                && stateOfPosition.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfPosition.hasValue(AGGREGATED_INTO)
+                && this.stateOfPosition.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfPosition.hasValue(BEGINNING)
-                && stateOfPosition.value(BEGINNING).isEmpty()) {
+        if (this.stateOfPosition.hasValue(BEGINNING)
+                && this.stateOfPosition.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfPosition.hasValue(ENDING)
-                && stateOfPosition.value(ENDING).isEmpty()) {
+        if (this.stateOfPosition.hasValue(ENDING)
+                && this.stateOfPosition.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfPosition.hasValue(MEMBER__OF)
-                && stateOfPosition.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfPosition.hasValue(MEMBER__OF)
+                && this.stateOfPosition.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfPosition.hasValue(MEMBER_OF)
-                && stateOfPosition.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfPosition.hasValue(MEMBER_OF)
+                && this.stateOfPosition.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfPosition.hasValue(PART__OF)
-                && stateOfPosition.value(PART__OF).isEmpty()) {
+        if (this.stateOfPosition.hasValue(PART__OF)
+                && this.stateOfPosition.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfPosition.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfPosition.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfPosition.hasValue(TEMPORAL__PART_OF)
-                && stateOfPosition.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfPosition.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfPosition.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfPosition.hasValue(TEMPORAL_PART_OF)
-                && stateOfPosition.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfPosition.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfPosition.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfPosition;

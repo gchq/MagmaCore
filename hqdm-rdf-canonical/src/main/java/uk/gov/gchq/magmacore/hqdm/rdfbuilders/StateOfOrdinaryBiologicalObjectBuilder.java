@@ -66,7 +66,7 @@ public class StateOfOrdinaryBiologicalObjectBuilder {
      */
     public final StateOfOrdinaryBiologicalObjectBuilder aggregated_Into(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrdinaryBiologicalObject.addValue(AGGREGATED_INTO,
+        this.stateOfOrdinaryBiologicalObject.addValue(AGGREGATED_INTO,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -79,7 +79,7 @@ public class StateOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryBiologicalObjectBuilder beginning(final Event event) {
-        stateOfOrdinaryBiologicalObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfOrdinaryBiologicalObject.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -94,7 +94,7 @@ public class StateOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryBiologicalObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrdinaryBiologicalObject.addValue(CONSISTS__OF,
+        this.stateOfOrdinaryBiologicalObject.addValue(CONSISTS__OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -107,7 +107,7 @@ public class StateOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryBiologicalObjectBuilder ending(final Event event) {
-        stateOfOrdinaryBiologicalObject.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfOrdinaryBiologicalObject.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class StateOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryBiologicalObjectBuilder member__Of(final Class clazz) {
-        stateOfOrdinaryBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfOrdinaryBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -135,7 +135,7 @@ public class StateOfOrdinaryBiologicalObjectBuilder {
     @SuppressWarnings("LineLength")
     public final StateOfOrdinaryBiologicalObjectBuilder member_Of(
             final ClassOfStateOfOrdinaryBiologicalObject classOfStateOfOrdinaryBiologicalObject) {
-        stateOfOrdinaryBiologicalObject.addValue(MEMBER_OF,
+        this.stateOfOrdinaryBiologicalObject.addValue(MEMBER_OF,
                 new IRI(classOfStateOfOrdinaryBiologicalObject.getId()));
         return this;
     }
@@ -149,7 +149,7 @@ public class StateOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryBiologicalObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrdinaryBiologicalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfOrdinaryBiologicalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -168,7 +168,7 @@ public class StateOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryBiologicalObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfOrdinaryBiologicalObject.addValue(PART_OF_POSSIBLE_WORLD,
+        this.stateOfOrdinaryBiologicalObject.addValue(PART_OF_POSSIBLE_WORLD,
                 new IRI(possibleWorld.getId()));
         return this;
     }
@@ -183,7 +183,7 @@ public class StateOfOrdinaryBiologicalObjectBuilder {
      */
     public final StateOfOrdinaryBiologicalObjectBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrdinaryBiologicalObject.addValue(TEMPORAL__PART_OF,
+        this.stateOfOrdinaryBiologicalObject.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -199,7 +199,7 @@ public class StateOfOrdinaryBiologicalObjectBuilder {
      */
     public final StateOfOrdinaryBiologicalObjectBuilder temporal_Part_Of(
             final OrdinaryBiologicalObject ordinaryBiologicalObject) {
-        stateOfOrdinaryBiologicalObject.addValue(TEMPORAL_PART_OF,
+        this.stateOfOrdinaryBiologicalObject.addValue(TEMPORAL_PART_OF,
                 new IRI(ordinaryBiologicalObject.getId()));
         return this;
     }
@@ -212,39 +212,39 @@ public class StateOfOrdinaryBiologicalObjectBuilder {
      * @throws HqdmException If the StateOfOrdinaryBiologicalObject is missing any mandatory properties.
      */
     public StateOfOrdinaryBiologicalObject build() throws HqdmException {
-        if (stateOfOrdinaryBiologicalObject.hasValue(AGGREGATED_INTO)
-                && stateOfOrdinaryBiologicalObject.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfOrdinaryBiologicalObject.hasValue(AGGREGATED_INTO)
+                && this.stateOfOrdinaryBiologicalObject.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfOrdinaryBiologicalObject.hasValue(BEGINNING)
-                && stateOfOrdinaryBiologicalObject.value(BEGINNING).isEmpty()) {
+        if (this.stateOfOrdinaryBiologicalObject.hasValue(BEGINNING)
+                && this.stateOfOrdinaryBiologicalObject.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfOrdinaryBiologicalObject.hasValue(ENDING)
-                && stateOfOrdinaryBiologicalObject.value(ENDING).isEmpty()) {
+        if (this.stateOfOrdinaryBiologicalObject.hasValue(ENDING)
+                && this.stateOfOrdinaryBiologicalObject.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfOrdinaryBiologicalObject.hasValue(MEMBER__OF)
-                && stateOfOrdinaryBiologicalObject.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfOrdinaryBiologicalObject.hasValue(MEMBER__OF)
+                && this.stateOfOrdinaryBiologicalObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfOrdinaryBiologicalObject.hasValue(MEMBER_OF)
-                && stateOfOrdinaryBiologicalObject.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfOrdinaryBiologicalObject.hasValue(MEMBER_OF)
+                && this.stateOfOrdinaryBiologicalObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfOrdinaryBiologicalObject.hasValue(PART__OF)
-                && stateOfOrdinaryBiologicalObject.value(PART__OF).isEmpty()) {
+        if (this.stateOfOrdinaryBiologicalObject.hasValue(PART__OF)
+                && this.stateOfOrdinaryBiologicalObject.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfOrdinaryBiologicalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfOrdinaryBiologicalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfOrdinaryBiologicalObject.hasValue(TEMPORAL__PART_OF)
-                && stateOfOrdinaryBiologicalObject.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfOrdinaryBiologicalObject.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfOrdinaryBiologicalObject.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfOrdinaryBiologicalObject.hasValue(TEMPORAL_PART_OF)
-                && stateOfOrdinaryBiologicalObject.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfOrdinaryBiologicalObject.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfOrdinaryBiologicalObject.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfOrdinaryBiologicalObject;

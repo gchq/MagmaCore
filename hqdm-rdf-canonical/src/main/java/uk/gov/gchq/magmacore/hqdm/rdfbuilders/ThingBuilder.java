@@ -45,7 +45,7 @@ public class ThingBuilder {
      * @return This builder.
      */
     public final ThingBuilder member__Of(final Class clazz) {
-        thing.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.thing.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -56,8 +56,8 @@ public class ThingBuilder {
      * @throws HqdmException If the Thing is missing any mandatory properties.
      */
     public Thing build() throws HqdmException {
-        if (thing.hasValue(MEMBER__OF)
-                && thing.value(MEMBER__OF).isEmpty()) {
+        if (this.thing.hasValue(MEMBER__OF)
+                && this.thing.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         return thing;

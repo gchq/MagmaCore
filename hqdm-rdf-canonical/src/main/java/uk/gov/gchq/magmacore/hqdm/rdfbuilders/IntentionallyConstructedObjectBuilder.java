@@ -68,7 +68,7 @@ public class IntentionallyConstructedObjectBuilder {
      */
     public final IntentionallyConstructedObjectBuilder aggregated_Into(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        intentionallyConstructedObject.addValue(AGGREGATED_INTO,
+        this.intentionallyConstructedObject.addValue(AGGREGATED_INTO,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -81,7 +81,7 @@ public class IntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final IntentionallyConstructedObjectBuilder beginning(final Event event) {
-        intentionallyConstructedObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.intentionallyConstructedObject.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -96,7 +96,7 @@ public class IntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final IntentionallyConstructedObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        intentionallyConstructedObject.addValue(CONSISTS__OF,
+        this.intentionallyConstructedObject.addValue(CONSISTS__OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -109,7 +109,7 @@ public class IntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final IntentionallyConstructedObjectBuilder ending(final Event event) {
-        intentionallyConstructedObject.addValue(ENDING, new IRI(event.getId()));
+        this.intentionallyConstructedObject.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -121,7 +121,7 @@ public class IntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final IntentionallyConstructedObjectBuilder member__Of(final Class clazz) {
-        intentionallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.intentionallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -136,7 +136,7 @@ public class IntentionallyConstructedObjectBuilder {
      */
     public final IntentionallyConstructedObjectBuilder member_Of(
             final ClassOfIntentionallyConstructedObject classOfIntentionallyConstructedObject) {
-        intentionallyConstructedObject.addValue(MEMBER_OF,
+        this.intentionallyConstructedObject.addValue(MEMBER_OF,
                 new IRI(classOfIntentionallyConstructedObject.getId()));
         return this;
     }
@@ -152,7 +152,7 @@ public class IntentionallyConstructedObjectBuilder {
      */
     public final IntentionallyConstructedObjectBuilder member_Of_Kind(
             final KindOfIntentionallyConstructedObject kindOfIntentionallyConstructedObject) {
-        intentionallyConstructedObject.addValue(MEMBER_OF_KIND,
+        this.intentionallyConstructedObject.addValue(MEMBER_OF_KIND,
                 new IRI(kindOfIntentionallyConstructedObject.getId()));
         return this;
     }
@@ -166,7 +166,7 @@ public class IntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final IntentionallyConstructedObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        intentionallyConstructedObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.intentionallyConstructedObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -185,7 +185,7 @@ public class IntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final IntentionallyConstructedObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        intentionallyConstructedObject.addValue(PART_OF_POSSIBLE_WORLD,
+        this.intentionallyConstructedObject.addValue(PART_OF_POSSIBLE_WORLD,
                 new IRI(possibleWorld.getId()));
         return this;
     }
@@ -200,7 +200,7 @@ public class IntentionallyConstructedObjectBuilder {
      */
     public final IntentionallyConstructedObjectBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        intentionallyConstructedObject.addValue(TEMPORAL__PART_OF,
+        this.intentionallyConstructedObject.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -224,7 +224,7 @@ public class IntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final IntentionallyConstructedObjectBuilder temporal_Part_Of(final Individual individual) {
-        intentionallyConstructedObject.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.intentionallyConstructedObject.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -236,43 +236,43 @@ public class IntentionallyConstructedObjectBuilder {
      * @throws HqdmException If the IntentionallyConstructedObject is missing any mandatory properties.
      */
     public IntentionallyConstructedObject build() throws HqdmException {
-        if (intentionallyConstructedObject.hasValue(AGGREGATED_INTO)
-                && intentionallyConstructedObject.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.intentionallyConstructedObject.hasValue(AGGREGATED_INTO)
+                && this.intentionallyConstructedObject.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (intentionallyConstructedObject.hasValue(BEGINNING)
-                && intentionallyConstructedObject.value(BEGINNING).isEmpty()) {
+        if (this.intentionallyConstructedObject.hasValue(BEGINNING)
+                && this.intentionallyConstructedObject.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (intentionallyConstructedObject.hasValue(ENDING)
-                && intentionallyConstructedObject.value(ENDING).isEmpty()) {
+        if (this.intentionallyConstructedObject.hasValue(ENDING)
+                && this.intentionallyConstructedObject.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (intentionallyConstructedObject.hasValue(MEMBER__OF)
-                && intentionallyConstructedObject.value(MEMBER__OF).isEmpty()) {
+        if (this.intentionallyConstructedObject.hasValue(MEMBER__OF)
+                && this.intentionallyConstructedObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (intentionallyConstructedObject.hasValue(MEMBER_OF)
-                && intentionallyConstructedObject.value(MEMBER_OF).isEmpty()) {
+        if (this.intentionallyConstructedObject.hasValue(MEMBER_OF)
+                && this.intentionallyConstructedObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (intentionallyConstructedObject.hasValue(MEMBER_OF_KIND)
-                && intentionallyConstructedObject.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.intentionallyConstructedObject.hasValue(MEMBER_OF_KIND)
+                && this.intentionallyConstructedObject.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (intentionallyConstructedObject.hasValue(PART__OF)
-                && intentionallyConstructedObject.value(PART__OF).isEmpty()) {
+        if (this.intentionallyConstructedObject.hasValue(PART__OF)
+                && this.intentionallyConstructedObject.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!intentionallyConstructedObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.intentionallyConstructedObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (intentionallyConstructedObject.hasValue(TEMPORAL__PART_OF)
-                && intentionallyConstructedObject.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.intentionallyConstructedObject.hasValue(TEMPORAL__PART_OF)
+                && this.intentionallyConstructedObject.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (intentionallyConstructedObject.hasValue(TEMPORAL_PART_OF)
-                && intentionallyConstructedObject.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.intentionallyConstructedObject.hasValue(TEMPORAL_PART_OF)
+                && this.intentionallyConstructedObject.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return intentionallyConstructedObject;

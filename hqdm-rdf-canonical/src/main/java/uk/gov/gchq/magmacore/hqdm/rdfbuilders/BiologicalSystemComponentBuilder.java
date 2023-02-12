@@ -53,7 +53,7 @@ public class BiologicalSystemComponentBuilder {
      * @param iri IRI of the BiologicalSystemComponent.
      */
     public BiologicalSystemComponentBuilder(final IRI iri) {
-        biologicalSystemComponent = RdfSpatioTemporalExtentServices.createBiologicalSystemComponent(iri.getIri());
+        this.biologicalSystemComponent = RdfSpatioTemporalExtentServices.createBiologicalSystemComponent(iri.getIri());
     }
 
     /**
@@ -68,7 +68,7 @@ public class BiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final BiologicalSystemComponentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        biologicalSystemComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalSystemComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class BiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final BiologicalSystemComponentBuilder beginning(final Event event) {
-        biologicalSystemComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.biologicalSystemComponent.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -94,7 +94,7 @@ public class BiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final BiologicalSystemComponentBuilder component_Of_M(final BiologicalSystem biologicalSystem) {
-        biologicalSystemComponent.addValue(COMPONENT_OF, new IRI(biologicalSystem.getId()));
+        this.biologicalSystemComponent.addValue(COMPONENT_OF, new IRI(biologicalSystem.getId()));
         return this;
     }
 
@@ -109,7 +109,7 @@ public class BiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final BiologicalSystemComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        biologicalSystemComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalSystemComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -121,7 +121,7 @@ public class BiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final BiologicalSystemComponentBuilder ending(final Event event) {
-        biologicalSystemComponent.addValue(ENDING, new IRI(event.getId()));
+        this.biologicalSystemComponent.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -133,7 +133,7 @@ public class BiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final BiologicalSystemComponentBuilder member__Of(final Class clazz) {
-        biologicalSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.biologicalSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -148,7 +148,7 @@ public class BiologicalSystemComponentBuilder {
      */
     public final BiologicalSystemComponentBuilder member_Of(
             final ClassOfBiologicalSystemComponent classOfBiologicalSystemComponent) {
-        biologicalSystemComponent.addValue(MEMBER_OF,
+        this.biologicalSystemComponent.addValue(MEMBER_OF,
                 new IRI(classOfBiologicalSystemComponent.getId()));
         return this;
     }
@@ -162,7 +162,7 @@ public class BiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final BiologicalSystemComponentBuilder member_Of_Kind(final KindOfBiologicalObject kindOfBiologicalObject) {
-        biologicalSystemComponent.addValue(MEMBER_OF_KIND, new IRI(kindOfBiologicalObject.getId()));
+        this.biologicalSystemComponent.addValue(MEMBER_OF_KIND, new IRI(kindOfBiologicalObject.getId()));
         return this;
     }
 
@@ -175,7 +175,7 @@ public class BiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final BiologicalSystemComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        biologicalSystemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalSystemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -194,7 +194,7 @@ public class BiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final BiologicalSystemComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        biologicalSystemComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.biologicalSystemComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -207,7 +207,7 @@ public class BiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final BiologicalSystemComponentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        biologicalSystemComponent.addValue(TEMPORAL__PART_OF,
+        this.biologicalSystemComponent.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -222,7 +222,7 @@ public class BiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final BiologicalSystemComponentBuilder temporal_Part_Of(final BiologicalObject biologicalObject) {
-        biologicalSystemComponent.addValue(TEMPORAL_PART_OF, new IRI(biologicalObject.getId()));
+        this.biologicalSystemComponent.addValue(TEMPORAL_PART_OF, new IRI(biologicalObject.getId()));
         return this;
     }
 
@@ -233,48 +233,48 @@ public class BiologicalSystemComponentBuilder {
      * @throws HqdmException If the BiologicalSystemComponent is missing any mandatory properties.
      */
     public BiologicalSystemComponent build() throws HqdmException {
-        if (biologicalSystemComponent.hasValue(AGGREGATED_INTO)
-                && biologicalSystemComponent.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.biologicalSystemComponent.hasValue(AGGREGATED_INTO)
+                && this.biologicalSystemComponent.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (biologicalSystemComponent.hasValue(BEGINNING)
-                && biologicalSystemComponent.value(BEGINNING).isEmpty()) {
+        if (this.biologicalSystemComponent.hasValue(BEGINNING)
+                && this.biologicalSystemComponent.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!biologicalSystemComponent.hasValue(COMPONENT_OF)) {
+        if (!this.biologicalSystemComponent.hasValue(COMPONENT_OF)) {
             throw new HqdmException("Property Not Set: component_of");
         }
-        if (biologicalSystemComponent.hasValue(ENDING)
-                && biologicalSystemComponent.value(ENDING).isEmpty()) {
+        if (this.biologicalSystemComponent.hasValue(ENDING)
+                && this.biologicalSystemComponent.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (biologicalSystemComponent.hasValue(MEMBER__OF)
-                && biologicalSystemComponent.value(MEMBER__OF).isEmpty()) {
+        if (this.biologicalSystemComponent.hasValue(MEMBER__OF)
+                && this.biologicalSystemComponent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (biologicalSystemComponent.hasValue(MEMBER_OF)
-                && biologicalSystemComponent.value(MEMBER_OF).isEmpty()) {
+        if (this.biologicalSystemComponent.hasValue(MEMBER_OF)
+                && this.biologicalSystemComponent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (biologicalSystemComponent.hasValue(MEMBER_OF_KIND)
-                && biologicalSystemComponent.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.biologicalSystemComponent.hasValue(MEMBER_OF_KIND)
+                && this.biologicalSystemComponent.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (biologicalSystemComponent.hasValue(PART__OF)
-                && biologicalSystemComponent.value(PART__OF).isEmpty()) {
+        if (this.biologicalSystemComponent.hasValue(PART__OF)
+                && this.biologicalSystemComponent.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!biologicalSystemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.biologicalSystemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (biologicalSystemComponent.hasValue(TEMPORAL__PART_OF)
-                && biologicalSystemComponent.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.biologicalSystemComponent.hasValue(TEMPORAL__PART_OF)
+                && this.biologicalSystemComponent.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (biologicalSystemComponent.hasValue(TEMPORAL_PART_OF)
-                && biologicalSystemComponent.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.biologicalSystemComponent.hasValue(TEMPORAL_PART_OF)
+                && this.biologicalSystemComponent.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        return biologicalSystemComponent;
+        return this.biologicalSystemComponent;
     }
 }

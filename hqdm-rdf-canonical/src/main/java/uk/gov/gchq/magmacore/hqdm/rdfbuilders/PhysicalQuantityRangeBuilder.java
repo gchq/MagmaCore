@@ -64,7 +64,7 @@ public class PhysicalQuantityRangeBuilder {
      */
     public final PhysicalQuantityRangeBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        physicalQuantityRange.addValue(CONSISTS__OF_BY_CLASS,
+        this.physicalQuantityRange.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -77,7 +77,7 @@ public class PhysicalQuantityRangeBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityRangeBuilder has_Superclass(final Class clazz) {
-        physicalQuantityRange.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.physicalQuantityRange.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PhysicalQuantityRangeBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityRangeBuilder lower_Bound_M(final PhysicalQuantity physicalQuantity) {
-        physicalQuantityRange.addValue(LOWER_BOUND, new IRI(physicalQuantity.getId()));
+        this.physicalQuantityRange.addValue(LOWER_BOUND, new IRI(physicalQuantity.getId()));
         return this;
     }
 
@@ -102,7 +102,7 @@ public class PhysicalQuantityRangeBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityRangeBuilder member__Of(final Class clazz) {
-        physicalQuantityRange.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.physicalQuantityRange.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class PhysicalQuantityRangeBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityRangeBuilder member_Of(final ClassOfClass classOfClass) {
-        physicalQuantityRange.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.physicalQuantityRange.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -129,7 +129,7 @@ public class PhysicalQuantityRangeBuilder {
      */
     public final PhysicalQuantityRangeBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        physicalQuantityRange.addValue(MEMBER_OF_,
+        this.physicalQuantityRange.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -146,7 +146,7 @@ public class PhysicalQuantityRangeBuilder {
      */
     public final PhysicalQuantityRangeBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        physicalQuantityRange.addValue(PART__OF_BY_CLASS,
+        this.physicalQuantityRange.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -160,7 +160,7 @@ public class PhysicalQuantityRangeBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityRangeBuilder ranges_Over_M(final PhysicalProperty physicalProperty) {
-        physicalQuantityRange.addValue(RANGES_OVER, new IRI(physicalProperty.getId()));
+        this.physicalQuantityRange.addValue(RANGES_OVER, new IRI(physicalProperty.getId()));
         return this;
     }
 
@@ -173,7 +173,7 @@ public class PhysicalQuantityRangeBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityRangeBuilder upper_Bound_M(final PhysicalQuantity physicalQuantity) {
-        physicalQuantityRange.addValue(UPPER_BOUND, new IRI(physicalQuantity.getId()));
+        this.physicalQuantityRange.addValue(UPPER_BOUND, new IRI(physicalQuantity.getId()));
         return this;
     }
 
@@ -184,33 +184,33 @@ public class PhysicalQuantityRangeBuilder {
      * @throws HqdmException If the PhysicalQuantityRange is missing any mandatory properties.
      */
     public PhysicalQuantityRange build() throws HqdmException {
-        if (physicalQuantityRange.hasValue(HAS_SUPERCLASS)
-                && physicalQuantityRange.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.physicalQuantityRange.hasValue(HAS_SUPERCLASS)
+                && this.physicalQuantityRange.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (!physicalQuantityRange.hasValue(LOWER_BOUND)) {
+        if (!this.physicalQuantityRange.hasValue(LOWER_BOUND)) {
             throw new HqdmException("Property Not Set: lower_bound");
         }
-        if (physicalQuantityRange.hasValue(MEMBER__OF)
-                && physicalQuantityRange.value(MEMBER__OF).isEmpty()) {
+        if (this.physicalQuantityRange.hasValue(MEMBER__OF)
+                && this.physicalQuantityRange.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (physicalQuantityRange.hasValue(MEMBER_OF)
-                && physicalQuantityRange.value(MEMBER_OF).isEmpty()) {
+        if (this.physicalQuantityRange.hasValue(MEMBER_OF)
+                && this.physicalQuantityRange.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (physicalQuantityRange.hasValue(MEMBER_OF_)
-                && physicalQuantityRange.value(MEMBER_OF_).isEmpty()) {
+        if (this.physicalQuantityRange.hasValue(MEMBER_OF_)
+                && this.physicalQuantityRange.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (physicalQuantityRange.hasValue(PART__OF_BY_CLASS)
-                && physicalQuantityRange.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.physicalQuantityRange.hasValue(PART__OF_BY_CLASS)
+                && this.physicalQuantityRange.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (!physicalQuantityRange.hasValue(RANGES_OVER)) {
+        if (!this.physicalQuantityRange.hasValue(RANGES_OVER)) {
             throw new HqdmException("Property Not Set: ranges_over");
         }
-        if (!physicalQuantityRange.hasValue(UPPER_BOUND)) {
+        if (!this.physicalQuantityRange.hasValue(UPPER_BOUND)) {
             throw new HqdmException("Property Not Set: upper_bound");
         }
         return physicalQuantityRange;

@@ -67,7 +67,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        organizationComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.organizationComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -79,7 +79,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder beginning(final Event event) {
-        organizationComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.organizationComponent.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder component_Of_M(final Organization organization) {
-        organizationComponent.addValue(COMPONENT_OF, new IRI(organization.getId()));
+        this.organizationComponent.addValue(COMPONENT_OF, new IRI(organization.getId()));
         return this;
     }
 
@@ -106,7 +106,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        organizationComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.organizationComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -118,7 +118,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder ending(final Event event) {
-        organizationComponent.addValue(ENDING, new IRI(event.getId()));
+        this.organizationComponent.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder member__Of(final Class clazz) {
-        organizationComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.organizationComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -145,7 +145,7 @@ public class OrganizationComponentBuilder {
      */
     public final OrganizationComponentBuilder member_Of(
             final ClassOfOrganizationComponent classOfOrganizationComponent) {
-        organizationComponent.addValue(MEMBER_OF, new IRI(classOfOrganizationComponent.getId()));
+        this.organizationComponent.addValue(MEMBER_OF, new IRI(classOfOrganizationComponent.getId()));
         return this;
     }
 
@@ -160,7 +160,7 @@ public class OrganizationComponentBuilder {
      */
     public final OrganizationComponentBuilder member_Of_Kind(
             final KindOfOrganizationComponent kindOfOrganizationComponent) {
-        organizationComponent.addValue(MEMBER_OF_KIND,
+        this.organizationComponent.addValue(MEMBER_OF_KIND,
                 new IRI(kindOfOrganizationComponent.getId()));
         return this;
     }
@@ -174,7 +174,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        organizationComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.organizationComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -193,7 +193,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        organizationComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.organizationComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -206,7 +206,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        organizationComponent.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.organizationComponent.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -220,7 +220,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder temporal_Part_Of(final OrganizationComponent organizationComponent) {
-        organizationComponent.addValue(TEMPORAL_PART_OF, new IRI(organizationComponent.getId()));
+        this.organizationComponent.addValue(TEMPORAL_PART_OF, new IRI(organizationComponent.getId()));
         return this;
     }
 
@@ -231,46 +231,46 @@ public class OrganizationComponentBuilder {
      * @throws HqdmException If the OrganizationComponent is missing any mandatory properties.
      */
     public OrganizationComponent build() throws HqdmException {
-        if (organizationComponent.hasValue(AGGREGATED_INTO)
-                && organizationComponent.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.organizationComponent.hasValue(AGGREGATED_INTO)
+                && this.organizationComponent.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (organizationComponent.hasValue(BEGINNING)
-                && organizationComponent.value(BEGINNING).isEmpty()) {
+        if (this.organizationComponent.hasValue(BEGINNING)
+                && this.organizationComponent.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!organizationComponent.hasValue(COMPONENT_OF)) {
+        if (!this.organizationComponent.hasValue(COMPONENT_OF)) {
             throw new HqdmException("Property Not Set: component_of");
         }
-        if (organizationComponent.hasValue(ENDING)
-                && organizationComponent.value(ENDING).isEmpty()) {
+        if (this.organizationComponent.hasValue(ENDING)
+                && this.organizationComponent.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (organizationComponent.hasValue(MEMBER__OF)
-                && organizationComponent.value(MEMBER__OF).isEmpty()) {
+        if (this.organizationComponent.hasValue(MEMBER__OF)
+                && this.organizationComponent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (organizationComponent.hasValue(MEMBER_OF)
-                && organizationComponent.value(MEMBER_OF).isEmpty()) {
+        if (this.organizationComponent.hasValue(MEMBER_OF)
+                && this.organizationComponent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (organizationComponent.hasValue(MEMBER_OF_KIND)
-                && organizationComponent.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.organizationComponent.hasValue(MEMBER_OF_KIND)
+                && this.organizationComponent.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (organizationComponent.hasValue(PART__OF)
-                && organizationComponent.value(PART__OF).isEmpty()) {
+        if (this.organizationComponent.hasValue(PART__OF)
+                && this.organizationComponent.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!organizationComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.organizationComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (organizationComponent.hasValue(TEMPORAL__PART_OF)
-                && organizationComponent.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.organizationComponent.hasValue(TEMPORAL__PART_OF)
+                && this.organizationComponent.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (organizationComponent.hasValue(TEMPORAL_PART_OF)
-                && organizationComponent.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.organizationComponent.hasValue(TEMPORAL_PART_OF)
+                && this.organizationComponent.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return organizationComponent;

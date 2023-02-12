@@ -68,7 +68,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        functionalObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.functionalObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder beginning(final Event event) {
-        functionalObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.functionalObject.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -95,7 +95,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        functionalObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.functionalObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -107,7 +107,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder ending(final Event event) {
-        functionalObject.addValue(ENDING, new IRI(event.getId()));
+        this.functionalObject.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -118,7 +118,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder intended_Role_M(final Role role) {
-        functionalObject.addValue(INTENDED_ROLE, new IRI(role.getId()));
+        this.functionalObject.addValue(INTENDED_ROLE, new IRI(role.getId()));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder member__Of(final Class clazz) {
-        functionalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.functionalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -143,7 +143,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder member_Of(final ClassOfFunctionalObject classOfFunctionalObject) {
-        functionalObject.addValue(MEMBER_OF, new IRI(classOfFunctionalObject.getId()));
+        this.functionalObject.addValue(MEMBER_OF, new IRI(classOfFunctionalObject.getId()));
         return this;
     }
 
@@ -156,7 +156,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder member_Of_Kind(final KindOfFunctionalObject kindOfFunctionalObject) {
-        functionalObject.addValue(MEMBER_OF_KIND, new IRI(kindOfFunctionalObject.getId()));
+        this.functionalObject.addValue(MEMBER_OF_KIND, new IRI(kindOfFunctionalObject.getId()));
         return this;
     }
 
@@ -169,7 +169,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        functionalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.functionalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -188,7 +188,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        functionalObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.functionalObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -201,7 +201,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        functionalObject.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.functionalObject.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -224,7 +224,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder temporal_Part_Of(final Individual individual) {
-        functionalObject.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.functionalObject.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -235,46 +235,46 @@ public class FunctionalObjectBuilder {
      * @throws HqdmException If the FunctionalObject is missing any mandatory properties.
      */
     public FunctionalObject build() throws HqdmException {
-        if (functionalObject.hasValue(AGGREGATED_INTO)
-                && functionalObject.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.functionalObject.hasValue(AGGREGATED_INTO)
+                && this.functionalObject.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (functionalObject.hasValue(BEGINNING)
-                && functionalObject.value(BEGINNING).isEmpty()) {
+        if (this.functionalObject.hasValue(BEGINNING)
+                && this.functionalObject.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (functionalObject.hasValue(ENDING)
-                && functionalObject.value(ENDING).isEmpty()) {
+        if (this.functionalObject.hasValue(ENDING)
+                && this.functionalObject.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (!functionalObject.hasValue(INTENDED_ROLE)) {
+        if (!this.functionalObject.hasValue(INTENDED_ROLE)) {
             throw new HqdmException("Property Not Set: intended_role");
         }
-        if (functionalObject.hasValue(MEMBER__OF)
-                && functionalObject.value(MEMBER__OF).isEmpty()) {
+        if (this.functionalObject.hasValue(MEMBER__OF)
+                && this.functionalObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (functionalObject.hasValue(MEMBER_OF)
-                && functionalObject.value(MEMBER_OF).isEmpty()) {
+        if (this.functionalObject.hasValue(MEMBER_OF)
+                && this.functionalObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (functionalObject.hasValue(MEMBER_OF_KIND)
-                && functionalObject.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.functionalObject.hasValue(MEMBER_OF_KIND)
+                && this.functionalObject.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (functionalObject.hasValue(PART__OF)
-                && functionalObject.value(PART__OF).isEmpty()) {
+        if (this.functionalObject.hasValue(PART__OF)
+                && this.functionalObject.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!functionalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.functionalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (functionalObject.hasValue(TEMPORAL__PART_OF)
-                && functionalObject.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.functionalObject.hasValue(TEMPORAL__PART_OF)
+                && this.functionalObject.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (functionalObject.hasValue(TEMPORAL_PART_OF)
-                && functionalObject.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.functionalObject.hasValue(TEMPORAL_PART_OF)
+                && this.functionalObject.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return functionalObject;

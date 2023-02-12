@@ -76,7 +76,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        representationBySign.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.representationBySign.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -88,7 +88,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder beginning(final Event event) {
-        representationBySign.addValue(BEGINNING, new IRI(event.getId()));
+        this.representationBySign.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -103,7 +103,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        representationBySign.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.representationBySign.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder consists_Of(final Sign sign) {
-        representationBySign.addValue(CONSISTS_OF, new IRI(sign.getId()));
+        this.representationBySign.addValue(CONSISTS_OF, new IRI(sign.getId()));
         return this;
     }
 
@@ -128,7 +128,7 @@ public class RepresentationBySignBuilder {
      */
     public final RepresentationBySignBuilder consists_Of_(
             final RecognizingLanguageCommunity recognizingLanguageCommunity) {
-        representationBySign.addValue(CONSISTS_OF_, new IRI(recognizingLanguageCommunity.getId()));
+        this.representationBySign.addValue(CONSISTS_OF_, new IRI(recognizingLanguageCommunity.getId()));
         return this;
     }
 
@@ -145,7 +145,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder consists_Of_Participant(final Participant participant) {
-        representationBySign.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.representationBySign.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
         return this;
     }
 
@@ -157,7 +157,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder ending(final Event event) {
-        representationBySign.addValue(ENDING, new IRI(event.getId()));
+        this.representationBySign.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -168,7 +168,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder member__Of(final Class clazz) {
-        representationBySign.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.representationBySign.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -182,7 +182,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder member_Of(final ClassOfRepresentation classOfRepresentation) {
-        representationBySign.addValue(MEMBER_OF, new IRI(classOfRepresentation.getId()));
+        this.representationBySign.addValue(MEMBER_OF, new IRI(classOfRepresentation.getId()));
         return this;
     }
 
@@ -196,7 +196,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder member_Of__M(final RepresentationByPattern representationByPattern) {
-        representationBySign.addValue(MEMBER_OF_, new IRI(representationByPattern.getId()));
+        this.representationBySign.addValue(MEMBER_OF_, new IRI(representationByPattern.getId()));
         return this;
     }
 
@@ -210,7 +210,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder member_Of_Kind_M(final KindOfAssociation kindOfAssociation) {
-        representationBySign.addValue(MEMBER_OF_KIND, new IRI(kindOfAssociation.getId()));
+        this.representationBySign.addValue(MEMBER_OF_KIND, new IRI(kindOfAssociation.getId()));
         return this;
     }
 
@@ -223,7 +223,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        representationBySign.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.representationBySign.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -242,7 +242,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        representationBySign.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.representationBySign.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -253,7 +253,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder represents_M(final Thing thing) {
-        representationBySign.addValue(REPRESENTS, new IRI(thing.getId()));
+        this.representationBySign.addValue(REPRESENTS, new IRI(thing.getId()));
         return this;
     }
 
@@ -266,7 +266,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        representationBySign.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.representationBySign.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -289,7 +289,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder temporal_Part_Of(final Individual individual) {
-        representationBySign.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.representationBySign.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -300,48 +300,48 @@ public class RepresentationBySignBuilder {
      * @throws HqdmException If the RepresentationBySign is missing any mandatory properties.
      */
     public RepresentationBySign build() throws HqdmException {
-        if (representationBySign.hasValue(AGGREGATED_INTO)
-                && representationBySign.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.representationBySign.hasValue(AGGREGATED_INTO)
+                && this.representationBySign.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (representationBySign.hasValue(BEGINNING)
-                && representationBySign.value(BEGINNING).isEmpty()) {
+        if (this.representationBySign.hasValue(BEGINNING)
+                && this.representationBySign.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (representationBySign.hasValue(ENDING)
-                && representationBySign.value(ENDING).isEmpty()) {
+        if (this.representationBySign.hasValue(ENDING)
+                && this.representationBySign.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (representationBySign.hasValue(MEMBER__OF)
-                && representationBySign.value(MEMBER__OF).isEmpty()) {
+        if (this.representationBySign.hasValue(MEMBER__OF)
+                && this.representationBySign.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (representationBySign.hasValue(MEMBER_OF)
-                && representationBySign.value(MEMBER_OF).isEmpty()) {
+        if (this.representationBySign.hasValue(MEMBER_OF)
+                && this.representationBySign.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!representationBySign.hasValue(MEMBER_OF_)) {
+        if (!this.representationBySign.hasValue(MEMBER_OF_)) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (!representationBySign.hasValue(MEMBER_OF_KIND)) {
+        if (!this.representationBySign.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (representationBySign.hasValue(PART__OF)
-                && representationBySign.value(PART__OF).isEmpty()) {
+        if (this.representationBySign.hasValue(PART__OF)
+                && this.representationBySign.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!representationBySign.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.representationBySign.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (!representationBySign.hasValue(REPRESENTS)) {
+        if (!this.representationBySign.hasValue(REPRESENTS)) {
             throw new HqdmException("Property Not Set: represents");
         }
-        if (representationBySign.hasValue(TEMPORAL__PART_OF)
-                && representationBySign.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.representationBySign.hasValue(TEMPORAL__PART_OF)
+                && this.representationBySign.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (representationBySign.hasValue(TEMPORAL_PART_OF)
-                && representationBySign.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.representationBySign.hasValue(TEMPORAL_PART_OF)
+                && this.representationBySign.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return representationBySign;

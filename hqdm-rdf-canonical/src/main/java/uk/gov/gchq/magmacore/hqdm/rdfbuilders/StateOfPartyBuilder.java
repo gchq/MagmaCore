@@ -64,7 +64,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfParty.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfParty.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder beginning(final Event event) {
-        stateOfParty.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfParty.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfParty.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfParty.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder ending(final Event event) {
-        stateOfParty.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfParty.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder member__Of(final Class clazz) {
-        stateOfParty.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfParty.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -128,7 +128,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder member_Of(final ClassOfStateOfParty classOfStateOfParty) {
-        stateOfParty.addValue(MEMBER_OF, new IRI(classOfStateOfParty.getId()));
+        this.stateOfParty.addValue(MEMBER_OF, new IRI(classOfStateOfParty.getId()));
         return this;
     }
 
@@ -141,7 +141,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfParty.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfParty.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -160,7 +160,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfParty.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfParty.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -173,7 +173,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfParty.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfParty.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -186,7 +186,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder temporal_Part_Of(final Party party) {
-        stateOfParty.addValue(TEMPORAL_PART_OF, new IRI(party.getId()));
+        this.stateOfParty.addValue(TEMPORAL_PART_OF, new IRI(party.getId()));
         return this;
     }
 
@@ -197,39 +197,39 @@ public class StateOfPartyBuilder {
      * @throws HqdmException If the StateOfParty is missing any mandatory properties.
      */
     public StateOfParty build() throws HqdmException {
-        if (stateOfParty.hasValue(AGGREGATED_INTO)
-                && stateOfParty.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfParty.hasValue(AGGREGATED_INTO)
+                && this.stateOfParty.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfParty.hasValue(BEGINNING)
-                && stateOfParty.value(BEGINNING).isEmpty()) {
+        if (this.stateOfParty.hasValue(BEGINNING)
+                && this.stateOfParty.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfParty.hasValue(ENDING)
-                && stateOfParty.value(ENDING).isEmpty()) {
+        if (this.stateOfParty.hasValue(ENDING)
+                && this.stateOfParty.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfParty.hasValue(MEMBER__OF)
-                && stateOfParty.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfParty.hasValue(MEMBER__OF)
+                && this.stateOfParty.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfParty.hasValue(MEMBER_OF)
-                && stateOfParty.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfParty.hasValue(MEMBER_OF)
+                && this.stateOfParty.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfParty.hasValue(PART__OF)
-                && stateOfParty.value(PART__OF).isEmpty()) {
+        if (this.stateOfParty.hasValue(PART__OF)
+                && this.stateOfParty.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfParty.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfParty.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfParty.hasValue(TEMPORAL__PART_OF)
-                && stateOfParty.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfParty.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfParty.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfParty.hasValue(TEMPORAL_PART_OF)
-                && stateOfParty.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfParty.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfParty.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfParty;

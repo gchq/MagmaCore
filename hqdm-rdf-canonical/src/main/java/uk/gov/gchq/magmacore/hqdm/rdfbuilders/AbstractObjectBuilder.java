@@ -34,7 +34,7 @@ public class AbstractObjectBuilder {
      * @param iri IRI of the AbstractObject.
      */
     public AbstractObjectBuilder(final IRI iri) {
-        abstractObject = RdfSpatioTemporalExtentServices.createAbstractObject(iri.getIri());
+        this.abstractObject = RdfSpatioTemporalExtentServices.createAbstractObject(iri.getIri());
     }
 
     /**
@@ -45,7 +45,7 @@ public class AbstractObjectBuilder {
      * @return This builder.
      */
     public final AbstractObjectBuilder member__Of(final Class clazz) {
-        abstractObject.addValue(HQDM.MEMBER__OF, new IRI(clazz.getId()));
+        this.abstractObject.addValue(HQDM.MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -56,10 +56,10 @@ public class AbstractObjectBuilder {
      * @throws HqdmException If the AbstractObject is missing any mandatory properties.
      */
     public AbstractObject build() throws HqdmException {
-        if (abstractObject.hasValue(HQDM.MEMBER__OF)
-                && abstractObject.value(HQDM.MEMBER__OF).isEmpty()) {
+        if (this.abstractObject.hasValue(HQDM.MEMBER__OF)
+                && this.abstractObject.value(HQDM.MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        return abstractObject;
+        return this.abstractObject;
     }
 }

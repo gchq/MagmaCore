@@ -43,7 +43,7 @@ public class ClassOfStateOfAssociationBuilder {
      * @param iri IRI of the ClassOfStateOfAssociation.
      */
     public ClassOfStateOfAssociationBuilder(final IRI iri) {
-        classOfStateOfAssociation = RdfClassServices.createClassOfStateOfAssociation(iri.getIri());
+        this.classOfStateOfAssociation = RdfClassServices.createClassOfStateOfAssociation(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfStateOfAssociationBuilder {
      */
     public final ClassOfStateOfAssociationBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfAssociation.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfStateOfAssociation.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfStateOfAssociationBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfAssociationBuilder has_Superclass(final Class clazz) {
-        classOfStateOfAssociation.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfStateOfAssociation.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfStateOfAssociationBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfAssociationBuilder member__Of(final Class clazz) {
-        classOfStateOfAssociation.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfAssociation.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfStateOfAssociationBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfAssociationBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfStateOfAssociation.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfStateOfAssociation.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfStateOfAssociationBuilder {
      */
     public final ClassOfStateOfAssociationBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfStateOfAssociation.addValue(MEMBER_OF_,
+        this.classOfStateOfAssociation.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class ClassOfStateOfAssociationBuilder {
      */
     public final ClassOfStateOfAssociationBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfAssociation.addValue(PART__OF_BY_CLASS,
+        this.classOfStateOfAssociation.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -140,26 +140,26 @@ public class ClassOfStateOfAssociationBuilder {
      * @throws HqdmException If the ClassOfStateOfAssociation is missing any mandatory properties.
      */
     public ClassOfStateOfAssociation build() throws HqdmException {
-        if (classOfStateOfAssociation.hasValue(HAS_SUPERCLASS)
-                && classOfStateOfAssociation.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfStateOfAssociation.hasValue(HAS_SUPERCLASS)
+                && this.classOfStateOfAssociation.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfStateOfAssociation.hasValue(MEMBER__OF)
-                && classOfStateOfAssociation.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfStateOfAssociation.hasValue(MEMBER__OF)
+                && this.classOfStateOfAssociation.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfStateOfAssociation.hasValue(MEMBER_OF)
-                && classOfStateOfAssociation.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfStateOfAssociation.hasValue(MEMBER_OF)
+                && this.classOfStateOfAssociation.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfStateOfAssociation.hasValue(MEMBER_OF_)
-                && classOfStateOfAssociation.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfStateOfAssociation.hasValue(MEMBER_OF_)
+                && this.classOfStateOfAssociation.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfStateOfAssociation.hasValue(PART__OF_BY_CLASS)
-                && classOfStateOfAssociation.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfStateOfAssociation.hasValue(PART__OF_BY_CLASS)
+                && this.classOfStateOfAssociation.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfStateOfAssociation;
+        return this.classOfStateOfAssociation;
     }
 }

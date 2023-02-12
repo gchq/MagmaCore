@@ -43,7 +43,7 @@ public class ClassOfStateOfAmountOfMoneyBuilder {
      * @param iri IRI of the ClassOfStateOfAmountOfMoney.
      */
     public ClassOfStateOfAmountOfMoneyBuilder(final IRI iri) {
-        classOfStateOfAmountOfMoney = RdfClassServices.createClassOfStateOfAmountOfMoney(iri.getIri());
+        this.classOfStateOfAmountOfMoney = RdfClassServices.createClassOfStateOfAmountOfMoney(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfStateOfAmountOfMoneyBuilder {
      */
     public final ClassOfStateOfAmountOfMoneyBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfAmountOfMoney.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfStateOfAmountOfMoney.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfStateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfAmountOfMoneyBuilder has_Superclass(final Class clazz) {
-        classOfStateOfAmountOfMoney.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfStateOfAmountOfMoney.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfStateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfAmountOfMoneyBuilder member__Of(final Class clazz) {
-        classOfStateOfAmountOfMoney.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfAmountOfMoney.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfStateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfAmountOfMoneyBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfStateOfAmountOfMoney.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfStateOfAmountOfMoney.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfStateOfAmountOfMoneyBuilder {
      */
     public final ClassOfStateOfAmountOfMoneyBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfStateOfAmountOfMoney.addValue(MEMBER_OF_,
+        this.classOfStateOfAmountOfMoney.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class ClassOfStateOfAmountOfMoneyBuilder {
      */
     public final ClassOfStateOfAmountOfMoneyBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfAmountOfMoney.addValue(PART__OF_BY_CLASS,
+        this.classOfStateOfAmountOfMoney.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -141,26 +141,26 @@ public class ClassOfStateOfAmountOfMoneyBuilder {
      * @throws HqdmException If the ClassOfStateOfAmountOfMoney is missing any mandatory properties.
      */
     public ClassOfStateOfAmountOfMoney build() throws HqdmException {
-        if (classOfStateOfAmountOfMoney.hasValue(HAS_SUPERCLASS)
-                && classOfStateOfAmountOfMoney.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfStateOfAmountOfMoney.hasValue(HAS_SUPERCLASS)
+                && this.classOfStateOfAmountOfMoney.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfStateOfAmountOfMoney.hasValue(MEMBER__OF)
-                && classOfStateOfAmountOfMoney.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfStateOfAmountOfMoney.hasValue(MEMBER__OF)
+                && this.classOfStateOfAmountOfMoney.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfStateOfAmountOfMoney.hasValue(MEMBER_OF)
-                && classOfStateOfAmountOfMoney.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfStateOfAmountOfMoney.hasValue(MEMBER_OF)
+                && this.classOfStateOfAmountOfMoney.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfStateOfAmountOfMoney.hasValue(MEMBER_OF_)
-                && classOfStateOfAmountOfMoney.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfStateOfAmountOfMoney.hasValue(MEMBER_OF_)
+                && this.classOfStateOfAmountOfMoney.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfStateOfAmountOfMoney.hasValue(PART__OF_BY_CLASS)
-                && classOfStateOfAmountOfMoney.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfStateOfAmountOfMoney.hasValue(PART__OF_BY_CLASS)
+                && this.classOfStateOfAmountOfMoney.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfStateOfAmountOfMoney;
+        return this.classOfStateOfAmountOfMoney;
     }
 }

@@ -60,7 +60,7 @@ public class KindOfOrdinaryBiologicalObjectBuilder {
      */
     public final KindOfOrdinaryBiologicalObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfOrdinaryBiologicalObject.addValue(CONSISTS__OF_BY_CLASS,
+        this.kindOfOrdinaryBiologicalObject.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -73,7 +73,7 @@ public class KindOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final KindOfOrdinaryBiologicalObjectBuilder has_Superclass(final Class clazz) {
-        kindOfOrdinaryBiologicalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfOrdinaryBiologicalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -85,7 +85,7 @@ public class KindOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final KindOfOrdinaryBiologicalObjectBuilder member__Of(final Class clazz) {
-        kindOfOrdinaryBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfOrdinaryBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -98,7 +98,7 @@ public class KindOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final KindOfOrdinaryBiologicalObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        kindOfOrdinaryBiologicalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfOrdinaryBiologicalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -112,7 +112,7 @@ public class KindOfOrdinaryBiologicalObjectBuilder {
      */
     public final KindOfOrdinaryBiologicalObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        kindOfOrdinaryBiologicalObject.addValue(MEMBER_OF_,
+        this.kindOfOrdinaryBiologicalObject.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -129,7 +129,7 @@ public class KindOfOrdinaryBiologicalObjectBuilder {
      */
     public final KindOfOrdinaryBiologicalObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfOrdinaryBiologicalObject.addValue(PART__OF_BY_CLASS,
+        this.kindOfOrdinaryBiologicalObject.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -142,24 +142,24 @@ public class KindOfOrdinaryBiologicalObjectBuilder {
      * @throws HqdmException If the KindOfOrdinaryBiologicalObject is missing any mandatory properties.
      */
     public KindOfOrdinaryBiologicalObject build() throws HqdmException {
-        if (kindOfOrdinaryBiologicalObject.hasValue(HAS_SUPERCLASS)
-                && kindOfOrdinaryBiologicalObject.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.kindOfOrdinaryBiologicalObject.hasValue(HAS_SUPERCLASS)
+                && this.kindOfOrdinaryBiologicalObject.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (kindOfOrdinaryBiologicalObject.hasValue(MEMBER__OF)
-                && kindOfOrdinaryBiologicalObject.value(MEMBER__OF).isEmpty()) {
+        if (this.kindOfOrdinaryBiologicalObject.hasValue(MEMBER__OF)
+                && this.kindOfOrdinaryBiologicalObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (kindOfOrdinaryBiologicalObject.hasValue(MEMBER_OF)
-                && kindOfOrdinaryBiologicalObject.value(MEMBER_OF).isEmpty()) {
+        if (this.kindOfOrdinaryBiologicalObject.hasValue(MEMBER_OF)
+                && this.kindOfOrdinaryBiologicalObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (kindOfOrdinaryBiologicalObject.hasValue(MEMBER_OF_)
-                && kindOfOrdinaryBiologicalObject.value(MEMBER_OF_).isEmpty()) {
+        if (this.kindOfOrdinaryBiologicalObject.hasValue(MEMBER_OF_)
+                && this.kindOfOrdinaryBiologicalObject.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (kindOfOrdinaryBiologicalObject.hasValue(PART__OF_BY_CLASS)
-                && kindOfOrdinaryBiologicalObject.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.kindOfOrdinaryBiologicalObject.hasValue(PART__OF_BY_CLASS)
+                && this.kindOfOrdinaryBiologicalObject.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return kindOfOrdinaryBiologicalObject;

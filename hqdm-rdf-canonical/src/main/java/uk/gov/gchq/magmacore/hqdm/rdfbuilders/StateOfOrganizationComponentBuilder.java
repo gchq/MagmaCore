@@ -64,7 +64,7 @@ public class StateOfOrganizationComponentBuilder {
      * @return This builder.
      */
     public final StateOfOrganizationComponentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrganizationComponent.addValue(AGGREGATED_INTO,
+        this.stateOfOrganizationComponent.addValue(AGGREGATED_INTO,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -77,7 +77,7 @@ public class StateOfOrganizationComponentBuilder {
      * @return This builder.
      */
     public final StateOfOrganizationComponentBuilder beginning(final Event event) {
-        stateOfOrganizationComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfOrganizationComponent.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class StateOfOrganizationComponentBuilder {
      * @return This builder.
      */
     public final StateOfOrganizationComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrganizationComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfOrganizationComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class StateOfOrganizationComponentBuilder {
      * @return This builder.
      */
     public final StateOfOrganizationComponentBuilder ending(final Event event) {
-        stateOfOrganizationComponent.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfOrganizationComponent.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -116,7 +116,7 @@ public class StateOfOrganizationComponentBuilder {
      * @return This builder.
      */
     public final StateOfOrganizationComponentBuilder member__Of(final Class clazz) {
-        stateOfOrganizationComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfOrganizationComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -131,7 +131,7 @@ public class StateOfOrganizationComponentBuilder {
      */
     public final StateOfOrganizationComponentBuilder member_Of(
             final ClassOfStateOfOrganizationComponent classOfStateOfOrganizationComponent) {
-        stateOfOrganizationComponent.addValue(MEMBER_OF,
+        this.stateOfOrganizationComponent.addValue(MEMBER_OF,
                 new IRI(classOfStateOfOrganizationComponent.getId()));
         return this;
     }
@@ -145,7 +145,7 @@ public class StateOfOrganizationComponentBuilder {
      * @return This builder.
      */
     public final StateOfOrganizationComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrganizationComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfOrganizationComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -164,7 +164,7 @@ public class StateOfOrganizationComponentBuilder {
      * @return This builder.
      */
     public final StateOfOrganizationComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfOrganizationComponent.addValue(PART_OF_POSSIBLE_WORLD,
+        this.stateOfOrganizationComponent.addValue(PART_OF_POSSIBLE_WORLD,
                 new IRI(possibleWorld.getId()));
         return this;
     }
@@ -179,7 +179,7 @@ public class StateOfOrganizationComponentBuilder {
      */
     public final StateOfOrganizationComponentBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfOrganizationComponent.addValue(TEMPORAL__PART_OF,
+        this.stateOfOrganizationComponent.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -195,7 +195,7 @@ public class StateOfOrganizationComponentBuilder {
      */
     public final StateOfOrganizationComponentBuilder temporal_Part_Of(
             final OrganizationComponent organizationComponent) {
-        stateOfOrganizationComponent.addValue(TEMPORAL_PART_OF,
+        this.stateOfOrganizationComponent.addValue(TEMPORAL_PART_OF,
                 new IRI(organizationComponent.getId()));
         return this;
     }
@@ -208,39 +208,39 @@ public class StateOfOrganizationComponentBuilder {
      * @throws HqdmException If the StateOfOrganizationComponent is missing any mandatory properties.
      */
     public StateOfOrganizationComponent build() throws HqdmException {
-        if (stateOfOrganizationComponent.hasValue(AGGREGATED_INTO)
-                && stateOfOrganizationComponent.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfOrganizationComponent.hasValue(AGGREGATED_INTO)
+                && this.stateOfOrganizationComponent.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfOrganizationComponent.hasValue(BEGINNING)
-                && stateOfOrganizationComponent.value(BEGINNING).isEmpty()) {
+        if (this.stateOfOrganizationComponent.hasValue(BEGINNING)
+                && this.stateOfOrganizationComponent.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfOrganizationComponent.hasValue(ENDING)
-                && stateOfOrganizationComponent.value(ENDING).isEmpty()) {
+        if (this.stateOfOrganizationComponent.hasValue(ENDING)
+                && this.stateOfOrganizationComponent.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfOrganizationComponent.hasValue(MEMBER__OF)
-                && stateOfOrganizationComponent.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfOrganizationComponent.hasValue(MEMBER__OF)
+                && this.stateOfOrganizationComponent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfOrganizationComponent.hasValue(MEMBER_OF)
-                && stateOfOrganizationComponent.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfOrganizationComponent.hasValue(MEMBER_OF)
+                && this.stateOfOrganizationComponent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfOrganizationComponent.hasValue(PART__OF)
-                && stateOfOrganizationComponent.value(PART__OF).isEmpty()) {
+        if (this.stateOfOrganizationComponent.hasValue(PART__OF)
+                && this.stateOfOrganizationComponent.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfOrganizationComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfOrganizationComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfOrganizationComponent.hasValue(TEMPORAL__PART_OF)
-                && stateOfOrganizationComponent.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfOrganizationComponent.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfOrganizationComponent.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfOrganizationComponent.hasValue(TEMPORAL_PART_OF)
-                && stateOfOrganizationComponent.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfOrganizationComponent.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfOrganizationComponent.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfOrganizationComponent;

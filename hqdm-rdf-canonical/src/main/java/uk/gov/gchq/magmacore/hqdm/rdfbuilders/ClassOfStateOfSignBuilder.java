@@ -43,7 +43,7 @@ public class ClassOfStateOfSignBuilder {
      * @param iri IRI of the ClassOfStateOfSign.
      */
     public ClassOfStateOfSignBuilder(final IRI iri) {
-        classOfStateOfSign = RdfClassServices.createClassOfStateOfSign(iri.getIri());
+        this.classOfStateOfSign = RdfClassServices.createClassOfStateOfSign(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfStateOfSignBuilder {
      */
     public final ClassOfStateOfSignBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfSign.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfStateOfSign.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfStateOfSignBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSignBuilder has_Superclass(final Class clazz) {
-        classOfStateOfSign.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfStateOfSign.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfStateOfSignBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSignBuilder member__Of(final Class clazz) {
-        classOfStateOfSign.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfSign.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfStateOfSignBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSignBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfStateOfSign.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfStateOfSign.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfStateOfSignBuilder {
      */
     public final ClassOfStateOfSignBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfStateOfSign.addValue(MEMBER_OF_,
+        this.classOfStateOfSign.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class ClassOfStateOfSignBuilder {
      */
     public final ClassOfStateOfSignBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfSign.addValue(PART__OF_BY_CLASS,
+        this.classOfStateOfSign.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -140,26 +140,26 @@ public class ClassOfStateOfSignBuilder {
      * @throws HqdmException If the ClassOfStateOfSign is missing any mandatory properties.
      */
     public ClassOfStateOfSign build() throws HqdmException {
-        if (classOfStateOfSign.hasValue(HAS_SUPERCLASS)
-                && classOfStateOfSign.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfStateOfSign.hasValue(HAS_SUPERCLASS)
+                && this.classOfStateOfSign.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfStateOfSign.hasValue(MEMBER__OF)
-                && classOfStateOfSign.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfStateOfSign.hasValue(MEMBER__OF)
+                && this.classOfStateOfSign.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfStateOfSign.hasValue(MEMBER_OF)
-                && classOfStateOfSign.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfStateOfSign.hasValue(MEMBER_OF)
+                && this.classOfStateOfSign.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfStateOfSign.hasValue(MEMBER_OF_)
-                && classOfStateOfSign.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfStateOfSign.hasValue(MEMBER_OF_)
+                && this.classOfStateOfSign.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfStateOfSign.hasValue(PART__OF_BY_CLASS)
-                && classOfStateOfSign.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfStateOfSign.hasValue(PART__OF_BY_CLASS)
+                && this.classOfStateOfSign.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfStateOfSign;
+        return this.classOfStateOfSign;
     }
 }

@@ -47,7 +47,7 @@ public class ClassOfAgreeContractBuilder {
      * @param iri IRI of the ClassOfAgreeContract.
      */
     public ClassOfAgreeContractBuilder(final IRI iri) {
-        classOfAgreeContract = RdfClassServices.createClassOfAgreeContract(iri.getIri());
+        this.classOfAgreeContract = RdfClassServices.createClassOfAgreeContract(iri.getIri());
     }
 
     /**
@@ -63,7 +63,7 @@ public class ClassOfAgreeContractBuilder {
      */
     public final ClassOfAgreeContractBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfAgreeContract.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfAgreeContract.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -76,7 +76,7 @@ public class ClassOfAgreeContractBuilder {
      * @return This builder.
      */
     public final ClassOfAgreeContractBuilder has_Superclass(final Class clazz) {
-        classOfAgreeContract.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfAgreeContract.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -88,7 +88,7 @@ public class ClassOfAgreeContractBuilder {
      * @return This builder.
      */
     public final ClassOfAgreeContractBuilder member__Of(final Class clazz) {
-        classOfAgreeContract.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfAgreeContract.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -101,7 +101,7 @@ public class ClassOfAgreeContractBuilder {
      * @return This builder.
      */
     public final ClassOfAgreeContractBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfAgreeContract.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfAgreeContract.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class ClassOfAgreeContractBuilder {
      */
     public final ClassOfAgreeContractBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfAgreeContract.addValue(MEMBER_OF_,
+        this.classOfAgreeContract.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -132,7 +132,7 @@ public class ClassOfAgreeContractBuilder {
      */
     public final ClassOfAgreeContractBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfAgreeContract.addValue(PART__OF_BY_CLASS,
+        this.classOfAgreeContract.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -149,7 +149,7 @@ public class ClassOfAgreeContractBuilder {
      */
     public final ClassOfAgreeContractBuilder part_Of_By_Class(
             final ClassOfContractProcess classOfContractProcess) {
-        classOfAgreeContract.addValue(PART_OF_BY_CLASS, new IRI(classOfContractProcess.getId()));
+        this.classOfAgreeContract.addValue(PART_OF_BY_CLASS, new IRI(classOfContractProcess.getId()));
         return this;
     }
 
@@ -166,7 +166,7 @@ public class ClassOfAgreeContractBuilder {
      */
     public final ClassOfAgreeContractBuilder part_Of_By_Class_(
             final ClassOfAgreementExecution classOfAgreementExecution) {
-        classOfAgreeContract.addValue(PART_OF_BY_CLASS_,
+        this.classOfAgreeContract.addValue(PART_OF_BY_CLASS_,
                 new IRI(classOfAgreementExecution.getId()));
         return this;
     }
@@ -178,34 +178,34 @@ public class ClassOfAgreeContractBuilder {
      * @throws HqdmException If the ClassOfAgreeContract is missing any mandatory properties.
      */
     public ClassOfAgreeContract build() throws HqdmException {
-        if (classOfAgreeContract.hasValue(HAS_SUPERCLASS)
-                && classOfAgreeContract.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfAgreeContract.hasValue(HAS_SUPERCLASS)
+                && this.classOfAgreeContract.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfAgreeContract.hasValue(MEMBER__OF)
-                && classOfAgreeContract.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfAgreeContract.hasValue(MEMBER__OF)
+                && this.classOfAgreeContract.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfAgreeContract.hasValue(MEMBER_OF)
-                && classOfAgreeContract.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfAgreeContract.hasValue(MEMBER_OF)
+                && this.classOfAgreeContract.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfAgreeContract.hasValue(MEMBER_OF_)
-                && classOfAgreeContract.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfAgreeContract.hasValue(MEMBER_OF_)
+                && this.classOfAgreeContract.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfAgreeContract.hasValue(PART__OF_BY_CLASS)
-                && classOfAgreeContract.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfAgreeContract.hasValue(PART__OF_BY_CLASS)
+                && this.classOfAgreeContract.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (classOfAgreeContract.hasValue(PART_OF_BY_CLASS)
-                && classOfAgreeContract.value(PART_OF_BY_CLASS).isEmpty()) {
+        if (this.classOfAgreeContract.hasValue(PART_OF_BY_CLASS)
+                && this.classOfAgreeContract.value(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
-        if (classOfAgreeContract.hasValue(PART_OF_BY_CLASS_)
-                && classOfAgreeContract.value(PART_OF_BY_CLASS_).isEmpty()) {
+        if (this.classOfAgreeContract.hasValue(PART_OF_BY_CLASS_)
+                && this.classOfAgreeContract.value(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
-        return classOfAgreeContract;
+        return this.classOfAgreeContract;
     }
 }

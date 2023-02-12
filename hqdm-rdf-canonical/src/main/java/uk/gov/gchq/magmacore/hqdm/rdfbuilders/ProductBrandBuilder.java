@@ -59,7 +59,7 @@ public class ProductBrandBuilder {
      */
     public final ProductBrandBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        productBrand.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.productBrand.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -71,7 +71,7 @@ public class ProductBrandBuilder {
      * @return This builder.
      */
     public final ProductBrandBuilder has_Superclass(final Class clazz) {
-        productBrand.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.productBrand.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -83,7 +83,7 @@ public class ProductBrandBuilder {
      * @return This builder.
      */
     public final ProductBrandBuilder member__Of(final Class clazz) {
-        productBrand.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.productBrand.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -96,7 +96,7 @@ public class ProductBrandBuilder {
      * @return This builder.
      */
     public final ProductBrandBuilder member_Of(final ClassOfClass classOfClass) {
-        productBrand.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.productBrand.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -110,7 +110,7 @@ public class ProductBrandBuilder {
      */
     public final ProductBrandBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        productBrand.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.productBrand.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -126,7 +126,7 @@ public class ProductBrandBuilder {
      */
     public final ProductBrandBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        productBrand.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.productBrand.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -137,24 +137,24 @@ public class ProductBrandBuilder {
      * @throws HqdmException If the ProductBrand is missing any mandatory properties.
      */
     public ProductBrand build() throws HqdmException {
-        if (productBrand.hasValue(HAS_SUPERCLASS)
-                && productBrand.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.productBrand.hasValue(HAS_SUPERCLASS)
+                && this.productBrand.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (productBrand.hasValue(MEMBER__OF)
-                && productBrand.value(MEMBER__OF).isEmpty()) {
+        if (this.productBrand.hasValue(MEMBER__OF)
+                && this.productBrand.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (productBrand.hasValue(MEMBER_OF)
-                && productBrand.value(MEMBER_OF).isEmpty()) {
+        if (this.productBrand.hasValue(MEMBER_OF)
+                && this.productBrand.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (productBrand.hasValue(MEMBER_OF_)
-                && productBrand.value(MEMBER_OF_).isEmpty()) {
+        if (this.productBrand.hasValue(MEMBER_OF_)
+                && this.productBrand.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (productBrand.hasValue(PART__OF_BY_CLASS)
-                && productBrand.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.productBrand.hasValue(PART__OF_BY_CLASS)
+                && this.productBrand.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return productBrand;

@@ -43,7 +43,7 @@ public class ClassOfPeriodOfTimeBuilder {
      * @param iri IRI of the ClassOfPeriodOfTime.
      */
     public ClassOfPeriodOfTimeBuilder(final IRI iri) {
-        classOfPeriodOfTime = RdfClassServices.createClassOfPeriodOfTime(iri.getIri());
+        this.classOfPeriodOfTime = RdfClassServices.createClassOfPeriodOfTime(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfPeriodOfTimeBuilder {
      */
     public final ClassOfPeriodOfTimeBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfPeriodOfTime.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfPeriodOfTime.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfPeriodOfTimeBuilder {
      * @return This builder.
      */
     public final ClassOfPeriodOfTimeBuilder has_Superclass(final Class clazz) {
-        classOfPeriodOfTime.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfPeriodOfTime.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfPeriodOfTimeBuilder {
      * @return This builder.
      */
     public final ClassOfPeriodOfTimeBuilder member__Of(final Class clazz) {
-        classOfPeriodOfTime.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfPeriodOfTime.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfPeriodOfTimeBuilder {
      * @return This builder.
      */
     public final ClassOfPeriodOfTimeBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfPeriodOfTime.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfPeriodOfTime.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfPeriodOfTimeBuilder {
      */
     public final ClassOfPeriodOfTimeBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfPeriodOfTime.addValue(MEMBER_OF_,
+        this.classOfPeriodOfTime.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class ClassOfPeriodOfTimeBuilder {
      */
     public final ClassOfPeriodOfTimeBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfPeriodOfTime.addValue(PART__OF_BY_CLASS,
+        this.classOfPeriodOfTime.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -140,26 +140,26 @@ public class ClassOfPeriodOfTimeBuilder {
      * @throws HqdmException If the ClassOfPeriodOfTime is missing any mandatory properties.
      */
     public ClassOfPeriodOfTime build() throws HqdmException {
-        if (classOfPeriodOfTime.hasValue(HAS_SUPERCLASS)
-                && classOfPeriodOfTime.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfPeriodOfTime.hasValue(HAS_SUPERCLASS)
+                && this.classOfPeriodOfTime.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfPeriodOfTime.hasValue(MEMBER__OF)
-                && classOfPeriodOfTime.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfPeriodOfTime.hasValue(MEMBER__OF)
+                && this.classOfPeriodOfTime.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfPeriodOfTime.hasValue(MEMBER_OF)
-                && classOfPeriodOfTime.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfPeriodOfTime.hasValue(MEMBER_OF)
+                && this.classOfPeriodOfTime.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfPeriodOfTime.hasValue(MEMBER_OF_)
-                && classOfPeriodOfTime.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfPeriodOfTime.hasValue(MEMBER_OF_)
+                && this.classOfPeriodOfTime.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfPeriodOfTime.hasValue(PART__OF_BY_CLASS)
-                && classOfPeriodOfTime.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfPeriodOfTime.hasValue(PART__OF_BY_CLASS)
+                && this.classOfPeriodOfTime.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfPeriodOfTime;
+        return this.classOfPeriodOfTime;
     }
 }

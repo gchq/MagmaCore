@@ -51,7 +51,7 @@ public class ScaleBuilder {
      * @return This builder.
      */
     public final ScaleBuilder domain_M(final KindOfPhysicalQuantity kindOfPhysicalQuantity) {
-        scale.addValue(DOMAIN, new IRI(kindOfPhysicalQuantity.getId()));
+        this.scale.addValue(DOMAIN, new IRI(kindOfPhysicalQuantity.getId()));
         return this;
     }
 
@@ -63,7 +63,7 @@ public class ScaleBuilder {
      * @return This builder.
      */
     public final ScaleBuilder member__Of(final Class clazz) {
-        scale.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.scale.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class ScaleBuilder {
      * @return This builder.
      */
     public final ScaleBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        scale.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.scale.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
         return this;
     }
 
@@ -99,7 +99,7 @@ public class ScaleBuilder {
      * @return This builder.
      */
     public final ScaleBuilder unit(final UnitOfMeasure unitOfMeasure) {
-        scale.addValue(UNIT, new IRI(unitOfMeasure.getId()));
+        this.scale.addValue(UNIT, new IRI(unitOfMeasure.getId()));
         return this;
     }
 
@@ -110,19 +110,19 @@ public class ScaleBuilder {
      * @throws HqdmException If the Scale is missing any mandatory properties.
      */
     public Scale build() throws HqdmException {
-        if (!scale.hasValue(DOMAIN)) {
+        if (!this.scale.hasValue(DOMAIN)) {
             throw new HqdmException("Property Not Set: domain");
         }
-        if (scale.hasValue(MEMBER__OF)
-                && scale.value(MEMBER__OF).isEmpty()) {
+        if (this.scale.hasValue(MEMBER__OF)
+                && this.scale.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (scale.hasValue(MEMBER_OF)
-                && scale.value(MEMBER_OF).isEmpty()) {
+        if (this.scale.hasValue(MEMBER_OF)
+                && this.scale.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (scale.hasValue(UNIT)
-                && scale.value(UNIT).isEmpty()) {
+        if (this.scale.hasValue(UNIT)
+                && this.scale.value(UNIT).isEmpty()) {
             throw new HqdmException("Property Not Set: unit");
         }
         return scale;

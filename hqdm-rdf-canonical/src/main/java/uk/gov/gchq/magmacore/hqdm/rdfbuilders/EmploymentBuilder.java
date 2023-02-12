@@ -55,7 +55,7 @@ public class EmploymentBuilder {
      * @param iri IRI of the Employment.
      */
     public EmploymentBuilder(final IRI iri) {
-        employment = RdfSpatioTemporalExtentServices.createEmployment(iri.getIri());
+        this.employment = RdfSpatioTemporalExtentServices.createEmployment(iri.getIri());
     }
 
     /**
@@ -70,7 +70,7 @@ public class EmploymentBuilder {
      * @return This builder.
      */
     public final EmploymentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        employment.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.employment.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -82,7 +82,7 @@ public class EmploymentBuilder {
      * @return This builder.
      */
     public final EmploymentBuilder beginning(final Event event) {
-        employment.addValue(BEGINNING, new IRI(event.getId()));
+        this.employment.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class EmploymentBuilder {
      * @return This builder.
      */
     public final EmploymentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        employment.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.employment.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -109,7 +109,7 @@ public class EmploymentBuilder {
      * @return This builder.
      */
     public final EmploymentBuilder consists_Of_Participant(final Employer employer) {
-        employment.addValue(CONSISTS_OF_PARTICIPANT, new IRI(employer.getId()));
+        this.employment.addValue(CONSISTS_OF_PARTICIPANT, new IRI(employer.getId()));
         return this;
     }
 
@@ -121,7 +121,7 @@ public class EmploymentBuilder {
      * @return This builder.
      */
     public final EmploymentBuilder consists_Of_Participant_(final Employee employee) {
-        employment.addValue(CONSISTS_OF_PARTICIPANT_, new IRI(employee.getId()));
+        this.employment.addValue(CONSISTS_OF_PARTICIPANT_, new IRI(employee.getId()));
         return this;
     }
 
@@ -133,7 +133,7 @@ public class EmploymentBuilder {
      * @return This builder.
      */
     public final EmploymentBuilder ending(final Event event) {
-        employment.addValue(ENDING, new IRI(event.getId()));
+        this.employment.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -145,7 +145,7 @@ public class EmploymentBuilder {
      * @return This builder.
      */
     public final EmploymentBuilder member__Of(final Class clazz) {
-        employment.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.employment.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -159,7 +159,7 @@ public class EmploymentBuilder {
      * @return This builder.
      */
     public final EmploymentBuilder member_Of(final ClassOfAssociation classOfAssociation) {
-        employment.addValue(MEMBER_OF, new IRI(classOfAssociation.getId()));
+        this.employment.addValue(MEMBER_OF, new IRI(classOfAssociation.getId()));
         return this;
     }
 
@@ -173,7 +173,7 @@ public class EmploymentBuilder {
      * @return This builder.
      */
     public final EmploymentBuilder member_Of_Kind_M(final KindOfAssociation kindOfAssociation) {
-        employment.addValue(MEMBER_OF_KIND, new IRI(kindOfAssociation.getId()));
+        this.employment.addValue(MEMBER_OF_KIND, new IRI(kindOfAssociation.getId()));
         return this;
     }
 
@@ -186,7 +186,7 @@ public class EmploymentBuilder {
      * @return This builder.
      */
     public final EmploymentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        employment.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.employment.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -205,7 +205,7 @@ public class EmploymentBuilder {
      * @return This builder.
      */
     public final EmploymentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        employment.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.employment.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -218,7 +218,7 @@ public class EmploymentBuilder {
      * @return This builder.
      */
     public final EmploymentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        employment.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.employment.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -241,7 +241,7 @@ public class EmploymentBuilder {
      * @return This builder.
      */
     public final EmploymentBuilder temporal_Part_Of(final Individual individual) {
-        employment.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.employment.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -252,44 +252,44 @@ public class EmploymentBuilder {
      * @throws HqdmException If the Employment is missing any mandatory properties.
      */
     public Employment build() throws HqdmException {
-        if (employment.hasValue(AGGREGATED_INTO)
-                && employment.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.employment.hasValue(AGGREGATED_INTO)
+                && this.employment.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (employment.hasValue(BEGINNING)
-                && employment.value(BEGINNING).isEmpty()) {
+        if (this.employment.hasValue(BEGINNING)
+                && this.employment.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (employment.hasValue(ENDING)
-                && employment.value(ENDING).isEmpty()) {
+        if (this.employment.hasValue(ENDING)
+                && this.employment.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (employment.hasValue(MEMBER__OF)
-                && employment.value(MEMBER__OF).isEmpty()) {
+        if (this.employment.hasValue(MEMBER__OF)
+                && this.employment.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (employment.hasValue(MEMBER_OF)
-                && employment.value(MEMBER_OF).isEmpty()) {
+        if (this.employment.hasValue(MEMBER_OF)
+                && this.employment.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!employment.hasValue(MEMBER_OF_KIND)) {
+        if (!this.employment.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (employment.hasValue(PART__OF)
-                && employment.value(PART__OF).isEmpty()) {
+        if (this.employment.hasValue(PART__OF)
+                && this.employment.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!employment.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.employment.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (employment.hasValue(TEMPORAL__PART_OF)
-                && employment.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.employment.hasValue(TEMPORAL__PART_OF)
+                && this.employment.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (employment.hasValue(TEMPORAL_PART_OF)
-                && employment.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.employment.hasValue(TEMPORAL_PART_OF)
+                && this.employment.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        return employment;
+        return this.employment;
     }
 }

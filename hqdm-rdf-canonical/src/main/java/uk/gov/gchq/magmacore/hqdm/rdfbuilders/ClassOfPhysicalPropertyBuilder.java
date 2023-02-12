@@ -38,7 +38,7 @@ public class ClassOfPhysicalPropertyBuilder {
      * @param iri IRI of the ClassOfPhysicalProperty.
      */
     public ClassOfPhysicalPropertyBuilder(final IRI iri) {
-        classOfPhysicalProperty = RdfClassServices.createClassOfPhysicalProperty(iri.getIri());
+        this.classOfPhysicalProperty = RdfClassServices.createClassOfPhysicalProperty(iri.getIri());
     }
 
     /**
@@ -49,7 +49,7 @@ public class ClassOfPhysicalPropertyBuilder {
      * @return This builder.
      */
     public final ClassOfPhysicalPropertyBuilder has_Superclass(final Class clazz) {
-        classOfPhysicalProperty.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfPhysicalProperty.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -61,7 +61,7 @@ public class ClassOfPhysicalPropertyBuilder {
      * @return This builder.
      */
     public final ClassOfPhysicalPropertyBuilder member__Of(final Class clazz) {
-        classOfPhysicalProperty.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfPhysicalProperty.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -74,7 +74,7 @@ public class ClassOfPhysicalPropertyBuilder {
      * @return This builder.
      */
     public final ClassOfPhysicalPropertyBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfPhysicalProperty.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfPhysicalProperty.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -85,18 +85,18 @@ public class ClassOfPhysicalPropertyBuilder {
      * @throws HqdmException If the ClassOfPhysicalProperty is missing any mandatory properties.
      */
     public ClassOfPhysicalProperty build() throws HqdmException {
-        if (classOfPhysicalProperty.hasValue(HAS_SUPERCLASS)
-                && classOfPhysicalProperty.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfPhysicalProperty.hasValue(HAS_SUPERCLASS)
+                && this.classOfPhysicalProperty.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfPhysicalProperty.hasValue(MEMBER__OF)
-                && classOfPhysicalProperty.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfPhysicalProperty.hasValue(MEMBER__OF)
+                && this.classOfPhysicalProperty.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfPhysicalProperty.hasValue(MEMBER_OF)
-                && classOfPhysicalProperty.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfPhysicalProperty.hasValue(MEMBER_OF)
+                && this.classOfPhysicalProperty.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        return classOfPhysicalProperty;
+        return this.classOfPhysicalProperty;
     }
 }

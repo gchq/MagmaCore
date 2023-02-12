@@ -50,7 +50,7 @@ public class KindOfRelationshipWithSignatureBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithSignatureBuilder has_Superclass(final Class clazz) {
-        kindOfRelationshipWithSignature.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfRelationshipWithSignature.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -62,7 +62,7 @@ public class KindOfRelationshipWithSignatureBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithSignatureBuilder member__Of(final Class clazz) {
-        kindOfRelationshipWithSignature.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfRelationshipWithSignature.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -75,7 +75,7 @@ public class KindOfRelationshipWithSignatureBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithSignatureBuilder member_Of(final ClassOfClass classOfClass) {
-        kindOfRelationshipWithSignature.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfRelationshipWithSignature.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -86,7 +86,7 @@ public class KindOfRelationshipWithSignatureBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithSignatureBuilder roles_M(final Class clazz) {
-        kindOfRelationshipWithSignature.addValue(ROLES, new IRI(clazz.getId()));
+        this.kindOfRelationshipWithSignature.addValue(ROLES, new IRI(clazz.getId()));
         return this;
     }
 
@@ -98,19 +98,19 @@ public class KindOfRelationshipWithSignatureBuilder {
      * @throws HqdmException If the KindOfRelationshipWithSignature is missing any mandatory properties.
      */
     public KindOfRelationshipWithSignature build() throws HqdmException {
-        if (kindOfRelationshipWithSignature.hasValue(HAS_SUPERCLASS)
-                && kindOfRelationshipWithSignature.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.kindOfRelationshipWithSignature.hasValue(HAS_SUPERCLASS)
+                && this.kindOfRelationshipWithSignature.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (kindOfRelationshipWithSignature.hasValue(MEMBER__OF)
-                && kindOfRelationshipWithSignature.value(MEMBER__OF).isEmpty()) {
+        if (this.kindOfRelationshipWithSignature.hasValue(MEMBER__OF)
+                && this.kindOfRelationshipWithSignature.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (kindOfRelationshipWithSignature.hasValue(MEMBER_OF)
-                && kindOfRelationshipWithSignature.value(MEMBER_OF).isEmpty()) {
+        if (this.kindOfRelationshipWithSignature.hasValue(MEMBER_OF)
+                && this.kindOfRelationshipWithSignature.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!kindOfRelationshipWithSignature.hasValue(ROLES)) {
+        if (!this.kindOfRelationshipWithSignature.hasValue(ROLES)) {
             throw new HqdmException("Property Not Set: roles");
         }
         return kindOfRelationshipWithSignature;

@@ -66,7 +66,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        requirement.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.requirement.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -78,7 +78,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder beginning(final Event event) {
-        requirement.addValue(BEGINNING, new IRI(event.getId()));
+        this.requirement.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -93,7 +93,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        requirement.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.requirement.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -106,7 +106,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder defined_By_M(final RequirementSpecification requirementSpecification) {
-        requirement.addValue(DEFINED_BY, new IRI(requirementSpecification.getId()));
+        this.requirement.addValue(DEFINED_BY, new IRI(requirementSpecification.getId()));
         return this;
     }
 
@@ -118,7 +118,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder ending(final Event event) {
-        requirement.addValue(ENDING, new IRI(event.getId()));
+        this.requirement.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder member__Of(final Class clazz) {
-        requirement.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.requirement.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -144,7 +144,7 @@ public class RequirementBuilder {
      */
     public final RequirementBuilder member_Of(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        requirement.addValue(MEMBER_OF, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.requirement.addValue(MEMBER_OF, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -157,7 +157,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        requirement.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.requirement.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -170,7 +170,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder part_Of_Plan_M(final Plan plan) {
-        requirement.addValue(PART_OF_PLAN, new IRI(plan.getId()));
+        this.requirement.addValue(PART_OF_PLAN, new IRI(plan.getId()));
         return this;
     }
 
@@ -189,7 +189,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        requirement.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.requirement.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -202,7 +202,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        requirement.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.requirement.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -213,41 +213,41 @@ public class RequirementBuilder {
      * @throws HqdmException If the Requirement is missing any mandatory properties.
      */
     public Requirement build() throws HqdmException {
-        if (requirement.hasValue(AGGREGATED_INTO)
-                && requirement.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.requirement.hasValue(AGGREGATED_INTO)
+                && this.requirement.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (requirement.hasValue(BEGINNING)
-                && requirement.value(BEGINNING).isEmpty()) {
+        if (this.requirement.hasValue(BEGINNING)
+                && this.requirement.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!requirement.hasValue(DEFINED_BY)) {
+        if (!this.requirement.hasValue(DEFINED_BY)) {
             throw new HqdmException("Property Not Set: defined_by");
         }
-        if (requirement.hasValue(ENDING)
-                && requirement.value(ENDING).isEmpty()) {
+        if (this.requirement.hasValue(ENDING)
+                && this.requirement.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (requirement.hasValue(MEMBER__OF)
-                && requirement.value(MEMBER__OF).isEmpty()) {
+        if (this.requirement.hasValue(MEMBER__OF)
+                && this.requirement.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (requirement.hasValue(MEMBER_OF)
-                && requirement.value(MEMBER_OF).isEmpty()) {
+        if (this.requirement.hasValue(MEMBER_OF)
+                && this.requirement.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (requirement.hasValue(PART__OF)
-                && requirement.value(PART__OF).isEmpty()) {
+        if (this.requirement.hasValue(PART__OF)
+                && this.requirement.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!requirement.hasValue(PART_OF_PLAN)) {
+        if (!this.requirement.hasValue(PART_OF_PLAN)) {
             throw new HqdmException("Property Not Set: part_of_plan");
         }
-        if (!requirement.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.requirement.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (requirement.hasValue(TEMPORAL__PART_OF)
-                && requirement.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.requirement.hasValue(TEMPORAL__PART_OF)
+                && this.requirement.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         return requirement;

@@ -47,7 +47,7 @@ public class ClassOfOfferBuilder {
      * @param iri IRI of the ClassOfOffer.
      */
     public ClassOfOfferBuilder(final IRI iri) {
-        classOfOffer = RdfClassServices.createClassOfOffer(iri.getIri());
+        this.classOfOffer = RdfClassServices.createClassOfOffer(iri.getIri());
     }
 
     /**
@@ -63,7 +63,7 @@ public class ClassOfOfferBuilder {
      */
     public final ClassOfOfferBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfOffer.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfOffer.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -75,7 +75,7 @@ public class ClassOfOfferBuilder {
      * @return This builder.
      */
     public final ClassOfOfferBuilder has_Superclass(final Class clazz) {
-        classOfOffer.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfOffer.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -87,7 +87,7 @@ public class ClassOfOfferBuilder {
      * @return This builder.
      */
     public final ClassOfOfferBuilder member__Of(final Class clazz) {
-        classOfOffer.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfOffer.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -100,7 +100,7 @@ public class ClassOfOfferBuilder {
      * @return This builder.
      */
     public final ClassOfOfferBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfOffer.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfOffer.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -114,7 +114,7 @@ public class ClassOfOfferBuilder {
      */
     public final ClassOfOfferBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfOffer.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.classOfOffer.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class ClassOfOfferBuilder {
      */
     public final ClassOfOfferBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfOffer.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfOffer.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -146,7 +146,7 @@ public class ClassOfOfferBuilder {
      */
     public final ClassOfOfferBuilder part_Of_By_Class(
             final ClassOfReachingAgreement classOfReachingAgreement) {
-        classOfOffer.addValue(PART_OF_BY_CLASS, new IRI(classOfReachingAgreement.getId()));
+        this.classOfOffer.addValue(PART_OF_BY_CLASS, new IRI(classOfReachingAgreement.getId()));
         return this;
     }
 
@@ -163,7 +163,7 @@ public class ClassOfOfferBuilder {
      */
     public final ClassOfOfferBuilder part_Of_By_Class_(
             final ClassOfAgreementExecution classOfAgreementExecution) {
-        classOfOffer.addValue(PART_OF_BY_CLASS_, new IRI(classOfAgreementExecution.getId()));
+        this.classOfOffer.addValue(PART_OF_BY_CLASS_, new IRI(classOfAgreementExecution.getId()));
         return this;
     }
 
@@ -174,34 +174,34 @@ public class ClassOfOfferBuilder {
      * @throws HqdmException If the ClassOfOffer is missing any mandatory properties.
      */
     public ClassOfOffer build() throws HqdmException {
-        if (classOfOffer.hasValue(HAS_SUPERCLASS)
-                && classOfOffer.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfOffer.hasValue(HAS_SUPERCLASS)
+                && this.classOfOffer.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfOffer.hasValue(MEMBER__OF)
-                && classOfOffer.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfOffer.hasValue(MEMBER__OF)
+                && this.classOfOffer.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfOffer.hasValue(MEMBER_OF)
-                && classOfOffer.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfOffer.hasValue(MEMBER_OF)
+                && this.classOfOffer.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfOffer.hasValue(MEMBER_OF_)
-                && classOfOffer.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfOffer.hasValue(MEMBER_OF_)
+                && this.classOfOffer.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfOffer.hasValue(PART__OF_BY_CLASS)
-                && classOfOffer.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfOffer.hasValue(PART__OF_BY_CLASS)
+                && this.classOfOffer.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (classOfOffer.hasValue(PART_OF_BY_CLASS)
-                && classOfOffer.value(PART_OF_BY_CLASS).isEmpty()) {
+        if (this.classOfOffer.hasValue(PART_OF_BY_CLASS)
+                && this.classOfOffer.value(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
-        if (classOfOffer.hasValue(PART_OF_BY_CLASS_)
-                && classOfOffer.value(PART_OF_BY_CLASS_).isEmpty()) {
+        if (this.classOfOffer.hasValue(PART_OF_BY_CLASS_)
+                && this.classOfOffer.value(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
-        return classOfOffer;
+        return this.classOfOffer;
     }
 }

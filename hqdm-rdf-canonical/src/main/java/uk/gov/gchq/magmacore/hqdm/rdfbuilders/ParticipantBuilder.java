@@ -68,7 +68,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        participant.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.participant.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder beginning(final Event event) {
-        participant.addValue(BEGINNING, new IRI(event.getId()));
+        this.participant.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -95,7 +95,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        participant.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.participant.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -107,7 +107,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder ending(final Event event) {
-        participant.addValue(ENDING, new IRI(event.getId()));
+        this.participant.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder member__Of(final Class clazz) {
-        participant.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.participant.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -132,7 +132,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder member_Of(final ClassOfParticipant classOfParticipant) {
-        participant.addValue(MEMBER_OF, new IRI(classOfParticipant.getId()));
+        this.participant.addValue(MEMBER_OF, new IRI(classOfParticipant.getId()));
         return this;
     }
 
@@ -145,7 +145,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder member_Of_Kind_M(final Role role) {
-        participant.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
+        this.participant.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        participant.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.participant.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -177,7 +177,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        participant.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.participant.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -192,7 +192,7 @@ public class ParticipantBuilder {
      */
     public final ParticipantBuilder participant_In(
             final ParticipantInActivityOrAssociation participantInActivityOrAssociation) {
-        participant.addValue(PARTICIPANT_IN, new IRI(participantInActivityOrAssociation.getId()));
+        this.participant.addValue(PARTICIPANT_IN, new IRI(participantInActivityOrAssociation.getId()));
         return this;
     }
 
@@ -205,7 +205,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        participant.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.participant.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -219,7 +219,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder temporal_Part_Of(final PhysicalObject physicalObject) {
-        participant.addValue(TEMPORAL_PART_OF, new IRI(physicalObject.getId()));
+        this.participant.addValue(TEMPORAL_PART_OF, new IRI(physicalObject.getId()));
         return this;
     }
 
@@ -230,46 +230,46 @@ public class ParticipantBuilder {
      * @throws HqdmException If the Participant is missing any mandatory properties.
      */
     public Participant build() throws HqdmException {
-        if (participant.hasValue(AGGREGATED_INTO)
-                && participant.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.participant.hasValue(AGGREGATED_INTO)
+                && this.participant.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (participant.hasValue(BEGINNING)
-                && participant.value(BEGINNING).isEmpty()) {
+        if (this.participant.hasValue(BEGINNING)
+                && this.participant.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (participant.hasValue(ENDING)
-                && participant.value(ENDING).isEmpty()) {
+        if (this.participant.hasValue(ENDING)
+                && this.participant.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (participant.hasValue(MEMBER__OF)
-                && participant.value(MEMBER__OF).isEmpty()) {
+        if (this.participant.hasValue(MEMBER__OF)
+                && this.participant.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (participant.hasValue(MEMBER_OF)
-                && participant.value(MEMBER_OF).isEmpty()) {
+        if (this.participant.hasValue(MEMBER_OF)
+                && this.participant.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!participant.hasValue(MEMBER_OF_KIND)) {
+        if (!this.participant.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (participant.hasValue(PART__OF)
-                && participant.value(PART__OF).isEmpty()) {
+        if (this.participant.hasValue(PART__OF)
+                && this.participant.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!participant.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.participant.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (participant.hasValue(PARTICIPANT_IN)
-                && participant.value(PARTICIPANT_IN).isEmpty()) {
+        if (this.participant.hasValue(PARTICIPANT_IN)
+                && this.participant.value(PARTICIPANT_IN).isEmpty()) {
             throw new HqdmException("Property Not Set: participant_in");
         }
-        if (participant.hasValue(TEMPORAL__PART_OF)
-                && participant.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.participant.hasValue(TEMPORAL__PART_OF)
+                && this.participant.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (participant.hasValue(TEMPORAL_PART_OF)
-                && participant.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.participant.hasValue(TEMPORAL_PART_OF)
+                && this.participant.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return participant;

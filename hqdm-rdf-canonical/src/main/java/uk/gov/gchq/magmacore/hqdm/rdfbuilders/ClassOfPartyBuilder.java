@@ -43,7 +43,7 @@ public class ClassOfPartyBuilder {
      * @param iri IRI of the ClassOfParty.
      */
     public ClassOfPartyBuilder(final IRI iri) {
-        classOfParty = RdfClassServices.createClassOfParty(iri.getIri());
+        this.classOfParty = RdfClassServices.createClassOfParty(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfPartyBuilder {
      */
     public final ClassOfPartyBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfParty.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfParty.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -71,7 +71,7 @@ public class ClassOfPartyBuilder {
      * @return This builder.
      */
     public final ClassOfPartyBuilder has_Superclass(final Class clazz) {
-        classOfParty.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfParty.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -83,7 +83,7 @@ public class ClassOfPartyBuilder {
      * @return This builder.
      */
     public final ClassOfPartyBuilder member__Of(final Class clazz) {
-        classOfParty.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfParty.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -96,7 +96,7 @@ public class ClassOfPartyBuilder {
      * @return This builder.
      */
     public final ClassOfPartyBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfParty.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfParty.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -110,7 +110,7 @@ public class ClassOfPartyBuilder {
      */
     public final ClassOfPartyBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfParty.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.classOfParty.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -126,7 +126,7 @@ public class ClassOfPartyBuilder {
      */
     public final ClassOfPartyBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfParty.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfParty.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -137,26 +137,26 @@ public class ClassOfPartyBuilder {
      * @throws HqdmException If the ClassOfParty is missing any mandatory properties.
      */
     public ClassOfParty build() throws HqdmException {
-        if (classOfParty.hasValue(HAS_SUPERCLASS)
-                && classOfParty.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfParty.hasValue(HAS_SUPERCLASS)
+                && this.classOfParty.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfParty.hasValue(MEMBER__OF)
-                && classOfParty.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfParty.hasValue(MEMBER__OF)
+                && this.classOfParty.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfParty.hasValue(MEMBER_OF)
-                && classOfParty.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfParty.hasValue(MEMBER_OF)
+                && this.classOfParty.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfParty.hasValue(MEMBER_OF_)
-                && classOfParty.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfParty.hasValue(MEMBER_OF_)
+                && this.classOfParty.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfParty.hasValue(PART__OF_BY_CLASS)
-                && classOfParty.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfParty.hasValue(PART__OF_BY_CLASS)
+                && this.classOfParty.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfParty;
+        return this.classOfParty;
     }
 }

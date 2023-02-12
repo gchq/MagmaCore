@@ -43,7 +43,7 @@ public class ClassOfPersonInPositionBuilder {
      * @param iri IRI of the ClassOfPersonInPosition.
      */
     public ClassOfPersonInPositionBuilder(final IRI iri) {
-        classOfPersonInPosition = RdfClassServices.createClassOfPersonInPosition(iri.getIri());
+        this.classOfPersonInPosition = RdfClassServices.createClassOfPersonInPosition(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfPersonInPositionBuilder {
      */
     public final ClassOfPersonInPositionBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfPersonInPosition.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfPersonInPosition.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfPersonInPositionBuilder {
      * @return This builder.
      */
     public final ClassOfPersonInPositionBuilder has_Superclass(final Class clazz) {
-        classOfPersonInPosition.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfPersonInPosition.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfPersonInPositionBuilder {
      * @return This builder.
      */
     public final ClassOfPersonInPositionBuilder member__Of(final Class clazz) {
-        classOfPersonInPosition.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfPersonInPosition.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfPersonInPositionBuilder {
      * @return This builder.
      */
     public final ClassOfPersonInPositionBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfPersonInPosition.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfPersonInPosition.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfPersonInPositionBuilder {
      */
     public final ClassOfPersonInPositionBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfPersonInPosition.addValue(MEMBER_OF_,
+        this.classOfPersonInPosition.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class ClassOfPersonInPositionBuilder {
      */
     public final ClassOfPersonInPositionBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfPersonInPosition.addValue(PART__OF_BY_CLASS,
+        this.classOfPersonInPosition.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -140,26 +140,26 @@ public class ClassOfPersonInPositionBuilder {
      * @throws HqdmException If the ClassOfPersonInPosition is missing any mandatory properties.
      */
     public ClassOfPersonInPosition build() throws HqdmException {
-        if (classOfPersonInPosition.hasValue(HAS_SUPERCLASS)
-                && classOfPersonInPosition.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfPersonInPosition.hasValue(HAS_SUPERCLASS)
+                && this.classOfPersonInPosition.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfPersonInPosition.hasValue(MEMBER__OF)
-                && classOfPersonInPosition.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfPersonInPosition.hasValue(MEMBER__OF)
+                && this.classOfPersonInPosition.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfPersonInPosition.hasValue(MEMBER_OF)
-                && classOfPersonInPosition.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfPersonInPosition.hasValue(MEMBER_OF)
+                && this.classOfPersonInPosition.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfPersonInPosition.hasValue(MEMBER_OF_)
-                && classOfPersonInPosition.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfPersonInPosition.hasValue(MEMBER_OF_)
+                && this.classOfPersonInPosition.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfPersonInPosition.hasValue(PART__OF_BY_CLASS)
-                && classOfPersonInPosition.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfPersonInPosition.hasValue(PART__OF_BY_CLASS)
+                && this.classOfPersonInPosition.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfPersonInPosition;
+        return this.classOfPersonInPosition;
     }
 }

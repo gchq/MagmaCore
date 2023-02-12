@@ -43,7 +43,7 @@ public class ClassOfEventBuilder {
      * @param iri IRI of the ClassOfEvent.
      */
     public ClassOfEventBuilder(final IRI iri) {
-        classOfEvent = RdfClassServices.createClassOfEvent(iri.getIri());
+        this.classOfEvent = RdfClassServices.createClassOfEvent(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfEventBuilder {
      */
     public final ClassOfEventBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfEvent.addValue(
+        this.classOfEvent.addValue(
                 CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfEventBuilder {
      * @return This builder.
      */
     public final ClassOfEventBuilder has_Superclass(final Class clazz) {
-        classOfEvent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfEvent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfEventBuilder {
      * @return This builder.
      */
     public final ClassOfEventBuilder member__Of(final Class clazz) {
-        classOfEvent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfEvent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfEventBuilder {
      * @return This builder.
      */
     public final ClassOfEventBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfEvent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfEvent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfEventBuilder {
      */
     public final ClassOfEventBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfEvent.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.classOfEvent.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -127,7 +127,7 @@ public class ClassOfEventBuilder {
      */
     public final ClassOfEventBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfEvent.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfEvent.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -138,26 +138,26 @@ public class ClassOfEventBuilder {
      * @throws HqdmException If the ClassOfEvent is missing any mandatory properties.
      */
     public ClassOfEvent build() throws HqdmException {
-        if (classOfEvent.hasValue(HAS_SUPERCLASS)
-                && classOfEvent.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfEvent.hasValue(HAS_SUPERCLASS)
+                && this.classOfEvent.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfEvent.hasValue(MEMBER__OF)
-                && classOfEvent.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfEvent.hasValue(MEMBER__OF)
+                && this.classOfEvent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfEvent.hasValue(MEMBER_OF)
-                && classOfEvent.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfEvent.hasValue(MEMBER_OF)
+                && this.classOfEvent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfEvent.hasValue(MEMBER_OF_)
-                && classOfEvent.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfEvent.hasValue(MEMBER_OF_)
+                && this.classOfEvent.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfEvent.hasValue(PART__OF_BY_CLASS)
-                && classOfEvent.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfEvent.hasValue(PART__OF_BY_CLASS)
+                && this.classOfEvent.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfEvent;
+        return this.classOfEvent;
     }
 }

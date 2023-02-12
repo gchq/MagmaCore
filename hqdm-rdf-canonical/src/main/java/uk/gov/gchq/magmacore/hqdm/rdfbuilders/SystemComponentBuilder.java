@@ -68,7 +68,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        systemComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.systemComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder beginning(final Event event) {
-        systemComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.systemComponent.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -93,7 +93,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder component_Of_M(final System system) {
-        systemComponent.addValue(COMPONENT_OF, new IRI(system.getId()));
+        this.systemComponent.addValue(COMPONENT_OF, new IRI(system.getId()));
         return this;
     }
 
@@ -108,7 +108,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        systemComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.systemComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -120,7 +120,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder ending(final Event event) {
-        systemComponent.addValue(ENDING, new IRI(event.getId()));
+        this.systemComponent.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -132,7 +132,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder member__Of(final Class clazz) {
-        systemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.systemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -145,7 +145,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder member_Of(final ClassOfSystemComponent classOfSystemComponent) {
-        systemComponent.addValue(MEMBER_OF, new IRI(classOfSystemComponent.getId()));
+        this.systemComponent.addValue(MEMBER_OF, new IRI(classOfSystemComponent.getId()));
         return this;
     }
 
@@ -159,7 +159,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder member_Of_Kind(final KindOfPhysicalObject kindOfPhysicalObject) {
-        systemComponent.addValue(MEMBER_OF_KIND, new IRI(kindOfPhysicalObject.getId()));
+        this.systemComponent.addValue(MEMBER_OF_KIND, new IRI(kindOfPhysicalObject.getId()));
         return this;
     }
 
@@ -172,7 +172,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        systemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.systemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -191,7 +191,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        systemComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.systemComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -204,7 +204,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        systemComponent.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.systemComponent.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -227,7 +227,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder temporal_Part_Of(final Individual individual) {
-        systemComponent.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.systemComponent.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -238,46 +238,46 @@ public class SystemComponentBuilder {
      * @throws HqdmException If the SystemComponent is missing any mandatory properties.
      */
     public SystemComponent build() throws HqdmException {
-        if (systemComponent.hasValue(AGGREGATED_INTO)
-                && systemComponent.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.systemComponent.hasValue(AGGREGATED_INTO)
+                && this.systemComponent.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (systemComponent.hasValue(BEGINNING)
-                && systemComponent.value(BEGINNING).isEmpty()) {
+        if (this.systemComponent.hasValue(BEGINNING)
+                && this.systemComponent.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!systemComponent.hasValue(COMPONENT_OF)) {
+        if (!this.systemComponent.hasValue(COMPONENT_OF)) {
             throw new HqdmException("Property Not Set: component_of");
         }
-        if (systemComponent.hasValue(ENDING)
-                && systemComponent.value(ENDING).isEmpty()) {
+        if (this.systemComponent.hasValue(ENDING)
+                && this.systemComponent.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (systemComponent.hasValue(MEMBER__OF)
-                && systemComponent.value(MEMBER__OF).isEmpty()) {
+        if (this.systemComponent.hasValue(MEMBER__OF)
+                && this.systemComponent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (systemComponent.hasValue(MEMBER_OF)
-                && systemComponent.value(MEMBER_OF).isEmpty()) {
+        if (this.systemComponent.hasValue(MEMBER_OF)
+                && this.systemComponent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (systemComponent.hasValue(MEMBER_OF_KIND)
-                && systemComponent.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.systemComponent.hasValue(MEMBER_OF_KIND)
+                && this.systemComponent.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (systemComponent.hasValue(PART__OF)
-                && systemComponent.value(PART__OF).isEmpty()) {
+        if (this.systemComponent.hasValue(PART__OF)
+                && this.systemComponent.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!systemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.systemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (systemComponent.hasValue(TEMPORAL__PART_OF)
-                && systemComponent.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.systemComponent.hasValue(TEMPORAL__PART_OF)
+                && this.systemComponent.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (systemComponent.hasValue(TEMPORAL_PART_OF)
-                && systemComponent.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.systemComponent.hasValue(TEMPORAL_PART_OF)
+                && this.systemComponent.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return systemComponent;

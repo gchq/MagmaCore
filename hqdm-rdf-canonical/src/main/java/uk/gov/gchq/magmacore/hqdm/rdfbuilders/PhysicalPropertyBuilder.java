@@ -61,7 +61,7 @@ public class PhysicalPropertyBuilder {
      */
     public final PhysicalPropertyBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        physicalProperty.addValue(CONSISTS__OF_BY_CLASS,
+        this.physicalProperty.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -74,7 +74,7 @@ public class PhysicalPropertyBuilder {
      * @return This builder.
      */
     public final PhysicalPropertyBuilder has_Superclass(final Class clazz) {
-        physicalProperty.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.physicalProperty.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -86,7 +86,7 @@ public class PhysicalPropertyBuilder {
      * @return This builder.
      */
     public final PhysicalPropertyBuilder member__Of(final Class clazz) {
-        physicalProperty.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.physicalProperty.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -99,7 +99,7 @@ public class PhysicalPropertyBuilder {
      * @return This builder.
      */
     public final PhysicalPropertyBuilder member_Of(final ClassOfPhysicalProperty classOfPhysicalProperty) {
-        physicalProperty.addValue(MEMBER_OF, new IRI(classOfPhysicalProperty.getId()));
+        this.physicalProperty.addValue(MEMBER_OF, new IRI(classOfPhysicalProperty.getId()));
         return this;
     }
 
@@ -113,7 +113,7 @@ public class PhysicalPropertyBuilder {
      */
     public final PhysicalPropertyBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        physicalProperty.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.physicalProperty.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -126,7 +126,7 @@ public class PhysicalPropertyBuilder {
      * @return This builder.
      */
     public final PhysicalPropertyBuilder member_Of_Kind_M(final KindOfPhysicalProperty kindOfPhysicalProperty) {
-        physicalProperty.addValue(MEMBER_OF_KIND, new IRI(kindOfPhysicalProperty.getId()));
+        this.physicalProperty.addValue(MEMBER_OF_KIND, new IRI(kindOfPhysicalProperty.getId()));
         return this;
     }
 
@@ -142,7 +142,7 @@ public class PhysicalPropertyBuilder {
      */
     public final PhysicalPropertyBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        physicalProperty.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.physicalProperty.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -153,27 +153,27 @@ public class PhysicalPropertyBuilder {
      * @throws HqdmException If the PhysicalProperty is missing any mandatory properties.
      */
     public PhysicalProperty build() throws HqdmException {
-        if (physicalProperty.hasValue(HAS_SUPERCLASS)
-                && physicalProperty.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.physicalProperty.hasValue(HAS_SUPERCLASS)
+                && this.physicalProperty.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (physicalProperty.hasValue(MEMBER__OF)
-                && physicalProperty.value(MEMBER__OF).isEmpty()) {
+        if (this.physicalProperty.hasValue(MEMBER__OF)
+                && this.physicalProperty.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (physicalProperty.hasValue(MEMBER_OF)
-                && physicalProperty.value(MEMBER_OF).isEmpty()) {
+        if (this.physicalProperty.hasValue(MEMBER_OF)
+                && this.physicalProperty.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (physicalProperty.hasValue(MEMBER_OF_)
-                && physicalProperty.value(MEMBER_OF_).isEmpty()) {
+        if (this.physicalProperty.hasValue(MEMBER_OF_)
+                && this.physicalProperty.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (!physicalProperty.hasValue(MEMBER_OF_KIND)) {
+        if (!this.physicalProperty.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (physicalProperty.hasValue(PART__OF_BY_CLASS)
-                && physicalProperty.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.physicalProperty.hasValue(PART__OF_BY_CLASS)
+                && this.physicalProperty.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return physicalProperty;

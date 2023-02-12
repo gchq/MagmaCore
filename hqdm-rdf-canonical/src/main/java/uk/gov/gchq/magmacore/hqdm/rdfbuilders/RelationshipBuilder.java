@@ -48,7 +48,7 @@ public class RelationshipBuilder {
      * @return This builder.
      */
     public final RelationshipBuilder member__Of(final Class clazz) {
-        relationship.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.relationship.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -61,7 +61,7 @@ public class RelationshipBuilder {
      * @return This builder.
      */
     public final RelationshipBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        relationship.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.relationship.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
         return this;
     }
 
@@ -72,12 +72,12 @@ public class RelationshipBuilder {
      * @throws HqdmException If the Relationship is missing any mandatory properties.
      */
     public Relationship build() throws HqdmException {
-        if (relationship.hasValue(MEMBER__OF)
-                && relationship.value(MEMBER__OF).isEmpty()) {
+        if (this.relationship.hasValue(MEMBER__OF)
+                && this.relationship.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (relationship.hasValue(MEMBER_OF)
-                && relationship.value(MEMBER_OF).isEmpty()) {
+        if (this.relationship.hasValue(MEMBER_OF)
+                && this.relationship.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return relationship;

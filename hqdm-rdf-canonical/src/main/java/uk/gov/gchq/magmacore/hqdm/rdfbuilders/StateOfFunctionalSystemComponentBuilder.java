@@ -66,7 +66,7 @@ public class StateOfFunctionalSystemComponentBuilder {
      */
     public final StateOfFunctionalSystemComponentBuilder aggregated_Into(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfFunctionalSystemComponent.addValue(AGGREGATED_INTO,
+        this.stateOfFunctionalSystemComponent.addValue(AGGREGATED_INTO,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -79,7 +79,7 @@ public class StateOfFunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemComponentBuilder beginning(final Event event) {
-        stateOfFunctionalSystemComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfFunctionalSystemComponent.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -94,7 +94,7 @@ public class StateOfFunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfFunctionalSystemComponent.addValue(CONSISTS__OF,
+        this.stateOfFunctionalSystemComponent.addValue(CONSISTS__OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -107,7 +107,7 @@ public class StateOfFunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemComponentBuilder ending(final Event event) {
-        stateOfFunctionalSystemComponent.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfFunctionalSystemComponent.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class StateOfFunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemComponentBuilder member__Of(final Class clazz) {
-        stateOfFunctionalSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfFunctionalSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -135,7 +135,7 @@ public class StateOfFunctionalSystemComponentBuilder {
     @SuppressWarnings("LineLength")
     public final StateOfFunctionalSystemComponentBuilder member_Of(
             final ClassOfStateOfFunctionalSystemComponent classOfStateOfFunctionalSystemComponent) {
-        stateOfFunctionalSystemComponent.addValue(MEMBER_OF,
+        this.stateOfFunctionalSystemComponent.addValue(MEMBER_OF,
                 new IRI(classOfStateOfFunctionalSystemComponent.getId()));
         return this;
     }
@@ -149,7 +149,7 @@ public class StateOfFunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfFunctionalSystemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfFunctionalSystemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -168,7 +168,7 @@ public class StateOfFunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfFunctionalSystemComponent.addValue(PART_OF_POSSIBLE_WORLD,
+        this.stateOfFunctionalSystemComponent.addValue(PART_OF_POSSIBLE_WORLD,
                 new IRI(possibleWorld.getId()));
         return this;
     }
@@ -183,7 +183,7 @@ public class StateOfFunctionalSystemComponentBuilder {
      */
     public final StateOfFunctionalSystemComponentBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfFunctionalSystemComponent.addValue(TEMPORAL__PART_OF,
+        this.stateOfFunctionalSystemComponent.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -199,7 +199,7 @@ public class StateOfFunctionalSystemComponentBuilder {
      */
     public final StateOfFunctionalSystemComponentBuilder temporal_Part_Of(
             final FunctionalSystemComponent functionalSystemComponent) {
-        stateOfFunctionalSystemComponent.addValue(TEMPORAL_PART_OF,
+        this.stateOfFunctionalSystemComponent.addValue(TEMPORAL_PART_OF,
                 new IRI(functionalSystemComponent.getId()));
         return this;
     }
@@ -213,39 +213,39 @@ public class StateOfFunctionalSystemComponentBuilder {
      *                       properties.
      */
     public StateOfFunctionalSystemComponent build() throws HqdmException {
-        if (stateOfFunctionalSystemComponent.hasValue(AGGREGATED_INTO)
-                && stateOfFunctionalSystemComponent.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfFunctionalSystemComponent.hasValue(AGGREGATED_INTO)
+                && this.stateOfFunctionalSystemComponent.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfFunctionalSystemComponent.hasValue(BEGINNING)
-                && stateOfFunctionalSystemComponent.value(BEGINNING).isEmpty()) {
+        if (this.stateOfFunctionalSystemComponent.hasValue(BEGINNING)
+                && this.stateOfFunctionalSystemComponent.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfFunctionalSystemComponent.hasValue(ENDING)
-                && stateOfFunctionalSystemComponent.value(ENDING).isEmpty()) {
+        if (this.stateOfFunctionalSystemComponent.hasValue(ENDING)
+                && this.stateOfFunctionalSystemComponent.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfFunctionalSystemComponent.hasValue(MEMBER__OF)
-                && stateOfFunctionalSystemComponent.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfFunctionalSystemComponent.hasValue(MEMBER__OF)
+                && this.stateOfFunctionalSystemComponent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfFunctionalSystemComponent.hasValue(MEMBER_OF)
-                && stateOfFunctionalSystemComponent.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfFunctionalSystemComponent.hasValue(MEMBER_OF)
+                && this.stateOfFunctionalSystemComponent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfFunctionalSystemComponent.hasValue(PART__OF)
-                && stateOfFunctionalSystemComponent.value(PART__OF).isEmpty()) {
+        if (this.stateOfFunctionalSystemComponent.hasValue(PART__OF)
+                && this.stateOfFunctionalSystemComponent.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfFunctionalSystemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfFunctionalSystemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfFunctionalSystemComponent.hasValue(TEMPORAL__PART_OF)
-                && stateOfFunctionalSystemComponent.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfFunctionalSystemComponent.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfFunctionalSystemComponent.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfFunctionalSystemComponent.hasValue(TEMPORAL_PART_OF)
-                && stateOfFunctionalSystemComponent.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfFunctionalSystemComponent.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfFunctionalSystemComponent.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfFunctionalSystemComponent;

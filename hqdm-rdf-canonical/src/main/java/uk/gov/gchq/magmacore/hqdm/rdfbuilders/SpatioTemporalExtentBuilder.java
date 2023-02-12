@@ -57,7 +57,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        spatioTemporalExtent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.spatioTemporalExtent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -69,7 +69,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder beginning(final Event event) {
-        spatioTemporalExtent.addValue(BEGINNING, new IRI(event.getId()));
+        this.spatioTemporalExtent.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        spatioTemporalExtent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.spatioTemporalExtent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder ending(final Event event) {
-        spatioTemporalExtent.addValue(ENDING, new IRI(event.getId()));
+        this.spatioTemporalExtent.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder member__Of(final Class clazz) {
-        spatioTemporalExtent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.spatioTemporalExtent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -118,7 +118,7 @@ public class SpatioTemporalExtentBuilder {
      */
     public final SpatioTemporalExtentBuilder member_Of(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        spatioTemporalExtent.addValue(MEMBER_OF, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.spatioTemporalExtent.addValue(MEMBER_OF, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -131,7 +131,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        spatioTemporalExtent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.spatioTemporalExtent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -144,7 +144,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        spatioTemporalExtent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.spatioTemporalExtent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -157,7 +157,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        spatioTemporalExtent.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.spatioTemporalExtent.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -168,35 +168,35 @@ public class SpatioTemporalExtentBuilder {
      * @throws HqdmException If the SpatioTemporalExtent is missing any mandatory properties.
      */
     public SpatioTemporalExtent build() throws HqdmException {
-        if (spatioTemporalExtent.hasValue(AGGREGATED_INTO)
-                && spatioTemporalExtent.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.spatioTemporalExtent.hasValue(AGGREGATED_INTO)
+                && this.spatioTemporalExtent.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (spatioTemporalExtent.hasValue(BEGINNING)
-                && spatioTemporalExtent.value(BEGINNING).isEmpty()) {
+        if (this.spatioTemporalExtent.hasValue(BEGINNING)
+                && this.spatioTemporalExtent.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (spatioTemporalExtent.hasValue(ENDING)
-                && spatioTemporalExtent.value(ENDING).isEmpty()) {
+        if (this.spatioTemporalExtent.hasValue(ENDING)
+                && this.spatioTemporalExtent.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (spatioTemporalExtent.hasValue(MEMBER__OF)
-                && spatioTemporalExtent.value(MEMBER__OF).isEmpty()) {
+        if (this.spatioTemporalExtent.hasValue(MEMBER__OF)
+                && this.spatioTemporalExtent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (spatioTemporalExtent.hasValue(MEMBER_OF)
-                && spatioTemporalExtent.value(MEMBER_OF).isEmpty()) {
+        if (this.spatioTemporalExtent.hasValue(MEMBER_OF)
+                && this.spatioTemporalExtent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (spatioTemporalExtent.hasValue(PART__OF)
-                && spatioTemporalExtent.value(PART__OF).isEmpty()) {
+        if (this.spatioTemporalExtent.hasValue(PART__OF)
+                && this.spatioTemporalExtent.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!spatioTemporalExtent.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.spatioTemporalExtent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (spatioTemporalExtent.hasValue(TEMPORAL__PART_OF)
-                && spatioTemporalExtent.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.spatioTemporalExtent.hasValue(TEMPORAL__PART_OF)
+                && this.spatioTemporalExtent.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         return spatioTemporalExtent;

@@ -66,7 +66,7 @@ public class StateOfSociallyConstructedActivityBuilder {
      */
     public final StateOfSociallyConstructedActivityBuilder aggregated_Into(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSociallyConstructedActivity.addValue(AGGREGATED_INTO,
+        this.stateOfSociallyConstructedActivity.addValue(AGGREGATED_INTO,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -79,7 +79,7 @@ public class StateOfSociallyConstructedActivityBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedActivityBuilder beginning(final Event event) {
-        stateOfSociallyConstructedActivity.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfSociallyConstructedActivity.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -95,7 +95,7 @@ public class StateOfSociallyConstructedActivityBuilder {
      */
     public final StateOfSociallyConstructedActivityBuilder consists__Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSociallyConstructedActivity.addValue(CONSISTS__OF,
+        this.stateOfSociallyConstructedActivity.addValue(CONSISTS__OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -108,7 +108,7 @@ public class StateOfSociallyConstructedActivityBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedActivityBuilder ending(final Event event) {
-        stateOfSociallyConstructedActivity.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfSociallyConstructedActivity.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -120,7 +120,7 @@ public class StateOfSociallyConstructedActivityBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedActivityBuilder member__Of(final Class clazz) {
-        stateOfSociallyConstructedActivity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfSociallyConstructedActivity.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -136,7 +136,7 @@ public class StateOfSociallyConstructedActivityBuilder {
     @SuppressWarnings("LineLength")
     public final StateOfSociallyConstructedActivityBuilder member_Of(
             final ClassOfStateOfSociallyConstructedObject classOfStateOfSociallyConstructedObject) {
-        stateOfSociallyConstructedActivity.addValue(MEMBER_OF,
+        this.stateOfSociallyConstructedActivity.addValue(MEMBER_OF,
                 new IRI(classOfStateOfSociallyConstructedObject.getId()));
         return this;
     }
@@ -150,7 +150,7 @@ public class StateOfSociallyConstructedActivityBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedActivityBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSociallyConstructedActivity.addValue(PART__OF,
+        this.stateOfSociallyConstructedActivity.addValue(PART__OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -170,7 +170,7 @@ public class StateOfSociallyConstructedActivityBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedActivityBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfSociallyConstructedActivity.addValue(PART_OF_POSSIBLE_WORLD,
+        this.stateOfSociallyConstructedActivity.addValue(PART_OF_POSSIBLE_WORLD,
                 new IRI(possibleWorld.getId()));
         return this;
     }
@@ -185,7 +185,7 @@ public class StateOfSociallyConstructedActivityBuilder {
      */
     public final StateOfSociallyConstructedActivityBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSociallyConstructedActivity.addValue(TEMPORAL__PART_OF,
+        this.stateOfSociallyConstructedActivity.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -201,7 +201,7 @@ public class StateOfSociallyConstructedActivityBuilder {
      */
     public final StateOfSociallyConstructedActivityBuilder temporal_Part_Of(
             final SociallyConstructedObject sociallyConstructedObject) {
-        stateOfSociallyConstructedActivity.addValue(TEMPORAL_PART_OF,
+        this.stateOfSociallyConstructedActivity.addValue(TEMPORAL_PART_OF,
                 new IRI(sociallyConstructedObject.getId()));
         return this;
     }
@@ -215,39 +215,39 @@ public class StateOfSociallyConstructedActivityBuilder {
      *                       properties.
      */
     public StateOfSociallyConstructedActivity build() throws HqdmException {
-        if (stateOfSociallyConstructedActivity.hasValue(AGGREGATED_INTO)
-                && stateOfSociallyConstructedActivity.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfSociallyConstructedActivity.hasValue(AGGREGATED_INTO)
+                && this.stateOfSociallyConstructedActivity.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfSociallyConstructedActivity.hasValue(BEGINNING)
-                && stateOfSociallyConstructedActivity.value(BEGINNING).isEmpty()) {
+        if (this.stateOfSociallyConstructedActivity.hasValue(BEGINNING)
+                && this.stateOfSociallyConstructedActivity.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfSociallyConstructedActivity.hasValue(ENDING)
-                && stateOfSociallyConstructedActivity.value(ENDING).isEmpty()) {
+        if (this.stateOfSociallyConstructedActivity.hasValue(ENDING)
+                && this.stateOfSociallyConstructedActivity.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfSociallyConstructedActivity.hasValue(MEMBER__OF)
-                && stateOfSociallyConstructedActivity.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfSociallyConstructedActivity.hasValue(MEMBER__OF)
+                && this.stateOfSociallyConstructedActivity.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfSociallyConstructedActivity.hasValue(MEMBER_OF)
-                && stateOfSociallyConstructedActivity.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfSociallyConstructedActivity.hasValue(MEMBER_OF)
+                && this.stateOfSociallyConstructedActivity.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfSociallyConstructedActivity.hasValue(PART__OF)
-                && stateOfSociallyConstructedActivity.value(PART__OF).isEmpty()) {
+        if (this.stateOfSociallyConstructedActivity.hasValue(PART__OF)
+                && this.stateOfSociallyConstructedActivity.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfSociallyConstructedActivity.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfSociallyConstructedActivity.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfSociallyConstructedActivity.hasValue(TEMPORAL__PART_OF)
-                && stateOfSociallyConstructedActivity.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfSociallyConstructedActivity.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfSociallyConstructedActivity.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfSociallyConstructedActivity.hasValue(TEMPORAL_PART_OF)
-                && stateOfSociallyConstructedActivity.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfSociallyConstructedActivity.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfSociallyConstructedActivity.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfSociallyConstructedActivity;

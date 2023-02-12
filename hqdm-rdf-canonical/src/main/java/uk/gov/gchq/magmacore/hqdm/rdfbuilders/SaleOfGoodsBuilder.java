@@ -80,7 +80,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        saleOfGoods.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.saleOfGoods.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder beginning(final Event event) {
-        saleOfGoods.addValue(BEGINNING, new IRI(event.getId()));
+        this.saleOfGoods.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder causes_M(final Event event) {
-        saleOfGoods.addValue(CAUSES, new IRI(event.getId()));
+        this.saleOfGoods.addValue(CAUSES, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        saleOfGoods.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.saleOfGoods.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -133,7 +133,7 @@ public class SaleOfGoodsBuilder {
      */
     public final SaleOfGoodsBuilder consists_Of(
             final OfferAndAcceptanceForGoods offerAndAcceptanceForGoods) {
-        saleOfGoods.addValue(CONSISTS_OF, new IRI(offerAndAcceptanceForGoods.getId()));
+        this.saleOfGoods.addValue(CONSISTS_OF, new IRI(offerAndAcceptanceForGoods.getId()));
         return this;
     }
 
@@ -146,7 +146,7 @@ public class SaleOfGoodsBuilder {
      * @return Builder
      */
     public final SaleOfGoodsBuilder consists_Of_(final ExchangeOfGoodsAndMoney exchangeOfGoodsAndMoney) {
-        saleOfGoods.addValue(CONSISTS_OF_, new IRI(exchangeOfGoodsAndMoney.getId()));
+        this.saleOfGoods.addValue(CONSISTS_OF_, new IRI(exchangeOfGoodsAndMoney.getId()));
         return this;
     }
 
@@ -159,7 +159,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder consists_Of_Participant(final Participant participant) {
-        saleOfGoods.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.saleOfGoods.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
         return this;
     }
 
@@ -171,7 +171,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder determines(final Thing thing) {
-        saleOfGoods.addValue(DETERMINES, new IRI(thing.getId()));
+        this.saleOfGoods.addValue(DETERMINES, new IRI(thing.getId()));
         return this;
     }
 
@@ -183,7 +183,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder ending(final Event event) {
-        saleOfGoods.addValue(ENDING, new IRI(event.getId()));
+        this.saleOfGoods.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -194,7 +194,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder member__Of(final Class clazz) {
-        saleOfGoods.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.saleOfGoods.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -207,7 +207,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder member_Of(final ClassOfContractProcess classOfContractProcess) {
-        saleOfGoods.addValue(MEMBER_OF, new IRI(classOfContractProcess.getId()));
+        this.saleOfGoods.addValue(MEMBER_OF, new IRI(classOfContractProcess.getId()));
         return this;
     }
 
@@ -220,7 +220,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        saleOfGoods.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.saleOfGoods.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
         return this;
     }
 
@@ -233,7 +233,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        saleOfGoods.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.saleOfGoods.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -247,7 +247,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder part_Of(final ReachingAgreement reachingAgreement) {
-        saleOfGoods.addValue(PART_OF, new IRI(reachingAgreement.getId()));
+        this.saleOfGoods.addValue(PART_OF, new IRI(reachingAgreement.getId()));
         return this;
     }
 
@@ -261,7 +261,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder part_Of_(final AgreementExecution agreementExecution) {
-        saleOfGoods.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.saleOfGoods.addValue(PART_OF_, new IRI(agreementExecution.getId()));
         return this;
     }
 
@@ -280,7 +280,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        saleOfGoods.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.saleOfGoods.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -292,7 +292,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder references(final Thing thing) {
-        saleOfGoods.addValue(REFERENCES, new IRI(thing.getId()));
+        this.saleOfGoods.addValue(REFERENCES, new IRI(thing.getId()));
         return this;
     }
 
@@ -305,7 +305,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        saleOfGoods.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.saleOfGoods.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -328,7 +328,7 @@ public class SaleOfGoodsBuilder {
      * @return This builder.
      */
     public final SaleOfGoodsBuilder temporal_Part_Of(final Individual individual) {
-        saleOfGoods.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.saleOfGoods.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -339,61 +339,61 @@ public class SaleOfGoodsBuilder {
      * @throws HqdmException If the SaleOfGoods is missing any mandatory properties.
      */
     public SaleOfGoods build() throws HqdmException {
-        if (saleOfGoods.hasValue(AGGREGATED_INTO)
-                && saleOfGoods.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.saleOfGoods.hasValue(AGGREGATED_INTO)
+                && this.saleOfGoods.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (saleOfGoods.hasValue(BEGINNING)
-                && saleOfGoods.value(BEGINNING).isEmpty()) {
+        if (this.saleOfGoods.hasValue(BEGINNING)
+                && this.saleOfGoods.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!saleOfGoods.hasValue(CAUSES)) {
+        if (!this.saleOfGoods.hasValue(CAUSES)) {
             throw new HqdmException("Property Not Set: causes");
         }
-        if (saleOfGoods.hasValue(DETERMINES)
-                && saleOfGoods.value(DETERMINES).isEmpty()) {
+        if (this.saleOfGoods.hasValue(DETERMINES)
+                && this.saleOfGoods.value(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
-        if (saleOfGoods.hasValue(ENDING)
-                && saleOfGoods.value(ENDING).isEmpty()) {
+        if (this.saleOfGoods.hasValue(ENDING)
+                && this.saleOfGoods.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (saleOfGoods.hasValue(MEMBER__OF)
-                && saleOfGoods.value(MEMBER__OF).isEmpty()) {
+        if (this.saleOfGoods.hasValue(MEMBER__OF)
+                && this.saleOfGoods.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (saleOfGoods.hasValue(MEMBER_OF)
-                && saleOfGoods.value(MEMBER_OF).isEmpty()) {
+        if (this.saleOfGoods.hasValue(MEMBER_OF)
+                && this.saleOfGoods.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!saleOfGoods.hasValue(MEMBER_OF_KIND)) {
+        if (!this.saleOfGoods.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (saleOfGoods.hasValue(PART__OF)
-                && saleOfGoods.value(PART__OF).isEmpty()) {
+        if (this.saleOfGoods.hasValue(PART__OF)
+                && this.saleOfGoods.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (saleOfGoods.hasValue(PART_OF)
-                && saleOfGoods.value(PART_OF).isEmpty()) {
+        if (this.saleOfGoods.hasValue(PART_OF)
+                && this.saleOfGoods.value(PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of");
         }
-        if (saleOfGoods.hasValue(PART_OF_)
-                && saleOfGoods.value(PART_OF_).isEmpty()) {
+        if (this.saleOfGoods.hasValue(PART_OF_)
+                && this.saleOfGoods.value(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
-        if (!saleOfGoods.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.saleOfGoods.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (saleOfGoods.hasValue(REFERENCES)
-                && saleOfGoods.value(REFERENCES).isEmpty()) {
+        if (this.saleOfGoods.hasValue(REFERENCES)
+                && this.saleOfGoods.value(REFERENCES).isEmpty()) {
             throw new HqdmException("Property Not Set: references");
         }
-        if (saleOfGoods.hasValue(TEMPORAL__PART_OF)
-                && saleOfGoods.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.saleOfGoods.hasValue(TEMPORAL__PART_OF)
+                && this.saleOfGoods.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (saleOfGoods.hasValue(TEMPORAL_PART_OF)
-                && saleOfGoods.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.saleOfGoods.hasValue(TEMPORAL_PART_OF)
+                && this.saleOfGoods.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return saleOfGoods;

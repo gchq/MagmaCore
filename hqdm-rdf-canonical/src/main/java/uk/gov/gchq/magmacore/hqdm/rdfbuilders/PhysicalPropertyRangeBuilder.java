@@ -61,7 +61,7 @@ public class PhysicalPropertyRangeBuilder {
      */
     public final PhysicalPropertyRangeBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        physicalPropertyRange.addValue(CONSISTS__OF_BY_CLASS,
+        this.physicalPropertyRange.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -74,7 +74,7 @@ public class PhysicalPropertyRangeBuilder {
      * @return This builder.
      */
     public final PhysicalPropertyRangeBuilder has_Superclass(final Class clazz) {
-        physicalPropertyRange.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.physicalPropertyRange.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -86,7 +86,7 @@ public class PhysicalPropertyRangeBuilder {
      * @return This builder.
      */
     public final PhysicalPropertyRangeBuilder member__Of(final Class clazz) {
-        physicalPropertyRange.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.physicalPropertyRange.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -99,7 +99,7 @@ public class PhysicalPropertyRangeBuilder {
      * @return This builder.
      */
     public final PhysicalPropertyRangeBuilder member_Of(final ClassOfClass classOfClass) {
-        physicalPropertyRange.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.physicalPropertyRange.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -113,7 +113,7 @@ public class PhysicalPropertyRangeBuilder {
      */
     public final PhysicalPropertyRangeBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        physicalPropertyRange.addValue(MEMBER_OF_,
+        this.physicalPropertyRange.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -130,7 +130,7 @@ public class PhysicalPropertyRangeBuilder {
      */
     public final PhysicalPropertyRangeBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        physicalPropertyRange.addValue(PART__OF_BY_CLASS,
+        this.physicalPropertyRange.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -143,7 +143,7 @@ public class PhysicalPropertyRangeBuilder {
      * @return This builder.
      */
     public final PhysicalPropertyRangeBuilder ranges_Over_M(final PhysicalProperty physicalProperty) {
-        physicalPropertyRange.addValue(RANGES_OVER, new IRI(physicalProperty.getId()));
+        this.physicalPropertyRange.addValue(RANGES_OVER, new IRI(physicalProperty.getId()));
         return this;
     }
 
@@ -154,27 +154,27 @@ public class PhysicalPropertyRangeBuilder {
      * @throws HqdmException If the PhysicalPropertyRange is missing any mandatory properties.
      */
     public PhysicalPropertyRange build() throws HqdmException {
-        if (physicalPropertyRange.hasValue(HAS_SUPERCLASS)
-                && physicalPropertyRange.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.physicalPropertyRange.hasValue(HAS_SUPERCLASS)
+                && this.physicalPropertyRange.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (physicalPropertyRange.hasValue(MEMBER__OF)
-                && physicalPropertyRange.value(MEMBER__OF).isEmpty()) {
+        if (this.physicalPropertyRange.hasValue(MEMBER__OF)
+                && this.physicalPropertyRange.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (physicalPropertyRange.hasValue(MEMBER_OF)
-                && physicalPropertyRange.value(MEMBER_OF).isEmpty()) {
+        if (this.physicalPropertyRange.hasValue(MEMBER_OF)
+                && this.physicalPropertyRange.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (physicalPropertyRange.hasValue(MEMBER_OF_)
-                && physicalPropertyRange.value(MEMBER_OF_).isEmpty()) {
+        if (this.physicalPropertyRange.hasValue(MEMBER_OF_)
+                && this.physicalPropertyRange.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (physicalPropertyRange.hasValue(PART__OF_BY_CLASS)
-                && physicalPropertyRange.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.physicalPropertyRange.hasValue(PART__OF_BY_CLASS)
+                && this.physicalPropertyRange.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (!physicalPropertyRange.hasValue(RANGES_OVER)) {
+        if (!this.physicalPropertyRange.hasValue(RANGES_OVER)) {
             throw new HqdmException("Property Not Set: ranges_over");
         }
         return physicalPropertyRange;

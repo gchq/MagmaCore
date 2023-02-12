@@ -38,7 +38,7 @@ public class ClassOfRelationshipBuilder {
      * @param iri IRI of the ClassOfRelationship.
      */
     public ClassOfRelationshipBuilder(final IRI iri) {
-        classOfRelationship = RdfClassServices.createClassOfRelationship(iri.getIri());
+        this.classOfRelationship = RdfClassServices.createClassOfRelationship(iri.getIri());
     }
 
     /**
@@ -49,7 +49,7 @@ public class ClassOfRelationshipBuilder {
      * @return This builder.
      */
     public final ClassOfRelationshipBuilder has_Superclass(final Class clazz) {
-        classOfRelationship.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfRelationship.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -61,7 +61,7 @@ public class ClassOfRelationshipBuilder {
      * @return This builder.
      */
     public final ClassOfRelationshipBuilder member__Of(final Class clazz) {
-        classOfRelationship.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfRelationship.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -74,7 +74,7 @@ public class ClassOfRelationshipBuilder {
      * @return This builder.
      */
     public final ClassOfRelationshipBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfRelationship.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfRelationship.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -85,18 +85,18 @@ public class ClassOfRelationshipBuilder {
      * @throws HqdmException If the ClassOfRelationship is missing any mandatory properties.
      */
     public ClassOfRelationship build() throws HqdmException {
-        if (classOfRelationship.hasValue(HAS_SUPERCLASS)
-                && classOfRelationship.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfRelationship.hasValue(HAS_SUPERCLASS)
+                && this.classOfRelationship.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfRelationship.hasValue(MEMBER__OF)
-                && classOfRelationship.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfRelationship.hasValue(MEMBER__OF)
+                && this.classOfRelationship.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfRelationship.hasValue(MEMBER_OF)
-                && classOfRelationship.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfRelationship.hasValue(MEMBER_OF)
+                && this.classOfRelationship.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        return classOfRelationship;
+        return this.classOfRelationship;
     }
 }

@@ -68,7 +68,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        moneyAsset.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.moneyAsset.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder beginning(final Event event) {
-        moneyAsset.addValue(BEGINNING, new IRI(event.getId()));
+        this.moneyAsset.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -95,7 +95,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        moneyAsset.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.moneyAsset.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -107,7 +107,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder ending(final Event event) {
-        moneyAsset.addValue(ENDING, new IRI(event.getId()));
+        this.moneyAsset.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder member__Of(final Class clazz) {
-        moneyAsset.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.moneyAsset.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -133,7 +133,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder member_Of(final ClassOfParticipant classOfParticipant) {
-        moneyAsset.addValue(MEMBER_OF, new IRI(classOfParticipant.getId()));
+        this.moneyAsset.addValue(MEMBER_OF, new IRI(classOfParticipant.getId()));
         return this;
     }
 
@@ -146,7 +146,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder member_Of_Kind_M(final Role role) {
-        moneyAsset.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
+        this.moneyAsset.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
         return this;
     }
 
@@ -159,7 +159,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        moneyAsset.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.moneyAsset.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -178,7 +178,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        moneyAsset.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.moneyAsset.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -191,7 +191,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder participant_In_M(final Ownership ownership) {
-        moneyAsset.addValue(PARTICIPANT_IN, new IRI(ownership.getId()));
+        this.moneyAsset.addValue(PARTICIPANT_IN, new IRI(ownership.getId()));
         return this;
     }
 
@@ -204,7 +204,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        moneyAsset.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.moneyAsset.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -218,7 +218,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder temporal_Part_Of(final PhysicalObject physicalObject) {
-        moneyAsset.addValue(TEMPORAL_PART_OF, new IRI(physicalObject.getId()));
+        this.moneyAsset.addValue(TEMPORAL_PART_OF, new IRI(physicalObject.getId()));
         return this;
     }
 
@@ -229,45 +229,45 @@ public class MoneyAssetBuilder {
      * @throws HqdmException If the MoneyAsset is missing any mandatory properties.
      */
     public MoneyAsset build() throws HqdmException {
-        if (moneyAsset.hasValue(AGGREGATED_INTO)
-                && moneyAsset.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.moneyAsset.hasValue(AGGREGATED_INTO)
+                && this.moneyAsset.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (moneyAsset.hasValue(BEGINNING)
-                && moneyAsset.value(BEGINNING).isEmpty()) {
+        if (this.moneyAsset.hasValue(BEGINNING)
+                && this.moneyAsset.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (moneyAsset.hasValue(ENDING)
-                && moneyAsset.value(ENDING).isEmpty()) {
+        if (this.moneyAsset.hasValue(ENDING)
+                && this.moneyAsset.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (moneyAsset.hasValue(MEMBER__OF)
-                && moneyAsset.value(MEMBER__OF).isEmpty()) {
+        if (this.moneyAsset.hasValue(MEMBER__OF)
+                && this.moneyAsset.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (moneyAsset.hasValue(MEMBER_OF)
-                && moneyAsset.value(MEMBER_OF).isEmpty()) {
+        if (this.moneyAsset.hasValue(MEMBER_OF)
+                && this.moneyAsset.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!moneyAsset.hasValue(MEMBER_OF_KIND)) {
+        if (!this.moneyAsset.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (moneyAsset.hasValue(PART__OF)
-                && moneyAsset.value(PART__OF).isEmpty()) {
+        if (this.moneyAsset.hasValue(PART__OF)
+                && this.moneyAsset.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!moneyAsset.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.moneyAsset.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (!moneyAsset.hasValue(PARTICIPANT_IN)) {
+        if (!this.moneyAsset.hasValue(PARTICIPANT_IN)) {
             throw new HqdmException("Property Not Set: participant_in");
         }
-        if (moneyAsset.hasValue(TEMPORAL__PART_OF)
-                && moneyAsset.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.moneyAsset.hasValue(TEMPORAL__PART_OF)
+                && this.moneyAsset.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (moneyAsset.hasValue(TEMPORAL_PART_OF)
-                && moneyAsset.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.moneyAsset.hasValue(TEMPORAL_PART_OF)
+                && this.moneyAsset.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return moneyAsset;

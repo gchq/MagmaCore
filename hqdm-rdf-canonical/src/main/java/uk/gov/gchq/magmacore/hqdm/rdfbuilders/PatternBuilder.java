@@ -59,7 +59,7 @@ public class PatternBuilder {
      */
     public final PatternBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        pattern.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.pattern.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -71,7 +71,7 @@ public class PatternBuilder {
      * @return This builder.
      */
     public final PatternBuilder has_Superclass(final Class clazz) {
-        pattern.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.pattern.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -83,7 +83,7 @@ public class PatternBuilder {
      * @return This builder.
      */
     public final PatternBuilder member__Of(final Class clazz) {
-        pattern.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.pattern.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -96,7 +96,7 @@ public class PatternBuilder {
      * @return This builder.
      */
     public final PatternBuilder member_Of(final ClassOfClass classOfClass) {
-        pattern.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.pattern.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -110,7 +110,7 @@ public class PatternBuilder {
      */
     public final PatternBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        pattern.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.pattern.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -126,7 +126,7 @@ public class PatternBuilder {
      */
     public final PatternBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        pattern.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.pattern.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -137,24 +137,24 @@ public class PatternBuilder {
      * @throws HqdmException If the Pattern is missing any mandatory properties.
      */
     public Pattern build() throws HqdmException {
-        if (pattern.hasValue(HAS_SUPERCLASS)
-                && pattern.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.pattern.hasValue(HAS_SUPERCLASS)
+                && this.pattern.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (pattern.hasValue(MEMBER__OF)
-                && pattern.value(MEMBER__OF).isEmpty()) {
+        if (this.pattern.hasValue(MEMBER__OF)
+                && this.pattern.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (pattern.hasValue(MEMBER_OF)
-                && pattern.value(MEMBER_OF).isEmpty()) {
+        if (this.pattern.hasValue(MEMBER_OF)
+                && this.pattern.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (pattern.hasValue(MEMBER_OF_)
-                && pattern.value(MEMBER_OF_).isEmpty()) {
+        if (this.pattern.hasValue(MEMBER_OF_)
+                && this.pattern.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (pattern.hasValue(PART__OF_BY_CLASS)
-                && pattern.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.pattern.hasValue(PART__OF_BY_CLASS)
+                && this.pattern.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return pattern;

@@ -41,7 +41,7 @@ public class DefinedRelationshipBuilder {
      * @param iri IRI of the DefinedRelationship.
      */
     public DefinedRelationshipBuilder(final IRI iri) {
-        definedRelationship = RdfRelationshipServices.createDefinedRelationship(iri.getIri());
+        this.definedRelationship = RdfRelationshipServices.createDefinedRelationship(iri.getIri());
     }
 
     /**
@@ -53,7 +53,7 @@ public class DefinedRelationshipBuilder {
      * @return This builder.
      */
     public final DefinedRelationshipBuilder involves_M(final Classification classification) {
-        definedRelationship.addValue(INVOLVES, new IRI(classification.getId()));
+        this.definedRelationship.addValue(INVOLVES, new IRI(classification.getId()));
         return this;
     }
 
@@ -65,7 +65,7 @@ public class DefinedRelationshipBuilder {
      * @return This builder.
      */
     public final DefinedRelationshipBuilder member__Of(final Class clazz) {
-        definedRelationship.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.definedRelationship.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -78,7 +78,7 @@ public class DefinedRelationshipBuilder {
      * @return This builder.
      */
     public final DefinedRelationshipBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        definedRelationship.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.definedRelationship.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class DefinedRelationshipBuilder {
      */
     public final DefinedRelationshipBuilder member_Of_Kind_M(
             final KindOfRelationshipWithSignature kindOfRelationshipWithSignature) {
-        definedRelationship.addValue(MEMBER_OF_KIND,
+        this.definedRelationship.addValue(MEMBER_OF_KIND,
                 new IRI(kindOfRelationshipWithSignature.getId()));
         return this;
     }
@@ -104,20 +104,20 @@ public class DefinedRelationshipBuilder {
      * @throws HqdmException If the DefinedRelationship is missing any mandatory properties.
      */
     public DefinedRelationship build() throws HqdmException {
-        if (!definedRelationship.hasValue(INVOLVES)) {
+        if (!this.definedRelationship.hasValue(INVOLVES)) {
             throw new HqdmException("Property Not Set: involves");
         }
-        if (definedRelationship.hasValue(MEMBER__OF)
-                && definedRelationship.value(MEMBER__OF).isEmpty()) {
+        if (this.definedRelationship.hasValue(MEMBER__OF)
+                && this.definedRelationship.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (definedRelationship.hasValue(MEMBER_OF)
-                && definedRelationship.value(MEMBER_OF).isEmpty()) {
+        if (this.definedRelationship.hasValue(MEMBER_OF)
+                && this.definedRelationship.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!definedRelationship.hasValue(MEMBER_OF_KIND)) {
+        if (!this.definedRelationship.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        return definedRelationship;
+        return this.definedRelationship;
     }
 }

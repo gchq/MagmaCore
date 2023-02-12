@@ -70,7 +70,7 @@ public class SignBuilder {
      * @return This builder.
      */
     public final SignBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        sign.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.sign.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -82,7 +82,7 @@ public class SignBuilder {
      * @return This builder.
      */
     public final SignBuilder beginning(final Event event) {
-        sign.addValue(BEGINNING, new IRI(event.getId()));
+        this.sign.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class SignBuilder {
      * @return This builder.
      */
     public final SignBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        sign.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.sign.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -109,7 +109,7 @@ public class SignBuilder {
      * @return This builder.
      */
     public final SignBuilder ending(final Event event) {
-        sign.addValue(ENDING, new IRI(event.getId()));
+        this.sign.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -121,7 +121,7 @@ public class SignBuilder {
      * @return This builder.
      */
     public final SignBuilder member__Of(final Class clazz) {
-        sign.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.sign.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -134,7 +134,7 @@ public class SignBuilder {
      * @return This builder.
      */
     public final SignBuilder member_Of(final ClassOfSign classOfSign) {
-        sign.addValue(MEMBER_OF, new IRI(classOfSign.getId()));
+        this.sign.addValue(MEMBER_OF, new IRI(classOfSign.getId()));
         return this;
     }
 
@@ -147,7 +147,7 @@ public class SignBuilder {
      * @return This builder.
      */
     public final SignBuilder member_Of__M(final Pattern pattern) {
-        sign.addValue(MEMBER_OF_, new IRI(pattern.getId()));
+        this.sign.addValue(MEMBER_OF_, new IRI(pattern.getId()));
         return this;
     }
 
@@ -162,7 +162,7 @@ public class SignBuilder {
      */
     public final SignBuilder member_Of_Kind(
             final KindOfSociallyConstructedObject kindOfSociallyConstructedObject) {
-        sign.addValue(MEMBER_OF_KIND, new IRI(kindOfSociallyConstructedObject.getId()));
+        this.sign.addValue(MEMBER_OF_KIND, new IRI(kindOfSociallyConstructedObject.getId()));
         return this;
     }
 
@@ -175,7 +175,7 @@ public class SignBuilder {
      * @return This builder.
      */
     public final SignBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        sign.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.sign.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -194,7 +194,7 @@ public class SignBuilder {
      * @return This builder.
      */
     public final SignBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        sign.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.sign.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -207,7 +207,7 @@ public class SignBuilder {
      * @return This builder.
      */
     public final SignBuilder participant_In_M(final RepresentationBySign representationBySign) {
-        sign.addValue(PARTICIPANT_IN, new IRI(representationBySign.getId()));
+        this.sign.addValue(PARTICIPANT_IN, new IRI(representationBySign.getId()));
         return this;
     }
 
@@ -220,7 +220,7 @@ public class SignBuilder {
      * @return This builder.
      */
     public final SignBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        sign.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.sign.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -243,7 +243,7 @@ public class SignBuilder {
      * @return This builder.
      */
     public final SignBuilder temporal_Part_Of(final Individual individual) {
-        sign.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.sign.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -254,49 +254,49 @@ public class SignBuilder {
      * @throws HqdmException If the Sign is missing any mandatory properties.
      */
     public Sign build() throws HqdmException {
-        if (sign.hasValue(AGGREGATED_INTO)
-                && sign.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.sign.hasValue(AGGREGATED_INTO)
+                && this.sign.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (sign.hasValue(BEGINNING)
-                && sign.value(BEGINNING).isEmpty()) {
+        if (this.sign.hasValue(BEGINNING)
+                && this.sign.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (sign.hasValue(ENDING)
-                && sign.value(ENDING).isEmpty()) {
+        if (this.sign.hasValue(ENDING)
+                && this.sign.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (sign.hasValue(MEMBER__OF)
-                && sign.value(MEMBER__OF).isEmpty()) {
+        if (this.sign.hasValue(MEMBER__OF)
+                && this.sign.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (sign.hasValue(MEMBER_OF)
-                && sign.value(MEMBER_OF).isEmpty()) {
+        if (this.sign.hasValue(MEMBER_OF)
+                && this.sign.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!sign.hasValue(MEMBER_OF_)) {
+        if (!this.sign.hasValue(MEMBER_OF_)) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (sign.hasValue(MEMBER_OF_KIND)
-                && sign.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.sign.hasValue(MEMBER_OF_KIND)
+                && this.sign.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (sign.hasValue(PART__OF)
-                && sign.value(PART__OF).isEmpty()) {
+        if (this.sign.hasValue(PART__OF)
+                && this.sign.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!sign.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.sign.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (!sign.hasValue(PARTICIPANT_IN)) {
+        if (!this.sign.hasValue(PARTICIPANT_IN)) {
             throw new HqdmException("Property Not Set: participant_in");
         }
-        if (sign.hasValue(TEMPORAL__PART_OF)
-                && sign.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.sign.hasValue(TEMPORAL__PART_OF)
+                && this.sign.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (sign.hasValue(TEMPORAL_PART_OF)
-                && sign.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.sign.hasValue(TEMPORAL_PART_OF)
+                && this.sign.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return sign;

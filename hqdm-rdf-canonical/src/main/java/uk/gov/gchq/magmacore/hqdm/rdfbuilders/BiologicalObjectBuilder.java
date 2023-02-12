@@ -50,7 +50,7 @@ public class BiologicalObjectBuilder {
      * @param iri IRI of the BiologicalObject.
      */
     public BiologicalObjectBuilder(final IRI iri) {
-        biologicalObject = RdfSpatioTemporalExtentServices.createBiologicalObject(iri.getIri());
+        this.biologicalObject = RdfSpatioTemporalExtentServices.createBiologicalObject(iri.getIri());
     }
 
     /**
@@ -65,7 +65,7 @@ public class BiologicalObjectBuilder {
      * @return This builder.
      */
     public final BiologicalObjectBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        biologicalObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -77,7 +77,7 @@ public class BiologicalObjectBuilder {
      * @return This builder.
      */
     public final BiologicalObjectBuilder beginning(final Event event) {
-        biologicalObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.biologicalObject.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class BiologicalObjectBuilder {
      * @return This builder.
      */
     public final BiologicalObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        biologicalObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class BiologicalObjectBuilder {
      * @return This builder.
      */
     public final BiologicalObjectBuilder ending(final Event event) {
-        biologicalObject.addValue(ENDING, new IRI(event.getId()));
+        this.biologicalObject.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -116,7 +116,7 @@ public class BiologicalObjectBuilder {
      * @return This builder.
      */
     public final BiologicalObjectBuilder member__Of(final Class clazz) {
-        biologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.biologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -129,7 +129,7 @@ public class BiologicalObjectBuilder {
      * @return This builder.
      */
     public final BiologicalObjectBuilder member_Of(final ClassOfBiologicalObject classOfBiologicalObject) {
-        biologicalObject.addValue(MEMBER_OF, new IRI(classOfBiologicalObject.getId()));
+        this.biologicalObject.addValue(MEMBER_OF, new IRI(classOfBiologicalObject.getId()));
         return this;
     }
 
@@ -142,7 +142,7 @@ public class BiologicalObjectBuilder {
      * @return This builder.
      */
     public final BiologicalObjectBuilder member_Of_Kind(final KindOfBiologicalObject kindOfBiologicalObject) {
-        biologicalObject.addValue(MEMBER_OF_KIND, new IRI(kindOfBiologicalObject.getId()));
+        this.biologicalObject.addValue(MEMBER_OF_KIND, new IRI(kindOfBiologicalObject.getId()));
         return this;
     }
 
@@ -155,7 +155,7 @@ public class BiologicalObjectBuilder {
      * @return This builder.
      */
     public final BiologicalObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        biologicalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -174,7 +174,7 @@ public class BiologicalObjectBuilder {
      * @return This builder.
      */
     public final BiologicalObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        biologicalObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.biologicalObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -187,7 +187,7 @@ public class BiologicalObjectBuilder {
      * @return This builder.
      */
     public final BiologicalObjectBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        biologicalObject.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalObject.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -201,7 +201,7 @@ public class BiologicalObjectBuilder {
      * @return This builder.
      */
     public final BiologicalObjectBuilder temporal_Part_Of(final BiologicalObject biologicalObject) {
-        biologicalObject.addValue(TEMPORAL_PART_OF, new IRI(biologicalObject.getId()));
+        this.biologicalObject.addValue(TEMPORAL_PART_OF, new IRI(biologicalObject.getId()));
         return this;
     }
 
@@ -212,45 +212,45 @@ public class BiologicalObjectBuilder {
      * @throws HqdmException If the BiologicalObject is missing any mandatory properties.
      */
     public BiologicalObject build() throws HqdmException {
-        if (biologicalObject.hasValue(AGGREGATED_INTO)
-                && biologicalObject.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.biologicalObject.hasValue(AGGREGATED_INTO)
+                && this.biologicalObject.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (biologicalObject.hasValue(BEGINNING)
-                && biologicalObject.value(BEGINNING).isEmpty()) {
+        if (this.biologicalObject.hasValue(BEGINNING)
+                && this.biologicalObject.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (biologicalObject.hasValue(ENDING)
-                && biologicalObject.value(ENDING).isEmpty()) {
+        if (this.biologicalObject.hasValue(ENDING)
+                && this.biologicalObject.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (biologicalObject.hasValue(MEMBER__OF)
-                && biologicalObject.value(MEMBER__OF).isEmpty()) {
+        if (this.biologicalObject.hasValue(MEMBER__OF)
+                && this.biologicalObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (biologicalObject.hasValue(MEMBER_OF)
-                && biologicalObject.value(MEMBER_OF).isEmpty()) {
+        if (this.biologicalObject.hasValue(MEMBER_OF)
+                && this.biologicalObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (biologicalObject.hasValue(MEMBER_OF_KIND)
-                && biologicalObject.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.biologicalObject.hasValue(MEMBER_OF_KIND)
+                && this.biologicalObject.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (biologicalObject.hasValue(PART__OF)
-                && biologicalObject.value(PART__OF).isEmpty()) {
+        if (this.biologicalObject.hasValue(PART__OF)
+                && this.biologicalObject.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!biologicalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.biologicalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (biologicalObject.hasValue(TEMPORAL__PART_OF)
-                && biologicalObject.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.biologicalObject.hasValue(TEMPORAL__PART_OF)
+                && this.biologicalObject.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (biologicalObject.hasValue(TEMPORAL_PART_OF)
-                && biologicalObject.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.biologicalObject.hasValue(TEMPORAL_PART_OF)
+                && this.biologicalObject.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        return biologicalObject;
+        return this.biologicalObject;
     }
 }

@@ -52,7 +52,7 @@ public class KindOfRelationshipWithRestrictionBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithRestrictionBuilder has_Superclass(final Class clazz) {
-        kindOfRelationshipWithRestriction.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfRelationshipWithRestriction.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -64,7 +64,7 @@ public class KindOfRelationshipWithRestrictionBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithRestrictionBuilder member__Of(final Class clazz) {
-        kindOfRelationshipWithRestriction.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfRelationshipWithRestriction.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -77,7 +77,7 @@ public class KindOfRelationshipWithRestrictionBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithRestrictionBuilder member_Of(final ClassOfClass classOfClass) {
-        kindOfRelationshipWithRestriction.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfRelationshipWithRestriction.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -89,7 +89,7 @@ public class KindOfRelationshipWithRestrictionBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithRestrictionBuilder required_Role_Player_M(final Classification classification) {
-        kindOfRelationshipWithRestriction.addValue(REQUIRED_ROLE_PLAYER,
+        this.kindOfRelationshipWithRestriction.addValue(REQUIRED_ROLE_PLAYER,
                 new IRI(classification.getId()));
         return this;
     }
@@ -102,7 +102,7 @@ public class KindOfRelationshipWithRestrictionBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithRestrictionBuilder roles_M(final Class clazz) {
-        kindOfRelationshipWithRestriction.addValue(ROLES, new IRI(clazz.getId()));
+        this.kindOfRelationshipWithRestriction.addValue(ROLES, new IRI(clazz.getId()));
         return this;
     }
 
@@ -115,22 +115,22 @@ public class KindOfRelationshipWithRestrictionBuilder {
      *                       properties.
      */
     public KindOfRelationshipWithRestriction build() throws HqdmException {
-        if (kindOfRelationshipWithRestriction.hasValue(HAS_SUPERCLASS)
-                && kindOfRelationshipWithRestriction.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.kindOfRelationshipWithRestriction.hasValue(HAS_SUPERCLASS)
+                && this.kindOfRelationshipWithRestriction.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (kindOfRelationshipWithRestriction.hasValue(MEMBER__OF)
-                && kindOfRelationshipWithRestriction.value(MEMBER__OF).isEmpty()) {
+        if (this.kindOfRelationshipWithRestriction.hasValue(MEMBER__OF)
+                && this.kindOfRelationshipWithRestriction.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (kindOfRelationshipWithRestriction.hasValue(MEMBER_OF)
-                && kindOfRelationshipWithRestriction.value(MEMBER_OF).isEmpty()) {
+        if (this.kindOfRelationshipWithRestriction.hasValue(MEMBER_OF)
+                && this.kindOfRelationshipWithRestriction.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!kindOfRelationshipWithRestriction.hasValue(REQUIRED_ROLE_PLAYER)) {
+        if (!this.kindOfRelationshipWithRestriction.hasValue(REQUIRED_ROLE_PLAYER)) {
             throw new HqdmException("Property Not Set: required_role_player");
         }
-        if (!kindOfRelationshipWithRestriction.hasValue(ROLES)) {
+        if (!this.kindOfRelationshipWithRestriction.hasValue(ROLES)) {
             throw new HqdmException("Property Not Set: roles");
         }
         return kindOfRelationshipWithRestriction;

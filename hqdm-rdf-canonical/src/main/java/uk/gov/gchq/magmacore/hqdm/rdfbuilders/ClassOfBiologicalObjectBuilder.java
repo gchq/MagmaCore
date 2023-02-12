@@ -43,7 +43,7 @@ public class ClassOfBiologicalObjectBuilder {
      * @param iri IRI of the ClassOfBiologicalObject.
      */
     public ClassOfBiologicalObjectBuilder(final IRI iri) {
-        classOfBiologicalObject = RdfClassServices.createClassOfBiologicalObject(iri.getIri());
+        this.classOfBiologicalObject = RdfClassServices.createClassOfBiologicalObject(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfBiologicalObjectBuilder {
      */
     public final ClassOfBiologicalObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfBiologicalObject.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfBiologicalObject.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfBiologicalObjectBuilder has_Superclass(final Class clazz) {
-        classOfBiologicalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfBiologicalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfBiologicalObjectBuilder member__Of(final Class clazz) {
-        classOfBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfBiologicalObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfBiologicalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfBiologicalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfBiologicalObjectBuilder {
      */
     public final ClassOfBiologicalObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfBiologicalObject.addValue(MEMBER_OF_,
+        this.classOfBiologicalObject.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class ClassOfBiologicalObjectBuilder {
      */
     public final ClassOfBiologicalObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfBiologicalObject.addValue(PART__OF_BY_CLASS,
+        this.classOfBiologicalObject.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -140,26 +140,26 @@ public class ClassOfBiologicalObjectBuilder {
      * @throws HqdmException If the ClassOfBiologicalObject is missing any mandatory properties.
      */
     public ClassOfBiologicalObject build() throws HqdmException {
-        if (classOfBiologicalObject.hasValue(HAS_SUPERCLASS)
-                && classOfBiologicalObject.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfBiologicalObject.hasValue(HAS_SUPERCLASS)
+                && this.classOfBiologicalObject.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfBiologicalObject.hasValue(MEMBER__OF)
-                && classOfBiologicalObject.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfBiologicalObject.hasValue(MEMBER__OF)
+                && this.classOfBiologicalObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfBiologicalObject.hasValue(MEMBER_OF)
-                && classOfBiologicalObject.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfBiologicalObject.hasValue(MEMBER_OF)
+                && this.classOfBiologicalObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfBiologicalObject.hasValue(MEMBER_OF_)
-                && classOfBiologicalObject.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfBiologicalObject.hasValue(MEMBER_OF_)
+                && this.classOfBiologicalObject.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfBiologicalObject.hasValue(PART__OF_BY_CLASS)
-                && classOfBiologicalObject.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfBiologicalObject.hasValue(PART__OF_BY_CLASS)
+                && this.classOfBiologicalObject.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfBiologicalObject;
+        return this.classOfBiologicalObject;
     }
 }

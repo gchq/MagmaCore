@@ -43,7 +43,7 @@ public class ClassOfActivityBuilder {
      * @param iri IRI of the ClassOfActivity.
      */
     public ClassOfActivityBuilder(final IRI iri) {
-        classOfActivity = RdfClassServices.createClassOfActivity(iri.getIri());
+        this.classOfActivity = RdfClassServices.createClassOfActivity(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfActivityBuilder {
      */
     public final ClassOfActivityBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfActivity.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfActivity.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfActivityBuilder {
      * @return This builder.
      */
     public final ClassOfActivityBuilder has_Superclass(final Class clazz) {
-        classOfActivity.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfActivity.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfActivityBuilder {
      * @return This builder.
      */
     public final ClassOfActivityBuilder member__Of(final Class clazz) {
-        classOfActivity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfActivity.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfActivityBuilder {
      * @return This builder.
      */
     public final ClassOfActivityBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfActivity.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfActivity.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfActivityBuilder {
      */
     public final ClassOfActivityBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfActivity.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.classOfActivity.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -127,7 +127,7 @@ public class ClassOfActivityBuilder {
      */
     public final ClassOfActivityBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfActivity.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfActivity.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -138,26 +138,26 @@ public class ClassOfActivityBuilder {
      * @throws HqdmException If the ClassOfActivity is missing any mandatory properties.
      */
     public ClassOfActivity build() throws HqdmException {
-        if (classOfActivity.hasValue(HAS_SUPERCLASS)
-                && classOfActivity.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfActivity.hasValue(HAS_SUPERCLASS)
+                && this.classOfActivity.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfActivity.hasValue(MEMBER__OF)
-                && classOfActivity.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfActivity.hasValue(MEMBER__OF)
+                && this.classOfActivity.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfActivity.hasValue(MEMBER_OF)
-                && classOfActivity.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfActivity.hasValue(MEMBER_OF)
+                && this.classOfActivity.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfActivity.hasValue(MEMBER_OF_)
-                && classOfActivity.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfActivity.hasValue(MEMBER_OF_)
+                && this.classOfActivity.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfActivity.hasValue(PART__OF_BY_CLASS)
-                && classOfActivity.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfActivity.hasValue(PART__OF_BY_CLASS)
+                && this.classOfActivity.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfActivity;
+        return this.classOfActivity;
     }
 }

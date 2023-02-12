@@ -43,7 +43,7 @@ public class ClassOfPossibleWorldBuilder {
      * @param iri IRI of the ClassOfPossibleWorld.
      */
     public ClassOfPossibleWorldBuilder(final IRI iri) {
-        classOfPossibleWorld = RdfClassServices.createClassOfPossibleWorld(iri.getIri());
+        this.classOfPossibleWorld = RdfClassServices.createClassOfPossibleWorld(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfPossibleWorldBuilder {
      */
     public final ClassOfPossibleWorldBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfPossibleWorld.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfPossibleWorld.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfPossibleWorldBuilder {
      * @return This builder.
      */
     public final ClassOfPossibleWorldBuilder has_Superclass(final Class clazz) {
-        classOfPossibleWorld.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfPossibleWorld.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfPossibleWorldBuilder {
      * @return This builder.
      */
     public final ClassOfPossibleWorldBuilder member__Of(final Class clazz) {
-        classOfPossibleWorld.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfPossibleWorld.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfPossibleWorldBuilder {
      * @return This builder.
      */
     public final ClassOfPossibleWorldBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfPossibleWorld.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfPossibleWorld.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfPossibleWorldBuilder {
      */
     public final ClassOfPossibleWorldBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfPossibleWorld.addValue(MEMBER_OF_,
+        this.classOfPossibleWorld.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class ClassOfPossibleWorldBuilder {
      */
     public final ClassOfPossibleWorldBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfPossibleWorld.addValue(PART__OF_BY_CLASS,
+        this.classOfPossibleWorld.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -140,26 +140,26 @@ public class ClassOfPossibleWorldBuilder {
      * @throws HqdmException If the ClassOfPossibleWorld is missing any mandatory properties.
      */
     public ClassOfPossibleWorld build() throws HqdmException {
-        if (classOfPossibleWorld.hasValue(HAS_SUPERCLASS)
-                && classOfPossibleWorld.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfPossibleWorld.hasValue(HAS_SUPERCLASS)
+                && this.classOfPossibleWorld.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfPossibleWorld.hasValue(MEMBER__OF)
-                && classOfPossibleWorld.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfPossibleWorld.hasValue(MEMBER__OF)
+                && this.classOfPossibleWorld.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfPossibleWorld.hasValue(MEMBER_OF)
-                && classOfPossibleWorld.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfPossibleWorld.hasValue(MEMBER_OF)
+                && this.classOfPossibleWorld.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfPossibleWorld.hasValue(MEMBER_OF_)
-                && classOfPossibleWorld.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfPossibleWorld.hasValue(MEMBER_OF_)
+                && this.classOfPossibleWorld.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfPossibleWorld.hasValue(PART__OF_BY_CLASS)
-                && classOfPossibleWorld.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfPossibleWorld.hasValue(PART__OF_BY_CLASS)
+                && this.classOfPossibleWorld.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfPossibleWorld;
+        return this.classOfPossibleWorld;
     }
 }

@@ -65,7 +65,7 @@ public class AgreeContractBuilder {
      * @param iri IRI of the AgreeContract.
      */
     public AgreeContractBuilder(final IRI iri) {
-        agreeContract = RdfSpatioTemporalExtentServices.createAgreeContract(iri.getIri());
+        this.agreeContract = RdfSpatioTemporalExtentServices.createAgreeContract(iri.getIri());
     }
 
     /**
@@ -80,7 +80,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        agreeContract.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.agreeContract.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder beginning(final Event event) {
-        agreeContract.addValue(BEGINNING, new IRI(event.getId()));
+        this.agreeContract.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder causes_M(final Event event) {
-        agreeContract.addValue(CAUSES, new IRI(event.getId()));
+        this.agreeContract.addValue(CAUSES, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        agreeContract.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.agreeContract.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -132,7 +132,7 @@ public class AgreeContractBuilder {
      * @return Builder
      */
     public final AgreeContractBuilder consists_Of(final AcceptanceOfOffer acceptanceOfOffer) {
-        agreeContract.addValue(CONSISTS_OF, new IRI(acceptanceOfOffer.getId()));
+        this.agreeContract.addValue(CONSISTS_OF, new IRI(acceptanceOfOffer.getId()));
         return this;
     }
 
@@ -145,7 +145,7 @@ public class AgreeContractBuilder {
      * @return Builder
      */
     public final AgreeContractBuilder consists_Of_(final Offer offer) {
-        agreeContract.addValue(CONSISTS_OF_, new IRI(offer.getId()));
+        this.agreeContract.addValue(CONSISTS_OF_, new IRI(offer.getId()));
         return this;
     }
 
@@ -158,7 +158,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder consists_Of_Participant(final Participant participant) {
-        agreeContract.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.agreeContract.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
         return this;
     }
 
@@ -170,7 +170,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder determines(final Thing thing) {
-        agreeContract.addValue(DETERMINES, new IRI(thing.getId()));
+        this.agreeContract.addValue(DETERMINES, new IRI(thing.getId()));
         return this;
     }
 
@@ -182,7 +182,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder ending(final Event event) {
-        agreeContract.addValue(ENDING, new IRI(event.getId()));
+        this.agreeContract.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -193,7 +193,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder member__Of(final Class clazz) {
-        agreeContract.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.agreeContract.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -206,7 +206,7 @@ public class AgreeContractBuilder {
      * @return Builder
      */
     public final AgreeContractBuilder member_Of(final ClassOfAgreeContract classOfAgreeContract) {
-        agreeContract.addValue(MEMBER_OF, new IRI(classOfAgreeContract.getId()));
+        this.agreeContract.addValue(MEMBER_OF, new IRI(classOfAgreeContract.getId()));
         return this;
     }
 
@@ -219,7 +219,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        agreeContract.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.agreeContract.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
         return this;
     }
 
@@ -232,7 +232,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        agreeContract.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.agreeContract.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -245,7 +245,7 @@ public class AgreeContractBuilder {
      * @return Builder
      */
     public final AgreeContractBuilder part_Of_M(final ContractProcess contractProcess) {
-        agreeContract.addValue(PART_OF, new IRI(contractProcess.getId()));
+        this.agreeContract.addValue(PART_OF, new IRI(contractProcess.getId()));
         return this;
     }
 
@@ -259,7 +259,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder part_Of_(final AgreementExecution agreementExecution) {
-        agreeContract.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.agreeContract.addValue(PART_OF_, new IRI(agreementExecution.getId()));
         return this;
     }
 
@@ -278,7 +278,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        agreeContract.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.agreeContract.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -290,7 +290,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder references(final Thing thing) {
-        agreeContract.addValue(REFERENCES, new IRI(thing.getId()));
+        this.agreeContract.addValue(REFERENCES, new IRI(thing.getId()));
         return this;
     }
 
@@ -303,7 +303,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        agreeContract.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.agreeContract.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -326,7 +326,7 @@ public class AgreeContractBuilder {
      * @return This builder.
      */
     public final AgreeContractBuilder temporal_Part_Of(final Individual individual) {
-        agreeContract.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.agreeContract.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -337,62 +337,62 @@ public class AgreeContractBuilder {
      * @throws HqdmException If the AgreeContract is missing any mandatory properties.
      */
     public AgreeContract build() throws HqdmException {
-        if (agreeContract.hasValue(AGGREGATED_INTO)
-                && agreeContract.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.agreeContract.hasValue(AGGREGATED_INTO)
+                && this.agreeContract.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (agreeContract.hasValue(BEGINNING)
-                && agreeContract.value(BEGINNING).isEmpty()) {
+        if (this.agreeContract.hasValue(BEGINNING)
+                && this.agreeContract.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!agreeContract.hasValue(CAUSES)) {
+        if (!this.agreeContract.hasValue(CAUSES)) {
             throw new HqdmException("Property Not Set: causes");
         }
-        if (agreeContract.hasValue(DETERMINES)
-                && agreeContract.value(DETERMINES).isEmpty()) {
+        if (this.agreeContract.hasValue(DETERMINES)
+                && this.agreeContract.value(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
-        if (agreeContract.hasValue(ENDING)
-                && agreeContract.value(ENDING).isEmpty()) {
+        if (this.agreeContract.hasValue(ENDING)
+                && this.agreeContract.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (agreeContract.hasValue(MEMBER__OF)
-                && agreeContract.value(MEMBER__OF).isEmpty()) {
+        if (this.agreeContract.hasValue(MEMBER__OF)
+                && this.agreeContract.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (agreeContract.hasValue(MEMBER_OF)
-                && agreeContract.value(MEMBER_OF).isEmpty()) {
+        if (this.agreeContract.hasValue(MEMBER_OF)
+                && this.agreeContract.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!agreeContract.hasValue(MEMBER_OF_KIND)) {
+        if (!this.agreeContract.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (agreeContract.hasValue(PART__OF)
-                && agreeContract.value(PART__OF).isEmpty()) {
+        if (this.agreeContract.hasValue(PART__OF)
+                && this.agreeContract.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!agreeContract.hasValue(PART_OF)) {
+        if (!this.agreeContract.hasValue(PART_OF)) {
             throw new HqdmException("Property Not Set: part_of");
         }
-        if (agreeContract.hasValue(PART_OF_)
-                && agreeContract.value(PART_OF_).isEmpty()) {
+        if (this.agreeContract.hasValue(PART_OF_)
+                && this.agreeContract.value(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
-        if (!agreeContract.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.agreeContract.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (agreeContract.hasValue(REFERENCES)
-                && agreeContract.value(REFERENCES).isEmpty()) {
+        if (this.agreeContract.hasValue(REFERENCES)
+                && this.agreeContract.value(REFERENCES).isEmpty()) {
             throw new HqdmException("Property Not Set: references");
         }
-        if (agreeContract.hasValue(TEMPORAL__PART_OF)
-                && agreeContract.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.agreeContract.hasValue(TEMPORAL__PART_OF)
+                && this.agreeContract.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (agreeContract.hasValue(TEMPORAL_PART_OF)
-                && agreeContract.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.agreeContract.hasValue(TEMPORAL_PART_OF)
+                && this.agreeContract.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        return agreeContract;
+        return this.agreeContract;
     }
 }

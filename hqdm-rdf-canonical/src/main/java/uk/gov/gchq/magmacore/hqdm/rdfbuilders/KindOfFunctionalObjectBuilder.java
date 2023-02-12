@@ -61,7 +61,7 @@ public class KindOfFunctionalObjectBuilder {
      */
     public final KindOfFunctionalObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfFunctionalObject.addValue(CONSISTS__OF_BY_CLASS,
+        this.kindOfFunctionalObject.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -74,7 +74,7 @@ public class KindOfFunctionalObjectBuilder {
      * @return This builder.
      */
     public final KindOfFunctionalObjectBuilder has_Superclass(final Class clazz) {
-        kindOfFunctionalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfFunctionalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -86,7 +86,7 @@ public class KindOfFunctionalObjectBuilder {
      * @return This builder.
      */
     public final KindOfFunctionalObjectBuilder intended_Role_By_Class_M(final Role role) {
-        kindOfFunctionalObject.addValue(INTENDED_ROLE_BY_CLASS, new IRI(role.getId()));
+        this.kindOfFunctionalObject.addValue(INTENDED_ROLE_BY_CLASS, new IRI(role.getId()));
         return this;
     }
 
@@ -98,7 +98,7 @@ public class KindOfFunctionalObjectBuilder {
      * @return This builder.
      */
     public final KindOfFunctionalObjectBuilder member__Of(final Class clazz) {
-        kindOfFunctionalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfFunctionalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class KindOfFunctionalObjectBuilder {
      * @return This builder.
      */
     public final KindOfFunctionalObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        kindOfFunctionalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfFunctionalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -125,7 +125,7 @@ public class KindOfFunctionalObjectBuilder {
      */
     public final KindOfFunctionalObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        kindOfFunctionalObject.addValue(MEMBER_OF_,
+        this.kindOfFunctionalObject.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -142,7 +142,7 @@ public class KindOfFunctionalObjectBuilder {
      */
     public final KindOfFunctionalObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfFunctionalObject.addValue(PART__OF_BY_CLASS,
+        this.kindOfFunctionalObject.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -154,27 +154,27 @@ public class KindOfFunctionalObjectBuilder {
      * @throws HqdmException If the KindOfFunctionalObject is missing any mandatory properties.
      */
     public KindOfFunctionalObject build() throws HqdmException {
-        if (kindOfFunctionalObject.hasValue(HAS_SUPERCLASS)
-                && kindOfFunctionalObject.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.kindOfFunctionalObject.hasValue(HAS_SUPERCLASS)
+                && this.kindOfFunctionalObject.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (!kindOfFunctionalObject.hasValue(INTENDED_ROLE_BY_CLASS)) {
+        if (!this.kindOfFunctionalObject.hasValue(INTENDED_ROLE_BY_CLASS)) {
             throw new HqdmException("Property Not Set: intended_role_by_class");
         }
-        if (kindOfFunctionalObject.hasValue(MEMBER__OF)
-                && kindOfFunctionalObject.value(MEMBER__OF).isEmpty()) {
+        if (this.kindOfFunctionalObject.hasValue(MEMBER__OF)
+                && this.kindOfFunctionalObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (kindOfFunctionalObject.hasValue(MEMBER_OF)
-                && kindOfFunctionalObject.value(MEMBER_OF).isEmpty()) {
+        if (this.kindOfFunctionalObject.hasValue(MEMBER_OF)
+                && this.kindOfFunctionalObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (kindOfFunctionalObject.hasValue(MEMBER_OF_)
-                && kindOfFunctionalObject.value(MEMBER_OF_).isEmpty()) {
+        if (this.kindOfFunctionalObject.hasValue(MEMBER_OF_)
+                && this.kindOfFunctionalObject.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (kindOfFunctionalObject.hasValue(PART__OF_BY_CLASS)
-                && kindOfFunctionalObject.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.kindOfFunctionalObject.hasValue(PART__OF_BY_CLASS)
+                && this.kindOfFunctionalObject.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return kindOfFunctionalObject;

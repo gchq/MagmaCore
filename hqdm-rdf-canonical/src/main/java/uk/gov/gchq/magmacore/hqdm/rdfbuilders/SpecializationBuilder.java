@@ -50,7 +50,7 @@ public class SpecializationBuilder {
      * @return This builder.
      */
     public final SpecializationBuilder member__Of(final Class clazz) {
-        specialization.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.specialization.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -63,7 +63,7 @@ public class SpecializationBuilder {
      * @return This builder.
      */
     public final SpecializationBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        specialization.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.specialization.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
         return this;
     }
 
@@ -74,7 +74,7 @@ public class SpecializationBuilder {
      * @return This builder.
      */
     public final SpecializationBuilder subclass_M(final Class clazz) {
-        specialization.addValue(SUBCLASS, new IRI(clazz.getId()));
+        this.specialization.addValue(SUBCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -86,7 +86,7 @@ public class SpecializationBuilder {
      * @return This builder.
      */
     public final SpecializationBuilder superclass_M(final Class clazz) {
-        specialization.addValue(SUPERCLASS, new IRI(clazz.getId()));
+        this.specialization.addValue(SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,18 +97,18 @@ public class SpecializationBuilder {
      * @throws HqdmException If the Specialization is missing any mandatory properties.
      */
     public Specialization build() throws HqdmException {
-        if (specialization.hasValue(MEMBER__OF)
-                && specialization.value(MEMBER__OF).isEmpty()) {
+        if (this.specialization.hasValue(MEMBER__OF)
+                && this.specialization.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (specialization.hasValue(MEMBER_OF)
-                && specialization.value(MEMBER_OF).isEmpty()) {
+        if (this.specialization.hasValue(MEMBER_OF)
+                && this.specialization.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!specialization.hasValue(SUBCLASS)) {
+        if (!this.specialization.hasValue(SUBCLASS)) {
             throw new HqdmException("Property Not Set: subclass");
         }
-        if (!specialization.hasValue(SUPERCLASS)) {
+        if (!this.specialization.hasValue(SUPERCLASS)) {
             throw new HqdmException("Property Not Set: superclass");
         }
         return specialization;
