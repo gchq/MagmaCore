@@ -65,7 +65,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        periodOfTime.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.periodOfTime.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -77,7 +77,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder beginning(final Event event) {
-        periodOfTime.addValue(BEGINNING, new IRI(event.getId()));
+        this.periodOfTime.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        periodOfTime.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.periodOfTime.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder ending(final Event event) {
-        periodOfTime.addValue(ENDING, new IRI(event.getId()));
+        this.periodOfTime.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -116,7 +116,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder member__Of(final Class clazz) {
-        periodOfTime.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.periodOfTime.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -129,7 +129,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder member_Of(final ClassOfPeriodOfTime classOfPeriodOfTime) {
-        periodOfTime.addValue(MEMBER_OF, new IRI(classOfPeriodOfTime.getId()));
+        this.periodOfTime.addValue(MEMBER_OF, new IRI(classOfPeriodOfTime.getId()));
         return this;
     }
 
@@ -142,7 +142,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        periodOfTime.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.periodOfTime.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -161,7 +161,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        periodOfTime.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.periodOfTime.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -174,7 +174,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        periodOfTime.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.periodOfTime.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -197,7 +197,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder temporal_Part_Of(final Individual individual) {
-        periodOfTime.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.periodOfTime.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -211,7 +211,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder temporal_Part_Of_(final PossibleWorld possibleWorld) {
-        periodOfTime.addValue(TEMPORAL_PART_OF_, new IRI(possibleWorld.getId()));
+        this.periodOfTime.addValue(TEMPORAL_PART_OF_, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -222,43 +222,43 @@ public class PeriodOfTimeBuilder {
      * @throws HqdmException If the PeriodOfTime is missing any mandatory properties.
      */
     public PeriodOfTime build() throws HqdmException {
-        if (periodOfTime.hasValue(AGGREGATED_INTO)
-                && periodOfTime.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.periodOfTime.hasValue(AGGREGATED_INTO)
+                && this.periodOfTime.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (periodOfTime.hasValue(BEGINNING)
-                && periodOfTime.value(BEGINNING).isEmpty()) {
+        if (this.periodOfTime.hasValue(BEGINNING)
+                && this.periodOfTime.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (periodOfTime.hasValue(ENDING)
-                && periodOfTime.value(ENDING).isEmpty()) {
+        if (this.periodOfTime.hasValue(ENDING)
+                && this.periodOfTime.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (periodOfTime.hasValue(MEMBER__OF)
-                && periodOfTime.value(MEMBER__OF).isEmpty()) {
+        if (this.periodOfTime.hasValue(MEMBER__OF)
+                && this.periodOfTime.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (periodOfTime.hasValue(MEMBER_OF)
-                && periodOfTime.value(MEMBER_OF).isEmpty()) {
+        if (this.periodOfTime.hasValue(MEMBER_OF)
+                && this.periodOfTime.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (periodOfTime.hasValue(PART__OF)
-                && periodOfTime.value(PART__OF).isEmpty()) {
+        if (this.periodOfTime.hasValue(PART__OF)
+                && this.periodOfTime.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!periodOfTime.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.periodOfTime.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (periodOfTime.hasValue(TEMPORAL__PART_OF)
-                && periodOfTime.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.periodOfTime.hasValue(TEMPORAL__PART_OF)
+                && this.periodOfTime.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (periodOfTime.hasValue(TEMPORAL_PART_OF)
-                && periodOfTime.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.periodOfTime.hasValue(TEMPORAL_PART_OF)
+                && this.periodOfTime.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        if (periodOfTime.hasValue(TEMPORAL_PART_OF_)
-                && periodOfTime.value(TEMPORAL_PART_OF_).isEmpty()) {
+        if (this.periodOfTime.hasValue(TEMPORAL_PART_OF_)
+                && this.periodOfTime.value(TEMPORAL_PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of_");
         }
         return periodOfTime;

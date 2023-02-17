@@ -38,7 +38,7 @@ public class ClassOfAbstractObjectBuilder {
      * @param iri IRI of the ClassOfAbstractObject.
      */
     public ClassOfAbstractObjectBuilder(final IRI iri) {
-        classOfAbstractObject = RdfClassServices.createClassOfAbstractObject(iri.getIri());
+        this.classOfAbstractObject = RdfClassServices.createClassOfAbstractObject(iri.getIri());
     }
 
     /**
@@ -49,7 +49,7 @@ public class ClassOfAbstractObjectBuilder {
      * @return This builder.
      */
     public final ClassOfAbstractObjectBuilder has_Superclass(final Class clazz) {
-        classOfAbstractObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfAbstractObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -61,7 +61,7 @@ public class ClassOfAbstractObjectBuilder {
      * @return This builder.
      */
     public final ClassOfAbstractObjectBuilder member__Of(final Class clazz) {
-        classOfAbstractObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfAbstractObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -74,7 +74,7 @@ public class ClassOfAbstractObjectBuilder {
      * @return This builder.
      */
     public final ClassOfAbstractObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfAbstractObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfAbstractObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -85,18 +85,18 @@ public class ClassOfAbstractObjectBuilder {
      * @throws HqdmException If the ClassOfAbstractObject is missing any mandatory properties.
      */
     public ClassOfAbstractObject build() throws HqdmException {
-        if (classOfAbstractObject.hasValue(HAS_SUPERCLASS)
-                && classOfAbstractObject.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfAbstractObject.hasValue(HAS_SUPERCLASS)
+                && this.classOfAbstractObject.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfAbstractObject.hasValue(MEMBER__OF)
-                && classOfAbstractObject.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfAbstractObject.hasValue(MEMBER__OF)
+                && this.classOfAbstractObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfAbstractObject.hasValue(MEMBER_OF)
-                && classOfAbstractObject.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfAbstractObject.hasValue(MEMBER_OF)
+                && this.classOfAbstractObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        return classOfAbstractObject;
+        return this.classOfAbstractObject;
     }
 }

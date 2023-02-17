@@ -43,7 +43,7 @@ public class ClassOfIndividualBuilder {
      * @param iri IRI of the ClassOfIndividual.
      */
     public ClassOfIndividualBuilder(final IRI iri) {
-        classOfIndividual = RdfClassServices.createClassOfIndividual(iri.getIri());
+        this.classOfIndividual = RdfClassServices.createClassOfIndividual(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfIndividualBuilder {
      */
     public final ClassOfIndividualBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfIndividual.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfIndividual.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfIndividualBuilder {
      * @return This builder.
      */
     public final ClassOfIndividualBuilder has_Superclass(final Class clazz) {
-        classOfIndividual.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfIndividual.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfIndividualBuilder {
      * @return This builder.
      */
     public final ClassOfIndividualBuilder member__Of(final Class clazz) {
-        classOfIndividual.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfIndividual.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfIndividualBuilder {
      * @return This builder.
      */
     public final ClassOfIndividualBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfIndividual.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfIndividual.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfIndividualBuilder {
      */
     public final ClassOfIndividualBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfIndividual.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.classOfIndividual.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -127,7 +127,7 @@ public class ClassOfIndividualBuilder {
      */
     public final ClassOfIndividualBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfIndividual.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfIndividual.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -138,26 +138,26 @@ public class ClassOfIndividualBuilder {
      * @throws HqdmException If the ClassOfIndividual is missing any mandatory properties.
      */
     public ClassOfIndividual build() throws HqdmException {
-        if (classOfIndividual.hasValue(HAS_SUPERCLASS)
-                && classOfIndividual.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfIndividual.hasValue(HAS_SUPERCLASS)
+                && this.classOfIndividual.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfIndividual.hasValue(MEMBER__OF)
-                && classOfIndividual.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfIndividual.hasValue(MEMBER__OF)
+                && this.classOfIndividual.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfIndividual.hasValue(MEMBER_OF)
-                && classOfIndividual.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfIndividual.hasValue(MEMBER_OF)
+                && this.classOfIndividual.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfIndividual.hasValue(MEMBER_OF_)
-                && classOfIndividual.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfIndividual.hasValue(MEMBER_OF_)
+                && this.classOfIndividual.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfIndividual.hasValue(PART__OF_BY_CLASS)
-                && classOfIndividual.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfIndividual.hasValue(PART__OF_BY_CLASS)
+                && this.classOfIndividual.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfIndividual;
+        return this.classOfIndividual;
     }
 }

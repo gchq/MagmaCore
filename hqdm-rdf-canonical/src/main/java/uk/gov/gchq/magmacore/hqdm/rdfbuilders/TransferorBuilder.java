@@ -68,7 +68,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        transferor.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.transferor.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder beginning(final Event event) {
-        transferor.addValue(BEGINNING, new IRI(event.getId()));
+        this.transferor.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -95,7 +95,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        transferor.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferor.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -107,7 +107,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder ending(final Event event) {
-        transferor.addValue(ENDING, new IRI(event.getId()));
+        this.transferor.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder member__Of(final Class clazz) {
-        transferor.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.transferor.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -133,7 +133,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder member_Of(final ClassOfStateOfParty classOfStateOfParty) {
-        transferor.addValue(MEMBER_OF, new IRI(classOfStateOfParty.getId()));
+        this.transferor.addValue(MEMBER_OF, new IRI(classOfStateOfParty.getId()));
         return this;
     }
 
@@ -146,7 +146,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder member_Of_Kind_M(final Role role) {
-        transferor.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
+        this.transferor.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
         return this;
     }
 
@@ -159,7 +159,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        transferor.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferor.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -178,7 +178,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        transferor.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.transferor.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -191,7 +191,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder participant_In_M(final TransferOfOwnership transferOfOwnership) {
-        transferor.addValue(PARTICIPANT_IN, new IRI(transferOfOwnership.getId()));
+        this.transferor.addValue(PARTICIPANT_IN, new IRI(transferOfOwnership.getId()));
         return this;
     }
 
@@ -204,7 +204,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        transferor.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferor.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -217,7 +217,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder temporal_Part_Of(final Owner owner) {
-        transferor.addValue(TEMPORAL_PART_OF, new IRI(owner.getId()));
+        this.transferor.addValue(TEMPORAL_PART_OF, new IRI(owner.getId()));
         return this;
     }
 
@@ -228,45 +228,45 @@ public class TransferorBuilder {
      * @throws HqdmException If the Transferor is missing any mandatory properties.
      */
     public Transferor build() throws HqdmException {
-        if (transferor.hasValue(AGGREGATED_INTO)
-                && transferor.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.transferor.hasValue(AGGREGATED_INTO)
+                && this.transferor.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (transferor.hasValue(BEGINNING)
-                && transferor.value(BEGINNING).isEmpty()) {
+        if (this.transferor.hasValue(BEGINNING)
+                && this.transferor.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (transferor.hasValue(ENDING)
-                && transferor.value(ENDING).isEmpty()) {
+        if (this.transferor.hasValue(ENDING)
+                && this.transferor.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (transferor.hasValue(MEMBER__OF)
-                && transferor.value(MEMBER__OF).isEmpty()) {
+        if (this.transferor.hasValue(MEMBER__OF)
+                && this.transferor.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (transferor.hasValue(MEMBER_OF)
-                && transferor.value(MEMBER_OF).isEmpty()) {
+        if (this.transferor.hasValue(MEMBER_OF)
+                && this.transferor.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!transferor.hasValue(MEMBER_OF_KIND)) {
+        if (!this.transferor.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (transferor.hasValue(PART__OF)
-                && transferor.value(PART__OF).isEmpty()) {
+        if (this.transferor.hasValue(PART__OF)
+                && this.transferor.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!transferor.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.transferor.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (!transferor.hasValue(PARTICIPANT_IN)) {
+        if (!this.transferor.hasValue(PARTICIPANT_IN)) {
             throw new HqdmException("Property Not Set: participant_in");
         }
-        if (transferor.hasValue(TEMPORAL__PART_OF)
-                && transferor.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.transferor.hasValue(TEMPORAL__PART_OF)
+                && this.transferor.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (transferor.hasValue(TEMPORAL_PART_OF)
-                && transferor.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.transferor.hasValue(TEMPORAL_PART_OF)
+                && this.transferor.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return transferor;

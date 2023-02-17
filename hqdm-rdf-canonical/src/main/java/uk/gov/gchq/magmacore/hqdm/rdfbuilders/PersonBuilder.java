@@ -68,7 +68,7 @@ public class PersonBuilder {
      * @return This builder.
      */
     public final PersonBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        person.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.person.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class PersonBuilder {
      * @return This builder.
      */
     public final PersonBuilder beginning(final Event event) {
-        person.addValue(BEGINNING, new IRI(event.getId()));
+        this.person.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -95,7 +95,7 @@ public class PersonBuilder {
      * @return This builder.
      */
     public final PersonBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        person.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.person.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -107,7 +107,7 @@ public class PersonBuilder {
      * @return This builder.
      */
     public final PersonBuilder ending(final Event event) {
-        person.addValue(ENDING, new IRI(event.getId()));
+        this.person.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class PersonBuilder {
      * @return This builder.
      */
     public final PersonBuilder member__Of(final Class clazz) {
-        person.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.person.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -132,7 +132,7 @@ public class PersonBuilder {
      * @return This builder.
      */
     public final PersonBuilder member_Of(final ClassOfPerson classOfPerson) {
-        person.addValue(MEMBER_OF, new IRI(classOfPerson.getId()));
+        this.person.addValue(MEMBER_OF, new IRI(classOfPerson.getId()));
         return this;
     }
 
@@ -145,7 +145,7 @@ public class PersonBuilder {
      * @return This builder.
      */
     public final PersonBuilder member_Of_Kind(final KindOfPerson kindOfPerson) {
-        person.addValue(MEMBER_OF_KIND, new IRI(kindOfPerson.getId()));
+        this.person.addValue(MEMBER_OF_KIND, new IRI(kindOfPerson.getId()));
         return this;
     }
 
@@ -164,7 +164,7 @@ public class PersonBuilder {
      * @return This builder.
      */
     public final PersonBuilder natural_Role_M(final Role role) {
-        person.addValue(NATURAL_ROLE, new IRI(role.getId()));
+        this.person.addValue(NATURAL_ROLE, new IRI(role.getId()));
         return this;
     }
 
@@ -177,7 +177,7 @@ public class PersonBuilder {
      * @return This builder.
      */
     public final PersonBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        person.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.person.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -196,7 +196,7 @@ public class PersonBuilder {
      * @return This builder.
      */
     public final PersonBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        person.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.person.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -209,7 +209,7 @@ public class PersonBuilder {
      * @return This builder.
      */
     public final PersonBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        person.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.person.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -224,7 +224,7 @@ public class PersonBuilder {
      */
     public final PersonBuilder temporal_Part_Of(
             final OrdinaryBiologicalObject ordinaryBiologicalObject) {
-        person.addValue(TEMPORAL_PART_OF, new IRI(ordinaryBiologicalObject.getId()));
+        this.person.addValue(TEMPORAL_PART_OF, new IRI(ordinaryBiologicalObject.getId()));
         return this;
     }
 
@@ -235,46 +235,46 @@ public class PersonBuilder {
      * @throws HqdmException If the Person is missing any mandatory properties.
      */
     public Person build() throws HqdmException {
-        if (person.hasValue(AGGREGATED_INTO)
-                && person.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.person.hasValue(AGGREGATED_INTO)
+                && this.person.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (person.hasValue(BEGINNING)
-                && person.value(BEGINNING).isEmpty()) {
+        if (this.person.hasValue(BEGINNING)
+                && this.person.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (person.hasValue(ENDING)
-                && person.value(ENDING).isEmpty()) {
+        if (this.person.hasValue(ENDING)
+                && this.person.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (person.hasValue(MEMBER__OF)
-                && person.value(MEMBER__OF).isEmpty()) {
+        if (this.person.hasValue(MEMBER__OF)
+                && this.person.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (person.hasValue(MEMBER_OF)
-                && person.value(MEMBER_OF).isEmpty()) {
+        if (this.person.hasValue(MEMBER_OF)
+                && this.person.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (person.hasValue(MEMBER_OF_KIND)
-                && person.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.person.hasValue(MEMBER_OF_KIND)
+                && this.person.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (!person.hasValue(NATURAL_ROLE)) {
+        if (!this.person.hasValue(NATURAL_ROLE)) {
             throw new HqdmException("Property Not Set: natural_role");
         }
-        if (person.hasValue(PART__OF)
-                && person.value(PART__OF).isEmpty()) {
+        if (this.person.hasValue(PART__OF)
+                && this.person.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!person.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.person.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (person.hasValue(TEMPORAL__PART_OF)
-                && person.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.person.hasValue(TEMPORAL__PART_OF)
+                && this.person.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (person.hasValue(TEMPORAL_PART_OF)
-                && person.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.person.hasValue(TEMPORAL_PART_OF)
+                && this.person.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return person;

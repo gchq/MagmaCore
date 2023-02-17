@@ -78,7 +78,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        reachingAgreement.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.reachingAgreement.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -90,7 +90,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder beginning(final Event event) {
-        reachingAgreement.addValue(BEGINNING, new IRI(event.getId()));
+        this.reachingAgreement.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -101,7 +101,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder causes_M(final Event event) {
-        reachingAgreement.addValue(CAUSES, new IRI(event.getId()));
+        this.reachingAgreement.addValue(CAUSES, new IRI(event.getId()));
         return this;
     }
 
@@ -116,7 +116,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        reachingAgreement.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.reachingAgreement.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -129,7 +129,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder consists_Of(final Activity activity) {
-        reachingAgreement.addValue(CONSISTS_OF, new IRI(activity.getId()));
+        this.reachingAgreement.addValue(CONSISTS_OF, new IRI(activity.getId()));
         return this;
     }
 
@@ -142,7 +142,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder consists_Of_Participant(final Participant participant) {
-        reachingAgreement.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.reachingAgreement.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
         return this;
     }
 
@@ -154,7 +154,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder determines(final Thing thing) {
-        reachingAgreement.addValue(DETERMINES, new IRI(thing.getId()));
+        this.reachingAgreement.addValue(DETERMINES, new IRI(thing.getId()));
         return this;
     }
 
@@ -166,7 +166,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder ending(final Event event) {
-        reachingAgreement.addValue(ENDING, new IRI(event.getId()));
+        this.reachingAgreement.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -177,7 +177,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder member__Of(final Class clazz) {
-        reachingAgreement.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.reachingAgreement.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -190,7 +190,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder member_Of(final ClassOfReachingAgreement classOfReachingAgreement) {
-        reachingAgreement.addValue(MEMBER_OF, new IRI(classOfReachingAgreement.getId()));
+        this.reachingAgreement.addValue(MEMBER_OF, new IRI(classOfReachingAgreement.getId()));
         return this;
     }
 
@@ -203,7 +203,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        reachingAgreement.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.reachingAgreement.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
         return this;
     }
 
@@ -216,7 +216,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        reachingAgreement.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.reachingAgreement.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -229,7 +229,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder part_Of_M(final AgreementProcess agreementProcess) {
-        reachingAgreement.addValue(PART_OF, new IRI(agreementProcess.getId()));
+        this.reachingAgreement.addValue(PART_OF, new IRI(agreementProcess.getId()));
         return this;
     }
 
@@ -243,7 +243,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder part_Of_(final AgreementExecution agreementExecution) {
-        reachingAgreement.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.reachingAgreement.addValue(PART_OF_, new IRI(agreementExecution.getId()));
         return this;
     }
 
@@ -262,7 +262,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        reachingAgreement.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.reachingAgreement.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -273,7 +273,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder references(final Thing thing) {
-        reachingAgreement.addValue(REFERENCES, new IRI(thing.getId()));
+        this.reachingAgreement.addValue(REFERENCES, new IRI(thing.getId()));
         return this;
     }
 
@@ -286,7 +286,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        reachingAgreement.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.reachingAgreement.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -309,7 +309,7 @@ public class ReachingAgreementBuilder {
      * @return This builder.
      */
     public final ReachingAgreementBuilder temporal_Part_Of(final Individual individual) {
-        reachingAgreement.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.reachingAgreement.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -320,60 +320,60 @@ public class ReachingAgreementBuilder {
      * @throws HqdmException If the ReachingAgreement is missing any mandatory properties.
      */
     public ReachingAgreement build() throws HqdmException {
-        if (reachingAgreement.hasValue(AGGREGATED_INTO)
-                && reachingAgreement.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.reachingAgreement.hasValue(AGGREGATED_INTO)
+                && this.reachingAgreement.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (reachingAgreement.hasValue(BEGINNING)
-                && reachingAgreement.value(BEGINNING).isEmpty()) {
+        if (this.reachingAgreement.hasValue(BEGINNING)
+                && this.reachingAgreement.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!reachingAgreement.hasValue(CAUSES)) {
+        if (!this.reachingAgreement.hasValue(CAUSES)) {
             throw new HqdmException("Property Not Set: causes");
         }
-        if (reachingAgreement.hasValue(DETERMINES)
-                && reachingAgreement.value(DETERMINES).isEmpty()) {
+        if (this.reachingAgreement.hasValue(DETERMINES)
+                && this.reachingAgreement.value(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
-        if (reachingAgreement.hasValue(ENDING)
-                && reachingAgreement.value(ENDING).isEmpty()) {
+        if (this.reachingAgreement.hasValue(ENDING)
+                && this.reachingAgreement.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (reachingAgreement.hasValue(MEMBER__OF)
-                && reachingAgreement.value(MEMBER__OF).isEmpty()) {
+        if (this.reachingAgreement.hasValue(MEMBER__OF)
+                && this.reachingAgreement.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (reachingAgreement.hasValue(MEMBER_OF)
-                && reachingAgreement.value(MEMBER_OF).isEmpty()) {
+        if (this.reachingAgreement.hasValue(MEMBER_OF)
+                && this.reachingAgreement.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!reachingAgreement.hasValue(MEMBER_OF_KIND)) {
+        if (!this.reachingAgreement.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (reachingAgreement.hasValue(PART__OF)
-                && reachingAgreement.value(PART__OF).isEmpty()) {
+        if (this.reachingAgreement.hasValue(PART__OF)
+                && this.reachingAgreement.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!reachingAgreement.hasValue(PART_OF)) {
+        if (!this.reachingAgreement.hasValue(PART_OF)) {
             throw new HqdmException("Property Not Set: part_of");
         }
-        if (reachingAgreement.hasValue(PART_OF_)
-                && reachingAgreement.value(PART_OF_).isEmpty()) {
+        if (this.reachingAgreement.hasValue(PART_OF_)
+                && this.reachingAgreement.value(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
-        if (!reachingAgreement.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.reachingAgreement.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (reachingAgreement.hasValue(REFERENCES)
-                && reachingAgreement.value(REFERENCES).isEmpty()) {
+        if (this.reachingAgreement.hasValue(REFERENCES)
+                && this.reachingAgreement.value(REFERENCES).isEmpty()) {
             throw new HqdmException("Property Not Set: references");
         }
-        if (reachingAgreement.hasValue(TEMPORAL__PART_OF)
-                && reachingAgreement.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.reachingAgreement.hasValue(TEMPORAL__PART_OF)
+                && this.reachingAgreement.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (reachingAgreement.hasValue(TEMPORAL_PART_OF)
-                && reachingAgreement.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.reachingAgreement.hasValue(TEMPORAL_PART_OF)
+                && this.reachingAgreement.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return reachingAgreement;

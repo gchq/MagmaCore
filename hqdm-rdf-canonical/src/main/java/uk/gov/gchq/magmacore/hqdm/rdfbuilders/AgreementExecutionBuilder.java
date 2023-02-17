@@ -62,7 +62,7 @@ public class AgreementExecutionBuilder {
      * @param iri IRI of the AgreementExecution.
      */
     public AgreementExecutionBuilder(final IRI iri) {
-        agreementExecution = RdfSpatioTemporalExtentServices.createAgreementExecution(iri.getIri());
+        this.agreementExecution = RdfSpatioTemporalExtentServices.createAgreementExecution(iri.getIri());
     }
 
     /**
@@ -78,7 +78,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        agreementExecution.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.agreementExecution.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -90,7 +90,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder beginning(final Event event) {
-        agreementExecution.addValue(BEGINNING, new IRI(event.getId()));
+        this.agreementExecution.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -101,7 +101,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder causes_M(final Event event) {
-        agreementExecution.addValue(CAUSES, new IRI(event.getId()));
+        this.agreementExecution.addValue(CAUSES, new IRI(event.getId()));
         return this;
     }
 
@@ -116,7 +116,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        agreementExecution.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.agreementExecution.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -129,7 +129,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder consists_Of(final Activity activity) {
-        agreementExecution.addValue(CONSISTS_OF, new IRI(activity.getId()));
+        this.agreementExecution.addValue(CONSISTS_OF, new IRI(activity.getId()));
         return this;
     }
 
@@ -142,7 +142,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder consists_Of_Participant(final Participant participant) {
-        agreementExecution.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.agreementExecution.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
         return this;
     }
 
@@ -154,7 +154,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder determines(final Thing thing) {
-        agreementExecution.addValue(DETERMINES, new IRI(thing.getId()));
+        this.agreementExecution.addValue(DETERMINES, new IRI(thing.getId()));
         return this;
     }
 
@@ -166,7 +166,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder ending(final Event event) {
-        agreementExecution.addValue(ENDING, new IRI(event.getId()));
+        this.agreementExecution.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -177,7 +177,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder member__Of(final Class clazz) {
-        agreementExecution.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.agreementExecution.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -190,7 +190,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder member_Of(final ClassOfAgreementExecution classOfAgreementExecution) {
-        agreementExecution.addValue(MEMBER_OF, new IRI(classOfAgreementExecution.getId()));
+        this.agreementExecution.addValue(MEMBER_OF, new IRI(classOfAgreementExecution.getId()));
         return this;
     }
 
@@ -203,7 +203,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        agreementExecution.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.agreementExecution.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
         return this;
     }
 
@@ -216,7 +216,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        agreementExecution.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.agreementExecution.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -229,7 +229,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder part_Of_M(final AgreementProcess agreementProcess) {
-        agreementExecution.addValue(PART_OF, new IRI(agreementProcess.getId()));
+        this.agreementExecution.addValue(PART_OF, new IRI(agreementProcess.getId()));
         return this;
     }
 
@@ -243,7 +243,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder part_Of_(final AgreementExecution agreementExecution) {
-        agreementExecution.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.agreementExecution.addValue(PART_OF_, new IRI(agreementExecution.getId()));
         return this;
     }
 
@@ -262,7 +262,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        agreementExecution.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.agreementExecution.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -273,7 +273,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder references(final Thing thing) {
-        agreementExecution.addValue(REFERENCES, new IRI(thing.getId()));
+        this.agreementExecution.addValue(REFERENCES, new IRI(thing.getId()));
         return this;
     }
 
@@ -286,7 +286,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        agreementExecution.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.agreementExecution.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -309,7 +309,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder temporal_Part_Of(final Individual individual) {
-        agreementExecution.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.agreementExecution.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -320,62 +320,62 @@ public class AgreementExecutionBuilder {
      * @throws HqdmException If the AgreementExecution is missing any mandatory properties.
      */
     public AgreementExecution build() throws HqdmException {
-        if (agreementExecution.hasValue(AGGREGATED_INTO)
-                && agreementExecution.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.agreementExecution.hasValue(AGGREGATED_INTO)
+                && this.agreementExecution.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (agreementExecution.hasValue(BEGINNING)
-                && agreementExecution.value(BEGINNING).isEmpty()) {
+        if (this.agreementExecution.hasValue(BEGINNING)
+                && this.agreementExecution.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!agreementExecution.hasValue(CAUSES)) {
+        if (!this.agreementExecution.hasValue(CAUSES)) {
             throw new HqdmException("Property Not Set: causes");
         }
-        if (agreementExecution.hasValue(DETERMINES)
-                && agreementExecution.value(DETERMINES).isEmpty()) {
+        if (this.agreementExecution.hasValue(DETERMINES)
+                && this.agreementExecution.value(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
-        if (agreementExecution.hasValue(ENDING)
-                && agreementExecution.value(ENDING).isEmpty()) {
+        if (this.agreementExecution.hasValue(ENDING)
+                && this.agreementExecution.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (agreementExecution.hasValue(MEMBER__OF)
-                && agreementExecution.value(MEMBER__OF).isEmpty()) {
+        if (this.agreementExecution.hasValue(MEMBER__OF)
+                && this.agreementExecution.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (agreementExecution.hasValue(MEMBER_OF)
-                && agreementExecution.value(MEMBER_OF).isEmpty()) {
+        if (this.agreementExecution.hasValue(MEMBER_OF)
+                && this.agreementExecution.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!agreementExecution.hasValue(MEMBER_OF_KIND)) {
+        if (!this.agreementExecution.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (agreementExecution.hasValue(PART__OF)
-                && agreementExecution.value(PART__OF).isEmpty()) {
+        if (this.agreementExecution.hasValue(PART__OF)
+                && this.agreementExecution.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!agreementExecution.hasValue(PART_OF)) {
+        if (!this.agreementExecution.hasValue(PART_OF)) {
             throw new HqdmException("Property Not Set: part_of");
         }
-        if (agreementExecution.hasValue(PART_OF_)
-                && agreementExecution.value(PART_OF_).isEmpty()) {
+        if (this.agreementExecution.hasValue(PART_OF_)
+                && this.agreementExecution.value(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
-        if (!agreementExecution.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.agreementExecution.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (agreementExecution.hasValue(REFERENCES)
-                && agreementExecution.value(REFERENCES).isEmpty()) {
+        if (this.agreementExecution.hasValue(REFERENCES)
+                && this.agreementExecution.value(REFERENCES).isEmpty()) {
             throw new HqdmException("Property Not Set: references");
         }
-        if (agreementExecution.hasValue(TEMPORAL__PART_OF)
-                && agreementExecution.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.agreementExecution.hasValue(TEMPORAL__PART_OF)
+                && this.agreementExecution.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (agreementExecution.hasValue(TEMPORAL_PART_OF)
-                && agreementExecution.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.agreementExecution.hasValue(TEMPORAL_PART_OF)
+                && this.agreementExecution.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        return agreementExecution;
+        return this.agreementExecution;
     }
 }

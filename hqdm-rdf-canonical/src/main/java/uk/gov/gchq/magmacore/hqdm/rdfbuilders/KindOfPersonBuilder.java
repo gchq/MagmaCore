@@ -61,7 +61,7 @@ public class KindOfPersonBuilder {
      */
     public final KindOfPersonBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfPerson.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.kindOfPerson.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -77,7 +77,7 @@ public class KindOfPersonBuilder {
      */
     public final KindOfPersonBuilder has_Component_By_Class_M(
             final KindOfSystemComponent kindOfSystemComponent) {
-        kindOfPerson.addValue(HAS_COMPONENT_BY_CLASS, new IRI(kindOfSystemComponent.getId()));
+        this.kindOfPerson.addValue(HAS_COMPONENT_BY_CLASS, new IRI(kindOfSystemComponent.getId()));
         return this;
     }
 
@@ -89,7 +89,7 @@ public class KindOfPersonBuilder {
      * @return This builder.
      */
     public final KindOfPersonBuilder has_Superclass(final Class clazz) {
-        kindOfPerson.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfPerson.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -101,7 +101,7 @@ public class KindOfPersonBuilder {
      * @return This builder.
      */
     public final KindOfPersonBuilder member__Of(final Class clazz) {
-        kindOfPerson.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfPerson.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -114,7 +114,7 @@ public class KindOfPersonBuilder {
      * @return This builder.
      */
     public final KindOfPersonBuilder member_Of(final ClassOfClass classOfClass) {
-        kindOfPerson.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfPerson.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -128,7 +128,7 @@ public class KindOfPersonBuilder {
      */
     public final KindOfPersonBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        kindOfPerson.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.kindOfPerson.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -144,7 +144,7 @@ public class KindOfPersonBuilder {
      */
     public final KindOfPersonBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfPerson.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.kindOfPerson.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -155,27 +155,27 @@ public class KindOfPersonBuilder {
      * @throws HqdmException If the KindOfPerson is missing any mandatory properties.
      */
     public KindOfPerson build() throws HqdmException {
-        if (!kindOfPerson.hasValue(HAS_COMPONENT_BY_CLASS)) {
+        if (!this.kindOfPerson.hasValue(HAS_COMPONENT_BY_CLASS)) {
             throw new HqdmException("Property Not Set: has_component_by_class");
         }
-        if (kindOfPerson.hasValue(HAS_SUPERCLASS)
-                && kindOfPerson.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.kindOfPerson.hasValue(HAS_SUPERCLASS)
+                && this.kindOfPerson.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (kindOfPerson.hasValue(MEMBER__OF)
-                && kindOfPerson.value(MEMBER__OF).isEmpty()) {
+        if (this.kindOfPerson.hasValue(MEMBER__OF)
+                && this.kindOfPerson.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (kindOfPerson.hasValue(MEMBER_OF)
-                && kindOfPerson.value(MEMBER_OF).isEmpty()) {
+        if (this.kindOfPerson.hasValue(MEMBER_OF)
+                && this.kindOfPerson.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (kindOfPerson.hasValue(MEMBER_OF_)
-                && kindOfPerson.value(MEMBER_OF_).isEmpty()) {
+        if (this.kindOfPerson.hasValue(MEMBER_OF_)
+                && this.kindOfPerson.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (kindOfPerson.hasValue(PART__OF_BY_CLASS)
-                && kindOfPerson.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.kindOfPerson.hasValue(PART__OF_BY_CLASS)
+                && this.kindOfPerson.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return kindOfPerson;

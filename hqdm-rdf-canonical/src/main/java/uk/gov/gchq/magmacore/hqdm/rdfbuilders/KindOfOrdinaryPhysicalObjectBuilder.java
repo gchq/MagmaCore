@@ -59,7 +59,7 @@ public class KindOfOrdinaryPhysicalObjectBuilder {
      */
     public final KindOfOrdinaryPhysicalObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfOrdinaryPhysicalObject.addValue(CONSISTS__OF_BY_CLASS,
+        this.kindOfOrdinaryPhysicalObject.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class KindOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final KindOfOrdinaryPhysicalObjectBuilder has_Superclass(final Class clazz) {
-        kindOfOrdinaryPhysicalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfOrdinaryPhysicalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class KindOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final KindOfOrdinaryPhysicalObjectBuilder member__Of(final Class clazz) {
-        kindOfOrdinaryPhysicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfOrdinaryPhysicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class KindOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final KindOfOrdinaryPhysicalObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        kindOfOrdinaryPhysicalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfOrdinaryPhysicalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class KindOfOrdinaryPhysicalObjectBuilder {
      */
     public final KindOfOrdinaryPhysicalObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        kindOfOrdinaryPhysicalObject.addValue(MEMBER_OF_,
+        this.kindOfOrdinaryPhysicalObject.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class KindOfOrdinaryPhysicalObjectBuilder {
      */
     public final KindOfOrdinaryPhysicalObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfOrdinaryPhysicalObject.addValue(PART__OF_BY_CLASS,
+        this.kindOfOrdinaryPhysicalObject.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -141,24 +141,24 @@ public class KindOfOrdinaryPhysicalObjectBuilder {
      * @throws HqdmException If the KindOfOrdinaryPhysicalObject is missing any mandatory properties.
      */
     public KindOfOrdinaryPhysicalObject build() throws HqdmException {
-        if (kindOfOrdinaryPhysicalObject.hasValue(HAS_SUPERCLASS)
-                && kindOfOrdinaryPhysicalObject.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.kindOfOrdinaryPhysicalObject.hasValue(HAS_SUPERCLASS)
+                && this.kindOfOrdinaryPhysicalObject.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (kindOfOrdinaryPhysicalObject.hasValue(MEMBER__OF)
-                && kindOfOrdinaryPhysicalObject.value(MEMBER__OF).isEmpty()) {
+        if (this.kindOfOrdinaryPhysicalObject.hasValue(MEMBER__OF)
+                && this.kindOfOrdinaryPhysicalObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (kindOfOrdinaryPhysicalObject.hasValue(MEMBER_OF)
-                && kindOfOrdinaryPhysicalObject.value(MEMBER_OF).isEmpty()) {
+        if (this.kindOfOrdinaryPhysicalObject.hasValue(MEMBER_OF)
+                && this.kindOfOrdinaryPhysicalObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (kindOfOrdinaryPhysicalObject.hasValue(MEMBER_OF_)
-                && kindOfOrdinaryPhysicalObject.value(MEMBER_OF_).isEmpty()) {
+        if (this.kindOfOrdinaryPhysicalObject.hasValue(MEMBER_OF_)
+                && this.kindOfOrdinaryPhysicalObject.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (kindOfOrdinaryPhysicalObject.hasValue(PART__OF_BY_CLASS)
-                && kindOfOrdinaryPhysicalObject.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.kindOfOrdinaryPhysicalObject.hasValue(PART__OF_BY_CLASS)
+                && this.kindOfOrdinaryPhysicalObject.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return kindOfOrdinaryPhysicalObject;

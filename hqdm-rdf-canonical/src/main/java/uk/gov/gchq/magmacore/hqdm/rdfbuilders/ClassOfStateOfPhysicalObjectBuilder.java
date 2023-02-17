@@ -43,7 +43,7 @@ public class ClassOfStateOfPhysicalObjectBuilder {
      * @param iri IRI of the ClassOfStateOfPhysicalObject.
      */
     public ClassOfStateOfPhysicalObjectBuilder(final IRI iri) {
-        classOfStateOfPhysicalObject = RdfClassServices.createClassOfStateOfPhysicalObject(iri.getIri());
+        this.classOfStateOfPhysicalObject = RdfClassServices.createClassOfStateOfPhysicalObject(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfStateOfPhysicalObjectBuilder {
      */
     public final ClassOfStateOfPhysicalObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfPhysicalObject.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfStateOfPhysicalObject.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfStateOfPhysicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfPhysicalObjectBuilder has_Superclass(final Class clazz) {
-        classOfStateOfPhysicalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfStateOfPhysicalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfStateOfPhysicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfPhysicalObjectBuilder member__Of(final Class clazz) {
-        classOfStateOfPhysicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfPhysicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfStateOfPhysicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfPhysicalObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfStateOfPhysicalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfStateOfPhysicalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfStateOfPhysicalObjectBuilder {
      */
     public final ClassOfStateOfPhysicalObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfStateOfPhysicalObject.addValue(MEMBER_OF_,
+        this.classOfStateOfPhysicalObject.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class ClassOfStateOfPhysicalObjectBuilder {
      */
     public final ClassOfStateOfPhysicalObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfPhysicalObject.addValue(PART__OF_BY_CLASS,
+        this.classOfStateOfPhysicalObject.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -141,26 +141,26 @@ public class ClassOfStateOfPhysicalObjectBuilder {
      * @throws HqdmException If the ClassOfStateOfPhysicalObject is missing any mandatory properties.
      */
     public ClassOfStateOfPhysicalObject build() throws HqdmException {
-        if (classOfStateOfPhysicalObject.hasValue(HAS_SUPERCLASS)
-                && classOfStateOfPhysicalObject.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfStateOfPhysicalObject.hasValue(HAS_SUPERCLASS)
+                && this.classOfStateOfPhysicalObject.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfStateOfPhysicalObject.hasValue(MEMBER__OF)
-                && classOfStateOfPhysicalObject.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfStateOfPhysicalObject.hasValue(MEMBER__OF)
+                && this.classOfStateOfPhysicalObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfStateOfPhysicalObject.hasValue(MEMBER_OF)
-                && classOfStateOfPhysicalObject.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfStateOfPhysicalObject.hasValue(MEMBER_OF)
+                && this.classOfStateOfPhysicalObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfStateOfPhysicalObject.hasValue(MEMBER_OF_)
-                && classOfStateOfPhysicalObject.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfStateOfPhysicalObject.hasValue(MEMBER_OF_)
+                && this.classOfStateOfPhysicalObject.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfStateOfPhysicalObject.hasValue(PART__OF_BY_CLASS)
-                && classOfStateOfPhysicalObject.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfStateOfPhysicalObject.hasValue(PART__OF_BY_CLASS)
+                && this.classOfStateOfPhysicalObject.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfStateOfPhysicalObject;
+        return this.classOfStateOfPhysicalObject;
     }
 }

@@ -80,7 +80,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        exchangeOfGoodsAndMoney.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder beginning(final Event event) {
-        exchangeOfGoodsAndMoney.addValue(BEGINNING, new IRI(event.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder causes_M(final Event event) {
-        exchangeOfGoodsAndMoney.addValue(CAUSES, new IRI(event.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(CAUSES, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        exchangeOfGoodsAndMoney.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -131,7 +131,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return Builder
      */
     public final ExchangeOfGoodsAndMoneyBuilder consists_Of(final TransferOfOwnership transferOfOwnership) {
-        exchangeOfGoodsAndMoney.addValue(CONSISTS_OF, new IRI(transferOfOwnership.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(CONSISTS_OF, new IRI(transferOfOwnership.getId()));
         return this;
     }
 
@@ -144,7 +144,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      */
     public final ExchangeOfGoodsAndMoneyBuilder consists_Of_(
             final TransferOfOwnershipOfMoney transferOfOwnershipOfMoney) {
-        exchangeOfGoodsAndMoney.addValue(CONSISTS_OF_, new IRI(transferOfOwnershipOfMoney.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(CONSISTS_OF_, new IRI(transferOfOwnershipOfMoney.getId()));
         return this;
     }
 
@@ -157,7 +157,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder consists_Of_Participant(final Participant participant) {
-        exchangeOfGoodsAndMoney.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
         return this;
     }
 
@@ -169,7 +169,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder determines(final Thing thing) {
-        exchangeOfGoodsAndMoney.addValue(DETERMINES, new IRI(thing.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(DETERMINES, new IRI(thing.getId()));
         return this;
     }
 
@@ -181,7 +181,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder ending(final Event event) {
-        exchangeOfGoodsAndMoney.addValue(ENDING, new IRI(event.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -192,7 +192,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder member__Of(final Class clazz) {
-        exchangeOfGoodsAndMoney.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -206,7 +206,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder member_Of(final ClassOfContractExecution classOfContractExecution) {
-        exchangeOfGoodsAndMoney.addValue(MEMBER_OF, new IRI(classOfContractExecution.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(MEMBER_OF, new IRI(classOfContractExecution.getId()));
         return this;
     }
 
@@ -219,7 +219,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        exchangeOfGoodsAndMoney.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
         return this;
     }
 
@@ -232,7 +232,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        exchangeOfGoodsAndMoney.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -245,7 +245,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return Builder
      */
     public final ExchangeOfGoodsAndMoneyBuilder part_Of_M(final SaleOfGoods saleOfGoods) {
-        exchangeOfGoodsAndMoney.addValue(PART_OF, new IRI(saleOfGoods.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(PART_OF, new IRI(saleOfGoods.getId()));
         return this;
     }
 
@@ -259,7 +259,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder part_Of_(final AgreementExecution agreementExecution) {
-        exchangeOfGoodsAndMoney.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(PART_OF_, new IRI(agreementExecution.getId()));
         return this;
     }
 
@@ -278,7 +278,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        exchangeOfGoodsAndMoney.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -290,7 +290,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder references(final Thing thing) {
-        exchangeOfGoodsAndMoney.addValue(REFERENCES, new IRI(thing.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(REFERENCES, new IRI(thing.getId()));
         return this;
     }
 
@@ -303,7 +303,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        exchangeOfGoodsAndMoney.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -326,7 +326,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder temporal_Part_Of(final Individual individual) {
-        exchangeOfGoodsAndMoney.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -337,60 +337,60 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @throws HqdmException If the ExchangeOfGoodsAndMoney is missing any mandatory properties.
      */
     public ExchangeOfGoodsAndMoney build() throws HqdmException {
-        if (exchangeOfGoodsAndMoney.hasValue(AGGREGATED_INTO)
-                && exchangeOfGoodsAndMoney.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.exchangeOfGoodsAndMoney.hasValue(AGGREGATED_INTO)
+                && this.exchangeOfGoodsAndMoney.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (exchangeOfGoodsAndMoney.hasValue(BEGINNING)
-                && exchangeOfGoodsAndMoney.value(BEGINNING).isEmpty()) {
+        if (this.exchangeOfGoodsAndMoney.hasValue(BEGINNING)
+                && this.exchangeOfGoodsAndMoney.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!exchangeOfGoodsAndMoney.hasValue(CAUSES)) {
+        if (!this.exchangeOfGoodsAndMoney.hasValue(CAUSES)) {
             throw new HqdmException("Property Not Set: causes");
         }
-        if (exchangeOfGoodsAndMoney.hasValue(DETERMINES)
-                && exchangeOfGoodsAndMoney.value(DETERMINES).isEmpty()) {
+        if (this.exchangeOfGoodsAndMoney.hasValue(DETERMINES)
+                && this.exchangeOfGoodsAndMoney.value(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
-        if (exchangeOfGoodsAndMoney.hasValue(ENDING)
-                && exchangeOfGoodsAndMoney.value(ENDING).isEmpty()) {
+        if (this.exchangeOfGoodsAndMoney.hasValue(ENDING)
+                && this.exchangeOfGoodsAndMoney.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (exchangeOfGoodsAndMoney.hasValue(MEMBER__OF)
-                && exchangeOfGoodsAndMoney.value(MEMBER__OF).isEmpty()) {
+        if (this.exchangeOfGoodsAndMoney.hasValue(MEMBER__OF)
+                && this.exchangeOfGoodsAndMoney.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (exchangeOfGoodsAndMoney.hasValue(MEMBER_OF)
-                && exchangeOfGoodsAndMoney.value(MEMBER_OF).isEmpty()) {
+        if (this.exchangeOfGoodsAndMoney.hasValue(MEMBER_OF)
+                && this.exchangeOfGoodsAndMoney.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!exchangeOfGoodsAndMoney.hasValue(MEMBER_OF_KIND)) {
+        if (!this.exchangeOfGoodsAndMoney.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (exchangeOfGoodsAndMoney.hasValue(PART__OF)
-                && exchangeOfGoodsAndMoney.value(PART__OF).isEmpty()) {
+        if (this.exchangeOfGoodsAndMoney.hasValue(PART__OF)
+                && this.exchangeOfGoodsAndMoney.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!exchangeOfGoodsAndMoney.hasValue(PART_OF)) {
+        if (!this.exchangeOfGoodsAndMoney.hasValue(PART_OF)) {
             throw new HqdmException("Property Not Set: part_of");
         }
-        if (exchangeOfGoodsAndMoney.hasValue(PART_OF_)
-                && exchangeOfGoodsAndMoney.value(PART_OF_).isEmpty()) {
+        if (this.exchangeOfGoodsAndMoney.hasValue(PART_OF_)
+                && this.exchangeOfGoodsAndMoney.value(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
-        if (!exchangeOfGoodsAndMoney.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.exchangeOfGoodsAndMoney.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (exchangeOfGoodsAndMoney.hasValue(REFERENCES)
-                && exchangeOfGoodsAndMoney.value(REFERENCES).isEmpty()) {
+        if (this.exchangeOfGoodsAndMoney.hasValue(REFERENCES)
+                && this.exchangeOfGoodsAndMoney.value(REFERENCES).isEmpty()) {
             throw new HqdmException("Property Not Set: references");
         }
-        if (exchangeOfGoodsAndMoney.hasValue(TEMPORAL__PART_OF)
-                && exchangeOfGoodsAndMoney.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.exchangeOfGoodsAndMoney.hasValue(TEMPORAL__PART_OF)
+                && this.exchangeOfGoodsAndMoney.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (exchangeOfGoodsAndMoney.hasValue(TEMPORAL_PART_OF)
-                && exchangeOfGoodsAndMoney.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.exchangeOfGoodsAndMoney.hasValue(TEMPORAL_PART_OF)
+                && this.exchangeOfGoodsAndMoney.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return exchangeOfGoodsAndMoney;

@@ -44,7 +44,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      * @param iri IRI of the ClassOfStateOfIntentionallyConstructedObject.
      */
     public ClassOfStateOfIntentionallyConstructedObjectBuilder(final IRI iri) {
-        classOfStateOfIntentionallyConstructedObject = RdfClassServices
+        this.classOfStateOfIntentionallyConstructedObject = RdfClassServices
                 .createClassOfStateOfIntentionallyConstructedObject(iri.getIri());
     }
 
@@ -61,7 +61,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      */
     public final ClassOfStateOfIntentionallyConstructedObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfIntentionallyConstructedObject.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfStateOfIntentionallyConstructedObject.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -74,7 +74,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfIntentionallyConstructedObjectBuilder has_Superclass(final Class clazz) {
-        classOfStateOfIntentionallyConstructedObject.addValue(HAS_SUPERCLASS,
+        this.classOfStateOfIntentionallyConstructedObject.addValue(HAS_SUPERCLASS,
                 new IRI(clazz.getId()));
         return this;
     }
@@ -87,7 +87,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfIntentionallyConstructedObjectBuilder member__Of(final Class clazz) {
-        classOfStateOfIntentionallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfIntentionallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -100,7 +100,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfIntentionallyConstructedObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfStateOfIntentionallyConstructedObject.addValue(MEMBER_OF,
+        this.classOfStateOfIntentionallyConstructedObject.addValue(MEMBER_OF,
                 new IRI(classOfClass.getId()));
         return this;
     }
@@ -115,7 +115,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      */
     public final ClassOfStateOfIntentionallyConstructedObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfStateOfIntentionallyConstructedObject.addValue(MEMBER_OF_,
+        this.classOfStateOfIntentionallyConstructedObject.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -132,7 +132,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      */
     public final ClassOfStateOfIntentionallyConstructedObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfIntentionallyConstructedObject.addValue(PART__OF_BY_CLASS,
+        this.classOfStateOfIntentionallyConstructedObject.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -146,31 +146,31 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      *                       mandatory properties.
      */
     public ClassOfStateOfIntentionallyConstructedObject build() throws HqdmException {
-        if (classOfStateOfIntentionallyConstructedObject.hasValue(HAS_SUPERCLASS)
-                && classOfStateOfIntentionallyConstructedObject.value(HAS_SUPERCLASS)
+        if (this.classOfStateOfIntentionallyConstructedObject.hasValue(HAS_SUPERCLASS)
+                && this.classOfStateOfIntentionallyConstructedObject.value(HAS_SUPERCLASS)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfStateOfIntentionallyConstructedObject.hasValue(MEMBER__OF)
-                && classOfStateOfIntentionallyConstructedObject.value(MEMBER__OF)
+        if (this.classOfStateOfIntentionallyConstructedObject.hasValue(MEMBER__OF)
+                && this.classOfStateOfIntentionallyConstructedObject.value(MEMBER__OF)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfStateOfIntentionallyConstructedObject.hasValue(MEMBER_OF)
-                && classOfStateOfIntentionallyConstructedObject.value(MEMBER_OF)
+        if (this.classOfStateOfIntentionallyConstructedObject.hasValue(MEMBER_OF)
+                && this.classOfStateOfIntentionallyConstructedObject.value(MEMBER_OF)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfStateOfIntentionallyConstructedObject.hasValue(MEMBER_OF_)
-                && classOfStateOfIntentionallyConstructedObject.value(MEMBER_OF_)
+        if (this.classOfStateOfIntentionallyConstructedObject.hasValue(MEMBER_OF_)
+                && this.classOfStateOfIntentionallyConstructedObject.value(MEMBER_OF_)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfStateOfIntentionallyConstructedObject.hasValue(PART__OF_BY_CLASS)
-                && classOfStateOfIntentionallyConstructedObject.value(PART__OF_BY_CLASS)
+        if (this.classOfStateOfIntentionallyConstructedObject.hasValue(PART__OF_BY_CLASS)
+                && this.classOfStateOfIntentionallyConstructedObject.value(PART__OF_BY_CLASS)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfStateOfIntentionallyConstructedObject;
+        return this.classOfStateOfIntentionallyConstructedObject;
     }
 }

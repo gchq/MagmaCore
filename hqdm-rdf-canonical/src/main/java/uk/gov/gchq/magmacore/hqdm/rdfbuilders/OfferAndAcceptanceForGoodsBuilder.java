@@ -80,7 +80,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        offerAndAcceptanceForGoods.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.offerAndAcceptanceForGoods.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder beginning(final Event event) {
-        offerAndAcceptanceForGoods.addValue(BEGINNING, new IRI(event.getId()));
+        this.offerAndAcceptanceForGoods.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder causes_M(final Event event) {
-        offerAndAcceptanceForGoods.addValue(CAUSES, new IRI(event.getId()));
+        this.offerAndAcceptanceForGoods.addValue(CAUSES, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        offerAndAcceptanceForGoods.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.offerAndAcceptanceForGoods.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -132,7 +132,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      */
     public final OfferAndAcceptanceForGoodsBuilder consists_Of(
             final AcceptanceOfOfferForGoods acceptanceOfOfferForGoods) {
-        offerAndAcceptanceForGoods.addValue(CONSISTS_OF,
+        this.offerAndAcceptanceForGoods.addValue(CONSISTS_OF,
                 new IRI(acceptanceOfOfferForGoods.getId()));
         return this;
     }
@@ -145,7 +145,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return Builder
      */
     public final OfferAndAcceptanceForGoodsBuilder consists_Of_(final OfferForGoods offerForGoods) {
-        offerAndAcceptanceForGoods.addValue(CONSISTS_OF_, new IRI(offerForGoods.getId()));
+        this.offerAndAcceptanceForGoods.addValue(CONSISTS_OF_, new IRI(offerForGoods.getId()));
         return this;
     }
 
@@ -158,7 +158,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder consists_Of_Participant(final Participant participant) {
-        offerAndAcceptanceForGoods.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.offerAndAcceptanceForGoods.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
         return this;
     }
 
@@ -170,7 +170,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder determines(final Thing thing) {
-        offerAndAcceptanceForGoods.addValue(DETERMINES, new IRI(thing.getId()));
+        this.offerAndAcceptanceForGoods.addValue(DETERMINES, new IRI(thing.getId()));
         return this;
     }
 
@@ -182,7 +182,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder ending(final Event event) {
-        offerAndAcceptanceForGoods.addValue(ENDING, new IRI(event.getId()));
+        this.offerAndAcceptanceForGoods.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -193,7 +193,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder member__Of(final Class clazz) {
-        offerAndAcceptanceForGoods.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.offerAndAcceptanceForGoods.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -207,7 +207,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder member_Of(final ClassOfAgreeContract classOfAgreeContract) {
-        offerAndAcceptanceForGoods.addValue(MEMBER_OF, new IRI(classOfAgreeContract.getId()));
+        this.offerAndAcceptanceForGoods.addValue(MEMBER_OF, new IRI(classOfAgreeContract.getId()));
         return this;
     }
 
@@ -220,7 +220,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        offerAndAcceptanceForGoods.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.offerAndAcceptanceForGoods.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
         return this;
     }
 
@@ -233,7 +233,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        offerAndAcceptanceForGoods.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.offerAndAcceptanceForGoods.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -246,7 +246,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return Builder
      */
     public final OfferAndAcceptanceForGoodsBuilder part_Of_M(final SaleOfGoods saleOfGoods) {
-        offerAndAcceptanceForGoods.addValue(PART_OF, new IRI(saleOfGoods.getId()));
+        this.offerAndAcceptanceForGoods.addValue(PART_OF, new IRI(saleOfGoods.getId()));
         return this;
     }
 
@@ -260,7 +260,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder part_Of_(final AgreementExecution agreementExecution) {
-        offerAndAcceptanceForGoods.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.offerAndAcceptanceForGoods.addValue(PART_OF_, new IRI(agreementExecution.getId()));
         return this;
     }
 
@@ -279,7 +279,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        offerAndAcceptanceForGoods.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.offerAndAcceptanceForGoods.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -291,7 +291,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder references(final Thing thing) {
-        offerAndAcceptanceForGoods.addValue(REFERENCES, new IRI(thing.getId()));
+        this.offerAndAcceptanceForGoods.addValue(REFERENCES, new IRI(thing.getId()));
         return this;
     }
 
@@ -304,7 +304,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        offerAndAcceptanceForGoods.addValue(TEMPORAL__PART_OF,
+        this.offerAndAcceptanceForGoods.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -328,7 +328,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @return This builder.
      */
     public final OfferAndAcceptanceForGoodsBuilder temporal_Part_Of(final Individual individual) {
-        offerAndAcceptanceForGoods.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.offerAndAcceptanceForGoods.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -340,60 +340,60 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @throws HqdmException If the OfferAndAcceptanceForGoods is missing any mandatory properties.
      */
     public OfferAndAcceptanceForGoods build() throws HqdmException {
-        if (offerAndAcceptanceForGoods.hasValue(AGGREGATED_INTO)
-                && offerAndAcceptanceForGoods.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.offerAndAcceptanceForGoods.hasValue(AGGREGATED_INTO)
+                && this.offerAndAcceptanceForGoods.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (offerAndAcceptanceForGoods.hasValue(BEGINNING)
-                && offerAndAcceptanceForGoods.value(BEGINNING).isEmpty()) {
+        if (this.offerAndAcceptanceForGoods.hasValue(BEGINNING)
+                && this.offerAndAcceptanceForGoods.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!offerAndAcceptanceForGoods.hasValue(CAUSES)) {
+        if (!this.offerAndAcceptanceForGoods.hasValue(CAUSES)) {
             throw new HqdmException("Property Not Set: causes");
         }
-        if (offerAndAcceptanceForGoods.hasValue(DETERMINES)
-                && offerAndAcceptanceForGoods.value(DETERMINES).isEmpty()) {
+        if (this.offerAndAcceptanceForGoods.hasValue(DETERMINES)
+                && this.offerAndAcceptanceForGoods.value(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
-        if (offerAndAcceptanceForGoods.hasValue(ENDING)
-                && offerAndAcceptanceForGoods.value(ENDING).isEmpty()) {
+        if (this.offerAndAcceptanceForGoods.hasValue(ENDING)
+                && this.offerAndAcceptanceForGoods.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (offerAndAcceptanceForGoods.hasValue(MEMBER__OF)
-                && offerAndAcceptanceForGoods.value(MEMBER__OF).isEmpty()) {
+        if (this.offerAndAcceptanceForGoods.hasValue(MEMBER__OF)
+                && this.offerAndAcceptanceForGoods.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (offerAndAcceptanceForGoods.hasValue(MEMBER_OF)
-                && offerAndAcceptanceForGoods.value(MEMBER_OF).isEmpty()) {
+        if (this.offerAndAcceptanceForGoods.hasValue(MEMBER_OF)
+                && this.offerAndAcceptanceForGoods.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!offerAndAcceptanceForGoods.hasValue(MEMBER_OF_KIND)) {
+        if (!this.offerAndAcceptanceForGoods.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (offerAndAcceptanceForGoods.hasValue(PART__OF)
-                && offerAndAcceptanceForGoods.value(PART__OF).isEmpty()) {
+        if (this.offerAndAcceptanceForGoods.hasValue(PART__OF)
+                && this.offerAndAcceptanceForGoods.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!offerAndAcceptanceForGoods.hasValue(PART_OF)) {
+        if (!this.offerAndAcceptanceForGoods.hasValue(PART_OF)) {
             throw new HqdmException("Property Not Set: part_of");
         }
-        if (offerAndAcceptanceForGoods.hasValue(PART_OF_)
-                && offerAndAcceptanceForGoods.value(PART_OF_).isEmpty()) {
+        if (this.offerAndAcceptanceForGoods.hasValue(PART_OF_)
+                && this.offerAndAcceptanceForGoods.value(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
-        if (!offerAndAcceptanceForGoods.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.offerAndAcceptanceForGoods.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (offerAndAcceptanceForGoods.hasValue(REFERENCES)
-                && offerAndAcceptanceForGoods.value(REFERENCES).isEmpty()) {
+        if (this.offerAndAcceptanceForGoods.hasValue(REFERENCES)
+                && this.offerAndAcceptanceForGoods.value(REFERENCES).isEmpty()) {
             throw new HqdmException("Property Not Set: references");
         }
-        if (offerAndAcceptanceForGoods.hasValue(TEMPORAL__PART_OF)
-                && offerAndAcceptanceForGoods.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.offerAndAcceptanceForGoods.hasValue(TEMPORAL__PART_OF)
+                && this.offerAndAcceptanceForGoods.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (offerAndAcceptanceForGoods.hasValue(TEMPORAL_PART_OF)
-                && offerAndAcceptanceForGoods.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.offerAndAcceptanceForGoods.hasValue(TEMPORAL_PART_OF)
+                && this.offerAndAcceptanceForGoods.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return offerAndAcceptanceForGoods;

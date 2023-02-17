@@ -44,7 +44,7 @@ public class ClassOfStateOfOrdinaryBiologicalObjectBuilder {
      * @param iri IRI of the ClassOfStateOfOrdinaryBiologicalObject.
      */
     public ClassOfStateOfOrdinaryBiologicalObjectBuilder(final IRI iri) {
-        classOfStateOfOrdinaryBiologicalObject = RdfClassServices
+        this.classOfStateOfOrdinaryBiologicalObject = RdfClassServices
                 .createClassOfStateOfOrdinaryBiologicalObject(iri.getIri());
     }
 
@@ -61,7 +61,7 @@ public class ClassOfStateOfOrdinaryBiologicalObjectBuilder {
      */
     public final ClassOfStateOfOrdinaryBiologicalObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfOrdinaryBiologicalObject.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfStateOfOrdinaryBiologicalObject.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -74,7 +74,7 @@ public class ClassOfStateOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfOrdinaryBiologicalObjectBuilder has_Superclass(final Class clazz) {
-        classOfStateOfOrdinaryBiologicalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfStateOfOrdinaryBiologicalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -86,7 +86,7 @@ public class ClassOfStateOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfOrdinaryBiologicalObjectBuilder member__Of(final Class clazz) {
-        classOfStateOfOrdinaryBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfOrdinaryBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -99,7 +99,7 @@ public class ClassOfStateOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfOrdinaryBiologicalObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfStateOfOrdinaryBiologicalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfStateOfOrdinaryBiologicalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -113,7 +113,7 @@ public class ClassOfStateOfOrdinaryBiologicalObjectBuilder {
      */
     public final ClassOfStateOfOrdinaryBiologicalObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfStateOfOrdinaryBiologicalObject.addValue(MEMBER_OF_,
+        this.classOfStateOfOrdinaryBiologicalObject.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -130,7 +130,7 @@ public class ClassOfStateOfOrdinaryBiologicalObjectBuilder {
      */
     public final ClassOfStateOfOrdinaryBiologicalObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfOrdinaryBiologicalObject.addValue(PART__OF_BY_CLASS,
+        this.classOfStateOfOrdinaryBiologicalObject.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -144,27 +144,27 @@ public class ClassOfStateOfOrdinaryBiologicalObjectBuilder {
      *                       properties.
      */
     public ClassOfStateOfOrdinaryBiologicalObject build() throws HqdmException {
-        if (classOfStateOfOrdinaryBiologicalObject.hasValue(HAS_SUPERCLASS)
-                && classOfStateOfOrdinaryBiologicalObject.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfStateOfOrdinaryBiologicalObject.hasValue(HAS_SUPERCLASS)
+                && this.classOfStateOfOrdinaryBiologicalObject.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfStateOfOrdinaryBiologicalObject.hasValue(MEMBER__OF)
-                && classOfStateOfOrdinaryBiologicalObject.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfStateOfOrdinaryBiologicalObject.hasValue(MEMBER__OF)
+                && this.classOfStateOfOrdinaryBiologicalObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfStateOfOrdinaryBiologicalObject.hasValue(MEMBER_OF)
-                && classOfStateOfOrdinaryBiologicalObject.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfStateOfOrdinaryBiologicalObject.hasValue(MEMBER_OF)
+                && this.classOfStateOfOrdinaryBiologicalObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfStateOfOrdinaryBiologicalObject.hasValue(MEMBER_OF_)
-                && classOfStateOfOrdinaryBiologicalObject.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfStateOfOrdinaryBiologicalObject.hasValue(MEMBER_OF_)
+                && this.classOfStateOfOrdinaryBiologicalObject.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfStateOfOrdinaryBiologicalObject.hasValue(PART__OF_BY_CLASS)
-                && classOfStateOfOrdinaryBiologicalObject.value(PART__OF_BY_CLASS)
+        if (this.classOfStateOfOrdinaryBiologicalObject.hasValue(PART__OF_BY_CLASS)
+                && this.classOfStateOfOrdinaryBiologicalObject.value(PART__OF_BY_CLASS)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfStateOfOrdinaryBiologicalObject;
+        return this.classOfStateOfOrdinaryBiologicalObject;
     }
 }

@@ -62,7 +62,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        pointInTime.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.pointInTime.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -74,7 +74,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder beginning(final Event event) {
-        pointInTime.addValue(BEGINNING, new IRI(event.getId()));
+        this.pointInTime.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -89,7 +89,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        pointInTime.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.pointInTime.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -101,7 +101,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder ending(final Event event) {
-        pointInTime.addValue(ENDING, new IRI(event.getId()));
+        this.pointInTime.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -113,7 +113,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder member__Of(final Class clazz) {
-        pointInTime.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.pointInTime.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -126,7 +126,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder member_Of(final ClassOfPointInTime classOfPointInTime) {
-        pointInTime.addValue(MEMBER_OF, new IRI(classOfPointInTime.getId()));
+        this.pointInTime.addValue(MEMBER_OF, new IRI(classOfPointInTime.getId()));
         return this;
     }
 
@@ -139,7 +139,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        pointInTime.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.pointInTime.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -158,7 +158,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        pointInTime.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.pointInTime.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -171,7 +171,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        pointInTime.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.pointInTime.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -182,35 +182,35 @@ public class PointInTimeBuilder {
      * @throws HqdmException If the PointInTime is missing any mandatory properties.
      */
     public PointInTime build() throws HqdmException {
-        if (pointInTime.hasValue(AGGREGATED_INTO)
-                && pointInTime.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.pointInTime.hasValue(AGGREGATED_INTO)
+                && this.pointInTime.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (pointInTime.hasValue(BEGINNING)
-                && pointInTime.value(BEGINNING).isEmpty()) {
+        if (this.pointInTime.hasValue(BEGINNING)
+                && this.pointInTime.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (pointInTime.hasValue(ENDING)
-                && pointInTime.value(ENDING).isEmpty()) {
+        if (this.pointInTime.hasValue(ENDING)
+                && this.pointInTime.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (pointInTime.hasValue(MEMBER__OF)
-                && pointInTime.value(MEMBER__OF).isEmpty()) {
+        if (this.pointInTime.hasValue(MEMBER__OF)
+                && this.pointInTime.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (pointInTime.hasValue(MEMBER_OF)
-                && pointInTime.value(MEMBER_OF).isEmpty()) {
+        if (this.pointInTime.hasValue(MEMBER_OF)
+                && this.pointInTime.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (pointInTime.hasValue(PART__OF)
-                && pointInTime.value(PART__OF).isEmpty()) {
+        if (this.pointInTime.hasValue(PART__OF)
+                && this.pointInTime.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!pointInTime.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.pointInTime.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (pointInTime.hasValue(TEMPORAL__PART_OF)
-                && pointInTime.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.pointInTime.hasValue(TEMPORAL__PART_OF)
+                && this.pointInTime.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         return pointInTime;

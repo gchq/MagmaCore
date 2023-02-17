@@ -44,7 +44,7 @@ public class ClassOfStateOfSociallyConstructedObjectBuilder {
      * @param iri IRI of the ClassOfStateOfSociallyConstructedObject.
      */
     public ClassOfStateOfSociallyConstructedObjectBuilder(final IRI iri) {
-        classOfStateOfSociallyConstructedObject = RdfClassServices
+        this.classOfStateOfSociallyConstructedObject = RdfClassServices
                 .createClassOfStateOfSociallyConstructedObject(iri.getIri());
     }
 
@@ -61,7 +61,7 @@ public class ClassOfStateOfSociallyConstructedObjectBuilder {
      */
     public final ClassOfStateOfSociallyConstructedObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfSociallyConstructedObject.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfStateOfSociallyConstructedObject.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -74,7 +74,7 @@ public class ClassOfStateOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSociallyConstructedObjectBuilder has_Superclass(final Class clazz) {
-        classOfStateOfSociallyConstructedObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfStateOfSociallyConstructedObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -86,7 +86,7 @@ public class ClassOfStateOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSociallyConstructedObjectBuilder member__Of(final Class clazz) {
-        classOfStateOfSociallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfSociallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -99,7 +99,7 @@ public class ClassOfStateOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSociallyConstructedObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfStateOfSociallyConstructedObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfStateOfSociallyConstructedObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -113,7 +113,7 @@ public class ClassOfStateOfSociallyConstructedObjectBuilder {
      */
     public final ClassOfStateOfSociallyConstructedObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfStateOfSociallyConstructedObject.addValue(MEMBER_OF_,
+        this.classOfStateOfSociallyConstructedObject.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -130,7 +130,7 @@ public class ClassOfStateOfSociallyConstructedObjectBuilder {
      */
     public final ClassOfStateOfSociallyConstructedObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfSociallyConstructedObject.addValue(PART__OF_BY_CLASS,
+        this.classOfStateOfSociallyConstructedObject.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -144,28 +144,28 @@ public class ClassOfStateOfSociallyConstructedObjectBuilder {
      *                       properties.
      */
     public ClassOfStateOfSociallyConstructedObject build() throws HqdmException {
-        if (classOfStateOfSociallyConstructedObject.hasValue(HAS_SUPERCLASS)
-                && classOfStateOfSociallyConstructedObject.value(HAS_SUPERCLASS)
+        if (this.classOfStateOfSociallyConstructedObject.hasValue(HAS_SUPERCLASS)
+                && this.classOfStateOfSociallyConstructedObject.value(HAS_SUPERCLASS)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfStateOfSociallyConstructedObject.hasValue(MEMBER__OF)
-                && classOfStateOfSociallyConstructedObject.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfStateOfSociallyConstructedObject.hasValue(MEMBER__OF)
+                && this.classOfStateOfSociallyConstructedObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfStateOfSociallyConstructedObject.hasValue(MEMBER_OF)
-                && classOfStateOfSociallyConstructedObject.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfStateOfSociallyConstructedObject.hasValue(MEMBER_OF)
+                && this.classOfStateOfSociallyConstructedObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfStateOfSociallyConstructedObject.hasValue(MEMBER_OF_)
-                && classOfStateOfSociallyConstructedObject.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfStateOfSociallyConstructedObject.hasValue(MEMBER_OF_)
+                && this.classOfStateOfSociallyConstructedObject.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfStateOfSociallyConstructedObject.hasValue(PART__OF_BY_CLASS)
-                && classOfStateOfSociallyConstructedObject.value(PART__OF_BY_CLASS)
+        if (this.classOfStateOfSociallyConstructedObject.hasValue(PART__OF_BY_CLASS)
+                && this.classOfStateOfSociallyConstructedObject.value(PART__OF_BY_CLASS)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfStateOfSociallyConstructedObject;
+        return this.classOfStateOfSociallyConstructedObject;
     }
 }

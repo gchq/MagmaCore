@@ -64,7 +64,7 @@ public class AcceptanceOfOfferBuilder {
      * @param iri IRI of the AcceptanceOfOffer.
      */
     public AcceptanceOfOfferBuilder(final IRI iri) {
-        acceptanceOfOffer = RdfSpatioTemporalExtentServices.createAcceptanceOfOffer(iri.getIri());
+        this.acceptanceOfOffer = RdfSpatioTemporalExtentServices.createAcceptanceOfOffer(iri.getIri());
     }
 
     /**
@@ -79,7 +79,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        acceptanceOfOffer.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.acceptanceOfOffer.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder beginning(final Event event) {
-        acceptanceOfOffer.addValue(BEGINNING, new IRI(event.getId()));
+        this.acceptanceOfOffer.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -102,7 +102,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder causes_M(final Event event) {
-        acceptanceOfOffer.addValue(CAUSES, new IRI(event.getId()));
+        this.acceptanceOfOffer.addValue(CAUSES, new IRI(event.getId()));
         return this;
     }
 
@@ -117,7 +117,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        acceptanceOfOffer.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.acceptanceOfOffer.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder consists_Of(final Activity activity) {
-        acceptanceOfOffer.addValue(CONSISTS_OF, new IRI(activity.getId()));
+        this.acceptanceOfOffer.addValue(CONSISTS_OF, new IRI(activity.getId()));
         return this;
     }
 
@@ -143,7 +143,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder consists_Of_Participant(final Participant participant) {
-        acceptanceOfOffer.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.acceptanceOfOffer.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
         return this;
     }
 
@@ -155,7 +155,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder determines(final Thing thing) {
-        acceptanceOfOffer.addValue(DETERMINES, new IRI(thing.getId()));
+        this.acceptanceOfOffer.addValue(DETERMINES, new IRI(thing.getId()));
         return this;
     }
 
@@ -167,7 +167,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder ending(final Event event) {
-        acceptanceOfOffer.addValue(ENDING, new IRI(event.getId()));
+        this.acceptanceOfOffer.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -184,7 +184,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder member__Of(final Class clazz) {
-        acceptanceOfOffer.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.acceptanceOfOffer.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -199,7 +199,7 @@ public class AcceptanceOfOfferBuilder {
      */
     public final AcceptanceOfOfferBuilder member_Of(
             final ClassOfSociallyConstructedActivity classOfSociallyConstructedActivity) {
-        acceptanceOfOffer.addValue(MEMBER_OF, new IRI(classOfSociallyConstructedActivity.getId()));
+        this.acceptanceOfOffer.addValue(MEMBER_OF, new IRI(classOfSociallyConstructedActivity.getId()));
         return this;
     }
 
@@ -212,7 +212,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        acceptanceOfOffer.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.acceptanceOfOffer.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
         return this;
     }
 
@@ -225,7 +225,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        acceptanceOfOffer.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.acceptanceOfOffer.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -238,7 +238,7 @@ public class AcceptanceOfOfferBuilder {
      * @return Builder
      */
     public final AcceptanceOfOfferBuilder part_Of_M(final AgreeContract agreeContract) {
-        acceptanceOfOffer.addValue(PART_OF, new IRI(agreeContract.getId()));
+        this.acceptanceOfOffer.addValue(PART_OF, new IRI(agreeContract.getId()));
         return this;
     }
 
@@ -252,7 +252,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder part_Of_(final AgreementExecution agreementExecution) {
-        acceptanceOfOffer.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.acceptanceOfOffer.addValue(PART_OF_, new IRI(agreementExecution.getId()));
         return this;
     }
 
@@ -271,7 +271,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        acceptanceOfOffer.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.acceptanceOfOffer.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -284,7 +284,7 @@ public class AcceptanceOfOfferBuilder {
      * @return Builder
      */
     public final AcceptanceOfOfferBuilder references_M(final Offer offer) {
-        acceptanceOfOffer.addValue(REFERENCES, new IRI(offer.getId()));
+        this.acceptanceOfOffer.addValue(REFERENCES, new IRI(offer.getId()));
         return this;
     }
 
@@ -297,7 +297,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        acceptanceOfOffer.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.acceptanceOfOffer.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -320,7 +320,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder temporal_Part_Of(final Individual individual) {
-        acceptanceOfOffer.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.acceptanceOfOffer.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -331,61 +331,61 @@ public class AcceptanceOfOfferBuilder {
      * @throws HqdmException If the AcceptanceOfOffer is missing any mandatory properties.
      */
     public AcceptanceOfOffer build() throws HqdmException {
-        if (acceptanceOfOffer.hasValue(AGGREGATED_INTO)
-                && acceptanceOfOffer.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.acceptanceOfOffer.hasValue(AGGREGATED_INTO)
+                && this.acceptanceOfOffer.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (acceptanceOfOffer.hasValue(BEGINNING)
-                && acceptanceOfOffer.value(BEGINNING).isEmpty()) {
+        if (this.acceptanceOfOffer.hasValue(BEGINNING)
+                && this.acceptanceOfOffer.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!acceptanceOfOffer.hasValue(CAUSES)) {
+        if (!this.acceptanceOfOffer.hasValue(CAUSES)) {
             throw new HqdmException("Property Not Set: causes");
         }
-        if (acceptanceOfOffer.hasValue(DETERMINES)
-                && acceptanceOfOffer.value(DETERMINES).isEmpty()) {
+        if (this.acceptanceOfOffer.hasValue(DETERMINES)
+                && this.acceptanceOfOffer.value(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
-        if (acceptanceOfOffer.hasValue(ENDING)
-                && acceptanceOfOffer.value(ENDING).isEmpty()) {
+        if (this.acceptanceOfOffer.hasValue(ENDING)
+                && this.acceptanceOfOffer.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (acceptanceOfOffer.hasValue(MEMBER__OF)
-                && acceptanceOfOffer.value(MEMBER__OF).isEmpty()) {
+        if (this.acceptanceOfOffer.hasValue(MEMBER__OF)
+                && this.acceptanceOfOffer.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (acceptanceOfOffer.hasValue(MEMBER_OF)
-                && acceptanceOfOffer.value(MEMBER_OF).isEmpty()) {
+        if (this.acceptanceOfOffer.hasValue(MEMBER_OF)
+                && this.acceptanceOfOffer.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!acceptanceOfOffer.hasValue(MEMBER_OF_KIND)) {
+        if (!this.acceptanceOfOffer.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (acceptanceOfOffer.hasValue(PART__OF)
-                && acceptanceOfOffer.value(PART__OF).isEmpty()) {
+        if (this.acceptanceOfOffer.hasValue(PART__OF)
+                && this.acceptanceOfOffer.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!acceptanceOfOffer.hasValue(PART_OF)) {
+        if (!this.acceptanceOfOffer.hasValue(PART_OF)) {
             throw new HqdmException("Property Not Set: part_of");
         }
-        if (acceptanceOfOffer.hasValue(PART_OF_)
-                && acceptanceOfOffer.value(PART_OF_).isEmpty()) {
+        if (this.acceptanceOfOffer.hasValue(PART_OF_)
+                && this.acceptanceOfOffer.value(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
-        if (!acceptanceOfOffer.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.acceptanceOfOffer.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (!acceptanceOfOffer.hasValue(REFERENCES)) {
+        if (!this.acceptanceOfOffer.hasValue(REFERENCES)) {
             throw new HqdmException("Property Not Set: references");
         }
-        if (acceptanceOfOffer.hasValue(TEMPORAL__PART_OF)
-                && acceptanceOfOffer.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.acceptanceOfOffer.hasValue(TEMPORAL__PART_OF)
+                && this.acceptanceOfOffer.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (acceptanceOfOffer.hasValue(TEMPORAL_PART_OF)
-                && acceptanceOfOffer.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.acceptanceOfOffer.hasValue(TEMPORAL_PART_OF)
+                && this.acceptanceOfOffer.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        return acceptanceOfOffer;
+        return this.acceptanceOfOffer;
     }
 }

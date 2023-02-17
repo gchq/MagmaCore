@@ -37,7 +37,7 @@ public class ClassBuilder {
      * @param iri IRI of the Class.
      */
     public ClassBuilder(final IRI iri) {
-        clazz = RdfClassServices.createClass(iri.getIri());
+        this.clazz = RdfClassServices.createClass(iri.getIri());
     }
 
     /**
@@ -48,7 +48,7 @@ public class ClassBuilder {
      * @return This builder.
      */
     public final ClassBuilder has_Superclass(final Class clazz) {
-        clazz.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.clazz.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -60,7 +60,7 @@ public class ClassBuilder {
      * @return This builder.
      */
     public final ClassBuilder member__Of(final Class clazz) {
-        clazz.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.clazz.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -73,7 +73,7 @@ public class ClassBuilder {
      * @return This builder.
      */
     public final ClassBuilder member_Of(final ClassOfClass classOfClass) {
-        clazz.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.clazz.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -84,18 +84,18 @@ public class ClassBuilder {
      * @throws HqdmException If the Class is missing any mandatory properties.
      */
     public Class build() throws HqdmException {
-        if (clazz.hasValue(HAS_SUPERCLASS)
-                && clazz.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.clazz.hasValue(HAS_SUPERCLASS)
+                && this.clazz.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (clazz.hasValue(MEMBER__OF)
-                && clazz.value(MEMBER__OF).isEmpty()) {
+        if (this.clazz.hasValue(MEMBER__OF)
+                && this.clazz.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (clazz.hasValue(MEMBER_OF)
-                && clazz.value(MEMBER_OF).isEmpty()) {
+        if (this.clazz.hasValue(MEMBER_OF)
+                && this.clazz.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        return clazz;
+        return this.clazz;
     }
 }

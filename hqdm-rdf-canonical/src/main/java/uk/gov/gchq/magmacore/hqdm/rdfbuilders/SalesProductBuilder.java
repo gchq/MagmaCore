@@ -63,7 +63,7 @@ public class SalesProductBuilder {
      */
     public final SalesProductBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        salesProduct.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.salesProduct.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -75,7 +75,7 @@ public class SalesProductBuilder {
      * @return This builder.
      */
     public final SalesProductBuilder has_Superclass(final Class clazz) {
-        salesProduct.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.salesProduct.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class SalesProductBuilder {
      */
     public final SalesProductBuilder meets_Specification(
             final RequirementSpecification requirementSpecification) {
-        salesProduct.addValue(MEETS_SPECIFICATION, new IRI(requirementSpecification.getId()));
+        this.salesProduct.addValue(MEETS_SPECIFICATION, new IRI(requirementSpecification.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class SalesProductBuilder {
      * @return This builder.
      */
     public final SalesProductBuilder member__Of(final Class clazz) {
-        salesProduct.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.salesProduct.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -117,7 +117,7 @@ public class SalesProductBuilder {
      * @return This builder.
      */
     public final SalesProductBuilder member_Of(final ClassOfClass classOfClass) {
-        salesProduct.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.salesProduct.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -131,7 +131,7 @@ public class SalesProductBuilder {
      */
     public final SalesProductBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        salesProduct.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.salesProduct.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -147,7 +147,7 @@ public class SalesProductBuilder {
      */
     public final SalesProductBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        salesProduct.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.salesProduct.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -159,7 +159,7 @@ public class SalesProductBuilder {
      * @return This builder.
      */
     public final SalesProductBuilder sold_Under(final ProductBrand productBrand) {
-        salesProduct.addValue(SOLD_UNDER, new IRI(productBrand.getId()));
+        this.salesProduct.addValue(SOLD_UNDER, new IRI(productBrand.getId()));
         return this;
     }
 
@@ -170,32 +170,32 @@ public class SalesProductBuilder {
      * @throws HqdmException If the SalesProduct is missing any mandatory properties.
      */
     public SalesProduct build() throws HqdmException {
-        if (salesProduct.hasValue(HAS_SUPERCLASS)
-                && salesProduct.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.salesProduct.hasValue(HAS_SUPERCLASS)
+                && this.salesProduct.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (salesProduct.hasValue(MEETS_SPECIFICATION)
-                && salesProduct.value(MEETS_SPECIFICATION).isEmpty()) {
+        if (this.salesProduct.hasValue(MEETS_SPECIFICATION)
+                && this.salesProduct.value(MEETS_SPECIFICATION).isEmpty()) {
             throw new HqdmException("Property Not Set: meets_specification");
         }
-        if (salesProduct.hasValue(MEMBER__OF)
-                && salesProduct.value(MEMBER__OF).isEmpty()) {
+        if (this.salesProduct.hasValue(MEMBER__OF)
+                && this.salesProduct.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (salesProduct.hasValue(MEMBER_OF)
-                && salesProduct.value(MEMBER_OF).isEmpty()) {
+        if (this.salesProduct.hasValue(MEMBER_OF)
+                && this.salesProduct.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (salesProduct.hasValue(MEMBER_OF_)
-                && salesProduct.value(MEMBER_OF_).isEmpty()) {
+        if (this.salesProduct.hasValue(MEMBER_OF_)
+                && this.salesProduct.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (salesProduct.hasValue(PART__OF_BY_CLASS)
-                && salesProduct.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.salesProduct.hasValue(PART__OF_BY_CLASS)
+                && this.salesProduct.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (salesProduct.hasValue(SOLD_UNDER)
-                && salesProduct.value(SOLD_UNDER).isEmpty()) {
+        if (this.salesProduct.hasValue(SOLD_UNDER)
+                && this.salesProduct.value(SOLD_UNDER).isEmpty()) {
             throw new HqdmException("Property Not Set: sold_under");
         }
         return salesProduct;

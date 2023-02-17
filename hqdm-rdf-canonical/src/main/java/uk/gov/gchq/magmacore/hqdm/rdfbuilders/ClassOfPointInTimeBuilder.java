@@ -43,7 +43,7 @@ public class ClassOfPointInTimeBuilder {
      * @param iri IRI of the ClassOfPointInTime.
      */
     public ClassOfPointInTimeBuilder(final IRI iri) {
-        classOfPointInTime = RdfClassServices.createClassOfPointInTime(iri.getIri());
+        this.classOfPointInTime = RdfClassServices.createClassOfPointInTime(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfPointInTimeBuilder {
      */
     public final ClassOfPointInTimeBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfPointInTime.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfPointInTime.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfPointInTimeBuilder {
      * @return This builder.
      */
     public final ClassOfPointInTimeBuilder has_Superclass(final Class clazz) {
-        classOfPointInTime.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfPointInTime.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfPointInTimeBuilder {
      * @return This builder.
      */
     public final ClassOfPointInTimeBuilder member__Of(final Class clazz) {
-        classOfPointInTime.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfPointInTime.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfPointInTimeBuilder {
      * @return This builder.
      */
     public final ClassOfPointInTimeBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfPointInTime.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfPointInTime.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfPointInTimeBuilder {
      */
     public final ClassOfPointInTimeBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfPointInTime.addValue(MEMBER_OF_,
+        this.classOfPointInTime.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class ClassOfPointInTimeBuilder {
      */
     public final ClassOfPointInTimeBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfPointInTime.addValue(PART__OF_BY_CLASS,
+        this.classOfPointInTime.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -140,26 +140,26 @@ public class ClassOfPointInTimeBuilder {
      * @throws HqdmException If the ClassOfPointInTime is missing any mandatory properties.
      */
     public ClassOfPointInTime build() throws HqdmException {
-        if (classOfPointInTime.hasValue(HAS_SUPERCLASS)
-                && classOfPointInTime.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfPointInTime.hasValue(HAS_SUPERCLASS)
+                && this.classOfPointInTime.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfPointInTime.hasValue(MEMBER__OF)
-                && classOfPointInTime.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfPointInTime.hasValue(MEMBER__OF)
+                && this.classOfPointInTime.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfPointInTime.hasValue(MEMBER_OF)
-                && classOfPointInTime.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfPointInTime.hasValue(MEMBER_OF)
+                && this.classOfPointInTime.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfPointInTime.hasValue(MEMBER_OF_)
-                && classOfPointInTime.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfPointInTime.hasValue(MEMBER_OF_)
+                && this.classOfPointInTime.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfPointInTime.hasValue(PART__OF_BY_CLASS)
-                && classOfPointInTime.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfPointInTime.hasValue(PART__OF_BY_CLASS)
+                && this.classOfPointInTime.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfPointInTime;
+        return this.classOfPointInTime;
     }
 }

@@ -53,7 +53,7 @@ public class BiologicalSystemBuilder {
      * @param iri IRI of the BiologicalSystem.
      */
     public BiologicalSystemBuilder(final IRI iri) {
-        biologicalSystem = RdfSpatioTemporalExtentServices.createBiologicalSystem(iri.getIri());
+        this.biologicalSystem = RdfSpatioTemporalExtentServices.createBiologicalSystem(iri.getIri());
     }
 
     /**
@@ -68,7 +68,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        biologicalSystem.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalSystem.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder beginning(final Event event) {
-        biologicalSystem.addValue(BEGINNING, new IRI(event.getId()));
+        this.biologicalSystem.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -95,7 +95,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        biologicalSystem.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalSystem.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -107,7 +107,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder ending(final Event event) {
-        biologicalSystem.addValue(ENDING, new IRI(event.getId()));
+        this.biologicalSystem.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder member__Of(final Class clazz) {
-        biologicalSystem.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.biologicalSystem.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -132,7 +132,7 @@ public class BiologicalSystemBuilder {
      * @return Builder
      */
     public final BiologicalSystemBuilder member_Of(final ClassOfBiologicalSystem classOfBiologicalSystem) {
-        biologicalSystem.addValue(MEMBER_OF, new IRI(classOfBiologicalSystem.getId()));
+        this.biologicalSystem.addValue(MEMBER_OF, new IRI(classOfBiologicalSystem.getId()));
         return this;
     }
 
@@ -145,7 +145,7 @@ public class BiologicalSystemBuilder {
      * @return Builder
      */
     public final BiologicalSystemBuilder member_Of_Kind(final KindOfBiologicalSystem kindOfBiologicalSystem) {
-        biologicalSystem.addValue(MEMBER_OF_KIND, new IRI(kindOfBiologicalSystem.getId()));
+        this.biologicalSystem.addValue(MEMBER_OF_KIND, new IRI(kindOfBiologicalSystem.getId()));
         return this;
     }
 
@@ -157,7 +157,7 @@ public class BiologicalSystemBuilder {
      * @return Builder
      */
     public final BiologicalSystemBuilder natural_Role_M(final Role role) {
-        biologicalSystem.addValue(NATURAL_ROLE, new IRI(role.getId()));
+        this.biologicalSystem.addValue(NATURAL_ROLE, new IRI(role.getId()));
         return this;
     }
 
@@ -170,7 +170,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        biologicalSystem.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalSystem.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -189,7 +189,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        biologicalSystem.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.biologicalSystem.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -202,7 +202,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        biologicalSystem.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalSystem.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -217,7 +217,7 @@ public class BiologicalSystemBuilder {
      */
     public final BiologicalSystemBuilder temporal_Part_Of(
             final OrdinaryBiologicalObject ordinaryBiologicalObject) {
-        biologicalSystem.addValue(TEMPORAL_PART_OF, new IRI(ordinaryBiologicalObject.getId()));
+        this.biologicalSystem.addValue(TEMPORAL_PART_OF, new IRI(ordinaryBiologicalObject.getId()));
         return this;
     }
 
@@ -228,48 +228,48 @@ public class BiologicalSystemBuilder {
      * @throws HqdmException If the BiologicalSystem is missing any mandatory properties.
      */
     public BiologicalSystem build() throws HqdmException {
-        if (biologicalSystem.hasValue(AGGREGATED_INTO)
-                && biologicalSystem.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.biologicalSystem.hasValue(AGGREGATED_INTO)
+                && this.biologicalSystem.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (biologicalSystem.hasValue(BEGINNING)
-                && biologicalSystem.value(BEGINNING).isEmpty()) {
+        if (this.biologicalSystem.hasValue(BEGINNING)
+                && this.biologicalSystem.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (biologicalSystem.hasValue(ENDING)
-                && biologicalSystem.value(ENDING).isEmpty()) {
+        if (this.biologicalSystem.hasValue(ENDING)
+                && this.biologicalSystem.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (biologicalSystem.hasValue(MEMBER__OF)
-                && biologicalSystem.value(MEMBER__OF).isEmpty()) {
+        if (this.biologicalSystem.hasValue(MEMBER__OF)
+                && this.biologicalSystem.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (biologicalSystem.hasValue(MEMBER_OF)
-                && biologicalSystem.value(MEMBER_OF).isEmpty()) {
+        if (this.biologicalSystem.hasValue(MEMBER_OF)
+                && this.biologicalSystem.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (biologicalSystem.hasValue(MEMBER_OF_KIND)
-                && biologicalSystem.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.biologicalSystem.hasValue(MEMBER_OF_KIND)
+                && this.biologicalSystem.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (!biologicalSystem.hasValue(NATURAL_ROLE)) {
+        if (!this.biologicalSystem.hasValue(NATURAL_ROLE)) {
             throw new HqdmException("Property Not Set: natural_role");
         }
-        if (biologicalSystem.hasValue(PART__OF)
-                && biologicalSystem.value(PART__OF).isEmpty()) {
+        if (this.biologicalSystem.hasValue(PART__OF)
+                && this.biologicalSystem.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!biologicalSystem.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.biologicalSystem.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (biologicalSystem.hasValue(TEMPORAL__PART_OF)
-                && biologicalSystem.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.biologicalSystem.hasValue(TEMPORAL__PART_OF)
+                && this.biologicalSystem.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (biologicalSystem.hasValue(TEMPORAL_PART_OF)
-                && biologicalSystem.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.biologicalSystem.hasValue(TEMPORAL_PART_OF)
+                && this.biologicalSystem.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        return biologicalSystem;
+        return this.biologicalSystem;
     }
 }

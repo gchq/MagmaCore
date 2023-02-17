@@ -43,7 +43,7 @@ public class ClassOfSalesProductInstanceBuilder {
      * @param iri IRI of the ClassOfSalesProductInstance.
      */
     public ClassOfSalesProductInstanceBuilder(final IRI iri) {
-        classOfSalesProductInstance = RdfClassServices.createClassOfSalesProductInstance(iri.getIri());
+        this.classOfSalesProductInstance = RdfClassServices.createClassOfSalesProductInstance(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfSalesProductInstanceBuilder {
      */
     public final ClassOfSalesProductInstanceBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfSalesProductInstance.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfSalesProductInstance.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final ClassOfSalesProductInstanceBuilder has_Superclass(final Class clazz) {
-        classOfSalesProductInstance.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfSalesProductInstance.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final ClassOfSalesProductInstanceBuilder member__Of(final Class clazz) {
-        classOfSalesProductInstance.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfSalesProductInstance.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final ClassOfSalesProductInstanceBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfSalesProductInstance.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfSalesProductInstance.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfSalesProductInstanceBuilder {
      */
     public final ClassOfSalesProductInstanceBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfSalesProductInstance.addValue(MEMBER_OF_,
+        this.classOfSalesProductInstance.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class ClassOfSalesProductInstanceBuilder {
      */
     public final ClassOfSalesProductInstanceBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfSalesProductInstance.addValue(PART__OF_BY_CLASS,
+        this.classOfSalesProductInstance.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -141,26 +141,26 @@ public class ClassOfSalesProductInstanceBuilder {
      * @throws HqdmException If the ClassOfSalesProductInstance is missing any mandatory properties.
      */
     public ClassOfSalesProductInstance build() throws HqdmException {
-        if (classOfSalesProductInstance.hasValue(HAS_SUPERCLASS)
-                && classOfSalesProductInstance.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfSalesProductInstance.hasValue(HAS_SUPERCLASS)
+                && this.classOfSalesProductInstance.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfSalesProductInstance.hasValue(MEMBER__OF)
-                && classOfSalesProductInstance.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfSalesProductInstance.hasValue(MEMBER__OF)
+                && this.classOfSalesProductInstance.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfSalesProductInstance.hasValue(MEMBER_OF)
-                && classOfSalesProductInstance.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfSalesProductInstance.hasValue(MEMBER_OF)
+                && this.classOfSalesProductInstance.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfSalesProductInstance.hasValue(MEMBER_OF_)
-                && classOfSalesProductInstance.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfSalesProductInstance.hasValue(MEMBER_OF_)
+                && this.classOfSalesProductInstance.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfSalesProductInstance.hasValue(PART__OF_BY_CLASS)
-                && classOfSalesProductInstance.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfSalesProductInstance.hasValue(PART__OF_BY_CLASS)
+                && this.classOfSalesProductInstance.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfSalesProductInstance;
+        return this.classOfSalesProductInstance;
     }
 }

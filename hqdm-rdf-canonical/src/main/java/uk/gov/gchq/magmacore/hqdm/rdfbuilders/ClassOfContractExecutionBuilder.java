@@ -47,7 +47,7 @@ public class ClassOfContractExecutionBuilder {
      * @param iri IRI of the ClassOfContractExecution.
      */
     public ClassOfContractExecutionBuilder(final IRI iri) {
-        classOfContractExecution = RdfClassServices.createClassOfContractExecution(iri.getIri());
+        this.classOfContractExecution = RdfClassServices.createClassOfContractExecution(iri.getIri());
     }
 
     /**
@@ -63,7 +63,7 @@ public class ClassOfContractExecutionBuilder {
      */
     public final ClassOfContractExecutionBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfContractExecution.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfContractExecution.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -76,7 +76,7 @@ public class ClassOfContractExecutionBuilder {
      * @return This builder.
      */
     public final ClassOfContractExecutionBuilder has_Superclass(final Class clazz) {
-        classOfContractExecution.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfContractExecution.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -88,7 +88,7 @@ public class ClassOfContractExecutionBuilder {
      * @return This builder.
      */
     public final ClassOfContractExecutionBuilder member__Of(final Class clazz) {
-        classOfContractExecution.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfContractExecution.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -101,7 +101,7 @@ public class ClassOfContractExecutionBuilder {
      * @return This builder.
      */
     public final ClassOfContractExecutionBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfContractExecution.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfContractExecution.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class ClassOfContractExecutionBuilder {
      */
     public final ClassOfContractExecutionBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfContractExecution.addValue(MEMBER_OF_,
+        this.classOfContractExecution.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -132,7 +132,7 @@ public class ClassOfContractExecutionBuilder {
      */
     public final ClassOfContractExecutionBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfContractExecution.addValue(PART__OF_BY_CLASS,
+        this.classOfContractExecution.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -149,7 +149,7 @@ public class ClassOfContractExecutionBuilder {
      */
     public final ClassOfContractExecutionBuilder part_Of_By_Class(
             final ClassOfContractProcess classOfContractProcess) {
-        classOfContractExecution.addValue(PART_OF_BY_CLASS,
+        this.classOfContractExecution.addValue(PART_OF_BY_CLASS,
                 new IRI(classOfContractProcess.getId()));
         return this;
     }
@@ -167,7 +167,7 @@ public class ClassOfContractExecutionBuilder {
      */
     public final ClassOfContractExecutionBuilder part_Of_By_Class_(
             final ClassOfAgreementExecution classOfAgreementExecution) {
-        classOfContractExecution.addValue(PART_OF_BY_CLASS_,
+        this.classOfContractExecution.addValue(PART_OF_BY_CLASS_,
                 new IRI(classOfAgreementExecution.getId()));
         return this;
     }
@@ -179,34 +179,34 @@ public class ClassOfContractExecutionBuilder {
      * @throws HqdmException If the ClassOfContractExecution is missing any mandatory properties.
      */
     public ClassOfContractExecution build() throws HqdmException {
-        if (classOfContractExecution.hasValue(HAS_SUPERCLASS)
-                && classOfContractExecution.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfContractExecution.hasValue(HAS_SUPERCLASS)
+                && this.classOfContractExecution.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfContractExecution.hasValue(MEMBER__OF)
-                && classOfContractExecution.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfContractExecution.hasValue(MEMBER__OF)
+                && this.classOfContractExecution.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfContractExecution.hasValue(MEMBER_OF)
-                && classOfContractExecution.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfContractExecution.hasValue(MEMBER_OF)
+                && this.classOfContractExecution.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfContractExecution.hasValue(MEMBER_OF_)
-                && classOfContractExecution.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfContractExecution.hasValue(MEMBER_OF_)
+                && this.classOfContractExecution.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfContractExecution.hasValue(PART__OF_BY_CLASS)
-                && classOfContractExecution.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfContractExecution.hasValue(PART__OF_BY_CLASS)
+                && this.classOfContractExecution.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (classOfContractExecution.hasValue(PART_OF_BY_CLASS)
-                && classOfContractExecution.value(PART_OF_BY_CLASS).isEmpty()) {
+        if (this.classOfContractExecution.hasValue(PART_OF_BY_CLASS)
+                && this.classOfContractExecution.value(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
-        if (classOfContractExecution.hasValue(PART_OF_BY_CLASS_)
-                && classOfContractExecution.value(PART_OF_BY_CLASS_).isEmpty()) {
+        if (this.classOfContractExecution.hasValue(PART_OF_BY_CLASS_)
+                && this.classOfContractExecution.value(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
-        return classOfContractExecution;
+        return this.classOfContractExecution;
     }
 }

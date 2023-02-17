@@ -65,7 +65,7 @@ public class LanguageCommunityBuilder {
      * @return This builder.
      */
     public final LanguageCommunityBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        languageCommunity.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.languageCommunity.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -77,7 +77,7 @@ public class LanguageCommunityBuilder {
      * @return This builder.
      */
     public final LanguageCommunityBuilder beginning(final Event event) {
-        languageCommunity.addValue(BEGINNING, new IRI(event.getId()));
+        this.languageCommunity.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class LanguageCommunityBuilder {
      * @return This builder.
      */
     public final LanguageCommunityBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        languageCommunity.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.languageCommunity.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class LanguageCommunityBuilder {
      * @return This builder.
      */
     public final LanguageCommunityBuilder ending(final Event event) {
-        languageCommunity.addValue(ENDING, new IRI(event.getId()));
+        this.languageCommunity.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -116,7 +116,7 @@ public class LanguageCommunityBuilder {
      * @return This builder.
      */
     public final LanguageCommunityBuilder member__Of(final Class clazz) {
-        languageCommunity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.languageCommunity.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -131,7 +131,7 @@ public class LanguageCommunityBuilder {
      */
     public final LanguageCommunityBuilder member_Of(
             final ClassOfStateOfOrganization classOfStateOfOrganization) {
-        languageCommunity.addValue(MEMBER_OF, new IRI(classOfStateOfOrganization.getId()));
+        this.languageCommunity.addValue(MEMBER_OF, new IRI(classOfStateOfOrganization.getId()));
         return this;
     }
 
@@ -145,7 +145,7 @@ public class LanguageCommunityBuilder {
      * @return This builder.
      */
     public final LanguageCommunityBuilder member_Of_Kind(final KindOfOrganization kindOfOrganization) {
-        languageCommunity.addValue(MEMBER_OF_KIND, new IRI(kindOfOrganization.getId()));
+        this.languageCommunity.addValue(MEMBER_OF_KIND, new IRI(kindOfOrganization.getId()));
         return this;
     }
 
@@ -158,7 +158,7 @@ public class LanguageCommunityBuilder {
      * @return This builder.
      */
     public final LanguageCommunityBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        languageCommunity.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.languageCommunity.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -177,7 +177,7 @@ public class LanguageCommunityBuilder {
      * @return This builder.
      */
     public final LanguageCommunityBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        languageCommunity.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.languageCommunity.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -190,7 +190,7 @@ public class LanguageCommunityBuilder {
      * @return This builder.
      */
     public final LanguageCommunityBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        languageCommunity.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.languageCommunity.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -204,7 +204,7 @@ public class LanguageCommunityBuilder {
      * @return This builder.
      */
     public final LanguageCommunityBuilder temporal_Part_Of(final LanguageCommunity languageCommunity) {
-        languageCommunity.addValue(TEMPORAL_PART_OF, new IRI(languageCommunity.getId()));
+        this.languageCommunity.addValue(TEMPORAL_PART_OF, new IRI(languageCommunity.getId()));
         return this;
     }
 
@@ -215,43 +215,43 @@ public class LanguageCommunityBuilder {
      * @throws HqdmException If the LanguageCommunity is missing any mandatory properties.
      */
     public LanguageCommunity build() throws HqdmException {
-        if (languageCommunity.hasValue(AGGREGATED_INTO)
-                && languageCommunity.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.languageCommunity.hasValue(AGGREGATED_INTO)
+                && this.languageCommunity.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (languageCommunity.hasValue(BEGINNING)
-                && languageCommunity.value(BEGINNING).isEmpty()) {
+        if (this.languageCommunity.hasValue(BEGINNING)
+                && this.languageCommunity.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (languageCommunity.hasValue(ENDING)
-                && languageCommunity.value(ENDING).isEmpty()) {
+        if (this.languageCommunity.hasValue(ENDING)
+                && this.languageCommunity.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (languageCommunity.hasValue(MEMBER__OF)
-                && languageCommunity.value(MEMBER__OF).isEmpty()) {
+        if (this.languageCommunity.hasValue(MEMBER__OF)
+                && this.languageCommunity.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (languageCommunity.hasValue(MEMBER_OF)
-                && languageCommunity.value(MEMBER_OF).isEmpty()) {
+        if (this.languageCommunity.hasValue(MEMBER_OF)
+                && this.languageCommunity.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (languageCommunity.hasValue(MEMBER_OF_KIND)
-                && languageCommunity.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.languageCommunity.hasValue(MEMBER_OF_KIND)
+                && this.languageCommunity.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (languageCommunity.hasValue(PART__OF)
-                && languageCommunity.value(PART__OF).isEmpty()) {
+        if (this.languageCommunity.hasValue(PART__OF)
+                && this.languageCommunity.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!languageCommunity.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.languageCommunity.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (languageCommunity.hasValue(TEMPORAL__PART_OF)
-                && languageCommunity.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.languageCommunity.hasValue(TEMPORAL__PART_OF)
+                && this.languageCommunity.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (languageCommunity.hasValue(TEMPORAL_PART_OF)
-                && languageCommunity.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.languageCommunity.hasValue(TEMPORAL_PART_OF)
+                && this.languageCommunity.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return languageCommunity;

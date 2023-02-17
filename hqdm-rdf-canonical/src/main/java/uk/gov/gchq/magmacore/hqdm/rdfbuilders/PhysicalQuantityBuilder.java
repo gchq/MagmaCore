@@ -61,7 +61,7 @@ public class PhysicalQuantityBuilder {
      */
     public final PhysicalQuantityBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        physicalQuantity.addValue(CONSISTS__OF_BY_CLASS,
+        this.physicalQuantity.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -74,7 +74,7 @@ public class PhysicalQuantityBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityBuilder has_Superclass(final Class clazz) {
-        physicalQuantity.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.physicalQuantity.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -86,7 +86,7 @@ public class PhysicalQuantityBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityBuilder member__Of(final Class clazz) {
-        physicalQuantity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.physicalQuantity.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -99,7 +99,7 @@ public class PhysicalQuantityBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityBuilder member_Of(final ClassOfPhysicalQuantity classOfPhysicalQuantity) {
-        physicalQuantity.addValue(MEMBER_OF, new IRI(classOfPhysicalQuantity.getId()));
+        this.physicalQuantity.addValue(MEMBER_OF, new IRI(classOfPhysicalQuantity.getId()));
         return this;
     }
 
@@ -113,7 +113,7 @@ public class PhysicalQuantityBuilder {
      */
     public final PhysicalQuantityBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        physicalQuantity.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.physicalQuantity.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -126,7 +126,7 @@ public class PhysicalQuantityBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityBuilder member_Of_Kind_M(final KindOfPhysicalQuantity kindOfPhysicalQuantity) {
-        physicalQuantity.addValue(MEMBER_OF_KIND, new IRI(kindOfPhysicalQuantity.getId()));
+        this.physicalQuantity.addValue(MEMBER_OF_KIND, new IRI(kindOfPhysicalQuantity.getId()));
         return this;
     }
 
@@ -142,7 +142,7 @@ public class PhysicalQuantityBuilder {
      */
     public final PhysicalQuantityBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        physicalQuantity.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.physicalQuantity.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -153,27 +153,27 @@ public class PhysicalQuantityBuilder {
      * @throws HqdmException If the PhysicalQuantity is missing any mandatory properties.
      */
     public PhysicalQuantity build() throws HqdmException {
-        if (physicalQuantity.hasValue(HAS_SUPERCLASS)
-                && physicalQuantity.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.physicalQuantity.hasValue(HAS_SUPERCLASS)
+                && this.physicalQuantity.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (physicalQuantity.hasValue(MEMBER__OF)
-                && physicalQuantity.value(MEMBER__OF).isEmpty()) {
+        if (this.physicalQuantity.hasValue(MEMBER__OF)
+                && this.physicalQuantity.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (physicalQuantity.hasValue(MEMBER_OF)
-                && physicalQuantity.value(MEMBER_OF).isEmpty()) {
+        if (this.physicalQuantity.hasValue(MEMBER_OF)
+                && this.physicalQuantity.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (physicalQuantity.hasValue(MEMBER_OF_)
-                && physicalQuantity.value(MEMBER_OF_).isEmpty()) {
+        if (this.physicalQuantity.hasValue(MEMBER_OF_)
+                && this.physicalQuantity.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (!physicalQuantity.hasValue(MEMBER_OF_KIND)) {
+        if (!this.physicalQuantity.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (physicalQuantity.hasValue(PART__OF_BY_CLASS)
-                && physicalQuantity.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.physicalQuantity.hasValue(PART__OF_BY_CLASS)
+                && this.physicalQuantity.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return physicalQuantity;

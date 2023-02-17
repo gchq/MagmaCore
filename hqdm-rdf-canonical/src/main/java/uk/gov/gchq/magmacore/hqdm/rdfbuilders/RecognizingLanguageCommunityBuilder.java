@@ -68,7 +68,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        recognizingLanguageCommunity.addValue(AGGREGATED_INTO,
+        this.recognizingLanguageCommunity.addValue(AGGREGATED_INTO,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -81,7 +81,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder beginning(final Event event) {
-        recognizingLanguageCommunity.addValue(BEGINNING, new IRI(event.getId()));
+        this.recognizingLanguageCommunity.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -96,7 +96,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        recognizingLanguageCommunity.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.recognizingLanguageCommunity.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -108,7 +108,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder ending(final Event event) {
-        recognizingLanguageCommunity.addValue(ENDING, new IRI(event.getId()));
+        this.recognizingLanguageCommunity.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -120,7 +120,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder member__Of(final Class clazz) {
-        recognizingLanguageCommunity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.recognizingLanguageCommunity.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -135,7 +135,7 @@ public class RecognizingLanguageCommunityBuilder {
      */
     public final RecognizingLanguageCommunityBuilder member_Of(
             final ClassOfStateOfOrganization classOfStateOfOrganization) {
-        recognizingLanguageCommunity.addValue(MEMBER_OF,
+        this.recognizingLanguageCommunity.addValue(MEMBER_OF,
                 new IRI(classOfStateOfOrganization.getId()));
         return this;
     }
@@ -149,7 +149,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder member_Of_Kind_M(final Role role) {
-        recognizingLanguageCommunity.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
+        this.recognizingLanguageCommunity.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
         return this;
     }
 
@@ -162,7 +162,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        recognizingLanguageCommunity.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.recognizingLanguageCommunity.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -181,7 +181,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        recognizingLanguageCommunity.addValue(PART_OF_POSSIBLE_WORLD,
+        this.recognizingLanguageCommunity.addValue(PART_OF_POSSIBLE_WORLD,
                 new IRI(possibleWorld.getId()));
         return this;
     }
@@ -196,7 +196,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder participant_In(final RepresentationBySign representationBySign) {
-        recognizingLanguageCommunity.addValue(PARTICIPANT_IN,
+        this.recognizingLanguageCommunity.addValue(PARTICIPANT_IN,
                 new IRI(representationBySign.getId()));
         return this;
     }
@@ -211,7 +211,7 @@ public class RecognizingLanguageCommunityBuilder {
      */
     public final RecognizingLanguageCommunityBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        recognizingLanguageCommunity.addValue(TEMPORAL__PART_OF,
+        this.recognizingLanguageCommunity.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -226,7 +226,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder temporal_Part_Of(final LanguageCommunity languageCommunity) {
-        recognizingLanguageCommunity.addValue(TEMPORAL_PART_OF, new IRI(languageCommunity.getId()));
+        this.recognizingLanguageCommunity.addValue(TEMPORAL_PART_OF, new IRI(languageCommunity.getId()));
         return this;
     }
 
@@ -238,46 +238,46 @@ public class RecognizingLanguageCommunityBuilder {
      * @throws HqdmException If the RecognizingLanguageCommunity is missing any mandatory properties.
      */
     public RecognizingLanguageCommunity build() throws HqdmException {
-        if (recognizingLanguageCommunity.hasValue(AGGREGATED_INTO)
-                && recognizingLanguageCommunity.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.recognizingLanguageCommunity.hasValue(AGGREGATED_INTO)
+                && this.recognizingLanguageCommunity.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (recognizingLanguageCommunity.hasValue(BEGINNING)
-                && recognizingLanguageCommunity.value(BEGINNING).isEmpty()) {
+        if (this.recognizingLanguageCommunity.hasValue(BEGINNING)
+                && this.recognizingLanguageCommunity.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (recognizingLanguageCommunity.hasValue(ENDING)
-                && recognizingLanguageCommunity.value(ENDING).isEmpty()) {
+        if (this.recognizingLanguageCommunity.hasValue(ENDING)
+                && this.recognizingLanguageCommunity.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (recognizingLanguageCommunity.hasValue(MEMBER__OF)
-                && recognizingLanguageCommunity.value(MEMBER__OF).isEmpty()) {
+        if (this.recognizingLanguageCommunity.hasValue(MEMBER__OF)
+                && this.recognizingLanguageCommunity.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (recognizingLanguageCommunity.hasValue(MEMBER_OF)
-                && recognizingLanguageCommunity.value(MEMBER_OF).isEmpty()) {
+        if (this.recognizingLanguageCommunity.hasValue(MEMBER_OF)
+                && this.recognizingLanguageCommunity.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!recognizingLanguageCommunity.hasValue(MEMBER_OF_KIND)) {
+        if (!this.recognizingLanguageCommunity.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (recognizingLanguageCommunity.hasValue(PART__OF)
-                && recognizingLanguageCommunity.value(PART__OF).isEmpty()) {
+        if (this.recognizingLanguageCommunity.hasValue(PART__OF)
+                && this.recognizingLanguageCommunity.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!recognizingLanguageCommunity.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.recognizingLanguageCommunity.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (recognizingLanguageCommunity.hasValue(PARTICIPANT_IN)
-                && recognizingLanguageCommunity.value(PARTICIPANT_IN).isEmpty()) {
+        if (this.recognizingLanguageCommunity.hasValue(PARTICIPANT_IN)
+                && this.recognizingLanguageCommunity.value(PARTICIPANT_IN).isEmpty()) {
             throw new HqdmException("Property Not Set: participant_in");
         }
-        if (recognizingLanguageCommunity.hasValue(TEMPORAL__PART_OF)
-                && recognizingLanguageCommunity.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.recognizingLanguageCommunity.hasValue(TEMPORAL__PART_OF)
+                && this.recognizingLanguageCommunity.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (recognizingLanguageCommunity.hasValue(TEMPORAL_PART_OF)
-                && recognizingLanguageCommunity.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.recognizingLanguageCommunity.hasValue(TEMPORAL_PART_OF)
+                && this.recognizingLanguageCommunity.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return recognizingLanguageCommunity;

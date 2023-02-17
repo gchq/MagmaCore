@@ -44,7 +44,7 @@ public class ClassOfStateOfOrganizationComponentBuilder {
      * @param iri IRI of the ClassOfStateOfOrganizationComponent.
      */
     public ClassOfStateOfOrganizationComponentBuilder(final IRI iri) {
-        classOfStateOfOrganizationComponent = RdfClassServices
+        this.classOfStateOfOrganizationComponent = RdfClassServices
                 .createClassOfStateOfOrganizationComponent(iri.getIri());
     }
 
@@ -61,7 +61,7 @@ public class ClassOfStateOfOrganizationComponentBuilder {
      */
     public final ClassOfStateOfOrganizationComponentBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfOrganizationComponent.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfStateOfOrganizationComponent.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -74,7 +74,7 @@ public class ClassOfStateOfOrganizationComponentBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfOrganizationComponentBuilder has_Superclass(final Class clazz) {
-        classOfStateOfOrganizationComponent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfStateOfOrganizationComponent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -86,7 +86,7 @@ public class ClassOfStateOfOrganizationComponentBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfOrganizationComponentBuilder member__Of(final Class clazz) {
-        classOfStateOfOrganizationComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfOrganizationComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -99,7 +99,7 @@ public class ClassOfStateOfOrganizationComponentBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfOrganizationComponentBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfStateOfOrganizationComponent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfStateOfOrganizationComponent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -113,7 +113,7 @@ public class ClassOfStateOfOrganizationComponentBuilder {
      */
     public final ClassOfStateOfOrganizationComponentBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfStateOfOrganizationComponent.addValue(MEMBER_OF_,
+        this.classOfStateOfOrganizationComponent.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -130,7 +130,7 @@ public class ClassOfStateOfOrganizationComponentBuilder {
      */
     public final ClassOfStateOfOrganizationComponentBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfStateOfOrganizationComponent.addValue(PART__OF_BY_CLASS,
+        this.classOfStateOfOrganizationComponent.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -144,26 +144,26 @@ public class ClassOfStateOfOrganizationComponentBuilder {
      *                       properties.
      */
     public ClassOfStateOfOrganizationComponent build() throws HqdmException {
-        if (classOfStateOfOrganizationComponent.hasValue(HAS_SUPERCLASS)
-                && classOfStateOfOrganizationComponent.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfStateOfOrganizationComponent.hasValue(HAS_SUPERCLASS)
+                && this.classOfStateOfOrganizationComponent.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfStateOfOrganizationComponent.hasValue(MEMBER__OF)
-                && classOfStateOfOrganizationComponent.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfStateOfOrganizationComponent.hasValue(MEMBER__OF)
+                && this.classOfStateOfOrganizationComponent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfStateOfOrganizationComponent.hasValue(MEMBER_OF)
-                && classOfStateOfOrganizationComponent.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfStateOfOrganizationComponent.hasValue(MEMBER_OF)
+                && this.classOfStateOfOrganizationComponent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfStateOfOrganizationComponent.hasValue(MEMBER_OF_)
-                && classOfStateOfOrganizationComponent.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfStateOfOrganizationComponent.hasValue(MEMBER_OF_)
+                && this.classOfStateOfOrganizationComponent.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfStateOfOrganizationComponent.hasValue(PART__OF_BY_CLASS)
-                && classOfStateOfOrganizationComponent.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfStateOfOrganizationComponent.hasValue(PART__OF_BY_CLASS)
+                && this.classOfStateOfOrganizationComponent.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfStateOfOrganizationComponent;
+        return this.classOfStateOfOrganizationComponent;
     }
 }

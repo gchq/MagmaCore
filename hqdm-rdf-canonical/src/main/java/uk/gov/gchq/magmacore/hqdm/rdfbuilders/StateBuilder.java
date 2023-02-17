@@ -64,7 +64,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        state.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.state.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder beginning(final Event event) {
-        state.addValue(BEGINNING, new IRI(event.getId()));
+        this.state.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        state.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.state.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder ending(final Event event) {
-        state.addValue(ENDING, new IRI(event.getId()));
+        this.state.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder member__Of(final Class clazz) {
-        state.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.state.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -128,7 +128,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder member_Of(final ClassOfState classOfState) {
-        state.addValue(MEMBER_OF, new IRI(classOfState.getId()));
+        this.state.addValue(MEMBER_OF, new IRI(classOfState.getId()));
         return this;
     }
 
@@ -141,7 +141,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        state.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.state.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -160,7 +160,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        state.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.state.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -173,7 +173,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        state.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.state.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -195,7 +195,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder temporal_Part_Of(final Individual individual) {
-        state.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.state.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -206,39 +206,39 @@ public class StateBuilder {
      * @throws HqdmException If the State is missing any mandatory properties.
      */
     public State build() throws HqdmException {
-        if (state.hasValue(AGGREGATED_INTO)
-                && state.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.state.hasValue(AGGREGATED_INTO)
+                && this.state.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (state.hasValue(BEGINNING)
-                && state.value(BEGINNING).isEmpty()) {
+        if (this.state.hasValue(BEGINNING)
+                && this.state.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (state.hasValue(ENDING)
-                && state.value(ENDING).isEmpty()) {
+        if (this.state.hasValue(ENDING)
+                && this.state.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (state.hasValue(MEMBER__OF)
-                && state.value(MEMBER__OF).isEmpty()) {
+        if (this.state.hasValue(MEMBER__OF)
+                && this.state.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (state.hasValue(MEMBER_OF)
-                && state.value(MEMBER_OF).isEmpty()) {
+        if (this.state.hasValue(MEMBER_OF)
+                && this.state.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (state.hasValue(PART__OF)
-                && state.value(PART__OF).isEmpty()) {
+        if (this.state.hasValue(PART__OF)
+                && this.state.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!state.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.state.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (state.hasValue(TEMPORAL__PART_OF)
-                && state.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.state.hasValue(TEMPORAL__PART_OF)
+                && this.state.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (state.hasValue(TEMPORAL_PART_OF)
-                && state.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.state.hasValue(TEMPORAL_PART_OF)
+                && this.state.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return state;

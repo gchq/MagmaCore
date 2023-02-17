@@ -47,7 +47,7 @@ public class ClassOfReachingAgreementBuilder {
      * @param iri IRI of the ClassOfReachingAgreement.
      */
     public ClassOfReachingAgreementBuilder(final IRI iri) {
-        classOfReachingAgreement = RdfClassServices.createClassOfReachingAgreement(iri.getIri());
+        this.classOfReachingAgreement = RdfClassServices.createClassOfReachingAgreement(iri.getIri());
     }
 
     /**
@@ -63,7 +63,7 @@ public class ClassOfReachingAgreementBuilder {
      */
     public final ClassOfReachingAgreementBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfReachingAgreement.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfReachingAgreement.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -76,7 +76,7 @@ public class ClassOfReachingAgreementBuilder {
      * @return This builder.
      */
     public final ClassOfReachingAgreementBuilder has_Superclass(final Class clazz) {
-        classOfReachingAgreement.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfReachingAgreement.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -88,7 +88,7 @@ public class ClassOfReachingAgreementBuilder {
      * @return This builder.
      */
     public final ClassOfReachingAgreementBuilder member__Of(final Class clazz) {
-        classOfReachingAgreement.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfReachingAgreement.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -101,7 +101,7 @@ public class ClassOfReachingAgreementBuilder {
      * @return This builder.
      */
     public final ClassOfReachingAgreementBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfReachingAgreement.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfReachingAgreement.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class ClassOfReachingAgreementBuilder {
      */
     public final ClassOfReachingAgreementBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfReachingAgreement.addValue(MEMBER_OF_,
+        this.classOfReachingAgreement.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -132,7 +132,7 @@ public class ClassOfReachingAgreementBuilder {
      */
     public final ClassOfReachingAgreementBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfReachingAgreement.addValue(PART__OF_BY_CLASS,
+        this.classOfReachingAgreement.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -148,7 +148,7 @@ public class ClassOfReachingAgreementBuilder {
      */
     public final ClassOfReachingAgreementBuilder part_Of_By_Class(
             final ClassOfAgreementProcess classOfAgreementProcess) {
-        classOfReachingAgreement.addValue(PART_OF_BY_CLASS,
+        this.classOfReachingAgreement.addValue(PART_OF_BY_CLASS,
                 new IRI(classOfAgreementProcess.getId()));
         return this;
     }
@@ -166,7 +166,7 @@ public class ClassOfReachingAgreementBuilder {
      */
     public final ClassOfReachingAgreementBuilder part_Of_By_Class_(
             final ClassOfAgreementExecution classOfAgreementExecution) {
-        classOfReachingAgreement.addValue(PART_OF_BY_CLASS_,
+        this.classOfReachingAgreement.addValue(PART_OF_BY_CLASS_,
                 new IRI(classOfAgreementExecution.getId()));
         return this;
     }
@@ -178,34 +178,34 @@ public class ClassOfReachingAgreementBuilder {
      * @throws HqdmException If the ClassOfReachingAgreement is missing any mandatory properties.
      */
     public ClassOfReachingAgreement build() throws HqdmException {
-        if (classOfReachingAgreement.hasValue(HAS_SUPERCLASS)
-                && classOfReachingAgreement.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfReachingAgreement.hasValue(HAS_SUPERCLASS)
+                && this.classOfReachingAgreement.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfReachingAgreement.hasValue(MEMBER__OF)
-                && classOfReachingAgreement.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfReachingAgreement.hasValue(MEMBER__OF)
+                && this.classOfReachingAgreement.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfReachingAgreement.hasValue(MEMBER_OF)
-                && classOfReachingAgreement.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfReachingAgreement.hasValue(MEMBER_OF)
+                && this.classOfReachingAgreement.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfReachingAgreement.hasValue(MEMBER_OF_)
-                && classOfReachingAgreement.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfReachingAgreement.hasValue(MEMBER_OF_)
+                && this.classOfReachingAgreement.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfReachingAgreement.hasValue(PART__OF_BY_CLASS)
-                && classOfReachingAgreement.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfReachingAgreement.hasValue(PART__OF_BY_CLASS)
+                && this.classOfReachingAgreement.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (classOfReachingAgreement.hasValue(PART_OF_BY_CLASS)
-                && classOfReachingAgreement.value(PART_OF_BY_CLASS).isEmpty()) {
+        if (this.classOfReachingAgreement.hasValue(PART_OF_BY_CLASS)
+                && this.classOfReachingAgreement.value(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
-        if (classOfReachingAgreement.hasValue(PART_OF_BY_CLASS_)
-                && classOfReachingAgreement.value(PART_OF_BY_CLASS_).isEmpty()) {
+        if (this.classOfReachingAgreement.hasValue(PART_OF_BY_CLASS_)
+                && this.classOfReachingAgreement.value(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
-        return classOfReachingAgreement;
+        return this.classOfReachingAgreement;
     }
 }

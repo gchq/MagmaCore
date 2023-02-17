@@ -61,7 +61,7 @@ public class KindOfIntentionallyConstructedObjectBuilder {
      */
     public final KindOfIntentionallyConstructedObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfIntentionallyConstructedObject.addValue(CONSISTS__OF_BY_CLASS,
+        this.kindOfIntentionallyConstructedObject.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -74,7 +74,7 @@ public class KindOfIntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final KindOfIntentionallyConstructedObjectBuilder has_Superclass(final Class clazz) {
-        kindOfIntentionallyConstructedObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfIntentionallyConstructedObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -86,7 +86,7 @@ public class KindOfIntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final KindOfIntentionallyConstructedObjectBuilder member__Of(final Class clazz) {
-        kindOfIntentionallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfIntentionallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -99,7 +99,7 @@ public class KindOfIntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final KindOfIntentionallyConstructedObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        kindOfIntentionallyConstructedObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfIntentionallyConstructedObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -113,7 +113,7 @@ public class KindOfIntentionallyConstructedObjectBuilder {
      */
     public final KindOfIntentionallyConstructedObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        kindOfIntentionallyConstructedObject.addValue(MEMBER_OF_,
+        this.kindOfIntentionallyConstructedObject.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -130,7 +130,7 @@ public class KindOfIntentionallyConstructedObjectBuilder {
      */
     public final KindOfIntentionallyConstructedObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        kindOfIntentionallyConstructedObject.addValue(PART__OF_BY_CLASS,
+        this.kindOfIntentionallyConstructedObject.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -144,24 +144,24 @@ public class KindOfIntentionallyConstructedObjectBuilder {
      *                       properties.
      */
     public KindOfIntentionallyConstructedObject build() throws HqdmException {
-        if (kindOfIntentionallyConstructedObject.hasValue(HAS_SUPERCLASS)
-                && kindOfIntentionallyConstructedObject.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.kindOfIntentionallyConstructedObject.hasValue(HAS_SUPERCLASS)
+                && this.kindOfIntentionallyConstructedObject.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (kindOfIntentionallyConstructedObject.hasValue(MEMBER__OF)
-                && kindOfIntentionallyConstructedObject.value(MEMBER__OF).isEmpty()) {
+        if (this.kindOfIntentionallyConstructedObject.hasValue(MEMBER__OF)
+                && this.kindOfIntentionallyConstructedObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (kindOfIntentionallyConstructedObject.hasValue(MEMBER_OF)
-                && kindOfIntentionallyConstructedObject.value(MEMBER_OF).isEmpty()) {
+        if (this.kindOfIntentionallyConstructedObject.hasValue(MEMBER_OF)
+                && this.kindOfIntentionallyConstructedObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (kindOfIntentionallyConstructedObject.hasValue(MEMBER_OF_)
-                && kindOfIntentionallyConstructedObject.value(MEMBER_OF_).isEmpty()) {
+        if (this.kindOfIntentionallyConstructedObject.hasValue(MEMBER_OF_)
+                && this.kindOfIntentionallyConstructedObject.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (kindOfIntentionallyConstructedObject.hasValue(PART__OF_BY_CLASS)
-                && kindOfIntentionallyConstructedObject.value(PART__OF_BY_CLASS)
+        if (this.kindOfIntentionallyConstructedObject.hasValue(PART__OF_BY_CLASS)
+                && this.kindOfIntentionallyConstructedObject.value(PART__OF_BY_CLASS)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }

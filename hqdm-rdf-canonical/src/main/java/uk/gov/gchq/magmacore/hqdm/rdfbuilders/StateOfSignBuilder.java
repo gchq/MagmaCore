@@ -64,7 +64,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSign.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSign.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder beginning(final Event event) {
-        stateOfSign.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfSign.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSign.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSign.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder ending(final Event event) {
-        stateOfSign.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfSign.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder member__Of(final Class clazz) {
-        stateOfSign.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfSign.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -128,7 +128,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder member_Of(final ClassOfStateOfSign classOfStateOfSign) {
-        stateOfSign.addValue(MEMBER_OF, new IRI(classOfStateOfSign.getId()));
+        this.stateOfSign.addValue(MEMBER_OF, new IRI(classOfStateOfSign.getId()));
         return this;
     }
 
@@ -141,7 +141,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSign.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSign.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -160,7 +160,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfSign.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfSign.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -173,7 +173,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSign.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSign.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -186,7 +186,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder temporal_Part_Of(final Sign sign) {
-        stateOfSign.addValue(TEMPORAL_PART_OF, new IRI(sign.getId()));
+        this.stateOfSign.addValue(TEMPORAL_PART_OF, new IRI(sign.getId()));
         return this;
     }
 
@@ -197,39 +197,39 @@ public class StateOfSignBuilder {
      * @throws HqdmException If the StateOfSign is missing any mandatory properties.
      */
     public StateOfSign build() throws HqdmException {
-        if (stateOfSign.hasValue(AGGREGATED_INTO)
-                && stateOfSign.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfSign.hasValue(AGGREGATED_INTO)
+                && this.stateOfSign.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfSign.hasValue(BEGINNING)
-                && stateOfSign.value(BEGINNING).isEmpty()) {
+        if (this.stateOfSign.hasValue(BEGINNING)
+                && this.stateOfSign.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfSign.hasValue(ENDING)
-                && stateOfSign.value(ENDING).isEmpty()) {
+        if (this.stateOfSign.hasValue(ENDING)
+                && this.stateOfSign.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfSign.hasValue(MEMBER__OF)
-                && stateOfSign.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfSign.hasValue(MEMBER__OF)
+                && this.stateOfSign.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfSign.hasValue(MEMBER_OF)
-                && stateOfSign.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfSign.hasValue(MEMBER_OF)
+                && this.stateOfSign.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfSign.hasValue(PART__OF)
-                && stateOfSign.value(PART__OF).isEmpty()) {
+        if (this.stateOfSign.hasValue(PART__OF)
+                && this.stateOfSign.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfSign.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfSign.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfSign.hasValue(TEMPORAL__PART_OF)
-                && stateOfSign.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfSign.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfSign.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfSign.hasValue(TEMPORAL_PART_OF)
-                && stateOfSign.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfSign.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfSign.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfSign;

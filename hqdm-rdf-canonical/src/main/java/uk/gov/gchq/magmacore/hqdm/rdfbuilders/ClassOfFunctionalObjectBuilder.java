@@ -43,7 +43,7 @@ public class ClassOfFunctionalObjectBuilder {
      * @param iri IRI of the ClassOfFunctionalObject.
      */
     public ClassOfFunctionalObjectBuilder(final IRI iri) {
-        classOfFunctionalObject = RdfClassServices.createClassOfFunctionalObject(iri.getIri());
+        this.classOfFunctionalObject = RdfClassServices.createClassOfFunctionalObject(iri.getIri());
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfFunctionalObjectBuilder {
      */
     public final ClassOfFunctionalObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfFunctionalObject.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfFunctionalObject.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -72,7 +72,7 @@ public class ClassOfFunctionalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfFunctionalObjectBuilder has_Superclass(final Class clazz) {
-        classOfFunctionalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfFunctionalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfFunctionalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfFunctionalObjectBuilder member__Of(final Class clazz) {
-        classOfFunctionalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfFunctionalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfFunctionalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfFunctionalObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfFunctionalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfFunctionalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfFunctionalObjectBuilder {
      */
     public final ClassOfFunctionalObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        classOfFunctionalObject.addValue(MEMBER_OF_,
+        this.classOfFunctionalObject.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -128,7 +128,7 @@ public class ClassOfFunctionalObjectBuilder {
      */
     public final ClassOfFunctionalObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        classOfFunctionalObject.addValue(PART__OF_BY_CLASS,
+        this.classOfFunctionalObject.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -140,26 +140,26 @@ public class ClassOfFunctionalObjectBuilder {
      * @throws HqdmException If the ClassOfFunctionalObject is missing any mandatory properties.
      */
     public ClassOfFunctionalObject build() throws HqdmException {
-        if (classOfFunctionalObject.hasValue(HAS_SUPERCLASS)
-                && classOfFunctionalObject.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfFunctionalObject.hasValue(HAS_SUPERCLASS)
+                && this.classOfFunctionalObject.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfFunctionalObject.hasValue(MEMBER__OF)
-                && classOfFunctionalObject.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfFunctionalObject.hasValue(MEMBER__OF)
+                && this.classOfFunctionalObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfFunctionalObject.hasValue(MEMBER_OF)
-                && classOfFunctionalObject.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfFunctionalObject.hasValue(MEMBER_OF)
+                && this.classOfFunctionalObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (classOfFunctionalObject.hasValue(MEMBER_OF_)
-                && classOfFunctionalObject.value(MEMBER_OF_).isEmpty()) {
+        if (this.classOfFunctionalObject.hasValue(MEMBER_OF_)
+                && this.classOfFunctionalObject.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (classOfFunctionalObject.hasValue(PART__OF_BY_CLASS)
-                && classOfFunctionalObject.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.classOfFunctionalObject.hasValue(PART__OF_BY_CLASS)
+                && this.classOfFunctionalObject.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        return classOfFunctionalObject;
+        return this.classOfFunctionalObject;
     }
 }

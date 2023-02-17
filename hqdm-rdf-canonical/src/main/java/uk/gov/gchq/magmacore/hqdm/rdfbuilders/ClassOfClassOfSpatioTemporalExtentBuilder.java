@@ -38,7 +38,8 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
      * @param iri IRI of the ClassOfClassOfSpatioTemporalExtent.
      */
     public ClassOfClassOfSpatioTemporalExtentBuilder(final IRI iri) {
-        classOfClassOfSpatioTemporalExtent = RdfClassServices.createClassOfClassOfSpatioTemporalExtent(iri.getIri());
+        this.classOfClassOfSpatioTemporalExtent = 
+            RdfClassServices.createClassOfClassOfSpatioTemporalExtent(iri.getIri());
     }
 
     /**
@@ -49,7 +50,7 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final ClassOfClassOfSpatioTemporalExtentBuilder has_Superclass(final Class clazz) {
-        classOfClassOfSpatioTemporalExtent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfClassOfSpatioTemporalExtent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -61,7 +62,7 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final ClassOfClassOfSpatioTemporalExtentBuilder member__Of(final Class clazz) {
-        classOfClassOfSpatioTemporalExtent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfClassOfSpatioTemporalExtent.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -74,7 +75,7 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final ClassOfClassOfSpatioTemporalExtentBuilder member_Of(final ClassOfClass classOfClass) {
-        classOfClassOfSpatioTemporalExtent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfClassOfSpatioTemporalExtent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -87,18 +88,18 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
      *                       properties.
      */
     public ClassOfClassOfSpatioTemporalExtent build() throws HqdmException {
-        if (classOfClassOfSpatioTemporalExtent.hasValue(HAS_SUPERCLASS)
-                && classOfClassOfSpatioTemporalExtent.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.classOfClassOfSpatioTemporalExtent.hasValue(HAS_SUPERCLASS)
+                && this.classOfClassOfSpatioTemporalExtent.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (classOfClassOfSpatioTemporalExtent.hasValue(MEMBER__OF)
-                && classOfClassOfSpatioTemporalExtent.value(MEMBER__OF).isEmpty()) {
+        if (this.classOfClassOfSpatioTemporalExtent.hasValue(MEMBER__OF)
+                && this.classOfClassOfSpatioTemporalExtent.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (classOfClassOfSpatioTemporalExtent.hasValue(MEMBER_OF)
-                && classOfClassOfSpatioTemporalExtent.value(MEMBER_OF).isEmpty()) {
+        if (this.classOfClassOfSpatioTemporalExtent.hasValue(MEMBER_OF)
+                && this.classOfClassOfSpatioTemporalExtent.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        return classOfClassOfSpatioTemporalExtent;
+        return this.classOfClassOfSpatioTemporalExtent;
     }
 }

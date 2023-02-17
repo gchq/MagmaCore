@@ -64,7 +64,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfBiologicalObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfBiologicalObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder beginning(final Event event) {
-        stateOfBiologicalObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfBiologicalObject.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfBiologicalObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfBiologicalObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder ending(final Event event) {
-        stateOfBiologicalObject.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfBiologicalObject.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder member__Of(final Class clazz) {
-        stateOfBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class StateOfBiologicalObjectBuilder {
      */
     public final StateOfBiologicalObjectBuilder member_Of(
             final ClassOfStateOfBiologicalObject classOfStateOfBiologicalObject) {
-        stateOfBiologicalObject.addValue(MEMBER_OF,
+        this.stateOfBiologicalObject.addValue(MEMBER_OF,
                 new IRI(classOfStateOfBiologicalObject.getId()));
         return this;
     }
@@ -144,7 +144,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfBiologicalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfBiologicalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -163,7 +163,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfBiologicalObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfBiologicalObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -176,7 +176,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfBiologicalObject.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfBiologicalObject.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -190,7 +190,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder temporal_Part_Of(final BiologicalObject biologicalObject) {
-        stateOfBiologicalObject.addValue(TEMPORAL_PART_OF, new IRI(biologicalObject.getId()));
+        this.stateOfBiologicalObject.addValue(TEMPORAL_PART_OF, new IRI(biologicalObject.getId()));
         return this;
     }
 
@@ -201,39 +201,39 @@ public class StateOfBiologicalObjectBuilder {
      * @throws HqdmException If the StateOfBiologicalObject is missing any mandatory properties.
      */
     public StateOfBiologicalObject build() throws HqdmException {
-        if (stateOfBiologicalObject.hasValue(AGGREGATED_INTO)
-                && stateOfBiologicalObject.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfBiologicalObject.hasValue(AGGREGATED_INTO)
+                && this.stateOfBiologicalObject.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfBiologicalObject.hasValue(BEGINNING)
-                && stateOfBiologicalObject.value(BEGINNING).isEmpty()) {
+        if (this.stateOfBiologicalObject.hasValue(BEGINNING)
+                && this.stateOfBiologicalObject.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfBiologicalObject.hasValue(ENDING)
-                && stateOfBiologicalObject.value(ENDING).isEmpty()) {
+        if (this.stateOfBiologicalObject.hasValue(ENDING)
+                && this.stateOfBiologicalObject.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfBiologicalObject.hasValue(MEMBER__OF)
-                && stateOfBiologicalObject.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfBiologicalObject.hasValue(MEMBER__OF)
+                && this.stateOfBiologicalObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfBiologicalObject.hasValue(MEMBER_OF)
-                && stateOfBiologicalObject.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfBiologicalObject.hasValue(MEMBER_OF)
+                && this.stateOfBiologicalObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfBiologicalObject.hasValue(PART__OF)
-                && stateOfBiologicalObject.value(PART__OF).isEmpty()) {
+        if (this.stateOfBiologicalObject.hasValue(PART__OF)
+                && this.stateOfBiologicalObject.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfBiologicalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfBiologicalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfBiologicalObject.hasValue(TEMPORAL__PART_OF)
-                && stateOfBiologicalObject.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfBiologicalObject.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfBiologicalObject.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfBiologicalObject.hasValue(TEMPORAL_PART_OF)
-                && stateOfBiologicalObject.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfBiologicalObject.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfBiologicalObject.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfBiologicalObject;

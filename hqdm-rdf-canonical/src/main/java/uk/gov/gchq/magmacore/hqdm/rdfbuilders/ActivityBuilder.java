@@ -59,7 +59,7 @@ public class ActivityBuilder {
      * @param iri IRI of the Activity.
      */
     public ActivityBuilder(final IRI iri) {
-        activity = RdfSpatioTemporalExtentServices.createActivity(iri.getIri());
+        this.activity = RdfSpatioTemporalExtentServices.createActivity(iri.getIri());
     }
 
     /**
@@ -74,7 +74,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        activity.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.activity.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -86,7 +86,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder beginning(final Event event) {
-        activity.addValue(BEGINNING, new IRI(event.getId()));
+        this.activity.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder causes_M(final Event event) {
-        activity.addValue(CAUSES, new IRI(event.getId()));
+        this.activity.addValue(CAUSES, new IRI(event.getId()));
         return this;
     }
 
@@ -112,7 +112,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        activity.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.activity.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -125,7 +125,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder consists_Of(final Activity activity) {
-        activity.addValue(CONSISTS_OF, new IRI(activity.getId()));
+        this.activity.addValue(CONSISTS_OF, new IRI(activity.getId()));
         return this;
     }
 
@@ -138,7 +138,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder consists_Of_Participant(final Participant participant) {
-        activity.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.activity.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
         return this;
     }
 
@@ -150,7 +150,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder determines(final Thing thing) {
-        activity.addValue(DETERMINES, new IRI(thing.getId()));
+        this.activity.addValue(DETERMINES, new IRI(thing.getId()));
         return this;
     }
 
@@ -162,7 +162,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder ending(final Event event) {
-        activity.addValue(ENDING, new IRI(event.getId()));
+        this.activity.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -173,7 +173,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder member__Of(final Class clazz) {
-        activity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.activity.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -186,7 +186,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder member_Of(final ClassOfActivity classOfActivity) {
-        activity.addValue(MEMBER_OF, new IRI(classOfActivity.getId()));
+        this.activity.addValue(MEMBER_OF, new IRI(classOfActivity.getId()));
         return this;
     }
 
@@ -199,7 +199,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        activity.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.activity.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
         return this;
     }
 
@@ -212,7 +212,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        activity.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.activity.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -225,7 +225,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder part_Of(final Activity activity) {
-        activity.addValue(PART_OF, new IRI(activity.getId()));
+        this.activity.addValue(PART_OF, new IRI(activity.getId()));
         return this;
     }
 
@@ -244,7 +244,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        activity.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.activity.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -255,7 +255,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder references(final Thing thing) {
-        activity.addValue(REFERENCES, new IRI(thing.getId()));
+        this.activity.addValue(REFERENCES, new IRI(thing.getId()));
         return this;
     }
 
@@ -268,7 +268,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        activity.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.activity.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -291,7 +291,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder temporal_Part_Of(final Individual individual) {
-        activity.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.activity.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
         return this;
     }
 
@@ -302,59 +302,59 @@ public class ActivityBuilder {
      * @throws HqdmException If the Activity is missing any mandatory properties.
      */
     public Activity build() throws HqdmException {
-        if (activity.hasValue(AGGREGATED_INTO)
-                && activity.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.activity.hasValue(AGGREGATED_INTO)
+                && this.activity.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (activity.hasValue(BEGINNING)
-                && activity.value(BEGINNING).isEmpty()) {
+        if (this.activity.hasValue(BEGINNING)
+                && this.activity.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!activity.hasValue(CAUSES)) {
+        if (!this.activity.hasValue(CAUSES)) {
             throw new HqdmException("Property Not Set: causes");
         }
-        if (activity.hasValue(DETERMINES)
-                && activity.value(DETERMINES).isEmpty()) {
+        if (this.activity.hasValue(DETERMINES)
+                && this.activity.value(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
-        if (activity.hasValue(ENDING)
-                && activity.value(ENDING).isEmpty()) {
+        if (this.activity.hasValue(ENDING)
+                && this.activity.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (activity.hasValue(MEMBER__OF)
-                && activity.value(MEMBER__OF).isEmpty()) {
+        if (this.activity.hasValue(MEMBER__OF)
+                && this.activity.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (activity.hasValue(MEMBER_OF)
-                && activity.value(MEMBER_OF).isEmpty()) {
+        if (this.activity.hasValue(MEMBER_OF)
+                && this.activity.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (!activity.hasValue(MEMBER_OF_KIND)) {
+        if (!this.activity.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (activity.hasValue(PART__OF)
-                && activity.value(PART__OF).isEmpty()) {
+        if (this.activity.hasValue(PART__OF)
+                && this.activity.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (activity.hasValue(PART_OF)
-                && activity.value(PART_OF).isEmpty()) {
+        if (this.activity.hasValue(PART_OF)
+                && this.activity.value(PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of");
         }
-        if (!activity.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.activity.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (activity.hasValue(REFERENCES)
-                && activity.value(REFERENCES).isEmpty()) {
+        if (this.activity.hasValue(REFERENCES)
+                && this.activity.value(REFERENCES).isEmpty()) {
             throw new HqdmException("Property Not Set: references");
         }
-        if (activity.hasValue(TEMPORAL__PART_OF)
-                && activity.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.activity.hasValue(TEMPORAL__PART_OF)
+                && this.activity.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (activity.hasValue(TEMPORAL_PART_OF)
-                && activity.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.activity.hasValue(TEMPORAL_PART_OF)
+                && this.activity.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
-        return activity;
+        return this.activity;
     }
 }

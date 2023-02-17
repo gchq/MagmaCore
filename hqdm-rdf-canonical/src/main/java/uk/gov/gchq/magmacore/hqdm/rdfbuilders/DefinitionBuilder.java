@@ -39,7 +39,7 @@ public class DefinitionBuilder {
      * @param iri IRI of the Definition.
      */
     public DefinitionBuilder(final IRI iri) {
-        definition = RdfClassServices.createDefinition(iri.getIri());
+        this.definition = RdfClassServices.createDefinition(iri.getIri());
     }
 
     /**
@@ -53,7 +53,7 @@ public class DefinitionBuilder {
      * @return This builder.
      */
     public final DefinitionBuilder consists_Of_By_Class_M(final Pattern pattern) {
-        definition.addValue(CONSISTS_OF_BY_CLASS, new IRI(pattern.getId()));
+        this.definition.addValue(CONSISTS_OF_BY_CLASS, new IRI(pattern.getId()));
         return this;
     }
 
@@ -68,7 +68,7 @@ public class DefinitionBuilder {
      */
     public final DefinitionBuilder consists_Of_In_Members_M(
             final RecognizingLanguageCommunity recognizingLanguageCommunity) {
-        definition.addValue(CONSISTS_OF_IN_MEMBERS, new IRI(recognizingLanguageCommunity.getId()));
+        this.definition.addValue(CONSISTS_OF_IN_MEMBERS, new IRI(recognizingLanguageCommunity.getId()));
         return this;
     }
 
@@ -79,7 +79,7 @@ public class DefinitionBuilder {
      * @return This builder.
      */
     public final DefinitionBuilder represented_M(final Class clazz) {
-        definition.addValue(REPRESENTED, new IRI(clazz.getId()));
+        this.definition.addValue(REPRESENTED, new IRI(clazz.getId()));
         return this;
     }
 
@@ -90,15 +90,15 @@ public class DefinitionBuilder {
      * @throws HqdmException If the Definition is missing any mandatory properties.
      */
     public Definition build() throws HqdmException {
-        if (!definition.hasValue(CONSISTS_OF_BY_CLASS)) {
+        if (!this.definition.hasValue(CONSISTS_OF_BY_CLASS)) {
             throw new HqdmException("Property Not Set: consists_of_by_class");
         }
-        if (!definition.hasValue(CONSISTS_OF_IN_MEMBERS)) {
+        if (!this.definition.hasValue(CONSISTS_OF_IN_MEMBERS)) {
             throw new HqdmException("Property Not Set: consists_of_in_members");
         }
-        if (!definition.hasValue(REPRESENTED)) {
+        if (!this.definition.hasValue(REPRESENTED)) {
             throw new HqdmException("Property Not Set: represented");
         }
-        return definition;
+        return this.definition;
     }
 }

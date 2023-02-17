@@ -62,7 +62,7 @@ public class SalesProductVersionBuilder {
      */
     public final SalesProductVersionBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        salesProductVersion.addValue(CONSISTS__OF_BY_CLASS,
+        this.salesProductVersion.addValue(CONSISTS__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -75,7 +75,7 @@ public class SalesProductVersionBuilder {
      * @return This builder.
      */
     public final SalesProductVersionBuilder has_Superclass(final Class clazz) {
-        salesProductVersion.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.salesProductVersion.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -87,7 +87,7 @@ public class SalesProductVersionBuilder {
      * @return This builder.
      */
     public final SalesProductVersionBuilder member__Of(final Class clazz) {
-        salesProductVersion.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.salesProductVersion.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -100,7 +100,7 @@ public class SalesProductVersionBuilder {
      * @return This builder.
      */
     public final SalesProductVersionBuilder member_Of(final ClassOfClass classOfClass) {
-        salesProductVersion.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.salesProductVersion.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -114,7 +114,7 @@ public class SalesProductVersionBuilder {
      */
     public final SalesProductVersionBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        salesProductVersion.addValue(MEMBER_OF_,
+        this.salesProductVersion.addValue(MEMBER_OF_,
                 new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -131,7 +131,7 @@ public class SalesProductVersionBuilder {
      */
     public final SalesProductVersionBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        salesProductVersion.addValue(PART__OF_BY_CLASS,
+        this.salesProductVersion.addValue(PART__OF_BY_CLASS,
                 new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
@@ -144,7 +144,7 @@ public class SalesProductVersionBuilder {
      * @return This builder.
      */
     public final SalesProductVersionBuilder sold_As(final SalesProduct salesProduct) {
-        salesProductVersion.addValue(SOLD_AS, new IRI(salesProduct.getId()));
+        this.salesProductVersion.addValue(SOLD_AS, new IRI(salesProduct.getId()));
         return this;
     }
 
@@ -155,7 +155,7 @@ public class SalesProductVersionBuilder {
      * @return This builder.
      */
     public final SalesProductVersionBuilder successor(final SalesProductVersion salesProductVersion) {
-        salesProductVersion.addValue(SUCCESSOR, new IRI(salesProductVersion.getId()));
+        this.salesProductVersion.addValue(SUCCESSOR, new IRI(salesProductVersion.getId()));
         return this;
     }
 
@@ -166,32 +166,32 @@ public class SalesProductVersionBuilder {
      * @throws HqdmException If the SalesProductVersion is missing any mandatory properties.
      */
     public SalesProductVersion build() throws HqdmException {
-        if (salesProductVersion.hasValue(HAS_SUPERCLASS)
-                && salesProductVersion.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.salesProductVersion.hasValue(HAS_SUPERCLASS)
+                && this.salesProductVersion.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (salesProductVersion.hasValue(MEMBER__OF)
-                && salesProductVersion.value(MEMBER__OF).isEmpty()) {
+        if (this.salesProductVersion.hasValue(MEMBER__OF)
+                && this.salesProductVersion.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (salesProductVersion.hasValue(MEMBER_OF)
-                && salesProductVersion.value(MEMBER_OF).isEmpty()) {
+        if (this.salesProductVersion.hasValue(MEMBER_OF)
+                && this.salesProductVersion.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (salesProductVersion.hasValue(MEMBER_OF_)
-                && salesProductVersion.value(MEMBER_OF_).isEmpty()) {
+        if (this.salesProductVersion.hasValue(MEMBER_OF_)
+                && this.salesProductVersion.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (salesProductVersion.hasValue(PART__OF_BY_CLASS)
-                && salesProductVersion.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.salesProductVersion.hasValue(PART__OF_BY_CLASS)
+                && this.salesProductVersion.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (salesProductVersion.hasValue(SOLD_AS)
-                && salesProductVersion.value(SOLD_AS).isEmpty()) {
+        if (this.salesProductVersion.hasValue(SOLD_AS)
+                && this.salesProductVersion.value(SOLD_AS).isEmpty()) {
             throw new HqdmException("Property Not Set: sold_as");
         }
-        if (salesProductVersion.hasValue(SUCCESSOR)
-                && salesProductVersion.value(SUCCESSOR).isEmpty()) {
+        if (this.salesProductVersion.hasValue(SUCCESSOR)
+                && this.salesProductVersion.value(SUCCESSOR).isEmpty()) {
             throw new HqdmException("Property Not Set: successor");
         }
         return salesProductVersion;

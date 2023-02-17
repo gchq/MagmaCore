@@ -68,7 +68,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        position.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.position.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -80,7 +80,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder beginning(final Event event) {
-        position.addValue(BEGINNING, new IRI(event.getId()));
+        this.position.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder component_Of_M(final Organization organization) {
-        position.addValue(COMPONENT_OF, new IRI(organization.getId()));
+        this.position.addValue(COMPONENT_OF, new IRI(organization.getId()));
         return this;
     }
 
@@ -107,7 +107,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        position.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.position.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder ending(final Event event) {
-        position.addValue(ENDING, new IRI(event.getId()));
+        this.position.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -131,7 +131,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder member__Of(final Class clazz) {
-        position.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.position.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -144,7 +144,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder member_Of(final ClassOfPosition classOfPosition) {
-        position.addValue(MEMBER_OF, new IRI(classOfPosition.getId()));
+        this.position.addValue(MEMBER_OF, new IRI(classOfPosition.getId()));
         return this;
     }
 
@@ -157,7 +157,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder member_Of_Kind(final KindOfPosition kindOfPosition) {
-        position.addValue(MEMBER_OF_KIND, new IRI(kindOfPosition.getId()));
+        this.position.addValue(MEMBER_OF_KIND, new IRI(kindOfPosition.getId()));
         return this;
     }
 
@@ -170,7 +170,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        position.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.position.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -189,7 +189,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        position.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.position.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -202,7 +202,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        position.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.position.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -216,7 +216,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder temporal_Part_Of(final OrganizationComponent organizationComponent) {
-        position.addValue(TEMPORAL_PART_OF, new IRI(organizationComponent.getId()));
+        this.position.addValue(TEMPORAL_PART_OF, new IRI(organizationComponent.getId()));
         return this;
     }
 
@@ -227,46 +227,46 @@ public class PositionBuilder {
      * @throws HqdmException If the Position is missing any mandatory properties.
      */
     public Position build() throws HqdmException {
-        if (position.hasValue(AGGREGATED_INTO)
-                && position.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.position.hasValue(AGGREGATED_INTO)
+                && this.position.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (position.hasValue(BEGINNING)
-                && position.value(BEGINNING).isEmpty()) {
+        if (this.position.hasValue(BEGINNING)
+                && this.position.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (!position.hasValue(COMPONENT_OF)) {
+        if (!this.position.hasValue(COMPONENT_OF)) {
             throw new HqdmException("Property Not Set: component_of");
         }
-        if (position.hasValue(ENDING)
-                && position.value(ENDING).isEmpty()) {
+        if (this.position.hasValue(ENDING)
+                && this.position.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (position.hasValue(MEMBER__OF)
-                && position.value(MEMBER__OF).isEmpty()) {
+        if (this.position.hasValue(MEMBER__OF)
+                && this.position.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (position.hasValue(MEMBER_OF)
-                && position.value(MEMBER_OF).isEmpty()) {
+        if (this.position.hasValue(MEMBER_OF)
+                && this.position.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (position.hasValue(MEMBER_OF_KIND)
-                && position.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.position.hasValue(MEMBER_OF_KIND)
+                && this.position.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (position.hasValue(PART__OF)
-                && position.value(PART__OF).isEmpty()) {
+        if (this.position.hasValue(PART__OF)
+                && this.position.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!position.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.position.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (position.hasValue(TEMPORAL__PART_OF)
-                && position.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.position.hasValue(TEMPORAL__PART_OF)
+                && this.position.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (position.hasValue(TEMPORAL_PART_OF)
-                && position.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.position.hasValue(TEMPORAL_PART_OF)
+                && this.position.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return position;

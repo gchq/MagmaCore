@@ -65,7 +65,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        system.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.system.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -77,7 +77,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder beginning(final Event event) {
-        system.addValue(BEGINNING, new IRI(event.getId()));
+        this.system.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        system.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.system.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -104,7 +104,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder ending(final Event event) {
-        system.addValue(ENDING, new IRI(event.getId()));
+        this.system.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -116,7 +116,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder member__Of(final Class clazz) {
-        system.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.system.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -129,7 +129,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder member_Of(final ClassOfSystem classOfSystem) {
-        system.addValue(MEMBER_OF, new IRI(classOfSystem.getId()));
+        this.system.addValue(MEMBER_OF, new IRI(classOfSystem.getId()));
         return this;
     }
 
@@ -142,7 +142,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder member_Of_Kind(final KindOfSystem kindOfSystem) {
-        system.addValue(MEMBER_OF_KIND, new IRI(kindOfSystem.getId()));
+        this.system.addValue(MEMBER_OF_KIND, new IRI(kindOfSystem.getId()));
         return this;
     }
 
@@ -155,7 +155,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        system.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.system.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -174,7 +174,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        system.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.system.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
         return this;
     }
 
@@ -187,7 +187,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        system.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.system.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -200,7 +200,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder temporal_Part_Of(final System system) {
-        system.addValue(TEMPORAL_PART_OF, new IRI(system.getId()));
+        this.system.addValue(TEMPORAL_PART_OF, new IRI(system.getId()));
         return this;
     }
 
@@ -211,43 +211,43 @@ public class SystemBuilder {
      * @throws HqdmException If the System is missing any mandatory properties.
      */
     public System build() throws HqdmException {
-        if (system.hasValue(AGGREGATED_INTO)
-                && system.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.system.hasValue(AGGREGATED_INTO)
+                && this.system.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (system.hasValue(BEGINNING)
-                && system.value(BEGINNING).isEmpty()) {
+        if (this.system.hasValue(BEGINNING)
+                && this.system.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (system.hasValue(ENDING)
-                && system.value(ENDING).isEmpty()) {
+        if (this.system.hasValue(ENDING)
+                && this.system.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (system.hasValue(MEMBER__OF)
-                && system.value(MEMBER__OF).isEmpty()) {
+        if (this.system.hasValue(MEMBER__OF)
+                && this.system.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (system.hasValue(MEMBER_OF)
-                && system.value(MEMBER_OF).isEmpty()) {
+        if (this.system.hasValue(MEMBER_OF)
+                && this.system.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (system.hasValue(MEMBER_OF_KIND)
-                && system.value(MEMBER_OF_KIND).isEmpty()) {
+        if (this.system.hasValue(MEMBER_OF_KIND)
+                && this.system.value(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (system.hasValue(PART__OF)
-                && system.value(PART__OF).isEmpty()) {
+        if (this.system.hasValue(PART__OF)
+                && this.system.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!system.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.system.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (system.hasValue(TEMPORAL__PART_OF)
-                && system.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.system.hasValue(TEMPORAL__PART_OF)
+                && this.system.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (system.hasValue(TEMPORAL_PART_OF)
-                && system.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.system.hasValue(TEMPORAL_PART_OF)
+                && this.system.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return system;

@@ -39,7 +39,7 @@ public class DescriptionBuilder {
      * @param iri IRI of the Description.
      */
     public DescriptionBuilder(final IRI iri) {
-        description = RdfClassServices.createDescription(iri.getIri());
+        this.description = RdfClassServices.createDescription(iri.getIri());
     }
 
     /**
@@ -53,7 +53,7 @@ public class DescriptionBuilder {
      * @return This builder.
      */
     public final DescriptionBuilder consists_Of_By_Class_M(final Pattern pattern) {
-        description.addValue(CONSISTS_OF_BY_CLASS, new IRI(pattern.getId()));
+        this.description.addValue(CONSISTS_OF_BY_CLASS, new IRI(pattern.getId()));
         return this;
     }
 
@@ -68,7 +68,7 @@ public class DescriptionBuilder {
      */
     public final DescriptionBuilder consists_Of_In_Members_M(
             final RecognizingLanguageCommunity recognizingLanguageCommunity) {
-        description.addValue(CONSISTS_OF_IN_MEMBERS, new IRI(recognizingLanguageCommunity.getId()));
+        this.description.addValue(CONSISTS_OF_IN_MEMBERS, new IRI(recognizingLanguageCommunity.getId()));
         return this;
     }
 
@@ -81,7 +81,7 @@ public class DescriptionBuilder {
      * @return This builder.
      */
     public final DescriptionBuilder represented_M(final Thing thing) {
-        description.addValue(REPRESENTED, new IRI(thing.getId()));
+        this.description.addValue(REPRESENTED, new IRI(thing.getId()));
         return this;
     }
 
@@ -92,15 +92,15 @@ public class DescriptionBuilder {
      * @throws HqdmException If the Description is missing any mandatory properties.
      */
     public Description build() throws HqdmException {
-        if (!description.hasValue(CONSISTS_OF_BY_CLASS)) {
+        if (!this.description.hasValue(CONSISTS_OF_BY_CLASS)) {
             throw new HqdmException("Property Not Set: consists_of_by_class");
         }
-        if (!description.hasValue(CONSISTS_OF_IN_MEMBERS)) {
+        if (!this.description.hasValue(CONSISTS_OF_IN_MEMBERS)) {
             throw new HqdmException("Property Not Set: consists_of_in_members");
         }
-        if (!description.hasValue(REPRESENTED)) {
+        if (!this.description.hasValue(REPRESENTED)) {
             throw new HqdmException("Property Not Set: represented");
         }
-        return description;
+        return this.description;
     }
 }

@@ -52,7 +52,7 @@ public class IdentificationOfPhysicalQuantityBuilder {
      * @return This builder.
      */
     public final IdentificationOfPhysicalQuantityBuilder value__M(final double value) {
-        identificationOfPhysicalQuantity.addRealValue(VALUE_, value);
+        this.identificationOfPhysicalQuantity.addRealValue(VALUE_, value);
         return this;
     }
 
@@ -67,7 +67,7 @@ public class IdentificationOfPhysicalQuantityBuilder {
      */
     public final IdentificationOfPhysicalQuantityBuilder consists_Of_In_Members_M(
             final RecognizingLanguageCommunity recognizingLanguageCommunity) {
-        identificationOfPhysicalQuantity.addValue(CONSISTS_OF_IN_MEMBERS,
+        this.identificationOfPhysicalQuantity.addValue(CONSISTS_OF_IN_MEMBERS,
                 new IRI(recognizingLanguageCommunity.getId()));
         return this;
     }
@@ -80,7 +80,7 @@ public class IdentificationOfPhysicalQuantityBuilder {
      * @return This builder.
      */
     public final IdentificationOfPhysicalQuantityBuilder represented_M(final PhysicalQuantity physicalQuantity) {
-        identificationOfPhysicalQuantity.addValue(REPRESENTED, new IRI(physicalQuantity.getId()));
+        this.identificationOfPhysicalQuantity.addValue(REPRESENTED, new IRI(physicalQuantity.getId()));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class IdentificationOfPhysicalQuantityBuilder {
      * @return This builder.
      */
     public final IdentificationOfPhysicalQuantityBuilder uses_M(final Scale scale) {
-        identificationOfPhysicalQuantity.addValue(USES, new IRI(scale.getId()));
+        this.identificationOfPhysicalQuantity.addValue(USES, new IRI(scale.getId()));
         return this;
     }
 
@@ -105,16 +105,16 @@ public class IdentificationOfPhysicalQuantityBuilder {
      *                       properties.
      */
     public IdentificationOfPhysicalQuantity build() throws HqdmException {
-        if (!identificationOfPhysicalQuantity.hasValue(VALUE_)) {
+        if (!this.identificationOfPhysicalQuantity.hasValue(VALUE_)) {
             throw new HqdmException("Property Not Set: value_");
         }
-        if (!identificationOfPhysicalQuantity.hasValue(CONSISTS_OF_IN_MEMBERS)) {
+        if (!this.identificationOfPhysicalQuantity.hasValue(CONSISTS_OF_IN_MEMBERS)) {
             throw new HqdmException("Property Not Set: consists_of_in_members");
         }
-        if (!identificationOfPhysicalQuantity.hasValue(REPRESENTED)) {
+        if (!this.identificationOfPhysicalQuantity.hasValue(REPRESENTED)) {
             throw new HqdmException("Property Not Set: represented");
         }
-        if (!identificationOfPhysicalQuantity.hasValue(USES)) {
+        if (!this.identificationOfPhysicalQuantity.hasValue(USES)) {
             throw new HqdmException("Property Not Set: uses");
         }
         return identificationOfPhysicalQuantity;

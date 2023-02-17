@@ -66,7 +66,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      */
     public final StateOfSociallyConstructedObjectBuilder aggregated_Into(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSociallyConstructedObject.addValue(AGGREGATED_INTO,
+        this.stateOfSociallyConstructedObject.addValue(AGGREGATED_INTO,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -79,7 +79,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedObjectBuilder beginning(final Event event) {
-        stateOfSociallyConstructedObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfSociallyConstructedObject.addValue(BEGINNING, new IRI(event.getId()));
         return this;
     }
 
@@ -94,7 +94,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSociallyConstructedObject.addValue(CONSISTS__OF,
+        this.stateOfSociallyConstructedObject.addValue(CONSISTS__OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -107,7 +107,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedObjectBuilder ending(final Event event) {
-        stateOfSociallyConstructedObject.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfSociallyConstructedObject.addValue(ENDING, new IRI(event.getId()));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedObjectBuilder member__Of(final Class clazz) {
-        stateOfSociallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfSociallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -135,7 +135,7 @@ public class StateOfSociallyConstructedObjectBuilder {
     @SuppressWarnings("LineLength")
     public final StateOfSociallyConstructedObjectBuilder member_Of(
             final ClassOfStateOfSociallyConstructedObject classOfStateOfSociallyConstructedObject) {
-        stateOfSociallyConstructedObject.addValue(MEMBER_OF,
+        this.stateOfSociallyConstructedObject.addValue(MEMBER_OF,
                 new IRI(classOfStateOfSociallyConstructedObject.getId()));
         return this;
     }
@@ -149,7 +149,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSociallyConstructedObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSociallyConstructedObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
         return this;
     }
 
@@ -168,7 +168,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        stateOfSociallyConstructedObject.addValue(PART_OF_POSSIBLE_WORLD,
+        this.stateOfSociallyConstructedObject.addValue(PART_OF_POSSIBLE_WORLD,
                 new IRI(possibleWorld.getId()));
         return this;
     }
@@ -183,7 +183,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      */
     public final StateOfSociallyConstructedObjectBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        stateOfSociallyConstructedObject.addValue(TEMPORAL__PART_OF,
+        this.stateOfSociallyConstructedObject.addValue(TEMPORAL__PART_OF,
                 new IRI(spatioTemporalExtent.getId()));
         return this;
     }
@@ -199,7 +199,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      */
     public final StateOfSociallyConstructedObjectBuilder temporal_Part_Of(
             final SociallyConstructedObject sociallyConstructedObject) {
-        stateOfSociallyConstructedObject.addValue(TEMPORAL_PART_OF,
+        this.stateOfSociallyConstructedObject.addValue(TEMPORAL_PART_OF,
                 new IRI(sociallyConstructedObject.getId()));
         return this;
     }
@@ -213,39 +213,39 @@ public class StateOfSociallyConstructedObjectBuilder {
      *                       properties.
      */
     public StateOfSociallyConstructedObject build() throws HqdmException {
-        if (stateOfSociallyConstructedObject.hasValue(AGGREGATED_INTO)
-                && stateOfSociallyConstructedObject.value(AGGREGATED_INTO).isEmpty()) {
+        if (this.stateOfSociallyConstructedObject.hasValue(AGGREGATED_INTO)
+                && this.stateOfSociallyConstructedObject.value(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
-        if (stateOfSociallyConstructedObject.hasValue(BEGINNING)
-                && stateOfSociallyConstructedObject.value(BEGINNING).isEmpty()) {
+        if (this.stateOfSociallyConstructedObject.hasValue(BEGINNING)
+                && this.stateOfSociallyConstructedObject.value(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
-        if (stateOfSociallyConstructedObject.hasValue(ENDING)
-                && stateOfSociallyConstructedObject.value(ENDING).isEmpty()) {
+        if (this.stateOfSociallyConstructedObject.hasValue(ENDING)
+                && this.stateOfSociallyConstructedObject.value(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (stateOfSociallyConstructedObject.hasValue(MEMBER__OF)
-                && stateOfSociallyConstructedObject.value(MEMBER__OF).isEmpty()) {
+        if (this.stateOfSociallyConstructedObject.hasValue(MEMBER__OF)
+                && this.stateOfSociallyConstructedObject.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (stateOfSociallyConstructedObject.hasValue(MEMBER_OF)
-                && stateOfSociallyConstructedObject.value(MEMBER_OF).isEmpty()) {
+        if (this.stateOfSociallyConstructedObject.hasValue(MEMBER_OF)
+                && this.stateOfSociallyConstructedObject.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (stateOfSociallyConstructedObject.hasValue(PART__OF)
-                && stateOfSociallyConstructedObject.value(PART__OF).isEmpty()) {
+        if (this.stateOfSociallyConstructedObject.hasValue(PART__OF)
+                && this.stateOfSociallyConstructedObject.value(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
-        if (!stateOfSociallyConstructedObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
+        if (!this.stateOfSociallyConstructedObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
-        if (stateOfSociallyConstructedObject.hasValue(TEMPORAL__PART_OF)
-                && stateOfSociallyConstructedObject.value(TEMPORAL__PART_OF).isEmpty()) {
+        if (this.stateOfSociallyConstructedObject.hasValue(TEMPORAL__PART_OF)
+                && this.stateOfSociallyConstructedObject.value(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
-        if (stateOfSociallyConstructedObject.hasValue(TEMPORAL_PART_OF)
-                && stateOfSociallyConstructedObject.value(TEMPORAL_PART_OF).isEmpty()) {
+        if (this.stateOfSociallyConstructedObject.hasValue(TEMPORAL_PART_OF)
+                && this.stateOfSociallyConstructedObject.value(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfSociallyConstructedObject;

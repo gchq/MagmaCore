@@ -63,7 +63,7 @@ public class RoleBuilder {
      */
     public final RoleBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        role.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.role.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -75,7 +75,7 @@ public class RoleBuilder {
      * @return This builder.
      */
     public final RoleBuilder has_Superclass(final Class clazz) {
-        role.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.role.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
         return this;
     }
 
@@ -87,7 +87,7 @@ public class RoleBuilder {
      * @return This builder.
      */
     public final RoleBuilder member__Of(final Class clazz) {
-        role.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.role.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -100,7 +100,7 @@ public class RoleBuilder {
      * @return This builder.
      */
     public final RoleBuilder member_Of(final ClassOfClass classOfClass) {
-        role.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.role.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
         return this;
     }
 
@@ -114,7 +114,7 @@ public class RoleBuilder {
      */
     public final RoleBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        role.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.role.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class RoleBuilder {
      */
     public final RoleBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        role.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.role.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
         return this;
     }
 
@@ -144,7 +144,7 @@ public class RoleBuilder {
      * @return This builder.
      */
     public final RoleBuilder part_Of_By_Class(final KindOfActivity kindOfActivity) {
-        role.addValue(PART_OF_BY_CLASS, new IRI(kindOfActivity.getId()));
+        this.role.addValue(PART_OF_BY_CLASS, new IRI(kindOfActivity.getId()));
         return this;
     }
 
@@ -158,7 +158,7 @@ public class RoleBuilder {
      * @return This builder.
      */
     public final RoleBuilder part_Of_By_Class_(final KindOfAssociation kindOfAssociation) {
-        role.addValue(PART_OF_BY_CLASS_, new IRI(kindOfAssociation.getId()));
+        this.role.addValue(PART_OF_BY_CLASS_, new IRI(kindOfAssociation.getId()));
         return this;
     }
 
@@ -169,32 +169,32 @@ public class RoleBuilder {
      * @throws HqdmException If the Role is missing any mandatory properties.
      */
     public Role build() throws HqdmException {
-        if (role.hasValue(HAS_SUPERCLASS)
-                && role.value(HAS_SUPERCLASS).isEmpty()) {
+        if (this.role.hasValue(HAS_SUPERCLASS)
+                && this.role.value(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (role.hasValue(MEMBER__OF)
-                && role.value(MEMBER__OF).isEmpty()) {
+        if (this.role.hasValue(MEMBER__OF)
+                && this.role.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (role.hasValue(MEMBER_OF)
-                && role.value(MEMBER_OF).isEmpty()) {
+        if (this.role.hasValue(MEMBER_OF)
+                && this.role.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (role.hasValue(MEMBER_OF_)
-                && role.value(MEMBER_OF_).isEmpty()) {
+        if (this.role.hasValue(MEMBER_OF_)
+                && this.role.value(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
-        if (role.hasValue(PART__OF_BY_CLASS)
-                && role.value(PART__OF_BY_CLASS).isEmpty()) {
+        if (this.role.hasValue(PART__OF_BY_CLASS)
+                && this.role.value(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
-        if (role.hasValue(PART_OF_BY_CLASS)
-                && role.value(PART_OF_BY_CLASS).isEmpty()) {
+        if (this.role.hasValue(PART_OF_BY_CLASS)
+                && this.role.value(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
-        if (role.hasValue(PART_OF_BY_CLASS_)
-                && role.value(PART_OF_BY_CLASS_).isEmpty()) {
+        if (this.role.hasValue(PART_OF_BY_CLASS_)
+                && this.role.value(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
         return role;

@@ -48,7 +48,7 @@ public class FunctionBuilder {
      * @return This builder.
      */
     public final FunctionBuilder member__Of(final Class clazz) {
-        function.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.function.addValue(MEMBER__OF, new IRI(clazz.getId()));
         return this;
     }
 
@@ -61,7 +61,7 @@ public class FunctionBuilder {
      * @return This builder.
      */
     public final FunctionBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        function.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.function.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
         return this;
     }
 
@@ -72,12 +72,12 @@ public class FunctionBuilder {
      * @throws HqdmException If the Function_ is missing any mandatory properties.
      */
     public Function_ build() throws HqdmException {
-        if (function.hasValue(MEMBER__OF)
-                && function.value(MEMBER__OF).isEmpty()) {
+        if (this.function.hasValue(MEMBER__OF)
+                && this.function.value(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
-        if (function.hasValue(MEMBER_OF)
-                && function.value(MEMBER_OF).isEmpty()) {
+        if (this.function.hasValue(MEMBER_OF)
+                && this.function.value(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return function;
