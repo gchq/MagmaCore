@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.rdf.util.Triples;
 /**
  * Demonstrate how to create a new class dynamically.
  */
-public class McAssistMultiInheritFromDataApp {
+public class MultiInheritFromDataApp {
 
     /**
      * Example program for creating classes dynamically.
@@ -47,7 +47,7 @@ public class McAssistMultiInheritFromDataApp {
                 new Pair<>(RDFS.RDF_TYPE, HQDM.PARTICIPANT));
 
         // Create a new object using the type specification.
-        final Thing orgState = HqdmObjectFactory.create(new IRI(REF_BASE, "state_of_organization_and_participant"), newTypeSpecification);
+        final Thing orgState = HqdmObjectFactory.create(new IRI(REF_BASE, uid()), newTypeSpecification);
 
         // Check that it implements the two interfaces.
         if (orgState instanceof Participant && orgState instanceof StateOfOrganization) {
