@@ -14,6 +14,7 @@
 
 package uk.gov.gchq.magmacore.examples.service;
 
+import static uk.gov.gchq.magmacore.examples.util.DemoUtils.REF_BASE;
 import static uk.gov.gchq.magmacore.util.UID.uid;
 
 import java.util.List;
@@ -46,7 +47,7 @@ public class McAssistMultiInheritFromDataApp {
                 new Pair<>(RDFS.RDF_TYPE, HQDM.PARTICIPANT));
 
         // Create a new object using the type specification.
-        final Thing orgState = HqdmObjectFactory.create(new IRI(uid()), newTypeSpecification);
+        final Thing orgState = HqdmObjectFactory.create(new IRI(REF_BASE, "state_of_organization_and_participant"), newTypeSpecification);
 
         // Check that it implements the two interfaces.
         if (orgState instanceof Participant && orgState instanceof StateOfOrganization) {
@@ -55,7 +56,7 @@ public class McAssistMultiInheritFromDataApp {
             System.err.println("Failed to implement the Participant and StateOfOrganization interfaces.");
         }
 
-        // DIsplay the object as triples.
+        // Display the object as triples.
         System.out.println("Result as TTL triples:");
         System.out.println(Triples.toTriples(orgState));
     }
