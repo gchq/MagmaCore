@@ -24,6 +24,7 @@ module uk.gov.gchq.magmacore {
     requires org.apache.jena.rdfconnection;
     requires org.apache.jena.tdb2;
     requires com.fasterxml.jackson.annotation;
+    requires java.net.http;
 
     requires uk.gov.gchq.magmacore.hqdm;
     requires transitive uk.gov.gchq.magmacore.hqdm.rdf;
