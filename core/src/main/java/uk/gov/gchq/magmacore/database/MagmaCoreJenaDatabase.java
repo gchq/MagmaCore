@@ -116,6 +116,8 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     public void begin() {
         if (!dataset.isInTransaction()) {
             dataset.begin();
+        } else {
+            throw new IllegalStateException("Already in a transaction");
         }
     }
 
@@ -127,6 +129,8 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
         if (dataset.isInTransaction()) {
             dataset.commit();
             dataset.end();
+        } else {
+            throw new IllegalStateException("Not in a transaction");
         }
     }
 
@@ -138,6 +142,8 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
         if (dataset.isInTransaction()) {
             dataset.abort();
             dataset.end();
+        } else {
+            throw new IllegalStateException("Not in a transaction");
         }
     }
 
