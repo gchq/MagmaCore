@@ -234,4 +234,74 @@ public class MagmaCoreServiceTest {
         });
     }
 
+    /**
+     * Test that case-insensitive searches find the required entities.
+     */
+    @Test
+    public void testFindByPartialSignAndClassCaseInsensitive() throws MagmaCoreException {
+
+        // Create and populate an in-memory database.
+        final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
+        SignPatternTestData.createSignPattern(db);
+
+        // Use it to create the services
+        final MagmaCoreService service = new MagmaCoreService(db);
+
+        // Create the PointInTime we're looking for
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
+
+        // Find the required Things by sign in a transaction.
+        db.begin();
+        final List<? extends Thing> found1 = service.findByPartialSignAndClassCaseInsensitive(
+                "Person1", SignPatternTestData.classOfPersonIri, now);
+        final List<? extends Thing> found2 = service.findByPartialSignAndClassCaseInsensitive(
+                "Person2", SignPatternTestData.classOfPersonIri, now);
+        db.commit();
+
+        // Assert the results are correct.
+        assertNotNull(found1);
+        assertNotNull(found2);
+        assertFalse(found1.isEmpty());
+        assertFalse(found2.isEmpty());
+
+        final StateOfPerson person1 = (StateOfPerson) found1.iterator().next();
+        final StateOfPerson person2 = (StateOfPerson) found2.iterator().next();
+
+        assertEquals(SignPatternTestData.person1.getId(), person1.getId());
+        assertEquals(SignPatternTestData.person2.getId(), person2.getId());
+    }
+
+    /**
+     * Test that case-sensitive searches don't find the required entities.
+     */
+    @Test
+    public void testFindByPartialSignAndClassCaseSensitive() throws MagmaCoreException {
+
+        // Create and populate an in-memory database.
+        final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
+        SignPatternTestData.createSignPattern(db);
+
+        // Use it to create the services
+        final MagmaCoreService service = new MagmaCoreService(db);
+
+        // Create the PointInTime we're looking for
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
+
+        // Find the required Things by sign in a transaction.
+        db.begin();
+        final List<? extends Thing> found1 = service.findByPartialSignAndClassCaseSensitive(
+                "Person1", SignPatternTestData.classOfPersonIri, now);
+        final List<? extends Thing> found2 = service.findByPartialSignAndClassCaseSensitive(
+                "Person2", SignPatternTestData.classOfPersonIri, now);
+        db.commit();
+
+        // Assert the results are correct.
+        assertNotNull(found1);
+        assertNotNull(found2);
+        assertTrue(found1.isEmpty());
+        assertTrue(found2.isEmpty());
+    }
+
 }
