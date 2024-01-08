@@ -253,9 +253,9 @@ public class MagmaCoreServiceTest {
 
         // Find the required Things by sign in a transaction.
         db.begin();
-        final List<? extends Thing> found1 = service.findByPartialSignAndClassCaseInsensitive(
+        final List<? extends Thing> found1 = service.findByPartialSignAndClass(
                 "Person1", SignPatternTestData.classOfPersonIri, now);
-        final List<? extends Thing> found2 = service.findByPartialSignAndClassCaseInsensitive(
+        final List<? extends Thing> found2 = service.findByPartialSignAndClass(
                 "Person2", SignPatternTestData.classOfPersonIri, now);
         db.commit();
 

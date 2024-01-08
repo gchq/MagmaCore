@@ -387,7 +387,7 @@ public class MagmaCoreService {
      * @param pointInTime When the entities should have the matching sign.
      * @return A {@link List} of {@link Thing}.
      */
-    public List<? extends Thing> findByPartialSignByActivityReferenceAndClassCaseInsensitive(final IRI wholeIri,
+    public List<? extends Thing> findByPartialSignByActivityReferenceAndClass(final IRI wholeIri,
             final String text, final IRI classIri,
             final PointInTime pointInTime) {
 
@@ -489,7 +489,7 @@ public class MagmaCoreService {
      * @param pointInTime When the entities should have the matching sign.
      * @return A {@link List} of {@link Thing}.
      */
-    public List<? extends Thing> findByPartialSignCompositionAndClassCaseInsensitive(final IRI wholeIri,
+    public List<? extends Thing> findByPartialSignCompositionAndClass(final IRI wholeIri,
             final String text, final IRI classIri,
             final PointInTime pointInTime) {
 
