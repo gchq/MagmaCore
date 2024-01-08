@@ -353,7 +353,7 @@ public class MagmaCoreService {
      * @param pointInTime When the entities should have the matching sign.
      * @return A {@link List} of {@link Thing}.
      */
-    public List<? extends Thing> findByPartialSignAndClassCaseInsensitive(final String text, final IRI classIri,
+    public List<? extends Thing> findByPartialSignAndClass(final String text, final IRI classIri,
             final PointInTime pointInTime) {
 
         final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
