@@ -21,10 +21,6 @@
   <dependencies>
     <dependency>
         <groupId>uk.gov.gchq.magma-core</groupId>
-        <artifactId>hqdm-rdf</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>uk.gov.gchq.magma-core</groupId>
         <artifactId>core</artifactId>
     </dependency>
     <dependency>

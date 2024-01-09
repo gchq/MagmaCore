@@ -27,7 +27,6 @@ module uk.gov.gchq.magmacore {
     requires java.net.http;
 
     requires uk.gov.gchq.magmacore.hqdm;
-    requires transitive uk.gov.gchq.magmacore.hqdm.rdf;
 
     exports uk.gov.gchq.magmacore.service;
     exports uk.gov.gchq.magmacore.service.dto;
