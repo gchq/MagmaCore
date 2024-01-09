@@ -92,6 +92,8 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
         if (!connection.isInTransaction()) {
             // The default TxnType.READ_PROMOTE is not supported.
             connection.begin(TxnType.WRITE);
+        } else {
+            throw new IllegalStateException("Already in a transaction");
         }
     }
 
@@ -101,6 +103,8 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     public final void abort() {
         if (connection.isInTransaction()) {
             connection.abort();
+        } else {
+            throw new IllegalStateException("Not in a transaction");
         }
     }
 
@@ -118,6 +122,8 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     public final void commit() {
         if (connection.isInTransaction()) {
             connection.commit();
+        } else {
+            throw new IllegalStateException("Not in a transaction");
         }
     }
 
