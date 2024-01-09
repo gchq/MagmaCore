@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfAgreementExecution;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfAgreementExecution.
@@ -26,7 +27,7 @@ public class ClassOfAgreementExecutionImpl extends HqdmObject implements ClassOf
      *
      * @param id String of the ClassOfAgreementExecution.
      */
-    public ClassOfAgreementExecutionImpl(final String id) {
+    public ClassOfAgreementExecutionImpl(final IRI id) {
         super(id);
     }
 }

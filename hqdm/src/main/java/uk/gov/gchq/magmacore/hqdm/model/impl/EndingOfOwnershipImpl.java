@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.EndingOfOwnership;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of EndingOfOwnership.
@@ -26,7 +27,7 @@ public class EndingOfOwnershipImpl extends HqdmObject implements EndingOfOwnersh
      *
      * @param id String of the EndingOfOwnership.
      */
-    public EndingOfOwnershipImpl(final String id) {
+    public EndingOfOwnershipImpl(final IRI id) {
         super(id);
     }
 }

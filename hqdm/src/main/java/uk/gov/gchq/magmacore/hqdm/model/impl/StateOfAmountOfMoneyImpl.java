@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.StateOfAmountOfMoney;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of StateOfAmountOfMoney.
@@ -26,7 +27,7 @@ public class StateOfAmountOfMoneyImpl extends HqdmObject implements StateOfAmoun
      *
      * @param id String of the StateOfAmountOfMoney.
      */
-    public StateOfAmountOfMoneyImpl(final String id) {
+    public StateOfAmountOfMoneyImpl(final IRI id) {
         super(id);
     }
 }

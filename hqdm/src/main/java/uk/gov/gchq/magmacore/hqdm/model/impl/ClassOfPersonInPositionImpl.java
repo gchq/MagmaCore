@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfPersonInPosition;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfPersonInPosition.
@@ -26,7 +27,7 @@ public class ClassOfPersonInPositionImpl extends HqdmObject implements ClassOfPe
      *
      * @param id String of the ClassOfPersonInPosition.
      */
-    public ClassOfPersonInPositionImpl(final String id) {
+    public ClassOfPersonInPositionImpl(final IRI id) {
         super(id);
     }
 }

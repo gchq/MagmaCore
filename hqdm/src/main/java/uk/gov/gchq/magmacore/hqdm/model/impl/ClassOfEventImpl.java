@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfEvent;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfEvent.
@@ -26,7 +27,7 @@ public class ClassOfEventImpl extends HqdmObject implements ClassOfEvent {
      *
      * @param id String of the ClassOfEvent.
      */
-    public ClassOfEventImpl(final String id) {
+    public ClassOfEventImpl(final IRI id) {
         super(id);
     }
 }

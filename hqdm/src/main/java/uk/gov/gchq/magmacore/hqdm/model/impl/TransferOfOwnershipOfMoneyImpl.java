@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnershipOfMoney;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of TransferOfOwnershipOfMoney.
@@ -26,7 +27,7 @@ public class TransferOfOwnershipOfMoneyImpl extends HqdmObject implements Transf
      *
      * @param id String of the TransferOfOwnershipOfMoney.
      */
-    public TransferOfOwnershipOfMoneyImpl(final String id) {
+    public TransferOfOwnershipOfMoneyImpl(final IRI id) {
         super(id);
     }
 }

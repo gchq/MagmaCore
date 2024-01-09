@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Aggregation;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Aggregation.
@@ -26,7 +27,7 @@ public class AggregationImpl extends HqdmObject implements Aggregation {
      *
      * @param id String of the Aggregation.
      */
-    public AggregationImpl(final String id) {
+    public AggregationImpl(final IRI id) {
         super(id);
     }
 }

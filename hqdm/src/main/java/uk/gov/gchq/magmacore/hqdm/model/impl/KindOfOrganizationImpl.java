@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.KindOfOrganization;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of KindOfOrganization.
@@ -26,7 +27,7 @@ public class KindOfOrganizationImpl extends HqdmObject implements KindOfOrganiza
      *
      * @param id String of the KindOfOrganization.
      */
-    public KindOfOrganizationImpl(final String id) {
+    public KindOfOrganizationImpl(final IRI id) {
         super(id);
     }
 }

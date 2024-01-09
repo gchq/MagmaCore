@@ -32,6 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.impl.PointInTimeImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.PossibleWorldImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.SpatioTemporalExtentImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.ThingImpl;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * HqdmObject tests.
@@ -40,31 +41,31 @@ public class HqdmObjectTest {
 
     @Test
     public void testDateTimeFormattingForTriples() {
-        final PossibleWorld possibleWorld = new PossibleWorldImpl("World");
+        final PossibleWorld possibleWorld = new PossibleWorldImpl(new IRI("http://example.com/entity#World"));
         final String beginDateTime = Instant.now().toString();
         final String endDate = Instant.now().toString();
 
-        final PointInTime beginEvent = new PointInTimeImpl(beginDateTime);
+        final PointInTime beginEvent = new PointInTimeImpl(new IRI("http://example.com/entity#" + beginDateTime));
 
         beginEvent.addValue("HQDM.PART_OF_POSSIBLE_WORLD", possibleWorld.getId());
 
-        final PointInTime endEvent = new PointInTimeImpl(endDate);
+        final PointInTime endEvent = new PointInTimeImpl(new IRI("http://example.com/entity#" + endDate));
 
         endEvent.addValue("HQDM.PART_OF_POSSIBLE_WORLD", possibleWorld.getId());
 
-        final SpatioTemporalExtent object1 = new SpatioTemporalExtentImpl("Object1");
+        final SpatioTemporalExtent object1 = new SpatioTemporalExtentImpl(new IRI("http://example.com/entity#Object1"));
 
         object1.addValue("HQDM.BEGINNING", beginEvent.getId());
         object1.addValue("HQDM.ENDING", endEvent.getId());
         object1.addValue("HQDM.PART_OF_POSSIBLE_WORLD", possibleWorld.getId());
 
-        Assert.assertEquals(beginDateTime, beginEvent.getId());
-        Assert.assertEquals(endDate, endEvent.getId());
+        Assert.assertEquals("http://example.com/entity#" + beginDateTime, beginEvent.getId().getIri());
+        Assert.assertEquals("http://example.com/entity#" + endDate, endEvent.getId().getIri());
     }
 
     @Test
     public void testDeleteValueFromThing() {
-        final var thing = new ThingImpl("test");
+        final var thing = new ThingImpl(new IRI("http://example.com/entity#test"));
 
         // Add a predicate and confirm it is present.
         thing.addValue("test-predicate", "test-value");
@@ -88,10 +89,10 @@ public class HqdmObjectTest {
      */
     @Test
     public void testTwoObjectsAreEqual() {
-        final Thing thing1 = new ThingImpl("thing1");
+        final Thing thing1 = new ThingImpl(new IRI("http://example.com/entity#thing1"));
         thing1.addValue("test-predicate", "test-value");
 
-        final Thing thing2 = new ThingImpl("thing1");
+        final Thing thing2 = new ThingImpl(new IRI("http://example.com/entity#thing1"));
         thing2.addValue("test-predicate2", "test-value2");
 
         assertEquals(thing1, thing2);
@@ -103,10 +104,10 @@ public class HqdmObjectTest {
      */
     @Test
     public void testSetContainsHqdmObject() {
-        final Thing thing1 = new ThingImpl("thing1");
+        final Thing thing1 = new ThingImpl(new IRI("http://example.com/entity#thing1"));
         thing1.addValue("test-predicate", "test-value");
 
-        final SpatioTemporalExtent thing2 = new SpatioTemporalExtentImpl("thing1");
+        final SpatioTemporalExtent thing2 = new SpatioTemporalExtentImpl(new IRI("http://example.com/entity#thing1"));
         thing2.addValue("test-predicate2", "test-value2");
 
         final Set<Thing> things = new HashSet<>();

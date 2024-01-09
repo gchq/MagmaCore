@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Currency;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Currency.
@@ -26,7 +27,7 @@ public class CurrencyImpl extends HqdmObject implements Currency {
      *
      * @param id String of the Currency.
      */
-    public CurrencyImpl(final String id) {
+    public CurrencyImpl(final IRI id) {
         super(id);
     }
 }

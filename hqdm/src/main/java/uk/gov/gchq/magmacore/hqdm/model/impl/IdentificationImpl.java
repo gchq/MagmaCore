@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Identification;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Identification.
@@ -26,7 +27,7 @@ public class IdentificationImpl extends HqdmObject implements Identification {
      *
      * @param id String of the Identification.
      */
-    public IdentificationImpl(final String id) {
+    public IdentificationImpl(final IRI id) {
         super(id);
     }
 }

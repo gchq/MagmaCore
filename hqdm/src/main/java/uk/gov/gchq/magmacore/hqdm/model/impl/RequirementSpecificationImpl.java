@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.RequirementSpecification;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of RequirementSpecification.
@@ -26,7 +27,7 @@ public class RequirementSpecificationImpl extends HqdmObject implements Requirem
      *
      * @param id String of the RequirementSpecification.
      */
-    public RequirementSpecificationImpl(final String id) {
+    public RequirementSpecificationImpl(final IRI id) {
         super(id);
     }
 }

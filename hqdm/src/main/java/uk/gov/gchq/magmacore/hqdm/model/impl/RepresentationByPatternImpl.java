@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of RepresentationByPattern.
@@ -26,7 +27,7 @@ public class RepresentationByPatternImpl extends HqdmObject implements Represent
      *
      * @param id String of the RepresentationByPattern.
      */
-    public RepresentationByPatternImpl(final String id) {
+    public RepresentationByPatternImpl(final IRI id) {
         super(id);
     }
 }

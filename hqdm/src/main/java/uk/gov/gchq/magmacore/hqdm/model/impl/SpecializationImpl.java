@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Specialization;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Specialization.
@@ -26,7 +27,7 @@ public class SpecializationImpl extends HqdmObject implements Specialization {
      *
      * @param id String of the Specialization.
      */
-    public SpecializationImpl(final String id) {
+    public SpecializationImpl(final IRI id) {
         super(id);
     }
 }

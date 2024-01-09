@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.PeriodOfTime;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of PeriodOfTime.
@@ -26,7 +27,7 @@ public class PeriodOfTimeImpl extends HqdmObject implements PeriodOfTime {
      *
      * @param id String of the PeriodOfTime.
      */
-    public PeriodOfTimeImpl(final String id) {
+    public PeriodOfTimeImpl(final IRI id) {
         super(id);
     }
 }

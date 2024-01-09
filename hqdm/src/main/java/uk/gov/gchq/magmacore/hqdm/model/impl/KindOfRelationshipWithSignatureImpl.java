@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.KindOfRelationshipWithSignature;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of KindOfRelationshipWithSignature.
@@ -26,7 +27,7 @@ public class KindOfRelationshipWithSignatureImpl extends HqdmObject implements K
      *
      * @param id String of the KindOfRelationshipWithSignature.
      */
-    public KindOfRelationshipWithSignatureImpl(final String id) {
+    public KindOfRelationshipWithSignatureImpl(final IRI id) {
         super(id);
     }
 }

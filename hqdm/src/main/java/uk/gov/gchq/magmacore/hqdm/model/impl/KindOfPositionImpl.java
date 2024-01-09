@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.KindOfPosition;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of KindOfPosition.
@@ -26,7 +27,7 @@ public class KindOfPositionImpl extends HqdmObject implements KindOfPosition {
      *
      * @param id String of the KindOfPosition.
      */
-    public KindOfPositionImpl(final String id) {
+    public KindOfPositionImpl(final IRI id) {
         super(id);
     }
 }

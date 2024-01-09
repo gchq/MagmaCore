@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.AgreeContract;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of AgreeContract.
@@ -26,7 +27,7 @@ public class AgreeContractImpl extends HqdmObject implements AgreeContract {
      *
      * @param id String of the AgreeContract.
      */
-    public AgreeContractImpl(final String id) {
+    public AgreeContractImpl(final IRI id) {
         super(id);
     }
 }

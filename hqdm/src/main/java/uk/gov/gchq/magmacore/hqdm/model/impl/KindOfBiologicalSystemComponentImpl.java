@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.KindOfBiologicalSystemComponent;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of KindOfBiologicalSystemComponent.
@@ -26,7 +27,7 @@ public class KindOfBiologicalSystemComponentImpl extends HqdmObject implements K
      *
      * @param id String of the KindOfBiologicalSystemComponent.
      */
-    public KindOfBiologicalSystemComponentImpl(final String id) {
+    public KindOfBiologicalSystemComponentImpl(final IRI id) {
         super(id);
     }
 }

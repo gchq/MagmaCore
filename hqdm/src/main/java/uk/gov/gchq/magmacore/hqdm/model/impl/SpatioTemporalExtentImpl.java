@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of SpatioTemporalExtent.
@@ -26,7 +27,7 @@ public class SpatioTemporalExtentImpl extends HqdmObject implements SpatioTempor
      *
      * @param id String of the SpatioTemporalExtent.
      */
-    public SpatioTemporalExtentImpl(final String id) {
+    public SpatioTemporalExtentImpl(final IRI id) {
         super(id);
     }
 }

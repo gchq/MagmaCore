@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.StateOfSociallyConstructedObject;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of StateOfSociallyConstructedObject.
@@ -26,7 +27,7 @@ public class StateOfSociallyConstructedObjectImpl extends HqdmObject implements 
      *
      * @param id String of the StateOfSociallyConstructedObject.
      */
-    public StateOfSociallyConstructedObjectImpl(final String id) {
+    public StateOfSociallyConstructedObjectImpl(final IRI id) {
         super(id);
     }
 }

@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.OfferAndAcceptanceForGoods;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of OfferAndAcceptanceForGoods.
@@ -26,7 +27,7 @@ public class OfferAndAcceptanceForGoodsImpl extends HqdmObject implements OfferA
      *
      * @param id String of the OfferAndAcceptanceForGoods.
      */
-    public OfferAndAcceptanceForGoodsImpl(final String id) {
+    public OfferAndAcceptanceForGoodsImpl(final IRI id) {
         super(id);
     }
 }

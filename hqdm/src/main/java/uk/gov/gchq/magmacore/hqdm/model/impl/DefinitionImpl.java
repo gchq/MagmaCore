@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Definition;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Definition.
@@ -26,7 +27,7 @@ public class DefinitionImpl extends HqdmObject implements Definition {
      *
      * @param id String of the Definition.
      */
-    public DefinitionImpl(final String id) {
+    public DefinitionImpl(final IRI id) {
         super(id);
     }
 }

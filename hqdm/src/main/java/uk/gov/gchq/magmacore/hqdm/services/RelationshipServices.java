@@ -34,6 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.impl.ScaleImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.SpecializationImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.TemporalCompositionImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.UnitOfMeasureImpl;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * Service for creating HQDM Relationships.
@@ -45,7 +46,7 @@ public class RelationshipServices {
      * @param id ID of the Specialization.
      * @return A Specialization instance.
      */
-    public static Specialization createSpecialization(final String id) {
+    public static Specialization createSpecialization(final IRI id) {
         return new SpecializationImpl(id);
     }
 
@@ -55,7 +56,7 @@ public class RelationshipServices {
      * @param id ID of the Scale.
      * @return A Scale instance.
      */
-    public static Scale createScale(final String id) {
+    public static Scale createScale(final IRI id) {
         return new ScaleImpl(id);
     }
 
@@ -65,7 +66,7 @@ public class RelationshipServices {
      * @param id ID of the UnitOfMeasure.
      * @return A UnitOfMeasure instance.
      */
-    public static UnitOfMeasure createUnitOfMeasure(final String id) {
+    public static UnitOfMeasure createUnitOfMeasure(final IRI id) {
         return new UnitOfMeasureImpl(id);
     }
 
@@ -75,7 +76,7 @@ public class RelationshipServices {
      * @param id ID of the Function_.
      * @return A Function_ instance.
      */
-    public static Function_ createFunction(final String id) {
+    public static Function_ createFunction(final IRI id) {
         return new FunctionImpl(id);
     }
 
@@ -85,7 +86,7 @@ public class RelationshipServices {
      * @param id ID of the Classification.
      * @return A Classification instance.
      */
-    public static Classification createClassification(final String id) {
+    public static Classification createClassification(final IRI id) {
         return new ClassificationImpl(id);
     }
 
@@ -95,7 +96,7 @@ public class RelationshipServices {
      * @param id ID of the TemporalComposition.
      * @return A TemporalComposition instance.
      */
-    public static TemporalComposition createTemporalComposition(final String id) {
+    public static TemporalComposition createTemporalComposition(final IRI id) {
         return new TemporalCompositionImpl(id);
     }
 
@@ -105,7 +106,7 @@ public class RelationshipServices {
      * @param id ID of the Composition.
      * @return A Composition instance.
      */
-    public static Composition createComposition(final String id) {
+    public static Composition createComposition(final IRI id) {
         return new CompositionImpl(id);
     }
 
@@ -115,7 +116,7 @@ public class RelationshipServices {
      * @param id ID of the Aggregation.
      * @return A Aggregation instance.
      */
-    public static Aggregation createAggregation(final String id) {
+    public static Aggregation createAggregation(final IRI id) {
         return new AggregationImpl(id);
     }
 
@@ -125,7 +126,7 @@ public class RelationshipServices {
      * @param id ID of the Relationship.
      * @return A Relationship instance.
      */
-    public static Relationship createRelationship(final String id) {
+    public static Relationship createRelationship(final IRI id) {
         return new RelationshipImpl(id);
     }
 
@@ -135,7 +136,7 @@ public class RelationshipServices {
      * @param id ID of the DefinedRelationship.
      * @return A DefinedRelationship instance.
      */
-    public static DefinedRelationship createDefinedRelationship(final String id) {
+    public static DefinedRelationship createDefinedRelationship(final IRI id) {
         return new DefinedRelationshipImpl(id);
     }
 }

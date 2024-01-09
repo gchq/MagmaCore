@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.IdentificationOfPhysicalQuantity;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of IdentificationOfPhysicalQuantity.
@@ -26,7 +27,7 @@ public class IdentificationOfPhysicalQuantityImpl extends HqdmObject implements 
      *
      * @param id String of the IdentificationOfPhysicalQuantity.
      */
-    public IdentificationOfPhysicalQuantityImpl(final String id) {
+    public IdentificationOfPhysicalQuantityImpl(final IRI id) {
         super(id);
     }
 }

@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.SalesProductVersion;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of SalesProductVersion.
@@ -26,7 +27,7 @@ public class SalesProductVersionImpl extends HqdmObject implements SalesProductV
      *
      * @param id String of the SalesProductVersion.
      */
-    public SalesProductVersionImpl(final String id) {
+    public SalesProductVersionImpl(final IRI id) {
         super(id);
     }
 }

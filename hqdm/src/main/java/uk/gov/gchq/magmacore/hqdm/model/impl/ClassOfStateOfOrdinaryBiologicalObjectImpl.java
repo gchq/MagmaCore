@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfStateOfOrdinaryBiologicalObject;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfStateOfOrdinaryBiologicalObject.
@@ -27,7 +28,7 @@ public class ClassOfStateOfOrdinaryBiologicalObjectImpl extends HqdmObject
      *
      * @param id String of the ClassOfStateOfOrdinaryBiologicalObject.
      */
-    public ClassOfStateOfOrdinaryBiologicalObjectImpl(final String id) {
+    public ClassOfStateOfOrdinaryBiologicalObjectImpl(final IRI id) {
         super(id);
     }
 }

@@ -23,6 +23,7 @@ import org.junit.Test;
 import uk.gov.gchq.magmacore.hqdm.model.Participant;
 import uk.gov.gchq.magmacore.hqdm.model.Party;
 import uk.gov.gchq.magmacore.hqdm.model.Person;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * Test creation of dynamic objects.
@@ -36,14 +37,14 @@ public class DynamicObjectsTest {
     public void testCreate() {
 
         // Create the object with three interfaces.
-        final Person person = DynamicObjects.create("person1", Person.class,
+        final Person person = DynamicObjects.create(new IRI("http://example.com/entity#person1"), Person.class,
                 new Class[] { Person.class, Participant.class, Party.class });
 
         // Verify that the object implements all three interfaces and has the right id.
         assertTrue(person instanceof Person);
         assertTrue(person instanceof Participant);
         assertTrue(person instanceof Party);
-        assertEquals("person1", person.getId());
+        assertEquals("http://example.com/entity#person1", person.getId().getIri());
     }
 
     /**
@@ -53,13 +54,13 @@ public class DynamicObjectsTest {
     public void testAddInterface() {
 
         // Create the object with one interface.
-        final Person person1 = SpatioTemporalExtentServices.createPerson("person1");
+        final Person person1 = SpatioTemporalExtentServices.createPerson(new IRI("http://example.com/entity#person1"));
 
         // Verify that the object implements just the Person and Party interfaces.
         assertTrue(person1 instanceof Person);
         assertFalse(person1 instanceof Participant);
         assertTrue(person1 instanceof Party);
-        assertEquals("person1", person1.getId());
+        assertEquals("http://example.com/entity#person1", person1.getId().getIri());
 
         // Add two more interfaces to the object - this time return it as a Participant.
         final Participant person2 = DynamicObjects.implementInterfaces(person1, Participant.class,
@@ -69,6 +70,6 @@ public class DynamicObjectsTest {
         assertTrue(person2 instanceof Person);
         assertTrue(person2 instanceof Participant);
         assertTrue(person2 instanceof Party);
-        assertEquals("person1", person2.getId());
+        assertEquals("http://example.com/entity#person1", person2.getId().getIri());
     }
 }
