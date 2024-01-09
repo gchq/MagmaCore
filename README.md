@@ -34,7 +34,7 @@ Magma Core can be incorporated into other maven projects using the following dep
 <dependency>
   <groupId>uk.gov.gchq.magmacore</groupId>
   <artifactId>core</artifactId>
-  <version>1.0</version>
+  <version>3.0.2</version>
 </dependency>
 ```
 
