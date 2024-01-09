@@ -51,7 +51,7 @@ public class PhysicalObjectBuilder {
      * @param iri IRI of the PhysicalObject.
      */
     public PhysicalObjectBuilder(final IRI iri) {
-        physicalObject = RdfSpatioTemporalExtentServices.createPhysicalObject(iri.getIri());
+        physicalObject = RdfSpatioTemporalExtentServices.createPhysicalObject(iri);
     }
 
     /**

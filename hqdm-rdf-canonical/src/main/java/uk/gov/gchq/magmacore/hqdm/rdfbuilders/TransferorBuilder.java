@@ -53,7 +53,7 @@ public class TransferorBuilder {
      * @param iri IRI of the Transferor.
      */
     public TransferorBuilder(final IRI iri) {
-        transferor = RdfSpatioTemporalExtentServices.createTransferor(iri.getIri());
+        transferor = RdfSpatioTemporalExtentServices.createTransferor(iri);
     }
 
     /**

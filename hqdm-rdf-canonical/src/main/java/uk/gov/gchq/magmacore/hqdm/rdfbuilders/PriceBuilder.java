@@ -43,7 +43,7 @@ public class PriceBuilder {
      * @param iri IRI of the Price.
      */
     public PriceBuilder(final IRI iri) {
-        price = RdfSpatioTemporalExtentServices.createPrice(iri.getIri());
+        price = RdfSpatioTemporalExtentServices.createPrice(iri);
     }
 
     /**

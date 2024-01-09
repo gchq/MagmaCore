@@ -50,7 +50,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      */
     public StateOfSociallyConstructedObjectBuilder(final IRI iri) {
         stateOfSociallyConstructedObject = RdfSpatioTemporalExtentServices
-                .createStateOfSociallyConstructedObject(iri.getIri());
+                .createStateOfSociallyConstructedObject(iri);
     }
 
     /**

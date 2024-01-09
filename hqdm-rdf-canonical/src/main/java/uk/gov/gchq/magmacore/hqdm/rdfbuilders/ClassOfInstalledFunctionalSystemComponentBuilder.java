@@ -45,7 +45,7 @@ public class ClassOfInstalledFunctionalSystemComponentBuilder {
      */
     public ClassOfInstalledFunctionalSystemComponentBuilder(final IRI iri) {
         this.classOfInstalledFunctionalSystemComponent = RdfClassServices
-                .createClassOfInstalledFunctionalSystemComponent(iri.getIri());
+                .createClassOfInstalledFunctionalSystemComponent(iri);
     }
 
     /**

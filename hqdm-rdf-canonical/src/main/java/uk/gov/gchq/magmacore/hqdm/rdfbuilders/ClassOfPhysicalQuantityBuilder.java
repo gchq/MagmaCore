@@ -38,7 +38,7 @@ public class ClassOfPhysicalQuantityBuilder {
      * @param iri IRI of the ClassOfPhysicalQuantity.
      */
     public ClassOfPhysicalQuantityBuilder(final IRI iri) {
-        this.classOfPhysicalQuantity = RdfClassServices.createClassOfPhysicalQuantity(iri.getIri());
+        this.classOfPhysicalQuantity = RdfClassServices.createClassOfPhysicalQuantity(iri);
     }
 
     /**

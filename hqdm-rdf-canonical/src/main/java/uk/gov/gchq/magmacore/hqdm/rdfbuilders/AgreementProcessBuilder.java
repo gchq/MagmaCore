@@ -63,7 +63,7 @@ public class AgreementProcessBuilder {
      * @param iri IRI of the AgreementProcess.
      */
     public AgreementProcessBuilder(final IRI iri) {
-        this.agreementProcess = RdfSpatioTemporalExtentServices.createAgreementProcess(iri.getIri());
+        this.agreementProcess = RdfSpatioTemporalExtentServices.createAgreementProcess(iri);
     }
 
     /**

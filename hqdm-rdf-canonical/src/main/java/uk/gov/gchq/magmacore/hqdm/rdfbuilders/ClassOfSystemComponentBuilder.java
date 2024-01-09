@@ -43,7 +43,7 @@ public class ClassOfSystemComponentBuilder {
      * @param iri IRI of the ClassOfSystemComponent.
      */
     public ClassOfSystemComponentBuilder(final IRI iri) {
-        this.classOfSystemComponent = RdfClassServices.createClassOfSystemComponent(iri.getIri());
+        this.classOfSystemComponent = RdfClassServices.createClassOfSystemComponent(iri);
     }
 
     /**

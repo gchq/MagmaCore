@@ -65,7 +65,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      * @param iri IRI of the OfferAndAcceptanceForGoods.
      */
     public OfferAndAcceptanceForGoodsBuilder(final IRI iri) {
-        offerAndAcceptanceForGoods = RdfSpatioTemporalExtentServices.createOfferAndAcceptanceForGoods(iri.getIri());
+        offerAndAcceptanceForGoods = RdfSpatioTemporalExtentServices.createOfferAndAcceptanceForGoods(iri);
     }
 
     /**

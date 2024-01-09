@@ -37,7 +37,7 @@ public class FunctionBuilder {
      * @param iri IRI of the Function.
      */
     public FunctionBuilder(final IRI iri) {
-        function = RdfRelationshipServices.createFunction(iri.getIri());
+        function = RdfRelationshipServices.createFunction(iri);
     }
 
     /**

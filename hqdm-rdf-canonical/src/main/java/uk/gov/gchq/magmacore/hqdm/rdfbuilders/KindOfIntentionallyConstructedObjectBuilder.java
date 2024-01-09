@@ -45,7 +45,7 @@ public class KindOfIntentionallyConstructedObjectBuilder {
      */
     public KindOfIntentionallyConstructedObjectBuilder(final IRI iri) {
         kindOfIntentionallyConstructedObject = RdfClassServices
-                .createKindOfIntentionallyConstructedObject(iri.getIri());
+                .createKindOfIntentionallyConstructedObject(iri);
     }
 
     /**

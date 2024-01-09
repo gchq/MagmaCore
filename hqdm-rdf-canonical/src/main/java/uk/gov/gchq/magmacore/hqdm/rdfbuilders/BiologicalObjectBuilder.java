@@ -50,7 +50,7 @@ public class BiologicalObjectBuilder {
      * @param iri IRI of the BiologicalObject.
      */
     public BiologicalObjectBuilder(final IRI iri) {
-        this.biologicalObject = RdfSpatioTemporalExtentServices.createBiologicalObject(iri.getIri());
+        this.biologicalObject = RdfSpatioTemporalExtentServices.createBiologicalObject(iri);
     }
 
     /**

@@ -46,7 +46,7 @@ public class EventBuilder {
      * @param iri IRI of the Event.
      */
     public EventBuilder(final IRI iri) {
-        event = RdfSpatioTemporalExtentServices.createEvent(iri.getIri());
+        event = RdfSpatioTemporalExtentServices.createEvent(iri);
     }
 
     /**

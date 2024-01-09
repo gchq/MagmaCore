@@ -41,7 +41,7 @@ public class ScaleBuilder {
      * @param iri IRI of the Scale.
      */
     public ScaleBuilder(final IRI iri) {
-        scale = RdfRelationshipServices.createScale(iri.getIri());
+        scale = RdfRelationshipServices.createScale(iri);
     }
 
     /**

@@ -43,7 +43,7 @@ public class ClassOfPossibleWorldBuilder {
      * @param iri IRI of the ClassOfPossibleWorld.
      */
     public ClassOfPossibleWorldBuilder(final IRI iri) {
-        this.classOfPossibleWorld = RdfClassServices.createClassOfPossibleWorld(iri.getIri());
+        this.classOfPossibleWorld = RdfClassServices.createClassOfPossibleWorld(iri);
     }
 
     /**

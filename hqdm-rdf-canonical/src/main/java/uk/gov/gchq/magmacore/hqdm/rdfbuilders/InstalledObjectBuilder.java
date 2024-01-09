@@ -49,7 +49,7 @@ public class InstalledObjectBuilder {
      * @param iri IRI of the InstalledObject.
      */
     public InstalledObjectBuilder(final IRI iri) {
-        installedObject = RdfSpatioTemporalExtentServices.createInstalledObject(iri.getIri());
+        installedObject = RdfSpatioTemporalExtentServices.createInstalledObject(iri);
     }
 
     /**

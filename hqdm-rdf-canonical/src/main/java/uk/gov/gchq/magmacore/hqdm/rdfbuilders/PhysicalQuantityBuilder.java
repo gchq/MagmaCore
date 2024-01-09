@@ -45,7 +45,7 @@ public class PhysicalQuantityBuilder {
      * @param iri IRI of the PhysicalQuantity.
      */
     public PhysicalQuantityBuilder(final IRI iri) {
-        physicalQuantity = RdfSpatioTemporalExtentServices.createPhysicalQuantity(iri.getIri());
+        physicalQuantity = RdfSpatioTemporalExtentServices.createPhysicalQuantity(iri);
     }
 
     /**

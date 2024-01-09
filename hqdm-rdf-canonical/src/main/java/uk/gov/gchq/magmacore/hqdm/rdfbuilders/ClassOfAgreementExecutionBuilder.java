@@ -46,7 +46,7 @@ public class ClassOfAgreementExecutionBuilder {
      * @param iri IRI of the ClassOfAgreementExecution.
      */
     public ClassOfAgreementExecutionBuilder(final IRI iri) {
-        this.classOfAgreementExecution = RdfClassServices.createClassOfAgreementExecution(iri.getIri());
+        this.classOfAgreementExecution = RdfClassServices.createClassOfAgreementExecution(iri);
     }
 
     /**

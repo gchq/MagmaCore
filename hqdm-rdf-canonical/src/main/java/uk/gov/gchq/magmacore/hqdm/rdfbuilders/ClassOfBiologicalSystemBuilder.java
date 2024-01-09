@@ -43,7 +43,7 @@ public class ClassOfBiologicalSystemBuilder {
      * @param iri IRI of the ClassOfBiologicalSystem.
      */
     public ClassOfBiologicalSystemBuilder(final IRI iri) {
-        this.classOfBiologicalSystem = RdfClassServices.createClassOfBiologicalSystem(iri.getIri());
+        this.classOfBiologicalSystem = RdfClassServices.createClassOfBiologicalSystem(iri);
     }
 
     /**

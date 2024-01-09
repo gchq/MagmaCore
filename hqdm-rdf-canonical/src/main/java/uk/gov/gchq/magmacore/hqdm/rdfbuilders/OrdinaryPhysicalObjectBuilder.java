@@ -51,7 +51,7 @@ public class OrdinaryPhysicalObjectBuilder {
      * @param iri IRI of the OrdinaryPhysicalObject.
      */
     public OrdinaryPhysicalObjectBuilder(final IRI iri) {
-        ordinaryPhysicalObject = RdfSpatioTemporalExtentServices.createOrdinaryPhysicalObject(iri.getIri());
+        ordinaryPhysicalObject = RdfSpatioTemporalExtentServices.createOrdinaryPhysicalObject(iri);
     }
 
     /**

@@ -53,7 +53,7 @@ public class EmployeeBuilder {
      * @param iri IRI of the Employee.
      */
     public EmployeeBuilder(final IRI iri) {
-        this.employee = RdfSpatioTemporalExtentServices.createEmployee(iri.getIri());
+        this.employee = RdfSpatioTemporalExtentServices.createEmployee(iri);
     }
 
     /**

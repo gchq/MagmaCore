@@ -44,7 +44,7 @@ public class ClassOfStateOfFunctionalObjectBuilder {
      */
     public ClassOfStateOfFunctionalObjectBuilder(final IRI iri) {
         this.classOfStateOfFunctionalObject = RdfClassServices
-                .createClassOfStateOfFunctionalObject(iri.getIri());
+                .createClassOfStateOfFunctionalObject(iri);
     }
 
     /**

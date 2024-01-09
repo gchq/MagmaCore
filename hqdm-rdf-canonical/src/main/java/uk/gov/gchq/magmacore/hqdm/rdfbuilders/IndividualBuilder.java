@@ -50,7 +50,7 @@ public class IndividualBuilder {
      * @param iri IRI of the Individual.
      */
     public IndividualBuilder(final IRI iri) {
-        individual = RdfSpatioTemporalExtentServices.createIndividual(iri.getIri());
+        individual = RdfSpatioTemporalExtentServices.createIndividual(iri);
     }
 
     /**

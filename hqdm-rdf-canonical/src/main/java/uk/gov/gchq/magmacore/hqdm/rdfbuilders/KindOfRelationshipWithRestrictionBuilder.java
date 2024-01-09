@@ -41,7 +41,7 @@ public class KindOfRelationshipWithRestrictionBuilder {
      * @param iri IRI of the KindOfRelationshipWithRestriction.
      */
     public KindOfRelationshipWithRestrictionBuilder(final IRI iri) {
-        kindOfRelationshipWithRestriction = RdfClassServices.createKindOfRelationshipWithRestriction(iri.getIri());
+        kindOfRelationshipWithRestriction = RdfClassServices.createKindOfRelationshipWithRestriction(iri);
     }
 
     /**

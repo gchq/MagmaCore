@@ -47,7 +47,7 @@ public class EndingOfOwnershipBuilder {
      * @param iri IRI of the EndingOfOwnership.
      */
     public EndingOfOwnershipBuilder(final IRI iri) {
-        this.endingOfOwnership = RdfSpatioTemporalExtentServices.createEndingOfOwnership(iri.getIri());
+        this.endingOfOwnership = RdfSpatioTemporalExtentServices.createEndingOfOwnership(iri);
     }
 
     /**

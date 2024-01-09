@@ -45,7 +45,7 @@ public class ClassOfStateOfSociallyConstructedObjectBuilder {
      */
     public ClassOfStateOfSociallyConstructedObjectBuilder(final IRI iri) {
         this.classOfStateOfSociallyConstructedObject = RdfClassServices
-                .createClassOfStateOfSociallyConstructedObject(iri.getIri());
+                .createClassOfStateOfSociallyConstructedObject(iri);
     }
 
     /**

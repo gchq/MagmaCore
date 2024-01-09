@@ -53,7 +53,7 @@ public class PositionBuilder {
      * @param iri IRI of the Position.
      */
     public PositionBuilder(final IRI iri) {
-        position = RdfSpatioTemporalExtentServices.createPosition(iri.getIri());
+        position = RdfSpatioTemporalExtentServices.createPosition(iri);
     }
 
     /**

@@ -43,7 +43,7 @@ public class ClassOfStateOfSystemBuilder {
      * @param iri IRI of the ClassOfStateOfSystem.
      */
     public ClassOfStateOfSystemBuilder(final IRI iri) {
-        this.classOfStateOfSystem = RdfClassServices.createClassOfStateOfSystem(iri.getIri());
+        this.classOfStateOfSystem = RdfClassServices.createClassOfStateOfSystem(iri);
     }
 
     /**

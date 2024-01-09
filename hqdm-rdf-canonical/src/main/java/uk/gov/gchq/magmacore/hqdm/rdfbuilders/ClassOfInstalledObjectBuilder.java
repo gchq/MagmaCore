@@ -43,7 +43,7 @@ public class ClassOfInstalledObjectBuilder {
      * @param iri IRI of the ClassOfInstalledObject.
      */
     public ClassOfInstalledObjectBuilder(final IRI iri) {
-        this.classOfInstalledObject = RdfClassServices.createClassOfInstalledObject(iri.getIri());
+        this.classOfInstalledObject = RdfClassServices.createClassOfInstalledObject(iri);
     }
 
     /**

@@ -53,7 +53,7 @@ public class PersonBuilder {
      * @param iri IRI of the Person.
      */
     public PersonBuilder(final IRI iri) {
-        person = RdfSpatioTemporalExtentServices.createPerson(iri.getIri());
+        person = RdfSpatioTemporalExtentServices.createPerson(iri);
     }
 
     /**

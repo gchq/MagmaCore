@@ -52,7 +52,7 @@ public class IntentionallyConstructedObjectBuilder {
      */
     public IntentionallyConstructedObjectBuilder(final IRI iri) {
         intentionallyConstructedObject = RdfSpatioTemporalExtentServices
-                .createIntentionallyConstructedObject(iri.getIri());
+                .createIntentionallyConstructedObject(iri);
     }
 
     /**

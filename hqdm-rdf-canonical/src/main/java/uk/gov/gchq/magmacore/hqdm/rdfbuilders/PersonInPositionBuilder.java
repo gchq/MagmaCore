@@ -49,7 +49,7 @@ public class PersonInPositionBuilder {
      * @param iri IRI of the PersonInPosition.
      */
     public PersonInPositionBuilder(final IRI iri) {
-        personInPosition = RdfSpatioTemporalExtentServices.createPersonInPosition(iri.getIri());
+        personInPosition = RdfSpatioTemporalExtentServices.createPersonInPosition(iri);
     }
 
     /**

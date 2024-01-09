@@ -49,7 +49,7 @@ public class StateOfPartyBuilder {
      * @param iri IRI of the StateOfParty.
      */
     public StateOfPartyBuilder(final IRI iri) {
-        stateOfParty = RdfSpatioTemporalExtentServices.createStateOfParty(iri.getIri());
+        stateOfParty = RdfSpatioTemporalExtentServices.createStateOfParty(iri);
     }
 
     /**

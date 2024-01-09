@@ -37,7 +37,7 @@ public class UnitOfMeasureBuilder {
      * @param iri IRI of the UnitOfMeasure.
      */
     public UnitOfMeasureBuilder(final IRI iri) {
-        unitOfMeasure = RdfRelationshipServices.createUnitOfMeasure(iri.getIri());
+        unitOfMeasure = RdfRelationshipServices.createUnitOfMeasure(iri);
     }
 
     /**

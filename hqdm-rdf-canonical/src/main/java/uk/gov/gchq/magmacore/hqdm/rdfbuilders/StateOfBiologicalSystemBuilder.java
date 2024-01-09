@@ -49,7 +49,7 @@ public class StateOfBiologicalSystemBuilder {
      * @param iri IRI of the StateOfBiologicalSystem.
      */
     public StateOfBiologicalSystemBuilder(final IRI iri) {
-        stateOfBiologicalSystem = RdfSpatioTemporalExtentServices.createStateOfBiologicalSystem(iri.getIri());
+        stateOfBiologicalSystem = RdfSpatioTemporalExtentServices.createStateOfBiologicalSystem(iri);
     }
 
     /**

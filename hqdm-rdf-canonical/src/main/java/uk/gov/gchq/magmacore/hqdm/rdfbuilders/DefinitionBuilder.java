@@ -39,7 +39,7 @@ public class DefinitionBuilder {
      * @param iri IRI of the Definition.
      */
     public DefinitionBuilder(final IRI iri) {
-        this.definition = RdfClassServices.createDefinition(iri.getIri());
+        this.definition = RdfClassServices.createDefinition(iri);
     }
 
     /**

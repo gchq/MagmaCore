@@ -43,7 +43,7 @@ public class ClassOfSignBuilder {
      * @param iri IRI of the ClassOfSign.
      */
     public ClassOfSignBuilder(final IRI iri) {
-        this.classOfSign = RdfClassServices.createClassOfSign(iri.getIri());
+        this.classOfSign = RdfClassServices.createClassOfSign(iri);
     }
 
     /**

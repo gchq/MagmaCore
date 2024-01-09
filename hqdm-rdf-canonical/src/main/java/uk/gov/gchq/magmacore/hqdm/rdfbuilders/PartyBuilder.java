@@ -50,7 +50,7 @@ public class PartyBuilder {
      * @param iri IRI of the Party.
      */
     public PartyBuilder(final IRI iri) {
-        party = RdfSpatioTemporalExtentServices.createParty(iri.getIri());
+        party = RdfSpatioTemporalExtentServices.createParty(iri);
     }
 
     /**

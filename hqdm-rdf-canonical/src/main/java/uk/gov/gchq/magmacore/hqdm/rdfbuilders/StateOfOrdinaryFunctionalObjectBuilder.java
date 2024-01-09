@@ -50,7 +50,7 @@ public class StateOfOrdinaryFunctionalObjectBuilder {
      */
     public StateOfOrdinaryFunctionalObjectBuilder(final IRI iri) {
         stateOfOrdinaryFunctionalObject = RdfSpatioTemporalExtentServices
-                .createStateOfOrdinaryFunctionalObject(iri.getIri());
+                .createStateOfOrdinaryFunctionalObject(iri);
     }
 
     /**

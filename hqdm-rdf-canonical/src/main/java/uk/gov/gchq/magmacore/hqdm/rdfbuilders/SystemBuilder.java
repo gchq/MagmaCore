@@ -50,7 +50,7 @@ public class SystemBuilder {
      * @param iri IRI of the System.
      */
     public SystemBuilder(final IRI iri) {
-        system = RdfSpatioTemporalExtentServices.createSystem(iri.getIri());
+        system = RdfSpatioTemporalExtentServices.createSystem(iri);
     }
 
     /**

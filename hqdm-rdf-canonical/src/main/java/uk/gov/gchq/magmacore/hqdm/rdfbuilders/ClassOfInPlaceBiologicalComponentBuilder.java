@@ -44,7 +44,7 @@ public class ClassOfInPlaceBiologicalComponentBuilder {
      */
     public ClassOfInPlaceBiologicalComponentBuilder(final IRI iri) {
         this.classOfInPlaceBiologicalComponent = RdfClassServices
-                .createClassOfInPlaceBiologicalComponent(iri.getIri());
+                .createClassOfInPlaceBiologicalComponent(iri);
     }
 
     /**

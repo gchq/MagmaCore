@@ -63,7 +63,7 @@ public class ReachingAgreementBuilder {
      * @param iri IRI of the ReachingAgreement.
      */
     public ReachingAgreementBuilder(final IRI iri) {
-        reachingAgreement = RdfSpatioTemporalExtentServices.createReachingAgreement(iri.getIri());
+        reachingAgreement = RdfSpatioTemporalExtentServices.createReachingAgreement(iri);
     }
 
     /**

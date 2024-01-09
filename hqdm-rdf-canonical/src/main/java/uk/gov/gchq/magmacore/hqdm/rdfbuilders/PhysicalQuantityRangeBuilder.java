@@ -48,7 +48,7 @@ public class PhysicalQuantityRangeBuilder {
      * @param iri IRI of the PhysicalQuantityRange.
      */
     public PhysicalQuantityRangeBuilder(final IRI iri) {
-        physicalQuantityRange = RdfSpatioTemporalExtentServices.createPhysicalQuantityRange(iri.getIri());
+        physicalQuantityRange = RdfSpatioTemporalExtentServices.createPhysicalQuantityRange(iri);
     }
 
     /**

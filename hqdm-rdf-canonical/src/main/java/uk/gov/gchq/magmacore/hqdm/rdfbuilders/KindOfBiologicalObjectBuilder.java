@@ -43,7 +43,7 @@ public class KindOfBiologicalObjectBuilder {
      * @param iri IRI of the KindOfBiologicalObject.
      */
     public KindOfBiologicalObjectBuilder(final IRI iri) {
-        kindOfBiologicalObject = RdfClassServices.createKindOfBiologicalObject(iri.getIri());
+        kindOfBiologicalObject = RdfClassServices.createKindOfBiologicalObject(iri);
     }
 
     /**

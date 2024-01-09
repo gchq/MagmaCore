@@ -43,7 +43,7 @@ public class ClassOfFunctionalSystemBuilder {
      * @param iri IRI of the ClassOfFunctionalSystem.
      */
     public ClassOfFunctionalSystemBuilder(final IRI iri) {
-        this.classOfFunctionalSystem = RdfClassServices.createClassOfFunctionalSystem(iri.getIri());
+        this.classOfFunctionalSystem = RdfClassServices.createClassOfFunctionalSystem(iri);
     }
 
     /**

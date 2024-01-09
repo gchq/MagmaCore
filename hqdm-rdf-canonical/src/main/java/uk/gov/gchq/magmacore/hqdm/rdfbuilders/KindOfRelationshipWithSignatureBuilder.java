@@ -39,7 +39,7 @@ public class KindOfRelationshipWithSignatureBuilder {
      * @param iri IRI of the KindOfRelationshipWithSignature.
      */
     public KindOfRelationshipWithSignatureBuilder(final IRI iri) {
-        kindOfRelationshipWithSignature = RdfClassServices.createKindOfRelationshipWithSignature(iri.getIri());
+        kindOfRelationshipWithSignature = RdfClassServices.createKindOfRelationshipWithSignature(iri);
     }
 
     /**

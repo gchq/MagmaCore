@@ -49,7 +49,7 @@ public class StateOfFunctionalSystemBuilder {
      * @param iri IRI of the StateOfFunctionalSystem.
      */
     public StateOfFunctionalSystemBuilder(final IRI iri) {
-        stateOfFunctionalSystem = RdfSpatioTemporalExtentServices.createStateOfFunctionalSystem(iri.getIri());
+        stateOfFunctionalSystem = RdfSpatioTemporalExtentServices.createStateOfFunctionalSystem(iri);
     }
 
     /**

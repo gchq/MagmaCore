@@ -61,7 +61,7 @@ public class RepresentationBySignBuilder {
      * @param iri IRI of the RepresentationBySign.
      */
     public RepresentationBySignBuilder(final IRI iri) {
-        representationBySign = RdfSpatioTemporalExtentServices.createRepresentationBySign(iri.getIri());
+        representationBySign = RdfSpatioTemporalExtentServices.createRepresentationBySign(iri);
     }
 
     /**

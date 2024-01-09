@@ -49,7 +49,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @param iri IRI of the InPlaceBiologicalComponent.
      */
     public InPlaceBiologicalComponentBuilder(final IRI iri) {
-        inPlaceBiologicalComponent = RdfSpatioTemporalExtentServices.createInPlaceBiologicalComponent(iri.getIri());
+        inPlaceBiologicalComponent = RdfSpatioTemporalExtentServices.createInPlaceBiologicalComponent(iri);
     }
 
     /**

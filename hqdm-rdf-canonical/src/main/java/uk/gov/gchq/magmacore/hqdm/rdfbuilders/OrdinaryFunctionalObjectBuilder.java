@@ -53,7 +53,7 @@ public class OrdinaryFunctionalObjectBuilder {
      * @param iri IRI of the OrdinaryFunctionalObject.
      */
     public OrdinaryFunctionalObjectBuilder(final IRI iri) {
-        ordinaryFunctionalObject = RdfSpatioTemporalExtentServices.createOrdinaryFunctionalObject(iri.getIri());
+        ordinaryFunctionalObject = RdfSpatioTemporalExtentServices.createOrdinaryFunctionalObject(iri);
     }
 
     /**

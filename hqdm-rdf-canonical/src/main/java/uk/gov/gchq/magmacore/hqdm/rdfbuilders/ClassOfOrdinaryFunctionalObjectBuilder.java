@@ -44,7 +44,7 @@ public class ClassOfOrdinaryFunctionalObjectBuilder {
      */
     public ClassOfOrdinaryFunctionalObjectBuilder(final IRI iri) {
         this.classOfOrdinaryFunctionalObject = RdfClassServices
-                .createClassOfOrdinaryFunctionalObject(iri.getIri());
+                .createClassOfOrdinaryFunctionalObject(iri);
     }
 
     /**

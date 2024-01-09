@@ -43,7 +43,7 @@ public class ClassOfIndividualBuilder {
      * @param iri IRI of the ClassOfIndividual.
      */
     public ClassOfIndividualBuilder(final IRI iri) {
-        this.classOfIndividual = RdfClassServices.createClassOfIndividual(iri.getIri());
+        this.classOfIndividual = RdfClassServices.createClassOfIndividual(iri);
     }
 
     /**

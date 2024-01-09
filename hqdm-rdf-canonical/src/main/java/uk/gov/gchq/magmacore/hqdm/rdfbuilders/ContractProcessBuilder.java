@@ -65,7 +65,7 @@ public class ContractProcessBuilder {
      * @param iri IRI of the ContractProcess.
      */
     public ContractProcessBuilder(final IRI iri) {
-        this.contractProcess = RdfSpatioTemporalExtentServices.createContractProcess(iri.getIri());
+        this.contractProcess = RdfSpatioTemporalExtentServices.createContractProcess(iri);
     }
 
     /**

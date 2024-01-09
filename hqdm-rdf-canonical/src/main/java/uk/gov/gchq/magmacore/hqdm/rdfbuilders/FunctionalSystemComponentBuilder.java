@@ -55,7 +55,7 @@ public class FunctionalSystemComponentBuilder {
      * @param iri IRI of the FunctionalSystemComponent.
      */
     public FunctionalSystemComponentBuilder(final IRI iri) {
-        functionalSystemComponent = RdfSpatioTemporalExtentServices.createFunctionalSystemComponent(iri.getIri());
+        functionalSystemComponent = RdfSpatioTemporalExtentServices.createFunctionalSystemComponent(iri);
     }
 
     /**

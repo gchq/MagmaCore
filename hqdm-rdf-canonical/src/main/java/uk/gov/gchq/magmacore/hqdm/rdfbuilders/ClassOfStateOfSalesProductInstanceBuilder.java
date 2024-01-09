@@ -44,7 +44,7 @@ public class ClassOfStateOfSalesProductInstanceBuilder {
      */
     public ClassOfStateOfSalesProductInstanceBuilder(final IRI iri) {
         this.classOfStateOfSalesProductInstance = RdfClassServices
-                .createClassOfStateOfSalesProductInstance(iri.getIri());
+                .createClassOfStateOfSalesProductInstance(iri);
     }
 
     /**

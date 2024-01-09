@@ -38,7 +38,7 @@ public class ClassOfRelationshipBuilder {
      * @param iri IRI of the ClassOfRelationship.
      */
     public ClassOfRelationshipBuilder(final IRI iri) {
-        this.classOfRelationship = RdfClassServices.createClassOfRelationship(iri.getIri());
+        this.classOfRelationship = RdfClassServices.createClassOfRelationship(iri);
     }
 
     /**

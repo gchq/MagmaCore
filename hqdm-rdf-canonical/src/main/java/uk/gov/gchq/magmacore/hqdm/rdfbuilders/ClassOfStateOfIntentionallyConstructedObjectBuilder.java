@@ -45,7 +45,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      */
     public ClassOfStateOfIntentionallyConstructedObjectBuilder(final IRI iri) {
         this.classOfStateOfIntentionallyConstructedObject = RdfClassServices
-                .createClassOfStateOfIntentionallyConstructedObject(iri.getIri());
+                .createClassOfStateOfIntentionallyConstructedObject(iri);
     }
 
     /**

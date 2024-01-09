@@ -43,7 +43,7 @@ public class PatternBuilder {
      * @param iri IRI of the Pattern.
      */
     public PatternBuilder(final IRI iri) {
-        pattern = RdfClassServices.createPattern(iri.getIri());
+        pattern = RdfClassServices.createPattern(iri);
     }
 
     /**

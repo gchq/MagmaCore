@@ -38,7 +38,7 @@ public class EnumeratedClassBuilder {
      * @param iri IRI of the EnumeratedClass.
      */
     public EnumeratedClassBuilder(final IRI iri) {
-        enumeratedClass = RdfClassServices.createEnumeratedClass(iri.getIri());
+        enumeratedClass = RdfClassServices.createEnumeratedClass(iri);
     }
 
     /**

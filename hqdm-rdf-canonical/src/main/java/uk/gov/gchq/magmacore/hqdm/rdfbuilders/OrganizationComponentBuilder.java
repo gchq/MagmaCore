@@ -52,7 +52,7 @@ public class OrganizationComponentBuilder {
      * @param iri IRI of the OrganizationComponent.
      */
     public OrganizationComponentBuilder(final IRI iri) {
-        organizationComponent = RdfSpatioTemporalExtentServices.createOrganizationComponent(iri.getIri());
+        organizationComponent = RdfSpatioTemporalExtentServices.createOrganizationComponent(iri);
     }
 
     /**

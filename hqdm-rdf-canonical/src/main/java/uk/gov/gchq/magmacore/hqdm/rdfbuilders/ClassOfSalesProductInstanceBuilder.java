@@ -43,7 +43,7 @@ public class ClassOfSalesProductInstanceBuilder {
      * @param iri IRI of the ClassOfSalesProductInstance.
      */
     public ClassOfSalesProductInstanceBuilder(final IRI iri) {
-        this.classOfSalesProductInstance = RdfClassServices.createClassOfSalesProductInstance(iri.getIri());
+        this.classOfSalesProductInstance = RdfClassServices.createClassOfSalesProductInstance(iri);
     }
 
     /**

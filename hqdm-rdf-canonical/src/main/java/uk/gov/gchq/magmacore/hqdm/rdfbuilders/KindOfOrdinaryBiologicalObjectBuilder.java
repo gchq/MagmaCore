@@ -44,7 +44,7 @@ public class KindOfOrdinaryBiologicalObjectBuilder {
      */
     public KindOfOrdinaryBiologicalObjectBuilder(final IRI iri) {
         kindOfOrdinaryBiologicalObject = RdfClassServices
-                .createKindOfOrdinaryBiologicalObject(iri.getIri());
+                .createKindOfOrdinaryBiologicalObject(iri);
     }
 
     /**

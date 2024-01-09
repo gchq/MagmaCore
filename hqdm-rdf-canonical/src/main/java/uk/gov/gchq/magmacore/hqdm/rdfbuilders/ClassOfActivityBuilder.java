@@ -43,7 +43,7 @@ public class ClassOfActivityBuilder {
      * @param iri IRI of the ClassOfActivity.
      */
     public ClassOfActivityBuilder(final IRI iri) {
-        this.classOfActivity = RdfClassServices.createClassOfActivity(iri.getIri());
+        this.classOfActivity = RdfClassServices.createClassOfActivity(iri);
     }
 
     /**

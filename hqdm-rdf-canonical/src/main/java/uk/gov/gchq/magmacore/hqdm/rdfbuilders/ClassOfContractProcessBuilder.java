@@ -47,7 +47,7 @@ public class ClassOfContractProcessBuilder {
      * @param iri IRI of the ClassOfContractProcess.
      */
     public ClassOfContractProcessBuilder(final IRI iri) {
-        this.classOfContractProcess = RdfClassServices.createClassOfContractProcess(iri.getIri());
+        this.classOfContractProcess = RdfClassServices.createClassOfContractProcess(iri);
     }
 
     /**

@@ -39,7 +39,7 @@ public class SpecializationBuilder {
      * @param iri IRI of the Specialization.
      */
     public SpecializationBuilder(final IRI iri) {
-        specialization = RdfRelationshipServices.createSpecialization(iri.getIri());
+        specialization = RdfRelationshipServices.createSpecialization(iri);
     }
 
     /**

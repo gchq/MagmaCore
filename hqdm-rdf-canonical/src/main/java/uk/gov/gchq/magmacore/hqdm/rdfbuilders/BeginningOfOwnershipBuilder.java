@@ -47,7 +47,7 @@ public class BeginningOfOwnershipBuilder {
      * @param iri IRI of the BeginningOfOwnership.
      */
     public BeginningOfOwnershipBuilder(final IRI iri) {
-        this.beginningOfOwnership = RdfSpatioTemporalExtentServices.createBeginningOfOwnership(iri.getIri());
+        this.beginningOfOwnership = RdfSpatioTemporalExtentServices.createBeginningOfOwnership(iri);
     }
 
     /**

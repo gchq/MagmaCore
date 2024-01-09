@@ -52,7 +52,7 @@ public class AmountOfMoneyBuilder {
      * @param iri IRI of the AmountOfMoney.
      */
     public AmountOfMoneyBuilder(final IRI iri) {
-        this.amountOfMoney = RdfSpatioTemporalExtentServices.createAmountOfMoney(iri.getIri());
+        this.amountOfMoney = RdfSpatioTemporalExtentServices.createAmountOfMoney(iri);
     }
 
     /**

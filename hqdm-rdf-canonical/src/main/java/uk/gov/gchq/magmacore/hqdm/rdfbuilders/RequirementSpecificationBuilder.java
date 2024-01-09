@@ -45,7 +45,7 @@ public class RequirementSpecificationBuilder {
      * @param iri IRI of the RequirementSpecification.
      */
     public RequirementSpecificationBuilder(final IRI iri) {
-        requirementSpecification = RdfSpatioTemporalExtentServices.createRequirementSpecification(iri.getIri());
+        requirementSpecification = RdfSpatioTemporalExtentServices.createRequirementSpecification(iri);
     }
 
     /**

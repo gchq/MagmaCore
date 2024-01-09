@@ -43,7 +43,7 @@ public class ClassOfOrganizationBuilder {
      * @param iri IRI of the ClassOfOrganization.
      */
     public ClassOfOrganizationBuilder(final IRI iri) {
-        this.classOfOrganization = RdfClassServices.createClassOfOrganization(iri.getIri());
+        this.classOfOrganization = RdfClassServices.createClassOfOrganization(iri);
     }
 
     /**

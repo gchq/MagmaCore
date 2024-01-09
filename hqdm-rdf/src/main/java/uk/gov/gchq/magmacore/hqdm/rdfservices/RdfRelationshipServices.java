@@ -25,6 +25,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Specialization;
 import uk.gov.gchq.magmacore.hqdm.model.TemporalComposition;
 import uk.gov.gchq.magmacore.hqdm.model.UnitOfMeasure;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
 
@@ -38,8 +39,8 @@ public class RdfRelationshipServices {
      * @param id ID of the Specialization.
      * @return A Specialization instance.
      */
-    public static Specialization createSpecialization(final String id) {
-        final Specialization result = RelationshipServices.createSpecialization(id);
+    public static Specialization createSpecialization(final IRI id) {
+        final Specialization result = RelationshipServices.createSpecialization(id.getIri());
         result.addValue(RDFS.RDF_TYPE, HQDM.SPECIALIZATION);
         return result;
     }
@@ -50,8 +51,8 @@ public class RdfRelationshipServices {
      * @param id ID of the Scale.
      * @return A Scale instance.
      */
-    public static Scale createScale(final String id) {
-        final Scale result = RelationshipServices.createScale(id);
+    public static Scale createScale(final IRI id) {
+        final Scale result = RelationshipServices.createScale(id.getIri());
         result.addValue(RDFS.RDF_TYPE, HQDM.SCALE);
         return result;
     }
@@ -62,8 +63,8 @@ public class RdfRelationshipServices {
      * @param id ID of the UnitOfMeasure.
      * @return A UnitOfMeasure instance.
      */
-    public static UnitOfMeasure createUnitOfMeasure(final String id) {
-        final UnitOfMeasure result = RelationshipServices.createUnitOfMeasure(id);
+    public static UnitOfMeasure createUnitOfMeasure(final IRI id) {
+        final UnitOfMeasure result = RelationshipServices.createUnitOfMeasure(id.getIri());
         result.addValue(RDFS.RDF_TYPE, HQDM.UNIT_OF_MEASURE);
         return result;
     }
@@ -74,8 +75,8 @@ public class RdfRelationshipServices {
      * @param id ID of the Function_.
      * @return A Function_ instance.
      */
-    public static Function_ createFunction(final String id) {
-        final Function_ result = RelationshipServices.createFunction(id);
+    public static Function_ createFunction(final IRI id) {
+        final Function_ result = RelationshipServices.createFunction(id.getIri());
         result.addValue(RDFS.RDF_TYPE, HQDM.FUNCTION_);
         return result;
     }
@@ -86,8 +87,8 @@ public class RdfRelationshipServices {
      * @param id ID of the Classification.
      * @return A Classification instance.
      */
-    public static Classification createClassification(final String id) {
-        final Classification result = RelationshipServices.createClassification(id);
+    public static Classification createClassification(final IRI id) {
+        final Classification result = RelationshipServices.createClassification(id.getIri());
         result.addValue(RDFS.RDF_TYPE, HQDM.CLASSIFICATION);
         return result;
     }
@@ -98,8 +99,8 @@ public class RdfRelationshipServices {
      * @param id ID of the TemporalComposition.
      * @return A TemporalComposition instance.
      */
-    public static TemporalComposition createTemporalComposition(final String id) {
-        final TemporalComposition result = RelationshipServices.createTemporalComposition(id);
+    public static TemporalComposition createTemporalComposition(final IRI id) {
+        final TemporalComposition result = RelationshipServices.createTemporalComposition(id.getIri());
         result.addValue(RDFS.RDF_TYPE, HQDM.TEMPORAL_COMPOSITION);
         return result;
     }
@@ -110,8 +111,8 @@ public class RdfRelationshipServices {
      * @param id ID of the Composition.
      * @return A Composition instance.
      */
-    public static Composition createComposition(final String id) {
-        final Composition result = RelationshipServices.createComposition(id);
+    public static Composition createComposition(final IRI id) {
+        final Composition result = RelationshipServices.createComposition(id.getIri());
         result.addValue(RDFS.RDF_TYPE, HQDM.COMPOSITION);
         return result;
     }
@@ -122,8 +123,8 @@ public class RdfRelationshipServices {
      * @param id ID of the Aggregation.
      * @return A Aggregation instance.
      */
-    public static Aggregation createAggregation(final String id) {
-        final Aggregation result = RelationshipServices.createAggregation(id);
+    public static Aggregation createAggregation(final IRI id) {
+        final Aggregation result = RelationshipServices.createAggregation(id.getIri());
         result.addValue(RDFS.RDF_TYPE, HQDM.AGGREGATION);
         return result;
     }
@@ -134,8 +135,8 @@ public class RdfRelationshipServices {
      * @param id ID of the Relationship.
      * @return A Relationship instance.
      */
-    public static Relationship createRelationship(final String id) {
-        final Relationship result = RelationshipServices.createRelationship(id);
+    public static Relationship createRelationship(final IRI id) {
+        final Relationship result = RelationshipServices.createRelationship(id.getIri());
         result.addValue(RDFS.RDF_TYPE, HQDM.RELATIONSHIP);
         return result;
     }
@@ -146,8 +147,8 @@ public class RdfRelationshipServices {
      * @param id ID of the DefinedRelationship.
      * @return A DefinedRelationship instance.
      */
-    public static DefinedRelationship createDefinedRelationship(final String id) {
-        final DefinedRelationship result = RelationshipServices.createDefinedRelationship(id);
+    public static DefinedRelationship createDefinedRelationship(final IRI id) {
+        final DefinedRelationship result = RelationshipServices.createDefinedRelationship(id.getIri());
         result.addValue(RDFS.RDF_TYPE, HQDM.DEFINED_RELATIONSHIP);
         return result;
     }

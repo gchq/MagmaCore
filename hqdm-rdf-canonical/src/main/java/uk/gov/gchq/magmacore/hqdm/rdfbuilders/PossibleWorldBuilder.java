@@ -51,7 +51,7 @@ public class PossibleWorldBuilder {
      * @param iri IRI of the PossibleWorld.
      */
     public PossibleWorldBuilder(final IRI iri) {
-        possibleWorld = RdfSpatioTemporalExtentServices.createPossibleWorld(iri.getIri());
+        possibleWorld = RdfSpatioTemporalExtentServices.createPossibleWorld(iri);
     }
 
     /**

@@ -46,7 +46,7 @@ public class SalesProductVersionBuilder {
      * @param iri IRI of the SalesProductVersion.
      */
     public SalesProductVersionBuilder(final IRI iri) {
-        salesProductVersion = RdfSpatioTemporalExtentServices.createSalesProductVersion(iri.getIri());
+        salesProductVersion = RdfSpatioTemporalExtentServices.createSalesProductVersion(iri);
     }
 
     /**

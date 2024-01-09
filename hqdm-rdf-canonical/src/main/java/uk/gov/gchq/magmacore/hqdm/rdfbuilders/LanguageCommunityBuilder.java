@@ -50,7 +50,7 @@ public class LanguageCommunityBuilder {
      * @param iri IRI of the LanguageCommunity.
      */
     public LanguageCommunityBuilder(final IRI iri) {
-        languageCommunity = RdfSpatioTemporalExtentServices.createLanguageCommunity(iri.getIri());
+        languageCommunity = RdfSpatioTemporalExtentServices.createLanguageCommunity(iri);
     }
 
     /**

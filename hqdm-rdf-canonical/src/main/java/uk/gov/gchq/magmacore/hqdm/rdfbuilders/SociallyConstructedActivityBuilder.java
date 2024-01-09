@@ -63,7 +63,7 @@ public class SociallyConstructedActivityBuilder {
      * @param iri IRI of the SociallyConstructedActivity.
      */
     public SociallyConstructedActivityBuilder(final IRI iri) {
-        sociallyConstructedActivity = RdfSpatioTemporalExtentServices.createSociallyConstructedActivity(iri.getIri());
+        sociallyConstructedActivity = RdfSpatioTemporalExtentServices.createSociallyConstructedActivity(iri);
     }
 
     /**

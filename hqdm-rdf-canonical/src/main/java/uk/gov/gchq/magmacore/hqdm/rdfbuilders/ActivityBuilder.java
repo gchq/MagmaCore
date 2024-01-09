@@ -59,7 +59,7 @@ public class ActivityBuilder {
      * @param iri IRI of the Activity.
      */
     public ActivityBuilder(final IRI iri) {
-        this.activity = RdfSpatioTemporalExtentServices.createActivity(iri.getIri());
+        this.activity = RdfSpatioTemporalExtentServices.createActivity(iri);
     }
 
     /**

@@ -43,7 +43,7 @@ public class ClassOfParticipantBuilder {
      * @param iri IRI of the ClassOfParticipant.
      */
     public ClassOfParticipantBuilder(final IRI iri) {
-        this.classOfParticipant = RdfClassServices.createClassOfParticipant(iri.getIri());
+        this.classOfParticipant = RdfClassServices.createClassOfParticipant(iri);
     }
 
     /**

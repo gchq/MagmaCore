@@ -52,7 +52,7 @@ public class PlanBuilder {
      * @param iri IRI of the Plan.
      */
     public PlanBuilder(final IRI iri) {
-        plan = RdfSpatioTemporalExtentServices.createPlan(iri.getIri());
+        plan = RdfSpatioTemporalExtentServices.createPlan(iri);
     }
 
     /**

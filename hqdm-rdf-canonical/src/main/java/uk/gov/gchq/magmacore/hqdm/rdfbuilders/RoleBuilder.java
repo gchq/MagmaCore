@@ -47,7 +47,7 @@ public class RoleBuilder {
      * @param iri IRI of the Role.
      */
     public RoleBuilder(final IRI iri) {
-        role = RdfClassServices.createRole(iri.getIri());
+        role = RdfClassServices.createRole(iri);
     }
 
     /**

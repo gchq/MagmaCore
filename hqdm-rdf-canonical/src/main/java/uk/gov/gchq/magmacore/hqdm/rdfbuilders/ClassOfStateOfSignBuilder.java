@@ -43,7 +43,7 @@ public class ClassOfStateOfSignBuilder {
      * @param iri IRI of the ClassOfStateOfSign.
      */
     public ClassOfStateOfSignBuilder(final IRI iri) {
-        this.classOfStateOfSign = RdfClassServices.createClassOfStateOfSign(iri.getIri());
+        this.classOfStateOfSign = RdfClassServices.createClassOfStateOfSign(iri);
     }
 
     /**

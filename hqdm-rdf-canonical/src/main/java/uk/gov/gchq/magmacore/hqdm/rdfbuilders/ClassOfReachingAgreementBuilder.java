@@ -47,7 +47,7 @@ public class ClassOfReachingAgreementBuilder {
      * @param iri IRI of the ClassOfReachingAgreement.
      */
     public ClassOfReachingAgreementBuilder(final IRI iri) {
-        this.classOfReachingAgreement = RdfClassServices.createClassOfReachingAgreement(iri.getIri());
+        this.classOfReachingAgreement = RdfClassServices.createClassOfReachingAgreement(iri);
     }
 
     /**

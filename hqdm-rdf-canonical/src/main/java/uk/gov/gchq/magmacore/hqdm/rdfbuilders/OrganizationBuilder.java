@@ -50,7 +50,7 @@ public class OrganizationBuilder {
      * @param iri IRI of the Organization.
      */
     public OrganizationBuilder(final IRI iri) {
-        organization = RdfSpatioTemporalExtentServices.createOrganization(iri.getIri());
+        organization = RdfSpatioTemporalExtentServices.createOrganization(iri);
     }
 
     /**

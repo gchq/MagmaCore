@@ -46,7 +46,7 @@ public class SpatioTemporalExtentBuilder {
      * @param iri IRI of the SpatioTemporalExtent.
      */
     public SpatioTemporalExtentBuilder(final IRI iri) {
-        spatioTemporalExtent = RdfSpatioTemporalExtentServices.createSpatioTemporalExtent(iri.getIri());
+        spatioTemporalExtent = RdfSpatioTemporalExtentServices.createSpatioTemporalExtent(iri);
     }
 
     /**

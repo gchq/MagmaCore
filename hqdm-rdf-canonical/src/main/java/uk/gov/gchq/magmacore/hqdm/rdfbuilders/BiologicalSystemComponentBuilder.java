@@ -53,7 +53,7 @@ public class BiologicalSystemComponentBuilder {
      * @param iri IRI of the BiologicalSystemComponent.
      */
     public BiologicalSystemComponentBuilder(final IRI iri) {
-        this.biologicalSystemComponent = RdfSpatioTemporalExtentServices.createBiologicalSystemComponent(iri.getIri());
+        this.biologicalSystemComponent = RdfSpatioTemporalExtentServices.createBiologicalSystemComponent(iri);
     }
 
     /**

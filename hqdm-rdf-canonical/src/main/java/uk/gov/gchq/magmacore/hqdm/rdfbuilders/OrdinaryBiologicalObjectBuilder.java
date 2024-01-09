@@ -50,7 +50,7 @@ public class OrdinaryBiologicalObjectBuilder {
      * @param iri IRI of the OrdinaryBiologicalObject.
      */
     public OrdinaryBiologicalObjectBuilder(final IRI iri) {
-        ordinaryBiologicalObject = RdfSpatioTemporalExtentServices.createOrdinaryBiologicalObject(iri.getIri());
+        ordinaryBiologicalObject = RdfSpatioTemporalExtentServices.createOrdinaryBiologicalObject(iri);
     }
 
     /**

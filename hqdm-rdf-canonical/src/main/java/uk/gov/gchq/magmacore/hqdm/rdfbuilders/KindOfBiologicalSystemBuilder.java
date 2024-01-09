@@ -47,7 +47,7 @@ public class KindOfBiologicalSystemBuilder {
      * @param iri IRI of the KindOfBiologicalSystem.
      */
     public KindOfBiologicalSystemBuilder(final IRI iri) {
-        kindOfBiologicalSystem = RdfClassServices.createKindOfBiologicalSystem(iri.getIri());
+        kindOfBiologicalSystem = RdfClassServices.createKindOfBiologicalSystem(iri);
     }
 
     /**

@@ -40,7 +40,7 @@ public class ClassificationBuilder {
      * @param iri IRI of the Classification.
      */
     public ClassificationBuilder(final IRI iri) {
-        this.classification = RdfRelationshipServices.createClassification(iri.getIri());
+        this.classification = RdfRelationshipServices.createClassification(iri);
     }
 
     /**

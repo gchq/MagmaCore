@@ -49,7 +49,7 @@ public class StateOfAssociationBuilder {
      * @param iri IRI of the StateOfAssociation.
      */
     public StateOfAssociationBuilder(final IRI iri) {
-        stateOfAssociation = RdfSpatioTemporalExtentServices.createStateOfAssociation(iri.getIri());
+        stateOfAssociation = RdfSpatioTemporalExtentServices.createStateOfAssociation(iri);
     }
 
     /**

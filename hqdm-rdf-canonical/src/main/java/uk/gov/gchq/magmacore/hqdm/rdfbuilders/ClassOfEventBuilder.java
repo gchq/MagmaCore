@@ -43,7 +43,7 @@ public class ClassOfEventBuilder {
      * @param iri IRI of the ClassOfEvent.
      */
     public ClassOfEventBuilder(final IRI iri) {
-        this.classOfEvent = RdfClassServices.createClassOfEvent(iri.getIri());
+        this.classOfEvent = RdfClassServices.createClassOfEvent(iri);
     }
 
     /**

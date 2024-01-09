@@ -47,7 +47,7 @@ public class ClassOfOfferBuilder {
      * @param iri IRI of the ClassOfOffer.
      */
     public ClassOfOfferBuilder(final IRI iri) {
-        this.classOfOffer = RdfClassServices.createClassOfOffer(iri.getIri());
+        this.classOfOffer = RdfClassServices.createClassOfOffer(iri);
     }
 
     /**

@@ -50,7 +50,7 @@ public class StateOfFunctionalSystemComponentBuilder {
      */
     public StateOfFunctionalSystemComponentBuilder(final IRI iri) {
         stateOfFunctionalSystemComponent = RdfSpatioTemporalExtentServices
-                .createStateOfFunctionalSystemComponent(iri.getIri());
+                .createStateOfFunctionalSystemComponent(iri);
     }
 
     /**

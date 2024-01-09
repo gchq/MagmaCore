@@ -49,7 +49,7 @@ public class StateOfPhysicalObjectBuilder {
      * @param iri IRI of the StateOfPhysicalObject.
      */
     public StateOfPhysicalObjectBuilder(final IRI iri) {
-        stateOfPhysicalObject = RdfSpatioTemporalExtentServices.createStateOfPhysicalObject(iri.getIri());
+        stateOfPhysicalObject = RdfSpatioTemporalExtentServices.createStateOfPhysicalObject(iri);
     }
 
     /**

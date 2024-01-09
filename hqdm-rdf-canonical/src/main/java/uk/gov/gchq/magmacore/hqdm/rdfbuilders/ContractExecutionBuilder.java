@@ -63,7 +63,7 @@ public class ContractExecutionBuilder {
      * @param iri IRI of the ContractExecution.
      */
     public ContractExecutionBuilder(final IRI iri) {
-        this.contractExecution = RdfSpatioTemporalExtentServices.createContractExecution(iri.getIri());
+        this.contractExecution = RdfSpatioTemporalExtentServices.createContractExecution(iri);
     }
 
     /**

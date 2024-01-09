@@ -49,7 +49,7 @@ public class StateOfPositionBuilder {
      * @param iri IRI of the StateOfPosition.
      */
     public StateOfPositionBuilder(final IRI iri) {
-        stateOfPosition = RdfSpatioTemporalExtentServices.createStateOfPosition(iri.getIri());
+        stateOfPosition = RdfSpatioTemporalExtentServices.createStateOfPosition(iri);
     }
 
     /**

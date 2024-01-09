@@ -65,7 +65,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @param iri IRI of the ExchangeOfGoodsAndMoney.
      */
     public ExchangeOfGoodsAndMoneyBuilder(final IRI iri) {
-        exchangeOfGoodsAndMoney = RdfSpatioTemporalExtentServices.createExchangeOfGoodsAndMoney(iri.getIri());
+        exchangeOfGoodsAndMoney = RdfSpatioTemporalExtentServices.createExchangeOfGoodsAndMoney(iri);
     }
 
     /**

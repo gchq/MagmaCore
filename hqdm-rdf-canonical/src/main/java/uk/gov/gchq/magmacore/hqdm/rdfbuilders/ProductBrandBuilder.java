@@ -43,7 +43,7 @@ public class ProductBrandBuilder {
      * @param iri IRI of the ProductBrand.
      */
     public ProductBrandBuilder(final IRI iri) {
-        productBrand = RdfSpatioTemporalExtentServices.createProductBrand(iri.getIri());
+        productBrand = RdfSpatioTemporalExtentServices.createProductBrand(iri);
     }
 
     /**

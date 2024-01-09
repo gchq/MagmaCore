@@ -44,7 +44,7 @@ public class KindOfBiologicalSystemComponentBuilder {
      */
     public KindOfBiologicalSystemComponentBuilder(final IRI iri) {
         kindOfBiologicalSystemComponent = RdfClassServices
-                .createKindOfBiologicalSystemComponent(iri.getIri());
+                .createKindOfBiologicalSystemComponent(iri);
     }
 
     /**

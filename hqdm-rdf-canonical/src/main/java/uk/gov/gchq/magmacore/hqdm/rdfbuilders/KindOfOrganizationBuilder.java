@@ -45,7 +45,7 @@ public class KindOfOrganizationBuilder {
      * @param iri IRI of the KindOfOrganization.
      */
     public KindOfOrganizationBuilder(final IRI iri) {
-        kindOfOrganization = RdfClassServices.createKindOfOrganization(iri.getIri());
+        kindOfOrganization = RdfClassServices.createKindOfOrganization(iri);
     }
 
     /**

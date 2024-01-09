@@ -49,7 +49,7 @@ public class StateOfActivityBuilder {
      * @param iri IRI of the StateOfActivity.
      */
     public StateOfActivityBuilder(final IRI iri) {
-        stateOfActivity = RdfSpatioTemporalExtentServices.createStateOfActivity(iri.getIri());
+        stateOfActivity = RdfSpatioTemporalExtentServices.createStateOfActivity(iri);
     }
 
     /**

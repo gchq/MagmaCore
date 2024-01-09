@@ -43,7 +43,7 @@ public class KindOfOrganizationComponentBuilder {
      * @param iri IRI of the KindOfOrganizationComponent.
      */
     public KindOfOrganizationComponentBuilder(final IRI iri) {
-        kindOfOrganizationComponent = RdfClassServices.createKindOfOrganizationComponent(iri.getIri());
+        kindOfOrganizationComponent = RdfClassServices.createKindOfOrganizationComponent(iri);
     }
 
     /**

@@ -53,7 +53,7 @@ public class SystemComponentBuilder {
      * @param iri IRI of the SystemComponent.
      */
     public SystemComponentBuilder(final IRI iri) {
-        systemComponent = RdfSpatioTemporalExtentServices.createSystemComponent(iri.getIri());
+        systemComponent = RdfSpatioTemporalExtentServices.createSystemComponent(iri);
     }
 
     /**

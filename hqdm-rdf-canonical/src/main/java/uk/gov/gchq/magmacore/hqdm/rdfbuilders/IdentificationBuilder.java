@@ -39,7 +39,7 @@ public class IdentificationBuilder {
      * @param iri IRI of the Identification.
      */
     public IdentificationBuilder(final IRI iri) {
-        identification = RdfClassServices.createIdentification(iri.getIri());
+        identification = RdfClassServices.createIdentification(iri);
     }
 
     /**

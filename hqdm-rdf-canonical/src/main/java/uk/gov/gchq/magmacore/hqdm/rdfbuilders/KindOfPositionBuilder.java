@@ -43,7 +43,7 @@ public class KindOfPositionBuilder {
      * @param iri IRI of the KindOfPosition.
      */
     public KindOfPositionBuilder(final IRI iri) {
-        kindOfPosition = RdfClassServices.createKindOfPosition(iri.getIri());
+        kindOfPosition = RdfClassServices.createKindOfPosition(iri);
     }
 
     /**

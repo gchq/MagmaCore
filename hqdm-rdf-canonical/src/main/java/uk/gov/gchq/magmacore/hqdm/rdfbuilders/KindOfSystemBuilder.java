@@ -45,7 +45,7 @@ public class KindOfSystemBuilder {
      * @param iri IRI of the KindOfSystem.
      */
     public KindOfSystemBuilder(final IRI iri) {
-        kindOfSystem = RdfClassServices.createKindOfSystem(iri.getIri());
+        kindOfSystem = RdfClassServices.createKindOfSystem(iri);
     }
 
     /**

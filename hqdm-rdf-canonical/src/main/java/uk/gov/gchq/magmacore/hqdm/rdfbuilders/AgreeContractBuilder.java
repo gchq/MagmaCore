@@ -65,7 +65,7 @@ public class AgreeContractBuilder {
      * @param iri IRI of the AgreeContract.
      */
     public AgreeContractBuilder(final IRI iri) {
-        this.agreeContract = RdfSpatioTemporalExtentServices.createAgreeContract(iri.getIri());
+        this.agreeContract = RdfSpatioTemporalExtentServices.createAgreeContract(iri);
     }
 
     /**

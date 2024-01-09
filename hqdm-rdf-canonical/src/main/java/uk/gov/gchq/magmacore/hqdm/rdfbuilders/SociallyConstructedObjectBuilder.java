@@ -51,7 +51,7 @@ public class SociallyConstructedObjectBuilder {
      * @param iri IRI of the SociallyConstructedObject.
      */
     public SociallyConstructedObjectBuilder(final IRI iri) {
-        sociallyConstructedObject = RdfSpatioTemporalExtentServices.createSociallyConstructedObject(iri.getIri());
+        sociallyConstructedObject = RdfSpatioTemporalExtentServices.createSociallyConstructedObject(iri);
     }
 
     /**

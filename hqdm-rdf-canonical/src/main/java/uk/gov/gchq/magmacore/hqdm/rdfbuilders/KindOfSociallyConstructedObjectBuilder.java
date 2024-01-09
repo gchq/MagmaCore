@@ -43,7 +43,7 @@ public class KindOfSociallyConstructedObjectBuilder {
      * @param iri IRI of the KindOfSociallyConstructedObject.
      */
     public KindOfSociallyConstructedObjectBuilder(final IRI iri) {
-        kindOfSociallyConstructedObject = RdfClassServices.createKindOfSociallyConstructedObject(iri.getIri());
+        kindOfSociallyConstructedObject = RdfClassServices.createKindOfSociallyConstructedObject(iri);
     }
 
     /**

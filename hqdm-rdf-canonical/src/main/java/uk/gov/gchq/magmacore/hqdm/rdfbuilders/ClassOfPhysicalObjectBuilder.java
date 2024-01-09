@@ -43,7 +43,7 @@ public class ClassOfPhysicalObjectBuilder {
      * @param iri IRI of the ClassOfPhysicalObject.
      */
     public ClassOfPhysicalObjectBuilder(final IRI iri) {
-        this.classOfPhysicalObject = RdfClassServices.createClassOfPhysicalObject(iri.getIri());
+        this.classOfPhysicalObject = RdfClassServices.createClassOfPhysicalObject(iri);
     }
 
     /**

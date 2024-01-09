@@ -44,7 +44,7 @@ public class ClassOfStateOfFunctionalSystemBuilder {
      */
     public ClassOfStateOfFunctionalSystemBuilder(final IRI iri) {
         this.classOfStateOfFunctionalSystem = RdfClassServices
-                .createClassOfStateOfFunctionalSystem(iri.getIri());
+                .createClassOfStateOfFunctionalSystem(iri);
     }
 
     /**

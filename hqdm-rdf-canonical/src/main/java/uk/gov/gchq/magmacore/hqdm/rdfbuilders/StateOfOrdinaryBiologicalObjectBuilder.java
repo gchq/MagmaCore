@@ -50,7 +50,7 @@ public class StateOfOrdinaryBiologicalObjectBuilder {
      */
     public StateOfOrdinaryBiologicalObjectBuilder(final IRI iri) {
         stateOfOrdinaryBiologicalObject = RdfSpatioTemporalExtentServices
-                .createStateOfOrdinaryBiologicalObject(iri.getIri());
+                .createStateOfOrdinaryBiologicalObject(iri);
     }
 
     /**

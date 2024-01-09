@@ -70,7 +70,7 @@ public class TransferOfOwnershipBuilder {
      * @param iri IRI of the TransferOfOwnership.
      */
     public TransferOfOwnershipBuilder(final IRI iri) {
-        transferOfOwnership = RdfSpatioTemporalExtentServices.createTransferOfOwnership(iri.getIri());
+        transferOfOwnership = RdfSpatioTemporalExtentServices.createTransferOfOwnership(iri);
     }
 
     /**

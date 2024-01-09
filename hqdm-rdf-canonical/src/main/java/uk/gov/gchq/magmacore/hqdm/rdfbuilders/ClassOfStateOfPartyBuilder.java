@@ -43,7 +43,7 @@ public class ClassOfStateOfPartyBuilder {
      * @param iri IRI of the ClassOfStateOfParty.
      */
     public ClassOfStateOfPartyBuilder(final IRI iri) {
-        this.classOfStateOfParty = RdfClassServices.createClassOfStateOfParty(iri.getIri());
+        this.classOfStateOfParty = RdfClassServices.createClassOfStateOfParty(iri);
     }
 
     /**

@@ -44,7 +44,7 @@ public class ClassOfStateOfBiologicalObjectBuilder {
      */
     public ClassOfStateOfBiologicalObjectBuilder(final IRI iri) {
         this.classOfStateOfBiologicalObject = RdfClassServices
-                .createClassOfStateOfBiologicalObject(iri.getIri());
+                .createClassOfStateOfBiologicalObject(iri);
     }
 
     /**

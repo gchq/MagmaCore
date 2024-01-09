@@ -43,7 +43,7 @@ public class KindOfIndividualBuilder {
      * @param iri IRI of the KindOfIndividual.
      */
     public KindOfIndividualBuilder(final IRI iri) {
-        kindOfIndividual = RdfClassServices.createKindOfIndividual(iri.getIri());
+        kindOfIndividual = RdfClassServices.createKindOfIndividual(iri);
     }
 
     /**

@@ -40,7 +40,7 @@ public class CompositionBuilder {
      * @param iri IRI of the Composition.
      */
     public CompositionBuilder(final IRI iri) {
-        this.composition = RdfRelationshipServices.createComposition(iri.getIri());
+        this.composition = RdfRelationshipServices.createComposition(iri);
     }
 
     /**

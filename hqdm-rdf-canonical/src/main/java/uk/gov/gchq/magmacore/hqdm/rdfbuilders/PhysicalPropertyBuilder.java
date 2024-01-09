@@ -45,7 +45,7 @@ public class PhysicalPropertyBuilder {
      * @param iri IRI of the PhysicalProperty.
      */
     public PhysicalPropertyBuilder(final IRI iri) {
-        physicalProperty = RdfSpatioTemporalExtentServices.createPhysicalProperty(iri.getIri());
+        physicalProperty = RdfSpatioTemporalExtentServices.createPhysicalProperty(iri);
     }
 
     /**

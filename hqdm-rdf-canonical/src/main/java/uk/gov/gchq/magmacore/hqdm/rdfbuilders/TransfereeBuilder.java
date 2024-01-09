@@ -53,7 +53,7 @@ public class TransfereeBuilder {
      * @param iri IRI of the Transferee.
      */
     public TransfereeBuilder(final IRI iri) {
-        transferee = RdfSpatioTemporalExtentServices.createTransferee(iri.getIri());
+        transferee = RdfSpatioTemporalExtentServices.createTransferee(iri);
     }
 
     /**

@@ -44,7 +44,7 @@ public class KindOfFunctionalSystemComponentBuilder {
      */
     public KindOfFunctionalSystemComponentBuilder(final IRI iri) {
         kindOfFunctionalSystemComponent = RdfClassServices
-                .createKindOfFunctionalSystemComponent(iri.getIri());
+                .createKindOfFunctionalSystemComponent(iri);
     }
 
     /**

@@ -34,7 +34,7 @@ public class AbstractObjectBuilder {
      * @param iri IRI of the AbstractObject.
      */
     public AbstractObjectBuilder(final IRI iri) {
-        this.abstractObject = RdfSpatioTemporalExtentServices.createAbstractObject(iri.getIri());
+        this.abstractObject = RdfSpatioTemporalExtentServices.createAbstractObject(iri);
     }
 
     /**

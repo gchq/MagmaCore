@@ -43,7 +43,7 @@ public class ClassOfStateOfActivityBuilder {
      * @param iri IRI of the ClassOfStateOfActivity.
      */
     public ClassOfStateOfActivityBuilder(final IRI iri) {
-        this.classOfStateOfActivity = RdfClassServices.createClassOfStateOfActivity(iri.getIri());
+        this.classOfStateOfActivity = RdfClassServices.createClassOfStateOfActivity(iri);
     }
 
     /**

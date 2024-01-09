@@ -49,7 +49,7 @@ public class StateOfSignBuilder {
      * @param iri IRI of the StateOfSign.
      */
     public StateOfSignBuilder(final IRI iri) {
-        stateOfSign = RdfSpatioTemporalExtentServices.createStateOfSign(iri.getIri());
+        stateOfSign = RdfSpatioTemporalExtentServices.createStateOfSign(iri);
     }
 
     /**

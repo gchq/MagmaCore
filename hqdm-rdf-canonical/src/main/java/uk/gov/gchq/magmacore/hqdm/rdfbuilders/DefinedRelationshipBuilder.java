@@ -41,7 +41,7 @@ public class DefinedRelationshipBuilder {
      * @param iri IRI of the DefinedRelationship.
      */
     public DefinedRelationshipBuilder(final IRI iri) {
-        this.definedRelationship = RdfRelationshipServices.createDefinedRelationship(iri.getIri());
+        this.definedRelationship = RdfRelationshipServices.createDefinedRelationship(iri);
     }
 
     /**

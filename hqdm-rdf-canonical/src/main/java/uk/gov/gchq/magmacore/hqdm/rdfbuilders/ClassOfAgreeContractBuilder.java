@@ -47,7 +47,7 @@ public class ClassOfAgreeContractBuilder {
      * @param iri IRI of the ClassOfAgreeContract.
      */
     public ClassOfAgreeContractBuilder(final IRI iri) {
-        this.classOfAgreeContract = RdfClassServices.createClassOfAgreeContract(iri.getIri());
+        this.classOfAgreeContract = RdfClassServices.createClassOfAgreeContract(iri);
     }
 
     /**

@@ -49,7 +49,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @param iri IRI of the StateOfAmountOfMoney.
      */
     public StateOfAmountOfMoneyBuilder(final IRI iri) {
-        stateOfAmountOfMoney = RdfSpatioTemporalExtentServices.createStateOfAmountOfMoney(iri.getIri());
+        stateOfAmountOfMoney = RdfSpatioTemporalExtentServices.createStateOfAmountOfMoney(iri);
     }
 
     /**

@@ -47,7 +47,7 @@ public class ClassOfContractExecutionBuilder {
      * @param iri IRI of the ClassOfContractExecution.
      */
     public ClassOfContractExecutionBuilder(final IRI iri) {
-        this.classOfContractExecution = RdfClassServices.createClassOfContractExecution(iri.getIri());
+        this.classOfContractExecution = RdfClassServices.createClassOfContractExecution(iri);
     }
 
     /**

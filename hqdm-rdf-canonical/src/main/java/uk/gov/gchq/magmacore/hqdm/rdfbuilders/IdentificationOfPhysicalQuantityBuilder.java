@@ -41,7 +41,7 @@ public class IdentificationOfPhysicalQuantityBuilder {
      */
     public IdentificationOfPhysicalQuantityBuilder(final IRI iri) {
         identificationOfPhysicalQuantity = RdfSpatioTemporalExtentServices
-                .createIdentificationOfPhysicalQuantity(iri.getIri());
+                .createIdentificationOfPhysicalQuantity(iri);
     }
 
     /**

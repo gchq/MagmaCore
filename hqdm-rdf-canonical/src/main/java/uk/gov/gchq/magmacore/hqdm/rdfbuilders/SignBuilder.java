@@ -55,7 +55,7 @@ public class SignBuilder {
      * @param iri IRI of the Sign.
      */
     public SignBuilder(final IRI iri) {
-        sign = RdfSpatioTemporalExtentServices.createSign(iri.getIri());
+        sign = RdfSpatioTemporalExtentServices.createSign(iri);
     }
 
     /**

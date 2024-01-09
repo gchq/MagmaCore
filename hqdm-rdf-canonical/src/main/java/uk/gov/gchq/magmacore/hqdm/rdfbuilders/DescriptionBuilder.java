@@ -39,7 +39,7 @@ public class DescriptionBuilder {
      * @param iri IRI of the Description.
      */
     public DescriptionBuilder(final IRI iri) {
-        this.description = RdfClassServices.createDescription(iri.getIri());
+        this.description = RdfClassServices.createDescription(iri);
     }
 
     /**

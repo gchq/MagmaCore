@@ -53,7 +53,7 @@ public class OwnerBuilder {
      * @param iri IRI of the Owner.
      */
     public OwnerBuilder(final IRI iri) {
-        owner = RdfSpatioTemporalExtentServices.createOwner(iri.getIri());
+        owner = RdfSpatioTemporalExtentServices.createOwner(iri);
     }
 
     /**

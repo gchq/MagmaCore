@@ -40,7 +40,7 @@ public class TemporalCompositionBuilder {
      * @param iri IRI of the TemporalComposition.
      */
     public TemporalCompositionBuilder(final IRI iri) {
-        temporalComposition = RdfRelationshipServices.createTemporalComposition(iri.getIri());
+        temporalComposition = RdfRelationshipServices.createTemporalComposition(iri);
     }
 
     /**

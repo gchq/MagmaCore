@@ -45,7 +45,7 @@ public class KindOfPersonBuilder {
      * @param iri IRI of the KindOfPerson.
      */
     public KindOfPersonBuilder(final IRI iri) {
-        kindOfPerson = RdfClassServices.createKindOfPerson(iri.getIri());
+        kindOfPerson = RdfClassServices.createKindOfPerson(iri);
     }
 
     /**

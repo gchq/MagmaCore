@@ -53,7 +53,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @param iri IRI of the RecognizingLanguageCommunity.
      */
     public RecognizingLanguageCommunityBuilder(final IRI iri) {
-        recognizingLanguageCommunity = RdfSpatioTemporalExtentServices.createRecognizingLanguageCommunity(iri.getIri());
+        recognizingLanguageCommunity = RdfSpatioTemporalExtentServices.createRecognizingLanguageCommunity(iri);
     }
 
     /**

@@ -45,7 +45,7 @@ public class KindOfFunctionalSystemBuilder {
      * @param iri IRI of the KindOfFunctionalSystem.
      */
     public KindOfFunctionalSystemBuilder(final IRI iri) {
-        kindOfFunctionalSystem = RdfClassServices.createKindOfFunctionalSystem(iri.getIri());
+        kindOfFunctionalSystem = RdfClassServices.createKindOfFunctionalSystem(iri);
     }
 
     /**

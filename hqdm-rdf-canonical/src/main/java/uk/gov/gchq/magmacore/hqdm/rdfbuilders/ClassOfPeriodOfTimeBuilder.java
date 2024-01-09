@@ -43,7 +43,7 @@ public class ClassOfPeriodOfTimeBuilder {
      * @param iri IRI of the ClassOfPeriodOfTime.
      */
     public ClassOfPeriodOfTimeBuilder(final IRI iri) {
-        this.classOfPeriodOfTime = RdfClassServices.createClassOfPeriodOfTime(iri.getIri());
+        this.classOfPeriodOfTime = RdfClassServices.createClassOfPeriodOfTime(iri);
     }
 
     /**

@@ -45,7 +45,7 @@ public class KindOfPartyBuilder {
      * @param iri IRI of the KindOfParty.
      */
     public KindOfPartyBuilder(final IRI iri) {
-        kindOfParty = RdfClassServices.createKindOfParty(iri.getIri());
+        kindOfParty = RdfClassServices.createKindOfParty(iri);
     }
 
     /**

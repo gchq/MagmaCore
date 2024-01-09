@@ -49,7 +49,7 @@ public class StateOfLanguageCommunityBuilder {
      * @param iri IRI of the StateOfLanguageCommunity.
      */
     public StateOfLanguageCommunityBuilder(final IRI iri) {
-        stateOfLanguageCommunity = RdfSpatioTemporalExtentServices.createStateOfLanguageCommunity(iri.getIri());
+        stateOfLanguageCommunity = RdfSpatioTemporalExtentServices.createStateOfLanguageCommunity(iri);
     }
 
     /**

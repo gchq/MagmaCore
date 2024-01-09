@@ -38,7 +38,7 @@ public class ClassOfPhysicalPropertyBuilder {
      * @param iri IRI of the ClassOfPhysicalProperty.
      */
     public ClassOfPhysicalPropertyBuilder(final IRI iri) {
-        this.classOfPhysicalProperty = RdfClassServices.createClassOfPhysicalProperty(iri.getIri());
+        this.classOfPhysicalProperty = RdfClassServices.createClassOfPhysicalProperty(iri);
     }
 
     /**

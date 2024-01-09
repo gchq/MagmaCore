@@ -43,7 +43,7 @@ public class ClassOfPositionBuilder {
      * @param iri IRI of the ClassOfPosition.
      */
     public ClassOfPositionBuilder(final IRI iri) {
-        this.classOfPosition = RdfClassServices.createClassOfPosition(iri.getIri());
+        this.classOfPosition = RdfClassServices.createClassOfPosition(iri);
     }
 
     /**

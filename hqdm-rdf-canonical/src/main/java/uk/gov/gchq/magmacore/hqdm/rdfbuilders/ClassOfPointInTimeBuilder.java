@@ -43,7 +43,7 @@ public class ClassOfPointInTimeBuilder {
      * @param iri IRI of the ClassOfPointInTime.
      */
     public ClassOfPointInTimeBuilder(final IRI iri) {
-        this.classOfPointInTime = RdfClassServices.createClassOfPointInTime(iri.getIri());
+        this.classOfPointInTime = RdfClassServices.createClassOfPointInTime(iri);
     }
 
     /**

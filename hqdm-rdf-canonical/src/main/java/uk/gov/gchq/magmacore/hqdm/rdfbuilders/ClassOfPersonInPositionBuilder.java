@@ -43,7 +43,7 @@ public class ClassOfPersonInPositionBuilder {
      * @param iri IRI of the ClassOfPersonInPosition.
      */
     public ClassOfPersonInPositionBuilder(final IRI iri) {
-        this.classOfPersonInPosition = RdfClassServices.createClassOfPersonInPosition(iri.getIri());
+        this.classOfPersonInPosition = RdfClassServices.createClassOfPersonInPosition(iri);
     }
 
     /**

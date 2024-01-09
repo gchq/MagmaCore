@@ -76,7 +76,7 @@ public class PersonBuilderTest {
         return new IRI(thing.getId());
     }
 
-    private String randomIri() {
-        return new IRI(HQDM.HQDM, UUID.randomUUID().toString()).getIri();
+    private IRI randomIri() {
+        return new IRI(HQDM.HQDM, UUID.randomUUID().toString());
     }
 }

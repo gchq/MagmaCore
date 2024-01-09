@@ -50,7 +50,7 @@ public class PeriodOfTimeBuilder {
      * @param iri IRI of the PeriodOfTime.
      */
     public PeriodOfTimeBuilder(final IRI iri) {
-        periodOfTime = RdfSpatioTemporalExtentServices.createPeriodOfTime(iri.getIri());
+        periodOfTime = RdfSpatioTemporalExtentServices.createPeriodOfTime(iri);
     }
 
     /**

@@ -49,7 +49,7 @@ public class StateOfSystemComponentBuilder {
      * @param iri IRI of the StateOfSystemComponent.
      */
     public StateOfSystemComponentBuilder(final IRI iri) {
-        stateOfSystemComponent = RdfSpatioTemporalExtentServices.createStateOfSystemComponent(iri.getIri());
+        stateOfSystemComponent = RdfSpatioTemporalExtentServices.createStateOfSystemComponent(iri);
     }
 
     /**

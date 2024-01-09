@@ -63,7 +63,7 @@ public class OfferBuilder {
      * @param iri IRI of the Offer.
      */
     public OfferBuilder(final IRI iri) {
-        offer = RdfSpatioTemporalExtentServices.createOffer(iri.getIri());
+        offer = RdfSpatioTemporalExtentServices.createOffer(iri);
     }
 
     /**

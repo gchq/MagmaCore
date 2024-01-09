@@ -50,7 +50,7 @@ public class InstalledFunctionalSystemComponentBuilder {
      */
     public InstalledFunctionalSystemComponentBuilder(final IRI iri) {
         installedFunctionalSystemComponent = RdfSpatioTemporalExtentServices
-                .createInstalledFunctionalSystemComponent(iri.getIri());
+                .createInstalledFunctionalSystemComponent(iri);
     }
 
     /**

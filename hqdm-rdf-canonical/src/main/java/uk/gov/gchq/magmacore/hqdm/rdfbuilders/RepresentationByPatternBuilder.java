@@ -39,7 +39,7 @@ public class RepresentationByPatternBuilder {
      * @param iri IRI of the RepresentationByPattern.
      */
     public RepresentationByPatternBuilder(final IRI iri) {
-        representationByPattern = RdfClassServices.createRepresentationByPattern(iri.getIri());
+        representationByPattern = RdfClassServices.createRepresentationByPattern(iri);
     }
 
     /**

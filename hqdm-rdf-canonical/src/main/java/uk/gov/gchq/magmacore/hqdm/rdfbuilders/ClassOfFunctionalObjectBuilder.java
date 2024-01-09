@@ -43,7 +43,7 @@ public class ClassOfFunctionalObjectBuilder {
      * @param iri IRI of the ClassOfFunctionalObject.
      */
     public ClassOfFunctionalObjectBuilder(final IRI iri) {
-        this.classOfFunctionalObject = RdfClassServices.createClassOfFunctionalObject(iri.getIri());
+        this.classOfFunctionalObject = RdfClassServices.createClassOfFunctionalObject(iri);
     }
 
     /**

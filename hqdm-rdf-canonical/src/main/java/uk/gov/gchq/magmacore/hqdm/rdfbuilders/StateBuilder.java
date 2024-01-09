@@ -49,7 +49,7 @@ public class StateBuilder {
      * @param iri IRI of the State.
      */
     public StateBuilder(final IRI iri) {
-        state = RdfSpatioTemporalExtentServices.createState(iri.getIri());
+        state = RdfSpatioTemporalExtentServices.createState(iri);
     }
 
     /**

@@ -12,6 +12,7 @@ import java.util.List;
 import org.junit.Test;
 
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
@@ -42,7 +43,7 @@ public class RdfServicesTest {
                 .filter(method -> method.getName().startsWith("create"))
                 .map(method -> {
                     try {
-                        final var result = method.invoke(null, "id");
+                        final var result = method.invoke(null, new IRI("http://example.com/hqdm#id"));
                         assertNotNull(result);
                         return (Thing) result;
                     } catch (final Exception ex) {

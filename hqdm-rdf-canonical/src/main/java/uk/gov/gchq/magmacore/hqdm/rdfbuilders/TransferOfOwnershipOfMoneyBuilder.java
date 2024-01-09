@@ -70,7 +70,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @param iri IRI of the TransferOfOwnershipOfMoney.
      */
     public TransferOfOwnershipOfMoneyBuilder(final IRI iri) {
-        transferOfOwnershipOfMoney = RdfSpatioTemporalExtentServices.createTransferOfOwnershipOfMoney(iri.getIri());
+        transferOfOwnershipOfMoney = RdfSpatioTemporalExtentServices.createTransferOfOwnershipOfMoney(iri);
     }
 
     /**

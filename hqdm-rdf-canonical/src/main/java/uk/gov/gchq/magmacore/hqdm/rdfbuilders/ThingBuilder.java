@@ -35,7 +35,7 @@ public class ThingBuilder {
      * @param iri IRI of the Thing.
      */
     public ThingBuilder(final IRI iri) {
-        thing = RdfSpatioTemporalExtentServices.createThing(iri.getIri());
+        thing = RdfSpatioTemporalExtentServices.createThing(iri);
     }
 
     /**

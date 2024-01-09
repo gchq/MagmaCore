@@ -45,7 +45,7 @@ public class ClassOfStateOfOrganizationComponentBuilder {
      */
     public ClassOfStateOfOrganizationComponentBuilder(final IRI iri) {
         this.classOfStateOfOrganizationComponent = RdfClassServices
-                .createClassOfStateOfOrganizationComponent(iri.getIri());
+                .createClassOfStateOfOrganizationComponent(iri);
     }
 
     /**

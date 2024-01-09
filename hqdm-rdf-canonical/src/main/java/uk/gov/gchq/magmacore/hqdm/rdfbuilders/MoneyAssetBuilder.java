@@ -53,7 +53,7 @@ public class MoneyAssetBuilder {
      * @param iri IRI of the MoneyAsset.
      */
     public MoneyAssetBuilder(final IRI iri) {
-        moneyAsset = RdfSpatioTemporalExtentServices.createMoneyAsset(iri.getIri());
+        moneyAsset = RdfSpatioTemporalExtentServices.createMoneyAsset(iri);
     }
 
     /**

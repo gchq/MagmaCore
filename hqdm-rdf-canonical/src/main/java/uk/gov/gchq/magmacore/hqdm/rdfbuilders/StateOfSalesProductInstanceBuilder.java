@@ -49,7 +49,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @param iri IRI of the StateOfSalesProductInstance.
      */
     public StateOfSalesProductInstanceBuilder(final IRI iri) {
-        stateOfSalesProductInstance = RdfSpatioTemporalExtentServices.createStateOfSalesProductInstance(iri.getIri());
+        stateOfSalesProductInstance = RdfSpatioTemporalExtentServices.createStateOfSalesProductInstance(iri);
     }
 
     /**

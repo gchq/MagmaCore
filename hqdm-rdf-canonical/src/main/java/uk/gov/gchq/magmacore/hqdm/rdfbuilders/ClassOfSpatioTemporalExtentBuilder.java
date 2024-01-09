@@ -42,7 +42,7 @@ public class ClassOfSpatioTemporalExtentBuilder {
      * @param iri IRI of the ClassOfSpatioTemporalExtent.
      */
     public ClassOfSpatioTemporalExtentBuilder(final IRI iri) {
-        this.classOfSpatioTemporalExtent = RdfClassServices.createClassOfSpatioTemporalExtent(iri.getIri());
+        this.classOfSpatioTemporalExtent = RdfClassServices.createClassOfSpatioTemporalExtent(iri);
     }
 
     /**

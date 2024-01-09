@@ -53,7 +53,7 @@ public class ParticipantBuilder {
      * @param iri IRI of the Participant.
      */
     public ParticipantBuilder(final IRI iri) {
-        participant = RdfSpatioTemporalExtentServices.createParticipant(iri.getIri());
+        participant = RdfSpatioTemporalExtentServices.createParticipant(iri);
     }
 
     /**

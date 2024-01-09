@@ -45,7 +45,7 @@ public class KindOfFunctionalObjectBuilder {
      * @param iri IRI of the KindOfFunctionalObject.
      */
     public KindOfFunctionalObjectBuilder(final IRI iri) {
-        kindOfFunctionalObject = RdfClassServices.createKindOfFunctionalObject(iri.getIri());
+        kindOfFunctionalObject = RdfClassServices.createKindOfFunctionalObject(iri);
     }
 
     /**

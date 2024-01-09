@@ -40,7 +40,7 @@ public class AggregationBuilder {
      * @param iri IRI of the Aggregation.
      */
     public AggregationBuilder(final IRI iri) {
-        this.aggregation = RdfRelationshipServices.createAggregation(iri.getIri());
+        this.aggregation = RdfRelationshipServices.createAggregation(iri);
     }
 
     /**

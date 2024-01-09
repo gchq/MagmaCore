@@ -50,7 +50,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      */
     public StateOfBiologicalSystemComponentBuilder(final IRI iri) {
         stateOfBiologicalSystemComponent = RdfSpatioTemporalExtentServices
-                .createStateOfBiologicalSystemComponent(iri.getIri());
+                .createStateOfBiologicalSystemComponent(iri);
     }
 
     /**

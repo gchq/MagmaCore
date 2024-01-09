@@ -43,7 +43,7 @@ public class ClassOfStateOfAssociationBuilder {
      * @param iri IRI of the ClassOfStateOfAssociation.
      */
     public ClassOfStateOfAssociationBuilder(final IRI iri) {
-        this.classOfStateOfAssociation = RdfClassServices.createClassOfStateOfAssociation(iri.getIri());
+        this.classOfStateOfAssociation = RdfClassServices.createClassOfStateOfAssociation(iri);
     }
 
     /**

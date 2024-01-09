@@ -50,7 +50,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      */
     public StateOfOrdinaryPhysicalObjectBuilder(final IRI iri) {
         stateOfOrdinaryPhysicalObject = RdfSpatioTemporalExtentServices
-                .createStateOfOrdinaryPhysicalObject(iri.getIri());
+                .createStateOfOrdinaryPhysicalObject(iri);
     }
 
     /**

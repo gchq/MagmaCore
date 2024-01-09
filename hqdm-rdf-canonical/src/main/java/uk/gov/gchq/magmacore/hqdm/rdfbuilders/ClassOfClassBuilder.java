@@ -37,7 +37,7 @@ public class ClassOfClassBuilder {
      * @param iri IRI of the ClassOfClass.
      */
     public ClassOfClassBuilder(final IRI iri) {
-        this.classOfClass = RdfClassServices.createClassOfClass(iri.getIri());
+        this.classOfClass = RdfClassServices.createClassOfClass(iri);
     }
 
     /**

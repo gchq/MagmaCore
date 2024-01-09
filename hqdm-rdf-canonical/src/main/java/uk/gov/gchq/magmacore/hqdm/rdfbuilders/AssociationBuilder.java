@@ -53,7 +53,7 @@ public class AssociationBuilder {
      * @param iri IRI of the Association.
      */
     public AssociationBuilder(final IRI iri) {
-        this.association = RdfSpatioTemporalExtentServices.createAssociation(iri.getIri());
+        this.association = RdfSpatioTemporalExtentServices.createAssociation(iri);
     }
 
     /**

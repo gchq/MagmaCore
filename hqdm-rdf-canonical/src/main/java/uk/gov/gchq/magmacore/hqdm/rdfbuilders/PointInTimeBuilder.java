@@ -47,7 +47,7 @@ public class PointInTimeBuilder {
      * @param iri IRI of the PointInTime.
      */
     public PointInTimeBuilder(final IRI iri) {
-        pointInTime = RdfSpatioTemporalExtentServices.createPointInTime(iri.getIri());
+        pointInTime = RdfSpatioTemporalExtentServices.createPointInTime(iri);
     }
 
     /**

@@ -53,7 +53,7 @@ public class BiologicalSystemBuilder {
      * @param iri IRI of the BiologicalSystem.
      */
     public BiologicalSystemBuilder(final IRI iri) {
-        this.biologicalSystem = RdfSpatioTemporalExtentServices.createBiologicalSystem(iri.getIri());
+        this.biologicalSystem = RdfSpatioTemporalExtentServices.createBiologicalSystem(iri);
     }
 
     /**

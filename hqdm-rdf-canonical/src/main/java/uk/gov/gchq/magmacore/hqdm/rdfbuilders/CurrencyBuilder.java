@@ -43,7 +43,7 @@ public class CurrencyBuilder {
      * @param iri IRI of the Currency.
      */
     public CurrencyBuilder(final IRI iri) {
-        this.currency = RdfSpatioTemporalExtentServices.createCurrency(iri.getIri());
+        this.currency = RdfSpatioTemporalExtentServices.createCurrency(iri);
     }
 
     /**

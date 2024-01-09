@@ -48,7 +48,7 @@ public class ClassOfSociallyConstructedActivityBuilder {
      */
     public ClassOfSociallyConstructedActivityBuilder(final IRI iri) {
         this.classOfSociallyConstructedActivity = RdfClassServices
-                .createClassOfSociallyConstructedActivity(iri.getIri());
+                .createClassOfSociallyConstructedActivity(iri);
     }
 
     /**

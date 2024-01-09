@@ -38,7 +38,7 @@ public class ClassOfAbstractObjectBuilder {
      * @param iri IRI of the ClassOfAbstractObject.
      */
     public ClassOfAbstractObjectBuilder(final IRI iri) {
-        this.classOfAbstractObject = RdfClassServices.createClassOfAbstractObject(iri.getIri());
+        this.classOfAbstractObject = RdfClassServices.createClassOfAbstractObject(iri);
     }
 
     /**

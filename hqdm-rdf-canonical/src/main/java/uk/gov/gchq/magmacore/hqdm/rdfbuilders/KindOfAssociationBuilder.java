@@ -45,7 +45,7 @@ public class KindOfAssociationBuilder {
      * @param iri IRI of the KindOfAssociation.
      */
     public KindOfAssociationBuilder(final IRI iri) {
-        kindOfAssociation = RdfClassServices.createKindOfAssociation(iri.getIri());
+        kindOfAssociation = RdfClassServices.createKindOfAssociation(iri);
     }
 
     /**

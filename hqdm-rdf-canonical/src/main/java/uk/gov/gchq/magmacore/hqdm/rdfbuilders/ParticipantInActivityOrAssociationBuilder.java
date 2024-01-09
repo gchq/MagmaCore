@@ -33,7 +33,7 @@ public class ParticipantInActivityOrAssociationBuilder {
      */
     public ParticipantInActivityOrAssociationBuilder(final IRI iri) {
         participantInActivityOrAssociation = RdfSpatioTemporalExtentServices
-                .createParticipantInActivityOrAssociation(iri.getIri());
+                .createParticipantInActivityOrAssociation(iri);
     }
 
     /**

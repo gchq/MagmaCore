@@ -49,7 +49,7 @@ public class KindOfActivityBuilder {
      * @param iri IRI of the KindOfActivity.
      */
     public KindOfActivityBuilder(final IRI iri) {
-        kindOfActivity = RdfClassServices.createKindOfActivity(iri.getIri());
+        kindOfActivity = RdfClassServices.createKindOfActivity(iri);
     }
 
     /**

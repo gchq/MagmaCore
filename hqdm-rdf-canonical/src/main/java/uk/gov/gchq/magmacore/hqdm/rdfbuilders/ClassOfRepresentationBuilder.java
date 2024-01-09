@@ -35,7 +35,7 @@ public class ClassOfRepresentationBuilder {
      * @param iri IRI of the ClassOfRepresentation.
      */
     public ClassOfRepresentationBuilder(final IRI iri) {
-        this.classOfRepresentation = RdfClassServices.createClassOfRepresentation(iri.getIri());
+        this.classOfRepresentation = RdfClassServices.createClassOfRepresentation(iri);
     }
 
     /**

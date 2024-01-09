@@ -43,7 +43,7 @@ public class ClassOfStateOfAmountOfMoneyBuilder {
      * @param iri IRI of the ClassOfStateOfAmountOfMoney.
      */
     public ClassOfStateOfAmountOfMoneyBuilder(final IRI iri) {
-        this.classOfStateOfAmountOfMoney = RdfClassServices.createClassOfStateOfAmountOfMoney(iri.getIri());
+        this.classOfStateOfAmountOfMoney = RdfClassServices.createClassOfStateOfAmountOfMoney(iri);
     }
 
     /**

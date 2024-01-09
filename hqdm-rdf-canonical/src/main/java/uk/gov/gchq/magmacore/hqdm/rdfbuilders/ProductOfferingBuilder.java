@@ -55,7 +55,7 @@ public class ProductOfferingBuilder {
      * @param iri IRI of the ProductOffering.
      */
     public ProductOfferingBuilder(final IRI iri) {
-        productOffering = RdfSpatioTemporalExtentServices.createProductOffering(iri.getIri());
+        productOffering = RdfSpatioTemporalExtentServices.createProductOffering(iri);
     }
 
     /**
