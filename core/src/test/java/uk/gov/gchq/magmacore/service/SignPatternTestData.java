@@ -49,6 +49,7 @@ public class SignPatternTestData {
     static StateOfPerson stateOfPerson1;
     static StateOfPerson stateOfPerson2;
     static IRI kindOfPersonIri;
+    static IRI classOfPersonIri;
 
     /**
      * Populate a {@link MagmaCoreDatabase} with an instance of the sign pattern.
@@ -102,14 +103,19 @@ public class SignPatternTestData {
         // Create KindOfPerson
         kindOfPersonIri = new IRI(TEST_BASE, "kindOfPerson1");
 
+        // Create a classOfPerson.
+        classOfPersonIri = new IRI(TEST_BASE, "class1OfPerson");
+
         // Create People
         person1 = SpatioTemporalExtentServices.createPerson(new IRI(TEST_BASE, "person1").getIri());
         person1.addValue(RDFS.RDF_TYPE, HQDM.PERSON);
         person1.addValue(HQDM.MEMBER_OF_KIND, kindOfPersonIri);
+        person1.addValue(HQDM.MEMBER_OF, classOfPersonIri);
 
         person2 = SpatioTemporalExtentServices.createPerson(new IRI(TEST_BASE, "person2").getIri());
         person2.addValue(RDFS.RDF_TYPE, HQDM.PERSON);
         person2.addValue(HQDM.MEMBER_OF_KIND, kindOfPersonIri);
+        person2.addValue(HQDM.MEMBER_OF, classOfPersonIri);
 
         // Create States for the People
         stateOfPerson1 = SpatioTemporalExtentServices
