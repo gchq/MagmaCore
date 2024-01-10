@@ -23,7 +23,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfClassOfSpatioTemporalExtent.
@@ -39,7 +39,7 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
      */
     public ClassOfClassOfSpatioTemporalExtentBuilder(final IRI iri) {
         this.classOfClassOfSpatioTemporalExtent = 
-            RdfClassServices.createClassOfClassOfSpatioTemporalExtent(iri);
+            ClassServices.createClassOfClassOfSpatioTemporalExtent(iri);
     }
 
     /**
@@ -50,7 +50,7 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final ClassOfClassOfSpatioTemporalExtentBuilder has_Superclass(final Class clazz) {
-        this.classOfClassOfSpatioTemporalExtent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfClassOfSpatioTemporalExtent.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -62,7 +62,7 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final ClassOfClassOfSpatioTemporalExtentBuilder member__Of(final Class clazz) {
-        this.classOfClassOfSpatioTemporalExtent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfClassOfSpatioTemporalExtent.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -75,7 +75,7 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final ClassOfClassOfSpatioTemporalExtentBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfClassOfSpatioTemporalExtent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfClassOfSpatioTemporalExtent.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 

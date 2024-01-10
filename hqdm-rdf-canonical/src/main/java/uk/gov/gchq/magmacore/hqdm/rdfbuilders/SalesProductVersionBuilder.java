@@ -31,7 +31,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.SalesProduct;
 import uk.gov.gchq.magmacore.hqdm.model.SalesProductVersion;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of SalesProductVersion.
@@ -46,7 +46,7 @@ public class SalesProductVersionBuilder {
      * @param iri IRI of the SalesProductVersion.
      */
     public SalesProductVersionBuilder(final IRI iri) {
-        salesProductVersion = RdfSpatioTemporalExtentServices.createSalesProductVersion(iri);
+        salesProductVersion = SpatioTemporalExtentServices.createSalesProductVersion(iri);
     }
 
     /**
@@ -63,7 +63,7 @@ public class SalesProductVersionBuilder {
     public final SalesProductVersionBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.salesProductVersion.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -75,7 +75,7 @@ public class SalesProductVersionBuilder {
      * @return This builder.
      */
     public final SalesProductVersionBuilder has_Superclass(final Class clazz) {
-        this.salesProductVersion.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.salesProductVersion.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -87,7 +87,7 @@ public class SalesProductVersionBuilder {
      * @return This builder.
      */
     public final SalesProductVersionBuilder member__Of(final Class clazz) {
-        this.salesProductVersion.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.salesProductVersion.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -100,7 +100,7 @@ public class SalesProductVersionBuilder {
      * @return This builder.
      */
     public final SalesProductVersionBuilder member_Of(final ClassOfClass classOfClass) {
-        this.salesProductVersion.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.salesProductVersion.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class SalesProductVersionBuilder {
     public final SalesProductVersionBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.salesProductVersion.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -132,7 +132,7 @@ public class SalesProductVersionBuilder {
     public final SalesProductVersionBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.salesProductVersion.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class SalesProductVersionBuilder {
      * @return This builder.
      */
     public final SalesProductVersionBuilder sold_As(final SalesProduct salesProduct) {
-        this.salesProductVersion.addValue(SOLD_AS, new IRI(salesProduct.getId()));
+        this.salesProductVersion.addValue(SOLD_AS, salesProduct.getId());
         return this;
     }
 
@@ -155,7 +155,7 @@ public class SalesProductVersionBuilder {
      * @return This builder.
      */
     public final SalesProductVersionBuilder successor(final SalesProductVersion salesProductVersion) {
-        this.salesProductVersion.addValue(SUCCESSOR, new IRI(salesProductVersion.getId()));
+        this.salesProductVersion.addValue(SUCCESSOR, salesProductVersion.getId());
         return this;
     }
 

@@ -35,7 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PeriodOfTime;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of PeriodOfTime.
@@ -50,7 +50,7 @@ public class PeriodOfTimeBuilder {
      * @param iri IRI of the PeriodOfTime.
      */
     public PeriodOfTimeBuilder(final IRI iri) {
-        periodOfTime = RdfSpatioTemporalExtentServices.createPeriodOfTime(iri);
+        periodOfTime = SpatioTemporalExtentServices.createPeriodOfTime(iri);
     }
 
     /**
@@ -65,7 +65,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.periodOfTime.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.periodOfTime.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -77,7 +77,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder beginning(final Event event) {
-        this.periodOfTime.addValue(BEGINNING, new IRI(event.getId()));
+        this.periodOfTime.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -92,7 +92,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.periodOfTime.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.periodOfTime.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -104,7 +104,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder ending(final Event event) {
-        this.periodOfTime.addValue(ENDING, new IRI(event.getId()));
+        this.periodOfTime.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -116,7 +116,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder member__Of(final Class clazz) {
-        this.periodOfTime.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.periodOfTime.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -129,7 +129,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder member_Of(final ClassOfPeriodOfTime classOfPeriodOfTime) {
-        this.periodOfTime.addValue(MEMBER_OF, new IRI(classOfPeriodOfTime.getId()));
+        this.periodOfTime.addValue(MEMBER_OF, classOfPeriodOfTime.getId());
         return this;
     }
 
@@ -142,7 +142,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.periodOfTime.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.periodOfTime.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -161,7 +161,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.periodOfTime.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.periodOfTime.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -174,7 +174,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.periodOfTime.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.periodOfTime.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -197,7 +197,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder temporal_Part_Of(final Individual individual) {
-        this.periodOfTime.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.periodOfTime.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 
@@ -211,7 +211,7 @@ public class PeriodOfTimeBuilder {
      * @return This builder.
      */
     public final PeriodOfTimeBuilder temporal_Part_Of_(final PossibleWorld possibleWorld) {
-        this.periodOfTime.addValue(TEMPORAL_PART_OF_, new IRI(possibleWorld.getId()));
+        this.periodOfTime.addValue(TEMPORAL_PART_OF_, possibleWorld.getId());
         return this;
     }
 

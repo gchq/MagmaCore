@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfEvent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfEvent.
@@ -43,7 +43,7 @@ public class ClassOfEventBuilder {
      * @param iri IRI of the ClassOfEvent.
      */
     public ClassOfEventBuilder(final IRI iri) {
-        this.classOfEvent = RdfClassServices.createClassOfEvent(iri);
+        this.classOfEvent = ClassServices.createClassOfEvent(iri);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ClassOfEventBuilder {
     public final ClassOfEventBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfEvent.addValue(
-                CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+                CONSISTS__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -72,7 +72,7 @@ public class ClassOfEventBuilder {
      * @return This builder.
      */
     public final ClassOfEventBuilder has_Superclass(final Class clazz) {
-        this.classOfEvent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfEvent.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfEventBuilder {
      * @return This builder.
      */
     public final ClassOfEventBuilder member__Of(final Class clazz) {
-        this.classOfEvent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfEvent.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfEventBuilder {
      * @return This builder.
      */
     public final ClassOfEventBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfEvent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfEvent.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -111,7 +111,7 @@ public class ClassOfEventBuilder {
      */
     public final ClassOfEventBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.classOfEvent.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.classOfEvent.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -127,7 +127,7 @@ public class ClassOfEventBuilder {
      */
     public final ClassOfEventBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfEvent.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfEvent.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 

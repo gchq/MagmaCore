@@ -15,8 +15,11 @@
 package uk.gov.gchq.magmacore.hqdm.services;
 
 import uk.gov.gchq.magmacore.hqdm.model.*;
+import uk.gov.gchq.magmacore.hqdm.model.System;
 import uk.gov.gchq.magmacore.hqdm.model.impl.*;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 
 /**
  * Services for creating SpatioTemporalExtent objects.
@@ -30,7 +33,9 @@ public class SpatioTemporalExtentServices {
      * @return A AbstractObject instance.
      */
     public static AbstractObject createAbstractObject(final IRI id) {
-        return new AbstractObjectImpl(id);
+        final AbstractObject result = new AbstractObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ABSTRACT_OBJECT);
+        return result;
     }
 
     /**
@@ -40,7 +45,9 @@ public class SpatioTemporalExtentServices {
      * @return A AcceptanceOfOffer instance.
      */
     public static AcceptanceOfOffer createAcceptanceOfOffer(final IRI id) {
-        return new AcceptanceOfOfferImpl(id);
+        final AcceptanceOfOffer result = new AcceptanceOfOfferImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ACCEPTANCE_OF_OFFER);
+        return result;
     }
 
     /**
@@ -50,7 +57,9 @@ public class SpatioTemporalExtentServices {
      * @return A AcceptanceOfOfferForGoods instance.
      */
     public static AcceptanceOfOfferForGoods createAcceptanceOfOfferForGoods(final IRI id) {
-        return new AcceptanceOfOfferForGoodsImpl(id);
+        final AcceptanceOfOfferForGoods result = new AcceptanceOfOfferForGoodsImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ACCEPTANCE_OF_OFFER_FOR_GOODS);
+        return result;
     }
 
     /**
@@ -60,7 +69,9 @@ public class SpatioTemporalExtentServices {
      * @return A Activity instance.
      */
     public static Activity createActivity(final IRI id) {
-        return new ActivityImpl(id);
+        final Activity result = new ActivityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ACTIVITY);
+        return result;
     }
 
     /**
@@ -70,7 +81,9 @@ public class SpatioTemporalExtentServices {
      * @return A AgreeContract instance.
      */
     public static AgreeContract createAgreeContract(final IRI id) {
-        return new AgreeContractImpl(id);
+        final AgreeContract result = new AgreeContractImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.AGREE_CONTRACT);
+        return result;
     }
 
     /**
@@ -80,7 +93,9 @@ public class SpatioTemporalExtentServices {
      * @return A AgreementExecution instance.
      */
     public static AgreementExecution createAgreementExecution(final IRI id) {
-        return new AgreementExecutionImpl(id);
+        final AgreementExecution result = new AgreementExecutionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.AGREEMENT_EXECUTION);
+        return result;
     }
 
     /**
@@ -90,7 +105,9 @@ public class SpatioTemporalExtentServices {
      * @return A AgreementProcess instance.
      */
     public static AgreementProcess createAgreementProcess(final IRI id) {
-        return new AgreementProcessImpl(id);
+        final AgreementProcess result = new AgreementProcessImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.AGREEMENT_PROCESS);
+        return result;
     }
 
     /**
@@ -100,7 +117,9 @@ public class SpatioTemporalExtentServices {
      * @return A AmountOfMoney instance.
      */
     public static AmountOfMoney createAmountOfMoney(final IRI id) {
-        return new AmountOfMoneyImpl(id);
+        final AmountOfMoney result = new AmountOfMoneyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.AMOUNT_OF_MONEY);
+        return result;
     }
 
     /**
@@ -110,7 +129,9 @@ public class SpatioTemporalExtentServices {
      * @return A Asset instance.
      */
     public static Asset createAsset(final IRI id) {
-        return new AssetImpl(id);
+        final Asset result = new AssetImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ASSET);
+        return result;
     }
 
     /**
@@ -120,7 +141,9 @@ public class SpatioTemporalExtentServices {
      * @return A Association instance.
      */
     public static Association createAssociation(final IRI id) {
-        return new AssociationImpl(id);
+        final Association result = new AssociationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ASSOCIATION);
+        return result;
     }
 
     /**
@@ -130,7 +153,9 @@ public class SpatioTemporalExtentServices {
      * @return A BeginningOfOwnership instance.
      */
     public static BeginningOfOwnership createBeginningOfOwnership(final IRI id) {
-        return new BeginningOfOwnershipImpl(id);
+        final BeginningOfOwnership result = new BeginningOfOwnershipImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.BEGINNING_OF_OWNERSHIP);
+        return result;
     }
 
     /**
@@ -140,7 +165,9 @@ public class SpatioTemporalExtentServices {
      * @return A BiologicalObject instance.
      */
     public static BiologicalObject createBiologicalObject(final IRI id) {
-        return new BiologicalObjectImpl(id);
+        final BiologicalObject result = new BiologicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.BIOLOGICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -150,7 +177,9 @@ public class SpatioTemporalExtentServices {
      * @return A BiologicalSystem instance.
      */
     public static BiologicalSystem createBiologicalSystem(final IRI id) {
-        return new BiologicalSystemImpl(id);
+        final BiologicalSystem result = new BiologicalSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.BIOLOGICAL_SYSTEM);
+        return result;
     }
 
     /**
@@ -160,7 +189,9 @@ public class SpatioTemporalExtentServices {
      * @return A BiologicalSystemComponent instance.
      */
     public static BiologicalSystemComponent createBiologicalSystemComponent(final IRI id) {
-        return new BiologicalSystemComponentImpl(id);
+        final BiologicalSystemComponent result = new BiologicalSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.BIOLOGICAL_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -170,7 +201,9 @@ public class SpatioTemporalExtentServices {
      * @return A ContractExecution instance.
      */
     public static ContractExecution createContractExecution(final IRI id) {
-        return new ContractExecutionImpl(id);
+        final ContractExecution result = new ContractExecutionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CONTRACT_EXECUTION);
+        return result;
     }
 
     /**
@@ -180,7 +213,9 @@ public class SpatioTemporalExtentServices {
      * @return A ContractProcess instance.
      */
     public static ContractProcess createContractProcess(final IRI id) {
-        return new ContractProcessImpl(id);
+        final ContractProcess result = new ContractProcessImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CONTRACT_PROCESS);
+        return result;
     }
 
     /**
@@ -190,7 +225,9 @@ public class SpatioTemporalExtentServices {
      * @return A Currency instance.
      */
     public static Currency createCurrency(final IRI id) {
-        return new CurrencyImpl(id);
+        final Currency result = new CurrencyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CURRENCY);
+        return result;
     }
 
     /**
@@ -200,7 +237,9 @@ public class SpatioTemporalExtentServices {
      * @return A Employee instance.
      */
     public static Employee createEmployee(final IRI id) {
-        return new EmployeeImpl(id);
+        final Employee result = new EmployeeImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.EMPLOYEE);
+        return result;
     }
 
     /**
@@ -210,7 +249,9 @@ public class SpatioTemporalExtentServices {
      * @return A Employer instance.
      */
     public static Employer createEmployer(final IRI id) {
-        return new EmployerImpl(id);
+        final Employer result = new EmployerImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.EMPLOYER);
+        return result;
     }
 
     /**
@@ -220,7 +261,9 @@ public class SpatioTemporalExtentServices {
      * @return A Employment instance.
      */
     public static Employment createEmployment(final IRI id) {
-        return new EmploymentImpl(id);
+        final Employment result = new EmploymentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.EMPLOYMENT);
+        return result;
     }
 
     /**
@@ -230,7 +273,9 @@ public class SpatioTemporalExtentServices {
      * @return A EndingOfOwnership instance.
      */
     public static EndingOfOwnership createEndingOfOwnership(final IRI id) {
-        return new EndingOfOwnershipImpl(id);
+        final EndingOfOwnership result = new EndingOfOwnershipImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ENDING_OF_OWNERSHIP);
+        return result;
     }
 
     /**
@@ -240,7 +285,9 @@ public class SpatioTemporalExtentServices {
      * @return A Event instance.
      */
     public static Event createEvent(final IRI id) {
-        return new EventImpl(id);
+        final Event result = new EventImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.EVENT);
+        return result;
     }
 
     /**
@@ -250,7 +297,9 @@ public class SpatioTemporalExtentServices {
      * @return A ExchangeOfGoodsAndMoney instance.
      */
     public static ExchangeOfGoodsAndMoney createExchangeOfGoodsAndMoney(final IRI id) {
-        return new ExchangeOfGoodsAndMoneyImpl(id);
+        final ExchangeOfGoodsAndMoney result = new ExchangeOfGoodsAndMoneyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.EXCHANGE_OF_GOODS_AND_MONEY);
+        return result;
     }
 
     /**
@@ -260,7 +309,9 @@ public class SpatioTemporalExtentServices {
      * @return A FunctionalObject instance.
      */
     public static FunctionalObject createFunctionalObject(final IRI id) {
-        return new FunctionalObjectImpl(id);
+        final FunctionalObject result = new FunctionalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.FUNCTIONAL_OBJECT);
+        return result;
     }
 
     /**
@@ -270,7 +321,9 @@ public class SpatioTemporalExtentServices {
      * @return A FunctionalSystem instance.
      */
     public static FunctionalSystem createFunctionalSystem(final IRI id) {
-        return new FunctionalSystemImpl(id);
+        final FunctionalSystem result = new FunctionalSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.FUNCTIONAL_SYSTEM);
+        return result;
     }
 
     /**
@@ -280,7 +333,9 @@ public class SpatioTemporalExtentServices {
      * @return A FunctionalSystemComponent instance.
      */
     public static FunctionalSystemComponent createFunctionalSystemComponent(final IRI id) {
-        return new FunctionalSystemComponentImpl(id);
+        final FunctionalSystemComponent result = new FunctionalSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.FUNCTIONAL_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -290,7 +345,9 @@ public class SpatioTemporalExtentServices {
      * @return A IdentificationOfPhysicalQuantity instance.
      */
     public static IdentificationOfPhysicalQuantity createIdentificationOfPhysicalQuantity(final IRI id) {
-        return new IdentificationOfPhysicalQuantityImpl(id);
+        final IdentificationOfPhysicalQuantity result = new IdentificationOfPhysicalQuantityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.IDENTIFICATION_OF_PHYSICAL_QUANTITY);
+        return result;
     }
 
     /**
@@ -300,7 +357,9 @@ public class SpatioTemporalExtentServices {
      * @return A InPlaceBiologicalComponent instance.
      */
     public static InPlaceBiologicalComponent createInPlaceBiologicalComponent(final IRI id) {
-        return new InPlaceBiologicalComponentImpl(id);
+        final InPlaceBiologicalComponent result = new InPlaceBiologicalComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.IN_PLACE_BIOLOGICAL_COMPONENT);
+        return result;
     }
 
     /**
@@ -310,7 +369,9 @@ public class SpatioTemporalExtentServices {
      * @return A Individual instance.
      */
     public static Individual createIndividual(final IRI id) {
-        return new IndividualImpl(id);
+        final Individual result = new IndividualImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
+        return result;
     }
 
     /**
@@ -320,7 +381,9 @@ public class SpatioTemporalExtentServices {
      * @return A InstalledFunctionalSystemComponent instance.
      */
     public static InstalledFunctionalSystemComponent createInstalledFunctionalSystemComponent(final IRI id) {
-        return new InstalledFunctionalSystemComponentImpl(id);
+        final InstalledFunctionalSystemComponent result = new InstalledFunctionalSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.INSTALLED_FUNCTIONAL_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -330,7 +393,9 @@ public class SpatioTemporalExtentServices {
      * @return A InstalledObject instance.
      */
     public static InstalledObject createInstalledObject(final IRI id) {
-        return new InstalledObjectImpl(id);
+        final InstalledObject result = new InstalledObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.INSTALLED_OBJECT);
+        return result;
     }
 
     /**
@@ -340,7 +405,9 @@ public class SpatioTemporalExtentServices {
      * @return A IntentionallyConstructedObject instance.
      */
     public static IntentionallyConstructedObject createIntentionallyConstructedObject(final IRI id) {
-        return new IntentionallyConstructedObjectImpl(id);
+        final IntentionallyConstructedObject result = new IntentionallyConstructedObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.INTENTIONALLY_CONSTRUCTED_OBJECT);
+        return result;
     }
 
     /**
@@ -350,7 +417,9 @@ public class SpatioTemporalExtentServices {
      * @return A LanguageCommunity instance.
      */
     public static LanguageCommunity createLanguageCommunity(final IRI id) {
-        return new LanguageCommunityImpl(id);
+        final LanguageCommunity result = new LanguageCommunityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.LANGUAGE_COMMUNITY);
+        return result;
     }
 
     /**
@@ -360,7 +429,9 @@ public class SpatioTemporalExtentServices {
      * @return A MoneyAsset instance.
      */
     public static MoneyAsset createMoneyAsset(final IRI id) {
-        return new MoneyAssetImpl(id);
+        final MoneyAsset result = new MoneyAssetImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.MONEY_ASSET);
+        return result;
     }
 
     /**
@@ -370,7 +441,9 @@ public class SpatioTemporalExtentServices {
      * @return A Offer instance.
      */
     public static Offer createOffer(final IRI id) {
-        return new OfferImpl(id);
+        final Offer result = new OfferImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.OFFER);
+        return result;
     }
 
     /**
@@ -380,7 +453,9 @@ public class SpatioTemporalExtentServices {
      * @return A OfferAndAcceptanceForGoods instance.
      */
     public static OfferAndAcceptanceForGoods createOfferAndAcceptanceForGoods(final IRI id) {
-        return new OfferAndAcceptanceForGoodsImpl(id);
+        final OfferAndAcceptanceForGoods result = new OfferAndAcceptanceForGoodsImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.OFFER_AND_ACCEPTANCE_FOR_GOODS);
+        return result;
     }
 
     /**
@@ -390,7 +465,9 @@ public class SpatioTemporalExtentServices {
      * @return A OfferForGoods instance.
      */
     public static OfferForGoods createOfferForGoods(final IRI id) {
-        return new OfferForGoodsImpl(id);
+        final OfferForGoods result = new OfferForGoodsImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.OFFER_FOR_GOODS);
+        return result;
     }
 
     /**
@@ -400,7 +477,9 @@ public class SpatioTemporalExtentServices {
      * @return A Offering instance.
      */
     public static Offering createOffering(final IRI id) {
-        return new OfferingImpl(id);
+        final Offering result = new OfferingImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.OFFERING);
+        return result;
     }
 
     /**
@@ -410,7 +489,9 @@ public class SpatioTemporalExtentServices {
      * @return A OrdinaryBiologicalObject instance.
      */
     public static OrdinaryBiologicalObject createOrdinaryBiologicalObject(final IRI id) {
-        return new OrdinaryBiologicalObjectImpl(id);
+        final OrdinaryBiologicalObject result = new OrdinaryBiologicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ORDINARY_BIOLOGICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -420,7 +501,9 @@ public class SpatioTemporalExtentServices {
      * @return A OrdinaryFunctionalObject instance.
      */
     public static OrdinaryFunctionalObject createOrdinaryFunctionalObject(final IRI id) {
-        return new OrdinaryFunctionalObjectImpl(id);
+        final OrdinaryFunctionalObject result = new OrdinaryFunctionalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ORDINARY_FUNCTIONAL_OBJECT);
+        return result;
     }
 
     /**
@@ -430,7 +513,9 @@ public class SpatioTemporalExtentServices {
      * @return A OrdinaryPhysicalObject instance.
      */
     public static OrdinaryPhysicalObject createOrdinaryPhysicalObject(final IRI id) {
-        return new OrdinaryPhysicalObjectImpl(id);
+        final OrdinaryPhysicalObject result = new OrdinaryPhysicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ORDINARY_PHYSICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -440,7 +525,9 @@ public class SpatioTemporalExtentServices {
      * @return A Organization instance.
      */
     public static Organization createOrganization(final IRI id) {
-        return new OrganizationImpl(id);
+        final Organization result = new OrganizationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ORGANIZATION);
+        return result;
     }
 
     /**
@@ -450,7 +537,9 @@ public class SpatioTemporalExtentServices {
      * @return A OrganizationComponent instance.
      */
     public static OrganizationComponent createOrganizationComponent(final IRI id) {
-        return new OrganizationComponentImpl(id);
+        final OrganizationComponent result = new OrganizationComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ORGANIZATION_COMPONENT);
+        return result;
     }
 
     /**
@@ -460,7 +549,9 @@ public class SpatioTemporalExtentServices {
      * @return A Owner instance.
      */
     public static Owner createOwner(final IRI id) {
-        return new OwnerImpl(id);
+        final Owner result = new OwnerImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.OWNER);
+        return result;
     }
 
     /**
@@ -470,7 +561,9 @@ public class SpatioTemporalExtentServices {
      * @return A Ownership instance.
      */
     public static Ownership createOwnership(final IRI id) {
-        return new OwnershipImpl(id);
+        final Ownership result = new OwnershipImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.OWNERSHIP);
+        return result;
     }
 
     /**
@@ -480,7 +573,9 @@ public class SpatioTemporalExtentServices {
      * @return A Participant instance.
      */
     public static Participant createParticipant(final IRI id) {
-        return new ParticipantImpl(id);
+        final Participant result = new ParticipantImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PARTICIPANT);
+        return result;
     }
 
     /**
@@ -490,7 +585,9 @@ public class SpatioTemporalExtentServices {
      * @return A ParticipantInActivityOrAssociation instance.
      */
     public static ParticipantInActivityOrAssociation createParticipantInActivityOrAssociation(final IRI id) {
-        return new ParticipantInActivityOrAssociationImpl(id);
+        final ParticipantInActivityOrAssociation result = new ParticipantInActivityOrAssociationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PARTICIPANT_IN_ACTIVITY_OR_ASSOCIATION);
+        return result;
     }
 
     /**
@@ -500,7 +597,9 @@ public class SpatioTemporalExtentServices {
      * @return A Party instance.
      */
     public static Party createParty(final IRI id) {
-        return new PartyImpl(id);
+        final Party result = new PartyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PARTY);
+        return result;
     }
 
     /**
@@ -510,7 +609,9 @@ public class SpatioTemporalExtentServices {
      * @return A PeriodOfTime instance.
      */
     public static PeriodOfTime createPeriodOfTime(final IRI id) {
-        return new PeriodOfTimeImpl(id);
+        final PeriodOfTime result = new PeriodOfTimeImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PERIOD_OF_TIME);
+        return result;
     }
 
     /**
@@ -520,7 +621,9 @@ public class SpatioTemporalExtentServices {
      * @return A Person instance.
      */
     public static Person createPerson(final IRI id) {
-        return new PersonImpl(id);
+        final Person result = new PersonImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PERSON);
+        return result;
     }
 
     /**
@@ -530,7 +633,9 @@ public class SpatioTemporalExtentServices {
      * @return A PersonInPosition instance.
      */
     public static PersonInPosition createPersonInPosition(final IRI id) {
-        return new PersonInPositionImpl(id);
+        final PersonInPosition result = new PersonInPositionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PERSON_IN_POSITION);
+        return result;
     }
 
     /**
@@ -540,7 +645,9 @@ public class SpatioTemporalExtentServices {
      * @return A PhysicalObject instance.
      */
     public static PhysicalObject createPhysicalObject(final IRI id) {
-        return new PhysicalObjectImpl(id);
+        final PhysicalObject result = new PhysicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PHYSICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -550,7 +657,9 @@ public class SpatioTemporalExtentServices {
      * @return A PhysicalProperty instance.
      */
     public static PhysicalProperty createPhysicalProperty(final IRI id) {
-        return new PhysicalPropertyImpl(id);
+        final PhysicalProperty result = new PhysicalPropertyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PHYSICAL_PROPERTY);
+        return result;
     }
 
     /**
@@ -560,7 +669,9 @@ public class SpatioTemporalExtentServices {
      * @return A PhysicalPropertyRange instance.
      */
     public static PhysicalPropertyRange createPhysicalPropertyRange(final IRI id) {
-        return new PhysicalPropertyRangeImpl(id);
+        final PhysicalPropertyRange result = new PhysicalPropertyRangeImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PHYSICAL_PROPERTY_RANGE);
+        return result;
     }
 
     /**
@@ -570,7 +681,9 @@ public class SpatioTemporalExtentServices {
      * @return A PhysicalQuantity instance.
      */
     public static PhysicalQuantity createPhysicalQuantity(final IRI id) {
-        return new PhysicalQuantityImpl(id);
+        final PhysicalQuantity result = new PhysicalQuantityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PHYSICAL_QUANTITY);
+        return result;
     }
 
     /**
@@ -580,7 +693,9 @@ public class SpatioTemporalExtentServices {
      * @return A PhysicalQuantityRange instance.
      */
     public static PhysicalQuantityRange createPhysicalQuantityRange(final IRI id) {
-        return new PhysicalQuantityRangeImpl(id);
+        final PhysicalQuantityRange result = new PhysicalQuantityRangeImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PHYSICAL_QUANTITY_RANGE);
+        return result;
     }
 
     /**
@@ -590,7 +705,9 @@ public class SpatioTemporalExtentServices {
      * @return A Plan instance.
      */
     public static Plan createPlan(final IRI id) {
-        return new PlanImpl(id);
+        final Plan result = new PlanImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PLAN);
+        return result;
     }
 
     /**
@@ -600,7 +717,9 @@ public class SpatioTemporalExtentServices {
      * @return A PointInTime instance.
      */
     public static PointInTime createPointInTime(final IRI id) {
-        return new PointInTimeImpl(id);
+        final PointInTime result = new PointInTimeImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
+        return result;
     }
 
     /**
@@ -610,7 +729,9 @@ public class SpatioTemporalExtentServices {
      * @return A Position instance.
      */
     public static Position createPosition(final IRI id) {
-        return new PositionImpl(id);
+        final Position result = new PositionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.POSITION);
+        return result;
     }
 
     /**
@@ -620,7 +741,9 @@ public class SpatioTemporalExtentServices {
      * @return A PossibleWorld instance.
      */
     public static PossibleWorld createPossibleWorld(final IRI id) {
-        return new PossibleWorldImpl(id);
+        final PossibleWorld result = new PossibleWorldImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.POSSIBLE_WORLD);
+        return result;
     }
 
     /**
@@ -630,7 +753,9 @@ public class SpatioTemporalExtentServices {
      * @return A Price instance.
      */
     public static Price createPrice(final IRI id) {
-        return new PriceImpl(id);
+        final Price result = new PriceImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PRICE);
+        return result;
     }
 
     /**
@@ -640,7 +765,9 @@ public class SpatioTemporalExtentServices {
      * @return A ProductBrand instance.
      */
     public static ProductBrand createProductBrand(final IRI id) {
-        return new ProductBrandImpl(id);
+        final ProductBrand result = new ProductBrandImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PRODUCT_BRAND);
+        return result;
     }
 
     /**
@@ -650,7 +777,9 @@ public class SpatioTemporalExtentServices {
      * @return A ProductOffering instance.
      */
     public static ProductOffering createProductOffering(final IRI id) {
-        return new ProductOfferingImpl(id);
+        final ProductOffering result = new ProductOfferingImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PRODUCT_OFFERING);
+        return result;
     }
 
     /**
@@ -660,7 +789,9 @@ public class SpatioTemporalExtentServices {
      * @return A ReachingAgreement instance.
      */
     public static ReachingAgreement createReachingAgreement(final IRI id) {
-        return new ReachingAgreementImpl(id);
+        final ReachingAgreement result = new ReachingAgreementImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.REACHING_AGREEMENT);
+        return result;
     }
 
     /**
@@ -670,7 +801,9 @@ public class SpatioTemporalExtentServices {
      * @return A RecognizingLanguageCommunity instance.
      */
     public static RecognizingLanguageCommunity createRecognizingLanguageCommunity(final IRI id) {
-        return new RecognizingLanguageCommunityImpl(id);
+        final RecognizingLanguageCommunity result = new RecognizingLanguageCommunityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.RECOGNIZING_LANGUAGE_COMMUNITY);
+        return result;
     }
 
     /**
@@ -680,7 +813,9 @@ public class SpatioTemporalExtentServices {
      * @return A RepresentationBySign instance.
      */
     public static RepresentationBySign createRepresentationBySign(final IRI id) {
-        return new RepresentationBySignImpl(id);
+        final RepresentationBySign result = new RepresentationBySignImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN);
+        return result;
     }
 
     /**
@@ -690,7 +825,9 @@ public class SpatioTemporalExtentServices {
      * @return A Requirement instance.
      */
     public static Requirement createRequirement(final IRI id) {
-        return new RequirementImpl(id);
+        final Requirement result = new RequirementImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.REQUIREMENT);
+        return result;
     }
 
     /**
@@ -700,7 +837,9 @@ public class SpatioTemporalExtentServices {
      * @return A RequirementSpecification instance.
      */
     public static RequirementSpecification createRequirementSpecification(final IRI id) {
-        return new RequirementSpecificationImpl(id);
+        final RequirementSpecification result = new RequirementSpecificationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.REQUIREMENT_SPECIFICATION);
+        return result;
     }
 
     /**
@@ -710,7 +849,9 @@ public class SpatioTemporalExtentServices {
      * @return A SaleOfGoods instance.
      */
     public static SaleOfGoods createSaleOfGoods(final IRI id) {
-        return new SaleOfGoodsImpl(id);
+        final SaleOfGoods result = new SaleOfGoodsImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.SALE_OF_GOODS);
+        return result;
     }
 
     /**
@@ -720,7 +861,9 @@ public class SpatioTemporalExtentServices {
      * @return A SalesProduct instance.
      */
     public static SalesProduct createSalesProduct(final IRI id) {
-        return new SalesProductImpl(id);
+        final SalesProduct result = new SalesProductImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.SALES_PRODUCT);
+        return result;
     }
 
     /**
@@ -730,7 +873,9 @@ public class SpatioTemporalExtentServices {
      * @return A SalesProductInstance instance.
      */
     public static SalesProductInstance createSalesProductInstance(final IRI id) {
-        return new SalesProductInstanceImpl(id);
+        final SalesProductInstance result = new SalesProductInstanceImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.SALES_PRODUCT_INSTANCE);
+        return result;
     }
 
     /**
@@ -740,7 +885,9 @@ public class SpatioTemporalExtentServices {
      * @return A SalesProductVersion instance.
      */
     public static SalesProductVersion createSalesProductVersion(final IRI id) {
-        return new SalesProductVersionImpl(id);
+        final SalesProductVersion result = new SalesProductVersionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.SALES_PRODUCT_VERSION);
+        return result;
     }
 
     /**
@@ -750,7 +897,9 @@ public class SpatioTemporalExtentServices {
      * @return A Sign instance.
      */
     public static Sign createSign(final IRI id) {
-        return new SignImpl(id);
+        final Sign result = new SignImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
+        return result;
     }
 
     /**
@@ -760,7 +909,9 @@ public class SpatioTemporalExtentServices {
      * @return A SociallyConstructedActivity instance.
      */
     public static SociallyConstructedActivity createSociallyConstructedActivity(final IRI id) {
-        return new SociallyConstructedActivityImpl(id);
+        final SociallyConstructedActivity result = new SociallyConstructedActivityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.SOCIALLY_CONSTRUCTED_ACTIVITY);
+        return result;
     }
 
     /**
@@ -770,7 +921,9 @@ public class SpatioTemporalExtentServices {
      * @return A SociallyConstructedObject instance.
      */
     public static SociallyConstructedObject createSociallyConstructedObject(final IRI id) {
-        return new SociallyConstructedObjectImpl(id);
+        final SociallyConstructedObject result = new SociallyConstructedObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.SOCIALLY_CONSTRUCTED_OBJECT);
+        return result;
     }
 
     /**
@@ -780,7 +933,9 @@ public class SpatioTemporalExtentServices {
      * @return A SpatioTemporalExtent instance.
      */
     public static SpatioTemporalExtent createSpatioTemporalExtent(final IRI id) {
-        return new SpatioTemporalExtentImpl(id);
+        final SpatioTemporalExtent result = new SpatioTemporalExtentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.SPATIO_TEMPORAL_EXTENT);
+        return result;
     }
 
     /**
@@ -790,7 +945,9 @@ public class SpatioTemporalExtentServices {
      * @return A State instance.
      */
     public static State createState(final IRI id) {
-        return new StateImpl(id);
+        final State result = new StateImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE);
+        return result;
     }
 
     /**
@@ -800,7 +957,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfActivity instance.
      */
     public static StateOfActivity createStateOfActivity(final IRI id) {
-        return new StateOfActivityImpl(id);
+        final StateOfActivity result = new StateOfActivityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_ACTIVITY);
+        return result;
     }
 
     /**
@@ -810,7 +969,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfAmountOfMoney instance.
      */
     public static StateOfAmountOfMoney createStateOfAmountOfMoney(final IRI id) {
-        return new StateOfAmountOfMoneyImpl(id);
+        final StateOfAmountOfMoney result = new StateOfAmountOfMoneyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_AMOUNT_OF_MONEY);
+        return result;
     }
 
     /**
@@ -820,7 +981,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfAssociation instance.
      */
     public static StateOfAssociation createStateOfAssociation(final IRI id) {
-        return new StateOfAssociationImpl(id);
+        final StateOfAssociation result = new StateOfAssociationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_ASSOCIATION);
+        return result;
     }
 
     /**
@@ -830,7 +993,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfBiologicalObject instance.
      */
     public static StateOfBiologicalObject createStateOfBiologicalObject(final IRI id) {
-        return new StateOfBiologicalObjectImpl(id);
+        final StateOfBiologicalObject result = new StateOfBiologicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_BIOLOGICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -840,7 +1005,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfBiologicalSystem instance.
      */
     public static StateOfBiologicalSystem createStateOfBiologicalSystem(final IRI id) {
-        return new StateOfBiologicalSystemImpl(id);
+        final StateOfBiologicalSystem result = new StateOfBiologicalSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_BIOLOGICAL_SYSTEM);
+        return result;
     }
 
     /**
@@ -850,7 +1017,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfBiologicalSystemComponent instance.
      */
     public static StateOfBiologicalSystemComponent createStateOfBiologicalSystemComponent(final IRI id) {
-        return new StateOfBiologicalSystemComponentImpl(id);
+        final StateOfBiologicalSystemComponent result = new StateOfBiologicalSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_BIOLOGICAL_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -860,7 +1029,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfFunctionalObject instance.
      */
     public static StateOfFunctionalObject createStateOfFunctionalObject(final IRI id) {
-        return new StateOfFunctionalObjectImpl(id);
+        final StateOfFunctionalObject result = new StateOfFunctionalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_FUNCTIONAL_OBJECT);
+        return result;
     }
 
     /**
@@ -870,7 +1041,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfFunctionalSystem instance.
      */
     public static StateOfFunctionalSystem createStateOfFunctionalSystem(final IRI id) {
-        return new StateOfFunctionalSystemImpl(id);
+        final StateOfFunctionalSystem result = new StateOfFunctionalSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_FUNCTIONAL_SYSTEM);
+        return result;
     }
 
     /**
@@ -880,7 +1053,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfFunctionalSystemComponent instance.
      */
     public static StateOfFunctionalSystemComponent createStateOfFunctionalSystemComponent(final IRI id) {
-        return new StateOfFunctionalSystemComponentImpl(id);
+        final StateOfFunctionalSystemComponent result = new StateOfFunctionalSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_FUNCTIONAL_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -890,7 +1065,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfIntentionallyConstructedObject instance.
      */
     public static StateOfIntentionallyConstructedObject createStateOfIntentionallyConstructedObject(final IRI id) {
-        return new StateOfIntentionallyConstructedObjectImpl(id);
+        final StateOfIntentionallyConstructedObject result = new StateOfIntentionallyConstructedObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_INTENTIONALLY_CONSTRUCTED_OBJECT);
+        return result;
     }
 
     /**
@@ -900,7 +1077,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfLanguageCommunity instance.
      */
     public static StateOfLanguageCommunity createStateOfLanguageCommunity(final IRI id) {
-        return new StateOfLanguageCommunityImpl(id);
+        final StateOfLanguageCommunity result = new StateOfLanguageCommunityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_LANGUAGE_COMMUNITY);
+        return result;
     }
 
     /**
@@ -910,7 +1089,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfOrdinaryBiologicalObject instance.
      */
     public static StateOfOrdinaryBiologicalObject createStateOfOrdinaryBiologicalObject(final IRI id) {
-        return new StateOfOrdinaryBiologicalObjectImpl(id);
+        final StateOfOrdinaryBiologicalObject result = new StateOfOrdinaryBiologicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_ORDINARY_BIOLOGICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -920,7 +1101,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfOrdinaryFunctionalObject instance.
      */
     public static StateOfOrdinaryFunctionalObject createStateOfOrdinaryFunctionalObject(final IRI id) {
-        return new StateOfOrdinaryFunctionalObjectImpl(id);
+        final StateOfOrdinaryFunctionalObject result = new StateOfOrdinaryFunctionalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_ORDINARY_FUNCTIONAL_OBJECT);
+        return result;
     }
 
     /**
@@ -930,7 +1113,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfOrdinaryPhysicalObject instance.
      */
     public static StateOfOrdinaryPhysicalObject createStateOfOrdinaryPhysicalObject(final IRI id) {
-        return new StateOfOrdinaryPhysicalObjectImpl(id);
+        final StateOfOrdinaryPhysicalObject result = new StateOfOrdinaryPhysicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_ORDINARY_PHYSICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -940,7 +1125,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfOrganization instance.
      */
     public static StateOfOrganization createStateOfOrganization(final IRI id) {
-        return new StateOfOrganizationImpl(id);
+        final StateOfOrganization result = new StateOfOrganizationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_ORGANIZATION);
+        return result;
     }
 
     /**
@@ -950,7 +1137,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfOrganizationComponent instance.
      */
     public static StateOfOrganizationComponent createStateOfOrganizationComponent(final IRI id) {
-        return new StateOfOrganizationComponentImpl(id);
+        final StateOfOrganizationComponent result = new StateOfOrganizationComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_ORGANIZATION_COMPONENT);
+        return result;
     }
 
     /**
@@ -960,7 +1149,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfParty instance.
      */
     public static StateOfParty createStateOfParty(final IRI id) {
-        return new StateOfPartyImpl(id);
+        final StateOfParty result = new StateOfPartyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_PARTY);
+        return result;
     }
 
     /**
@@ -970,7 +1161,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfPerson instance.
      */
     public static StateOfPerson createStateOfPerson(final IRI id) {
-        return new StateOfPersonImpl(id);
+        final StateOfPerson result = new StateOfPersonImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_PERSON);
+        return result;
     }
 
     /**
@@ -980,7 +1173,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfPhysicalObject instance.
      */
     public static StateOfPhysicalObject createStateOfPhysicalObject(final IRI id) {
-        return new StateOfPhysicalObjectImpl(id);
+        final StateOfPhysicalObject result = new StateOfPhysicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_PHYSICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -990,7 +1185,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfPosition instance.
      */
     public static StateOfPosition createStateOfPosition(final IRI id) {
-        return new StateOfPositionImpl(id);
+        final StateOfPosition result = new StateOfPositionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_POSITION);
+        return result;
     }
 
     /**
@@ -1000,7 +1197,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfSalesProductInstance instance.
      */
     public static StateOfSalesProductInstance createStateOfSalesProductInstance(final IRI id) {
-        return new StateOfSalesProductInstanceImpl(id);
+        final StateOfSalesProductInstance result = new StateOfSalesProductInstanceImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SALES_PRODUCT_INSTANCE);
+        return result;
     }
 
     /**
@@ -1010,7 +1209,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfSign instance.
      */
     public static StateOfSign createStateOfSign(final IRI id) {
-        return new StateOfSignImpl(id);
+        final StateOfSign result = new StateOfSignImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN);
+        return result;
     }
 
     /**
@@ -1020,7 +1221,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfSociallyConstructedActivity instance.
      */
     public static StateOfSociallyConstructedActivity createStateOfSociallyConstructedActivity(final IRI id) {
-        return new StateOfSociallyConstructedActivityImpl(id);
+        final StateOfSociallyConstructedActivity result = new StateOfSociallyConstructedActivityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SOCIALLY_CONSTRUCTED_ACTIVITY);
+        return result;
     }
 
     /**
@@ -1030,7 +1233,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfSociallyConstructedObject instance.
      */
     public static StateOfSociallyConstructedObject createStateOfSociallyConstructedObject(final IRI id) {
-        return new StateOfSociallyConstructedObjectImpl(id);
+        final StateOfSociallyConstructedObject result = new StateOfSociallyConstructedObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SOCIALLY_CONSTRUCTED_OBJECT);
+        return result;
     }
 
     /**
@@ -1040,7 +1245,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfSystem instance.
      */
     public static StateOfSystem createStateOfSystem(final IRI id) {
-        return new StateOfSystemImpl(id);
+        final StateOfSystem result = new StateOfSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SYSTEM);
+        return result;
     }
 
     /**
@@ -1050,7 +1257,9 @@ public class SpatioTemporalExtentServices {
      * @return A StateOfSystemComponent instance.
      */
     public static StateOfSystemComponent createStateOfSystemComponent(final IRI id) {
-        return new StateOfSystemComponentImpl(id);
+        final StateOfSystemComponent result = new StateOfSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -1060,7 +1269,9 @@ public class SpatioTemporalExtentServices {
      * @return A System instance.
      */
     public static uk.gov.gchq.magmacore.hqdm.model.System createSystem(final IRI id) {
-        return new SystemImpl(id);
+        final System result = new SystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.SYSTEM);
+        return result;
     }
 
     /**
@@ -1070,7 +1281,9 @@ public class SpatioTemporalExtentServices {
      * @return A SystemComponent instance.
      */
     public static SystemComponent createSystemComponent(final IRI id) {
-        return new SystemComponentImpl(id);
+        final SystemComponent result = new SystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -1090,7 +1303,9 @@ public class SpatioTemporalExtentServices {
      * @return A TransferOfOwnership instance.
      */
     public static TransferOfOwnership createTransferOfOwnership(final IRI id) {
-        return new TransferOfOwnershipImpl(id);
+        final TransferOfOwnership result = new TransferOfOwnershipImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.TRANSFER_OF_OWNERSHIP);
+        return result;
     }
 
     /**
@@ -1100,7 +1315,9 @@ public class SpatioTemporalExtentServices {
      * @return A TransferOfOwnershipOfMoney instance.
      */
     public static TransferOfOwnershipOfMoney createTransferOfOwnershipOfMoney(final IRI id) {
-        return new TransferOfOwnershipOfMoneyImpl(id);
+        final TransferOfOwnershipOfMoney result = new TransferOfOwnershipOfMoneyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.TRANSFER_OF_OWNERSHIP_OF_MONEY);
+        return result;
     }
 
     /**
@@ -1110,7 +1327,9 @@ public class SpatioTemporalExtentServices {
      * @return A Transferee instance.
      */
     public static Transferee createTransferee(final IRI id) {
-        return new TransfereeImpl(id);
+        final Transferee result = new TransfereeImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.TRANSFEREE);
+        return result;
     }
 
     /**
@@ -1120,6 +1339,8 @@ public class SpatioTemporalExtentServices {
      * @return A Transferor instance.
      */
     public static Transferor createTransferor(final IRI id) {
-        return new TransferorImpl(id);
+        final Transferor result = new TransferorImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.TRANSFEROR);
+        return result;
     }
 }

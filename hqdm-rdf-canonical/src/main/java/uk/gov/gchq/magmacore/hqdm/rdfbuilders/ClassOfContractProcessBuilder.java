@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfContractProcess;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfReachingAgreement;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfContractProcess.
@@ -47,7 +47,7 @@ public class ClassOfContractProcessBuilder {
      * @param iri IRI of the ClassOfContractProcess.
      */
     public ClassOfContractProcessBuilder(final IRI iri) {
-        this.classOfContractProcess = RdfClassServices.createClassOfContractProcess(iri);
+        this.classOfContractProcess = ClassServices.createClassOfContractProcess(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class ClassOfContractProcessBuilder {
     public final ClassOfContractProcessBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfContractProcess.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class ClassOfContractProcessBuilder {
      * @return This builder.
      */
     public final ClassOfContractProcessBuilder has_Superclass(final Class clazz) {
-        this.classOfContractProcess.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfContractProcess.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -88,7 +88,7 @@ public class ClassOfContractProcessBuilder {
      * @return This builder.
      */
     public final ClassOfContractProcessBuilder member__Of(final Class clazz) {
-        this.classOfContractProcess.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfContractProcess.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -101,7 +101,7 @@ public class ClassOfContractProcessBuilder {
      * @return This builder.
      */
     public final ClassOfContractProcessBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfContractProcess.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfContractProcess.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -116,7 +116,7 @@ public class ClassOfContractProcessBuilder {
     public final ClassOfContractProcessBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfContractProcess.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class ClassOfContractProcessBuilder {
     public final ClassOfContractProcessBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfContractProcess.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -150,7 +150,7 @@ public class ClassOfContractProcessBuilder {
     public final ClassOfContractProcessBuilder part_Of_By_Class(
             final ClassOfReachingAgreement classOfReachingAgreement) {
         this.classOfContractProcess.addValue(PART_OF_BY_CLASS,
-                new IRI(classOfReachingAgreement.getId()));
+                classOfReachingAgreement.getId());
         return this;
     }
 
@@ -168,7 +168,7 @@ public class ClassOfContractProcessBuilder {
     public final ClassOfContractProcessBuilder part_Of_By_Class_(
             final ClassOfAgreementExecution classOfAgreementExecution) {
         this.classOfContractProcess.addValue(PART_OF_BY_CLASS_,
-                new IRI(classOfAgreementExecution.getId()));
+                classOfAgreementExecution.getId());
         return this;
     }
 

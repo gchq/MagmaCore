@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfLanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfLanguageCommunity.
@@ -49,7 +49,7 @@ public class StateOfLanguageCommunityBuilder {
      * @param iri IRI of the StateOfLanguageCommunity.
      */
     public StateOfLanguageCommunityBuilder(final IRI iri) {
-        stateOfLanguageCommunity = RdfSpatioTemporalExtentServices.createStateOfLanguageCommunity(iri);
+        stateOfLanguageCommunity = SpatioTemporalExtentServices.createStateOfLanguageCommunity(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class StateOfLanguageCommunityBuilder {
      * @return This builder.
      */
     public final StateOfLanguageCommunityBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfLanguageCommunity.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfLanguageCommunity.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfLanguageCommunityBuilder {
      * @return This builder.
      */
     public final StateOfLanguageCommunityBuilder beginning(final Event event) {
-        this.stateOfLanguageCommunity.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfLanguageCommunity.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfLanguageCommunityBuilder {
      * @return This builder.
      */
     public final StateOfLanguageCommunityBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfLanguageCommunity.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfLanguageCommunity.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfLanguageCommunityBuilder {
      * @return This builder.
      */
     public final StateOfLanguageCommunityBuilder ending(final Event event) {
-        this.stateOfLanguageCommunity.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfLanguageCommunity.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfLanguageCommunityBuilder {
      * @return This builder.
      */
     public final StateOfLanguageCommunityBuilder member__Of(final Class clazz) {
-        this.stateOfLanguageCommunity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfLanguageCommunity.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class StateOfLanguageCommunityBuilder {
      */
     public final StateOfLanguageCommunityBuilder member_Of(
             final ClassOfStateOfOrganization classOfStateOfOrganization) {
-        this.stateOfLanguageCommunity.addValue(MEMBER_OF, new IRI(classOfStateOfOrganization.getId()));
+        this.stateOfLanguageCommunity.addValue(MEMBER_OF, classOfStateOfOrganization.getId());
         return this;
     }
 
@@ -143,7 +143,7 @@ public class StateOfLanguageCommunityBuilder {
      * @return This builder.
      */
     public final StateOfLanguageCommunityBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfLanguageCommunity.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfLanguageCommunity.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -162,7 +162,7 @@ public class StateOfLanguageCommunityBuilder {
      * @return This builder.
      */
     public final StateOfLanguageCommunityBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.stateOfLanguageCommunity.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfLanguageCommunity.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -175,7 +175,7 @@ public class StateOfLanguageCommunityBuilder {
      * @return This builder.
      */
     public final StateOfLanguageCommunityBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfLanguageCommunity.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfLanguageCommunity.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -189,7 +189,7 @@ public class StateOfLanguageCommunityBuilder {
      * @return This builder.
      */
     public final StateOfLanguageCommunityBuilder temporal_Part_Of(final LanguageCommunity languageCommunity) {
-        this.stateOfLanguageCommunity.addValue(TEMPORAL_PART_OF, new IRI(languageCommunity.getId()));
+        this.stateOfLanguageCommunity.addValue(TEMPORAL_PART_OF, languageCommunity.getId());
         return this;
     }
 

@@ -50,7 +50,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership;
 import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnershipOfMoney;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of ExchangeOfGoodsAndMoney.
@@ -65,7 +65,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @param iri IRI of the ExchangeOfGoodsAndMoney.
      */
     public ExchangeOfGoodsAndMoneyBuilder(final IRI iri) {
-        exchangeOfGoodsAndMoney = RdfSpatioTemporalExtentServices.createExchangeOfGoodsAndMoney(iri);
+        exchangeOfGoodsAndMoney = SpatioTemporalExtentServices.createExchangeOfGoodsAndMoney(iri);
     }
 
     /**
@@ -80,7 +80,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.exchangeOfGoodsAndMoney.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -92,7 +92,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder beginning(final Event event) {
-        this.exchangeOfGoodsAndMoney.addValue(BEGINNING, new IRI(event.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -104,7 +104,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder causes_M(final Event event) {
-        this.exchangeOfGoodsAndMoney.addValue(CAUSES, new IRI(event.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(CAUSES, event.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.exchangeOfGoodsAndMoney.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return Builder
      */
     public final ExchangeOfGoodsAndMoneyBuilder consists_Of(final TransferOfOwnership transferOfOwnership) {
-        this.exchangeOfGoodsAndMoney.addValue(CONSISTS_OF, new IRI(transferOfOwnership.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(CONSISTS_OF, transferOfOwnership.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      */
     public final ExchangeOfGoodsAndMoneyBuilder consists_Of_(
             final TransferOfOwnershipOfMoney transferOfOwnershipOfMoney) {
-        this.exchangeOfGoodsAndMoney.addValue(CONSISTS_OF_, new IRI(transferOfOwnershipOfMoney.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(CONSISTS_OF_, transferOfOwnershipOfMoney.getId());
         return this;
     }
 
@@ -157,7 +157,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder consists_Of_Participant(final Participant participant) {
-        this.exchangeOfGoodsAndMoney.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(CONSISTS_OF_PARTICIPANT, participant.getId());
         return this;
     }
 
@@ -169,7 +169,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder determines(final Thing thing) {
-        this.exchangeOfGoodsAndMoney.addValue(DETERMINES, new IRI(thing.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(DETERMINES, thing.getId());
         return this;
     }
 
@@ -181,7 +181,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder ending(final Event event) {
-        this.exchangeOfGoodsAndMoney.addValue(ENDING, new IRI(event.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -192,7 +192,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder member__Of(final Class clazz) {
-        this.exchangeOfGoodsAndMoney.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -206,7 +206,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder member_Of(final ClassOfContractExecution classOfContractExecution) {
-        this.exchangeOfGoodsAndMoney.addValue(MEMBER_OF, new IRI(classOfContractExecution.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(MEMBER_OF, classOfContractExecution.getId());
         return this;
     }
 
@@ -219,7 +219,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        this.exchangeOfGoodsAndMoney.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
         return this;
     }
 
@@ -232,7 +232,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.exchangeOfGoodsAndMoney.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -245,7 +245,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return Builder
      */
     public final ExchangeOfGoodsAndMoneyBuilder part_Of_M(final SaleOfGoods saleOfGoods) {
-        this.exchangeOfGoodsAndMoney.addValue(PART_OF, new IRI(saleOfGoods.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(PART_OF, saleOfGoods.getId());
         return this;
     }
 
@@ -259,7 +259,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder part_Of_(final AgreementExecution agreementExecution) {
-        this.exchangeOfGoodsAndMoney.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(PART_OF_, agreementExecution.getId());
         return this;
     }
 
@@ -278,7 +278,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.exchangeOfGoodsAndMoney.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -290,7 +290,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder references(final Thing thing) {
-        this.exchangeOfGoodsAndMoney.addValue(REFERENCES, new IRI(thing.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(REFERENCES, thing.getId());
         return this;
     }
 
@@ -303,7 +303,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.exchangeOfGoodsAndMoney.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -326,7 +326,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      * @return This builder.
      */
     public final ExchangeOfGoodsAndMoneyBuilder temporal_Part_Of(final Individual individual) {
-        this.exchangeOfGoodsAndMoney.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.exchangeOfGoodsAndMoney.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

@@ -31,7 +31,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Event;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of SpatioTemporalExtent.
@@ -46,7 +46,7 @@ public class SpatioTemporalExtentBuilder {
      * @param iri IRI of the SpatioTemporalExtent.
      */
     public SpatioTemporalExtentBuilder(final IRI iri) {
-        spatioTemporalExtent = RdfSpatioTemporalExtentServices.createSpatioTemporalExtent(iri);
+        spatioTemporalExtent = SpatioTemporalExtentServices.createSpatioTemporalExtent(iri);
     }
 
     /**
@@ -57,7 +57,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.spatioTemporalExtent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.spatioTemporalExtent.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -69,7 +69,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder beginning(final Event event) {
-        this.spatioTemporalExtent.addValue(BEGINNING, new IRI(event.getId()));
+        this.spatioTemporalExtent.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.spatioTemporalExtent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.spatioTemporalExtent.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -92,7 +92,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder ending(final Event event) {
-        this.spatioTemporalExtent.addValue(ENDING, new IRI(event.getId()));
+        this.spatioTemporalExtent.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -104,7 +104,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder member__Of(final Class clazz) {
-        this.spatioTemporalExtent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.spatioTemporalExtent.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -118,7 +118,7 @@ public class SpatioTemporalExtentBuilder {
      */
     public final SpatioTemporalExtentBuilder member_Of(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.spatioTemporalExtent.addValue(MEMBER_OF, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.spatioTemporalExtent.addValue(MEMBER_OF, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.spatioTemporalExtent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.spatioTemporalExtent.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.spatioTemporalExtent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.spatioTemporalExtent.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -157,7 +157,7 @@ public class SpatioTemporalExtentBuilder {
      * @return This builder.
      */
     public final SpatioTemporalExtentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.spatioTemporalExtent.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.spatioTemporalExtent.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 

@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSociallyConstructedObject;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfSociallyConstructedObject.
@@ -43,7 +43,7 @@ public class ClassOfSociallyConstructedObjectBuilder {
      * @param iri IRI of the ClassOfSociallyConstructedObject.
      */
     public ClassOfSociallyConstructedObjectBuilder(final IRI iri) {
-        this.classOfSociallyConstructedObject = RdfClassServices
+        this.classOfSociallyConstructedObject = ClassServices
                 .createClassOfSociallyConstructedObject(iri);
     }
 
@@ -61,7 +61,7 @@ public class ClassOfSociallyConstructedObjectBuilder {
     public final ClassOfSociallyConstructedObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfSociallyConstructedObject.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -73,7 +73,7 @@ public class ClassOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final ClassOfSociallyConstructedObjectBuilder has_Superclass(final Class clazz) {
-        this.classOfSociallyConstructedObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfSociallyConstructedObject.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -85,7 +85,7 @@ public class ClassOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final ClassOfSociallyConstructedObjectBuilder member__Of(final Class clazz) {
-        this.classOfSociallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfSociallyConstructedObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -98,7 +98,7 @@ public class ClassOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final ClassOfSociallyConstructedObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfSociallyConstructedObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfSociallyConstructedObject.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -113,7 +113,7 @@ public class ClassOfSociallyConstructedObjectBuilder {
     public final ClassOfSociallyConstructedObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfSociallyConstructedObject.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class ClassOfSociallyConstructedObjectBuilder {
     public final ClassOfSociallyConstructedObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfSociallyConstructedObject.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

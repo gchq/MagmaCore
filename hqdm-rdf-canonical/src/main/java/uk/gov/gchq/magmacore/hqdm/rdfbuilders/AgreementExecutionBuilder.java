@@ -47,7 +47,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of AgreementExecution.
@@ -62,7 +62,7 @@ public class AgreementExecutionBuilder {
      * @param iri IRI of the AgreementExecution.
      */
     public AgreementExecutionBuilder(final IRI iri) {
-        this.agreementExecution = RdfSpatioTemporalExtentServices.createAgreementExecution(iri);
+        this.agreementExecution = SpatioTemporalExtentServices.createAgreementExecution(iri);
     }
 
     /**
@@ -78,7 +78,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.agreementExecution.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.agreementExecution.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -90,7 +90,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder beginning(final Event event) {
-        this.agreementExecution.addValue(BEGINNING, new IRI(event.getId()));
+        this.agreementExecution.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -101,7 +101,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder causes_M(final Event event) {
-        this.agreementExecution.addValue(CAUSES, new IRI(event.getId()));
+        this.agreementExecution.addValue(CAUSES, event.getId());
         return this;
     }
 
@@ -116,7 +116,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.agreementExecution.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.agreementExecution.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -129,7 +129,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder consists_Of(final Activity activity) {
-        this.agreementExecution.addValue(CONSISTS_OF, new IRI(activity.getId()));
+        this.agreementExecution.addValue(CONSISTS_OF, activity.getId());
         return this;
     }
 
@@ -142,7 +142,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder consists_Of_Participant(final Participant participant) {
-        this.agreementExecution.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.agreementExecution.addValue(CONSISTS_OF_PARTICIPANT, participant.getId());
         return this;
     }
 
@@ -154,7 +154,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder determines(final Thing thing) {
-        this.agreementExecution.addValue(DETERMINES, new IRI(thing.getId()));
+        this.agreementExecution.addValue(DETERMINES, thing.getId());
         return this;
     }
 
@@ -166,7 +166,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder ending(final Event event) {
-        this.agreementExecution.addValue(ENDING, new IRI(event.getId()));
+        this.agreementExecution.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -177,7 +177,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder member__Of(final Class clazz) {
-        this.agreementExecution.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.agreementExecution.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -190,7 +190,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder member_Of(final ClassOfAgreementExecution classOfAgreementExecution) {
-        this.agreementExecution.addValue(MEMBER_OF, new IRI(classOfAgreementExecution.getId()));
+        this.agreementExecution.addValue(MEMBER_OF, classOfAgreementExecution.getId());
         return this;
     }
 
@@ -203,7 +203,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        this.agreementExecution.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.agreementExecution.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
         return this;
     }
 
@@ -216,7 +216,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.agreementExecution.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.agreementExecution.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -229,7 +229,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder part_Of_M(final AgreementProcess agreementProcess) {
-        this.agreementExecution.addValue(PART_OF, new IRI(agreementProcess.getId()));
+        this.agreementExecution.addValue(PART_OF, agreementProcess.getId());
         return this;
     }
 
@@ -243,7 +243,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder part_Of_(final AgreementExecution agreementExecution) {
-        this.agreementExecution.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.agreementExecution.addValue(PART_OF_, agreementExecution.getId());
         return this;
     }
 
@@ -262,7 +262,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.agreementExecution.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.agreementExecution.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -273,7 +273,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder references(final Thing thing) {
-        this.agreementExecution.addValue(REFERENCES, new IRI(thing.getId()));
+        this.agreementExecution.addValue(REFERENCES, thing.getId());
         return this;
     }
 
@@ -286,7 +286,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.agreementExecution.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.agreementExecution.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -309,7 +309,7 @@ public class AgreementExecutionBuilder {
      * @return This builder.
      */
     public final AgreementExecutionBuilder temporal_Part_Of(final Individual individual) {
-        this.agreementExecution.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.agreementExecution.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

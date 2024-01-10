@@ -22,7 +22,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.UnitOfMeasure;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
 
 /**
  * Builder for constructing instances of UnitOfMeasure.
@@ -37,7 +37,7 @@ public class UnitOfMeasureBuilder {
      * @param iri IRI of the UnitOfMeasure.
      */
     public UnitOfMeasureBuilder(final IRI iri) {
-        unitOfMeasure = RdfRelationshipServices.createUnitOfMeasure(iri);
+        unitOfMeasure = RelationshipServices.createUnitOfMeasure(iri);
     }
 
     /**
@@ -48,7 +48,7 @@ public class UnitOfMeasureBuilder {
      * @return This builder.
      */
     public final UnitOfMeasureBuilder member__Of(final Class clazz) {
-        this.unitOfMeasure.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.unitOfMeasure.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -61,7 +61,7 @@ public class UnitOfMeasureBuilder {
      * @return This builder.
      */
     public final UnitOfMeasureBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        this.unitOfMeasure.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.unitOfMeasure.addValue(MEMBER_OF, classOfRelationship.getId());
         return this;
     }
 

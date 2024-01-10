@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfContractExecution;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfContractProcess;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfContractExecution.
@@ -47,7 +47,7 @@ public class ClassOfContractExecutionBuilder {
      * @param iri IRI of the ClassOfContractExecution.
      */
     public ClassOfContractExecutionBuilder(final IRI iri) {
-        this.classOfContractExecution = RdfClassServices.createClassOfContractExecution(iri);
+        this.classOfContractExecution = ClassServices.createClassOfContractExecution(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class ClassOfContractExecutionBuilder {
     public final ClassOfContractExecutionBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfContractExecution.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class ClassOfContractExecutionBuilder {
      * @return This builder.
      */
     public final ClassOfContractExecutionBuilder has_Superclass(final Class clazz) {
-        this.classOfContractExecution.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfContractExecution.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -88,7 +88,7 @@ public class ClassOfContractExecutionBuilder {
      * @return This builder.
      */
     public final ClassOfContractExecutionBuilder member__Of(final Class clazz) {
-        this.classOfContractExecution.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfContractExecution.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -101,7 +101,7 @@ public class ClassOfContractExecutionBuilder {
      * @return This builder.
      */
     public final ClassOfContractExecutionBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfContractExecution.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfContractExecution.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -116,7 +116,7 @@ public class ClassOfContractExecutionBuilder {
     public final ClassOfContractExecutionBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfContractExecution.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class ClassOfContractExecutionBuilder {
     public final ClassOfContractExecutionBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfContractExecution.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -150,7 +150,7 @@ public class ClassOfContractExecutionBuilder {
     public final ClassOfContractExecutionBuilder part_Of_By_Class(
             final ClassOfContractProcess classOfContractProcess) {
         this.classOfContractExecution.addValue(PART_OF_BY_CLASS,
-                new IRI(classOfContractProcess.getId()));
+                classOfContractProcess.getId());
         return this;
     }
 
@@ -168,7 +168,7 @@ public class ClassOfContractExecutionBuilder {
     public final ClassOfContractExecutionBuilder part_Of_By_Class_(
             final ClassOfAgreementExecution classOfAgreementExecution) {
         this.classOfContractExecution.addValue(PART_OF_BY_CLASS_,
-                new IRI(classOfAgreementExecution.getId()));
+                classOfAgreementExecution.getId());
         return this;
     }
 

@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Position;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Position.
@@ -53,7 +53,7 @@ public class PositionBuilder {
      * @param iri IRI of the Position.
      */
     public PositionBuilder(final IRI iri) {
-        position = RdfSpatioTemporalExtentServices.createPosition(iri);
+        position = SpatioTemporalExtentServices.createPosition(iri);
     }
 
     /**
@@ -68,7 +68,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.position.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.position.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder beginning(final Event event) {
-        this.position.addValue(BEGINNING, new IRI(event.getId()));
+        this.position.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -92,7 +92,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder component_Of_M(final Organization organization) {
-        this.position.addValue(COMPONENT_OF, new IRI(organization.getId()));
+        this.position.addValue(COMPONENT_OF, organization.getId());
         return this;
     }
 
@@ -107,7 +107,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.position.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.position.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder ending(final Event event) {
-        this.position.addValue(ENDING, new IRI(event.getId()));
+        this.position.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder member__Of(final Class clazz) {
-        this.position.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.position.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder member_Of(final ClassOfPosition classOfPosition) {
-        this.position.addValue(MEMBER_OF, new IRI(classOfPosition.getId()));
+        this.position.addValue(MEMBER_OF, classOfPosition.getId());
         return this;
     }
 
@@ -157,7 +157,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder member_Of_Kind(final KindOfPosition kindOfPosition) {
-        this.position.addValue(MEMBER_OF_KIND, new IRI(kindOfPosition.getId()));
+        this.position.addValue(MEMBER_OF_KIND, kindOfPosition.getId());
         return this;
     }
 
@@ -170,7 +170,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.position.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.position.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -189,7 +189,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.position.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.position.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -202,7 +202,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.position.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.position.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -216,7 +216,7 @@ public class PositionBuilder {
      * @return This builder.
      */
     public final PositionBuilder temporal_Part_Of(final OrganizationComponent organizationComponent) {
-        this.position.addValue(TEMPORAL_PART_OF, new IRI(organizationComponent.getId()));
+        this.position.addValue(TEMPORAL_PART_OF, organizationComponent.getId());
         return this;
     }
 

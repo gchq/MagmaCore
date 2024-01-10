@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfFunctionalSystem;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfFunctionalSystem.
@@ -49,7 +49,7 @@ public class StateOfFunctionalSystemBuilder {
      * @param iri IRI of the StateOfFunctionalSystem.
      */
     public StateOfFunctionalSystemBuilder(final IRI iri) {
-        stateOfFunctionalSystem = RdfSpatioTemporalExtentServices.createStateOfFunctionalSystem(iri);
+        stateOfFunctionalSystem = SpatioTemporalExtentServices.createStateOfFunctionalSystem(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class StateOfFunctionalSystemBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfFunctionalSystem.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfFunctionalSystem.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfFunctionalSystemBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemBuilder beginning(final Event event) {
-        this.stateOfFunctionalSystem.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfFunctionalSystem.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfFunctionalSystemBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfFunctionalSystem.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfFunctionalSystem.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfFunctionalSystemBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemBuilder ending(final Event event) {
-        this.stateOfFunctionalSystem.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfFunctionalSystem.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfFunctionalSystemBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemBuilder member__Of(final Class clazz) {
-        this.stateOfFunctionalSystem.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfFunctionalSystem.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class StateOfFunctionalSystemBuilder {
     public final StateOfFunctionalSystemBuilder member_Of(
             final ClassOfStateOfFunctionalSystem classOfStateOfFunctionalSystem) {
         this.stateOfFunctionalSystem.addValue(MEMBER_OF,
-                new IRI(classOfStateOfFunctionalSystem.getId()));
+                classOfStateOfFunctionalSystem.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class StateOfFunctionalSystemBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfFunctionalSystem.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfFunctionalSystem.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -163,7 +163,7 @@ public class StateOfFunctionalSystemBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.stateOfFunctionalSystem.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfFunctionalSystem.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -176,7 +176,7 @@ public class StateOfFunctionalSystemBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfFunctionalSystem.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfFunctionalSystem.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -190,7 +190,7 @@ public class StateOfFunctionalSystemBuilder {
      * @return This builder.
      */
     public final StateOfFunctionalSystemBuilder temporal_Part_Of(final FunctionalSystem functionalSystem) {
-        this.stateOfFunctionalSystem.addValue(TEMPORAL_PART_OF, new IRI(functionalSystem.getId()));
+        this.stateOfFunctionalSystem.addValue(TEMPORAL_PART_OF, functionalSystem.getId());
         return this;
     }
 

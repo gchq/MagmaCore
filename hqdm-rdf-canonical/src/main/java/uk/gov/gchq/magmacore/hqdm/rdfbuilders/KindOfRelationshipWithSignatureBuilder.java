@@ -24,7 +24,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfRelationshipWithSignature;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of KindOfRelationshipWithSignature.
@@ -39,7 +39,7 @@ public class KindOfRelationshipWithSignatureBuilder {
      * @param iri IRI of the KindOfRelationshipWithSignature.
      */
     public KindOfRelationshipWithSignatureBuilder(final IRI iri) {
-        kindOfRelationshipWithSignature = RdfClassServices.createKindOfRelationshipWithSignature(iri);
+        kindOfRelationshipWithSignature = ClassServices.createKindOfRelationshipWithSignature(iri);
     }
 
     /**
@@ -50,7 +50,7 @@ public class KindOfRelationshipWithSignatureBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithSignatureBuilder has_Superclass(final Class clazz) {
-        this.kindOfRelationshipWithSignature.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfRelationshipWithSignature.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -62,7 +62,7 @@ public class KindOfRelationshipWithSignatureBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithSignatureBuilder member__Of(final Class clazz) {
-        this.kindOfRelationshipWithSignature.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfRelationshipWithSignature.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -75,7 +75,7 @@ public class KindOfRelationshipWithSignatureBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithSignatureBuilder member_Of(final ClassOfClass classOfClass) {
-        this.kindOfRelationshipWithSignature.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfRelationshipWithSignature.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -86,7 +86,7 @@ public class KindOfRelationshipWithSignatureBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithSignatureBuilder roles_M(final Class clazz) {
-        this.kindOfRelationshipWithSignature.addValue(ROLES, new IRI(clazz.getId()));
+        this.kindOfRelationshipWithSignature.addValue(ROLES, clazz.getId());
         return this;
     }
 

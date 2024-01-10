@@ -19,8 +19,8 @@ import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Test that the PersonBuild works as expected.
@@ -30,14 +30,14 @@ public class PersonBuilderTest {
     @Test
     public void testBuilder() {
         // Use the simple RdfServices for these test entities.
-        final SpatioTemporalExtent spatioTemporalExtent = RdfSpatioTemporalExtentServices
+        final SpatioTemporalExtent spatioTemporalExtent = SpatioTemporalExtentServices
                 .createSpatioTemporalExtent(randomIri());
-        final Event event = RdfSpatioTemporalExtentServices.createEvent(randomIri());
-        final ClassOfPerson classOfPerson = RdfClassServices.createClassOfPerson(randomIri());
-        final KindOfPerson kindOfPerson = RdfClassServices.createKindOfPerson(randomIri());
-        final Role role = RdfClassServices.createRole(randomIri());
-        final PossibleWorld possibleWorld = RdfSpatioTemporalExtentServices.createPossibleWorld(randomIri());
-        final OrdinaryBiologicalObject ordinaryBiologicalObject = RdfSpatioTemporalExtentServices
+        final Event event = SpatioTemporalExtentServices.createEvent(randomIri());
+        final ClassOfPerson classOfPerson = ClassServices.createClassOfPerson(randomIri());
+        final KindOfPerson kindOfPerson = ClassServices.createKindOfPerson(randomIri());
+        final Role role = ClassServices.createRole(randomIri());
+        final PossibleWorld possibleWorld = SpatioTemporalExtentServices.createPossibleWorld(randomIri());
+        final OrdinaryBiologicalObject ordinaryBiologicalObject = SpatioTemporalExtentServices
                 .createOrdinaryBiologicalObject(randomIri());
 
         // Use PersonBuilder for this entity.
@@ -73,7 +73,7 @@ public class PersonBuilderTest {
     }
 
     private IRI iriFromThing(final Thing thing) {
-        return new IRI(thing.getId());
+        return thing.getId();
     }
 
     private IRI randomIri() {

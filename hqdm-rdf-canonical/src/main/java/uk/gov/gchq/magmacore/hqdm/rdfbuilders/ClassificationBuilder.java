@@ -25,7 +25,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.Classification;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
 
 /**
  * Builder for constructing instances of Classification.
@@ -40,7 +40,7 @@ public class ClassificationBuilder {
      * @param iri IRI of the Classification.
      */
     public ClassificationBuilder(final IRI iri) {
-        this.classification = RdfRelationshipServices.createClassification(iri);
+        this.classification = RelationshipServices.createClassification(iri);
     }
 
     /**
@@ -50,7 +50,7 @@ public class ClassificationBuilder {
      * @return This builder.
      */
     public final ClassificationBuilder classifier_M(final Class clazz) {
-        this.classification.addValue(CLASSIFIER, new IRI(clazz.getId()));
+        this.classification.addValue(CLASSIFIER, clazz.getId());
         return this;
     }
 
@@ -61,7 +61,7 @@ public class ClassificationBuilder {
      * @return This builder.
      */
     public final ClassificationBuilder member_M(final Thing thing) {
-        this.classification.addValue(MEMBER, new IRI(thing.getId()));
+        this.classification.addValue(MEMBER, thing.getId());
         return this;
     }
 
@@ -77,7 +77,7 @@ public class ClassificationBuilder {
      * @return This builder.
      */
     public final ClassificationBuilder member__Of(final Class clazz) {
-        this.classification.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classification.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -89,7 +89,7 @@ public class ClassificationBuilder {
      * @return This builder.
      */
     public final ClassificationBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        this.classification.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.classification.addValue(MEMBER_OF, classOfRelationship.getId());
         return this;
     }
 

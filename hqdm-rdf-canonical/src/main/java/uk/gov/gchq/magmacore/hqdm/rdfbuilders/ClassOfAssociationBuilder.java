@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfAssociation.
@@ -43,7 +43,7 @@ public class ClassOfAssociationBuilder {
      * @param iri IRI of the ClassOfAssociation.
      */
     public ClassOfAssociationBuilder(final IRI iri) {
-        this.classOfAssociation = RdfClassServices.createClassOfAssociation(iri);
+        this.classOfAssociation = ClassServices.createClassOfAssociation(iri);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ClassOfAssociationBuilder {
     public final ClassOfAssociationBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfAssociation.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -72,7 +72,7 @@ public class ClassOfAssociationBuilder {
      * @return This builder.
      */
     public final ClassOfAssociationBuilder has_Superclass(final Class clazz) {
-        this.classOfAssociation.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfAssociation.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfAssociationBuilder {
      * @return This builder.
      */
     public final ClassOfAssociationBuilder member__Of(final Class clazz) {
-        this.classOfAssociation.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfAssociation.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfAssociationBuilder {
      * @return This builder.
      */
     public final ClassOfAssociationBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfAssociation.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfAssociation.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -112,7 +112,7 @@ public class ClassOfAssociationBuilder {
     public final ClassOfAssociationBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfAssociation.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -129,7 +129,7 @@ public class ClassOfAssociationBuilder {
     public final ClassOfAssociationBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfAssociation.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

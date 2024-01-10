@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfReachingAgreement;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfReachingAgreement.
@@ -47,7 +47,7 @@ public class ClassOfReachingAgreementBuilder {
      * @param iri IRI of the ClassOfReachingAgreement.
      */
     public ClassOfReachingAgreementBuilder(final IRI iri) {
-        this.classOfReachingAgreement = RdfClassServices.createClassOfReachingAgreement(iri);
+        this.classOfReachingAgreement = ClassServices.createClassOfReachingAgreement(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class ClassOfReachingAgreementBuilder {
     public final ClassOfReachingAgreementBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfReachingAgreement.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class ClassOfReachingAgreementBuilder {
      * @return This builder.
      */
     public final ClassOfReachingAgreementBuilder has_Superclass(final Class clazz) {
-        this.classOfReachingAgreement.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfReachingAgreement.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -88,7 +88,7 @@ public class ClassOfReachingAgreementBuilder {
      * @return This builder.
      */
     public final ClassOfReachingAgreementBuilder member__Of(final Class clazz) {
-        this.classOfReachingAgreement.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfReachingAgreement.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -101,7 +101,7 @@ public class ClassOfReachingAgreementBuilder {
      * @return This builder.
      */
     public final ClassOfReachingAgreementBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfReachingAgreement.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfReachingAgreement.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -116,7 +116,7 @@ public class ClassOfReachingAgreementBuilder {
     public final ClassOfReachingAgreementBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfReachingAgreement.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class ClassOfReachingAgreementBuilder {
     public final ClassOfReachingAgreementBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfReachingAgreement.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -149,7 +149,7 @@ public class ClassOfReachingAgreementBuilder {
     public final ClassOfReachingAgreementBuilder part_Of_By_Class(
             final ClassOfAgreementProcess classOfAgreementProcess) {
         this.classOfReachingAgreement.addValue(PART_OF_BY_CLASS,
-                new IRI(classOfAgreementProcess.getId()));
+                classOfAgreementProcess.getId());
         return this;
     }
 
@@ -167,7 +167,7 @@ public class ClassOfReachingAgreementBuilder {
     public final ClassOfReachingAgreementBuilder part_Of_By_Class_(
             final ClassOfAgreementExecution classOfAgreementExecution) {
         this.classOfReachingAgreement.addValue(PART_OF_BY_CLASS_,
-                new IRI(classOfAgreementExecution.getId()));
+                classOfAgreementExecution.getId());
         return this;
     }
 

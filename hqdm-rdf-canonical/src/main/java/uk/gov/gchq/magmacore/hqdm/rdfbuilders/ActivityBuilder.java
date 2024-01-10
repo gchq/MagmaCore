@@ -44,7 +44,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Activity.
@@ -59,7 +59,7 @@ public class ActivityBuilder {
      * @param iri IRI of the Activity.
      */
     public ActivityBuilder(final IRI iri) {
-        this.activity = RdfSpatioTemporalExtentServices.createActivity(iri);
+        this.activity = SpatioTemporalExtentServices.createActivity(iri);
     }
 
     /**
@@ -74,7 +74,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.activity.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.activity.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -86,7 +86,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder beginning(final Event event) {
-        this.activity.addValue(BEGINNING, new IRI(event.getId()));
+        this.activity.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder causes_M(final Event event) {
-        this.activity.addValue(CAUSES, new IRI(event.getId()));
+        this.activity.addValue(CAUSES, event.getId());
         return this;
     }
 
@@ -112,7 +112,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.activity.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.activity.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -125,7 +125,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder consists_Of(final Activity activity) {
-        this.activity.addValue(CONSISTS_OF, new IRI(activity.getId()));
+        this.activity.addValue(CONSISTS_OF, activity.getId());
         return this;
     }
 
@@ -138,7 +138,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder consists_Of_Participant(final Participant participant) {
-        this.activity.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.activity.addValue(CONSISTS_OF_PARTICIPANT, participant.getId());
         return this;
     }
 
@@ -150,7 +150,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder determines(final Thing thing) {
-        this.activity.addValue(DETERMINES, new IRI(thing.getId()));
+        this.activity.addValue(DETERMINES, thing.getId());
         return this;
     }
 
@@ -162,7 +162,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder ending(final Event event) {
-        this.activity.addValue(ENDING, new IRI(event.getId()));
+        this.activity.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -173,7 +173,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder member__Of(final Class clazz) {
-        this.activity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.activity.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -186,7 +186,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder member_Of(final ClassOfActivity classOfActivity) {
-        this.activity.addValue(MEMBER_OF, new IRI(classOfActivity.getId()));
+        this.activity.addValue(MEMBER_OF, classOfActivity.getId());
         return this;
     }
 
@@ -199,7 +199,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        this.activity.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.activity.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
         return this;
     }
 
@@ -212,7 +212,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.activity.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.activity.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -225,7 +225,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder part_Of(final Activity activity) {
-        this.activity.addValue(PART_OF, new IRI(activity.getId()));
+        this.activity.addValue(PART_OF, activity.getId());
         return this;
     }
 
@@ -244,7 +244,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.activity.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.activity.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -255,7 +255,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder references(final Thing thing) {
-        this.activity.addValue(REFERENCES, new IRI(thing.getId()));
+        this.activity.addValue(REFERENCES, thing.getId());
         return this;
     }
 
@@ -268,7 +268,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.activity.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.activity.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -291,7 +291,7 @@ public class ActivityBuilder {
      * @return This builder.
      */
     public final ActivityBuilder temporal_Part_Of(final Individual individual) {
-        this.activity.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.activity.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

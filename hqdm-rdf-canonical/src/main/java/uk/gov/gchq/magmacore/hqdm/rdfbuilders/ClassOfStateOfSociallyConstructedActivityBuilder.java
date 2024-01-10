@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfStateOfSociallyConstructedActivity;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfStateOfSociallyConstructedActivity.
@@ -44,7 +44,7 @@ public class ClassOfStateOfSociallyConstructedActivityBuilder {
      * @param iri IRI of the ClassOfStateOfSociallyConstructedActivity.
      */
     public ClassOfStateOfSociallyConstructedActivityBuilder(final IRI iri) {
-        this.classOfStateOfSociallyConstructedActivity = RdfClassServices
+        this.classOfStateOfSociallyConstructedActivity = ClassServices
                 .createClassOfStateOfSociallyConstructedActivity(iri);
     }
 
@@ -62,7 +62,7 @@ public class ClassOfStateOfSociallyConstructedActivityBuilder {
     public final ClassOfStateOfSociallyConstructedActivityBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfStateOfSociallyConstructedActivity.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -74,7 +74,7 @@ public class ClassOfStateOfSociallyConstructedActivityBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSociallyConstructedActivityBuilder has_Superclass(final Class clazz) {
-        this.classOfStateOfSociallyConstructedActivity.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfStateOfSociallyConstructedActivity.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -86,7 +86,7 @@ public class ClassOfStateOfSociallyConstructedActivityBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSociallyConstructedActivityBuilder member__Of(final Class clazz) {
-        this.classOfStateOfSociallyConstructedActivity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfSociallyConstructedActivity.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -100,7 +100,7 @@ public class ClassOfStateOfSociallyConstructedActivityBuilder {
      */
     public final ClassOfStateOfSociallyConstructedActivityBuilder member_Of(final ClassOfClass classOfClass) {
         this.classOfStateOfSociallyConstructedActivity.addValue(MEMBER_OF,
-                new IRI(classOfClass.getId()));
+                classOfClass.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class ClassOfStateOfSociallyConstructedActivityBuilder {
     public final ClassOfStateOfSociallyConstructedActivityBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfStateOfSociallyConstructedActivity.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -132,7 +132,7 @@ public class ClassOfStateOfSociallyConstructedActivityBuilder {
     public final ClassOfStateOfSociallyConstructedActivityBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfStateOfSociallyConstructedActivity.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

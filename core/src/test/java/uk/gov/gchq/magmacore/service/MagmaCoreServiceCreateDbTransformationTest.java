@@ -35,7 +35,7 @@ public class MagmaCoreServiceCreateDbTransformationTest {
 
         // Create a new Thing
         final IRI iri = new IRI(TEST_IRI);
-        final Thing newThing = SpatioTemporalExtentServices.createThing(iri.getIri());
+        final Thing newThing = SpatioTemporalExtentServices.createThing(iri);
         newThing.addValue(RDFS.RDF_TYPE, HQDM.PERSON);
         newThing.addValue(HQDM.ENTITY_NAME, TEST_ENTITY_NAME);
 
@@ -49,7 +49,7 @@ public class MagmaCoreServiceCreateDbTransformationTest {
         assertTrue(foundThings.containsKey(TEST_ENTITY_NAME));
         final Thing found = foundThings.get(TEST_ENTITY_NAME);
         assertNotNull(found);
-        assertEquals(TEST_IRI, found.getId());
+        assertEquals(TEST_IRI, found.getId().getIri());
     }
 
 }

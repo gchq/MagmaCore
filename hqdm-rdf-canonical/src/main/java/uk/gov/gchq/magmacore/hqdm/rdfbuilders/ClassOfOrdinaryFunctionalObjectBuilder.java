@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfOrdinaryFunctionalObject;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfOrdinaryFunctionalObject.
@@ -43,7 +43,7 @@ public class ClassOfOrdinaryFunctionalObjectBuilder {
      * @param iri IRI of the ClassOfOrdinaryFunctionalObject.
      */
     public ClassOfOrdinaryFunctionalObjectBuilder(final IRI iri) {
-        this.classOfOrdinaryFunctionalObject = RdfClassServices
+        this.classOfOrdinaryFunctionalObject = ClassServices
                 .createClassOfOrdinaryFunctionalObject(iri);
     }
 
@@ -61,7 +61,7 @@ public class ClassOfOrdinaryFunctionalObjectBuilder {
     public final ClassOfOrdinaryFunctionalObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfOrdinaryFunctionalObject.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -73,7 +73,7 @@ public class ClassOfOrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfOrdinaryFunctionalObjectBuilder has_Superclass(final Class clazz) {
-        this.classOfOrdinaryFunctionalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfOrdinaryFunctionalObject.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -85,7 +85,7 @@ public class ClassOfOrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfOrdinaryFunctionalObjectBuilder member__Of(final Class clazz) {
-        this.classOfOrdinaryFunctionalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfOrdinaryFunctionalObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -98,7 +98,7 @@ public class ClassOfOrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfOrdinaryFunctionalObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfOrdinaryFunctionalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfOrdinaryFunctionalObject.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -113,7 +113,7 @@ public class ClassOfOrdinaryFunctionalObjectBuilder {
     public final ClassOfOrdinaryFunctionalObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfOrdinaryFunctionalObject.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class ClassOfOrdinaryFunctionalObjectBuilder {
     public final ClassOfOrdinaryFunctionalObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfOrdinaryFunctionalObject.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

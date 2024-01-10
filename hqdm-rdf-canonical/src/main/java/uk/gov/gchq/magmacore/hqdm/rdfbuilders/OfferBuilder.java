@@ -48,7 +48,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Offer.
@@ -63,7 +63,7 @@ public class OfferBuilder {
      * @param iri IRI of the Offer.
      */
     public OfferBuilder(final IRI iri) {
-        offer = RdfSpatioTemporalExtentServices.createOffer(iri);
+        offer = SpatioTemporalExtentServices.createOffer(iri);
     }
 
     /**
@@ -78,7 +78,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.offer.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.offer.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -90,7 +90,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder beginning(final Event event) {
-        this.offer.addValue(BEGINNING, new IRI(event.getId()));
+        this.offer.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -101,7 +101,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder causes_M(final Event event) {
-        this.offer.addValue(CAUSES, new IRI(event.getId()));
+        this.offer.addValue(CAUSES, event.getId());
         return this;
     }
 
@@ -116,7 +116,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.offer.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.offer.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -129,7 +129,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder consists_Of(final Activity activity) {
-        this.offer.addValue(CONSISTS_OF, new IRI(activity.getId()));
+        this.offer.addValue(CONSISTS_OF, activity.getId());
         return this;
     }
 
@@ -142,7 +142,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder consists_Of_Participant(final Participant participant) {
-        this.offer.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.offer.addValue(CONSISTS_OF_PARTICIPANT, participant.getId());
         return this;
     }
 
@@ -154,7 +154,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder determines(final Thing thing) {
-        this.offer.addValue(DETERMINES, new IRI(thing.getId()));
+        this.offer.addValue(DETERMINES, thing.getId());
         return this;
     }
 
@@ -166,7 +166,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder ending(final Event event) {
-        this.offer.addValue(ENDING, new IRI(event.getId()));
+        this.offer.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -177,7 +177,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder member__Of(final Class clazz) {
-        this.offer.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.offer.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -190,7 +190,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder member_Of(final ClassOfOffer classOfOffer) {
-        this.offer.addValue(MEMBER_OF, new IRI(classOfOffer.getId()));
+        this.offer.addValue(MEMBER_OF, classOfOffer.getId());
         return this;
     }
 
@@ -203,7 +203,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        this.offer.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.offer.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
         return this;
     }
 
@@ -216,7 +216,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.offer.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.offer.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -229,7 +229,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder part_Of(final AgreeContract agreeContract) {
-        this.offer.addValue(PART_OF, new IRI(agreeContract.getId()));
+        this.offer.addValue(PART_OF, agreeContract.getId());
         return this;
     }
 
@@ -243,7 +243,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder part_Of_(final AgreementExecution agreementExecution) {
-        this.offer.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.offer.addValue(PART_OF_, agreementExecution.getId());
         return this;
     }
 
@@ -262,7 +262,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.offer.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.offer.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -273,7 +273,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder references(final Thing thing) {
-        this.offer.addValue(REFERENCES, new IRI(thing.getId()));
+        this.offer.addValue(REFERENCES, thing.getId());
         return this;
     }
 
@@ -286,7 +286,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.offer.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.offer.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -309,7 +309,7 @@ public class OfferBuilder {
      * @return This builder.
      */
     public final OfferBuilder temporal_Part_Of(final Individual individual) {
-        this.offer.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.offer.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

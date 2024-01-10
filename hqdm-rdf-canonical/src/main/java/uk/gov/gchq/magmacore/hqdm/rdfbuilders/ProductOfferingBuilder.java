@@ -40,7 +40,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Price;
 import uk.gov.gchq.magmacore.hqdm.model.ProductOffering;
 import uk.gov.gchq.magmacore.hqdm.model.SalesProduct;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of ProductOffering.
@@ -55,7 +55,7 @@ public class ProductOfferingBuilder {
      * @param iri IRI of the ProductOffering.
      */
     public ProductOfferingBuilder(final IRI iri) {
-        productOffering = RdfSpatioTemporalExtentServices.createProductOffering(iri);
+        productOffering = SpatioTemporalExtentServices.createProductOffering(iri);
     }
 
     /**
@@ -66,7 +66,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder class_Of_Offered_M(final SalesProduct salesProduct) {
-        this.productOffering.addValue(CLASS_OF_OFFERED, new IRI(salesProduct.getId()));
+        this.productOffering.addValue(CLASS_OF_OFFERED, salesProduct.getId());
         return this;
     }
 
@@ -78,7 +78,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder consideration_By_Class_M(final Price price) {
-        this.productOffering.addValue(CONSIDERATION_BY_CLASS, new IRI(price.getId()));
+        this.productOffering.addValue(CONSIDERATION_BY_CLASS, price.getId());
         return this;
     }
 
@@ -96,7 +96,7 @@ public class ProductOfferingBuilder {
     public final ProductOfferingBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.productOffering.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -108,7 +108,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder has_Superclass(final Class clazz) {
-        this.productOffering.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.productOffering.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -120,7 +120,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder member__Of(final Class clazz) {
-        this.productOffering.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.productOffering.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder member_Of(final ClassOfClass classOfClass) {
-        this.productOffering.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.productOffering.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -147,7 +147,7 @@ public class ProductOfferingBuilder {
      */
     public final ProductOfferingBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.productOffering.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.productOffering.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -159,7 +159,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder offeror_M(final Party party) {
-        this.productOffering.addValue(OFFEROR, new IRI(party.getId()));
+        this.productOffering.addValue(OFFEROR, party.getId());
         return this;
     }
 
@@ -175,7 +175,7 @@ public class ProductOfferingBuilder {
      */
     public final ProductOfferingBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.productOffering.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.productOffering.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -191,7 +191,7 @@ public class ProductOfferingBuilder {
      */
     public final ProductOfferingBuilder part_Of_By_Class(
             final ClassOfReachingAgreement classOfReachingAgreement) {
-        this.productOffering.addValue(PART_OF_BY_CLASS, new IRI(classOfReachingAgreement.getId()));
+        this.productOffering.addValue(PART_OF_BY_CLASS, classOfReachingAgreement.getId());
         return this;
     }
 
@@ -208,7 +208,7 @@ public class ProductOfferingBuilder {
      */
     public final ProductOfferingBuilder part_Of_By_Class_(
             final ClassOfAgreementExecution classOfAgreementExecution) {
-        this.productOffering.addValue(PART_OF_BY_CLASS_, new IRI(classOfAgreementExecution.getId()));
+        this.productOffering.addValue(PART_OF_BY_CLASS_, classOfAgreementExecution.getId());
         return this;
     }
 
@@ -220,7 +220,7 @@ public class ProductOfferingBuilder {
      * @return This builder.
      */
     public final ProductOfferingBuilder period_Offered_M(final PeriodOfTime periodOfTime) {
-        this.productOffering.addValue(PERIOD_OFFERED, new IRI(periodOfTime.getId()));
+        this.productOffering.addValue(PERIOD_OFFERED, periodOfTime.getId());
         return this;
     }
 

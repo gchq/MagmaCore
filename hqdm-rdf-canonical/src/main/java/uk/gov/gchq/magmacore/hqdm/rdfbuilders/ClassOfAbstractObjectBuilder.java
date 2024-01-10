@@ -23,7 +23,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfAbstractObject;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfAbstractObject.
@@ -38,7 +38,7 @@ public class ClassOfAbstractObjectBuilder {
      * @param iri IRI of the ClassOfAbstractObject.
      */
     public ClassOfAbstractObjectBuilder(final IRI iri) {
-        this.classOfAbstractObject = RdfClassServices.createClassOfAbstractObject(iri);
+        this.classOfAbstractObject = ClassServices.createClassOfAbstractObject(iri);
     }
 
     /**
@@ -49,7 +49,7 @@ public class ClassOfAbstractObjectBuilder {
      * @return This builder.
      */
     public final ClassOfAbstractObjectBuilder has_Superclass(final Class clazz) {
-        this.classOfAbstractObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfAbstractObject.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -61,7 +61,7 @@ public class ClassOfAbstractObjectBuilder {
      * @return This builder.
      */
     public final ClassOfAbstractObjectBuilder member__Of(final Class clazz) {
-        this.classOfAbstractObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfAbstractObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -74,7 +74,7 @@ public class ClassOfAbstractObjectBuilder {
      * @return This builder.
      */
     public final ClassOfAbstractObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfAbstractObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfAbstractObject.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 

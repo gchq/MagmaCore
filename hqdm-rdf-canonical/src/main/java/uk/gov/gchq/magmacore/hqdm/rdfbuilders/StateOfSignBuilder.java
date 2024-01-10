@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Sign;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfSign;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfSign.
@@ -49,7 +49,7 @@ public class StateOfSignBuilder {
      * @param iri IRI of the StateOfSign.
      */
     public StateOfSignBuilder(final IRI iri) {
-        stateOfSign = RdfSpatioTemporalExtentServices.createStateOfSign(iri);
+        stateOfSign = SpatioTemporalExtentServices.createStateOfSign(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfSign.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSign.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder beginning(final Event event) {
-        this.stateOfSign.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfSign.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfSign.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSign.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder ending(final Event event) {
-        this.stateOfSign.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfSign.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder member__Of(final Class clazz) {
-        this.stateOfSign.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfSign.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -128,7 +128,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder member_Of(final ClassOfStateOfSign classOfStateOfSign) {
-        this.stateOfSign.addValue(MEMBER_OF, new IRI(classOfStateOfSign.getId()));
+        this.stateOfSign.addValue(MEMBER_OF, classOfStateOfSign.getId());
         return this;
     }
 
@@ -141,7 +141,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfSign.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSign.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -160,7 +160,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.stateOfSign.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfSign.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -173,7 +173,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfSign.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSign.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -186,7 +186,7 @@ public class StateOfSignBuilder {
      * @return This builder.
      */
     public final StateOfSignBuilder temporal_Part_Of(final Sign sign) {
-        this.stateOfSign.addValue(TEMPORAL_PART_OF, new IRI(sign.getId()));
+        this.stateOfSign.addValue(TEMPORAL_PART_OF, sign.getId());
         return this;
     }
 

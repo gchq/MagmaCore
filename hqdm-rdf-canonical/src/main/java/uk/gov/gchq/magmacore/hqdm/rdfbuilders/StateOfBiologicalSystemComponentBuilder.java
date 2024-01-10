@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfBiologicalSystemComponent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfBiologicalSystemComponent.
@@ -49,7 +49,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      * @param iri IRI of the StateOfBiologicalSystemComponent.
      */
     public StateOfBiologicalSystemComponentBuilder(final IRI iri) {
-        stateOfBiologicalSystemComponent = RdfSpatioTemporalExtentServices
+        stateOfBiologicalSystemComponent = SpatioTemporalExtentServices
                 .createStateOfBiologicalSystemComponent(iri);
     }
 
@@ -67,7 +67,7 @@ public class StateOfBiologicalSystemComponentBuilder {
     public final StateOfBiologicalSystemComponentBuilder aggregated_Into(
             final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfBiologicalSystemComponent.addValue(AGGREGATED_INTO,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -79,7 +79,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalSystemComponentBuilder beginning(final Event event) {
-        this.stateOfBiologicalSystemComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfBiologicalSystemComponent.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -95,7 +95,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      */
     public final StateOfBiologicalSystemComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfBiologicalSystemComponent.addValue(CONSISTS__OF,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -107,7 +107,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalSystemComponentBuilder ending(final Event event) {
-        this.stateOfBiologicalSystemComponent.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfBiologicalSystemComponent.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalSystemComponentBuilder member__Of(final Class clazz) {
-        this.stateOfBiologicalSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfBiologicalSystemComponent.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -136,7 +136,7 @@ public class StateOfBiologicalSystemComponentBuilder {
     public final StateOfBiologicalSystemComponentBuilder member_Of(
             final ClassOfStateOfBiologicalSystemComponent classOfStateOfBiologicalSystemComponent) {
         this.stateOfBiologicalSystemComponent.addValue(MEMBER_OF,
-                new IRI(classOfStateOfBiologicalSystemComponent.getId()));
+                classOfStateOfBiologicalSystemComponent.getId());
         return this;
     }
 
@@ -149,7 +149,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalSystemComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfBiologicalSystemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfBiologicalSystemComponent.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -169,7 +169,7 @@ public class StateOfBiologicalSystemComponentBuilder {
      */
     public final StateOfBiologicalSystemComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
         this.stateOfBiologicalSystemComponent.addValue(PART_OF_POSSIBLE_WORLD,
-                new IRI(possibleWorld.getId()));
+                possibleWorld.getId());
         return this;
     }
 
@@ -184,7 +184,7 @@ public class StateOfBiologicalSystemComponentBuilder {
     public final StateOfBiologicalSystemComponentBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfBiologicalSystemComponent.addValue(TEMPORAL__PART_OF,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -200,7 +200,7 @@ public class StateOfBiologicalSystemComponentBuilder {
     public final StateOfBiologicalSystemComponentBuilder temporal_Part_Of(
             final BiologicalSystemComponent biologicalSystemComponent) {
         this.stateOfBiologicalSystemComponent.addValue(TEMPORAL_PART_OF,
-                new IRI(biologicalSystemComponent.getId()));
+                biologicalSystemComponent.getId());
         return this;
     }
 

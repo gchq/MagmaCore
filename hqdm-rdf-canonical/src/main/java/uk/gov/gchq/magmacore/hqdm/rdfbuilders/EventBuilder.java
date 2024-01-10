@@ -31,7 +31,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Event;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Event.
@@ -46,7 +46,7 @@ public class EventBuilder {
      * @param iri IRI of the Event.
      */
     public EventBuilder(final IRI iri) {
-        event = RdfSpatioTemporalExtentServices.createEvent(iri);
+        event = SpatioTemporalExtentServices.createEvent(iri);
     }
 
     /**
@@ -61,7 +61,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.event.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.event.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -73,7 +73,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder beginning(final Event event) {
-        this.event.addValue(BEGINNING, new IRI(event.getId()));
+        this.event.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -88,7 +88,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.event.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.event.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -100,7 +100,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder ending(final Event event) {
-        this.event.addValue(ENDING, new IRI(event.getId()));
+        this.event.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -112,7 +112,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder member__Of(final Class clazz) {
-        this.event.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.event.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -125,7 +125,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder member_Of(final ClassOfEvent classOfEvent) {
-        this.event.addValue(MEMBER_OF, new IRI(classOfEvent.getId()));
+        this.event.addValue(MEMBER_OF, classOfEvent.getId());
         return this;
     }
 
@@ -138,7 +138,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.event.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.event.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -157,7 +157,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.event.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.event.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -170,7 +170,7 @@ public class EventBuilder {
      * @return This builder.
      */
     public final EventBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.event.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.event.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 

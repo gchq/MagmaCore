@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.SociallyConstructedObject;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfSociallyConstructedObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfSociallyConstructedObject.
@@ -49,7 +49,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      * @param iri IRI of the StateOfSociallyConstructedObject.
      */
     public StateOfSociallyConstructedObjectBuilder(final IRI iri) {
-        stateOfSociallyConstructedObject = RdfSpatioTemporalExtentServices
+        stateOfSociallyConstructedObject = SpatioTemporalExtentServices
                 .createStateOfSociallyConstructedObject(iri);
     }
 
@@ -67,7 +67,7 @@ public class StateOfSociallyConstructedObjectBuilder {
     public final StateOfSociallyConstructedObjectBuilder aggregated_Into(
             final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfSociallyConstructedObject.addValue(AGGREGATED_INTO,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -79,7 +79,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedObjectBuilder beginning(final Event event) {
-        this.stateOfSociallyConstructedObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfSociallyConstructedObject.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -95,7 +95,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      */
     public final StateOfSociallyConstructedObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfSociallyConstructedObject.addValue(CONSISTS__OF,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -107,7 +107,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedObjectBuilder ending(final Event event) {
-        this.stateOfSociallyConstructedObject.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfSociallyConstructedObject.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedObjectBuilder member__Of(final Class clazz) {
-        this.stateOfSociallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfSociallyConstructedObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -136,7 +136,7 @@ public class StateOfSociallyConstructedObjectBuilder {
     public final StateOfSociallyConstructedObjectBuilder member_Of(
             final ClassOfStateOfSociallyConstructedObject classOfStateOfSociallyConstructedObject) {
         this.stateOfSociallyConstructedObject.addValue(MEMBER_OF,
-                new IRI(classOfStateOfSociallyConstructedObject.getId()));
+                classOfStateOfSociallyConstructedObject.getId());
         return this;
     }
 
@@ -149,7 +149,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final StateOfSociallyConstructedObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfSociallyConstructedObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSociallyConstructedObject.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -169,7 +169,7 @@ public class StateOfSociallyConstructedObjectBuilder {
      */
     public final StateOfSociallyConstructedObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
         this.stateOfSociallyConstructedObject.addValue(PART_OF_POSSIBLE_WORLD,
-                new IRI(possibleWorld.getId()));
+                possibleWorld.getId());
         return this;
     }
 
@@ -184,7 +184,7 @@ public class StateOfSociallyConstructedObjectBuilder {
     public final StateOfSociallyConstructedObjectBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfSociallyConstructedObject.addValue(TEMPORAL__PART_OF,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -200,7 +200,7 @@ public class StateOfSociallyConstructedObjectBuilder {
     public final StateOfSociallyConstructedObjectBuilder temporal_Part_Of(
             final SociallyConstructedObject sociallyConstructedObject) {
         this.stateOfSociallyConstructedObject.addValue(TEMPORAL_PART_OF,
-                new IRI(sociallyConstructedObject.getId()));
+                sociallyConstructedObject.getId());
         return this;
     }
 

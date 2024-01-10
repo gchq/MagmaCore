@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfActivity;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfAssociation;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of Role.
@@ -47,7 +47,7 @@ public class RoleBuilder {
      * @param iri IRI of the Role.
      */
     public RoleBuilder(final IRI iri) {
-        role = RdfClassServices.createRole(iri);
+        role = ClassServices.createRole(iri);
     }
 
     /**
@@ -63,7 +63,7 @@ public class RoleBuilder {
      */
     public final RoleBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.role.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.role.addValue(CONSISTS__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -75,7 +75,7 @@ public class RoleBuilder {
      * @return This builder.
      */
     public final RoleBuilder has_Superclass(final Class clazz) {
-        this.role.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.role.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -87,7 +87,7 @@ public class RoleBuilder {
      * @return This builder.
      */
     public final RoleBuilder member__Of(final Class clazz) {
-        this.role.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.role.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -100,7 +100,7 @@ public class RoleBuilder {
      * @return This builder.
      */
     public final RoleBuilder member_Of(final ClassOfClass classOfClass) {
-        this.role.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.role.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -114,7 +114,7 @@ public class RoleBuilder {
      */
     public final RoleBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.role.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.role.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class RoleBuilder {
      */
     public final RoleBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.role.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.role.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class RoleBuilder {
      * @return This builder.
      */
     public final RoleBuilder part_Of_By_Class(final KindOfActivity kindOfActivity) {
-        this.role.addValue(PART_OF_BY_CLASS, new IRI(kindOfActivity.getId()));
+        this.role.addValue(PART_OF_BY_CLASS, kindOfActivity.getId());
         return this;
     }
 
@@ -158,7 +158,7 @@ public class RoleBuilder {
      * @return This builder.
      */
     public final RoleBuilder part_Of_By_Class_(final KindOfAssociation kindOfAssociation) {
-        this.role.addValue(PART_OF_BY_CLASS_, new IRI(kindOfAssociation.getId()));
+        this.role.addValue(PART_OF_BY_CLASS_, kindOfAssociation.getId());
         return this;
     }
 

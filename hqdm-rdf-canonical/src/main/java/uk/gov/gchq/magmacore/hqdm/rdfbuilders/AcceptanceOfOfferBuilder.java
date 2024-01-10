@@ -49,7 +49,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of AcceptanceOfOffer.
@@ -64,7 +64,7 @@ public class AcceptanceOfOfferBuilder {
      * @param iri IRI of the AcceptanceOfOffer.
      */
     public AcceptanceOfOfferBuilder(final IRI iri) {
-        this.acceptanceOfOffer = RdfSpatioTemporalExtentServices.createAcceptanceOfOffer(iri);
+        this.acceptanceOfOffer = SpatioTemporalExtentServices.createAcceptanceOfOffer(iri);
     }
 
     /**
@@ -79,7 +79,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.acceptanceOfOffer.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.acceptanceOfOffer.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder beginning(final Event event) {
-        this.acceptanceOfOffer.addValue(BEGINNING, new IRI(event.getId()));
+        this.acceptanceOfOffer.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -102,7 +102,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder causes_M(final Event event) {
-        this.acceptanceOfOffer.addValue(CAUSES, new IRI(event.getId()));
+        this.acceptanceOfOffer.addValue(CAUSES, event.getId());
         return this;
     }
 
@@ -117,7 +117,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.acceptanceOfOffer.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.acceptanceOfOffer.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder consists_Of(final Activity activity) {
-        this.acceptanceOfOffer.addValue(CONSISTS_OF, new IRI(activity.getId()));
+        this.acceptanceOfOffer.addValue(CONSISTS_OF, activity.getId());
         return this;
     }
 
@@ -143,7 +143,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder consists_Of_Participant(final Participant participant) {
-        this.acceptanceOfOffer.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.acceptanceOfOffer.addValue(CONSISTS_OF_PARTICIPANT, participant.getId());
         return this;
     }
 
@@ -155,7 +155,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder determines(final Thing thing) {
-        this.acceptanceOfOffer.addValue(DETERMINES, new IRI(thing.getId()));
+        this.acceptanceOfOffer.addValue(DETERMINES, thing.getId());
         return this;
     }
 
@@ -167,7 +167,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder ending(final Event event) {
-        this.acceptanceOfOffer.addValue(ENDING, new IRI(event.getId()));
+        this.acceptanceOfOffer.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -184,7 +184,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder member__Of(final Class clazz) {
-        this.acceptanceOfOffer.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.acceptanceOfOffer.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -199,7 +199,7 @@ public class AcceptanceOfOfferBuilder {
      */
     public final AcceptanceOfOfferBuilder member_Of(
             final ClassOfSociallyConstructedActivity classOfSociallyConstructedActivity) {
-        this.acceptanceOfOffer.addValue(MEMBER_OF, new IRI(classOfSociallyConstructedActivity.getId()));
+        this.acceptanceOfOffer.addValue(MEMBER_OF, classOfSociallyConstructedActivity.getId());
         return this;
     }
 
@@ -212,7 +212,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        this.acceptanceOfOffer.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.acceptanceOfOffer.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
         return this;
     }
 
@@ -225,7 +225,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.acceptanceOfOffer.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.acceptanceOfOffer.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -238,7 +238,7 @@ public class AcceptanceOfOfferBuilder {
      * @return Builder
      */
     public final AcceptanceOfOfferBuilder part_Of_M(final AgreeContract agreeContract) {
-        this.acceptanceOfOffer.addValue(PART_OF, new IRI(agreeContract.getId()));
+        this.acceptanceOfOffer.addValue(PART_OF, agreeContract.getId());
         return this;
     }
 
@@ -252,7 +252,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder part_Of_(final AgreementExecution agreementExecution) {
-        this.acceptanceOfOffer.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.acceptanceOfOffer.addValue(PART_OF_, agreementExecution.getId());
         return this;
     }
 
@@ -271,7 +271,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.acceptanceOfOffer.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.acceptanceOfOffer.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -284,7 +284,7 @@ public class AcceptanceOfOfferBuilder {
      * @return Builder
      */
     public final AcceptanceOfOfferBuilder references_M(final Offer offer) {
-        this.acceptanceOfOffer.addValue(REFERENCES, new IRI(offer.getId()));
+        this.acceptanceOfOffer.addValue(REFERENCES, offer.getId());
         return this;
     }
 
@@ -297,7 +297,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.acceptanceOfOffer.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.acceptanceOfOffer.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -320,7 +320,7 @@ public class AcceptanceOfOfferBuilder {
      * @return This builder.
      */
     public final AcceptanceOfOfferBuilder temporal_Part_Of(final Individual individual) {
-        this.acceptanceOfOffer.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.acceptanceOfOffer.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

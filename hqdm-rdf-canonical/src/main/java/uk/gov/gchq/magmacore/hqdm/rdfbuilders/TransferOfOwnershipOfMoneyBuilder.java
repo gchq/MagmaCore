@@ -55,7 +55,7 @@ import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnershipOfMoney;
 import uk.gov.gchq.magmacore.hqdm.model.Transferee;
 import uk.gov.gchq.magmacore.hqdm.model.Transferor;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of TransferOfOwnershipOfMoney.
@@ -70,7 +70,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @param iri IRI of the TransferOfOwnershipOfMoney.
      */
     public TransferOfOwnershipOfMoneyBuilder(final IRI iri) {
-        transferOfOwnershipOfMoney = RdfSpatioTemporalExtentServices.createTransferOfOwnershipOfMoney(iri);
+        transferOfOwnershipOfMoney = SpatioTemporalExtentServices.createTransferOfOwnershipOfMoney(iri);
     }
 
     /**
@@ -85,7 +85,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferOfOwnershipOfMoney.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.transferOfOwnershipOfMoney.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder beginning(final Event event) {
-        this.transferOfOwnershipOfMoney.addValue(BEGINNING, new IRI(event.getId()));
+        this.transferOfOwnershipOfMoney.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -108,7 +108,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder causes_M(final Event event) {
-        this.transferOfOwnershipOfMoney.addValue(CAUSES, new IRI(event.getId()));
+        this.transferOfOwnershipOfMoney.addValue(CAUSES, event.getId());
         return this;
     }
 
@@ -123,7 +123,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      */
     public final TransferOfOwnershipOfMoneyBuilder causes_Beginning_M(final BeginningOfOwnership beginningOfOwnership) {
         this.transferOfOwnershipOfMoney.addValue(CAUSES_BEGINNING,
-                new IRI(beginningOfOwnership.getId()));
+                beginningOfOwnership.getId());
         return this;
     }
 
@@ -136,7 +136,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder causes_Ending_M(final EndingOfOwnership endingOfOwnership) {
-        this.transferOfOwnershipOfMoney.addValue(CAUSES_ENDING, new IRI(endingOfOwnership.getId()));
+        this.transferOfOwnershipOfMoney.addValue(CAUSES_ENDING, endingOfOwnership.getId());
         return this;
     }
 
@@ -151,7 +151,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferOfOwnershipOfMoney.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferOfOwnershipOfMoney.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -164,7 +164,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder consists_Of(final Activity activity) {
-        this.transferOfOwnershipOfMoney.addValue(CONSISTS_OF, new IRI(activity.getId()));
+        this.transferOfOwnershipOfMoney.addValue(CONSISTS_OF, activity.getId());
         return this;
     }
 
@@ -178,7 +178,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder consists_Of_Participant(final Transferor transferor) {
-        this.transferOfOwnershipOfMoney.addValue(CONSISTS_OF_PARTICIPANT, new IRI(transferor.getId()));
+        this.transferOfOwnershipOfMoney.addValue(CONSISTS_OF_PARTICIPANT, transferor.getId());
         return this;
     }
 
@@ -192,7 +192,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder consists_Of_Participant_(final Transferee transferee) {
-        this.transferOfOwnershipOfMoney.addValue(CONSISTS_OF_PARTICIPANT_, new IRI(transferee.getId()));
+        this.transferOfOwnershipOfMoney.addValue(CONSISTS_OF_PARTICIPANT_, transferee.getId());
         return this;
     }
 
@@ -204,7 +204,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder determines(final Thing thing) {
-        this.transferOfOwnershipOfMoney.addValue(DETERMINES, new IRI(thing.getId()));
+        this.transferOfOwnershipOfMoney.addValue(DETERMINES, thing.getId());
         return this;
     }
 
@@ -216,7 +216,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder ending(final Event event) {
-        this.transferOfOwnershipOfMoney.addValue(ENDING, new IRI(event.getId()));
+        this.transferOfOwnershipOfMoney.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -227,7 +227,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder member__Of(final Class clazz) {
-        this.transferOfOwnershipOfMoney.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.transferOfOwnershipOfMoney.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -243,7 +243,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
     public final TransferOfOwnershipOfMoneyBuilder member_Of(
             final ClassOfSociallyConstructedActivity classOfSociallyConstructedActivity) {
         this.transferOfOwnershipOfMoney.addValue(MEMBER_OF,
-                new IRI(classOfSociallyConstructedActivity.getId()));
+                classOfSociallyConstructedActivity.getId());
         return this;
     }
 
@@ -256,7 +256,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        this.transferOfOwnershipOfMoney.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.transferOfOwnershipOfMoney.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
         return this;
     }
 
@@ -269,7 +269,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferOfOwnershipOfMoney.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferOfOwnershipOfMoney.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -283,7 +283,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder part_Of(final ExchangeOfGoodsAndMoney exchangeOfGoodsAndMoney) {
-        this.transferOfOwnershipOfMoney.addValue(PART_OF, new IRI(exchangeOfGoodsAndMoney.getId()));
+        this.transferOfOwnershipOfMoney.addValue(PART_OF, exchangeOfGoodsAndMoney.getId());
         return this;
     }
 
@@ -297,7 +297,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder part_Of_(final AgreementExecution agreementExecution) {
-        this.transferOfOwnershipOfMoney.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.transferOfOwnershipOfMoney.addValue(PART_OF_, agreementExecution.getId());
         return this;
     }
 
@@ -316,7 +316,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.transferOfOwnershipOfMoney.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.transferOfOwnershipOfMoney.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -328,7 +328,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder references_M(final MoneyAsset moneyAsset) {
-        this.transferOfOwnershipOfMoney.addValue(REFERENCES, new IRI(moneyAsset.getId()));
+        this.transferOfOwnershipOfMoney.addValue(REFERENCES, moneyAsset.getId());
         return this;
     }
 
@@ -342,7 +342,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      */
     public final TransferOfOwnershipOfMoneyBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
         this.transferOfOwnershipOfMoney.addValue(TEMPORAL__PART_OF,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -365,7 +365,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipOfMoneyBuilder temporal_Part_Of(final Individual individual) {
-        this.transferOfOwnershipOfMoney.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.transferOfOwnershipOfMoney.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

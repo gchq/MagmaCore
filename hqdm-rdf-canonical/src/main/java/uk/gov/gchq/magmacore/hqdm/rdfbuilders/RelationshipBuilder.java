@@ -22,7 +22,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.Relationship;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
 
 /**
  * Builder for constructing instances of Relationship.
@@ -37,7 +37,7 @@ public class RelationshipBuilder {
      * @param iri IRI of the Relationship.
      */
     public RelationshipBuilder(final IRI iri) {
-        relationship = RdfRelationshipServices.createRelationship(iri);
+        relationship = RelationshipServices.createRelationship(iri);
     }
 
     /**
@@ -48,7 +48,7 @@ public class RelationshipBuilder {
      * @return This builder.
      */
     public final RelationshipBuilder member__Of(final Class clazz) {
-        this.relationship.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.relationship.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -61,7 +61,7 @@ public class RelationshipBuilder {
      * @return This builder.
      */
     public final RelationshipBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        this.relationship.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.relationship.addValue(MEMBER_OF, classOfRelationship.getId());
         return this;
     }
 

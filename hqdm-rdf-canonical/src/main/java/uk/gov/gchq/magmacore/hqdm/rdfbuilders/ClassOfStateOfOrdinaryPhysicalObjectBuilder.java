@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfStateOfOrdinaryPhysicalObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfStateOfOrdinaryPhysicalObject.
@@ -44,7 +44,7 @@ public class ClassOfStateOfOrdinaryPhysicalObjectBuilder {
      * @param iri IRI of the ClassOfStateOfOrdinaryPhysicalObject.
      */
     public ClassOfStateOfOrdinaryPhysicalObjectBuilder(final IRI iri) {
-        this.classOfStateOfOrdinaryPhysicalObject = RdfClassServices
+        this.classOfStateOfOrdinaryPhysicalObject = ClassServices
                 .createClassOfStateOfOrdinaryPhysicalObject(iri);
     }
 
@@ -62,7 +62,7 @@ public class ClassOfStateOfOrdinaryPhysicalObjectBuilder {
     public final ClassOfStateOfOrdinaryPhysicalObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfStateOfOrdinaryPhysicalObject.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -74,7 +74,7 @@ public class ClassOfStateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfOrdinaryPhysicalObjectBuilder has_Superclass(final Class clazz) {
-        this.classOfStateOfOrdinaryPhysicalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfStateOfOrdinaryPhysicalObject.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -86,7 +86,7 @@ public class ClassOfStateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfOrdinaryPhysicalObjectBuilder member__Of(final Class clazz) {
-        this.classOfStateOfOrdinaryPhysicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfOrdinaryPhysicalObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -99,7 +99,7 @@ public class ClassOfStateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfOrdinaryPhysicalObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfStateOfOrdinaryPhysicalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfStateOfOrdinaryPhysicalObject.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -114,7 +114,7 @@ public class ClassOfStateOfOrdinaryPhysicalObjectBuilder {
     public final ClassOfStateOfOrdinaryPhysicalObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfStateOfOrdinaryPhysicalObject.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class ClassOfStateOfOrdinaryPhysicalObjectBuilder {
     public final ClassOfStateOfOrdinaryPhysicalObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfStateOfOrdinaryPhysicalObject.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

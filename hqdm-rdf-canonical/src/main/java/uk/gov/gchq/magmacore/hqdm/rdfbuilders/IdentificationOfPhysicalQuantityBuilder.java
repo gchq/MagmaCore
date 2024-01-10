@@ -25,7 +25,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PhysicalQuantity;
 import uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.model.Scale;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of IdentificationOfPhysicalQuantity.
@@ -40,7 +40,7 @@ public class IdentificationOfPhysicalQuantityBuilder {
      * @param iri IRI of the IdentificationOfPhysicalQuantity.
      */
     public IdentificationOfPhysicalQuantityBuilder(final IRI iri) {
-        identificationOfPhysicalQuantity = RdfSpatioTemporalExtentServices
+        identificationOfPhysicalQuantity = SpatioTemporalExtentServices
                 .createIdentificationOfPhysicalQuantity(iri);
     }
 
@@ -68,7 +68,7 @@ public class IdentificationOfPhysicalQuantityBuilder {
     public final IdentificationOfPhysicalQuantityBuilder consists_Of_In_Members_M(
             final RecognizingLanguageCommunity recognizingLanguageCommunity) {
         this.identificationOfPhysicalQuantity.addValue(CONSISTS_OF_IN_MEMBERS,
-                new IRI(recognizingLanguageCommunity.getId()));
+                recognizingLanguageCommunity.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class IdentificationOfPhysicalQuantityBuilder {
      * @return This builder.
      */
     public final IdentificationOfPhysicalQuantityBuilder represented_M(final PhysicalQuantity physicalQuantity) {
-        this.identificationOfPhysicalQuantity.addValue(REPRESENTED, new IRI(physicalQuantity.getId()));
+        this.identificationOfPhysicalQuantity.addValue(REPRESENTED, physicalQuantity.getId());
         return this;
     }
 
@@ -92,7 +92,7 @@ public class IdentificationOfPhysicalQuantityBuilder {
      * @return This builder.
      */
     public final IdentificationOfPhysicalQuantityBuilder uses_M(final Scale scale) {
-        this.identificationOfPhysicalQuantity.addValue(USES, new IRI(scale.getId()));
+        this.identificationOfPhysicalQuantity.addValue(USES, scale.getId());
         return this;
     }
 

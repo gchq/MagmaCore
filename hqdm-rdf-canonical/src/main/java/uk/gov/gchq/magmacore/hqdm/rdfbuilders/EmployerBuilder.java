@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Employer.
@@ -53,7 +53,7 @@ public class EmployerBuilder {
      * @param iri IRI of the Employer.
      */
     public EmployerBuilder(final IRI iri) {
-        this.employer = RdfSpatioTemporalExtentServices.createEmployer(iri);
+        this.employer = SpatioTemporalExtentServices.createEmployer(iri);
     }
 
     /**
@@ -68,7 +68,7 @@ public class EmployerBuilder {
      * @return This builder.
      */
     public final EmployerBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.employer.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.employer.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class EmployerBuilder {
      * @return This builder.
      */
     public final EmployerBuilder beginning(final Event event) {
-        this.employer.addValue(BEGINNING, new IRI(event.getId()));
+        this.employer.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -95,7 +95,7 @@ public class EmployerBuilder {
      * @return This builder.
      */
     public final EmployerBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.employer.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.employer.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -107,7 +107,7 @@ public class EmployerBuilder {
      * @return This builder.
      */
     public final EmployerBuilder ending(final Event event) {
-        this.employer.addValue(ENDING, new IRI(event.getId()));
+        this.employer.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class EmployerBuilder {
      * @return This builder.
      */
     public final EmployerBuilder member__Of(final Class clazz) {
-        this.employer.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.employer.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class EmployerBuilder {
      * @return This builder.
      */
     public final EmployerBuilder member_Of(final ClassOfStateOfParty classOfStateOfParty) {
-        this.employer.addValue(MEMBER_OF, new IRI(classOfStateOfParty.getId()));
+        this.employer.addValue(MEMBER_OF, classOfStateOfParty.getId());
         return this;
     }
 
@@ -146,7 +146,7 @@ public class EmployerBuilder {
      * @return This builder.
      */
     public final EmployerBuilder member_Of_Kind_M(final Role role) {
-        this.employer.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
+        this.employer.addValue(MEMBER_OF_KIND, role.getId());
         return this;
     }
 
@@ -159,7 +159,7 @@ public class EmployerBuilder {
      * @return This builder.
      */
     public final EmployerBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.employer.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.employer.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -178,7 +178,7 @@ public class EmployerBuilder {
      * @return This builder.
      */
     public final EmployerBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.employer.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.employer.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -191,7 +191,7 @@ public class EmployerBuilder {
      * @return This builder.
      */
     public final EmployerBuilder participant_In_M(final Employment employment) {
-        this.employer.addValue(PARTICIPANT_IN, new IRI(employment.getId()));
+        this.employer.addValue(PARTICIPANT_IN, employment.getId());
         return this;
     }
 
@@ -204,7 +204,7 @@ public class EmployerBuilder {
      * @return This builder.
      */
     public final EmployerBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.employer.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.employer.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -217,7 +217,7 @@ public class EmployerBuilder {
      * @return This builder.
      */
     public final EmployerBuilder temporal_Part_Of(final Party party) {
-        this.employer.addValue(TEMPORAL_PART_OF, new IRI(party.getId()));
+        this.employer.addValue(TEMPORAL_PART_OF, party.getId());
         return this;
     }
 

@@ -24,7 +24,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.Specialization;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
 
 /**
  * Builder for constructing instances of Specialization.
@@ -39,7 +39,7 @@ public class SpecializationBuilder {
      * @param iri IRI of the Specialization.
      */
     public SpecializationBuilder(final IRI iri) {
-        specialization = RdfRelationshipServices.createSpecialization(iri);
+        specialization = RelationshipServices.createSpecialization(iri);
     }
 
     /**
@@ -50,7 +50,7 @@ public class SpecializationBuilder {
      * @return This builder.
      */
     public final SpecializationBuilder member__Of(final Class clazz) {
-        this.specialization.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.specialization.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -63,7 +63,7 @@ public class SpecializationBuilder {
      * @return This builder.
      */
     public final SpecializationBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        this.specialization.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.specialization.addValue(MEMBER_OF, classOfRelationship.getId());
         return this;
     }
 
@@ -74,7 +74,7 @@ public class SpecializationBuilder {
      * @return This builder.
      */
     public final SpecializationBuilder subclass_M(final Class clazz) {
-        this.specialization.addValue(SUBCLASS, new IRI(clazz.getId()));
+        this.specialization.addValue(SUBCLASS, clazz.getId());
         return this;
     }
 
@@ -86,7 +86,7 @@ public class SpecializationBuilder {
      * @return This builder.
      */
     public final SpecializationBuilder superclass_M(final Class clazz) {
-        this.specialization.addValue(SUPERCLASS, new IRI(clazz.getId()));
+        this.specialization.addValue(SUPERCLASS, clazz.getId());
         return this;
     }
 

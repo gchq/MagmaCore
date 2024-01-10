@@ -26,7 +26,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Classification;
 import uk.gov.gchq.magmacore.hqdm.model.DefinedRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfRelationshipWithSignature;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
 
 /**
  * Builder for constructing instances of DefinedRelationship.
@@ -41,7 +41,7 @@ public class DefinedRelationshipBuilder {
      * @param iri IRI of the DefinedRelationship.
      */
     public DefinedRelationshipBuilder(final IRI iri) {
-        this.definedRelationship = RdfRelationshipServices.createDefinedRelationship(iri);
+        this.definedRelationship = RelationshipServices.createDefinedRelationship(iri);
     }
 
     /**
@@ -53,7 +53,7 @@ public class DefinedRelationshipBuilder {
      * @return This builder.
      */
     public final DefinedRelationshipBuilder involves_M(final Classification classification) {
-        this.definedRelationship.addValue(INVOLVES, new IRI(classification.getId()));
+        this.definedRelationship.addValue(INVOLVES, classification.getId());
         return this;
     }
 
@@ -65,7 +65,7 @@ public class DefinedRelationshipBuilder {
      * @return This builder.
      */
     public final DefinedRelationshipBuilder member__Of(final Class clazz) {
-        this.definedRelationship.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.definedRelationship.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -78,7 +78,7 @@ public class DefinedRelationshipBuilder {
      * @return This builder.
      */
     public final DefinedRelationshipBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        this.definedRelationship.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.definedRelationship.addValue(MEMBER_OF, classOfRelationship.getId());
         return this;
     }
 
@@ -93,7 +93,7 @@ public class DefinedRelationshipBuilder {
     public final DefinedRelationshipBuilder member_Of_Kind_M(
             final KindOfRelationshipWithSignature kindOfRelationshipWithSignature) {
         this.definedRelationship.addValue(MEMBER_OF_KIND,
-                new IRI(kindOfRelationshipWithSignature.getId()));
+                kindOfRelationshipWithSignature.getId());
         return this;
     }
 

@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ProductBrand;
 import uk.gov.gchq.magmacore.hqdm.model.RequirementSpecification;
 import uk.gov.gchq.magmacore.hqdm.model.SalesProduct;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of SalesProduct.
@@ -47,7 +47,7 @@ public class SalesProductBuilder {
      * @param iri IRI of the SalesProduct.
      */
     public SalesProductBuilder(final IRI iri) {
-        salesProduct = RdfSpatioTemporalExtentServices.createSalesProduct(iri);
+        salesProduct = SpatioTemporalExtentServices.createSalesProduct(iri);
     }
 
     /**
@@ -63,7 +63,7 @@ public class SalesProductBuilder {
      */
     public final SalesProductBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.salesProduct.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.salesProduct.addValue(CONSISTS__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -75,7 +75,7 @@ public class SalesProductBuilder {
      * @return This builder.
      */
     public final SalesProductBuilder has_Superclass(final Class clazz) {
-        this.salesProduct.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.salesProduct.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -92,7 +92,7 @@ public class SalesProductBuilder {
      */
     public final SalesProductBuilder meets_Specification(
             final RequirementSpecification requirementSpecification) {
-        this.salesProduct.addValue(MEETS_SPECIFICATION, new IRI(requirementSpecification.getId()));
+        this.salesProduct.addValue(MEETS_SPECIFICATION, requirementSpecification.getId());
         return this;
     }
 
@@ -104,7 +104,7 @@ public class SalesProductBuilder {
      * @return This builder.
      */
     public final SalesProductBuilder member__Of(final Class clazz) {
-        this.salesProduct.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.salesProduct.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -117,7 +117,7 @@ public class SalesProductBuilder {
      * @return This builder.
      */
     public final SalesProductBuilder member_Of(final ClassOfClass classOfClass) {
-        this.salesProduct.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.salesProduct.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class SalesProductBuilder {
      */
     public final SalesProductBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.salesProduct.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.salesProduct.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -147,7 +147,7 @@ public class SalesProductBuilder {
      */
     public final SalesProductBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.salesProduct.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.salesProduct.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -159,7 +159,7 @@ public class SalesProductBuilder {
      * @return This builder.
      */
     public final SalesProductBuilder sold_Under(final ProductBrand productBrand) {
-        this.salesProduct.addValue(SOLD_UNDER, new IRI(productBrand.getId()));
+        this.salesProduct.addValue(SOLD_UNDER, productBrand.getId());
         return this;
     }
 

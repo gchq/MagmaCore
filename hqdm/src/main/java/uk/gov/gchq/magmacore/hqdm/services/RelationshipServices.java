@@ -34,7 +34,9 @@ import uk.gov.gchq.magmacore.hqdm.model.impl.ScaleImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.SpecializationImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.TemporalCompositionImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.UnitOfMeasureImpl;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 
 /**
  * Service for creating HQDM Relationships.
@@ -47,7 +49,9 @@ public class RelationshipServices {
      * @return A Specialization instance.
      */
     public static Specialization createSpecialization(final IRI id) {
-        return new SpecializationImpl(id);
+        final Specialization result = new SpecializationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.SPECIALIZATION);
+        return result;
     }
 
     /**
@@ -57,7 +61,9 @@ public class RelationshipServices {
      * @return A Scale instance.
      */
     public static Scale createScale(final IRI id) {
-        return new ScaleImpl(id);
+        final Scale result = new ScaleImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.SCALE);
+        return result;
     }
 
     /**
@@ -67,7 +73,9 @@ public class RelationshipServices {
      * @return A UnitOfMeasure instance.
      */
     public static UnitOfMeasure createUnitOfMeasure(final IRI id) {
-        return new UnitOfMeasureImpl(id);
+        final UnitOfMeasure result = new UnitOfMeasureImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.UNIT_OF_MEASURE);
+        return result;
     }
 
     /**
@@ -77,7 +85,9 @@ public class RelationshipServices {
      * @return A Function_ instance.
      */
     public static Function_ createFunction(final IRI id) {
-        return new FunctionImpl(id);
+        final Function_ result = new FunctionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.FUNCTION_);
+        return result;
     }
 
     /**
@@ -87,7 +97,9 @@ public class RelationshipServices {
      * @return A Classification instance.
      */
     public static Classification createClassification(final IRI id) {
-        return new ClassificationImpl(id);
+        final Classification result = new ClassificationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASSIFICATION);
+        return result;
     }
 
     /**
@@ -97,7 +109,9 @@ public class RelationshipServices {
      * @return A TemporalComposition instance.
      */
     public static TemporalComposition createTemporalComposition(final IRI id) {
-        return new TemporalCompositionImpl(id);
+        final TemporalComposition result = new TemporalCompositionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.TEMPORAL_COMPOSITION);
+        return result;
     }
 
     /**
@@ -107,7 +121,9 @@ public class RelationshipServices {
      * @return A Composition instance.
      */
     public static Composition createComposition(final IRI id) {
-        return new CompositionImpl(id);
+        final Composition result = new CompositionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.COMPOSITION);
+        return result;
     }
 
     /**
@@ -117,7 +133,9 @@ public class RelationshipServices {
      * @return A Aggregation instance.
      */
     public static Aggregation createAggregation(final IRI id) {
-        return new AggregationImpl(id);
+        final Aggregation result = new AggregationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.AGGREGATION);
+        return result;
     }
 
     /**
@@ -127,7 +145,9 @@ public class RelationshipServices {
      * @return A Relationship instance.
      */
     public static Relationship createRelationship(final IRI id) {
-        return new RelationshipImpl(id);
+        final Relationship result = new RelationshipImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.RELATIONSHIP);
+        return result;
     }
 
     /**
@@ -137,6 +157,8 @@ public class RelationshipServices {
      * @return A DefinedRelationship instance.
      */
     public static DefinedRelationship createDefinedRelationship(final IRI id) {
-        return new DefinedRelationshipImpl(id);
+        final DefinedRelationship result = new DefinedRelationshipImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.DEFINED_RELATIONSHIP);
+        return result;
     }
 }

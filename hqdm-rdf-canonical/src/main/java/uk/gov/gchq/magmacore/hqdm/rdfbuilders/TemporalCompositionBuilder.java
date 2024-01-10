@@ -25,7 +25,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.TemporalComposition;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
 
 /**
  * Builder for constructing instances of TemporalComposition.
@@ -40,7 +40,7 @@ public class TemporalCompositionBuilder {
      * @param iri IRI of the TemporalComposition.
      */
     public TemporalCompositionBuilder(final IRI iri) {
-        temporalComposition = RdfRelationshipServices.createTemporalComposition(iri);
+        temporalComposition = RelationshipServices.createTemporalComposition(iri);
     }
 
     /**
@@ -51,7 +51,7 @@ public class TemporalCompositionBuilder {
      * @return This builder.
      */
     public final TemporalCompositionBuilder member__Of(final Class clazz) {
-        this.temporalComposition.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.temporalComposition.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -64,7 +64,7 @@ public class TemporalCompositionBuilder {
      * @return This builder.
      */
     public final TemporalCompositionBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        this.temporalComposition.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.temporalComposition.addValue(MEMBER_OF, classOfRelationship.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class TemporalCompositionBuilder {
      * @return This builder.
      */
     public final TemporalCompositionBuilder part_M(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.temporalComposition.addValue(PART, new IRI(spatioTemporalExtent.getId()));
+        this.temporalComposition.addValue(PART, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -88,7 +88,7 @@ public class TemporalCompositionBuilder {
      * @return This builder.
      */
     public final TemporalCompositionBuilder whole_M(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.temporalComposition.addValue(WHOLE, new IRI(spatioTemporalExtent.getId()));
+        this.temporalComposition.addValue(WHOLE, spatioTemporalExtent.getId());
         return this;
     }
 

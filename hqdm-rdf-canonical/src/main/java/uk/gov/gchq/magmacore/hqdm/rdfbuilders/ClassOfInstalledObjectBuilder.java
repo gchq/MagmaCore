@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfInstalledObject;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfInstalledObject.
@@ -43,7 +43,7 @@ public class ClassOfInstalledObjectBuilder {
      * @param iri IRI of the ClassOfInstalledObject.
      */
     public ClassOfInstalledObjectBuilder(final IRI iri) {
-        this.classOfInstalledObject = RdfClassServices.createClassOfInstalledObject(iri);
+        this.classOfInstalledObject = ClassServices.createClassOfInstalledObject(iri);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ClassOfInstalledObjectBuilder {
     public final ClassOfInstalledObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfInstalledObject.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -72,7 +72,7 @@ public class ClassOfInstalledObjectBuilder {
      * @return This builder.
      */
     public final ClassOfInstalledObjectBuilder has_Superclass(final Class clazz) {
-        this.classOfInstalledObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfInstalledObject.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfInstalledObjectBuilder {
      * @return This builder.
      */
     public final ClassOfInstalledObjectBuilder member__Of(final Class clazz) {
-        this.classOfInstalledObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfInstalledObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfInstalledObjectBuilder {
      * @return This builder.
      */
     public final ClassOfInstalledObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfInstalledObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfInstalledObject.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -112,7 +112,7 @@ public class ClassOfInstalledObjectBuilder {
     public final ClassOfInstalledObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfInstalledObject.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -129,7 +129,7 @@ public class ClassOfInstalledObjectBuilder {
     public final ClassOfInstalledObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfInstalledObject.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

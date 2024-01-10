@@ -35,7 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfIndividual;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Individual.
@@ -50,7 +50,7 @@ public class IndividualBuilder {
      * @param iri IRI of the Individual.
      */
     public IndividualBuilder(final IRI iri) {
-        individual = RdfSpatioTemporalExtentServices.createIndividual(iri);
+        individual = SpatioTemporalExtentServices.createIndividual(iri);
     }
 
     /**
@@ -65,7 +65,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.individual.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.individual.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -77,7 +77,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder beginning(final Event event) {
-        this.individual.addValue(BEGINNING, new IRI(event.getId()));
+        this.individual.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -92,7 +92,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.individual.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.individual.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -104,7 +104,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder ending(final Event event) {
-        this.individual.addValue(ENDING, new IRI(event.getId()));
+        this.individual.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -116,7 +116,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder member__Of(final Class clazz) {
-        this.individual.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.individual.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -129,7 +129,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder member_Of(final ClassOfIndividual classOfIndividual) {
-        this.individual.addValue(MEMBER_OF, new IRI(classOfIndividual.getId()));
+        this.individual.addValue(MEMBER_OF, classOfIndividual.getId());
         return this;
     }
 
@@ -142,7 +142,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder member_Of_Kind(final KindOfIndividual kindOfIndividual) {
-        this.individual.addValue(MEMBER_OF_KIND, new IRI(kindOfIndividual.getId()));
+        this.individual.addValue(MEMBER_OF_KIND, kindOfIndividual.getId());
         return this;
     }
 
@@ -155,7 +155,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.individual.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.individual.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -174,7 +174,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.individual.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.individual.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -187,7 +187,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.individual.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.individual.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -210,7 +210,7 @@ public class IndividualBuilder {
      * @return This builder.
      */
     public final IndividualBuilder temporal_Part_Of(final Individual individual) {
-        this.individual.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.individual.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

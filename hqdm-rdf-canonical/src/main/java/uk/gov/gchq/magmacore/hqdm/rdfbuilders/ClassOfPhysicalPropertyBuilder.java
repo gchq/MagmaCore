@@ -23,7 +23,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfPhysicalProperty;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfPhysicalProperty.
@@ -38,7 +38,7 @@ public class ClassOfPhysicalPropertyBuilder {
      * @param iri IRI of the ClassOfPhysicalProperty.
      */
     public ClassOfPhysicalPropertyBuilder(final IRI iri) {
-        this.classOfPhysicalProperty = RdfClassServices.createClassOfPhysicalProperty(iri);
+        this.classOfPhysicalProperty = ClassServices.createClassOfPhysicalProperty(iri);
     }
 
     /**
@@ -49,7 +49,7 @@ public class ClassOfPhysicalPropertyBuilder {
      * @return This builder.
      */
     public final ClassOfPhysicalPropertyBuilder has_Superclass(final Class clazz) {
-        this.classOfPhysicalProperty.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfPhysicalProperty.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -61,7 +61,7 @@ public class ClassOfPhysicalPropertyBuilder {
      * @return This builder.
      */
     public final ClassOfPhysicalPropertyBuilder member__Of(final Class clazz) {
-        this.classOfPhysicalProperty.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfPhysicalProperty.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -74,7 +74,7 @@ public class ClassOfPhysicalPropertyBuilder {
      * @return This builder.
      */
     public final ClassOfPhysicalPropertyBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfPhysicalProperty.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfPhysicalProperty.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 

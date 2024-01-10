@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.State;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of State.
@@ -49,7 +49,7 @@ public class StateBuilder {
      * @param iri IRI of the State.
      */
     public StateBuilder(final IRI iri) {
-        state = RdfSpatioTemporalExtentServices.createState(iri);
+        state = SpatioTemporalExtentServices.createState(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.state.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.state.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder beginning(final Event event) {
-        this.state.addValue(BEGINNING, new IRI(event.getId()));
+        this.state.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.state.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.state.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder ending(final Event event) {
-        this.state.addValue(ENDING, new IRI(event.getId()));
+        this.state.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder member__Of(final Class clazz) {
-        this.state.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.state.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -128,7 +128,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder member_Of(final ClassOfState classOfState) {
-        this.state.addValue(MEMBER_OF, new IRI(classOfState.getId()));
+        this.state.addValue(MEMBER_OF, classOfState.getId());
         return this;
     }
 
@@ -141,7 +141,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.state.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.state.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -160,7 +160,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.state.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.state.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -173,7 +173,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.state.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.state.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -195,7 +195,7 @@ public class StateBuilder {
      * @return This builder.
      */
     public final StateBuilder temporal_Part_Of(final Individual individual) {
-        this.state.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.state.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

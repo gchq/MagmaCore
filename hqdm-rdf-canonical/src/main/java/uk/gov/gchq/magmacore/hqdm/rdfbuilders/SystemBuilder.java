@@ -35,7 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.System;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of System.
@@ -50,7 +50,7 @@ public class SystemBuilder {
      * @param iri IRI of the System.
      */
     public SystemBuilder(final IRI iri) {
-        system = RdfSpatioTemporalExtentServices.createSystem(iri);
+        system = SpatioTemporalExtentServices.createSystem(iri);
     }
 
     /**
@@ -65,7 +65,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.system.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.system.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -77,7 +77,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder beginning(final Event event) {
-        this.system.addValue(BEGINNING, new IRI(event.getId()));
+        this.system.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -92,7 +92,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.system.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.system.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -104,7 +104,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder ending(final Event event) {
-        this.system.addValue(ENDING, new IRI(event.getId()));
+        this.system.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -116,7 +116,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder member__Of(final Class clazz) {
-        this.system.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.system.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -129,7 +129,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder member_Of(final ClassOfSystem classOfSystem) {
-        this.system.addValue(MEMBER_OF, new IRI(classOfSystem.getId()));
+        this.system.addValue(MEMBER_OF, classOfSystem.getId());
         return this;
     }
 
@@ -142,7 +142,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder member_Of_Kind(final KindOfSystem kindOfSystem) {
-        this.system.addValue(MEMBER_OF_KIND, new IRI(kindOfSystem.getId()));
+        this.system.addValue(MEMBER_OF_KIND, kindOfSystem.getId());
         return this;
     }
 
@@ -155,7 +155,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.system.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.system.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -174,7 +174,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.system.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.system.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -187,7 +187,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.system.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.system.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -200,7 +200,7 @@ public class SystemBuilder {
      * @return This builder.
      */
     public final SystemBuilder temporal_Part_Of(final System system) {
-        this.system.addValue(TEMPORAL_PART_OF, new IRI(system.getId()));
+        this.system.addValue(TEMPORAL_PART_OF, system.getId());
         return this;
     }
 

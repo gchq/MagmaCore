@@ -557,7 +557,7 @@ public class MagmaCoreService {
     private static DbChangeSet toDbChangeSet(final Thing thing) {
 
         // Map the Thing's predicates to DbCreateOperation objects.
-        final IRI iri = new IRI(thing.getId());
+        final IRI iri = thing.getId();
         final List<DbCreateOperation> creates = thing.getPredicates()
                 .entrySet()
                 .stream()

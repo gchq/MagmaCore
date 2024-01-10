@@ -24,7 +24,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Pattern;
 import uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of Description.
@@ -39,7 +39,7 @@ public class DescriptionBuilder {
      * @param iri IRI of the Description.
      */
     public DescriptionBuilder(final IRI iri) {
-        this.description = RdfClassServices.createDescription(iri);
+        this.description = ClassServices.createDescription(iri);
     }
 
     /**
@@ -53,7 +53,7 @@ public class DescriptionBuilder {
      * @return This builder.
      */
     public final DescriptionBuilder consists_Of_By_Class_M(final Pattern pattern) {
-        this.description.addValue(CONSISTS_OF_BY_CLASS, new IRI(pattern.getId()));
+        this.description.addValue(CONSISTS_OF_BY_CLASS, pattern.getId());
         return this;
     }
 
@@ -68,7 +68,7 @@ public class DescriptionBuilder {
      */
     public final DescriptionBuilder consists_Of_In_Members_M(
             final RecognizingLanguageCommunity recognizingLanguageCommunity) {
-        this.description.addValue(CONSISTS_OF_IN_MEMBERS, new IRI(recognizingLanguageCommunity.getId()));
+        this.description.addValue(CONSISTS_OF_IN_MEMBERS, recognizingLanguageCommunity.getId());
         return this;
     }
 
@@ -81,7 +81,7 @@ public class DescriptionBuilder {
      * @return This builder.
      */
     public final DescriptionBuilder represented_M(final Thing thing) {
-        this.description.addValue(REPRESENTED, new IRI(thing.getId()));
+        this.description.addValue(REPRESENTED, thing.getId());
         return this;
     }
 

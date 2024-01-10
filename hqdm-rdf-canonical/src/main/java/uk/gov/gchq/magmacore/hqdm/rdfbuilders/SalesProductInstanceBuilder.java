@@ -37,7 +37,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SalesProductInstance;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of SalesProductInstance.
@@ -52,7 +52,7 @@ public class SalesProductInstanceBuilder {
      * @param iri IRI of the SalesProductInstance.
      */
     public SalesProductInstanceBuilder(final IRI iri) {
-        salesProductInstance = RdfSpatioTemporalExtentServices.createSalesProductInstance(iri);
+        salesProductInstance = SpatioTemporalExtentServices.createSalesProductInstance(iri);
     }
 
     /**
@@ -67,7 +67,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.salesProductInstance.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.salesProductInstance.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -79,7 +79,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder beginning(final Event event) {
-        this.salesProductInstance.addValue(BEGINNING, new IRI(event.getId()));
+        this.salesProductInstance.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -94,7 +94,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.salesProductInstance.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.salesProductInstance.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -106,7 +106,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder ending(final Event event) {
-        this.salesProductInstance.addValue(ENDING, new IRI(event.getId()));
+        this.salesProductInstance.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -118,7 +118,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder intended_Role_M(final Role role) {
-        this.salesProductInstance.addValue(INTENDED_ROLE, new IRI(role.getId()));
+        this.salesProductInstance.addValue(INTENDED_ROLE, role.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder member__Of(final Class clazz) {
-        this.salesProductInstance.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.salesProductInstance.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -145,7 +145,7 @@ public class SalesProductInstanceBuilder {
      */
     public final SalesProductInstanceBuilder member_Of(
             final ClassOfSalesProductInstance classOfSalesProductInstance) {
-        this.salesProductInstance.addValue(MEMBER_OF, new IRI(classOfSalesProductInstance.getId()));
+        this.salesProductInstance.addValue(MEMBER_OF, classOfSalesProductInstance.getId());
         return this;
     }
 
@@ -161,7 +161,7 @@ public class SalesProductInstanceBuilder {
     public final SalesProductInstanceBuilder member_Of_Kind(
             final KindOfOrdinaryFunctionalObject kindOfOrdinaryFunctionalObject) {
         this.salesProductInstance.addValue(MEMBER_OF_KIND,
-                new IRI(kindOfOrdinaryFunctionalObject.getId()));
+                kindOfOrdinaryFunctionalObject.getId());
         return this;
     }
 
@@ -174,7 +174,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.salesProductInstance.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.salesProductInstance.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -193,7 +193,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.salesProductInstance.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.salesProductInstance.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -206,7 +206,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.salesProductInstance.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.salesProductInstance.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -220,7 +220,7 @@ public class SalesProductInstanceBuilder {
      * @return This builder.
      */
     public final SalesProductInstanceBuilder temporal_Part_Of(final SalesProductInstance salesProductInstance) {
-        this.salesProductInstance.addValue(TEMPORAL_PART_OF, new IRI(salesProductInstance.getId()));
+        this.salesProductInstance.addValue(TEMPORAL_PART_OF, salesProductInstance.getId());
         return this;
     }
 

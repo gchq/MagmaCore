@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Position;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of PersonInPosition.
@@ -49,7 +49,7 @@ public class PersonInPositionBuilder {
      * @param iri IRI of the PersonInPosition.
      */
     public PersonInPositionBuilder(final IRI iri) {
-        personInPosition = RdfSpatioTemporalExtentServices.createPersonInPosition(iri);
+        personInPosition = SpatioTemporalExtentServices.createPersonInPosition(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.personInPosition.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.personInPosition.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder beginning(final Event event) {
-        this.personInPosition.addValue(BEGINNING, new IRI(event.getId()));
+        this.personInPosition.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.personInPosition.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.personInPosition.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -103,7 +103,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder ending(final Event event) {
-        this.personInPosition.addValue(ENDING, new IRI(event.getId()));
+        this.personInPosition.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder member__Of(final Class clazz) {
-        this.personInPosition.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.personInPosition.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -128,7 +128,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder member_Of(final ClassOfPersonInPosition classOfPersonInPosition) {
-        this.personInPosition.addValue(MEMBER_OF, new IRI(classOfPersonInPosition.getId()));
+        this.personInPosition.addValue(MEMBER_OF, classOfPersonInPosition.getId());
         return this;
     }
 
@@ -141,7 +141,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.personInPosition.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.personInPosition.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -160,7 +160,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.personInPosition.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.personInPosition.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -173,7 +173,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.personInPosition.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.personInPosition.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -187,7 +187,7 @@ public class PersonInPositionBuilder {
      * @return This builder.
      */
     public final PersonInPositionBuilder temporal_Part_Of(final Position position) {
-        this.personInPosition.addValue(TEMPORAL_PART_OF, new IRI(position.getId()));
+        this.personInPosition.addValue(TEMPORAL_PART_OF, position.getId());
         return this;
     }
 

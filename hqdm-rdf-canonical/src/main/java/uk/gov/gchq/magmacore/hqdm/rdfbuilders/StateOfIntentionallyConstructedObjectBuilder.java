@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfIntentionallyConstructedObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfIntentionallyConstructedObject.
@@ -50,7 +50,7 @@ public class StateOfIntentionallyConstructedObjectBuilder {
      * @param iri IRI of the StateOfIntentionallyConstructedObject.
      */
     public StateOfIntentionallyConstructedObjectBuilder(final IRI iri) {
-        stateOfIntentionallyConstructedObject = RdfSpatioTemporalExtentServices
+        stateOfIntentionallyConstructedObject = SpatioTemporalExtentServices
                 .createStateOfIntentionallyConstructedObject(iri);
     }
 
@@ -68,7 +68,7 @@ public class StateOfIntentionallyConstructedObjectBuilder {
     public final StateOfIntentionallyConstructedObjectBuilder aggregated_Into(
             final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfIntentionallyConstructedObject.addValue(AGGREGATED_INTO,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class StateOfIntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final StateOfIntentionallyConstructedObjectBuilder beginning(final Event event) {
-        this.stateOfIntentionallyConstructedObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfIntentionallyConstructedObject.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class StateOfIntentionallyConstructedObjectBuilder {
     public final StateOfIntentionallyConstructedObjectBuilder consists__Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfIntentionallyConstructedObject.addValue(CONSISTS__OF,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -109,7 +109,7 @@ public class StateOfIntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final StateOfIntentionallyConstructedObjectBuilder ending(final Event event) {
-        this.stateOfIntentionallyConstructedObject.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfIntentionallyConstructedObject.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -121,7 +121,7 @@ public class StateOfIntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final StateOfIntentionallyConstructedObjectBuilder member__Of(final Class clazz) {
-        this.stateOfIntentionallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfIntentionallyConstructedObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -138,7 +138,7 @@ public class StateOfIntentionallyConstructedObjectBuilder {
     public final StateOfIntentionallyConstructedObjectBuilder member_Of(
             final ClassOfStateOfIntentionallyConstructedObject classOfStateOfIntentionallyConstructedObject) {
         this.stateOfIntentionallyConstructedObject.addValue(MEMBER_OF,
-                new IRI(classOfStateOfIntentionallyConstructedObject.getId()));
+                classOfStateOfIntentionallyConstructedObject.getId());
         return this;
     }
 
@@ -153,7 +153,7 @@ public class StateOfIntentionallyConstructedObjectBuilder {
     public final StateOfIntentionallyConstructedObjectBuilder part__Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfIntentionallyConstructedObject.addValue(PART__OF,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -174,7 +174,7 @@ public class StateOfIntentionallyConstructedObjectBuilder {
     public final StateOfIntentionallyConstructedObjectBuilder part_Of_Possible_World_M(
             final PossibleWorld possibleWorld) {
         this.stateOfIntentionallyConstructedObject.addValue(PART_OF_POSSIBLE_WORLD,
-                new IRI(possibleWorld.getId()));
+                possibleWorld.getId());
         return this;
     }
 
@@ -189,7 +189,7 @@ public class StateOfIntentionallyConstructedObjectBuilder {
     public final StateOfIntentionallyConstructedObjectBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfIntentionallyConstructedObject.addValue(TEMPORAL__PART_OF,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -205,7 +205,7 @@ public class StateOfIntentionallyConstructedObjectBuilder {
     public final StateOfIntentionallyConstructedObjectBuilder temporal_Part_Of(
             final IntentionallyConstructedObject intentionallyConstructedObject) {
         this.stateOfIntentionallyConstructedObject.addValue(TEMPORAL_PART_OF,
-                new IRI(intentionallyConstructedObject.getId()));
+                intentionallyConstructedObject.getId());
         return this;
     }
 

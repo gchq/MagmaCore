@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Currency;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Currency.
@@ -43,7 +43,7 @@ public class CurrencyBuilder {
      * @param iri IRI of the Currency.
      */
     public CurrencyBuilder(final IRI iri) {
-        this.currency = RdfSpatioTemporalExtentServices.createCurrency(iri);
+        this.currency = SpatioTemporalExtentServices.createCurrency(iri);
     }
 
     /**
@@ -59,7 +59,7 @@ public class CurrencyBuilder {
      */
     public final CurrencyBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.currency.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.currency.addValue(CONSISTS__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -71,7 +71,7 @@ public class CurrencyBuilder {
      * @return This builder.
      */
     public final CurrencyBuilder has_Superclass(final Class clazz) {
-        this.currency.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.currency.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -83,7 +83,7 @@ public class CurrencyBuilder {
      * @return This builder.
      */
     public final CurrencyBuilder member__Of(final Class clazz) {
-        this.currency.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.currency.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -96,7 +96,7 @@ public class CurrencyBuilder {
      * @return This builder.
      */
     public final CurrencyBuilder member_Of(final ClassOfClass classOfClass) {
-        this.currency.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.currency.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -110,7 +110,7 @@ public class CurrencyBuilder {
      */
     public final CurrencyBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.currency.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.currency.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -126,7 +126,7 @@ public class CurrencyBuilder {
      */
     public final CurrencyBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.currency.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.currency.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 

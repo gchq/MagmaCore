@@ -46,7 +46,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Sign;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of RepresentationBySign.
@@ -61,7 +61,7 @@ public class RepresentationBySignBuilder {
      * @param iri IRI of the RepresentationBySign.
      */
     public RepresentationBySignBuilder(final IRI iri) {
-        representationBySign = RdfSpatioTemporalExtentServices.createRepresentationBySign(iri);
+        representationBySign = SpatioTemporalExtentServices.createRepresentationBySign(iri);
     }
 
     /**
@@ -76,7 +76,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.representationBySign.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.representationBySign.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -88,7 +88,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder beginning(final Event event) {
-        this.representationBySign.addValue(BEGINNING, new IRI(event.getId()));
+        this.representationBySign.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -103,7 +103,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.representationBySign.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.representationBySign.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder consists_Of(final Sign sign) {
-        this.representationBySign.addValue(CONSISTS_OF, new IRI(sign.getId()));
+        this.representationBySign.addValue(CONSISTS_OF, sign.getId());
         return this;
     }
 
@@ -128,7 +128,7 @@ public class RepresentationBySignBuilder {
      */
     public final RepresentationBySignBuilder consists_Of_(
             final RecognizingLanguageCommunity recognizingLanguageCommunity) {
-        this.representationBySign.addValue(CONSISTS_OF_, new IRI(recognizingLanguageCommunity.getId()));
+        this.representationBySign.addValue(CONSISTS_OF_, recognizingLanguageCommunity.getId());
         return this;
     }
 
@@ -145,7 +145,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder consists_Of_Participant(final Participant participant) {
-        this.representationBySign.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.representationBySign.addValue(CONSISTS_OF_PARTICIPANT, participant.getId());
         return this;
     }
 
@@ -157,7 +157,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder ending(final Event event) {
-        this.representationBySign.addValue(ENDING, new IRI(event.getId()));
+        this.representationBySign.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -168,7 +168,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder member__Of(final Class clazz) {
-        this.representationBySign.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.representationBySign.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -182,7 +182,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder member_Of(final ClassOfRepresentation classOfRepresentation) {
-        this.representationBySign.addValue(MEMBER_OF, new IRI(classOfRepresentation.getId()));
+        this.representationBySign.addValue(MEMBER_OF, classOfRepresentation.getId());
         return this;
     }
 
@@ -196,7 +196,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder member_Of__M(final RepresentationByPattern representationByPattern) {
-        this.representationBySign.addValue(MEMBER_OF_, new IRI(representationByPattern.getId()));
+        this.representationBySign.addValue(MEMBER_OF_, representationByPattern.getId());
         return this;
     }
 
@@ -210,7 +210,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder member_Of_Kind_M(final KindOfAssociation kindOfAssociation) {
-        this.representationBySign.addValue(MEMBER_OF_KIND, new IRI(kindOfAssociation.getId()));
+        this.representationBySign.addValue(MEMBER_OF_KIND, kindOfAssociation.getId());
         return this;
     }
 
@@ -223,7 +223,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.representationBySign.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.representationBySign.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -242,7 +242,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.representationBySign.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.representationBySign.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -253,7 +253,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder represents_M(final Thing thing) {
-        this.representationBySign.addValue(REPRESENTS, new IRI(thing.getId()));
+        this.representationBySign.addValue(REPRESENTS, thing.getId());
         return this;
     }
 
@@ -266,7 +266,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.representationBySign.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.representationBySign.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -289,7 +289,7 @@ public class RepresentationBySignBuilder {
      * @return This builder.
      */
     public final RepresentationBySignBuilder temporal_Part_Of(final Individual individual) {
-        this.representationBySign.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.representationBySign.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

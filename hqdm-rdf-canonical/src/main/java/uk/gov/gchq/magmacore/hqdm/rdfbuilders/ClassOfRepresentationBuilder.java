@@ -20,7 +20,7 @@ import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfRepresentation;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfRepresentation.
@@ -35,7 +35,7 @@ public class ClassOfRepresentationBuilder {
      * @param iri IRI of the ClassOfRepresentation.
      */
     public ClassOfRepresentationBuilder(final IRI iri) {
-        this.classOfRepresentation = RdfClassServices.createClassOfRepresentation(iri);
+        this.classOfRepresentation = ClassServices.createClassOfRepresentation(iri);
     }
 
     /**
@@ -46,7 +46,7 @@ public class ClassOfRepresentationBuilder {
      * @return This builder.
      */
     public final ClassOfRepresentationBuilder has_Superclass(final Class clazz) {
-        this.classOfRepresentation.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfRepresentation.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 

@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfContractProcess;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfAgreeContract.
@@ -47,7 +47,7 @@ public class ClassOfAgreeContractBuilder {
      * @param iri IRI of the ClassOfAgreeContract.
      */
     public ClassOfAgreeContractBuilder(final IRI iri) {
-        this.classOfAgreeContract = RdfClassServices.createClassOfAgreeContract(iri);
+        this.classOfAgreeContract = ClassServices.createClassOfAgreeContract(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class ClassOfAgreeContractBuilder {
     public final ClassOfAgreeContractBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfAgreeContract.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class ClassOfAgreeContractBuilder {
      * @return This builder.
      */
     public final ClassOfAgreeContractBuilder has_Superclass(final Class clazz) {
-        this.classOfAgreeContract.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfAgreeContract.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -88,7 +88,7 @@ public class ClassOfAgreeContractBuilder {
      * @return This builder.
      */
     public final ClassOfAgreeContractBuilder member__Of(final Class clazz) {
-        this.classOfAgreeContract.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfAgreeContract.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -101,7 +101,7 @@ public class ClassOfAgreeContractBuilder {
      * @return This builder.
      */
     public final ClassOfAgreeContractBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfAgreeContract.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfAgreeContract.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -116,7 +116,7 @@ public class ClassOfAgreeContractBuilder {
     public final ClassOfAgreeContractBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfAgreeContract.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class ClassOfAgreeContractBuilder {
     public final ClassOfAgreeContractBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfAgreeContract.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -149,7 +149,7 @@ public class ClassOfAgreeContractBuilder {
      */
     public final ClassOfAgreeContractBuilder part_Of_By_Class(
             final ClassOfContractProcess classOfContractProcess) {
-        this.classOfAgreeContract.addValue(PART_OF_BY_CLASS, new IRI(classOfContractProcess.getId()));
+        this.classOfAgreeContract.addValue(PART_OF_BY_CLASS, classOfContractProcess.getId());
         return this;
     }
 
@@ -167,7 +167,7 @@ public class ClassOfAgreeContractBuilder {
     public final ClassOfAgreeContractBuilder part_Of_By_Class_(
             final ClassOfAgreementExecution classOfAgreementExecution) {
         this.classOfAgreeContract.addValue(PART_OF_BY_CLASS_,
-                new IRI(classOfAgreementExecution.getId()));
+                classOfAgreementExecution.getId());
         return this;
     }
 

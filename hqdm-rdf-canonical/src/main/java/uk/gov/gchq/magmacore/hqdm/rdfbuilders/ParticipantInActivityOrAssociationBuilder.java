@@ -17,7 +17,7 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.ParticipantInActivityOrAssociation;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of ParticipantInActivityOrAssociation.
@@ -32,7 +32,7 @@ public class ParticipantInActivityOrAssociationBuilder {
      * @param iri IRI of the ParticipantInActivityOrAssociation.
      */
     public ParticipantInActivityOrAssociationBuilder(final IRI iri) {
-        participantInActivityOrAssociation = RdfSpatioTemporalExtentServices
+        participantInActivityOrAssociation = SpatioTemporalExtentServices
                 .createParticipantInActivityOrAssociation(iri);
     }
 

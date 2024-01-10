@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfPerson;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfPerson.
@@ -43,7 +43,7 @@ public class ClassOfPersonBuilder {
      * @param iri IRI of the ClassOfPerson.
      */
     public ClassOfPersonBuilder(final IRI iri) {
-        this.classOfPerson = RdfClassServices.createClassOfPerson(iri);
+        this.classOfPerson = ClassServices.createClassOfPerson(iri);
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfPersonBuilder {
      */
     public final ClassOfPersonBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfPerson.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfPerson.addValue(CONSISTS__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -71,7 +71,7 @@ public class ClassOfPersonBuilder {
      * @return This builder.
      */
     public final ClassOfPersonBuilder has_Superclass(final Class clazz) {
-        this.classOfPerson.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfPerson.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -83,7 +83,7 @@ public class ClassOfPersonBuilder {
      * @return This builder.
      */
     public final ClassOfPersonBuilder member__Of(final Class clazz) {
-        this.classOfPerson.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfPerson.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -96,7 +96,7 @@ public class ClassOfPersonBuilder {
      * @return This builder.
      */
     public final ClassOfPersonBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfPerson.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfPerson.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -110,7 +110,7 @@ public class ClassOfPersonBuilder {
      */
     public final ClassOfPersonBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.classOfPerson.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.classOfPerson.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -126,7 +126,7 @@ public class ClassOfPersonBuilder {
      */
     public final ClassOfPersonBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfPerson.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfPerson.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 

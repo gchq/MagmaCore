@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Price;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Price.
@@ -43,7 +43,7 @@ public class PriceBuilder {
      * @param iri IRI of the Price.
      */
     public PriceBuilder(final IRI iri) {
-        price = RdfSpatioTemporalExtentServices.createPrice(iri);
+        price = SpatioTemporalExtentServices.createPrice(iri);
     }
 
     /**
@@ -59,7 +59,7 @@ public class PriceBuilder {
      */
     public final PriceBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.price.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.price.addValue(CONSISTS__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -71,7 +71,7 @@ public class PriceBuilder {
      * @return This builder.
      */
     public final PriceBuilder has_Superclass(final Class clazz) {
-        this.price.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.price.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -83,7 +83,7 @@ public class PriceBuilder {
      * @return This builder.
      */
     public final PriceBuilder member__Of(final Class clazz) {
-        this.price.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.price.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -96,7 +96,7 @@ public class PriceBuilder {
      * @return This builder.
      */
     public final PriceBuilder member_Of(final ClassOfClass classOfClass) {
-        this.price.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.price.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -110,7 +110,7 @@ public class PriceBuilder {
      */
     public final PriceBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.price.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.price.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -126,7 +126,7 @@ public class PriceBuilder {
      */
     public final PriceBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.price.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.price.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 

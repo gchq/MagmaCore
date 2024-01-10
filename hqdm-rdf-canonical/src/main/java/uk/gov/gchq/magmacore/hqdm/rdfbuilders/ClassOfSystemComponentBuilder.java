@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSystemComponent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfSystemComponent.
@@ -43,7 +43,7 @@ public class ClassOfSystemComponentBuilder {
      * @param iri IRI of the ClassOfSystemComponent.
      */
     public ClassOfSystemComponentBuilder(final IRI iri) {
-        this.classOfSystemComponent = RdfClassServices.createClassOfSystemComponent(iri);
+        this.classOfSystemComponent = ClassServices.createClassOfSystemComponent(iri);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ClassOfSystemComponentBuilder {
     public final ClassOfSystemComponentBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfSystemComponent.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -72,7 +72,7 @@ public class ClassOfSystemComponentBuilder {
      * @return This builder.
      */
     public final ClassOfSystemComponentBuilder has_Superclass(final Class clazz) {
-        this.classOfSystemComponent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfSystemComponent.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfSystemComponentBuilder {
      * @return This builder.
      */
     public final ClassOfSystemComponentBuilder member__Of(final Class clazz) {
-        this.classOfSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfSystemComponent.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfSystemComponentBuilder {
      * @return This builder.
      */
     public final ClassOfSystemComponentBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfSystemComponent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfSystemComponent.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -112,7 +112,7 @@ public class ClassOfSystemComponentBuilder {
     public final ClassOfSystemComponentBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfSystemComponent.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -129,7 +129,7 @@ public class ClassOfSystemComponentBuilder {
     public final ClassOfSystemComponentBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfSystemComponent.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

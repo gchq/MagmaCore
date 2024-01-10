@@ -40,7 +40,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of FunctionalSystemComponent.
@@ -55,7 +55,7 @@ public class FunctionalSystemComponentBuilder {
      * @param iri IRI of the FunctionalSystemComponent.
      */
     public FunctionalSystemComponentBuilder(final IRI iri) {
-        functionalSystemComponent = RdfSpatioTemporalExtentServices.createFunctionalSystemComponent(iri);
+        functionalSystemComponent = SpatioTemporalExtentServices.createFunctionalSystemComponent(iri);
     }
 
     /**
@@ -70,7 +70,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.functionalSystemComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.functionalSystemComponent.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -82,7 +82,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder beginning(final Event event) {
-        this.functionalSystemComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.functionalSystemComponent.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -94,7 +94,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder component_Of_M(final FunctionalSystem functionalSystem) {
-        this.functionalSystemComponent.addValue(COMPONENT_OF, new IRI(functionalSystem.getId()));
+        this.functionalSystemComponent.addValue(COMPONENT_OF, functionalSystem.getId());
         return this;
     }
 
@@ -109,7 +109,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.functionalSystemComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.functionalSystemComponent.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -121,7 +121,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder ending(final Event event) {
-        this.functionalSystemComponent.addValue(ENDING, new IRI(event.getId()));
+        this.functionalSystemComponent.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder intended_Role_M(final Role role) {
-        this.functionalSystemComponent.addValue(INTENDED_ROLE, new IRI(role.getId()));
+        this.functionalSystemComponent.addValue(INTENDED_ROLE, role.getId());
         return this;
     }
 
@@ -145,7 +145,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder member__Of(final Class clazz) {
-        this.functionalSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.functionalSystemComponent.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -161,7 +161,7 @@ public class FunctionalSystemComponentBuilder {
     public final FunctionalSystemComponentBuilder member_Of(
             final ClassOfFunctionalSystemComponent classOfFunctionalSystemComponent) {
         this.functionalSystemComponent.addValue(MEMBER_OF,
-                new IRI(classOfFunctionalSystemComponent.getId()));
+                classOfFunctionalSystemComponent.getId());
         return this;
     }
 
@@ -177,7 +177,7 @@ public class FunctionalSystemComponentBuilder {
     public final FunctionalSystemComponentBuilder member_Of_Kind_M(
             final KindOfFunctionalSystemComponent kindOfFunctionalSystemComponent) {
         this.functionalSystemComponent.addValue(MEMBER_OF_KIND,
-                new IRI(kindOfFunctionalSystemComponent.getId()));
+                kindOfFunctionalSystemComponent.getId());
         return this;
     }
 
@@ -190,7 +190,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.functionalSystemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.functionalSystemComponent.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -209,7 +209,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.functionalSystemComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.functionalSystemComponent.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -223,7 +223,7 @@ public class FunctionalSystemComponentBuilder {
      */
     public final FunctionalSystemComponentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
         this.functionalSystemComponent.addValue(TEMPORAL__PART_OF,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -246,7 +246,7 @@ public class FunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final FunctionalSystemComponentBuilder temporal_Part_Of(final Individual individual) {
-        this.functionalSystemComponent.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.functionalSystemComponent.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

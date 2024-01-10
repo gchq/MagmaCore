@@ -30,7 +30,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfPerson;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfSystemComponent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of KindOfPerson.
@@ -45,7 +45,7 @@ public class KindOfPersonBuilder {
      * @param iri IRI of the KindOfPerson.
      */
     public KindOfPersonBuilder(final IRI iri) {
-        kindOfPerson = RdfClassServices.createKindOfPerson(iri);
+        kindOfPerson = ClassServices.createKindOfPerson(iri);
     }
 
     /**
@@ -61,7 +61,7 @@ public class KindOfPersonBuilder {
      */
     public final KindOfPersonBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.kindOfPerson.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.kindOfPerson.addValue(CONSISTS__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -77,7 +77,7 @@ public class KindOfPersonBuilder {
      */
     public final KindOfPersonBuilder has_Component_By_Class_M(
             final KindOfSystemComponent kindOfSystemComponent) {
-        this.kindOfPerson.addValue(HAS_COMPONENT_BY_CLASS, new IRI(kindOfSystemComponent.getId()));
+        this.kindOfPerson.addValue(HAS_COMPONENT_BY_CLASS, kindOfSystemComponent.getId());
         return this;
     }
 
@@ -89,7 +89,7 @@ public class KindOfPersonBuilder {
      * @return This builder.
      */
     public final KindOfPersonBuilder has_Superclass(final Class clazz) {
-        this.kindOfPerson.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfPerson.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -101,7 +101,7 @@ public class KindOfPersonBuilder {
      * @return This builder.
      */
     public final KindOfPersonBuilder member__Of(final Class clazz) {
-        this.kindOfPerson.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfPerson.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -114,7 +114,7 @@ public class KindOfPersonBuilder {
      * @return This builder.
      */
     public final KindOfPersonBuilder member_Of(final ClassOfClass classOfClass) {
-        this.kindOfPerson.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfPerson.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -128,7 +128,7 @@ public class KindOfPersonBuilder {
      */
     public final KindOfPersonBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.kindOfPerson.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.kindOfPerson.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class KindOfPersonBuilder {
      */
     public final KindOfPersonBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.kindOfPerson.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.kindOfPerson.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 

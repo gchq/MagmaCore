@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PointInTime;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of PointInTime.
@@ -47,7 +47,7 @@ public class PointInTimeBuilder {
      * @param iri IRI of the PointInTime.
      */
     public PointInTimeBuilder(final IRI iri) {
-        pointInTime = RdfSpatioTemporalExtentServices.createPointInTime(iri);
+        pointInTime = SpatioTemporalExtentServices.createPointInTime(iri);
     }
 
     /**
@@ -62,7 +62,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.pointInTime.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.pointInTime.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -74,7 +74,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder beginning(final Event event) {
-        this.pointInTime.addValue(BEGINNING, new IRI(event.getId()));
+        this.pointInTime.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -89,7 +89,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.pointInTime.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.pointInTime.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -101,7 +101,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder ending(final Event event) {
-        this.pointInTime.addValue(ENDING, new IRI(event.getId()));
+        this.pointInTime.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -113,7 +113,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder member__Of(final Class clazz) {
-        this.pointInTime.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.pointInTime.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -126,7 +126,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder member_Of(final ClassOfPointInTime classOfPointInTime) {
-        this.pointInTime.addValue(MEMBER_OF, new IRI(classOfPointInTime.getId()));
+        this.pointInTime.addValue(MEMBER_OF, classOfPointInTime.getId());
         return this;
     }
 
@@ -139,7 +139,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.pointInTime.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.pointInTime.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -158,7 +158,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.pointInTime.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.pointInTime.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -171,7 +171,7 @@ public class PointInTimeBuilder {
      * @return This builder.
      */
     public final PointInTimeBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.pointInTime.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.pointInTime.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 

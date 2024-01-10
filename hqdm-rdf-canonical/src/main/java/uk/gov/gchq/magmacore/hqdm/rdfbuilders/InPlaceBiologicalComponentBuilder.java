@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.InPlaceBiologicalComponent;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of InPlaceBiologicalComponent.
@@ -49,7 +49,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @param iri IRI of the InPlaceBiologicalComponent.
      */
     public InPlaceBiologicalComponentBuilder(final IRI iri) {
-        inPlaceBiologicalComponent = RdfSpatioTemporalExtentServices.createInPlaceBiologicalComponent(iri);
+        inPlaceBiologicalComponent = SpatioTemporalExtentServices.createInPlaceBiologicalComponent(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.inPlaceBiologicalComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.inPlaceBiologicalComponent.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder beginning(final Event event) {
-        this.inPlaceBiologicalComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.inPlaceBiologicalComponent.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.inPlaceBiologicalComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.inPlaceBiologicalComponent.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -103,7 +103,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder ending(final Event event) {
-        this.inPlaceBiologicalComponent.addValue(ENDING, new IRI(event.getId()));
+        this.inPlaceBiologicalComponent.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder member__Of(final Class clazz) {
-        this.inPlaceBiologicalComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.inPlaceBiologicalComponent.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class InPlaceBiologicalComponentBuilder {
     public final InPlaceBiologicalComponentBuilder member_Of(
             final ClassOfInPlaceBiologicalComponent classOfInPlaceBiologicalComponent) {
         this.inPlaceBiologicalComponent.addValue(MEMBER_OF,
-                new IRI(classOfInPlaceBiologicalComponent.getId()));
+                classOfInPlaceBiologicalComponent.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.inPlaceBiologicalComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.inPlaceBiologicalComponent.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -163,7 +163,7 @@ public class InPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final InPlaceBiologicalComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.inPlaceBiologicalComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.inPlaceBiologicalComponent.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -177,7 +177,7 @@ public class InPlaceBiologicalComponentBuilder {
      */
     public final InPlaceBiologicalComponentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
         this.inPlaceBiologicalComponent.addValue(TEMPORAL__PART_OF,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -193,7 +193,7 @@ public class InPlaceBiologicalComponentBuilder {
     public final InPlaceBiologicalComponentBuilder temporal_Part_Of(
             final BiologicalSystemComponent biologicalSystemComponent) {
         this.inPlaceBiologicalComponent.addValue(TEMPORAL_PART_OF,
-                new IRI(biologicalSystemComponent.getId()));
+                biologicalSystemComponent.getId());
         return this;
     }
 

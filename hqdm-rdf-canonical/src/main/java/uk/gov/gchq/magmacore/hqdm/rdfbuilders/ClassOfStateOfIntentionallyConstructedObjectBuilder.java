@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfStateOfIntentionallyConstructedObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfStateOfIntentionallyConstructedObject.
@@ -44,7 +44,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      * @param iri IRI of the ClassOfStateOfIntentionallyConstructedObject.
      */
     public ClassOfStateOfIntentionallyConstructedObjectBuilder(final IRI iri) {
-        this.classOfStateOfIntentionallyConstructedObject = RdfClassServices
+        this.classOfStateOfIntentionallyConstructedObject = ClassServices
                 .createClassOfStateOfIntentionallyConstructedObject(iri);
     }
 
@@ -62,7 +62,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
     public final ClassOfStateOfIntentionallyConstructedObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfStateOfIntentionallyConstructedObject.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -75,7 +75,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      */
     public final ClassOfStateOfIntentionallyConstructedObjectBuilder has_Superclass(final Class clazz) {
         this.classOfStateOfIntentionallyConstructedObject.addValue(HAS_SUPERCLASS,
-                new IRI(clazz.getId()));
+                clazz.getId());
         return this;
     }
 
@@ -87,7 +87,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfIntentionallyConstructedObjectBuilder member__Of(final Class clazz) {
-        this.classOfStateOfIntentionallyConstructedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfIntentionallyConstructedObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -101,7 +101,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      */
     public final ClassOfStateOfIntentionallyConstructedObjectBuilder member_Of(final ClassOfClass classOfClass) {
         this.classOfStateOfIntentionallyConstructedObject.addValue(MEMBER_OF,
-                new IRI(classOfClass.getId()));
+                classOfClass.getId());
         return this;
     }
 
@@ -116,7 +116,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
     public final ClassOfStateOfIntentionallyConstructedObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfStateOfIntentionallyConstructedObject.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
     public final ClassOfStateOfIntentionallyConstructedObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfStateOfIntentionallyConstructedObject.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

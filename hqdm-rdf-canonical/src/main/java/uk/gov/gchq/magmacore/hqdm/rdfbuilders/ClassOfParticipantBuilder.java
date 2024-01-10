@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfParticipant;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfParticipant.
@@ -43,7 +43,7 @@ public class ClassOfParticipantBuilder {
      * @param iri IRI of the ClassOfParticipant.
      */
     public ClassOfParticipantBuilder(final IRI iri) {
-        this.classOfParticipant = RdfClassServices.createClassOfParticipant(iri);
+        this.classOfParticipant = ClassServices.createClassOfParticipant(iri);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ClassOfParticipantBuilder {
     public final ClassOfParticipantBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfParticipant.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -72,7 +72,7 @@ public class ClassOfParticipantBuilder {
      * @return This builder.
      */
     public final ClassOfParticipantBuilder has_Superclass(final Class clazz) {
-        this.classOfParticipant.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfParticipant.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfParticipantBuilder {
      * @return This builder.
      */
     public final ClassOfParticipantBuilder member__Of(final Class clazz) {
-        this.classOfParticipant.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfParticipant.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfParticipantBuilder {
      * @return This builder.
      */
     public final ClassOfParticipantBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfParticipant.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfParticipant.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -112,7 +112,7 @@ public class ClassOfParticipantBuilder {
     public final ClassOfParticipantBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfParticipant.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -129,7 +129,7 @@ public class ClassOfParticipantBuilder {
     public final ClassOfParticipantBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfParticipant.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfPossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfPossibleWorld.
@@ -43,7 +43,7 @@ public class ClassOfPossibleWorldBuilder {
      * @param iri IRI of the ClassOfPossibleWorld.
      */
     public ClassOfPossibleWorldBuilder(final IRI iri) {
-        this.classOfPossibleWorld = RdfClassServices.createClassOfPossibleWorld(iri);
+        this.classOfPossibleWorld = ClassServices.createClassOfPossibleWorld(iri);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ClassOfPossibleWorldBuilder {
     public final ClassOfPossibleWorldBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfPossibleWorld.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -72,7 +72,7 @@ public class ClassOfPossibleWorldBuilder {
      * @return This builder.
      */
     public final ClassOfPossibleWorldBuilder has_Superclass(final Class clazz) {
-        this.classOfPossibleWorld.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfPossibleWorld.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfPossibleWorldBuilder {
      * @return This builder.
      */
     public final ClassOfPossibleWorldBuilder member__Of(final Class clazz) {
-        this.classOfPossibleWorld.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfPossibleWorld.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfPossibleWorldBuilder {
      * @return This builder.
      */
     public final ClassOfPossibleWorldBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfPossibleWorld.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfPossibleWorld.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -112,7 +112,7 @@ public class ClassOfPossibleWorldBuilder {
     public final ClassOfPossibleWorldBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfPossibleWorld.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -129,7 +129,7 @@ public class ClassOfPossibleWorldBuilder {
     public final ClassOfPossibleWorldBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfPossibleWorld.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

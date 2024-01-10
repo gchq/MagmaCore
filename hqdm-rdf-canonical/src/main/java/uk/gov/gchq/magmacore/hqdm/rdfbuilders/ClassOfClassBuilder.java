@@ -22,7 +22,7 @@ import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfClass.
@@ -37,7 +37,7 @@ public class ClassOfClassBuilder {
      * @param iri IRI of the ClassOfClass.
      */
     public ClassOfClassBuilder(final IRI iri) {
-        this.classOfClass = RdfClassServices.createClassOfClass(iri);
+        this.classOfClass = ClassServices.createClassOfClass(iri);
     }
 
     /**
@@ -48,7 +48,7 @@ public class ClassOfClassBuilder {
      * @return This builder.
      */
     public final ClassOfClassBuilder has_Superclass(final Class clazz) {
-        this.classOfClass.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfClass.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -60,7 +60,7 @@ public class ClassOfClassBuilder {
      * @return This builder.
      */
     public final ClassOfClassBuilder member__Of(final Class clazz) {
-        this.classOfClass.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfClass.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -73,7 +73,7 @@ public class ClassOfClassBuilder {
      * @return This builder.
      */
     public final ClassOfClassBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfClass.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfClass.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 

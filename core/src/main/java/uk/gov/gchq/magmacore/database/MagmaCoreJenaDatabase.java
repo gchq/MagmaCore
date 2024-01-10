@@ -178,7 +178,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     public void create(final Thing object) {
         final Model defaultModel = dataset.getDefaultModel();
 
-        final Resource resource = defaultModel.createResource(object.getId());
+        final Resource resource = defaultModel.createResource(object.getId().getIri());
 
         object.getPredicates().forEach((iri, predicates) -> predicates.forEach(value -> {
             if (value instanceof IRI) {

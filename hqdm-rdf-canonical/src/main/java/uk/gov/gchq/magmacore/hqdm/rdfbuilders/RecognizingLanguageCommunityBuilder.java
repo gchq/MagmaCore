@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.RepresentationBySign;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of RecognizingLanguageCommunity.
@@ -53,7 +53,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @param iri IRI of the RecognizingLanguageCommunity.
      */
     public RecognizingLanguageCommunityBuilder(final IRI iri) {
-        recognizingLanguageCommunity = RdfSpatioTemporalExtentServices.createRecognizingLanguageCommunity(iri);
+        recognizingLanguageCommunity = SpatioTemporalExtentServices.createRecognizingLanguageCommunity(iri);
     }
 
     /**
@@ -69,7 +69,7 @@ public class RecognizingLanguageCommunityBuilder {
      */
     public final RecognizingLanguageCommunityBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
         this.recognizingLanguageCommunity.addValue(AGGREGATED_INTO,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -81,7 +81,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder beginning(final Event event) {
-        this.recognizingLanguageCommunity.addValue(BEGINNING, new IRI(event.getId()));
+        this.recognizingLanguageCommunity.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -96,7 +96,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.recognizingLanguageCommunity.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.recognizingLanguageCommunity.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -108,7 +108,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder ending(final Event event) {
-        this.recognizingLanguageCommunity.addValue(ENDING, new IRI(event.getId()));
+        this.recognizingLanguageCommunity.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -120,7 +120,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder member__Of(final Class clazz) {
-        this.recognizingLanguageCommunity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.recognizingLanguageCommunity.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -136,7 +136,7 @@ public class RecognizingLanguageCommunityBuilder {
     public final RecognizingLanguageCommunityBuilder member_Of(
             final ClassOfStateOfOrganization classOfStateOfOrganization) {
         this.recognizingLanguageCommunity.addValue(MEMBER_OF,
-                new IRI(classOfStateOfOrganization.getId()));
+                classOfStateOfOrganization.getId());
         return this;
     }
 
@@ -149,7 +149,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder member_Of_Kind_M(final Role role) {
-        this.recognizingLanguageCommunity.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
+        this.recognizingLanguageCommunity.addValue(MEMBER_OF_KIND, role.getId());
         return this;
     }
 
@@ -162,7 +162,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.recognizingLanguageCommunity.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.recognizingLanguageCommunity.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -182,7 +182,7 @@ public class RecognizingLanguageCommunityBuilder {
      */
     public final RecognizingLanguageCommunityBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
         this.recognizingLanguageCommunity.addValue(PART_OF_POSSIBLE_WORLD,
-                new IRI(possibleWorld.getId()));
+                possibleWorld.getId());
         return this;
     }
 
@@ -197,7 +197,7 @@ public class RecognizingLanguageCommunityBuilder {
      */
     public final RecognizingLanguageCommunityBuilder participant_In(final RepresentationBySign representationBySign) {
         this.recognizingLanguageCommunity.addValue(PARTICIPANT_IN,
-                new IRI(representationBySign.getId()));
+                representationBySign.getId());
         return this;
     }
 
@@ -212,7 +212,7 @@ public class RecognizingLanguageCommunityBuilder {
     public final RecognizingLanguageCommunityBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
         this.recognizingLanguageCommunity.addValue(TEMPORAL__PART_OF,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -226,7 +226,7 @@ public class RecognizingLanguageCommunityBuilder {
      * @return This builder.
      */
     public final RecognizingLanguageCommunityBuilder temporal_Part_Of(final LanguageCommunity languageCommunity) {
-        this.recognizingLanguageCommunity.addValue(TEMPORAL_PART_OF, new IRI(languageCommunity.getId()));
+        this.recognizingLanguageCommunity.addValue(TEMPORAL_PART_OF, languageCommunity.getId());
         return this;
     }
 

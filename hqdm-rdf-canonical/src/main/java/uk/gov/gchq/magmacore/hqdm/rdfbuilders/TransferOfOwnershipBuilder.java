@@ -55,7 +55,7 @@ import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership;
 import uk.gov.gchq.magmacore.hqdm.model.Transferee;
 import uk.gov.gchq.magmacore.hqdm.model.Transferor;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of TransferOfOwnership.
@@ -70,7 +70,7 @@ public class TransferOfOwnershipBuilder {
      * @param iri IRI of the TransferOfOwnership.
      */
     public TransferOfOwnershipBuilder(final IRI iri) {
-        transferOfOwnership = RdfSpatioTemporalExtentServices.createTransferOfOwnership(iri);
+        transferOfOwnership = SpatioTemporalExtentServices.createTransferOfOwnership(iri);
     }
 
     /**
@@ -85,7 +85,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferOfOwnership.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.transferOfOwnership.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder beginning(final Event event) {
-        this.transferOfOwnership.addValue(BEGINNING, new IRI(event.getId()));
+        this.transferOfOwnership.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -108,7 +108,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder causes_M(final Event event) {
-        this.transferOfOwnership.addValue(CAUSES, new IRI(event.getId()));
+        this.transferOfOwnership.addValue(CAUSES, event.getId());
         return this;
     }
 
@@ -121,7 +121,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder causes_Beginning_M(final BeginningOfOwnership beginningOfOwnership) {
-        this.transferOfOwnership.addValue(CAUSES_BEGINNING, new IRI(beginningOfOwnership.getId()));
+        this.transferOfOwnership.addValue(CAUSES_BEGINNING, beginningOfOwnership.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder causes_Ending_M(final EndingOfOwnership endingOfOwnership) {
-        this.transferOfOwnership.addValue(CAUSES_ENDING, new IRI(endingOfOwnership.getId()));
+        this.transferOfOwnership.addValue(CAUSES_ENDING, endingOfOwnership.getId());
         return this;
     }
 
@@ -148,7 +148,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferOfOwnership.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferOfOwnership.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -161,7 +161,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder consists_Of(final Activity activity) {
-        this.transferOfOwnership.addValue(CONSISTS_OF, new IRI(activity.getId()));
+        this.transferOfOwnership.addValue(CONSISTS_OF, activity.getId());
         return this;
     }
 
@@ -175,7 +175,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder consists_Of_Participant(final Transferor transferor) {
-        this.transferOfOwnership.addValue(CONSISTS_OF_PARTICIPANT, new IRI(transferor.getId()));
+        this.transferOfOwnership.addValue(CONSISTS_OF_PARTICIPANT, transferor.getId());
         return this;
     }
 
@@ -189,7 +189,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder consists_Of_Participant_(final Transferee transferee) {
-        this.transferOfOwnership.addValue(CONSISTS_OF_PARTICIPANT_, new IRI(transferee.getId()));
+        this.transferOfOwnership.addValue(CONSISTS_OF_PARTICIPANT_, transferee.getId());
         return this;
     }
 
@@ -201,7 +201,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder determines(final Thing thing) {
-        this.transferOfOwnership.addValue(DETERMINES, new IRI(thing.getId()));
+        this.transferOfOwnership.addValue(DETERMINES, thing.getId());
         return this;
     }
 
@@ -213,7 +213,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder ending(final Event event) {
-        this.transferOfOwnership.addValue(ENDING, new IRI(event.getId()));
+        this.transferOfOwnership.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -224,7 +224,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder member__Of(final Class clazz) {
-        this.transferOfOwnership.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.transferOfOwnership.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -240,7 +240,7 @@ public class TransferOfOwnershipBuilder {
     public final TransferOfOwnershipBuilder member_Of(
             final ClassOfSociallyConstructedActivity classOfSociallyConstructedActivity) {
         this.transferOfOwnership.addValue(MEMBER_OF,
-                new IRI(classOfSociallyConstructedActivity.getId()));
+                classOfSociallyConstructedActivity.getId());
         return this;
     }
 
@@ -253,7 +253,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        this.transferOfOwnership.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.transferOfOwnership.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
         return this;
     }
 
@@ -266,7 +266,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferOfOwnership.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferOfOwnership.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -279,7 +279,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder part_Of(final ExchangeOfGoodsAndMoney exchangeOfGoodsAndMoney) {
-        this.transferOfOwnership.addValue(PART_OF, new IRI(exchangeOfGoodsAndMoney.getId()));
+        this.transferOfOwnership.addValue(PART_OF, exchangeOfGoodsAndMoney.getId());
         return this;
     }
 
@@ -293,7 +293,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder part_Of_(final AgreementExecution agreementExecution) {
-        this.transferOfOwnership.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.transferOfOwnership.addValue(PART_OF_, agreementExecution.getId());
         return this;
     }
 
@@ -312,7 +312,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.transferOfOwnership.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.transferOfOwnership.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -324,7 +324,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder references_M(final Asset asset) {
-        this.transferOfOwnership.addValue(REFERENCES, new IRI(asset.getId()));
+        this.transferOfOwnership.addValue(REFERENCES, asset.getId());
         return this;
     }
 
@@ -337,7 +337,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferOfOwnership.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferOfOwnership.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -360,7 +360,7 @@ public class TransferOfOwnershipBuilder {
      * @return This builder.
      */
     public final TransferOfOwnershipBuilder temporal_Part_Of(final Individual individual) {
-        this.transferOfOwnership.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.transferOfOwnership.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

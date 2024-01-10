@@ -30,7 +30,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfState;
 import uk.gov.gchq.magmacore.hqdm.model.RequirementSpecification;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of RequirementSpecification.
@@ -45,7 +45,7 @@ public class RequirementSpecificationBuilder {
      * @param iri IRI of the RequirementSpecification.
      */
     public RequirementSpecificationBuilder(final IRI iri) {
-        requirementSpecification = RdfSpatioTemporalExtentServices.createRequirementSpecification(iri);
+        requirementSpecification = SpatioTemporalExtentServices.createRequirementSpecification(iri);
     }
 
     /**
@@ -62,7 +62,7 @@ public class RequirementSpecificationBuilder {
     public final RequirementSpecificationBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.requirementSpecification.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -74,7 +74,7 @@ public class RequirementSpecificationBuilder {
      * @return This builder.
      */
     public final RequirementSpecificationBuilder has_Superclass(final Class clazz) {
-        this.requirementSpecification.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.requirementSpecification.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -87,7 +87,7 @@ public class RequirementSpecificationBuilder {
      * @return This builder.
      */
     public final RequirementSpecificationBuilder intersection_Of_M(final ClassOfState classOfState) {
-        this.requirementSpecification.addValue(INTERSECTION_OF, new IRI(classOfState.getId()));
+        this.requirementSpecification.addValue(INTERSECTION_OF, classOfState.getId());
         return this;
     }
 
@@ -99,7 +99,7 @@ public class RequirementSpecificationBuilder {
      * @return This builder.
      */
     public final RequirementSpecificationBuilder member__Of(final Class clazz) {
-        this.requirementSpecification.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.requirementSpecification.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -112,7 +112,7 @@ public class RequirementSpecificationBuilder {
      * @return This builder.
      */
     public final RequirementSpecificationBuilder member_Of(final ClassOfClass classOfClass) {
-        this.requirementSpecification.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.requirementSpecification.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -127,7 +127,7 @@ public class RequirementSpecificationBuilder {
     public final RequirementSpecificationBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.requirementSpecification.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class RequirementSpecificationBuilder {
     public final RequirementSpecificationBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.requirementSpecification.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

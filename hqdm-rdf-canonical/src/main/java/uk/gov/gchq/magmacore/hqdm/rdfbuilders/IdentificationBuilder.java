@@ -24,7 +24,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Pattern;
 import uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of Identification.
@@ -39,7 +39,7 @@ public class IdentificationBuilder {
      * @param iri IRI of the Identification.
      */
     public IdentificationBuilder(final IRI iri) {
-        identification = RdfClassServices.createIdentification(iri);
+        identification = ClassServices.createIdentification(iri);
     }
 
     /**
@@ -53,7 +53,7 @@ public class IdentificationBuilder {
      * @return This builder.
      */
     public final IdentificationBuilder consists_Of_By_Class_M(final Pattern pattern) {
-        this.identification.addValue(CONSISTS_OF_BY_CLASS, new IRI(pattern.getId()));
+        this.identification.addValue(CONSISTS_OF_BY_CLASS, pattern.getId());
         return this;
     }
 
@@ -69,7 +69,7 @@ public class IdentificationBuilder {
     public final IdentificationBuilder consists_Of_In_Members_M(
             final RecognizingLanguageCommunity recognizingLanguageCommunity) {
         this.identification.addValue(CONSISTS_OF_IN_MEMBERS,
-                new IRI(recognizingLanguageCommunity.getId()));
+                recognizingLanguageCommunity.getId());
         return this;
     }
 
@@ -82,7 +82,7 @@ public class IdentificationBuilder {
      * @return This builder.
      */
     public final IdentificationBuilder represented_M(final Thing thing) {
-        this.identification.addValue(REPRESENTED, new IRI(thing.getId()));
+        this.identification.addValue(REPRESENTED, thing.getId());
         return this;
     }
 

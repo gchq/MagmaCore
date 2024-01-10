@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership;
 import uk.gov.gchq.magmacore.hqdm.model.Transferee;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Transferee.
@@ -53,7 +53,7 @@ public class TransfereeBuilder {
      * @param iri IRI of the Transferee.
      */
     public TransfereeBuilder(final IRI iri) {
-        transferee = RdfSpatioTemporalExtentServices.createTransferee(iri);
+        transferee = SpatioTemporalExtentServices.createTransferee(iri);
     }
 
     /**
@@ -68,7 +68,7 @@ public class TransfereeBuilder {
      * @return This builder.
      */
     public final TransfereeBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferee.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.transferee.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class TransfereeBuilder {
      * @return This builder.
      */
     public final TransfereeBuilder beginning(final Event event) {
-        this.transferee.addValue(BEGINNING, new IRI(event.getId()));
+        this.transferee.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -95,7 +95,7 @@ public class TransfereeBuilder {
      * @return This builder.
      */
     public final TransfereeBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferee.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferee.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -107,7 +107,7 @@ public class TransfereeBuilder {
      * @return This builder.
      */
     public final TransfereeBuilder ending(final Event event) {
-        this.transferee.addValue(ENDING, new IRI(event.getId()));
+        this.transferee.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class TransfereeBuilder {
      * @return This builder.
      */
     public final TransfereeBuilder member__Of(final Class clazz) {
-        this.transferee.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.transferee.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class TransfereeBuilder {
      * @return This builder.
      */
     public final TransfereeBuilder member_Of(final ClassOfStateOfParty classOfStateOfParty) {
-        this.transferee.addValue(MEMBER_OF, new IRI(classOfStateOfParty.getId()));
+        this.transferee.addValue(MEMBER_OF, classOfStateOfParty.getId());
         return this;
     }
 
@@ -146,7 +146,7 @@ public class TransfereeBuilder {
      * @return This builder.
      */
     public final TransfereeBuilder member_Of_Kind_M(final Role role) {
-        this.transferee.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
+        this.transferee.addValue(MEMBER_OF_KIND, role.getId());
         return this;
     }
 
@@ -159,7 +159,7 @@ public class TransfereeBuilder {
      * @return This builder.
      */
     public final TransfereeBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferee.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferee.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -178,7 +178,7 @@ public class TransfereeBuilder {
      * @return This builder.
      */
     public final TransfereeBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.transferee.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.transferee.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -191,7 +191,7 @@ public class TransfereeBuilder {
      * @return This builder.
      */
     public final TransfereeBuilder participant_In_M(final TransferOfOwnership transferOfOwnership) {
-        this.transferee.addValue(PARTICIPANT_IN, new IRI(transferOfOwnership.getId()));
+        this.transferee.addValue(PARTICIPANT_IN, transferOfOwnership.getId());
         return this;
     }
 
@@ -204,7 +204,7 @@ public class TransfereeBuilder {
      * @return This builder.
      */
     public final TransfereeBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferee.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferee.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -217,7 +217,7 @@ public class TransfereeBuilder {
      * @return This builder.
      */
     public final TransfereeBuilder temporal_Part_Of(final Party party) {
-        this.transferee.addValue(TEMPORAL_PART_OF, new IRI(party.getId()));
+        this.transferee.addValue(TEMPORAL_PART_OF, party.getId());
         return this;
     }
 

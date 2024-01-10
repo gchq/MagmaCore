@@ -30,7 +30,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfParty;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfSystemComponent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of KindOfParty.
@@ -45,7 +45,7 @@ public class KindOfPartyBuilder {
      * @param iri IRI of the KindOfParty.
      */
     public KindOfPartyBuilder(final IRI iri) {
-        kindOfParty = RdfClassServices.createKindOfParty(iri);
+        kindOfParty = ClassServices.createKindOfParty(iri);
     }
 
     /**
@@ -61,7 +61,7 @@ public class KindOfPartyBuilder {
      */
     public final KindOfPartyBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.kindOfParty.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.kindOfParty.addValue(CONSISTS__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -77,7 +77,7 @@ public class KindOfPartyBuilder {
      */
     public final KindOfPartyBuilder has_Component_By_Class_M(
             final KindOfSystemComponent kindOfSystemComponent) {
-        this.kindOfParty.addValue(HAS_COMPONENT_BY_CLASS, new IRI(kindOfSystemComponent.getId()));
+        this.kindOfParty.addValue(HAS_COMPONENT_BY_CLASS, kindOfSystemComponent.getId());
         return this;
     }
 
@@ -89,7 +89,7 @@ public class KindOfPartyBuilder {
      * @return This builder.
      */
     public final KindOfPartyBuilder has_Superclass(final Class clazz) {
-        this.kindOfParty.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfParty.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -101,7 +101,7 @@ public class KindOfPartyBuilder {
      * @return This builder.
      */
     public final KindOfPartyBuilder member__Of(final Class clazz) {
-        this.kindOfParty.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfParty.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -114,7 +114,7 @@ public class KindOfPartyBuilder {
      * @return This builder.
      */
     public final KindOfPartyBuilder member_Of(final ClassOfClass classOfClass) {
-        this.kindOfParty.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfParty.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -128,7 +128,7 @@ public class KindOfPartyBuilder {
      */
     public final KindOfPartyBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.kindOfParty.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.kindOfParty.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class KindOfPartyBuilder {
      */
     public final KindOfPartyBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.kindOfParty.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.kindOfParty.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 

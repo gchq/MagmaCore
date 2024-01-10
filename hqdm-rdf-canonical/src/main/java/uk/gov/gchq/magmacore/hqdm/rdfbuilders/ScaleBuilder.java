@@ -26,7 +26,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfPhysicalQuantity;
 import uk.gov.gchq.magmacore.hqdm.model.Scale;
 import uk.gov.gchq.magmacore.hqdm.model.UnitOfMeasure;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
 
 /**
  * Builder for constructing instances of Scale.
@@ -41,7 +41,7 @@ public class ScaleBuilder {
      * @param iri IRI of the Scale.
      */
     public ScaleBuilder(final IRI iri) {
-        scale = RdfRelationshipServices.createScale(iri);
+        scale = RelationshipServices.createScale(iri);
     }
 
     /**
@@ -51,7 +51,7 @@ public class ScaleBuilder {
      * @return This builder.
      */
     public final ScaleBuilder domain_M(final KindOfPhysicalQuantity kindOfPhysicalQuantity) {
-        this.scale.addValue(DOMAIN, new IRI(kindOfPhysicalQuantity.getId()));
+        this.scale.addValue(DOMAIN, kindOfPhysicalQuantity.getId());
         return this;
     }
 
@@ -63,7 +63,7 @@ public class ScaleBuilder {
      * @return This builder.
      */
     public final ScaleBuilder member__Of(final Class clazz) {
-        this.scale.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.scale.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class ScaleBuilder {
      * @return This builder.
      */
     public final ScaleBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        this.scale.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.scale.addValue(MEMBER_OF, classOfRelationship.getId());
         return this;
     }
 
@@ -99,7 +99,7 @@ public class ScaleBuilder {
      * @return This builder.
      */
     public final ScaleBuilder unit(final UnitOfMeasure unitOfMeasure) {
-        this.scale.addValue(UNIT, new IRI(unitOfMeasure.getId()));
+        this.scale.addValue(UNIT, unitOfMeasure.getId());
         return this;
     }
 

@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Participant;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Association.
@@ -53,7 +53,7 @@ public class AssociationBuilder {
      * @param iri IRI of the Association.
      */
     public AssociationBuilder(final IRI iri) {
-        this.association = RdfSpatioTemporalExtentServices.createAssociation(iri);
+        this.association = SpatioTemporalExtentServices.createAssociation(iri);
     }
 
     /**
@@ -68,7 +68,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.association.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.association.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder beginning(final Event event) {
-        this.association.addValue(BEGINNING, new IRI(event.getId()));
+        this.association.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -95,7 +95,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.association.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.association.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -107,7 +107,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder consists_Of_Participant(final Participant participant) {
-        this.association.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.association.addValue(CONSISTS_OF_PARTICIPANT, participant.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder ending(final Event event) {
-        this.association.addValue(ENDING, new IRI(event.getId()));
+        this.association.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder member__Of(final Class clazz) {
-        this.association.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.association.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder member_Of(final ClassOfAssociation classOfAssociation) {
-        this.association.addValue(MEMBER_OF, new IRI(classOfAssociation.getId()));
+        this.association.addValue(MEMBER_OF, classOfAssociation.getId());
         return this;
     }
 
@@ -157,7 +157,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder member_Of_Kind_M(final KindOfAssociation kindOfAssociation) {
-        this.association.addValue(MEMBER_OF_KIND, new IRI(kindOfAssociation.getId()));
+        this.association.addValue(MEMBER_OF_KIND, kindOfAssociation.getId());
         return this;
     }
 
@@ -170,7 +170,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.association.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.association.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -189,7 +189,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.association.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.association.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -202,7 +202,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.association.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.association.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -225,7 +225,7 @@ public class AssociationBuilder {
      * @return This builder.
      */
     public final AssociationBuilder temporal_Part_Of(final Individual individual) {
-        this.association.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.association.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

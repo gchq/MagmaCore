@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfPosition;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of KindOfPosition.
@@ -43,7 +43,7 @@ public class KindOfPositionBuilder {
      * @param iri IRI of the KindOfPosition.
      */
     public KindOfPositionBuilder(final IRI iri) {
-        kindOfPosition = RdfClassServices.createKindOfPosition(iri);
+        kindOfPosition = ClassServices.createKindOfPosition(iri);
     }
 
     /**
@@ -60,7 +60,7 @@ public class KindOfPositionBuilder {
     public final KindOfPositionBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.kindOfPosition.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -72,7 +72,7 @@ public class KindOfPositionBuilder {
      * @return This builder.
      */
     public final KindOfPositionBuilder has_Superclass(final Class clazz) {
-        this.kindOfPosition.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfPosition.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -84,7 +84,7 @@ public class KindOfPositionBuilder {
      * @return This builder.
      */
     public final KindOfPositionBuilder member__Of(final Class clazz) {
-        this.kindOfPosition.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfPosition.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class KindOfPositionBuilder {
      * @return This builder.
      */
     public final KindOfPositionBuilder member_Of(final ClassOfClass classOfClass) {
-        this.kindOfPosition.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfPosition.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -111,7 +111,7 @@ public class KindOfPositionBuilder {
      */
     public final KindOfPositionBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.kindOfPosition.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.kindOfPosition.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -127,7 +127,7 @@ public class KindOfPositionBuilder {
      */
     public final KindOfPositionBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.kindOfPosition.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.kindOfPosition.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 

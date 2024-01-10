@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of BiologicalSystem.
@@ -53,7 +53,7 @@ public class BiologicalSystemBuilder {
      * @param iri IRI of the BiologicalSystem.
      */
     public BiologicalSystemBuilder(final IRI iri) {
-        this.biologicalSystem = RdfSpatioTemporalExtentServices.createBiologicalSystem(iri);
+        this.biologicalSystem = SpatioTemporalExtentServices.createBiologicalSystem(iri);
     }
 
     /**
@@ -68,7 +68,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.biologicalSystem.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalSystem.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder beginning(final Event event) {
-        this.biologicalSystem.addValue(BEGINNING, new IRI(event.getId()));
+        this.biologicalSystem.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -95,7 +95,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.biologicalSystem.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalSystem.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -107,7 +107,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder ending(final Event event) {
-        this.biologicalSystem.addValue(ENDING, new IRI(event.getId()));
+        this.biologicalSystem.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder member__Of(final Class clazz) {
-        this.biologicalSystem.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.biologicalSystem.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -132,7 +132,7 @@ public class BiologicalSystemBuilder {
      * @return Builder
      */
     public final BiologicalSystemBuilder member_Of(final ClassOfBiologicalSystem classOfBiologicalSystem) {
-        this.biologicalSystem.addValue(MEMBER_OF, new IRI(classOfBiologicalSystem.getId()));
+        this.biologicalSystem.addValue(MEMBER_OF, classOfBiologicalSystem.getId());
         return this;
     }
 
@@ -145,7 +145,7 @@ public class BiologicalSystemBuilder {
      * @return Builder
      */
     public final BiologicalSystemBuilder member_Of_Kind(final KindOfBiologicalSystem kindOfBiologicalSystem) {
-        this.biologicalSystem.addValue(MEMBER_OF_KIND, new IRI(kindOfBiologicalSystem.getId()));
+        this.biologicalSystem.addValue(MEMBER_OF_KIND, kindOfBiologicalSystem.getId());
         return this;
     }
 
@@ -157,7 +157,7 @@ public class BiologicalSystemBuilder {
      * @return Builder
      */
     public final BiologicalSystemBuilder natural_Role_M(final Role role) {
-        this.biologicalSystem.addValue(NATURAL_ROLE, new IRI(role.getId()));
+        this.biologicalSystem.addValue(NATURAL_ROLE, role.getId());
         return this;
     }
 
@@ -170,7 +170,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.biologicalSystem.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalSystem.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -189,7 +189,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.biologicalSystem.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.biologicalSystem.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -202,7 +202,7 @@ public class BiologicalSystemBuilder {
      * @return This builder.
      */
     public final BiologicalSystemBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.biologicalSystem.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.biologicalSystem.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -217,7 +217,7 @@ public class BiologicalSystemBuilder {
      */
     public final BiologicalSystemBuilder temporal_Part_Of(
             final OrdinaryBiologicalObject ordinaryBiologicalObject) {
-        this.biologicalSystem.addValue(TEMPORAL_PART_OF, new IRI(ordinaryBiologicalObject.getId()));
+        this.biologicalSystem.addValue(TEMPORAL_PART_OF, ordinaryBiologicalObject.getId());
         return this;
     }
 

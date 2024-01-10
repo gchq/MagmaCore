@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of FunctionalObject.
@@ -53,7 +53,7 @@ public class FunctionalObjectBuilder {
      * @param iri IRI of the FunctionalObject.
      */
     public FunctionalObjectBuilder(final IRI iri) {
-        functionalObject = RdfSpatioTemporalExtentServices.createFunctionalObject(iri);
+        functionalObject = SpatioTemporalExtentServices.createFunctionalObject(iri);
     }
 
     /**
@@ -68,7 +68,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.functionalObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.functionalObject.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder beginning(final Event event) {
-        this.functionalObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.functionalObject.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -95,7 +95,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.functionalObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.functionalObject.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -107,7 +107,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder ending(final Event event) {
-        this.functionalObject.addValue(ENDING, new IRI(event.getId()));
+        this.functionalObject.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -118,7 +118,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder intended_Role_M(final Role role) {
-        this.functionalObject.addValue(INTENDED_ROLE, new IRI(role.getId()));
+        this.functionalObject.addValue(INTENDED_ROLE, role.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder member__Of(final Class clazz) {
-        this.functionalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.functionalObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -143,7 +143,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder member_Of(final ClassOfFunctionalObject classOfFunctionalObject) {
-        this.functionalObject.addValue(MEMBER_OF, new IRI(classOfFunctionalObject.getId()));
+        this.functionalObject.addValue(MEMBER_OF, classOfFunctionalObject.getId());
         return this;
     }
 
@@ -156,7 +156,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder member_Of_Kind(final KindOfFunctionalObject kindOfFunctionalObject) {
-        this.functionalObject.addValue(MEMBER_OF_KIND, new IRI(kindOfFunctionalObject.getId()));
+        this.functionalObject.addValue(MEMBER_OF_KIND, kindOfFunctionalObject.getId());
         return this;
     }
 
@@ -169,7 +169,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.functionalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.functionalObject.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -188,7 +188,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.functionalObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.functionalObject.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -201,7 +201,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.functionalObject.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.functionalObject.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -224,7 +224,7 @@ public class FunctionalObjectBuilder {
      * @return This builder.
      */
     public final FunctionalObjectBuilder temporal_Part_Of(final Individual individual) {
-        this.functionalObject.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.functionalObject.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

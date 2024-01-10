@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of OrdinaryFunctionalObject.
@@ -53,7 +53,7 @@ public class OrdinaryFunctionalObjectBuilder {
      * @param iri IRI of the OrdinaryFunctionalObject.
      */
     public OrdinaryFunctionalObjectBuilder(final IRI iri) {
-        ordinaryFunctionalObject = RdfSpatioTemporalExtentServices.createOrdinaryFunctionalObject(iri);
+        ordinaryFunctionalObject = SpatioTemporalExtentServices.createOrdinaryFunctionalObject(iri);
     }
 
     /**
@@ -68,7 +68,7 @@ public class OrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryFunctionalObjectBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ordinaryFunctionalObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.ordinaryFunctionalObject.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class OrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryFunctionalObjectBuilder beginning(final Event event) {
-        this.ordinaryFunctionalObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.ordinaryFunctionalObject.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -95,7 +95,7 @@ public class OrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryFunctionalObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ordinaryFunctionalObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.ordinaryFunctionalObject.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -107,7 +107,7 @@ public class OrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryFunctionalObjectBuilder ending(final Event event) {
-        this.ordinaryFunctionalObject.addValue(ENDING, new IRI(event.getId()));
+        this.ordinaryFunctionalObject.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class OrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryFunctionalObjectBuilder intended_Role_M(final Role role) {
-        this.ordinaryFunctionalObject.addValue(INTENDED_ROLE, new IRI(role.getId()));
+        this.ordinaryFunctionalObject.addValue(INTENDED_ROLE, role.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class OrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryFunctionalObjectBuilder member__Of(final Class clazz) {
-        this.ordinaryFunctionalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.ordinaryFunctionalObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -147,7 +147,7 @@ public class OrdinaryFunctionalObjectBuilder {
     public final OrdinaryFunctionalObjectBuilder member_Of(
             final ClassOfOrdinaryFunctionalObject classOfOrdinaryFunctionalObject) {
         this.ordinaryFunctionalObject.addValue(MEMBER_OF,
-                new IRI(classOfOrdinaryFunctionalObject.getId()));
+                classOfOrdinaryFunctionalObject.getId());
         return this;
     }
 
@@ -163,7 +163,7 @@ public class OrdinaryFunctionalObjectBuilder {
     public final OrdinaryFunctionalObjectBuilder member_Of_Kind(
             final KindOfOrdinaryFunctionalObject kindOfOrdinaryFunctionalObject) {
         this.ordinaryFunctionalObject.addValue(MEMBER_OF_KIND,
-                new IRI(kindOfOrdinaryFunctionalObject.getId()));
+                kindOfOrdinaryFunctionalObject.getId());
         return this;
     }
 
@@ -176,7 +176,7 @@ public class OrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryFunctionalObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ordinaryFunctionalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.ordinaryFunctionalObject.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -195,7 +195,7 @@ public class OrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryFunctionalObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.ordinaryFunctionalObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.ordinaryFunctionalObject.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -208,7 +208,7 @@ public class OrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryFunctionalObjectBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ordinaryFunctionalObject.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.ordinaryFunctionalObject.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -231,7 +231,7 @@ public class OrdinaryFunctionalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryFunctionalObjectBuilder temporal_Part_Of(final Individual individual) {
-        this.ordinaryFunctionalObject.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.ordinaryFunctionalObject.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

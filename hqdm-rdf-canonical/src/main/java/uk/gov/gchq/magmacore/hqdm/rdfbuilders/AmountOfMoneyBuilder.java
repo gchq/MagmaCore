@@ -37,7 +37,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfSociallyConstructedObject;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of AmountOfMoney.
@@ -52,7 +52,7 @@ public class AmountOfMoneyBuilder {
      * @param iri IRI of the AmountOfMoney.
      */
     public AmountOfMoneyBuilder(final IRI iri) {
-        this.amountOfMoney = RdfSpatioTemporalExtentServices.createAmountOfMoney(iri);
+        this.amountOfMoney = SpatioTemporalExtentServices.createAmountOfMoney(iri);
     }
 
     /**
@@ -67,7 +67,7 @@ public class AmountOfMoneyBuilder {
      * @return This builder.
      */
     public final AmountOfMoneyBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.amountOfMoney.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.amountOfMoney.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -79,7 +79,7 @@ public class AmountOfMoneyBuilder {
      * @return This builder.
      */
     public final AmountOfMoneyBuilder beginning(final Event event) {
-        this.amountOfMoney.addValue(BEGINNING, new IRI(event.getId()));
+        this.amountOfMoney.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -94,7 +94,7 @@ public class AmountOfMoneyBuilder {
      * @return This builder.
      */
     public final AmountOfMoneyBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.amountOfMoney.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.amountOfMoney.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -106,7 +106,7 @@ public class AmountOfMoneyBuilder {
      * @return This builder.
      */
     public final AmountOfMoneyBuilder ending(final Event event) {
-        this.amountOfMoney.addValue(ENDING, new IRI(event.getId()));
+        this.amountOfMoney.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -118,7 +118,7 @@ public class AmountOfMoneyBuilder {
      * @return This builder.
      */
     public final AmountOfMoneyBuilder member__Of(final Class clazz) {
-        this.amountOfMoney.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.amountOfMoney.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class AmountOfMoneyBuilder {
      * @return This builder.
      */
     public final AmountOfMoneyBuilder member_Of(final ClassOfAmountOfMoney classOfAmountOfMoney) {
-        this.amountOfMoney.addValue(MEMBER_OF, new IRI(classOfAmountOfMoney.getId()));
+        this.amountOfMoney.addValue(MEMBER_OF, classOfAmountOfMoney.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class AmountOfMoneyBuilder {
      * @return This builder.
      */
     public final AmountOfMoneyBuilder member_Of_Currency(final Currency currency) {
-        this.amountOfMoney.addValue(MEMBER_OF_CURRENCY, new IRI(currency.getId()));
+        this.amountOfMoney.addValue(MEMBER_OF_CURRENCY, currency.getId());
         return this;
     }
 
@@ -159,7 +159,7 @@ public class AmountOfMoneyBuilder {
      */
     public final AmountOfMoneyBuilder member_Of_Kind(
             final KindOfSociallyConstructedObject kindOfSociallyConstructedObject) {
-        this.amountOfMoney.addValue(MEMBER_OF_KIND, new IRI(kindOfSociallyConstructedObject.getId()));
+        this.amountOfMoney.addValue(MEMBER_OF_KIND, kindOfSociallyConstructedObject.getId());
         return this;
     }
 
@@ -172,7 +172,7 @@ public class AmountOfMoneyBuilder {
      * @return This builder.
      */
     public final AmountOfMoneyBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.amountOfMoney.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.amountOfMoney.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -191,7 +191,7 @@ public class AmountOfMoneyBuilder {
      * @return This builder.
      */
     public final AmountOfMoneyBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.amountOfMoney.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.amountOfMoney.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -204,7 +204,7 @@ public class AmountOfMoneyBuilder {
      * @return This builder.
      */
     public final AmountOfMoneyBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.amountOfMoney.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.amountOfMoney.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -218,7 +218,7 @@ public class AmountOfMoneyBuilder {
      * @return This builder.
      */
     public final AmountOfMoneyBuilder temporal_Part_Of(final AmountOfMoney amountOfMoney) {
-        this.amountOfMoney.addValue(TEMPORAL_PART_OF, new IRI(amountOfMoney.getId()));
+        this.amountOfMoney.addValue(TEMPORAL_PART_OF, amountOfMoney.getId());
         return this;
     }
 

@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfAmountOfMoney;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfAmountOfMoney.
@@ -49,7 +49,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @param iri IRI of the StateOfAmountOfMoney.
      */
     public StateOfAmountOfMoneyBuilder(final IRI iri) {
-        stateOfAmountOfMoney = RdfSpatioTemporalExtentServices.createStateOfAmountOfMoney(iri);
+        stateOfAmountOfMoney = SpatioTemporalExtentServices.createStateOfAmountOfMoney(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfAmountOfMoney.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfAmountOfMoney.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder beginning(final Event event) {
-        this.stateOfAmountOfMoney.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfAmountOfMoney.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfAmountOfMoney.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfAmountOfMoney.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder ending(final Event event) {
-        this.stateOfAmountOfMoney.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfAmountOfMoney.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder member__Of(final Class clazz) {
-        this.stateOfAmountOfMoney.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfAmountOfMoney.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class StateOfAmountOfMoneyBuilder {
      */
     public final StateOfAmountOfMoneyBuilder member_Of(
             final ClassOfStateOfAmountOfMoney classOfStateOfAmountOfMoney) {
-        this.stateOfAmountOfMoney.addValue(MEMBER_OF, new IRI(classOfStateOfAmountOfMoney.getId()));
+        this.stateOfAmountOfMoney.addValue(MEMBER_OF, classOfStateOfAmountOfMoney.getId());
         return this;
     }
 
@@ -143,7 +143,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfAmountOfMoney.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfAmountOfMoney.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -162,7 +162,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.stateOfAmountOfMoney.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfAmountOfMoney.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -175,7 +175,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfAmountOfMoney.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfAmountOfMoney.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -189,7 +189,7 @@ public class StateOfAmountOfMoneyBuilder {
      * @return This builder.
      */
     public final StateOfAmountOfMoneyBuilder temporal_Part_Of(final AmountOfMoney amountOfMoney) {
-        this.stateOfAmountOfMoney.addValue(TEMPORAL_PART_OF, new IRI(amountOfMoney.getId()));
+        this.stateOfAmountOfMoney.addValue(TEMPORAL_PART_OF, amountOfMoney.getId());
         return this;
     }
 

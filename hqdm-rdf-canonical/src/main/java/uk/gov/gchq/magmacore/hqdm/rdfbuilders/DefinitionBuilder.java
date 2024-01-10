@@ -24,7 +24,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Definition;
 import uk.gov.gchq.magmacore.hqdm.model.Pattern;
 import uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of Definition.
@@ -39,7 +39,7 @@ public class DefinitionBuilder {
      * @param iri IRI of the Definition.
      */
     public DefinitionBuilder(final IRI iri) {
-        this.definition = RdfClassServices.createDefinition(iri);
+        this.definition = ClassServices.createDefinition(iri);
     }
 
     /**
@@ -53,7 +53,7 @@ public class DefinitionBuilder {
      * @return This builder.
      */
     public final DefinitionBuilder consists_Of_By_Class_M(final Pattern pattern) {
-        this.definition.addValue(CONSISTS_OF_BY_CLASS, new IRI(pattern.getId()));
+        this.definition.addValue(CONSISTS_OF_BY_CLASS, pattern.getId());
         return this;
     }
 
@@ -68,7 +68,7 @@ public class DefinitionBuilder {
      */
     public final DefinitionBuilder consists_Of_In_Members_M(
             final RecognizingLanguageCommunity recognizingLanguageCommunity) {
-        this.definition.addValue(CONSISTS_OF_IN_MEMBERS, new IRI(recognizingLanguageCommunity.getId()));
+        this.definition.addValue(CONSISTS_OF_IN_MEMBERS, recognizingLanguageCommunity.getId());
         return this;
     }
 
@@ -79,7 +79,7 @@ public class DefinitionBuilder {
      * @return This builder.
      */
     public final DefinitionBuilder represented_M(final Class clazz) {
-        this.definition.addValue(REPRESENTED, new IRI(clazz.getId()));
+        this.definition.addValue(REPRESENTED, clazz.getId());
         return this;
     }
 

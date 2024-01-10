@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfInPlaceBiologicalComponent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfInPlaceBiologicalComponent.
@@ -43,7 +43,7 @@ public class ClassOfInPlaceBiologicalComponentBuilder {
      * @param iri IRI of the ClassOfInPlaceBiologicalComponent.
      */
     public ClassOfInPlaceBiologicalComponentBuilder(final IRI iri) {
-        this.classOfInPlaceBiologicalComponent = RdfClassServices
+        this.classOfInPlaceBiologicalComponent = ClassServices
                 .createClassOfInPlaceBiologicalComponent(iri);
     }
 
@@ -61,7 +61,7 @@ public class ClassOfInPlaceBiologicalComponentBuilder {
     public final ClassOfInPlaceBiologicalComponentBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfInPlaceBiologicalComponent.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -73,7 +73,7 @@ public class ClassOfInPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final ClassOfInPlaceBiologicalComponentBuilder has_Superclass(final Class clazz) {
-        this.classOfInPlaceBiologicalComponent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfInPlaceBiologicalComponent.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -85,7 +85,7 @@ public class ClassOfInPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final ClassOfInPlaceBiologicalComponentBuilder member__Of(final Class clazz) {
-        this.classOfInPlaceBiologicalComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfInPlaceBiologicalComponent.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -98,7 +98,7 @@ public class ClassOfInPlaceBiologicalComponentBuilder {
      * @return This builder.
      */
     public final ClassOfInPlaceBiologicalComponentBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfInPlaceBiologicalComponent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfInPlaceBiologicalComponent.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -113,7 +113,7 @@ public class ClassOfInPlaceBiologicalComponentBuilder {
     public final ClassOfInPlaceBiologicalComponentBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfInPlaceBiologicalComponent.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class ClassOfInPlaceBiologicalComponentBuilder {
     public final ClassOfInPlaceBiologicalComponentBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfInPlaceBiologicalComponent.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

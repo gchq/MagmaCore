@@ -50,7 +50,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ReachingAgreement;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of ContractProcess.
@@ -65,7 +65,7 @@ public class ContractProcessBuilder {
      * @param iri IRI of the ContractProcess.
      */
     public ContractProcessBuilder(final IRI iri) {
-        this.contractProcess = RdfSpatioTemporalExtentServices.createContractProcess(iri);
+        this.contractProcess = SpatioTemporalExtentServices.createContractProcess(iri);
     }
 
     /**
@@ -80,7 +80,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.contractProcess.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.contractProcess.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -92,7 +92,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder beginning(final Event event) {
-        this.contractProcess.addValue(BEGINNING, new IRI(event.getId()));
+        this.contractProcess.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -104,7 +104,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder causes_M(final Event event) {
-        this.contractProcess.addValue(CAUSES, new IRI(event.getId()));
+        this.contractProcess.addValue(CAUSES, event.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.contractProcess.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.contractProcess.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -132,7 +132,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder consists_Of(final AgreeContract agreeContract) {
-        this.contractProcess.addValue(CONSISTS_OF, new IRI(agreeContract.getId()));
+        this.contractProcess.addValue(CONSISTS_OF, agreeContract.getId());
         return this;
     }
 
@@ -145,7 +145,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder consists_Of_(final ContractExecution contractExecution) {
-        this.contractProcess.addValue(CONSISTS_OF_, new IRI(contractExecution.getId()));
+        this.contractProcess.addValue(CONSISTS_OF_, contractExecution.getId());
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder consists_Of_Participant(final Participant participant) {
-        this.contractProcess.addValue(CONSISTS_OF_PARTICIPANT, new IRI(participant.getId()));
+        this.contractProcess.addValue(CONSISTS_OF_PARTICIPANT, participant.getId());
         return this;
     }
 
@@ -170,7 +170,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder determines(final Thing thing) {
-        this.contractProcess.addValue(DETERMINES, new IRI(thing.getId()));
+        this.contractProcess.addValue(DETERMINES, thing.getId());
         return this;
     }
 
@@ -182,7 +182,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder ending(final Event event) {
-        this.contractProcess.addValue(ENDING, new IRI(event.getId()));
+        this.contractProcess.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -193,7 +193,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder member__Of(final Class clazz) {
-        this.contractProcess.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.contractProcess.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -206,7 +206,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder member_Of(final ClassOfContractProcess classOfContractProcess) {
-        this.contractProcess.addValue(MEMBER_OF, new IRI(classOfContractProcess.getId()));
+        this.contractProcess.addValue(MEMBER_OF, classOfContractProcess.getId());
         return this;
     }
 
@@ -219,7 +219,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
-        this.contractProcess.addValue(MEMBER_OF_KIND, new IRI(kindOfActivity.getId()));
+        this.contractProcess.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
         return this;
     }
 
@@ -232,7 +232,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.contractProcess.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.contractProcess.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -246,7 +246,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder part_Of(final ReachingAgreement reachingAgreement) {
-        this.contractProcess.addValue(PART_OF, new IRI(reachingAgreement.getId()));
+        this.contractProcess.addValue(PART_OF, reachingAgreement.getId());
         return this;
     }
 
@@ -260,7 +260,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder part_Of_(final AgreementExecution agreementExecution) {
-        this.contractProcess.addValue(PART_OF_, new IRI(agreementExecution.getId()));
+        this.contractProcess.addValue(PART_OF_, agreementExecution.getId());
         return this;
     }
 
@@ -279,7 +279,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.contractProcess.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.contractProcess.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -291,7 +291,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder references(final Thing thing) {
-        this.contractProcess.addValue(REFERENCES, new IRI(thing.getId()));
+        this.contractProcess.addValue(REFERENCES, thing.getId());
         return this;
     }
 
@@ -304,7 +304,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.contractProcess.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.contractProcess.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -327,7 +327,7 @@ public class ContractProcessBuilder {
      * @return This builder.
      */
     public final ContractProcessBuilder temporal_Part_Of(final Individual individual) {
-        this.contractProcess.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.contractProcess.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

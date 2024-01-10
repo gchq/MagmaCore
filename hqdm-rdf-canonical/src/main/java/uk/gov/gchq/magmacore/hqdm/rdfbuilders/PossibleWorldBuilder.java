@@ -36,7 +36,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfIndividual;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of PossibleWorld.
@@ -51,7 +51,7 @@ public class PossibleWorldBuilder {
      * @param iri IRI of the PossibleWorld.
      */
     public PossibleWorldBuilder(final IRI iri) {
-        possibleWorld = RdfSpatioTemporalExtentServices.createPossibleWorld(iri);
+        possibleWorld = SpatioTemporalExtentServices.createPossibleWorld(iri);
     }
 
     /**
@@ -66,7 +66,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.possibleWorld.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.possibleWorld.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -78,7 +78,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder beginning(final Event event) {
-        this.possibleWorld.addValue(BEGINNING, new IRI(event.getId()));
+        this.possibleWorld.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -93,7 +93,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.possibleWorld.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.possibleWorld.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -105,7 +105,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder ending(final Event event) {
-        this.possibleWorld.addValue(ENDING, new IRI(event.getId()));
+        this.possibleWorld.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -117,7 +117,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder member__Of(final Class clazz) {
-        this.possibleWorld.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.possibleWorld.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder member_Of(final ClassOfPossibleWorld classOfPossibleWorld) {
-        this.possibleWorld.addValue(MEMBER_OF, new IRI(classOfPossibleWorld.getId()));
+        this.possibleWorld.addValue(MEMBER_OF, classOfPossibleWorld.getId());
         return this;
     }
 
@@ -143,7 +143,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder member_Of_Kind(final KindOfIndividual kindOfIndividual) {
-        this.possibleWorld.addValue(MEMBER_OF_KIND, new IRI(kindOfIndividual.getId()));
+        this.possibleWorld.addValue(MEMBER_OF_KIND, kindOfIndividual.getId());
         return this;
     }
 
@@ -156,7 +156,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.possibleWorld.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.possibleWorld.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -175,7 +175,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.possibleWorld.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.possibleWorld.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -188,7 +188,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.possibleWorld.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.possibleWorld.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -211,7 +211,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder temporal_Part_Of(final Individual individual) {
-        this.possibleWorld.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.possibleWorld.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 
@@ -225,7 +225,7 @@ public class PossibleWorldBuilder {
      * @return This builder.
      */
     public final PossibleWorldBuilder temporal_Part_Of_(final PossibleWorld possibleWorld) {
-        this.possibleWorld.addValue(TEMPORAL_PART_OF_, new IRI(possibleWorld.getId()));
+        this.possibleWorld.addValue(TEMPORAL_PART_OF_, possibleWorld.getId());
         return this;
     }
 

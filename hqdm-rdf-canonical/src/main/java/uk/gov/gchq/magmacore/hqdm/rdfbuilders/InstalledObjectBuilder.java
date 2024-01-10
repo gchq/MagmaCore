@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.OrdinaryPhysicalObject;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of InstalledObject.
@@ -49,7 +49,7 @@ public class InstalledObjectBuilder {
      * @param iri IRI of the InstalledObject.
      */
     public InstalledObjectBuilder(final IRI iri) {
-        installedObject = RdfSpatioTemporalExtentServices.createInstalledObject(iri);
+        installedObject = SpatioTemporalExtentServices.createInstalledObject(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.installedObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.installedObject.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder beginning(final Event event) {
-        this.installedObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.installedObject.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.installedObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.installedObject.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -103,7 +103,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder ending(final Event event) {
-        this.installedObject.addValue(ENDING, new IRI(event.getId()));
+        this.installedObject.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder member__Of(final Class clazz) {
-        this.installedObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.installedObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -128,7 +128,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder member_Of(final ClassOfInstalledObject classOfInstalledObject) {
-        this.installedObject.addValue(MEMBER_OF, new IRI(classOfInstalledObject.getId()));
+        this.installedObject.addValue(MEMBER_OF, classOfInstalledObject.getId());
         return this;
     }
 
@@ -141,7 +141,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.installedObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.installedObject.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -160,7 +160,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.installedObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.installedObject.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -173,7 +173,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.installedObject.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.installedObject.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -187,7 +187,7 @@ public class InstalledObjectBuilder {
      * @return This builder.
      */
     public final InstalledObjectBuilder temporal_Part_Of(final OrdinaryPhysicalObject ordinaryPhysicalObject) {
-        this.installedObject.addValue(TEMPORAL_PART_OF, new IRI(ordinaryPhysicalObject.getId()));
+        this.installedObject.addValue(TEMPORAL_PART_OF, ordinaryPhysicalObject.getId());
         return this;
     }
 

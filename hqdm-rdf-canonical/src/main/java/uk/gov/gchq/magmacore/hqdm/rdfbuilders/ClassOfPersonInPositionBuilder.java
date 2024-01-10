@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfPersonInPosition;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfPersonInPosition.
@@ -43,7 +43,7 @@ public class ClassOfPersonInPositionBuilder {
      * @param iri IRI of the ClassOfPersonInPosition.
      */
     public ClassOfPersonInPositionBuilder(final IRI iri) {
-        this.classOfPersonInPosition = RdfClassServices.createClassOfPersonInPosition(iri);
+        this.classOfPersonInPosition = ClassServices.createClassOfPersonInPosition(iri);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ClassOfPersonInPositionBuilder {
     public final ClassOfPersonInPositionBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfPersonInPosition.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -72,7 +72,7 @@ public class ClassOfPersonInPositionBuilder {
      * @return This builder.
      */
     public final ClassOfPersonInPositionBuilder has_Superclass(final Class clazz) {
-        this.classOfPersonInPosition.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfPersonInPosition.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -84,7 +84,7 @@ public class ClassOfPersonInPositionBuilder {
      * @return This builder.
      */
     public final ClassOfPersonInPositionBuilder member__Of(final Class clazz) {
-        this.classOfPersonInPosition.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfPersonInPosition.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class ClassOfPersonInPositionBuilder {
      * @return This builder.
      */
     public final ClassOfPersonInPositionBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfPersonInPosition.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfPersonInPosition.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -112,7 +112,7 @@ public class ClassOfPersonInPositionBuilder {
     public final ClassOfPersonInPositionBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfPersonInPosition.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -129,7 +129,7 @@ public class ClassOfPersonInPositionBuilder {
     public final ClassOfPersonInPositionBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfPersonInPosition.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

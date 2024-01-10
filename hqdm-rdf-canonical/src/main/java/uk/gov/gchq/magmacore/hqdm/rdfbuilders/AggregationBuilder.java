@@ -25,7 +25,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
 
 /**
  * Builder for constructing instances of Aggregation.
@@ -40,7 +40,7 @@ public class AggregationBuilder {
      * @param iri IRI of the Aggregation.
      */
     public AggregationBuilder(final IRI iri) {
-        this.aggregation = RdfRelationshipServices.createAggregation(iri);
+        this.aggregation = RelationshipServices.createAggregation(iri);
     }
 
     /**
@@ -51,7 +51,7 @@ public class AggregationBuilder {
      * @return This builder.
      */
     public final AggregationBuilder member__Of(final Class clazz) {
-        this.aggregation.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.aggregation.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -64,7 +64,7 @@ public class AggregationBuilder {
      * @return This builder.
      */
     public final AggregationBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        this.aggregation.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.aggregation.addValue(MEMBER_OF, classOfRelationship.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class AggregationBuilder {
      * @return This builder.
      */
     public final AggregationBuilder part_M(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.aggregation.addValue(PART, new IRI(spatioTemporalExtent.getId()));
+        this.aggregation.addValue(PART, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -88,7 +88,7 @@ public class AggregationBuilder {
      * @return This builder.
      */
     public final AggregationBuilder whole_M(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.aggregation.addValue(WHOLE, new IRI(spatioTemporalExtent.getId()));
+        this.aggregation.addValue(WHOLE, spatioTemporalExtent.getId());
         return this;
     }
 

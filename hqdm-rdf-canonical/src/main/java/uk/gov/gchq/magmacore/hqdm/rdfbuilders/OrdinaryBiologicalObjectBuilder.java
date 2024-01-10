@@ -35,7 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.OrdinaryBiologicalObject;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of OrdinaryBiologicalObject.
@@ -50,7 +50,7 @@ public class OrdinaryBiologicalObjectBuilder {
      * @param iri IRI of the OrdinaryBiologicalObject.
      */
     public OrdinaryBiologicalObjectBuilder(final IRI iri) {
-        ordinaryBiologicalObject = RdfSpatioTemporalExtentServices.createOrdinaryBiologicalObject(iri);
+        ordinaryBiologicalObject = SpatioTemporalExtentServices.createOrdinaryBiologicalObject(iri);
     }
 
     /**
@@ -65,7 +65,7 @@ public class OrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryBiologicalObjectBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ordinaryBiologicalObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.ordinaryBiologicalObject.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -77,7 +77,7 @@ public class OrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryBiologicalObjectBuilder beginning(final Event event) {
-        this.ordinaryBiologicalObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.ordinaryBiologicalObject.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -92,7 +92,7 @@ public class OrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryBiologicalObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ordinaryBiologicalObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.ordinaryBiologicalObject.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -104,7 +104,7 @@ public class OrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryBiologicalObjectBuilder ending(final Event event) {
-        this.ordinaryBiologicalObject.addValue(ENDING, new IRI(event.getId()));
+        this.ordinaryBiologicalObject.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -116,7 +116,7 @@ public class OrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryBiologicalObjectBuilder member__Of(final Class clazz) {
-        this.ordinaryBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.ordinaryBiologicalObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -132,7 +132,7 @@ public class OrdinaryBiologicalObjectBuilder {
     public final OrdinaryBiologicalObjectBuilder member_Of(
             final ClassOfOrdinaryBiologicalObject classOfOrdinaryBiologicalObject) {
         this.ordinaryBiologicalObject.addValue(MEMBER_OF,
-                new IRI(classOfOrdinaryBiologicalObject.getId()));
+                classOfOrdinaryBiologicalObject.getId());
         return this;
     }
 
@@ -148,7 +148,7 @@ public class OrdinaryBiologicalObjectBuilder {
     public final OrdinaryBiologicalObjectBuilder member_Of_Kind(
             final KindOfOrdinaryBiologicalObject kindOfOrdinaryBiologicalObject) {
         this.ordinaryBiologicalObject.addValue(MEMBER_OF_KIND,
-                new IRI(kindOfOrdinaryBiologicalObject.getId()));
+                kindOfOrdinaryBiologicalObject.getId());
         return this;
     }
 
@@ -161,7 +161,7 @@ public class OrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryBiologicalObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ordinaryBiologicalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.ordinaryBiologicalObject.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -180,7 +180,7 @@ public class OrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryBiologicalObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.ordinaryBiologicalObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.ordinaryBiologicalObject.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -193,7 +193,7 @@ public class OrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final OrdinaryBiologicalObjectBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ordinaryBiologicalObject.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.ordinaryBiologicalObject.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -209,7 +209,7 @@ public class OrdinaryBiologicalObjectBuilder {
     public final OrdinaryBiologicalObjectBuilder temporal_Part_Of(
             final OrdinaryBiologicalObject ordinaryBiologicalObject) {
         this.ordinaryBiologicalObject.addValue(TEMPORAL_PART_OF,
-                new IRI(ordinaryBiologicalObject.getId()));
+                ordinaryBiologicalObject.getId());
         return this;
     }
 

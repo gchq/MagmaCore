@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfBiologicalObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfBiologicalObject.
@@ -49,7 +49,7 @@ public class StateOfBiologicalObjectBuilder {
      * @param iri IRI of the StateOfBiologicalObject.
      */
     public StateOfBiologicalObjectBuilder(final IRI iri) {
-        stateOfBiologicalObject = RdfSpatioTemporalExtentServices.createStateOfBiologicalObject(iri);
+        stateOfBiologicalObject = SpatioTemporalExtentServices.createStateOfBiologicalObject(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfBiologicalObject.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfBiologicalObject.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder beginning(final Event event) {
-        this.stateOfBiologicalObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfBiologicalObject.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfBiologicalObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfBiologicalObject.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder ending(final Event event) {
-        this.stateOfBiologicalObject.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfBiologicalObject.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder member__Of(final Class clazz) {
-        this.stateOfBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfBiologicalObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class StateOfBiologicalObjectBuilder {
     public final StateOfBiologicalObjectBuilder member_Of(
             final ClassOfStateOfBiologicalObject classOfStateOfBiologicalObject) {
         this.stateOfBiologicalObject.addValue(MEMBER_OF,
-                new IRI(classOfStateOfBiologicalObject.getId()));
+                classOfStateOfBiologicalObject.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfBiologicalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfBiologicalObject.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -163,7 +163,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.stateOfBiologicalObject.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfBiologicalObject.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -176,7 +176,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfBiologicalObject.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfBiologicalObject.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -190,7 +190,7 @@ public class StateOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfBiologicalObjectBuilder temporal_Part_Of(final BiologicalObject biologicalObject) {
-        this.stateOfBiologicalObject.addValue(TEMPORAL_PART_OF, new IRI(biologicalObject.getId()));
+        this.stateOfBiologicalObject.addValue(TEMPORAL_PART_OF, biologicalObject.getId());
         return this;
     }
 

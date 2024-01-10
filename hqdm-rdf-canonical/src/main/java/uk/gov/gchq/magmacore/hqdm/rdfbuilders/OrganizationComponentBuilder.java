@@ -37,7 +37,7 @@ import uk.gov.gchq.magmacore.hqdm.model.OrganizationComponent;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of OrganizationComponent.
@@ -52,7 +52,7 @@ public class OrganizationComponentBuilder {
      * @param iri IRI of the OrganizationComponent.
      */
     public OrganizationComponentBuilder(final IRI iri) {
-        organizationComponent = RdfSpatioTemporalExtentServices.createOrganizationComponent(iri);
+        organizationComponent = SpatioTemporalExtentServices.createOrganizationComponent(iri);
     }
 
     /**
@@ -67,7 +67,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.organizationComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.organizationComponent.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -79,7 +79,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder beginning(final Event event) {
-        this.organizationComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.organizationComponent.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder component_Of_M(final Organization organization) {
-        this.organizationComponent.addValue(COMPONENT_OF, new IRI(organization.getId()));
+        this.organizationComponent.addValue(COMPONENT_OF, organization.getId());
         return this;
     }
 
@@ -106,7 +106,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.organizationComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.organizationComponent.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -118,7 +118,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder ending(final Event event) {
-        this.organizationComponent.addValue(ENDING, new IRI(event.getId()));
+        this.organizationComponent.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder member__Of(final Class clazz) {
-        this.organizationComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.organizationComponent.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -145,7 +145,7 @@ public class OrganizationComponentBuilder {
      */
     public final OrganizationComponentBuilder member_Of(
             final ClassOfOrganizationComponent classOfOrganizationComponent) {
-        this.organizationComponent.addValue(MEMBER_OF, new IRI(classOfOrganizationComponent.getId()));
+        this.organizationComponent.addValue(MEMBER_OF, classOfOrganizationComponent.getId());
         return this;
     }
 
@@ -161,7 +161,7 @@ public class OrganizationComponentBuilder {
     public final OrganizationComponentBuilder member_Of_Kind(
             final KindOfOrganizationComponent kindOfOrganizationComponent) {
         this.organizationComponent.addValue(MEMBER_OF_KIND,
-                new IRI(kindOfOrganizationComponent.getId()));
+                kindOfOrganizationComponent.getId());
         return this;
     }
 
@@ -174,7 +174,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.organizationComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.organizationComponent.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -193,7 +193,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.organizationComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.organizationComponent.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -206,7 +206,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.organizationComponent.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.organizationComponent.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -220,7 +220,7 @@ public class OrganizationComponentBuilder {
      * @return This builder.
      */
     public final OrganizationComponentBuilder temporal_Part_Of(final OrganizationComponent organizationComponent) {
-        this.organizationComponent.addValue(TEMPORAL_PART_OF, new IRI(organizationComponent.getId()));
+        this.organizationComponent.addValue(TEMPORAL_PART_OF, organizationComponent.getId());
         return this;
     }
 

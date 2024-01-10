@@ -24,7 +24,7 @@ import uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of RepresentationByPattern.
@@ -39,7 +39,7 @@ public class RepresentationByPatternBuilder {
      * @param iri IRI of the RepresentationByPattern.
      */
     public RepresentationByPatternBuilder(final IRI iri) {
-        representationByPattern = RdfClassServices.createRepresentationByPattern(iri);
+        representationByPattern = ClassServices.createRepresentationByPattern(iri);
     }
 
     /**
@@ -52,7 +52,7 @@ public class RepresentationByPatternBuilder {
      * @return This builder.
      */
     public final RepresentationByPatternBuilder consists_Of_By_Class_M(final Pattern pattern) {
-        this.representationByPattern.addValue(CONSISTS_OF_BY_CLASS, new IRI(pattern.getId()));
+        this.representationByPattern.addValue(CONSISTS_OF_BY_CLASS, pattern.getId());
         return this;
     }
 
@@ -68,7 +68,7 @@ public class RepresentationByPatternBuilder {
     public final RepresentationByPatternBuilder consists_Of_In_Members_M(
             final RecognizingLanguageCommunity recognizingLanguageCommunity) {
         this.representationByPattern.addValue(CONSISTS_OF_IN_MEMBERS,
-                new IRI(recognizingLanguageCommunity.getId()));
+                recognizingLanguageCommunity.getId());
         return this;
     }
 
@@ -81,7 +81,7 @@ public class RepresentationByPatternBuilder {
      * @return This builder.
      */
     public final RepresentationByPatternBuilder represented_M(final Thing thing) {
-        this.representationByPattern.addValue(REPRESENTED, new IRI(thing.getId()));
+        this.representationByPattern.addValue(REPRESENTED, thing.getId());
         return this;
     }
 

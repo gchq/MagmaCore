@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Asset.
@@ -53,7 +53,7 @@ public class AssetBuilder {
      * @param iri IRI of the Asset.
      */
     public AssetBuilder(final IRI iri) {
-        this.asset = RdfSpatioTemporalExtentServices.createAsset(iri);
+        this.asset = SpatioTemporalExtentServices.createAsset(iri);
     }
 
     /**
@@ -68,7 +68,7 @@ public class AssetBuilder {
      * @return This builder.
      */
     public final AssetBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.asset.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.asset.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class AssetBuilder {
      * @return This builder.
      */
     public final AssetBuilder beginning(final Event event) {
-        this.asset.addValue(BEGINNING, new IRI(event.getId()));
+        this.asset.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -95,7 +95,7 @@ public class AssetBuilder {
      * @return This builder.
      */
     public final AssetBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.asset.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.asset.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -107,7 +107,7 @@ public class AssetBuilder {
      * @return This builder.
      */
     public final AssetBuilder ending(final Event event) {
-        this.asset.addValue(ENDING, new IRI(event.getId()));
+        this.asset.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class AssetBuilder {
      * @return This builder.
      */
     public final AssetBuilder member__Of(final Class clazz) {
-        this.asset.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.asset.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class AssetBuilder {
      * @return This builder.
      */
     public final AssetBuilder member_Of(final ClassOfParticipant classOfParticipant) {
-        this.asset.addValue(MEMBER_OF, new IRI(classOfParticipant.getId()));
+        this.asset.addValue(MEMBER_OF, classOfParticipant.getId());
         return this;
     }
 
@@ -146,7 +146,7 @@ public class AssetBuilder {
      * @return This builder.
      */
     public final AssetBuilder member_Of_Kind_M(final Role role) {
-        this.asset.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
+        this.asset.addValue(MEMBER_OF_KIND, role.getId());
         return this;
     }
 
@@ -159,7 +159,7 @@ public class AssetBuilder {
      * @return This builder.
      */
     public final AssetBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.asset.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.asset.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -178,7 +178,7 @@ public class AssetBuilder {
      * @return This builder.
      */
     public final AssetBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.asset.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.asset.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -191,7 +191,7 @@ public class AssetBuilder {
      * @return This builder.
      */
     public final AssetBuilder participant_In_M(final Ownership ownership) {
-        this.asset.addValue(PARTICIPANT_IN, new IRI(ownership.getId()));
+        this.asset.addValue(PARTICIPANT_IN, ownership.getId());
         return this;
     }
 
@@ -204,7 +204,7 @@ public class AssetBuilder {
      * @return This builder.
      */
     public final AssetBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.asset.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.asset.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -218,7 +218,7 @@ public class AssetBuilder {
      * @return This builder.
      */
     public final AssetBuilder temporal_Part_Of(final PhysicalObject physicalObject) {
-        this.asset.addValue(TEMPORAL_PART_OF, new IRI(physicalObject.getId()));
+        this.asset.addValue(TEMPORAL_PART_OF, physicalObject.getId());
         return this;
     }
 

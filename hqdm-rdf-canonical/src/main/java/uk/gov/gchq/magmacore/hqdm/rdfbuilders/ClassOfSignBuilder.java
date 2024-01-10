@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSign;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfSign.
@@ -43,7 +43,7 @@ public class ClassOfSignBuilder {
      * @param iri IRI of the ClassOfSign.
      */
     public ClassOfSignBuilder(final IRI iri) {
-        this.classOfSign = RdfClassServices.createClassOfSign(iri);
+        this.classOfSign = ClassServices.createClassOfSign(iri);
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfSignBuilder {
      */
     public final ClassOfSignBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfSign.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfSign.addValue(CONSISTS__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -71,7 +71,7 @@ public class ClassOfSignBuilder {
      * @return This builder.
      */
     public final ClassOfSignBuilder has_Superclass(final Class clazz) {
-        this.classOfSign.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfSign.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -83,7 +83,7 @@ public class ClassOfSignBuilder {
      * @return This builder.
      */
     public final ClassOfSignBuilder member__Of(final Class clazz) {
-        this.classOfSign.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfSign.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -96,7 +96,7 @@ public class ClassOfSignBuilder {
      * @return This builder.
      */
     public final ClassOfSignBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfSign.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfSign.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -110,7 +110,7 @@ public class ClassOfSignBuilder {
      */
     public final ClassOfSignBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.classOfSign.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.classOfSign.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -126,7 +126,7 @@ public class ClassOfSignBuilder {
      */
     public final ClassOfSignBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfSign.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfSign.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 

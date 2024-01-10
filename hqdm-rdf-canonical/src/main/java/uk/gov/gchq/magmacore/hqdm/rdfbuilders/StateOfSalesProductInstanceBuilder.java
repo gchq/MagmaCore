@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.SalesProductInstance;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfSalesProductInstance;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfSalesProductInstance.
@@ -49,7 +49,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @param iri IRI of the StateOfSalesProductInstance.
      */
     public StateOfSalesProductInstanceBuilder(final IRI iri) {
-        stateOfSalesProductInstance = RdfSpatioTemporalExtentServices.createStateOfSalesProductInstance(iri);
+        stateOfSalesProductInstance = SpatioTemporalExtentServices.createStateOfSalesProductInstance(iri);
     }
 
     /**
@@ -65,7 +65,7 @@ public class StateOfSalesProductInstanceBuilder {
      */
     public final StateOfSalesProductInstanceBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfSalesProductInstance.addValue(AGGREGATED_INTO,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -77,7 +77,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder beginning(final Event event) {
-        this.stateOfSalesProductInstance.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfSalesProductInstance.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -92,7 +92,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfSalesProductInstance.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSalesProductInstance.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -104,7 +104,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder ending(final Event event) {
-        this.stateOfSalesProductInstance.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfSalesProductInstance.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -116,7 +116,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder member__Of(final Class clazz) {
-        this.stateOfSalesProductInstance.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfSalesProductInstance.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -132,7 +132,7 @@ public class StateOfSalesProductInstanceBuilder {
     public final StateOfSalesProductInstanceBuilder member_Of(
             final ClassOfStateOfSalesProductInstance classOfStateOfSalesProductInstance) {
         this.stateOfSalesProductInstance.addValue(MEMBER_OF,
-                new IRI(classOfStateOfSalesProductInstance.getId()));
+                classOfStateOfSalesProductInstance.getId());
         return this;
     }
 
@@ -145,7 +145,7 @@ public class StateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final StateOfSalesProductInstanceBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfSalesProductInstance.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfSalesProductInstance.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -165,7 +165,7 @@ public class StateOfSalesProductInstanceBuilder {
      */
     public final StateOfSalesProductInstanceBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
         this.stateOfSalesProductInstance.addValue(PART_OF_POSSIBLE_WORLD,
-                new IRI(possibleWorld.getId()));
+                possibleWorld.getId());
         return this;
     }
 
@@ -179,7 +179,7 @@ public class StateOfSalesProductInstanceBuilder {
      */
     public final StateOfSalesProductInstanceBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfSalesProductInstance.addValue(TEMPORAL__PART_OF,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -194,7 +194,7 @@ public class StateOfSalesProductInstanceBuilder {
      */
     public final StateOfSalesProductInstanceBuilder temporal_Part_Of(final SalesProductInstance salesProductInstance) {
         this.stateOfSalesProductInstance.addValue(TEMPORAL_PART_OF,
-                new IRI(salesProductInstance.getId()));
+                salesProductInstance.getId());
         return this;
     }
 

@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfIndividual;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of KindOfIndividual.
@@ -43,7 +43,7 @@ public class KindOfIndividualBuilder {
      * @param iri IRI of the KindOfIndividual.
      */
     public KindOfIndividualBuilder(final IRI iri) {
-        kindOfIndividual = RdfClassServices.createKindOfIndividual(iri);
+        kindOfIndividual = ClassServices.createKindOfIndividual(iri);
     }
 
     /**
@@ -60,7 +60,7 @@ public class KindOfIndividualBuilder {
     public final KindOfIndividualBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.kindOfIndividual.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -72,7 +72,7 @@ public class KindOfIndividualBuilder {
      * @return This builder.
      */
     public final KindOfIndividualBuilder has_Superclass(final Class clazz) {
-        this.kindOfIndividual.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfIndividual.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -84,7 +84,7 @@ public class KindOfIndividualBuilder {
      * @return This builder.
      */
     public final KindOfIndividualBuilder member__Of(final Class clazz) {
-        this.kindOfIndividual.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfIndividual.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class KindOfIndividualBuilder {
      * @return This builder.
      */
     public final KindOfIndividualBuilder member_Of(final ClassOfClass classOfClass) {
-        this.kindOfIndividual.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfIndividual.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -111,7 +111,7 @@ public class KindOfIndividualBuilder {
      */
     public final KindOfIndividualBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.kindOfIndividual.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.kindOfIndividual.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -127,7 +127,7 @@ public class KindOfIndividualBuilder {
      */
     public final KindOfIndividualBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.kindOfIndividual.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.kindOfIndividual.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 

@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Pattern;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of Pattern.
@@ -43,7 +43,7 @@ public class PatternBuilder {
      * @param iri IRI of the Pattern.
      */
     public PatternBuilder(final IRI iri) {
-        pattern = RdfClassServices.createPattern(iri);
+        pattern = ClassServices.createPattern(iri);
     }
 
     /**
@@ -59,7 +59,7 @@ public class PatternBuilder {
      */
     public final PatternBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.pattern.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.pattern.addValue(CONSISTS__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -71,7 +71,7 @@ public class PatternBuilder {
      * @return This builder.
      */
     public final PatternBuilder has_Superclass(final Class clazz) {
-        this.pattern.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.pattern.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -83,7 +83,7 @@ public class PatternBuilder {
      * @return This builder.
      */
     public final PatternBuilder member__Of(final Class clazz) {
-        this.pattern.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.pattern.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -96,7 +96,7 @@ public class PatternBuilder {
      * @return This builder.
      */
     public final PatternBuilder member_Of(final ClassOfClass classOfClass) {
-        this.pattern.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.pattern.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -110,7 +110,7 @@ public class PatternBuilder {
      */
     public final PatternBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.pattern.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.pattern.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -126,7 +126,7 @@ public class PatternBuilder {
      */
     public final PatternBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.pattern.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.pattern.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 

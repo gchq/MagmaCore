@@ -23,7 +23,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfRelationship.
@@ -38,7 +38,7 @@ public class ClassOfRelationshipBuilder {
      * @param iri IRI of the ClassOfRelationship.
      */
     public ClassOfRelationshipBuilder(final IRI iri) {
-        this.classOfRelationship = RdfClassServices.createClassOfRelationship(iri);
+        this.classOfRelationship = ClassServices.createClassOfRelationship(iri);
     }
 
     /**
@@ -49,7 +49,7 @@ public class ClassOfRelationshipBuilder {
      * @return This builder.
      */
     public final ClassOfRelationshipBuilder has_Superclass(final Class clazz) {
-        this.classOfRelationship.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfRelationship.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -61,7 +61,7 @@ public class ClassOfRelationshipBuilder {
      * @return This builder.
      */
     public final ClassOfRelationshipBuilder member__Of(final Class clazz) {
-        this.classOfRelationship.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfRelationship.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -74,7 +74,7 @@ public class ClassOfRelationshipBuilder {
      * @return This builder.
      */
     public final ClassOfRelationshipBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfRelationship.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfRelationship.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 

@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.System;
 import uk.gov.gchq.magmacore.hqdm.model.SystemComponent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of SystemComponent.
@@ -53,7 +53,7 @@ public class SystemComponentBuilder {
      * @param iri IRI of the SystemComponent.
      */
     public SystemComponentBuilder(final IRI iri) {
-        systemComponent = RdfSpatioTemporalExtentServices.createSystemComponent(iri);
+        systemComponent = SpatioTemporalExtentServices.createSystemComponent(iri);
     }
 
     /**
@@ -68,7 +68,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.systemComponent.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.systemComponent.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder beginning(final Event event) {
-        this.systemComponent.addValue(BEGINNING, new IRI(event.getId()));
+        this.systemComponent.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -93,7 +93,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder component_Of_M(final System system) {
-        this.systemComponent.addValue(COMPONENT_OF, new IRI(system.getId()));
+        this.systemComponent.addValue(COMPONENT_OF, system.getId());
         return this;
     }
 
@@ -108,7 +108,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.systemComponent.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.systemComponent.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -120,7 +120,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder ending(final Event event) {
-        this.systemComponent.addValue(ENDING, new IRI(event.getId()));
+        this.systemComponent.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -132,7 +132,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder member__Of(final Class clazz) {
-        this.systemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.systemComponent.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -145,7 +145,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder member_Of(final ClassOfSystemComponent classOfSystemComponent) {
-        this.systemComponent.addValue(MEMBER_OF, new IRI(classOfSystemComponent.getId()));
+        this.systemComponent.addValue(MEMBER_OF, classOfSystemComponent.getId());
         return this;
     }
 
@@ -159,7 +159,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder member_Of_Kind(final KindOfPhysicalObject kindOfPhysicalObject) {
-        this.systemComponent.addValue(MEMBER_OF_KIND, new IRI(kindOfPhysicalObject.getId()));
+        this.systemComponent.addValue(MEMBER_OF_KIND, kindOfPhysicalObject.getId());
         return this;
     }
 
@@ -172,7 +172,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.systemComponent.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.systemComponent.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -191,7 +191,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.systemComponent.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.systemComponent.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -204,7 +204,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.systemComponent.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.systemComponent.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -227,7 +227,7 @@ public class SystemComponentBuilder {
      * @return This builder.
      */
     public final SystemComponentBuilder temporal_Part_Of(final Individual individual) {
-        this.systemComponent.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.systemComponent.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

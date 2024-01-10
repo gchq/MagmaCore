@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Event;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of BeginningOfOwnership.
@@ -47,7 +47,7 @@ public class BeginningOfOwnershipBuilder {
      * @param iri IRI of the BeginningOfOwnership.
      */
     public BeginningOfOwnershipBuilder(final IRI iri) {
-        this.beginningOfOwnership = RdfSpatioTemporalExtentServices.createBeginningOfOwnership(iri);
+        this.beginningOfOwnership = SpatioTemporalExtentServices.createBeginningOfOwnership(iri);
     }
 
     /**
@@ -62,7 +62,7 @@ public class BeginningOfOwnershipBuilder {
      * @return This builder.
      */
     public final BeginningOfOwnershipBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.beginningOfOwnership.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.beginningOfOwnership.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -74,7 +74,7 @@ public class BeginningOfOwnershipBuilder {
      * @return This builder.
      */
     public final BeginningOfOwnershipBuilder beginning(final Event event) {
-        this.beginningOfOwnership.addValue(BEGINNING, new IRI(event.getId()));
+        this.beginningOfOwnership.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -89,7 +89,7 @@ public class BeginningOfOwnershipBuilder {
      * @return This builder.
      */
     public final BeginningOfOwnershipBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.beginningOfOwnership.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.beginningOfOwnership.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -101,7 +101,7 @@ public class BeginningOfOwnershipBuilder {
      * @return This builder.
      */
     public final BeginningOfOwnershipBuilder ending(final Event event) {
-        this.beginningOfOwnership.addValue(ENDING, new IRI(event.getId()));
+        this.beginningOfOwnership.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -113,7 +113,7 @@ public class BeginningOfOwnershipBuilder {
      * @return This builder.
      */
     public final BeginningOfOwnershipBuilder member__Of(final Class clazz) {
-        this.beginningOfOwnership.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.beginningOfOwnership.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -126,7 +126,7 @@ public class BeginningOfOwnershipBuilder {
      * @return This builder.
      */
     public final BeginningOfOwnershipBuilder member_Of(final ClassOfEvent classOfEvent) {
-        this.beginningOfOwnership.addValue(MEMBER_OF, new IRI(classOfEvent.getId()));
+        this.beginningOfOwnership.addValue(MEMBER_OF, classOfEvent.getId());
         return this;
     }
 
@@ -139,7 +139,7 @@ public class BeginningOfOwnershipBuilder {
      * @return This builder.
      */
     public final BeginningOfOwnershipBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.beginningOfOwnership.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.beginningOfOwnership.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -158,7 +158,7 @@ public class BeginningOfOwnershipBuilder {
      * @return This builder.
      */
     public final BeginningOfOwnershipBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.beginningOfOwnership.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.beginningOfOwnership.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -171,7 +171,7 @@ public class BeginningOfOwnershipBuilder {
      * @return This builder.
      */
     public final BeginningOfOwnershipBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.beginningOfOwnership.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.beginningOfOwnership.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 

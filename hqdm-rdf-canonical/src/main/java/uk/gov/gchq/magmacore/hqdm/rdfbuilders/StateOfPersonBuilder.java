@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfPerson;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfPerson.
@@ -49,7 +49,7 @@ public class StateOfPersonBuilder {
      * @param iri IRI of the StateOfPerson.
      */
     public StateOfPersonBuilder(final IRI iri) {
-        stateOfPerson = RdfSpatioTemporalExtentServices.createStateOfPerson(iri);
+        stateOfPerson = SpatioTemporalExtentServices.createStateOfPerson(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class StateOfPersonBuilder {
      * @return This builder.
      */
     public final StateOfPersonBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfPerson.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfPerson.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfPersonBuilder {
      * @return This builder.
      */
     public final StateOfPersonBuilder beginning(final Event event) {
-        this.stateOfPerson.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfPerson.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfPersonBuilder {
      * @return This builder.
      */
     public final StateOfPersonBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfPerson.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfPerson.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfPersonBuilder {
      * @return This builder.
      */
     public final StateOfPersonBuilder ending(final Event event) {
-        this.stateOfPerson.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfPerson.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfPersonBuilder {
      * @return This builder.
      */
     public final StateOfPersonBuilder member__Of(final Class clazz) {
-        this.stateOfPerson.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfPerson.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -128,7 +128,7 @@ public class StateOfPersonBuilder {
      * @return This builder.
      */
     public final StateOfPersonBuilder member_Of(final ClassOfStateOfPerson classOfStateOfPerson) {
-        this.stateOfPerson.addValue(MEMBER_OF, new IRI(classOfStateOfPerson.getId()));
+        this.stateOfPerson.addValue(MEMBER_OF, classOfStateOfPerson.getId());
         return this;
     }
 
@@ -141,7 +141,7 @@ public class StateOfPersonBuilder {
      * @return This builder.
      */
     public final StateOfPersonBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfPerson.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfPerson.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -160,7 +160,7 @@ public class StateOfPersonBuilder {
      * @return This builder.
      */
     public final StateOfPersonBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.stateOfPerson.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfPerson.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -173,7 +173,7 @@ public class StateOfPersonBuilder {
      * @return This builder.
      */
     public final StateOfPersonBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfPerson.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfPerson.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -186,7 +186,7 @@ public class StateOfPersonBuilder {
      * @return This builder.
      */
     public final StateOfPersonBuilder temporal_Part_Of(final Person person) {
-        this.stateOfPerson.addValue(TEMPORAL_PART_OF, new IRI(person.getId()));
+        this.stateOfPerson.addValue(TEMPORAL_PART_OF, person.getId());
         return this;
     }
 

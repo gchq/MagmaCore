@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfOrganizationComponent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of KindOfOrganizationComponent.
@@ -43,7 +43,7 @@ public class KindOfOrganizationComponentBuilder {
      * @param iri IRI of the KindOfOrganizationComponent.
      */
     public KindOfOrganizationComponentBuilder(final IRI iri) {
-        kindOfOrganizationComponent = RdfClassServices.createKindOfOrganizationComponent(iri);
+        kindOfOrganizationComponent = ClassServices.createKindOfOrganizationComponent(iri);
     }
 
     /**
@@ -60,7 +60,7 @@ public class KindOfOrganizationComponentBuilder {
     public final KindOfOrganizationComponentBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.kindOfOrganizationComponent.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -72,7 +72,7 @@ public class KindOfOrganizationComponentBuilder {
      * @return This builder.
      */
     public final KindOfOrganizationComponentBuilder has_Superclass(final Class clazz) {
-        this.kindOfOrganizationComponent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfOrganizationComponent.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -84,7 +84,7 @@ public class KindOfOrganizationComponentBuilder {
      * @return This builder.
      */
     public final KindOfOrganizationComponentBuilder member__Of(final Class clazz) {
-        this.kindOfOrganizationComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfOrganizationComponent.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class KindOfOrganizationComponentBuilder {
      * @return This builder.
      */
     public final KindOfOrganizationComponentBuilder member_Of(final ClassOfClass classOfClass) {
-        this.kindOfOrganizationComponent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfOrganizationComponent.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -112,7 +112,7 @@ public class KindOfOrganizationComponentBuilder {
     public final KindOfOrganizationComponentBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.kindOfOrganizationComponent.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -129,7 +129,7 @@ public class KindOfOrganizationComponentBuilder {
     public final KindOfOrganizationComponentBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.kindOfOrganizationComponent.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

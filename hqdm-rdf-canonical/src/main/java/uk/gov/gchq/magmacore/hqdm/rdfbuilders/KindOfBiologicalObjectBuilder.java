@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfBiologicalObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of KindOfBiologicalObject.
@@ -43,7 +43,7 @@ public class KindOfBiologicalObjectBuilder {
      * @param iri IRI of the KindOfBiologicalObject.
      */
     public KindOfBiologicalObjectBuilder(final IRI iri) {
-        kindOfBiologicalObject = RdfClassServices.createKindOfBiologicalObject(iri);
+        kindOfBiologicalObject = ClassServices.createKindOfBiologicalObject(iri);
     }
 
     /**
@@ -60,7 +60,7 @@ public class KindOfBiologicalObjectBuilder {
     public final KindOfBiologicalObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.kindOfBiologicalObject.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -72,7 +72,7 @@ public class KindOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final KindOfBiologicalObjectBuilder has_Superclass(final Class clazz) {
-        this.kindOfBiologicalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfBiologicalObject.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -84,7 +84,7 @@ public class KindOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final KindOfBiologicalObjectBuilder member__Of(final Class clazz) {
-        this.kindOfBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfBiologicalObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -97,7 +97,7 @@ public class KindOfBiologicalObjectBuilder {
      * @return This builder.
      */
     public final KindOfBiologicalObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        this.kindOfBiologicalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfBiologicalObject.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -112,7 +112,7 @@ public class KindOfBiologicalObjectBuilder {
     public final KindOfBiologicalObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.kindOfBiologicalObject.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -129,7 +129,7 @@ public class KindOfBiologicalObjectBuilder {
     public final KindOfBiologicalObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.kindOfBiologicalObject.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

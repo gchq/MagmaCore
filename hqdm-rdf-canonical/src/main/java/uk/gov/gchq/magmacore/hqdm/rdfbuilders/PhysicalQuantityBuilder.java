@@ -30,7 +30,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfPhysicalQuantity;
 import uk.gov.gchq.magmacore.hqdm.model.PhysicalQuantity;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of PhysicalQuantity.
@@ -45,7 +45,7 @@ public class PhysicalQuantityBuilder {
      * @param iri IRI of the PhysicalQuantity.
      */
     public PhysicalQuantityBuilder(final IRI iri) {
-        physicalQuantity = RdfSpatioTemporalExtentServices.createPhysicalQuantity(iri);
+        physicalQuantity = SpatioTemporalExtentServices.createPhysicalQuantity(iri);
     }
 
     /**
@@ -62,7 +62,7 @@ public class PhysicalQuantityBuilder {
     public final PhysicalQuantityBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.physicalQuantity.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -74,7 +74,7 @@ public class PhysicalQuantityBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityBuilder has_Superclass(final Class clazz) {
-        this.physicalQuantity.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.physicalQuantity.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -86,7 +86,7 @@ public class PhysicalQuantityBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityBuilder member__Of(final Class clazz) {
-        this.physicalQuantity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.physicalQuantity.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -99,7 +99,7 @@ public class PhysicalQuantityBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityBuilder member_Of(final ClassOfPhysicalQuantity classOfPhysicalQuantity) {
-        this.physicalQuantity.addValue(MEMBER_OF, new IRI(classOfPhysicalQuantity.getId()));
+        this.physicalQuantity.addValue(MEMBER_OF, classOfPhysicalQuantity.getId());
         return this;
     }
 
@@ -113,7 +113,7 @@ public class PhysicalQuantityBuilder {
      */
     public final PhysicalQuantityBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.physicalQuantity.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.physicalQuantity.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -126,7 +126,7 @@ public class PhysicalQuantityBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityBuilder member_Of_Kind_M(final KindOfPhysicalQuantity kindOfPhysicalQuantity) {
-        this.physicalQuantity.addValue(MEMBER_OF_KIND, new IRI(kindOfPhysicalQuantity.getId()));
+        this.physicalQuantity.addValue(MEMBER_OF_KIND, kindOfPhysicalQuantity.getId());
         return this;
     }
 
@@ -142,7 +142,7 @@ public class PhysicalQuantityBuilder {
      */
     public final PhysicalQuantityBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.physicalQuantity.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.physicalQuantity.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 

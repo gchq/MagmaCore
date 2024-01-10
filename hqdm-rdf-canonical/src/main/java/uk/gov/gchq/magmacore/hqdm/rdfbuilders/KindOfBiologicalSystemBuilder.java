@@ -32,7 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfBiologicalSystem;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfBiologicalSystemComponent;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of KindOfBiologicalSystem.
@@ -47,7 +47,7 @@ public class KindOfBiologicalSystemBuilder {
      * @param iri IRI of the KindOfBiologicalSystem.
      */
     public KindOfBiologicalSystemBuilder(final IRI iri) {
-        kindOfBiologicalSystem = RdfClassServices.createKindOfBiologicalSystem(iri);
+        kindOfBiologicalSystem = ClassServices.createKindOfBiologicalSystem(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class KindOfBiologicalSystemBuilder {
     public final KindOfBiologicalSystemBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.kindOfBiologicalSystem.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class KindOfBiologicalSystemBuilder {
     public final KindOfBiologicalSystemBuilder has_Component_By_Class_M(
             final KindOfBiologicalSystemComponent kindOfBiologicalSystemComponent) {
         this.kindOfBiologicalSystem.addValue(HAS_COMPONENT_BY_CLASS,
-                new IRI(kindOfBiologicalSystemComponent.getId()));
+                kindOfBiologicalSystemComponent.getId());
         return this;
     }
 
@@ -92,7 +92,7 @@ public class KindOfBiologicalSystemBuilder {
      * @return This builder.
      */
     public final KindOfBiologicalSystemBuilder has_Superclass(final Class clazz) {
-        this.kindOfBiologicalSystem.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfBiologicalSystem.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -104,7 +104,7 @@ public class KindOfBiologicalSystemBuilder {
      * @return This builder.
      */
     public final KindOfBiologicalSystemBuilder member__Of(final Class clazz) {
-        this.kindOfBiologicalSystem.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfBiologicalSystem.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -117,7 +117,7 @@ public class KindOfBiologicalSystemBuilder {
      * @return This builder.
      */
     public final KindOfBiologicalSystemBuilder member_Of(final ClassOfClass classOfClass) {
-        this.kindOfBiologicalSystem.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfBiologicalSystem.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -132,7 +132,7 @@ public class KindOfBiologicalSystemBuilder {
     public final KindOfBiologicalSystemBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.kindOfBiologicalSystem.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class KindOfBiologicalSystemBuilder {
      * @return This builder.
      */
     public final KindOfBiologicalSystemBuilder natural_Role_By_Class_M(final Role role) {
-        this.kindOfBiologicalSystem.addValue(NATURAL_ROLE_BY_CLASS, new IRI(role.getId()));
+        this.kindOfBiologicalSystem.addValue(NATURAL_ROLE_BY_CLASS, role.getId());
         return this;
     }
 
@@ -161,7 +161,7 @@ public class KindOfBiologicalSystemBuilder {
     public final KindOfBiologicalSystemBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.kindOfBiologicalSystem.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

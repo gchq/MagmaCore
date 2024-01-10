@@ -36,7 +36,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Requirement;
 import uk.gov.gchq.magmacore.hqdm.model.RequirementSpecification;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Requirement.
@@ -51,7 +51,7 @@ public class RequirementBuilder {
      * @param iri IRI of the Requirement.
      */
     public RequirementBuilder(final IRI iri) {
-        requirement = RdfSpatioTemporalExtentServices.createRequirement(iri);
+        requirement = SpatioTemporalExtentServices.createRequirement(iri);
     }
 
     /**
@@ -66,7 +66,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.requirement.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.requirement.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -78,7 +78,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder beginning(final Event event) {
-        this.requirement.addValue(BEGINNING, new IRI(event.getId()));
+        this.requirement.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -93,7 +93,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.requirement.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.requirement.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -106,7 +106,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder defined_By_M(final RequirementSpecification requirementSpecification) {
-        this.requirement.addValue(DEFINED_BY, new IRI(requirementSpecification.getId()));
+        this.requirement.addValue(DEFINED_BY, requirementSpecification.getId());
         return this;
     }
 
@@ -118,7 +118,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder ending(final Event event) {
-        this.requirement.addValue(ENDING, new IRI(event.getId()));
+        this.requirement.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder member__Of(final Class clazz) {
-        this.requirement.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.requirement.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class RequirementBuilder {
      */
     public final RequirementBuilder member_Of(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.requirement.addValue(MEMBER_OF, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.requirement.addValue(MEMBER_OF, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -157,7 +157,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.requirement.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.requirement.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -170,7 +170,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder part_Of_Plan_M(final Plan plan) {
-        this.requirement.addValue(PART_OF_PLAN, new IRI(plan.getId()));
+        this.requirement.addValue(PART_OF_PLAN, plan.getId());
         return this;
     }
 
@@ -189,7 +189,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.requirement.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.requirement.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -202,7 +202,7 @@ public class RequirementBuilder {
      * @return This builder.
      */
     public final RequirementBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.requirement.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.requirement.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 

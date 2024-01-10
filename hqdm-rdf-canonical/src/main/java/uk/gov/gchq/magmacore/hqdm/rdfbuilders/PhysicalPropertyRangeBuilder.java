@@ -30,7 +30,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.PhysicalProperty;
 import uk.gov.gchq.magmacore.hqdm.model.PhysicalPropertyRange;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of PhysicalPropertyRange.
@@ -45,7 +45,7 @@ public class PhysicalPropertyRangeBuilder {
      * @param iri IRI of the PhysicalPropertyRange.
      */
     public PhysicalPropertyRangeBuilder(final IRI iri) {
-        physicalPropertyRange = RdfSpatioTemporalExtentServices.createPhysicalPropertyRange(iri);
+        physicalPropertyRange = SpatioTemporalExtentServices.createPhysicalPropertyRange(iri);
     }
 
     /**
@@ -62,7 +62,7 @@ public class PhysicalPropertyRangeBuilder {
     public final PhysicalPropertyRangeBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.physicalPropertyRange.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -74,7 +74,7 @@ public class PhysicalPropertyRangeBuilder {
      * @return This builder.
      */
     public final PhysicalPropertyRangeBuilder has_Superclass(final Class clazz) {
-        this.physicalPropertyRange.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.physicalPropertyRange.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -86,7 +86,7 @@ public class PhysicalPropertyRangeBuilder {
      * @return This builder.
      */
     public final PhysicalPropertyRangeBuilder member__Of(final Class clazz) {
-        this.physicalPropertyRange.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.physicalPropertyRange.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -99,7 +99,7 @@ public class PhysicalPropertyRangeBuilder {
      * @return This builder.
      */
     public final PhysicalPropertyRangeBuilder member_Of(final ClassOfClass classOfClass) {
-        this.physicalPropertyRange.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.physicalPropertyRange.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -114,7 +114,7 @@ public class PhysicalPropertyRangeBuilder {
     public final PhysicalPropertyRangeBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.physicalPropertyRange.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class PhysicalPropertyRangeBuilder {
     public final PhysicalPropertyRangeBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.physicalPropertyRange.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -143,7 +143,7 @@ public class PhysicalPropertyRangeBuilder {
      * @return This builder.
      */
     public final PhysicalPropertyRangeBuilder ranges_Over_M(final PhysicalProperty physicalProperty) {
-        this.physicalPropertyRange.addValue(RANGES_OVER, new IRI(physicalProperty.getId()));
+        this.physicalPropertyRange.addValue(RANGES_OVER, physicalProperty.getId());
         return this;
     }
 

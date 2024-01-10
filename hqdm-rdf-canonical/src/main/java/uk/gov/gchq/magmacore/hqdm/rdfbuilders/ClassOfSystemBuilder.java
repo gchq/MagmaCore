@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSystem;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfSystem.
@@ -43,7 +43,7 @@ public class ClassOfSystemBuilder {
      * @param iri IRI of the ClassOfSystem.
      */
     public ClassOfSystemBuilder(final IRI iri) {
-        this.classOfSystem = RdfClassServices.createClassOfSystem(iri);
+        this.classOfSystem = ClassServices.createClassOfSystem(iri);
     }
 
     /**
@@ -59,7 +59,7 @@ public class ClassOfSystemBuilder {
      */
     public final ClassOfSystemBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfSystem.addValue(CONSISTS__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfSystem.addValue(CONSISTS__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -71,7 +71,7 @@ public class ClassOfSystemBuilder {
      * @return This builder.
      */
     public final ClassOfSystemBuilder has_Superclass(final Class clazz) {
-        this.classOfSystem.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfSystem.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -83,7 +83,7 @@ public class ClassOfSystemBuilder {
      * @return This builder.
      */
     public final ClassOfSystemBuilder member__Of(final Class clazz) {
-        this.classOfSystem.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfSystem.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -96,7 +96,7 @@ public class ClassOfSystemBuilder {
      * @return This builder.
      */
     public final ClassOfSystemBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfSystem.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfSystem.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -110,7 +110,7 @@ public class ClassOfSystemBuilder {
      */
     public final ClassOfSystemBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.classOfSystem.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.classOfSystem.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -126,7 +126,7 @@ public class ClassOfSystemBuilder {
      */
     public final ClassOfSystemBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfSystem.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.classOfSystem.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 

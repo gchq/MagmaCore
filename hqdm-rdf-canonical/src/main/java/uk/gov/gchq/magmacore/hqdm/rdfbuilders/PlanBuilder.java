@@ -37,7 +37,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Plan;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Plan.
@@ -52,7 +52,7 @@ public class PlanBuilder {
      * @param iri IRI of the Plan.
      */
     public PlanBuilder(final IRI iri) {
-        plan = RdfSpatioTemporalExtentServices.createPlan(iri);
+        plan = SpatioTemporalExtentServices.createPlan(iri);
     }
 
     /**
@@ -67,7 +67,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.plan.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.plan.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -79,7 +79,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder beginning(final Event event) {
-        this.plan.addValue(BEGINNING, new IRI(event.getId()));
+        this.plan.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -94,7 +94,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.plan.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.plan.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -106,7 +106,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder ending(final Event event) {
-        this.plan.addValue(ENDING, new IRI(event.getId()));
+        this.plan.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -118,7 +118,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder member__Of(final Class clazz) {
-        this.plan.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.plan.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder member_Of(final ClassOfPossibleWorld classOfPossibleWorld) {
-        this.plan.addValue(MEMBER_OF, new IRI(classOfPossibleWorld.getId()));
+        this.plan.addValue(MEMBER_OF, classOfPossibleWorld.getId());
         return this;
     }
 
@@ -144,7 +144,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder member_Of_Kind(final KindOfIndividual kindOfIndividual) {
-        this.plan.addValue(MEMBER_OF_KIND, new IRI(kindOfIndividual.getId()));
+        this.plan.addValue(MEMBER_OF_KIND, kindOfIndividual.getId());
         return this;
     }
 
@@ -157,7 +157,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.plan.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.plan.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -176,7 +176,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.plan.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.plan.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -189,7 +189,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.plan.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.plan.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -212,7 +212,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder temporal_Part_Of(final Individual individual) {
-        this.plan.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.plan.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 
@@ -226,7 +226,7 @@ public class PlanBuilder {
      * @return This builder.
      */
     public final PlanBuilder temporal_Part_Of_(final PossibleWorld possibleWorld) {
-        this.plan.addValue(TEMPORAL_PART_OF_, new IRI(possibleWorld.getId()));
+        this.plan.addValue(TEMPORAL_PART_OF_, possibleWorld.getId());
         return this;
     }
 

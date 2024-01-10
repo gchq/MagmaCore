@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfStateOfSalesProductInstance;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfStateOfSalesProductInstance.
@@ -43,7 +43,7 @@ public class ClassOfStateOfSalesProductInstanceBuilder {
      * @param iri IRI of the ClassOfStateOfSalesProductInstance.
      */
     public ClassOfStateOfSalesProductInstanceBuilder(final IRI iri) {
-        this.classOfStateOfSalesProductInstance = RdfClassServices
+        this.classOfStateOfSalesProductInstance = ClassServices
                 .createClassOfStateOfSalesProductInstance(iri);
     }
 
@@ -61,7 +61,7 @@ public class ClassOfStateOfSalesProductInstanceBuilder {
     public final ClassOfStateOfSalesProductInstanceBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfStateOfSalesProductInstance.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -73,7 +73,7 @@ public class ClassOfStateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSalesProductInstanceBuilder has_Superclass(final Class clazz) {
-        this.classOfStateOfSalesProductInstance.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfStateOfSalesProductInstance.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -85,7 +85,7 @@ public class ClassOfStateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSalesProductInstanceBuilder member__Of(final Class clazz) {
-        this.classOfStateOfSalesProductInstance.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfSalesProductInstance.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -98,7 +98,7 @@ public class ClassOfStateOfSalesProductInstanceBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfSalesProductInstanceBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfStateOfSalesProductInstance.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfStateOfSalesProductInstance.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -113,7 +113,7 @@ public class ClassOfStateOfSalesProductInstanceBuilder {
     public final ClassOfStateOfSalesProductInstanceBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfStateOfSalesProductInstance.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class ClassOfStateOfSalesProductInstanceBuilder {
     public final ClassOfStateOfSalesProductInstanceBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfStateOfSalesProductInstance.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

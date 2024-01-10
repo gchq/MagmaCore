@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfActivity;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of KindOfActivity.
@@ -49,7 +49,7 @@ public class KindOfActivityBuilder {
      * @param iri IRI of the KindOfActivity.
      */
     public KindOfActivityBuilder(final IRI iri) {
-        kindOfActivity = RdfClassServices.createKindOfActivity(iri);
+        kindOfActivity = ClassServices.createKindOfActivity(iri);
     }
 
     /**
@@ -61,7 +61,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder causes_By_Class(final ClassOfEvent classOfEvent) {
-        this.kindOfActivity.addValue(CAUSES_BY_CLASS, new IRI(classOfEvent.getId()));
+        this.kindOfActivity.addValue(CAUSES_BY_CLASS, classOfEvent.getId());
         return this;
     }
 
@@ -79,7 +79,7 @@ public class KindOfActivityBuilder {
     public final KindOfActivityBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.kindOfActivity.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -93,7 +93,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder consists_Of_By_Class(final Role role) {
-        this.kindOfActivity.addValue(CONSISTS_OF_BY_CLASS, new IRI(role.getId()));
+        this.kindOfActivity.addValue(CONSISTS_OF_BY_CLASS, role.getId());
         return this;
     }
 
@@ -106,7 +106,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder determines_By_Class(final Class clazz) {
-        this.kindOfActivity.addValue(DETERMINES_BY_CLASS, new IRI(clazz.getId()));
+        this.kindOfActivity.addValue(DETERMINES_BY_CLASS, clazz.getId());
         return this;
     }
 
@@ -118,7 +118,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder has_Superclass(final Class clazz) {
-        this.kindOfActivity.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfActivity.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder member__Of(final Class clazz) {
-        this.kindOfActivity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfActivity.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -143,7 +143,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder member_Of(final ClassOfClass classOfClass) {
-        this.kindOfActivity.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfActivity.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -157,7 +157,7 @@ public class KindOfActivityBuilder {
      */
     public final KindOfActivityBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.kindOfActivity.addValue(MEMBER_OF_, new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+        this.kindOfActivity.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -173,7 +173,7 @@ public class KindOfActivityBuilder {
      */
     public final KindOfActivityBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.kindOfActivity.addValue(PART__OF_BY_CLASS, new IRI(classOfSpatioTemporalExtent.getId()));
+        this.kindOfActivity.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -186,7 +186,7 @@ public class KindOfActivityBuilder {
      * @return This builder.
      */
     public final KindOfActivityBuilder references_By_Class(final Class clazz) {
-        this.kindOfActivity.addValue(REFERENCES_BY_CLASS, new IRI(clazz.getId()));
+        this.kindOfActivity.addValue(REFERENCES_BY_CLASS, clazz.getId());
         return this;
     }
 

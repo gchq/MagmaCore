@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfOrdinaryBiologicalObject;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfOrdinaryBiologicalObject.
@@ -43,7 +43,7 @@ public class ClassOfOrdinaryBiologicalObjectBuilder {
      * @param iri IRI of the ClassOfOrdinaryBiologicalObject.
      */
     public ClassOfOrdinaryBiologicalObjectBuilder(final IRI iri) {
-        this.classOfOrdinaryBiologicalObject = RdfClassServices
+        this.classOfOrdinaryBiologicalObject = ClassServices
                 .createClassOfOrdinaryBiologicalObject(iri);
     }
 
@@ -61,7 +61,7 @@ public class ClassOfOrdinaryBiologicalObjectBuilder {
     public final ClassOfOrdinaryBiologicalObjectBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfOrdinaryBiologicalObject.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -73,7 +73,7 @@ public class ClassOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfOrdinaryBiologicalObjectBuilder has_Superclass(final Class clazz) {
-        this.classOfOrdinaryBiologicalObject.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfOrdinaryBiologicalObject.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -85,7 +85,7 @@ public class ClassOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfOrdinaryBiologicalObjectBuilder member__Of(final Class clazz) {
-        this.classOfOrdinaryBiologicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfOrdinaryBiologicalObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -98,7 +98,7 @@ public class ClassOfOrdinaryBiologicalObjectBuilder {
      * @return This builder.
      */
     public final ClassOfOrdinaryBiologicalObjectBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfOrdinaryBiologicalObject.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfOrdinaryBiologicalObject.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -113,7 +113,7 @@ public class ClassOfOrdinaryBiologicalObjectBuilder {
     public final ClassOfOrdinaryBiologicalObjectBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfOrdinaryBiologicalObject.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class ClassOfOrdinaryBiologicalObjectBuilder {
     public final ClassOfOrdinaryBiologicalObjectBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfOrdinaryBiologicalObject.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 

@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership;
 import uk.gov.gchq.magmacore.hqdm.model.Transferor;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Transferor.
@@ -53,7 +53,7 @@ public class TransferorBuilder {
      * @param iri IRI of the Transferor.
      */
     public TransferorBuilder(final IRI iri) {
-        transferor = RdfSpatioTemporalExtentServices.createTransferor(iri);
+        transferor = SpatioTemporalExtentServices.createTransferor(iri);
     }
 
     /**
@@ -68,7 +68,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferor.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.transferor.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder beginning(final Event event) {
-        this.transferor.addValue(BEGINNING, new IRI(event.getId()));
+        this.transferor.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -95,7 +95,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferor.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferor.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -107,7 +107,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder ending(final Event event) {
-        this.transferor.addValue(ENDING, new IRI(event.getId()));
+        this.transferor.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder member__Of(final Class clazz) {
-        this.transferor.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.transferor.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder member_Of(final ClassOfStateOfParty classOfStateOfParty) {
-        this.transferor.addValue(MEMBER_OF, new IRI(classOfStateOfParty.getId()));
+        this.transferor.addValue(MEMBER_OF, classOfStateOfParty.getId());
         return this;
     }
 
@@ -146,7 +146,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder member_Of_Kind_M(final Role role) {
-        this.transferor.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
+        this.transferor.addValue(MEMBER_OF_KIND, role.getId());
         return this;
     }
 
@@ -159,7 +159,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferor.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferor.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -178,7 +178,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.transferor.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.transferor.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -191,7 +191,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder participant_In_M(final TransferOfOwnership transferOfOwnership) {
-        this.transferor.addValue(PARTICIPANT_IN, new IRI(transferOfOwnership.getId()));
+        this.transferor.addValue(PARTICIPANT_IN, transferOfOwnership.getId());
         return this;
     }
 
@@ -204,7 +204,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferor.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.transferor.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -217,7 +217,7 @@ public class TransferorBuilder {
      * @return This builder.
      */
     public final TransferorBuilder temporal_Part_Of(final Owner owner) {
-        this.transferor.addValue(TEMPORAL_PART_OF, new IRI(owner.getId()));
+        this.transferor.addValue(TEMPORAL_PART_OF, owner.getId());
         return this;
     }
 

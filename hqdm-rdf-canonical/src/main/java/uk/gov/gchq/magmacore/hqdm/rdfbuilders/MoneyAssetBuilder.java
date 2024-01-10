@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of MoneyAsset.
@@ -53,7 +53,7 @@ public class MoneyAssetBuilder {
      * @param iri IRI of the MoneyAsset.
      */
     public MoneyAssetBuilder(final IRI iri) {
-        moneyAsset = RdfSpatioTemporalExtentServices.createMoneyAsset(iri);
+        moneyAsset = SpatioTemporalExtentServices.createMoneyAsset(iri);
     }
 
     /**
@@ -68,7 +68,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.moneyAsset.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.moneyAsset.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder beginning(final Event event) {
-        this.moneyAsset.addValue(BEGINNING, new IRI(event.getId()));
+        this.moneyAsset.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -95,7 +95,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.moneyAsset.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.moneyAsset.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -107,7 +107,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder ending(final Event event) {
-        this.moneyAsset.addValue(ENDING, new IRI(event.getId()));
+        this.moneyAsset.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder member__Of(final Class clazz) {
-        this.moneyAsset.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.moneyAsset.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder member_Of(final ClassOfParticipant classOfParticipant) {
-        this.moneyAsset.addValue(MEMBER_OF, new IRI(classOfParticipant.getId()));
+        this.moneyAsset.addValue(MEMBER_OF, classOfParticipant.getId());
         return this;
     }
 
@@ -146,7 +146,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder member_Of_Kind_M(final Role role) {
-        this.moneyAsset.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
+        this.moneyAsset.addValue(MEMBER_OF_KIND, role.getId());
         return this;
     }
 
@@ -159,7 +159,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.moneyAsset.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.moneyAsset.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -178,7 +178,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.moneyAsset.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.moneyAsset.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -191,7 +191,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder participant_In_M(final Ownership ownership) {
-        this.moneyAsset.addValue(PARTICIPANT_IN, new IRI(ownership.getId()));
+        this.moneyAsset.addValue(PARTICIPANT_IN, ownership.getId());
         return this;
     }
 
@@ -204,7 +204,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.moneyAsset.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.moneyAsset.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -218,7 +218,7 @@ public class MoneyAssetBuilder {
      * @return This builder.
      */
     public final MoneyAssetBuilder temporal_Part_Of(final PhysicalObject physicalObject) {
-        this.moneyAsset.addValue(TEMPORAL_PART_OF, new IRI(physicalObject.getId()));
+        this.moneyAsset.addValue(TEMPORAL_PART_OF, physicalObject.getId());
         return this;
     }
 

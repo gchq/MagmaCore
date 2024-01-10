@@ -41,7 +41,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Ownership;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Ownership.
@@ -56,7 +56,7 @@ public class OwnershipBuilder {
      * @param iri IRI of the Ownership.
      */
     public OwnershipBuilder(final IRI iri) {
-        ownership = RdfSpatioTemporalExtentServices.createOwnership(iri);
+        ownership = SpatioTemporalExtentServices.createOwnership(iri);
     }
 
     /**
@@ -71,7 +71,7 @@ public class OwnershipBuilder {
      * @return This builder.
      */
     public final OwnershipBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ownership.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.ownership.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -84,7 +84,7 @@ public class OwnershipBuilder {
      * @return This builder.
      */
     public final OwnershipBuilder beginning_M(final BeginningOfOwnership beginningOfOwnership) {
-        this.ownership.addValue(BEGINNING, new IRI(beginningOfOwnership.getId()));
+        this.ownership.addValue(BEGINNING, beginningOfOwnership.getId());
         return this;
     }
 
@@ -99,7 +99,7 @@ public class OwnershipBuilder {
      * @return This builder.
      */
     public final OwnershipBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ownership.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.ownership.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -113,7 +113,7 @@ public class OwnershipBuilder {
      * @return This builder.
      */
     public final OwnershipBuilder consists_Of_Participant(final Owner owner) {
-        this.ownership.addValue(CONSISTS_OF_PARTICIPANT, new IRI(owner.getId()));
+        this.ownership.addValue(CONSISTS_OF_PARTICIPANT, owner.getId());
         return this;
     }
 
@@ -127,7 +127,7 @@ public class OwnershipBuilder {
      * @return This builder.
      */
     public final OwnershipBuilder consists_Of_Participant_(final Asset asset) {
-        this.ownership.addValue(CONSISTS_OF_PARTICIPANT_, new IRI(asset.getId()));
+        this.ownership.addValue(CONSISTS_OF_PARTICIPANT_, asset.getId());
         return this;
     }
 
@@ -140,7 +140,7 @@ public class OwnershipBuilder {
      * @return This builder.
      */
     public final OwnershipBuilder ending(final EndingOfOwnership endingOfOwnership) {
-        this.ownership.addValue(ENDING, new IRI(endingOfOwnership.getId()));
+        this.ownership.addValue(ENDING, endingOfOwnership.getId());
         return this;
     }
 
@@ -152,7 +152,7 @@ public class OwnershipBuilder {
      * @return This builder.
      */
     public final OwnershipBuilder member__Of(final Class clazz) {
-        this.ownership.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.ownership.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -166,7 +166,7 @@ public class OwnershipBuilder {
      * @return This builder.
      */
     public final OwnershipBuilder member_Of(final ClassOfAssociation classOfAssociation) {
-        this.ownership.addValue(MEMBER_OF, new IRI(classOfAssociation.getId()));
+        this.ownership.addValue(MEMBER_OF, classOfAssociation.getId());
         return this;
     }
 
@@ -180,7 +180,7 @@ public class OwnershipBuilder {
      * @return This builder.
      */
     public final OwnershipBuilder member_Of_Kind_M(final KindOfAssociation kindOfAssociation) {
-        this.ownership.addValue(MEMBER_OF_KIND, new IRI(kindOfAssociation.getId()));
+        this.ownership.addValue(MEMBER_OF_KIND, kindOfAssociation.getId());
         return this;
     }
 
@@ -193,7 +193,7 @@ public class OwnershipBuilder {
      * @return This builder.
      */
     public final OwnershipBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ownership.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.ownership.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -212,7 +212,7 @@ public class OwnershipBuilder {
      * @return This builder.
      */
     public final OwnershipBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.ownership.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.ownership.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -225,7 +225,7 @@ public class OwnershipBuilder {
      * @return This builder.
      */
     public final OwnershipBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ownership.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.ownership.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -248,7 +248,7 @@ public class OwnershipBuilder {
      * @return This builder.
      */
     public final OwnershipBuilder temporal_Part_Of(final Individual individual) {
-        this.ownership.addValue(TEMPORAL_PART_OF, new IRI(individual.getId()));
+        this.ownership.addValue(TEMPORAL_PART_OF, individual.getId());
         return this;
     }
 

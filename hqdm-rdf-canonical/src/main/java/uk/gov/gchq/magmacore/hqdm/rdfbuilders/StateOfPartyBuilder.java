@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfParty;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfParty.
@@ -49,7 +49,7 @@ public class StateOfPartyBuilder {
      * @param iri IRI of the StateOfParty.
      */
     public StateOfPartyBuilder(final IRI iri) {
-        stateOfParty = RdfSpatioTemporalExtentServices.createStateOfParty(iri);
+        stateOfParty = SpatioTemporalExtentServices.createStateOfParty(iri);
     }
 
     /**
@@ -64,7 +64,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfParty.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfParty.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder beginning(final Event event) {
-        this.stateOfParty.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfParty.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -91,7 +91,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfParty.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfParty.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -103,7 +103,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder ending(final Event event) {
-        this.stateOfParty.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfParty.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder member__Of(final Class clazz) {
-        this.stateOfParty.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfParty.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -128,7 +128,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder member_Of(final ClassOfStateOfParty classOfStateOfParty) {
-        this.stateOfParty.addValue(MEMBER_OF, new IRI(classOfStateOfParty.getId()));
+        this.stateOfParty.addValue(MEMBER_OF, classOfStateOfParty.getId());
         return this;
     }
 
@@ -141,7 +141,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfParty.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfParty.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -160,7 +160,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.stateOfParty.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.stateOfParty.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -173,7 +173,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfParty.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfParty.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -186,7 +186,7 @@ public class StateOfPartyBuilder {
      * @return This builder.
      */
     public final StateOfPartyBuilder temporal_Part_Of(final Party party) {
-        this.stateOfParty.addValue(TEMPORAL_PART_OF, new IRI(party.getId()));
+        this.stateOfParty.addValue(TEMPORAL_PART_OF, party.getId());
         return this;
     }
 

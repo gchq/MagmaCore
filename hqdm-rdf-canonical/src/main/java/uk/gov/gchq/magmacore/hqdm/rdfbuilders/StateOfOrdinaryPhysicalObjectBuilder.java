@@ -34,7 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfOrdinaryPhysicalObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of StateOfOrdinaryPhysicalObject.
@@ -49,7 +49,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @param iri IRI of the StateOfOrdinaryPhysicalObject.
      */
     public StateOfOrdinaryPhysicalObjectBuilder(final IRI iri) {
-        stateOfOrdinaryPhysicalObject = RdfSpatioTemporalExtentServices
+        stateOfOrdinaryPhysicalObject = SpatioTemporalExtentServices
                 .createStateOfOrdinaryPhysicalObject(iri);
     }
 
@@ -66,7 +66,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      */
     public final StateOfOrdinaryPhysicalObjectBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfOrdinaryPhysicalObject.addValue(AGGREGATED_INTO,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -78,7 +78,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryPhysicalObjectBuilder beginning(final Event event) {
-        this.stateOfOrdinaryPhysicalObject.addValue(BEGINNING, new IRI(event.getId()));
+        this.stateOfOrdinaryPhysicalObject.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -93,7 +93,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryPhysicalObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfOrdinaryPhysicalObject.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfOrdinaryPhysicalObject.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -105,7 +105,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryPhysicalObjectBuilder ending(final Event event) {
-        this.stateOfOrdinaryPhysicalObject.addValue(ENDING, new IRI(event.getId()));
+        this.stateOfOrdinaryPhysicalObject.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -117,7 +117,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryPhysicalObjectBuilder member__Of(final Class clazz) {
-        this.stateOfOrdinaryPhysicalObject.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.stateOfOrdinaryPhysicalObject.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -133,7 +133,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
     public final StateOfOrdinaryPhysicalObjectBuilder member_Of(
             final ClassOfStateOfOrdinaryPhysicalObject classOfStateOfOrdinaryPhysicalObject) {
         this.stateOfOrdinaryPhysicalObject.addValue(MEMBER_OF,
-                new IRI(classOfStateOfOrdinaryPhysicalObject.getId()));
+                classOfStateOfOrdinaryPhysicalObject.getId());
         return this;
     }
 
@@ -146,7 +146,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      * @return This builder.
      */
     public final StateOfOrdinaryPhysicalObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfOrdinaryPhysicalObject.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.stateOfOrdinaryPhysicalObject.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -166,7 +166,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
      */
     public final StateOfOrdinaryPhysicalObjectBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
         this.stateOfOrdinaryPhysicalObject.addValue(PART_OF_POSSIBLE_WORLD,
-                new IRI(possibleWorld.getId()));
+                possibleWorld.getId());
         return this;
     }
 
@@ -181,7 +181,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
     public final StateOfOrdinaryPhysicalObjectBuilder temporal__Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
         this.stateOfOrdinaryPhysicalObject.addValue(TEMPORAL__PART_OF,
-                new IRI(spatioTemporalExtent.getId()));
+                spatioTemporalExtent.getId());
         return this;
     }
 
@@ -197,7 +197,7 @@ public class StateOfOrdinaryPhysicalObjectBuilder {
     public final StateOfOrdinaryPhysicalObjectBuilder temporal_Part_Of(
             final OrdinaryPhysicalObject ordinaryPhysicalObject) {
         this.stateOfOrdinaryPhysicalObject.addValue(TEMPORAL_PART_OF,
-                new IRI(ordinaryPhysicalObject.getId()));
+                ordinaryPhysicalObject.getId());
         return this;
     }
 

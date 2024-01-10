@@ -23,7 +23,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfPhysicalQuantity;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfPhysicalQuantity.
@@ -38,7 +38,7 @@ public class ClassOfPhysicalQuantityBuilder {
      * @param iri IRI of the ClassOfPhysicalQuantity.
      */
     public ClassOfPhysicalQuantityBuilder(final IRI iri) {
-        this.classOfPhysicalQuantity = RdfClassServices.createClassOfPhysicalQuantity(iri);
+        this.classOfPhysicalQuantity = ClassServices.createClassOfPhysicalQuantity(iri);
     }
 
     /**
@@ -49,7 +49,7 @@ public class ClassOfPhysicalQuantityBuilder {
      * @return This builder.
      */
     public final ClassOfPhysicalQuantityBuilder has_Superclass(final Class clazz) {
-        this.classOfPhysicalQuantity.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfPhysicalQuantity.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -61,7 +61,7 @@ public class ClassOfPhysicalQuantityBuilder {
      * @return This builder.
      */
     public final ClassOfPhysicalQuantityBuilder member__Of(final Class clazz) {
-        this.classOfPhysicalQuantity.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfPhysicalQuantity.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -74,7 +74,7 @@ public class ClassOfPhysicalQuantityBuilder {
      * @return This builder.
      */
     public final ClassOfPhysicalQuantityBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfPhysicalQuantity.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfPhysicalQuantity.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 

@@ -33,7 +33,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PhysicalProperty;
 import uk.gov.gchq.magmacore.hqdm.model.PhysicalQuantity;
 import uk.gov.gchq.magmacore.hqdm.model.PhysicalQuantityRange;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of PhysicalQuantityRange.
@@ -48,7 +48,7 @@ public class PhysicalQuantityRangeBuilder {
      * @param iri IRI of the PhysicalQuantityRange.
      */
     public PhysicalQuantityRangeBuilder(final IRI iri) {
-        physicalQuantityRange = RdfSpatioTemporalExtentServices.createPhysicalQuantityRange(iri);
+        physicalQuantityRange = SpatioTemporalExtentServices.createPhysicalQuantityRange(iri);
     }
 
     /**
@@ -65,7 +65,7 @@ public class PhysicalQuantityRangeBuilder {
     public final PhysicalQuantityRangeBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.physicalQuantityRange.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -77,7 +77,7 @@ public class PhysicalQuantityRangeBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityRangeBuilder has_Superclass(final Class clazz) {
-        this.physicalQuantityRange.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.physicalQuantityRange.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -90,7 +90,7 @@ public class PhysicalQuantityRangeBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityRangeBuilder lower_Bound_M(final PhysicalQuantity physicalQuantity) {
-        this.physicalQuantityRange.addValue(LOWER_BOUND, new IRI(physicalQuantity.getId()));
+        this.physicalQuantityRange.addValue(LOWER_BOUND, physicalQuantity.getId());
         return this;
     }
 
@@ -102,7 +102,7 @@ public class PhysicalQuantityRangeBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityRangeBuilder member__Of(final Class clazz) {
-        this.physicalQuantityRange.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.physicalQuantityRange.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -115,7 +115,7 @@ public class PhysicalQuantityRangeBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityRangeBuilder member_Of(final ClassOfClass classOfClass) {
-        this.physicalQuantityRange.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.physicalQuantityRange.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -130,7 +130,7 @@ public class PhysicalQuantityRangeBuilder {
     public final PhysicalQuantityRangeBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.physicalQuantityRange.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -147,7 +147,7 @@ public class PhysicalQuantityRangeBuilder {
     public final PhysicalQuantityRangeBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.physicalQuantityRange.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -160,7 +160,7 @@ public class PhysicalQuantityRangeBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityRangeBuilder ranges_Over_M(final PhysicalProperty physicalProperty) {
-        this.physicalQuantityRange.addValue(RANGES_OVER, new IRI(physicalProperty.getId()));
+        this.physicalQuantityRange.addValue(RANGES_OVER, physicalProperty.getId());
         return this;
     }
 
@@ -173,7 +173,7 @@ public class PhysicalQuantityRangeBuilder {
      * @return This builder.
      */
     public final PhysicalQuantityRangeBuilder upper_Bound_M(final PhysicalQuantity physicalQuantity) {
-        this.physicalQuantityRange.addValue(UPPER_BOUND, new IRI(physicalQuantity.getId()));
+        this.physicalQuantityRange.addValue(UPPER_BOUND, physicalQuantity.getId());
         return this;
     }
 

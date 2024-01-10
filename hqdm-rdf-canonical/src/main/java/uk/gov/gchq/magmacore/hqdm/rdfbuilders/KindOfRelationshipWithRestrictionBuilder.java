@@ -26,7 +26,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClass;
 import uk.gov.gchq.magmacore.hqdm.model.Classification;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfRelationshipWithRestriction;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of KindOfRelationshipWithRestriction.
@@ -41,7 +41,7 @@ public class KindOfRelationshipWithRestrictionBuilder {
      * @param iri IRI of the KindOfRelationshipWithRestriction.
      */
     public KindOfRelationshipWithRestrictionBuilder(final IRI iri) {
-        kindOfRelationshipWithRestriction = RdfClassServices.createKindOfRelationshipWithRestriction(iri);
+        kindOfRelationshipWithRestriction = ClassServices.createKindOfRelationshipWithRestriction(iri);
     }
 
     /**
@@ -52,7 +52,7 @@ public class KindOfRelationshipWithRestrictionBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithRestrictionBuilder has_Superclass(final Class clazz) {
-        this.kindOfRelationshipWithRestriction.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.kindOfRelationshipWithRestriction.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -64,7 +64,7 @@ public class KindOfRelationshipWithRestrictionBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithRestrictionBuilder member__Of(final Class clazz) {
-        this.kindOfRelationshipWithRestriction.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.kindOfRelationshipWithRestriction.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -77,7 +77,7 @@ public class KindOfRelationshipWithRestrictionBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithRestrictionBuilder member_Of(final ClassOfClass classOfClass) {
-        this.kindOfRelationshipWithRestriction.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.kindOfRelationshipWithRestriction.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -90,7 +90,7 @@ public class KindOfRelationshipWithRestrictionBuilder {
      */
     public final KindOfRelationshipWithRestrictionBuilder required_Role_Player_M(final Classification classification) {
         this.kindOfRelationshipWithRestriction.addValue(REQUIRED_ROLE_PLAYER,
-                new IRI(classification.getId()));
+                classification.getId());
         return this;
     }
 
@@ -102,7 +102,7 @@ public class KindOfRelationshipWithRestrictionBuilder {
      * @return This builder.
      */
     public final KindOfRelationshipWithRestrictionBuilder roles_M(final Class clazz) {
-        this.kindOfRelationshipWithRestriction.addValue(ROLES, new IRI(clazz.getId()));
+        this.kindOfRelationshipWithRestriction.addValue(ROLES, clazz.getId());
         return this;
     }
 

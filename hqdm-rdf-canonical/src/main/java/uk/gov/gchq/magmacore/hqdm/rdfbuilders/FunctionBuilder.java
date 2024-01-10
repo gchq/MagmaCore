@@ -22,7 +22,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.Function_;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfRelationshipServices;
+import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
 
 /**
  * Builder for constructing instances of Function.
@@ -37,7 +37,7 @@ public class FunctionBuilder {
      * @param iri IRI of the Function.
      */
     public FunctionBuilder(final IRI iri) {
-        function = RdfRelationshipServices.createFunction(iri);
+        function = RelationshipServices.createFunction(iri);
     }
 
     /**
@@ -48,7 +48,7 @@ public class FunctionBuilder {
      * @return This builder.
      */
     public final FunctionBuilder member__Of(final Class clazz) {
-        this.function.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.function.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -61,7 +61,7 @@ public class FunctionBuilder {
      * @return This builder.
      */
     public final FunctionBuilder member_Of(final ClassOfRelationship classOfRelationship) {
-        this.function.addValue(MEMBER_OF, new IRI(classOfRelationship.getId()));
+        this.function.addValue(MEMBER_OF, classOfRelationship.getId());
         return this;
     }
 

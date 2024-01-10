@@ -38,7 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfSpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
  * Builder for constructing instances of Participant.
@@ -53,7 +53,7 @@ public class ParticipantBuilder {
      * @param iri IRI of the Participant.
      */
     public ParticipantBuilder(final IRI iri) {
-        participant = RdfSpatioTemporalExtentServices.createParticipant(iri);
+        participant = SpatioTemporalExtentServices.createParticipant(iri);
     }
 
     /**
@@ -68,7 +68,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder aggregated_Into(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.participant.addValue(AGGREGATED_INTO, new IRI(spatioTemporalExtent.getId()));
+        this.participant.addValue(AGGREGATED_INTO, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -80,7 +80,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder beginning(final Event event) {
-        this.participant.addValue(BEGINNING, new IRI(event.getId()));
+        this.participant.addValue(BEGINNING, event.getId());
         return this;
     }
 
@@ -95,7 +95,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.participant.addValue(CONSISTS__OF, new IRI(spatioTemporalExtent.getId()));
+        this.participant.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -107,7 +107,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder ending(final Event event) {
-        this.participant.addValue(ENDING, new IRI(event.getId()));
+        this.participant.addValue(ENDING, event.getId());
         return this;
     }
 
@@ -119,7 +119,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder member__Of(final Class clazz) {
-        this.participant.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.participant.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -132,7 +132,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder member_Of(final ClassOfParticipant classOfParticipant) {
-        this.participant.addValue(MEMBER_OF, new IRI(classOfParticipant.getId()));
+        this.participant.addValue(MEMBER_OF, classOfParticipant.getId());
         return this;
     }
 
@@ -145,7 +145,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder member_Of_Kind_M(final Role role) {
-        this.participant.addValue(MEMBER_OF_KIND, new IRI(role.getId()));
+        this.participant.addValue(MEMBER_OF_KIND, role.getId());
         return this;
     }
 
@@ -158,7 +158,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.participant.addValue(PART__OF, new IRI(spatioTemporalExtent.getId()));
+        this.participant.addValue(PART__OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -177,7 +177,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder part_Of_Possible_World_M(final PossibleWorld possibleWorld) {
-        this.participant.addValue(PART_OF_POSSIBLE_WORLD, new IRI(possibleWorld.getId()));
+        this.participant.addValue(PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         return this;
     }
 
@@ -192,7 +192,7 @@ public class ParticipantBuilder {
      */
     public final ParticipantBuilder participant_In(
             final ParticipantInActivityOrAssociation participantInActivityOrAssociation) {
-        this.participant.addValue(PARTICIPANT_IN, new IRI(participantInActivityOrAssociation.getId()));
+        this.participant.addValue(PARTICIPANT_IN, participantInActivityOrAssociation.getId());
         return this;
     }
 
@@ -205,7 +205,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.participant.addValue(TEMPORAL__PART_OF, new IRI(spatioTemporalExtent.getId()));
+        this.participant.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -219,7 +219,7 @@ public class ParticipantBuilder {
      * @return This builder.
      */
     public final ParticipantBuilder temporal_Part_Of(final PhysicalObject physicalObject) {
-        this.participant.addValue(TEMPORAL_PART_OF, new IRI(physicalObject.getId()));
+        this.participant.addValue(TEMPORAL_PART_OF, physicalObject.getId());
         return this;
     }
 

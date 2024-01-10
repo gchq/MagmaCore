@@ -28,7 +28,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ClassOfClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfStateOfFunctionalSystemComponent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
-import uk.gov.gchq.magmacore.hqdm.rdfservices.RdfClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
 
 /**
  * Builder for constructing instances of ClassOfStateOfFunctionalSystemComponent.
@@ -44,7 +44,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
      * @param iri IRI of the ClassOfStateOfFunctionalSystemComponent.
      */
     public ClassOfStateOfFunctionalSystemComponentBuilder(final IRI iri) {
-        this.classOfStateOfFunctionalSystemComponent = RdfClassServices
+        this.classOfStateOfFunctionalSystemComponent = ClassServices
                 .createClassOfStateOfFunctionalSystemComponent(iri);
     }
 
@@ -62,7 +62,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
     public final ClassOfStateOfFunctionalSystemComponentBuilder consists__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfStateOfFunctionalSystemComponent.addValue(CONSISTS__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -74,7 +74,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfFunctionalSystemComponentBuilder has_Superclass(final Class clazz) {
-        this.classOfStateOfFunctionalSystemComponent.addValue(HAS_SUPERCLASS, new IRI(clazz.getId()));
+        this.classOfStateOfFunctionalSystemComponent.addValue(HAS_SUPERCLASS, clazz.getId());
         return this;
     }
 
@@ -86,7 +86,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfFunctionalSystemComponentBuilder member__Of(final Class clazz) {
-        this.classOfStateOfFunctionalSystemComponent.addValue(MEMBER__OF, new IRI(clazz.getId()));
+        this.classOfStateOfFunctionalSystemComponent.addValue(MEMBER__OF, clazz.getId());
         return this;
     }
 
@@ -99,7 +99,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
      * @return This builder.
      */
     public final ClassOfStateOfFunctionalSystemComponentBuilder member_Of(final ClassOfClass classOfClass) {
-        this.classOfStateOfFunctionalSystemComponent.addValue(MEMBER_OF, new IRI(classOfClass.getId()));
+        this.classOfStateOfFunctionalSystemComponent.addValue(MEMBER_OF, classOfClass.getId());
         return this;
     }
 
@@ -114,7 +114,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
     public final ClassOfStateOfFunctionalSystemComponentBuilder member_Of_(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
         this.classOfStateOfFunctionalSystemComponent.addValue(MEMBER_OF_,
-                new IRI(classOfClassOfSpatioTemporalExtent.getId()));
+                classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -131,7 +131,7 @@ public class ClassOfStateOfFunctionalSystemComponentBuilder {
     public final ClassOfStateOfFunctionalSystemComponentBuilder part__Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
         this.classOfStateOfFunctionalSystemComponent.addValue(PART__OF_BY_CLASS,
-                new IRI(classOfSpatioTemporalExtent.getId()));
+                classOfSpatioTemporalExtent.getId());
         return this;
     }
 
