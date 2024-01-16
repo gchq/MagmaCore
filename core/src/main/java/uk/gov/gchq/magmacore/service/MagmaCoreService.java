@@ -175,6 +175,47 @@ public class MagmaCoreService {
     }
 
     /**
+     * Find the Set of {@link Thing} represented by the given partial sign value.
+     *
+     * <p>
+     * The search is case-insensitive.
+     * This could probably be replaced with a (rather complex) SPARQL query if {@link MagmaCoreDatabase}
+     * allowed the execution of such queries.
+     * </p>
+     *
+     * @param community   The {@link RecognizingLanguageCommunity} that recognizes the sign value.
+     * @param pattern     The {@link Pattern} the sign conforms to.
+     * @param value       {@link String} the partial sign value to look for.
+     * @param pointInTime {@link PointInTime} the point in time we are interested in.
+     * @return {@link List} of {@link Thing} represented by the value.
+     * @throws MagmaCoreException if the number of {@link RepresentationByPattern} found is not 1.
+     */
+    public List<? extends Thing> findByPartialSignValue(
+            final RecognizingLanguageCommunity community,
+            final Pattern pattern,
+            final String value,
+            final PointInTime pointInTime) throws MagmaCoreException {
+
+        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
+        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+            return List.of();
+        }
+
+        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+
+        final QueryResultList queryResultList = database
+                .executeQuery(String.format(MagmaCoreServiceQueries.FIND_BY_PARTIAL_SIGN_VALUE_CASE_INSENSITIVE_QUERY,
+                        value,
+                        community.getId(),
+                        pattern.getId()));
+
+        // Filter by the pointInTime
+        final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
+
+        return database.toTopObjects(queryResults);
+    }
+
+    /**
      * Find Things of a giver rdf:type and Class and their signs that are of a particular pattern.
      *
      * @param type        IRI.
