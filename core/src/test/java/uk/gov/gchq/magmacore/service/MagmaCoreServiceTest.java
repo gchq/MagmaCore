@@ -126,6 +126,43 @@ public class MagmaCoreServiceTest {
     }
 
     /**
+     * Test that findByPartialSignValue can be used to find the right Things represented by
+     * a sign value for
+     * the given {@link uk.gov.gchq.magmacore.hqdm.model.Pattern} and
+     * {@link uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity} at the
+     * given
+     * {@link uk.gov.gchq.magmacore.hqdm.model.PointInTime}.
+     */
+    @Test
+    public void testFindByPartialSignSuccess() throws MagmaCoreException {
+
+        // Create and populate an in-memory database.
+        final MagmaCoreDatabase db = new MagmaCoreJenaDatabase();
+        SignPatternTestData.createSignPattern(db);
+
+        // Use it to create the services
+        final MagmaCoreService service = new MagmaCoreService(db);
+
+        // Create the PointInTime we're looking for
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
+
+        // Find the required Things by sign in a transaction.
+        db.begin();
+        final List<? extends Thing> found1 = service.findByPartialSignValue(SignPatternTestData.community1,
+                SignPatternTestData.pattern1, "son1", now);
+        final List<? extends Thing> found2 = service.findByPartialSignValue(SignPatternTestData.community2,
+                SignPatternTestData.pattern2, "ERSON", now);
+        db.commit();
+
+        // Assert the results are correct.
+        assertNotNull(found1);
+        assertNotNull(found2);
+        assertEquals(1, found1.size());
+        assertEquals(2, found2.size());
+    }
+
+    /**
      * Check that we get an empty result if the sign value is null.
      */
     @Test
