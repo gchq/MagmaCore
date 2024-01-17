@@ -35,6 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.StateOfPerson;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
@@ -42,6 +43,7 @@ import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
  * Check that {@link MagmaCoreService} works correctly.
  */
 public class MagmaCoreServiceTest {
+    static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
 
     /**
      * Test that triples can be deleted.
@@ -249,7 +251,7 @@ public class MagmaCoreServiceTest {
         final MagmaCoreService service = new MagmaCoreService(db);
 
         // Create the PointInTime we're looking for
-        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI(TEST_BASE, "now"));
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
@@ -287,7 +289,7 @@ public class MagmaCoreServiceTest {
         final MagmaCoreService service = new MagmaCoreService(db);
 
         // Create the PointInTime we're looking for
-        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI(TEST_BASE, "now"));
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
@@ -304,5 +306,4 @@ public class MagmaCoreServiceTest {
         assertTrue(found1.isEmpty());
         assertTrue(found2.isEmpty());
     }
-
 }
