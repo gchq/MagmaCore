@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.jena.query.Dataset;
+import org.apache.jena.query.DatasetFactory;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
@@ -69,7 +70,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * Constructs a MagmaCoreJenaDatabase with a new in-memory Jena dataset.
      */
     public MagmaCoreJenaDatabase() {
-        dataset = TDB2Factory.createDataset();
+        dataset = DatasetFactory.createTxnMem();
     }
 
     /**
