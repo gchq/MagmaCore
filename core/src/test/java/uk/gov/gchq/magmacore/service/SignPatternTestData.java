@@ -185,7 +185,7 @@ public class SignPatternTestData {
         stateOfSign2.addValue(HQDM.PARTICIPANT_IN, new IRI(repBySign2.getId()));
 
         // Persist all objects
-        db.begin();
+        db.beginWrite();
 
         db.create(community1);
         db.create(community2);

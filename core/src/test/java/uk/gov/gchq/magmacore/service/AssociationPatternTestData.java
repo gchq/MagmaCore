@@ -331,7 +331,7 @@ public class AssociationPatternTestData {
         community.addValue(HQDM.PARTICIPANT_IN, repBySign2Iri);
 
         // Persist all objects
-        db.begin();
+        db.beginWrite();
 
         db.create(userAssociationKind);
         db.create(managerKind);

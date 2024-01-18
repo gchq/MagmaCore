@@ -60,7 +60,7 @@ public class MagmaCoreServiceFindParticipantDetailsTest {
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
-        db.begin();
+        db.beginRead();
         final Set<ParticipantDetails> found1 = service.findParticipantDetails(
                 AssociationPatternTestData.person1,
                 AssociationPatternTestData.system1,

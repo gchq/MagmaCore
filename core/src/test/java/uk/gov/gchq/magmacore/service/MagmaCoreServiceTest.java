@@ -55,17 +55,17 @@ public class MagmaCoreServiceTest {
 
         individual.addValue(HQDM.MEMBER_OF, "classOfIndividual");
 
-        database.begin();
+        database.beginWrite();
         database.create(individual);
         database.commit();
 
         individual.removeValue(HQDM.MEMBER_OF, "classOfIndividual");
 
-        database.begin();
+        database.beginWrite();
         database.update(individual);
         database.commit();
 
-        database.begin();
+        database.beginRead();
         final Thing individualFromDb = database.get(individualIri);
         database.commit();
 
@@ -95,7 +95,7 @@ public class MagmaCoreServiceTest {
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
-        db.begin();
+        db.beginRead();
         final List<? extends Thing> found1 = service.findBySignValue(SignPatternTestData.community1,
                 SignPatternTestData.pattern1, "person1", now);
         final List<? extends Thing> found2 = service.findBySignValue(SignPatternTestData.community2,
@@ -143,7 +143,7 @@ public class MagmaCoreServiceTest {
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
-        db.begin();
+        db.beginRead();
         final List<? extends Thing> found = service.findBySignValue(SignPatternTestData.community1,
                 SignPatternTestData.pattern1, null, now);
         db.commit();
@@ -170,7 +170,7 @@ public class MagmaCoreServiceTest {
         final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
 
         // Find the required Things by sign in a transaction.
-        db.begin();
+        db.beginRead();
         final List<? extends Thing> found = service.findBySignValue(SignPatternTestData.community1,
                 SignPatternTestData.pattern1, "person1", now);
         db.commit();
@@ -197,14 +197,14 @@ public class MagmaCoreServiceTest {
         individual2.addValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
 
         // Create two objects.
-        svc.runInTransaction(mc -> {
+        svc.runInWriteTransaction(mc -> {
             mc.create(individual1);
             mc.create(individual2);
             return mc;
         });
 
         // Find individual2 since it's the only one with MEMBER_OF_KIND
-        svc.runInTransaction(mc -> {
+        svc.runInReadTransaction(mc -> {
             final List<Thing> result = mc.findByPredicateIriOnly(HQDM.MEMBER_OF_KIND);
 
             assertEquals(1, result.size());
@@ -213,7 +213,7 @@ public class MagmaCoreServiceTest {
         });
 
         // Find both individuals by RDF_TYPE IRI object.
-        svc.runInTransaction(mc -> {
+        svc.runInReadTransaction(mc -> {
             final List<Thing> result = mc.findByPredicateIriAndValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
 
             assertEquals(2, result.size());
@@ -224,7 +224,7 @@ public class MagmaCoreServiceTest {
         });
 
         // Find individual1 by a String value
-        svc.runInTransaction(mc -> {
+        svc.runInReadTransaction(mc -> {
             final List<Thing> result = mc.findByPredicateIriAndValue(HQDM.MEMBER_OF, "classOfIndividual");
 
             assertEquals(1, result.size());
@@ -252,7 +252,7 @@ public class MagmaCoreServiceTest {
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
-        db.begin();
+        db.beginRead();
         final List<? extends Thing> found1 = service.findByPartialSignAndClass(
                 "person1", SignPatternTestData.classOfPersonIri, now);
         final List<? extends Thing> found2 = service.findByPartialSignAndClass(
@@ -290,7 +290,7 @@ public class MagmaCoreServiceTest {
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
-        db.begin();
+        db.beginRead();
         final List<? extends Thing> found1 = service.findByPartialSignAndClassCaseSensitive(
                 "Person1", SignPatternTestData.classOfPersonIri, now);
         final List<? extends Thing> found2 = service.findByPartialSignAndClassCaseSensitive(

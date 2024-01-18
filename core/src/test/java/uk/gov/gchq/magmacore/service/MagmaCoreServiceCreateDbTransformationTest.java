@@ -41,7 +41,7 @@ public class MagmaCoreServiceCreateDbTransformationTest {
 
         // Convert the new Thing to a DbTransformation and use it to persist the Thing.
         final DbTransformation transformation = svc.createDbTransformation(List.of(newThing));
-        svc.runInTransaction(transformation);
+        svc.runInWriteTransaction(transformation);
 
         // Retrieve the Thing and make sure it matches the original.
         final Map<String, Thing> foundThings = svc.findByEntityNameInTransaction(List.of(TEST_ENTITY_NAME));
