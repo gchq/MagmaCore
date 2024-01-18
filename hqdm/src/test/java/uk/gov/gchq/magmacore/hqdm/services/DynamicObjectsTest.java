@@ -24,11 +24,13 @@ import uk.gov.gchq.magmacore.hqdm.model.Participant;
 import uk.gov.gchq.magmacore.hqdm.model.Party;
 import uk.gov.gchq.magmacore.hqdm.model.Person;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
 
 /**
  * Test creation of dynamic objects.
  */
 public class DynamicObjectsTest {
+    static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
 
     /**
      * Test that we can create an object with multiple interfaces.
@@ -37,14 +39,15 @@ public class DynamicObjectsTest {
     public void testCreate() {
 
         // Create the object with three interfaces.
-        final Person person = DynamicObjects.create(new IRI("http://example.com/entity#person1"), Person.class,
+        final IRI personIri = new IRI(TEST_BASE, "person");
+        final Person person = DynamicObjects.create(personIri, Person.class,
                 new Class[] { Person.class, Participant.class, Party.class });
 
         // Verify that the object implements all three interfaces and has the right id.
         assertTrue(person instanceof Person);
         assertTrue(person instanceof Participant);
         assertTrue(person instanceof Party);
-        assertEquals("http://example.com/entity#person1", person.getId().getIri());
+        assertEquals(personIri, person.getId());
     }
 
     /**
@@ -54,13 +57,14 @@ public class DynamicObjectsTest {
     public void testAddInterface() {
 
         // Create the object with one interface.
-        final Person person1 = SpatioTemporalExtentServices.createPerson(new IRI("http://example.com/entity#person1"));
+        final IRI person1Iri = new IRI(TEST_BASE, "person1");
+        final Person person1 = SpatioTemporalExtentServices.createPerson(person1Iri);
 
         // Verify that the object implements just the Person and Party interfaces.
         assertTrue(person1 instanceof Person);
         assertFalse(person1 instanceof Participant);
         assertTrue(person1 instanceof Party);
-        assertEquals("http://example.com/entity#person1", person1.getId().getIri());
+        assertEquals(person1Iri, person1.getId());
 
         // Add two more interfaces to the object - this time return it as a Participant.
         final Participant person2 = DynamicObjects.implementInterfaces(person1, Participant.class,
@@ -70,6 +74,6 @@ public class DynamicObjectsTest {
         assertTrue(person2 instanceof Person);
         assertTrue(person2 instanceof Participant);
         assertTrue(person2 instanceof Party);
-        assertEquals("http://example.com/entity#person1", person2.getId().getIri());
+        assertEquals(person1Iri, person2.getId());
     }
 }
