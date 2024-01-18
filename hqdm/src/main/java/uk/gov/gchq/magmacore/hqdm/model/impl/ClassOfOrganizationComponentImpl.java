@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfOrganizationComponent;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfOrganizationComponent.
@@ -26,7 +27,7 @@ public class ClassOfOrganizationComponentImpl extends HqdmObject implements Clas
      *
      * @param id String of the ClassOfOrganizationComponent.
      */
-    public ClassOfOrganizationComponentImpl(final String id) {
+    public ClassOfOrganizationComponentImpl(final IRI id) {
         super(id);
     }
 }

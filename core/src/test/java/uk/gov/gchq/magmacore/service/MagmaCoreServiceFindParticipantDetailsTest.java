@@ -31,6 +31,7 @@ import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
 import uk.gov.gchq.magmacore.exception.MagmaCoreException;
 import uk.gov.gchq.magmacore.hqdm.model.PointInTime;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 import uk.gov.gchq.magmacore.service.dto.ParticipantDetails;
@@ -56,11 +57,11 @@ public class MagmaCoreServiceFindParticipantDetailsTest {
         final MagmaCoreService service = new MagmaCoreService(db);
 
         // Create the PointInTime we're looking for
-        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI("http://example.com/entity#now"));
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
-        db.begin();
+        db.beginRead();
         final Set<ParticipantDetails> found1 = service.findParticipantDetails(
                 AssociationPatternTestData.person1,
                 AssociationPatternTestData.system1,

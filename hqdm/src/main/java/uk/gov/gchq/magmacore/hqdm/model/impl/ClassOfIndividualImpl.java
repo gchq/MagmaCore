@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfIndividual;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfIndividual.
@@ -26,7 +27,7 @@ public class ClassOfIndividualImpl extends HqdmObject implements ClassOfIndividu
      *
      * @param id String of the ClassOfIndividual.
      */
-    public ClassOfIndividualImpl(final String id) {
+    public ClassOfIndividualImpl(final IRI id) {
         super(id);
     }
 }

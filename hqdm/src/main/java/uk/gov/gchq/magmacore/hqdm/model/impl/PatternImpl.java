@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Pattern;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Pattern.
@@ -26,7 +27,7 @@ public class PatternImpl extends HqdmObject implements Pattern {
      *
      * @param id String of the Pattern.
      */
-    public PatternImpl(final String id) {
+    public PatternImpl(final IRI id) {
         super(id);
     }
 }

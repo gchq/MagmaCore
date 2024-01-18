@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of PossibleWorld.
@@ -26,7 +27,7 @@ public class PossibleWorldImpl extends HqdmObject implements PossibleWorld {
      *
      * @param id String of the PossibleWorld.
      */
-    public PossibleWorldImpl(final String id) {
+    public PossibleWorldImpl(final IRI id) {
         super(id);
     }
 }

@@ -23,6 +23,7 @@ import java.util.Map;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.model.impl.ThingImpl;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * Service for creating dynamic proxies.
@@ -39,7 +40,7 @@ public class DynamicObjects {
      * @param classes    The array of classes to implement.
      * @return An object of type U.
      */
-    public static <T extends Thing, U extends Thing> U create(final String id, final java.lang.Class<U> returnType,
+    public static <T extends Thing, U extends Thing> U create(final IRI id, final java.lang.Class<U> returnType,
             final java.lang.Class<T>[] classes) {
 
         return (U) implementInterfaces((T) new ThingImpl(id), returnType, classes);

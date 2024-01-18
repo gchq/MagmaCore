@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfStateOfActivity;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfStateOfActivity.
@@ -26,7 +27,7 @@ public class ClassOfStateOfActivityImpl extends HqdmObject implements ClassOfSta
      *
      * @param id String of the ClassOfStateOfActivity.
      */
-    public ClassOfStateOfActivityImpl(final String id) {
+    public ClassOfStateOfActivityImpl(final IRI id) {
         super(id);
     }
 }

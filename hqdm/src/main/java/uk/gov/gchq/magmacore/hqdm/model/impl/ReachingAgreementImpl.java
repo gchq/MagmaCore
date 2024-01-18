@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ReachingAgreement;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ReachingAgreement.
@@ -26,7 +27,7 @@ public class ReachingAgreementImpl extends HqdmObject implements ReachingAgreeme
      *
      * @param id String of the ReachingAgreement.
      */
-    public ReachingAgreementImpl(final String id) {
+    public ReachingAgreementImpl(final IRI id) {
         super(id);
     }
 }

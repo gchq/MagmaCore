@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfStateOfSign;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfStateOfSign.
@@ -26,7 +27,7 @@ public class ClassOfStateOfSignImpl extends HqdmObject implements ClassOfStateOf
      *
      * @param id String of the ClassOfStateOfSign.
      */
-    public ClassOfStateOfSignImpl(final String id) {
+    public ClassOfStateOfSignImpl(final IRI id) {
         super(id);
     }
 }

@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.PointInTime;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of PointInTime.
@@ -26,7 +27,7 @@ public class PointInTimeImpl extends HqdmObject implements PointInTime {
      *
      * @param id String of the PointInTime.
      */
-    public PointInTimeImpl(final String id) {
+    public PointInTimeImpl(final IRI id) {
         super(id);
     }
 }

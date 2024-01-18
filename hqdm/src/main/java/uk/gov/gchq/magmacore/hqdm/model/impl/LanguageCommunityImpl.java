@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.LanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of LanguageCommunity.
@@ -26,7 +27,7 @@ public class LanguageCommunityImpl extends HqdmObject implements LanguageCommuni
      *
      * @param id String of the LanguageCommunity.
      */
-    public LanguageCommunityImpl(final String id) {
+    public LanguageCommunityImpl(final IRI id) {
         super(id);
     }
 }

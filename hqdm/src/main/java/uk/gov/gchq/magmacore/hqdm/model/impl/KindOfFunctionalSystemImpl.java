@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.KindOfFunctionalSystem;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of KindOfFunctionalSystem.
@@ -26,7 +27,7 @@ public class KindOfFunctionalSystemImpl extends HqdmObject implements KindOfFunc
      *
      * @param id String of the KindOfFunctionalSystem.
      */
-    public KindOfFunctionalSystemImpl(final String id) {
+    public KindOfFunctionalSystemImpl(final IRI id) {
         super(id);
     }
 }

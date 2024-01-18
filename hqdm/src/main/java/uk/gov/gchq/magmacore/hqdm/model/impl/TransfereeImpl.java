@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Transferee;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Transferee.
@@ -26,7 +27,7 @@ public class TransfereeImpl extends HqdmObject implements Transferee {
      *
      * @param id String of the Transferee.
      */
-    public TransfereeImpl(final String id) {
+    public TransfereeImpl(final IRI id) {
         super(id);
     }
 }

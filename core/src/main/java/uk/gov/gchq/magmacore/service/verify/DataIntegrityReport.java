@@ -586,7 +586,7 @@ public class DataIntegrityReport {
      * @return A {@link List} of {@link Thing} that represent data integrity errors.
      */
     public static List<Thing> verify(final MagmaCoreDatabase db) {
-        db.begin();
+        db.beginRead();
 
         final List<Thing> errors = new ArrayList<>();
 

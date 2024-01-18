@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Role.
@@ -26,7 +27,7 @@ public class RoleImpl extends HqdmObject implements Role {
      *
      * @param id String of the Role.
      */
-    public RoleImpl(final String id) {
+    public RoleImpl(final IRI id) {
         super(id);
     }
 }

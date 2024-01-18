@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Person;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Person.
@@ -26,7 +27,7 @@ public class PersonImpl extends HqdmObject implements Person {
      *
      * @param id String of the Person.
      */
-    public PersonImpl(final String id) {
+    public PersonImpl(final IRI id) {
         super(id);
     }
 }

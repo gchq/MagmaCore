@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfContractProcess;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfContractProcess.
@@ -26,7 +27,7 @@ public class ClassOfContractProcessImpl extends HqdmObject implements ClassOfCon
      *
      * @param id String of the ClassOfContractProcess.
      */
-    public ClassOfContractProcessImpl(final String id) {
+    public ClassOfContractProcessImpl(final IRI id) {
         super(id);
     }
 }

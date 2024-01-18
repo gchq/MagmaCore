@@ -50,19 +50,19 @@ public class DemoUtils {
         final DbChangeSet rdlChangeSet = ExampleRdl.createRefDataObjects();
 
         // Apply the DbChangeSet.
-        mcService.runInTransaction(rdlChangeSet);
+        mcService.runInWriteTransaction(rdlChangeSet);
 
         // mcService now contains the RDL needed for the next DbChangeSet.
         final DbChangeSet individualsChangeSet = ExampleIndividuals.addWholeLifeIndividuals(mcService);
 
         // Apply the DbChangeSet.
-        mcService.runInTransaction(individualsChangeSet);
+        mcService.runInWriteTransaction(individualsChangeSet);
 
         // mcService now contains the individuals needed for creating the next DbChangeSet.
         final DbChangeSet occupanciesChangeSet = ExampleAssociations.addHouseOccupancies(mcService);
 
         // Apply the DbChangeSet.
-        mcService.runInTransaction(occupanciesChangeSet);
+        mcService.runInWriteTransaction(occupanciesChangeSet);
 
         // Combine the DbChangeSets into a DbTransformation and return it as a record of the changes.
         return new DbTransformation(List.of(rdlChangeSet, individualsChangeSet, occupanciesChangeSet));

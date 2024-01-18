@@ -55,7 +55,7 @@ public class DbChangeSetTest {
                         new DbCreateOperation(individualIri, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri)));
 
         // Apply the operations to the dataset.
-        mcService.runInTransaction(createIndividual);
+        mcService.runInWriteTransaction(createIndividual);
 
         // Find the individual and assert values are present.
         final Thing individual = mcService.getInTransaction(individualIri);
@@ -66,7 +66,7 @@ public class DbChangeSetTest {
         assertTrue(individual.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri));
 
         // Invert the operations and apply them in reverse order.
-        mcService.runInTransaction(DbChangeSet.invert(createIndividual));
+        mcService.runInWriteTransaction(DbChangeSet.invert(createIndividual));
 
         assertNull(mcService.getInTransaction(individualIri));
     }

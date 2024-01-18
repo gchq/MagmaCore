@@ -17,6 +17,9 @@ package uk.gov.gchq.magmacore.hqdm.services;
 import uk.gov.gchq.magmacore.hqdm.model.*;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
 import uk.gov.gchq.magmacore.hqdm.model.impl.*;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 
 /**
  * Service for creating HQDM Classes.
@@ -28,8 +31,10 @@ public class ClassServices {
      * @param id ID of the Class.
      * @return A Class instance.
      */
-    public static Class createClass(final String id) {
-        return new ClassImpl(id);
+    public static Class createClass(final IRI id) {
+        final Class result = new ClassImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS);
+        return result;
     }
 
     /**
@@ -38,8 +43,10 @@ public class ClassServices {
      * @param id ID of the ClassOfAbstractObject.
      * @return A ClassOfAbstractObject instance.
      */
-    public static ClassOfAbstractObject createClassOfAbstractObject(final String id) {
-        return new ClassOfAbstractObjectImpl(id);
+    public static ClassOfAbstractObject createClassOfAbstractObject(final IRI id) {
+        final ClassOfAbstractObject result = new ClassOfAbstractObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_ABSTRACT_OBJECT);
+        return result;
     }
 
     /**
@@ -48,8 +55,10 @@ public class ClassServices {
      * @param id ID of the ClassOfActivity.
      * @return A ClassOfActivity instance.
      */
-    public static ClassOfActivity createClassOfActivity(final String id) {
-        return new ClassOfActivityImpl(id);
+    public static ClassOfActivity createClassOfActivity(final IRI id) {
+        final ClassOfActivity result = new ClassOfActivityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_ACTIVITY);
+        return result;
     }
 
     /**
@@ -58,8 +67,10 @@ public class ClassServices {
      * @param id ID of the ClassOfAgreeContract.
      * @return A ClassOfAgreeContract instance.
      */
-    public static ClassOfAgreeContract createClassOfAgreeContract(final String id) {
-        return new ClassOfAgreeContractImpl(id);
+    public static ClassOfAgreeContract createClassOfAgreeContract(final IRI id) {
+        final ClassOfAgreeContract result = new ClassOfAgreeContractImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_AGREE_CONTRACT);
+        return result;
     }
 
     /**
@@ -68,8 +79,10 @@ public class ClassServices {
      * @param id ID of the ClassOfAgreementExecution.
      * @return A ClassOfAgreementExecution instance.
      */
-    public static ClassOfAgreementExecution createClassOfAgreementExecution(final String id) {
-        return new ClassOfAgreementExecutionImpl(id);
+    public static ClassOfAgreementExecution createClassOfAgreementExecution(final IRI id) {
+        final ClassOfAgreementExecution result = new ClassOfAgreementExecutionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_AGREEMENT_EXECUTION);
+        return result;
     }
 
     /**
@@ -78,8 +91,10 @@ public class ClassServices {
      * @param id ID of the ClassOfAgreementProcess.
      * @return A ClassOfAgreementProcess instance.
      */
-    public static ClassOfAgreementProcess createClassOfAgreementProcess(final String id) {
-        return new ClassOfAgreementProcessImpl(id);
+    public static ClassOfAgreementProcess createClassOfAgreementProcess(final IRI id) {
+        final ClassOfAgreementProcess result = new ClassOfAgreementProcessImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_AGREEMENT_PROCESS);
+        return result;
     }
 
     /**
@@ -88,8 +103,10 @@ public class ClassServices {
      * @param id ID of the ClassOfAmountOfMoney.
      * @return A ClassOfAmountOfMoney instance.
      */
-    public static ClassOfAmountOfMoney createClassOfAmountOfMoney(final String id) {
-        return new ClassOfAmountOfMoneyImpl(id);
+    public static ClassOfAmountOfMoney createClassOfAmountOfMoney(final IRI id) {
+        final ClassOfAmountOfMoney result = new ClassOfAmountOfMoneyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_AMOUNT_OF_MONEY);
+        return result;
     }
 
     /**
@@ -98,8 +115,10 @@ public class ClassServices {
      * @param id ID of the ClassOfAssociation.
      * @return A ClassOfAssociation instance.
      */
-    public static ClassOfAssociation createClassOfAssociation(final String id) {
-        return new ClassOfAssociationImpl(id);
+    public static ClassOfAssociation createClassOfAssociation(final IRI id) {
+        final ClassOfAssociation result = new ClassOfAssociationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_ASSOCIATION);
+        return result;
     }
 
     /**
@@ -108,8 +127,10 @@ public class ClassServices {
      * @param id ID of the ClassOfBiologicalObject.
      * @return A ClassOfBiologicalObject instance.
      */
-    public static ClassOfBiologicalObject createClassOfBiologicalObject(final String id) {
-        return new ClassOfBiologicalObjectImpl(id);
+    public static ClassOfBiologicalObject createClassOfBiologicalObject(final IRI id) {
+        final ClassOfBiologicalObject result = new ClassOfBiologicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_BIOLOGICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -118,8 +139,10 @@ public class ClassServices {
      * @param id ID of the ClassOfBiologicalSystem.
      * @return A ClassOfBiologicalSystem instance.
      */
-    public static ClassOfBiologicalSystem createClassOfBiologicalSystem(final String id) {
-        return new ClassOfBiologicalSystemImpl(id);
+    public static ClassOfBiologicalSystem createClassOfBiologicalSystem(final IRI id) {
+        final ClassOfBiologicalSystem result = new ClassOfBiologicalSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_BIOLOGICAL_SYSTEM);
+        return result;
     }
 
     /**
@@ -128,8 +151,10 @@ public class ClassServices {
      * @param id ID of the ClassOfBiologicalSystemComponent.
      * @return A ClassOfBiologicalSystemComponent instance.
      */
-    public static ClassOfBiologicalSystemComponent createClassOfBiologicalSystemComponent(final String id) {
-        return new ClassOfBiologicalSystemComponentImpl(id);
+    public static ClassOfBiologicalSystemComponent createClassOfBiologicalSystemComponent(final IRI id) {
+        final ClassOfBiologicalSystemComponent result = new ClassOfBiologicalSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_BIOLOGICAL_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -138,8 +163,10 @@ public class ClassServices {
      * @param id ID of the ClassOfClass.
      * @return A ClassOfClass instance.
      */
-    public static ClassOfClass createClassOfClass(final String id) {
-        return new ClassOfClassImpl(id);
+    public static ClassOfClass createClassOfClass(final IRI id) {
+        final ClassOfClass result = new ClassOfClassImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_CLASS);
+        return result;
     }
 
     /**
@@ -148,8 +175,10 @@ public class ClassServices {
      * @param id ID of the ClassOfClassOfSpatioTemporalExtent.
      * @return A ClassOfClassOfSpatioTemporalExtent instance.
      */
-    public static ClassOfClassOfSpatioTemporalExtent createClassOfClassOfSpatioTemporalExtent(final String id) {
-        return new ClassOfClassOfSpatioTemporalExtentImpl(id);
+    public static ClassOfClassOfSpatioTemporalExtent createClassOfClassOfSpatioTemporalExtent(final IRI id) {
+        final ClassOfClassOfSpatioTemporalExtent result = new ClassOfClassOfSpatioTemporalExtentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_CLASS_OF_SPATIO_TEMPORAL_EXTENT);
+        return result;
     }
 
     /**
@@ -158,8 +187,10 @@ public class ClassServices {
      * @param id ID of the ClassOfContractExecution.
      * @return A ClassOfContractExecution instance.
      */
-    public static ClassOfContractExecution createClassOfContractExecution(final String id) {
-        return new ClassOfContractExecutionImpl(id);
+    public static ClassOfContractExecution createClassOfContractExecution(final IRI id) {
+        final ClassOfContractExecution result = new ClassOfContractExecutionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_CONTRACT_EXECUTION);
+        return result;
     }
 
     /**
@@ -168,8 +199,10 @@ public class ClassServices {
      * @param id ID of the ClassOfContractProcess.
      * @return A ClassOfContractProcess instance.
      */
-    public static ClassOfContractProcess createClassOfContractProcess(final String id) {
-        return new ClassOfContractProcessImpl(id);
+    public static ClassOfContractProcess createClassOfContractProcess(final IRI id) {
+        final ClassOfContractProcess result = new ClassOfContractProcessImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_CONTRACT_PROCESS);
+        return result;
     }
 
     /**
@@ -178,8 +211,10 @@ public class ClassServices {
      * @param id ID of the ClassOfEvent.
      * @return A ClassOfEvent instance.
      */
-    public static ClassOfEvent createClassOfEvent(final String id) {
-        return new ClassOfEventImpl(id);
+    public static ClassOfEvent createClassOfEvent(final IRI id) {
+        final ClassOfEvent result = new ClassOfEventImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_EVENT);
+        return result;
     }
 
     /**
@@ -188,8 +223,10 @@ public class ClassServices {
      * @param id ID of the ClassOfFunctionalObject.
      * @return A ClassOfFunctionalObject instance.
      */
-    public static ClassOfFunctionalObject createClassOfFunctionalObject(final String id) {
-        return new ClassOfFunctionalObjectImpl(id);
+    public static ClassOfFunctionalObject createClassOfFunctionalObject(final IRI id) {
+        final ClassOfFunctionalObject result = new ClassOfFunctionalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_FUNCTIONAL_OBJECT);
+        return result;
     }
 
     /**
@@ -198,8 +235,10 @@ public class ClassServices {
      * @param id ID of the ClassOfFunctionalSystem.
      * @return A ClassOfFunctionalSystem instance.
      */
-    public static ClassOfFunctionalSystem createClassOfFunctionalSystem(final String id) {
-        return new ClassOfFunctionalSystemImpl(id);
+    public static ClassOfFunctionalSystem createClassOfFunctionalSystem(final IRI id) {
+        final ClassOfFunctionalSystem result = new ClassOfFunctionalSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_FUNCTIONAL_SYSTEM);
+        return result;
     }
 
     /**
@@ -208,8 +247,10 @@ public class ClassServices {
      * @param id ID of the ClassOfFunctionalSystemComponent.
      * @return A ClassOfFunctionalSystemComponent instance.
      */
-    public static ClassOfFunctionalSystemComponent createClassOfFunctionalSystemComponent(final String id) {
-        return new ClassOfFunctionalSystemComponentImpl(id);
+    public static ClassOfFunctionalSystemComponent createClassOfFunctionalSystemComponent(final IRI id) {
+        final ClassOfFunctionalSystemComponent result = new ClassOfFunctionalSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_FUNCTIONAL_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -218,8 +259,10 @@ public class ClassServices {
      * @param id ID of the ClassOfInPlaceBiologicalComponent.
      * @return A ClassOfInPlaceBiologicalComponent instance.
      */
-    public static ClassOfInPlaceBiologicalComponent createClassOfInPlaceBiologicalComponent(final String id) {
-        return new ClassOfInPlaceBiologicalComponentImpl(id);
+    public static ClassOfInPlaceBiologicalComponent createClassOfInPlaceBiologicalComponent(final IRI id) {
+        final ClassOfInPlaceBiologicalComponent result = new ClassOfInPlaceBiologicalComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_IN_PLACE_BIOLOGICAL_COMPONENT);
+        return result;
     }
 
     /**
@@ -228,8 +271,10 @@ public class ClassServices {
      * @param id ID of the ClassOfIndividual.
      * @return A ClassOfIndividual instance.
      */
-    public static ClassOfIndividual createClassOfIndividual(final String id) {
-        return new ClassOfIndividualImpl(id);
+    public static ClassOfIndividual createClassOfIndividual(final IRI id) {
+        final ClassOfIndividual result = new ClassOfIndividualImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_INDIVIDUAL);
+        return result;
     }
 
     /**
@@ -239,8 +284,10 @@ public class ClassServices {
      * @return A ClassOfInstalledFunctionalSystemComponent instance.
      */
     public static ClassOfInstalledFunctionalSystemComponent createClassOfInstalledFunctionalSystemComponent(
-            final String id) {
-        return new ClassOfInstalledFunctionalSystemComponentImpl(id);
+            final IRI id) {
+        final ClassOfInstalledFunctionalSystemComponent result = new ClassOfInstalledFunctionalSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_INSTALLED_FUNCTIONAL_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -249,8 +296,10 @@ public class ClassServices {
      * @param id ID of the ClassOfInstalledObject.
      * @return A ClassOfInstalledObject instance.
      */
-    public static ClassOfInstalledObject createClassOfInstalledObject(final String id) {
-        return new ClassOfInstalledObjectImpl(id);
+    public static ClassOfInstalledObject createClassOfInstalledObject(final IRI id) {
+        final ClassOfInstalledObject result = new ClassOfInstalledObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_INSTALLED_OBJECT);
+        return result;
     }
 
     /**
@@ -259,8 +308,10 @@ public class ClassServices {
      * @param id ID of the ClassOfIntentionallyConstructedObject.
      * @return A ClassOfIntentionallyConstructedObject instance.
      */
-    public static ClassOfIntentionallyConstructedObject createClassOfIntentionallyConstructedObject(final String id) {
-        return new ClassOfIntentionallyConstructedObjectImpl(id);
+    public static ClassOfIntentionallyConstructedObject createClassOfIntentionallyConstructedObject(final IRI id) {
+        final ClassOfIntentionallyConstructedObject result = new ClassOfIntentionallyConstructedObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_INTENTIONALLY_CONSTRUCTED_OBJECT);
+        return result;
     }
 
     /**
@@ -269,8 +320,10 @@ public class ClassServices {
      * @param id ID of the ClassOfOffer.
      * @return A ClassOfOffer instance.
      */
-    public static ClassOfOffer createClassOfOffer(final String id) {
-        return new ClassOfOfferImpl(id);
+    public static ClassOfOffer createClassOfOffer(final IRI id) {
+        final ClassOfOffer result = new ClassOfOfferImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_OFFER);
+        return result;
     }
 
     /**
@@ -279,8 +332,10 @@ public class ClassServices {
      * @param id ID of the ClassOfOrdinaryBiologicalObject.
      * @return A ClassOfOrdinaryBiologicalObject instance.
      */
-    public static ClassOfOrdinaryBiologicalObject createClassOfOrdinaryBiologicalObject(final String id) {
-        return new ClassOfOrdinaryBiologicalObjectImpl(id);
+    public static ClassOfOrdinaryBiologicalObject createClassOfOrdinaryBiologicalObject(final IRI id) {
+        final ClassOfOrdinaryBiologicalObject result = new ClassOfOrdinaryBiologicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_ORDINARY_BIOLOGICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -289,8 +344,10 @@ public class ClassServices {
      * @param id ID of the ClassOfOrdinaryFunctionalObject.
      * @return A ClassOfOrdinaryFunctionalObject instance.
      */
-    public static ClassOfOrdinaryFunctionalObject createClassOfOrdinaryFunctionalObject(final String id) {
-        return new ClassOfOrdinaryFunctionalObjectImpl(id);
+    public static ClassOfOrdinaryFunctionalObject createClassOfOrdinaryFunctionalObject(final IRI id) {
+        final ClassOfOrdinaryFunctionalObject result = new ClassOfOrdinaryFunctionalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_ORDINARY_FUNCTIONAL_OBJECT);
+        return result;
     }
 
     /**
@@ -299,8 +356,10 @@ public class ClassServices {
      * @param id ID of the ClassOfOrdinaryPhysicalObject.
      * @return A ClassOfOrdinaryPhysicalObject instance.
      */
-    public static ClassOfOrdinaryPhysicalObject createClassOfOrdinaryPhysicalObject(final String id) {
-        return new ClassOfOrdinaryPhysicalObjectImpl(id);
+    public static ClassOfOrdinaryPhysicalObject createClassOfOrdinaryPhysicalObject(final IRI id) {
+        final ClassOfOrdinaryPhysicalObject result = new ClassOfOrdinaryPhysicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_ORDINARY_PHYSICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -309,8 +368,10 @@ public class ClassServices {
      * @param id ID of the ClassOfOrganization.
      * @return A ClassOfOrganization instance.
      */
-    public static ClassOfOrganization createClassOfOrganization(final String id) {
-        return new ClassOfOrganizationImpl(id);
+    public static ClassOfOrganization createClassOfOrganization(final IRI id) {
+        final ClassOfOrganization result = new ClassOfOrganizationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_ORGANIZATION);
+        return result;
     }
 
     /**
@@ -319,8 +380,10 @@ public class ClassServices {
      * @param id ID of the ClassOfOrganizationComponent.
      * @return A ClassOfOrganizationComponent instance.
      */
-    public static ClassOfOrganizationComponent createClassOfOrganizationComponent(final String id) {
-        return new ClassOfOrganizationComponentImpl(id);
+    public static ClassOfOrganizationComponent createClassOfOrganizationComponent(final IRI id) {
+        final ClassOfOrganizationComponent result = new ClassOfOrganizationComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_ORGANIZATION_COMPONENT);
+        return result;
     }
 
     /**
@@ -329,8 +392,10 @@ public class ClassServices {
      * @param id ID of the ClassOfParticipant.
      * @return A ClassOfParticipant instance.
      */
-    public static ClassOfParticipant createClassOfParticipant(final String id) {
-        return new ClassOfParticipantImpl(id);
+    public static ClassOfParticipant createClassOfParticipant(final IRI id) {
+        final ClassOfParticipant result = new ClassOfParticipantImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_PARTICIPANT);
+        return result;
     }
 
     /**
@@ -339,8 +404,10 @@ public class ClassServices {
      * @param id ID of the ClassOfParty.
      * @return A ClassOfParty instance.
      */
-    public static ClassOfParty createClassOfParty(final String id) {
-        return new ClassOfPartyImpl(id);
+    public static ClassOfParty createClassOfParty(final IRI id) {
+        final ClassOfParty result = new ClassOfPartyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_PARTY);
+        return result;
     }
 
     /**
@@ -349,8 +416,10 @@ public class ClassServices {
      * @param id ID of the ClassOfPeriodOfTime.
      * @return A ClassOfPeriodOfTime instance.
      */
-    public static ClassOfPeriodOfTime createClassOfPeriodOfTime(final String id) {
-        return new ClassOfPeriodOfTimeImpl(id);
+    public static ClassOfPeriodOfTime createClassOfPeriodOfTime(final IRI id) {
+        final ClassOfPeriodOfTime result = new ClassOfPeriodOfTimeImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_PERIOD_OF_TIME);
+        return result;
     }
 
     /**
@@ -359,8 +428,10 @@ public class ClassServices {
      * @param id ID of the ClassOfPerson.
      * @return A ClassOfPerson instance.
      */
-    public static ClassOfPerson createClassOfPerson(final String id) {
-        return new ClassOfPersonImpl(id);
+    public static ClassOfPerson createClassOfPerson(final IRI id) {
+        final ClassOfPerson result = new ClassOfPersonImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_PERSON);
+        return result;
     }
 
     /**
@@ -369,8 +440,10 @@ public class ClassServices {
      * @param id ID of the ClassOfPersonInPosition.
      * @return A ClassOfPersonInPosition instance.
      */
-    public static ClassOfPersonInPosition createClassOfPersonInPosition(final String id) {
-        return new ClassOfPersonInPositionImpl(id);
+    public static ClassOfPersonInPosition createClassOfPersonInPosition(final IRI id) {
+        final ClassOfPersonInPosition result = new ClassOfPersonInPositionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_PERSON_IN_POSITION);
+        return result;
     }
 
     /**
@@ -379,8 +452,10 @@ public class ClassServices {
      * @param id ID of the ClassOfPhysicalObject.
      * @return A ClassOfPhysicalObject instance.
      */
-    public static ClassOfPhysicalObject createClassOfPhysicalObject(final String id) {
-        return new ClassOfPhysicalObjectImpl(id);
+    public static ClassOfPhysicalObject createClassOfPhysicalObject(final IRI id) {
+        final ClassOfPhysicalObject result = new ClassOfPhysicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_PHYSICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -389,8 +464,10 @@ public class ClassServices {
      * @param id ID of the ClassOfPhysicalProperty.
      * @return A ClassOfPhysicalProperty instance.
      */
-    public static ClassOfPhysicalProperty createClassOfPhysicalProperty(final String id) {
-        return new ClassOfPhysicalPropertyImpl(id);
+    public static ClassOfPhysicalProperty createClassOfPhysicalProperty(final IRI id) {
+        final ClassOfPhysicalProperty result = new ClassOfPhysicalPropertyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_PHYSICAL_PROPERTY);
+        return result;
     }
 
     /**
@@ -399,8 +476,10 @@ public class ClassServices {
      * @param id ID of the ClassOfPhysicalQuantity.
      * @return A ClassOfPhysicalQuantity instance.
      */
-    public static ClassOfPhysicalQuantity createClassOfPhysicalQuantity(final String id) {
-        return new ClassOfPhysicalQuantityImpl(id);
+    public static ClassOfPhysicalQuantity createClassOfPhysicalQuantity(final IRI id) {
+        final ClassOfPhysicalQuantity result = new ClassOfPhysicalQuantityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_PHYSICAL_QUANTITY);
+        return result;
     }
 
     /**
@@ -409,8 +488,10 @@ public class ClassServices {
      * @param id ID of the ClassOfPointInTime.
      * @return A ClassOfPointInTime instance.
      */
-    public static ClassOfPointInTime createClassOfPointInTime(final String id) {
-        return new ClassOfPointInTimeImpl(id);
+    public static ClassOfPointInTime createClassOfPointInTime(final IRI id) {
+        final ClassOfPointInTime result = new ClassOfPointInTimeImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_POINT_IN_TIME);
+        return result;
     }
 
     /**
@@ -419,8 +500,10 @@ public class ClassServices {
      * @param id ID of the ClassOfPosition.
      * @return A ClassOfPosition instance.
      */
-    public static ClassOfPosition createClassOfPosition(final String id) {
-        return new ClassOfPositionImpl(id);
+    public static ClassOfPosition createClassOfPosition(final IRI id) {
+        final ClassOfPosition result = new ClassOfPositionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_POSITION);
+        return result;
     }
 
     /**
@@ -429,8 +512,10 @@ public class ClassServices {
      * @param id ID of the ClassOfPossibleWorld.
      * @return A ClassOfPossibleWorld instance.
      */
-    public static ClassOfPossibleWorld createClassOfPossibleWorld(final String id) {
-        return new ClassOfPossibleWorldImpl(id);
+    public static ClassOfPossibleWorld createClassOfPossibleWorld(final IRI id) {
+        final ClassOfPossibleWorld result = new ClassOfPossibleWorldImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_POSSIBLE_WORLD);
+        return result;
     }
 
     /**
@@ -439,8 +524,10 @@ public class ClassServices {
      * @param id ID of the ClassOfReachingAgreement.
      * @return A ClassOfReachingAgreement instance.
      */
-    public static ClassOfReachingAgreement createClassOfReachingAgreement(final String id) {
-        return new ClassOfReachingAgreementImpl(id);
+    public static ClassOfReachingAgreement createClassOfReachingAgreement(final IRI id) {
+        final ClassOfReachingAgreement result = new ClassOfReachingAgreementImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_REACHING_AGREEMENT);
+        return result;
     }
 
     /**
@@ -449,8 +536,10 @@ public class ClassServices {
      * @param id ID of the ClassOfRelationship.
      * @return A ClassOfRelationship instance.
      */
-    public static ClassOfRelationship createClassOfRelationship(final String id) {
-        return new ClassOfRelationshipImpl(id);
+    public static ClassOfRelationship createClassOfRelationship(final IRI id) {
+        final ClassOfRelationship result = new ClassOfRelationshipImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_RELATIONSHIP);
+        return result;
     }
 
     /**
@@ -459,8 +548,10 @@ public class ClassServices {
      * @param id ID of the ClassOfRepresentation.
      * @return A ClassOfRepresentation instance.
      */
-    public static ClassOfRepresentation createClassOfRepresentation(final String id) {
-        return new ClassOfRepresentationImpl(id);
+    public static ClassOfRepresentation createClassOfRepresentation(final IRI id) {
+        final ClassOfRepresentation result = new ClassOfRepresentationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_REPRESENTATION);
+        return result;
     }
 
     /**
@@ -469,8 +560,10 @@ public class ClassServices {
      * @param id ID of the ClassOfSalesProductInstance.
      * @return A ClassOfSalesProductInstance instance.
      */
-    public static ClassOfSalesProductInstance createClassOfSalesProductInstance(final String id) {
-        return new ClassOfSalesProductInstanceImpl(id);
+    public static ClassOfSalesProductInstance createClassOfSalesProductInstance(final IRI id) {
+        final ClassOfSalesProductInstance result = new ClassOfSalesProductInstanceImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_SALES_PRODUCT_INSTANCE);
+        return result;
     }
 
     /**
@@ -479,8 +572,10 @@ public class ClassServices {
      * @param id ID of the ClassOfSign.
      * @return A ClassOfSign instance.
      */
-    public static ClassOfSign createClassOfSign(final String id) {
-        return new ClassOfSignImpl(id);
+    public static ClassOfSign createClassOfSign(final IRI id) {
+        final ClassOfSign result = new ClassOfSignImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_SIGN);
+        return result;
     }
 
     /**
@@ -489,8 +584,10 @@ public class ClassServices {
      * @param id ID of the ClassOfSociallyConstructedActivity.
      * @return A ClassOfSociallyConstructedActivity instance.
      */
-    public static ClassOfSociallyConstructedActivity createClassOfSociallyConstructedActivity(final String id) {
-        return new ClassOfSociallyConstructedActivityImpl(id);
+    public static ClassOfSociallyConstructedActivity createClassOfSociallyConstructedActivity(final IRI id) {
+        final ClassOfSociallyConstructedActivity result = new ClassOfSociallyConstructedActivityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_SOCIALLY_CONSTRUCTED_ACTIVITY);
+        return result;
     }
 
     /**
@@ -499,8 +596,10 @@ public class ClassServices {
      * @param id ID of the ClassOfSociallyConstructedObject.
      * @return A ClassOfSociallyConstructedObject instance.
      */
-    public static ClassOfSociallyConstructedObject createClassOfSociallyConstructedObject(final String id) {
-        return new ClassOfSociallyConstructedObjectImpl(id);
+    public static ClassOfSociallyConstructedObject createClassOfSociallyConstructedObject(final IRI id) {
+        final ClassOfSociallyConstructedObject result = new ClassOfSociallyConstructedObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_SOCIALLY_CONSTRUCTED_OBJECT);
+        return result;
     }
 
     /**
@@ -509,8 +608,10 @@ public class ClassServices {
      * @param id ID of the ClassOfSpatioTemporalExtent.
      * @return A ClassOfSpatioTemporalExtent instance.
      */
-    public static ClassOfSpatioTemporalExtent createClassOfSpatioTemporalExtent(final String id) {
-        return new ClassOfSpatioTemporalExtentImpl(id);
+    public static ClassOfSpatioTemporalExtent createClassOfSpatioTemporalExtent(final IRI id) {
+        final ClassOfSpatioTemporalExtent result = new ClassOfSpatioTemporalExtentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_SPATIO_TEMPORAL_EXTENT);
+        return result;
     }
 
     /**
@@ -519,8 +620,10 @@ public class ClassServices {
      * @param id ID of the ClassOfState.
      * @return A ClassOfState instance.
      */
-    public static ClassOfState createClassOfState(final String id) {
-        return new ClassOfStateImpl(id);
+    public static ClassOfState createClassOfState(final IRI id) {
+        final ClassOfState result = new ClassOfStateImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE);
+        return result;
     }
 
     /**
@@ -529,8 +632,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfActivity.
      * @return A ClassOfStateOfActivity instance.
      */
-    public static ClassOfStateOfActivity createClassOfStateOfActivity(final String id) {
-        return new ClassOfStateOfActivityImpl(id);
+    public static ClassOfStateOfActivity createClassOfStateOfActivity(final IRI id) {
+        final ClassOfStateOfActivity result = new ClassOfStateOfActivityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_ACTIVITY);
+        return result;
     }
 
     /**
@@ -539,8 +644,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfAmountOfMoney.
      * @return A ClassOfStateOfAmountOfMoney instance.
      */
-    public static ClassOfStateOfAmountOfMoney createClassOfStateOfAmountOfMoney(final String id) {
-        return new ClassOfStateOfAmountOfMoneyImpl(id);
+    public static ClassOfStateOfAmountOfMoney createClassOfStateOfAmountOfMoney(final IRI id) {
+        final ClassOfStateOfAmountOfMoney result = new ClassOfStateOfAmountOfMoneyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_AMOUNT_OF_MONEY);
+        return result;
     }
 
     /**
@@ -549,8 +656,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfAssociation.
      * @return A ClassOfStateOfAssociation instance.
      */
-    public static ClassOfStateOfAssociation createClassOfStateOfAssociation(final String id) {
-        return new ClassOfStateOfAssociationImpl(id);
+    public static ClassOfStateOfAssociation createClassOfStateOfAssociation(final IRI id) {
+        final ClassOfStateOfAssociation result = new ClassOfStateOfAssociationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_ASSOCIATION);
+        return result;
     }
 
     /**
@@ -559,8 +668,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfBiologicalObject.
      * @return A ClassOfStateOfBiologicalObject instance.
      */
-    public static ClassOfStateOfBiologicalObject createClassOfStateOfBiologicalObject(final String id) {
-        return new ClassOfStateOfBiologicalObjectImpl(id);
+    public static ClassOfStateOfBiologicalObject createClassOfStateOfBiologicalObject(final IRI id) {
+        final ClassOfStateOfBiologicalObject result = new ClassOfStateOfBiologicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_BIOLOGICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -569,8 +680,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfBiologicalSystem.
      * @return A ClassOfStateOfBiologicalSystem instance.
      */
-    public static ClassOfStateOfBiologicalSystem createClassOfStateOfBiologicalSystem(final String id) {
-        return new ClassOfStateOfBiologicalSystemImpl(id);
+    public static ClassOfStateOfBiologicalSystem createClassOfStateOfBiologicalSystem(final IRI id) {
+        final ClassOfStateOfBiologicalSystem result = new ClassOfStateOfBiologicalSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_BIOLOGICAL_SYSTEM);
+        return result;
     }
 
     /**
@@ -580,8 +693,10 @@ public class ClassServices {
      * @return A ClassOfStateOfBiologicalSystemComponent instance.
      */
     public static ClassOfStateOfBiologicalSystemComponent createClassOfStateOfBiologicalSystemComponent(
-            final String id) {
-        return new ClassOfStateOfBiologicalSystemComponentImpl(id);
+            final IRI id) {
+        final ClassOfStateOfBiologicalSystemComponent result = new ClassOfStateOfBiologicalSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_BIOLOGICAL_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -590,8 +705,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfFunctionalObject.
      * @return A ClassOfStateOfFunctionalObject instance.
      */
-    public static ClassOfStateOfFunctionalObject createClassOfStateOfFunctionalObject(final String id) {
-        return new ClassOfStateOfFunctionalObjectImpl(id);
+    public static ClassOfStateOfFunctionalObject createClassOfStateOfFunctionalObject(final IRI id) {
+        final ClassOfStateOfFunctionalObject result = new ClassOfStateOfFunctionalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_FUNCTIONAL_OBJECT);
+        return result;
     }
 
     /**
@@ -600,8 +717,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfFunctionalSystem.
      * @return A ClassOfStateOfFunctionalSystem instance.
      */
-    public static ClassOfStateOfFunctionalSystem createClassOfStateOfFunctionalSystem(final String id) {
-        return new ClassOfStateOfFunctionalSystemImpl(id);
+    public static ClassOfStateOfFunctionalSystem createClassOfStateOfFunctionalSystem(final IRI id) {
+        final ClassOfStateOfFunctionalSystem result = new ClassOfStateOfFunctionalSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_FUNCTIONAL_SYSTEM);
+        return result;
     }
 
     /**
@@ -611,8 +730,11 @@ public class ClassServices {
      * @return A ClassOfStateOfFunctionalSystemComponent instance.
      */
     public static ClassOfStateOfFunctionalSystemComponent createClassOfStateOfFunctionalSystemComponent(
-            final String id) {
-        return new ClassOfStateOfFunctionalSystemComponentImpl(id);
+            final IRI id) {
+        final ClassOfStateOfFunctionalSystemComponent result = 
+            new ClassOfStateOfFunctionalSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_FUNCTIONAL_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -622,8 +744,11 @@ public class ClassServices {
      * @return A ClassOfStateOfIntentionallyConstructedObject instance.
      */
     public static ClassOfStateOfIntentionallyConstructedObject createClassOfStateOfIntentionallyConstructedObject(
-            final String id) {
-        return new ClassOfStateOfIntentionallyConstructedObjectImpl(id);
+            final IRI id) {
+        final ClassOfStateOfIntentionallyConstructedObject result = 
+            new ClassOfStateOfIntentionallyConstructedObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_INTENTIONALLY_CONSTRUCTED_OBJECT);
+        return result;
     }
 
     /**
@@ -632,8 +757,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfOrdinaryBiologicalObject.
      * @return A ClassOfStateOfOrdinaryBiologicalObject instance.
      */
-    public static ClassOfStateOfOrdinaryBiologicalObject createClassOfStateOfOrdinaryBiologicalObject(final String id) {
-        return new ClassOfStateOfOrdinaryBiologicalObjectImpl(id);
+    public static ClassOfStateOfOrdinaryBiologicalObject createClassOfStateOfOrdinaryBiologicalObject(final IRI id) {
+        final ClassOfStateOfOrdinaryBiologicalObject result = new ClassOfStateOfOrdinaryBiologicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_ORDINARY_BIOLOGICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -642,8 +769,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfOrdinaryFunctionalObject.
      * @return A ClassOfStateOfOrdinaryFunctionalObject instance.
      */
-    public static ClassOfStateOfOrdinaryFunctionalObject createClassOfStateOfOrdinaryFunctionalObject(final String id) {
-        return new ClassOfStateOfOrdinaryFunctionalObjectImpl(id);
+    public static ClassOfStateOfOrdinaryFunctionalObject createClassOfStateOfOrdinaryFunctionalObject(final IRI id) {
+        final ClassOfStateOfOrdinaryFunctionalObject result = new ClassOfStateOfOrdinaryFunctionalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_ORDINARY_FUNCTIONAL_OBJECT);
+        return result;
     }
 
     /**
@@ -652,8 +781,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfOrdinaryPhysicalObject.
      * @return A ClassOfStateOfOrdinaryPhysicalObject instance.
      */
-    public static ClassOfStateOfOrdinaryPhysicalObject createClassOfStateOfOrdinaryPhysicalObject(final String id) {
-        return new ClassOfStateOfOrdinaryPhysicalObjectImpl(id);
+    public static ClassOfStateOfOrdinaryPhysicalObject createClassOfStateOfOrdinaryPhysicalObject(final IRI id) {
+        final ClassOfStateOfOrdinaryPhysicalObject result = new ClassOfStateOfOrdinaryPhysicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_ORDINARY_PHYSICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -662,8 +793,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfOrganization.
      * @return A ClassOfStateOfOrganization instance.
      */
-    public static ClassOfStateOfOrganization createClassOfStateOfOrganization(final String id) {
-        return new ClassOfStateOfOrganizationImpl(id);
+    public static ClassOfStateOfOrganization createClassOfStateOfOrganization(final IRI id) {
+        final ClassOfStateOfOrganization result = new ClassOfStateOfOrganizationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_ORGANIZATION);
+        return result;
     }
 
     /**
@@ -672,8 +805,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfOrganizationComponent.
      * @return A ClassOfStateOfOrganizationComponent instance.
      */
-    public static ClassOfStateOfOrganizationComponent createClassOfStateOfOrganizationComponent(final String id) {
-        return new ClassOfStateOfOrganizationComponentImpl(id);
+    public static ClassOfStateOfOrganizationComponent createClassOfStateOfOrganizationComponent(final IRI id) {
+        final ClassOfStateOfOrganizationComponent result = new ClassOfStateOfOrganizationComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_ORGANIZATION_COMPONENT);
+        return result;
     }
 
     /**
@@ -682,8 +817,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfParty.
      * @return A ClassOfStateOfParty instance.
      */
-    public static ClassOfStateOfParty createClassOfStateOfParty(final String id) {
-        return new ClassOfStateOfPartyImpl(id);
+    public static ClassOfStateOfParty createClassOfStateOfParty(final IRI id) {
+        final ClassOfStateOfParty result = new ClassOfStateOfPartyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_PARTY);
+        return result;
     }
 
     /**
@@ -692,8 +829,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfPerson.
      * @return A ClassOfStateOfPerson instance.
      */
-    public static ClassOfStateOfPerson createClassOfStateOfPerson(final String id) {
-        return new ClassOfStateOfPersonImpl(id);
+    public static ClassOfStateOfPerson createClassOfStateOfPerson(final IRI id) {
+        final ClassOfStateOfPerson result = new ClassOfStateOfPersonImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_PERSON);
+        return result;
     }
 
     /**
@@ -702,8 +841,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfPhysicalObject.
      * @return A ClassOfStateOfPhysicalObject instance.
      */
-    public static ClassOfStateOfPhysicalObject createClassOfStateOfPhysicalObject(final String id) {
-        return new ClassOfStateOfPhysicalObjectImpl(id);
+    public static ClassOfStateOfPhysicalObject createClassOfStateOfPhysicalObject(final IRI id) {
+        final ClassOfStateOfPhysicalObject result = new ClassOfStateOfPhysicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_PHYSICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -712,8 +853,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfPosition.
      * @return A ClassOfStateOfPosition instance.
      */
-    public static ClassOfStateOfPosition createClassOfStateOfPosition(final String id) {
-        return new ClassOfStateOfPositionImpl(id);
+    public static ClassOfStateOfPosition createClassOfStateOfPosition(final IRI id) {
+        final ClassOfStateOfPosition result = new ClassOfStateOfPositionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_POSITION);
+        return result;
     }
 
     /**
@@ -722,8 +865,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfSalesProductInstance.
      * @return A ClassOfStateOfSalesProductInstance instance.
      */
-    public static ClassOfStateOfSalesProductInstance createClassOfStateOfSalesProductInstance(final String id) {
-        return new ClassOfStateOfSalesProductInstanceImpl(id);
+    public static ClassOfStateOfSalesProductInstance createClassOfStateOfSalesProductInstance(final IRI id) {
+        final ClassOfStateOfSalesProductInstance result = new ClassOfStateOfSalesProductInstanceImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_SALES_PRODUCT_INSTANCE);
+        return result;
     }
 
     /**
@@ -732,8 +877,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfSign.
      * @return A ClassOfStateOfSign instance.
      */
-    public static ClassOfStateOfSign createClassOfStateOfSign(final String id) {
-        return new ClassOfStateOfSignImpl(id);
+    public static ClassOfStateOfSign createClassOfStateOfSign(final IRI id) {
+        final ClassOfStateOfSign result = new ClassOfStateOfSignImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_SIGN);
+        return result;
     }
 
     /**
@@ -743,8 +890,10 @@ public class ClassServices {
      * @return A ClassOfStateOfSociallyConstructedActivity instance.
      */
     public static ClassOfStateOfSociallyConstructedActivity createClassOfStateOfSociallyConstructedActivity(
-            final String id) {
-        return new ClassOfStateOfSociallyConstructedActivityImpl(id);
+            final IRI id) {
+        final ClassOfStateOfSociallyConstructedActivity result = new ClassOfStateOfSociallyConstructedActivityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_SOCIALLY_CONSTRUCTED_ACTIVITY);
+        return result;
     }
 
     /**
@@ -754,8 +903,10 @@ public class ClassServices {
      * @return A ClassOfStateOfSociallyConstructedObject instance.
      */
     public static ClassOfStateOfSociallyConstructedObject createClassOfStateOfSociallyConstructedObject(
-            final String id) {
-        return new ClassOfStateOfSociallyConstructedObjectImpl(id);
+            final IRI id) {
+        final ClassOfStateOfSociallyConstructedObject result = new ClassOfStateOfSociallyConstructedObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_SOCIALLY_CONSTRUCTED_OBJECT);
+        return result;
     }
 
     /**
@@ -764,8 +915,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfSystem.
      * @return A ClassOfStateOfSystem instance.
      */
-    public static ClassOfStateOfSystem createClassOfStateOfSystem(final String id) {
-        return new ClassOfStateOfSystemImpl(id);
+    public static ClassOfStateOfSystem createClassOfStateOfSystem(final IRI id) {
+        final ClassOfStateOfSystem result = new ClassOfStateOfSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_SYSTEM);
+        return result;
     }
 
     /**
@@ -774,8 +927,10 @@ public class ClassServices {
      * @param id ID of the ClassOfStateOfSystemComponent.
      * @return A ClassOfStateOfSystemComponent instance.
      */
-    public static ClassOfStateOfSystemComponent createClassOfStateOfSystemComponent(final String id) {
-        return new ClassOfStateOfSystemComponentImpl(id);
+    public static ClassOfStateOfSystemComponent createClassOfStateOfSystemComponent(final IRI id) {
+        final ClassOfStateOfSystemComponent result = new ClassOfStateOfSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -784,8 +939,10 @@ public class ClassServices {
      * @param id ID of the ClassOfSystem.
      * @return A ClassOfSystem instance.
      */
-    public static ClassOfSystem createClassOfSystem(final String id) {
-        return new ClassOfSystemImpl(id);
+    public static ClassOfSystem createClassOfSystem(final IRI id) {
+        final ClassOfSystem result = new ClassOfSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_SYSTEM);
+        return result;
     }
 
     /**
@@ -794,8 +951,10 @@ public class ClassServices {
      * @param id ID of the ClassOfSystemComponent.
      * @return A ClassOfSystemComponent instance.
      */
-    public static ClassOfSystemComponent createClassOfSystemComponent(final String id) {
-        return new ClassOfSystemComponentImpl(id);
+    public static ClassOfSystemComponent createClassOfSystemComponent(final IRI id) {
+        final ClassOfSystemComponent result = new ClassOfSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -804,8 +963,10 @@ public class ClassServices {
      * @param id ID of the Definition.
      * @return A Definition instance.
      */
-    public static Definition createDefinition(final String id) {
-        return new DefinitionImpl(id);
+    public static Definition createDefinition(final IRI id) {
+        final Definition result = new DefinitionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.DEFINITION);
+        return result;
     }
 
     /**
@@ -814,8 +975,10 @@ public class ClassServices {
      * @param id ID of the Description.
      * @return A Description instance.
      */
-    public static Description createDescription(final String id) {
-        return new DescriptionImpl(id);
+    public static Description createDescription(final IRI id) {
+        final Description result = new DescriptionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.DESCRIPTION);
+        return result;
     }
 
     /**
@@ -824,8 +987,10 @@ public class ClassServices {
      * @param id ID of the EnumeratedClass.
      * @return A EnumeratedClass instance.
      */
-    public static EnumeratedClass createEnumeratedClass(final String id) {
-        return new EnumeratedClassImpl(id);
+    public static EnumeratedClass createEnumeratedClass(final IRI id) {
+        final EnumeratedClass result = new EnumeratedClassImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ENUMERATED_CLASS);
+        return result;
     }
 
     /**
@@ -834,8 +999,10 @@ public class ClassServices {
      * @param id ID of the KindOfActivity.
      * @return A KindOfActivity instance.
      */
-    public static KindOfActivity createKindOfActivity(final String id) {
-        return new KindOfActivityImpl(id);
+    public static KindOfActivity createKindOfActivity(final IRI id) {
+        final KindOfActivity result = new KindOfActivityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ACTIVITY);
+        return result;
     }
 
     /**
@@ -844,8 +1011,10 @@ public class ClassServices {
      * @param id ID of the KindOfAssociation.
      * @return A KindOfAssociation instance.
      */
-    public static KindOfAssociation createKindOfAssociation(final String id) {
-        return new KindOfAssociationImpl(id);
+    public static KindOfAssociation createKindOfAssociation(final IRI id) {
+        final KindOfAssociation result = new KindOfAssociationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ASSOCIATION);
+        return result;
     }
 
     /**
@@ -854,8 +1023,10 @@ public class ClassServices {
      * @param id ID of the KindOfBiologicalObject.
      * @return A KindOfBiologicalObject instance.
      */
-    public static KindOfBiologicalObject createKindOfBiologicalObject(final String id) {
-        return new KindOfBiologicalObjectImpl(id);
+    public static KindOfBiologicalObject createKindOfBiologicalObject(final IRI id) {
+        final KindOfBiologicalObject result = new KindOfBiologicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_BIOLOGICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -864,8 +1035,10 @@ public class ClassServices {
      * @param id ID of the KindOfBiologicalSystem.
      * @return A KindOfBiologicalSystem instance.
      */
-    public static KindOfBiologicalSystem createKindOfBiologicalSystem(final String id) {
-        return new KindOfBiologicalSystemImpl(id);
+    public static KindOfBiologicalSystem createKindOfBiologicalSystem(final IRI id) {
+        final KindOfBiologicalSystem result = new KindOfBiologicalSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_BIOLOGICAL_SYSTEM);
+        return result;
     }
 
     /**
@@ -874,8 +1047,10 @@ public class ClassServices {
      * @param id ID of the KindOfBiologicalSystemComponent.
      * @return A KindOfBiologicalSystemComponent instance.
      */
-    public static KindOfBiologicalSystemComponent createKindOfBiologicalSystemComponent(final String id) {
-        return new KindOfBiologicalSystemComponentImpl(id);
+    public static KindOfBiologicalSystemComponent createKindOfBiologicalSystemComponent(final IRI id) {
+        final KindOfBiologicalSystemComponent result = new KindOfBiologicalSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_BIOLOGICAL_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -884,8 +1059,10 @@ public class ClassServices {
      * @param id ID of the KindOfFunctionalObject.
      * @return A KindOfFunctionalObject instance.
      */
-    public static KindOfFunctionalObject createKindOfFunctionalObject(final String id) {
-        return new KindOfFunctionalObjectImpl(id);
+    public static KindOfFunctionalObject createKindOfFunctionalObject(final IRI id) {
+        final KindOfFunctionalObject result = new KindOfFunctionalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_FUNCTIONAL_OBJECT);
+        return result;
     }
 
     /**
@@ -894,8 +1071,10 @@ public class ClassServices {
      * @param id ID of the KindOfFunctionalSystem.
      * @return A KindOfFunctionalSystem instance.
      */
-    public static KindOfFunctionalSystem createKindOfFunctionalSystem(final String id) {
-        return new KindOfFunctionalSystemImpl(id);
+    public static KindOfFunctionalSystem createKindOfFunctionalSystem(final IRI id) {
+        final KindOfFunctionalSystem result = new KindOfFunctionalSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_FUNCTIONAL_SYSTEM);
+        return result;
     }
 
     /**
@@ -904,8 +1083,10 @@ public class ClassServices {
      * @param id ID of the KindOfFunctionalSystemComponent.
      * @return A KindOfFunctionalSystemComponent instance.
      */
-    public static KindOfFunctionalSystemComponent createKindOfFunctionalSystemComponent(final String id) {
-        return new KindOfFunctionalSystemComponentImpl(id);
+    public static KindOfFunctionalSystemComponent createKindOfFunctionalSystemComponent(final IRI id) {
+        final KindOfFunctionalSystemComponent result = new KindOfFunctionalSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_FUNCTIONAL_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -914,8 +1095,10 @@ public class ClassServices {
      * @param id ID of the KindOfIndividual.
      * @return A KindOfIndividual instance.
      */
-    public static KindOfIndividual createKindOfIndividual(final String id) {
-        return new KindOfIndividualImpl(id);
+    public static KindOfIndividual createKindOfIndividual(final IRI id) {
+        final KindOfIndividual result = new KindOfIndividualImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_INDIVIDUAL);
+        return result;
     }
 
     /**
@@ -924,8 +1107,10 @@ public class ClassServices {
      * @param id ID of the KindOfIntentionallyConstructedObject.
      * @return A KindOfIntentionallyConstructedObject instance.
      */
-    public static KindOfIntentionallyConstructedObject createKindOfIntentionallyConstructedObject(final String id) {
-        return new KindOfIntentionallyConstructedObjectImpl(id);
+    public static KindOfIntentionallyConstructedObject createKindOfIntentionallyConstructedObject(final IRI id) {
+        final KindOfIntentionallyConstructedObject result = new KindOfIntentionallyConstructedObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_INTENTIONALLY_CONSTRUCTED_OBJECT);
+        return result;
     }
 
     /**
@@ -934,8 +1119,10 @@ public class ClassServices {
      * @param id ID of the KindOfOrdinaryBiologicalObject.
      * @return A KindOfOrdinaryBiologicalObject instance.
      */
-    public static KindOfOrdinaryBiologicalObject createKindOfOrdinaryBiologicalObject(final String id) {
-        return new KindOfOrdinaryBiologicalObjectImpl(id);
+    public static KindOfOrdinaryBiologicalObject createKindOfOrdinaryBiologicalObject(final IRI id) {
+        final KindOfOrdinaryBiologicalObject result = new KindOfOrdinaryBiologicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ORDINARY_BIOLOGICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -944,8 +1131,10 @@ public class ClassServices {
      * @param id ID of the KindOfOrdinaryFunctionalObject.
      * @return A KindOfOrdinaryFunctionalObject instance.
      */
-    public static KindOfOrdinaryFunctionalObject createKindOfOrdinaryFunctionalObject(final String id) {
-        return new KindOfOrdinaryFunctionalObjectImpl(id);
+    public static KindOfOrdinaryFunctionalObject createKindOfOrdinaryFunctionalObject(final IRI id) {
+        final KindOfOrdinaryFunctionalObject result = new KindOfOrdinaryFunctionalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ORDINARY_FUNCTIONAL_OBJECT);
+        return result;
     }
 
     /**
@@ -954,8 +1143,10 @@ public class ClassServices {
      * @param id ID of the KindOfOrdinaryPhysicalObject.
      * @return A KindOfOrdinaryPhysicalObject instance.
      */
-    public static KindOfOrdinaryPhysicalObject createKindOfOrdinaryPhysicalObject(final String id) {
-        return new KindOfOrdinaryPhysicalObjectImpl(id);
+    public static KindOfOrdinaryPhysicalObject createKindOfOrdinaryPhysicalObject(final IRI id) {
+        final KindOfOrdinaryPhysicalObject result = new KindOfOrdinaryPhysicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ORDINARY_PHYSICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -964,8 +1155,10 @@ public class ClassServices {
      * @param id ID of the KindOfOrganization.
      * @return A KindOfOrganization instance.
      */
-    public static KindOfOrganization createKindOfOrganization(final String id) {
-        return new KindOfOrganizationImpl(id);
+    public static KindOfOrganization createKindOfOrganization(final IRI id) {
+        final KindOfOrganization result = new KindOfOrganizationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ORGANIZATION);
+        return result;
     }
 
     /**
@@ -974,8 +1167,10 @@ public class ClassServices {
      * @param id ID of the KindOfOrganizationComponent.
      * @return A KindOfOrganizationComponent instance.
      */
-    public static KindOfOrganizationComponent createKindOfOrganizationComponent(final String id) {
-        return new KindOfOrganizationComponentImpl(id);
+    public static KindOfOrganizationComponent createKindOfOrganizationComponent(final IRI id) {
+        final KindOfOrganizationComponent result = new KindOfOrganizationComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ORGANIZATION_COMPONENT);
+        return result;
     }
 
     /**
@@ -984,8 +1179,10 @@ public class ClassServices {
      * @param id ID of the KindOfParty.
      * @return A KindOfParty instance.
      */
-    public static KindOfParty createKindOfParty(final String id) {
-        return new KindOfPartyImpl(id);
+    public static KindOfParty createKindOfParty(final IRI id) {
+        final KindOfParty result = new KindOfPartyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_PARTY);
+        return result;
     }
 
     /**
@@ -994,8 +1191,10 @@ public class ClassServices {
      * @param id ID of the KindOfPerson.
      * @return A KindOfPerson instance.
      */
-    public static KindOfPerson createKindOfPerson(final String id) {
-        return new KindOfPersonImpl(id);
+    public static KindOfPerson createKindOfPerson(final IRI id) {
+        final KindOfPerson result = new KindOfPersonImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_PERSON);
+        return result;
     }
 
     /**
@@ -1004,8 +1203,10 @@ public class ClassServices {
      * @param id ID of the KindOfPhysicalObject.
      * @return A KindOfPhysicalObject instance.
      */
-    public static KindOfPhysicalObject createKindOfPhysicalObject(final String id) {
-        return new KindOfPhysicalObjectImpl(id);
+    public static KindOfPhysicalObject createKindOfPhysicalObject(final IRI id) {
+        final KindOfPhysicalObject result = new KindOfPhysicalObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_PHYSICAL_OBJECT);
+        return result;
     }
 
     /**
@@ -1014,8 +1215,10 @@ public class ClassServices {
      * @param id ID of the KindOfPhysicalProperty.
      * @return A KindOfPhysicalProperty instance.
      */
-    public static KindOfPhysicalProperty createKindOfPhysicalProperty(final String id) {
-        return new KindOfPhysicalPropertyImpl(id);
+    public static KindOfPhysicalProperty createKindOfPhysicalProperty(final IRI id) {
+        final KindOfPhysicalProperty result = new KindOfPhysicalPropertyImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_PHYSICAL_PROPERTY);
+        return result;
     }
 
     /**
@@ -1024,8 +1227,10 @@ public class ClassServices {
      * @param id ID of the KindOfPhysicalQuantity.
      * @return A KindOfPhysicalQuantity instance.
      */
-    public static KindOfPhysicalQuantity createKindOfPhysicalQuantity(final String id) {
-        return new KindOfPhysicalQuantityImpl(id);
+    public static KindOfPhysicalQuantity createKindOfPhysicalQuantity(final IRI id) {
+        final KindOfPhysicalQuantity result = new KindOfPhysicalQuantityImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_PHYSICAL_QUANTITY);
+        return result;
     }
 
     /**
@@ -1034,8 +1239,10 @@ public class ClassServices {
      * @param id ID of the KindOfPosition.
      * @return A KindOfPosition instance.
      */
-    public static KindOfPosition createKindOfPosition(final String id) {
-        return new KindOfPositionImpl(id);
+    public static KindOfPosition createKindOfPosition(final IRI id) {
+        final KindOfPosition result = new KindOfPositionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_POSITION);
+        return result;
     }
 
     /**
@@ -1044,8 +1251,10 @@ public class ClassServices {
      * @param id ID of the KindOfRelationshipWithRestriction.
      * @return A KindOfRelationshipWithRestriction instance.
      */
-    public static KindOfRelationshipWithRestriction createKindOfRelationshipWithRestriction(final String id) {
-        return new KindOfRelationshipWithRestrictionImpl(id);
+    public static KindOfRelationshipWithRestriction createKindOfRelationshipWithRestriction(final IRI id) {
+        final KindOfRelationshipWithRestriction result = new KindOfRelationshipWithRestrictionImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_RELATIONSHIP_WITH_RESTRICTION);
+        return result;
     }
 
     /**
@@ -1054,8 +1263,10 @@ public class ClassServices {
      * @param id ID of the KindOfRelationshipWithSignature.
      * @return A KindOfRelationshipWithSignature instance.
      */
-    public static KindOfRelationshipWithSignature createKindOfRelationshipWithSignature(final String id) {
-        return new KindOfRelationshipWithSignatureImpl(id);
+    public static KindOfRelationshipWithSignature createKindOfRelationshipWithSignature(final IRI id) {
+        final KindOfRelationshipWithSignature result = new KindOfRelationshipWithSignatureImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_RELATIONSHIP_WITH_SIGNATURE);
+        return result;
     }
 
     /**
@@ -1064,8 +1275,10 @@ public class ClassServices {
      * @param id ID of the KindOfSociallyConstructedObject.
      * @return A KindOfSociallyConstructedObject instance.
      */
-    public static KindOfSociallyConstructedObject createKindOfSociallyConstructedObject(final String id) {
-        return new KindOfSociallyConstructedObjectImpl(id);
+    public static KindOfSociallyConstructedObject createKindOfSociallyConstructedObject(final IRI id) {
+        final KindOfSociallyConstructedObject result = new KindOfSociallyConstructedObjectImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_SOCIALLY_CONSTRUCTED_OBJECT);
+        return result;
     }
 
     /**
@@ -1074,8 +1287,10 @@ public class ClassServices {
      * @param id ID of the KindOfSystem.
      * @return A KindOfSystem instance.
      */
-    public static KindOfSystem createKindOfSystem(final String id) {
-        return new KindOfSystemImpl(id);
+    public static KindOfSystem createKindOfSystem(final IRI id) {
+        final KindOfSystem result = new KindOfSystemImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_SYSTEM);
+        return result;
     }
 
     /**
@@ -1084,8 +1299,10 @@ public class ClassServices {
      * @param id ID of the KindOfSystemComponent.
      * @return A KindOfSystemComponent instance.
      */
-    public static KindOfSystemComponent createKindOfSystemComponent(final String id) {
-        return new KindOfSystemComponentImpl(id);
+    public static KindOfSystemComponent createKindOfSystemComponent(final IRI id) {
+        final KindOfSystemComponent result = new KindOfSystemComponentImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_SYSTEM_COMPONENT);
+        return result;
     }
 
     /**
@@ -1094,8 +1311,10 @@ public class ClassServices {
      * @param id ID of the Identification.
      * @return A Identification instance.
      */
-    public static Identification createIdentification(final String id) {
-        return new IdentificationImpl(id);
+    public static Identification createIdentification(final IRI id) {
+        final Identification result = new IdentificationImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.IDENTIFICATION);
+        return result;
     }
 
     /**
@@ -1104,8 +1323,10 @@ public class ClassServices {
      * @param id ID of the Pattern.
      * @return A Pattern instance.
      */
-    public static Pattern createPattern(final String id) {
-        return new PatternImpl(id);
+    public static Pattern createPattern(final IRI id) {
+        final Pattern result = new PatternImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
+        return result;
     }
 
     /**
@@ -1114,8 +1335,10 @@ public class ClassServices {
      * @param id ID of the RepresentationByPattern.
      * @return A RepresentationByPattern instance.
      */
-    public static RepresentationByPattern createRepresentationByPattern(final String id) {
-        return new RepresentationByPatternImpl(id);
+    public static RepresentationByPattern createRepresentationByPattern(final IRI id) {
+        final RepresentationByPattern result = new RepresentationByPatternImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_PATTERN);
+        return result;
     }
 
     /**
@@ -1124,7 +1347,9 @@ public class ClassServices {
      * @param id ID of the Role.
      * @return A Role instance.
      */
-    public static Role createRole(final String id) {
-        return new RoleImpl(id);
+    public static Role createRole(final IRI id) {
+        final Role result = new RoleImpl(id);
+        result.addValue(RDFS.RDF_TYPE, HQDM.ROLE);
+        return result;
     }
 }

@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.TemporalComposition;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of TemporalComposition.
@@ -26,7 +27,7 @@ public class TemporalCompositionImpl extends HqdmObject implements TemporalCompo
      *
      * @param id String of the TemporalComposition.
      */
-    public TemporalCompositionImpl(final String id) {
+    public TemporalCompositionImpl(final IRI id) {
         super(id);
     }
 }

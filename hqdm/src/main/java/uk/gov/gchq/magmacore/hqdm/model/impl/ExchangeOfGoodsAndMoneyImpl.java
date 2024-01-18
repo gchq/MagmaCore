@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ExchangeOfGoodsAndMoney;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ExchangeOfGoodsAndMoney.
@@ -26,7 +27,7 @@ public class ExchangeOfGoodsAndMoneyImpl extends HqdmObject implements ExchangeO
      *
      * @param id String of the ExchangeOfGoodsAndMoney.
      */
-    public ExchangeOfGoodsAndMoneyImpl(final String id) {
+    public ExchangeOfGoodsAndMoneyImpl(final IRI id) {
         super(id);
     }
 }

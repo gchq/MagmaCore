@@ -88,9 +88,19 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     /**
      * {@inheritDoc}
      */
-    public final void begin() {
+    public final void beginRead() {
         if (!connection.isInTransaction()) {
-            // The default TxnType.READ_PROMOTE is not supported.
+            connection.begin(TxnType.READ);
+        } else {
+            throw new IllegalStateException("Already in a transaction");
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public final void beginWrite() {
+        if (!connection.isInTransaction()) {
             connection.begin(TxnType.WRITE);
         } else {
             throw new IllegalStateException("Already in a transaction");
@@ -153,7 +163,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
 
         final Model model = ModelFactory.createDefaultModel();
 
-        final Resource resource = model.createResource(object.getId());
+        final Resource resource = model.createResource(object.getId().getIri());
 
         object.getPredicates().forEach((iri, predicates) -> predicates.forEach(value -> {
             if (value instanceof IRI) {
@@ -431,7 +441,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      * @param language RDF language syntax to output data as.
      */
     public final void load(final InputStream in, final Lang language) {
-        begin();
+        beginWrite();
         final Dataset dataset = connection.fetchDataset();
         final Model model = dataset.getDefaultModel();
         RDFDataMgr.read(model, in, language);

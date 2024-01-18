@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of TransferOfOwnership.
@@ -26,7 +27,7 @@ public class TransferOfOwnershipImpl extends HqdmObject implements TransferOfOwn
      *
      * @param id String of the TransferOfOwnership.
      */
-    public TransferOfOwnershipImpl(final String id) {
+    public TransferOfOwnershipImpl(final IRI id) {
         super(id);
     }
 }

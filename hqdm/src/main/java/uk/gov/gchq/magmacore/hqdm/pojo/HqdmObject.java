@@ -21,13 +21,14 @@ import java.util.Objects;
 import java.util.Set;
 
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * Basic implementation of a HQDM object.
  */
 public abstract class HqdmObject implements Thing {
 
-    private String id;
+    private IRI id;
 
     private final Map<Object, Set<Object>> predicates = new HashMap<>();
 
@@ -36,21 +37,21 @@ public abstract class HqdmObject implements Thing {
      *
      * @param id ID of the HQDM object.
      */
-    public HqdmObject(final String id) {
+    public HqdmObject(final IRI id) {
         this.id = id;
     }
 
     /**
      * {@inheritDoc}
      */
-    public String getId() {
+    public IRI getId() {
         return id;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void setId(final String id) {
+    public void setId(final IRI id) {
         this.id = id;
     }
 

@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Composition;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Composition.
@@ -26,7 +27,7 @@ public class CompositionImpl extends HqdmObject implements Composition {
      *
      * @param id String of the Composition.
      */
-    public CompositionImpl(final String id) {
+    public CompositionImpl(final IRI id) {
         super(id);
     }
 }

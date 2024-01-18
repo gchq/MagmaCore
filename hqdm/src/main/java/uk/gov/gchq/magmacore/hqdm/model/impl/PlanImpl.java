@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Plan;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Plan.
@@ -26,7 +27,7 @@ public class PlanImpl extends HqdmObject implements Plan {
      *
      * @param id String of the Plan.
      */
-    public PlanImpl(final String id) {
+    public PlanImpl(final IRI id) {
         super(id);
     }
 }

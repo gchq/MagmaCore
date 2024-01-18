@@ -19,4 +19,8 @@ module uk.gov.gchq.magmacore.hqdm {
     exports uk.gov.gchq.magmacore.hqdm.exception;
     exports uk.gov.gchq.magmacore.hqdm.model;
     exports uk.gov.gchq.magmacore.hqdm.services;
+    exports uk.gov.gchq.magmacore.hqdm.rdf.exception;
+    exports uk.gov.gchq.magmacore.hqdm.rdf.iri;
+    exports uk.gov.gchq.magmacore.hqdm.rdf.util;
+    exports uk.gov.gchq.magmacore.hqdm.rdf;
 }

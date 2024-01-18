@@ -32,10 +32,14 @@ import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
 public interface MagmaCoreDatabase {
 
     /**
-     * Start a transaction in READ mode and which will switch to WRITE if an update is attempted but
-     * only if no intermediate transaction has performed an update.
+     * Start a transaction in READ mode.
      */
-    void begin();
+    void beginRead();
+
+    /**
+     * Start a transaction in Write mode.
+     */
+    void beginWrite();
 
     /**
      * Commit a transaction - Finish the current transaction and make any changes permanent (if a

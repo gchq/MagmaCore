@@ -64,7 +64,7 @@ public class DbTransformationTest {
         final DbTransformation transformation = new DbTransformation(List.of(createIndividual, createPerson));
 
         // Apply the operations.
-        mcService.runInTransaction(transformation);
+        mcService.runInWriteTransaction(transformation);
 
         // Find the individual we just created and assert values are present.
         final Thing individual = mcService.getInTransaction(individualIri);
@@ -82,7 +82,7 @@ public class DbTransformationTest {
         assertTrue(person.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri));
 
         // Invert the operations, apply them in reverse order and assert they are no longer present.
-        mcService.runInTransaction(transformation.invert());
+        mcService.runInWriteTransaction(transformation.invert());
 
         assertNull(mcService.getInTransaction(individualIri));
         assertNull(mcService.getInTransaction(personIri));

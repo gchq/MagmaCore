@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.KindOfRelationshipWithRestriction;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of KindOfRelationshipWithRestriction.
@@ -26,7 +27,7 @@ public class KindOfRelationshipWithRestrictionImpl extends HqdmObject implements
      *
      * @param id String of the KindOfRelationshipWithRestriction.
      */
-    public KindOfRelationshipWithRestrictionImpl(final String id) {
+    public KindOfRelationshipWithRestrictionImpl(final IRI id) {
         super(id);
     }
 }

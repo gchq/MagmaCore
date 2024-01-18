@@ -36,7 +36,7 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  */
 public class DbOperationTest {
 
-    private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test");
+    private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
 
     /**
      * Test that DbCreateOperations can be applied to a database and can also be inverted and used to
@@ -55,8 +55,8 @@ public class DbOperationTest {
                 classOfIndividualIri);
 
         // Apply the operations.
-        mcService.runInTransaction(createIndividual);
-        mcService.runInTransaction(createIndividualMemberOf);
+        mcService.runInWriteTransaction(createIndividual);
+        mcService.runInWriteTransaction(createIndividualMemberOf);
 
         // Find the individual and assert it's presence.
         final Thing individual = mcService.getInTransaction(individualIri);
@@ -65,7 +65,7 @@ public class DbOperationTest {
         assertTrue(individual.hasThisValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL));
 
         // Invert the operation and assert that it is no longer present.
-        mcService.runInTransaction(DbCreateOperation.invert(createIndividualMemberOf));
+        mcService.runInWriteTransaction(DbCreateOperation.invert(createIndividualMemberOf));
 
         final Thing individualFromDb = mcService.getInTransaction(individualIri);
         assertFalse(individualFromDb.hasThisValue(HQDM.MEMBER_OF, classOfIndividualIri));
@@ -89,9 +89,9 @@ public class DbOperationTest {
                 HQDM.PART_OF_POSSIBLE_WORLD, "possible world");
 
         // Apply the operations to the dataset.
-        mcService.runInTransaction(createIndividual);
-        mcService.runInTransaction(createIndividualMemberOf);
-        mcService.runInTransaction(createIndividualPartOfPossibleWorld);
+        mcService.runInWriteTransaction(createIndividual);
+        mcService.runInWriteTransaction(createIndividualMemberOf);
+        mcService.runInWriteTransaction(createIndividualPartOfPossibleWorld);
 
         // Find the thing we just created and assert values are present.
         final Thing individual = mcService.getInTransaction(individualIri);
@@ -102,9 +102,9 @@ public class DbOperationTest {
         assertTrue(individual.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD, "possible world"));
 
         // Invert two of the operations, apply them in reverse order and assert they are no longer present.
-        mcService.runInTransaction(DbCreateOperation.invert(createIndividualPartOfPossibleWorld));
-        mcService.runInTransaction(DbCreateOperation.invert(createIndividualMemberOf));
-        mcService.runInTransaction(DbCreateOperation.invert(createIndividual));
+        mcService.runInWriteTransaction(DbCreateOperation.invert(createIndividualPartOfPossibleWorld));
+        mcService.runInWriteTransaction(DbCreateOperation.invert(createIndividualMemberOf));
+        mcService.runInWriteTransaction(DbCreateOperation.invert(createIndividual));
 
         final Thing individualFromDb = mcService.getInTransaction(individualIri);
         assertNull(individualFromDb);
@@ -123,8 +123,8 @@ public class DbOperationTest {
         final DbCreateOperation createIndividual = new DbCreateOperation(individualIri, RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
 
         // Apply the operation twice, the second should throw an exception.
-        mcService.runInTransaction(createIndividual);
-        mcService.runInTransaction(createIndividual);
+        mcService.runInWriteTransaction(createIndividual);
+        mcService.runInWriteTransaction(createIndividual);
     }
 
     /**
@@ -141,7 +141,7 @@ public class DbOperationTest {
                 "value not present");
 
         // Apply the operation, it should throw an exception.
-        mcService.runInTransaction(deleteIndividual);
+        mcService.runInWriteTransaction(deleteIndividual);
     }
 
     /**

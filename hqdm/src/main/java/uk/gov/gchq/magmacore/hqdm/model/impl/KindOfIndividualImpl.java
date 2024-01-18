@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.KindOfIndividual;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of KindOfIndividual.
@@ -26,7 +27,7 @@ public class KindOfIndividualImpl extends HqdmObject implements KindOfIndividual
      *
      * @param id String of the KindOfIndividual.
      */
-    public KindOfIndividualImpl(final String id) {
+    public KindOfIndividualImpl(final IRI id) {
         super(id);
     }
 }

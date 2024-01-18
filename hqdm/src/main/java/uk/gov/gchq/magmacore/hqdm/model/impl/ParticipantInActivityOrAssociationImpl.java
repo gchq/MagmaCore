@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ParticipantInActivityOrAssociation;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ParticipantInActivityOrAssociation.
@@ -26,7 +27,7 @@ public class ParticipantInActivityOrAssociationImpl extends HqdmObject implement
      *
      * @param id String of the ParticipantInActivityOrAssociation.
      */
-    public ParticipantInActivityOrAssociationImpl(final String id) {
+    public ParticipantInActivityOrAssociationImpl(final IRI id) {
         super(id);
     }
 }

@@ -24,12 +24,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.jena.query.Dataset;
+import org.apache.jena.query.DatasetFactory;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
+import org.apache.jena.query.TxnType;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -69,7 +71,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * Constructs a MagmaCoreJenaDatabase with a new in-memory Jena dataset.
      */
     public MagmaCoreJenaDatabase() {
-        dataset = TDB2Factory.createDataset();
+        dataset = DatasetFactory.createTxnMem();
     }
 
     /**
@@ -113,9 +115,21 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
-    public void begin() {
+    public void beginRead() {
         if (!dataset.isInTransaction()) {
-            dataset.begin();
+            dataset.begin(TxnType.READ);
+        } else {
+            throw new IllegalStateException("Already in a transaction");
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void beginWrite() {
+        if (!dataset.isInTransaction()) {
+            dataset.begin(TxnType.WRITE);
         } else {
             throw new IllegalStateException("Already in a transaction");
         }
@@ -178,7 +192,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
     public void create(final Thing object) {
         final Model defaultModel = dataset.getDefaultModel();
 
-        final Resource resource = defaultModel.createResource(object.getId());
+        final Resource resource = defaultModel.createResource(object.getId().getIri());
 
         object.getPredicates().forEach((iri, predicates) -> predicates.forEach(value -> {
             if (value instanceof IRI) {
@@ -425,7 +439,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      */
     @Override
     public void dump(final PrintStream out) {
-        begin();
+        beginRead();
         final Model model = dataset.getDefaultModel();
         final StmtIterator statements = model.listStatements();
 
@@ -443,7 +457,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * @param language RDF language syntax to output data as.
      */
     public final void dump(final PrintStream out, final Lang language) {
-        begin();
+        beginRead();
         RDFDataMgr.write(out, dataset.getDefaultModel(), language);
         abort();
     }
@@ -455,7 +469,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * @param language RDF language syntax to output data as.
      */
     public final void load(final InputStream in, final Lang language) {
-        begin();
+        beginWrite();
         final Model model = dataset.getDefaultModel();
         RDFDataMgr.read(model, in, language);
         commit();

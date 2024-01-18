@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.KindOfPhysicalProperty;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of KindOfPhysicalProperty.
@@ -26,7 +27,7 @@ public class KindOfPhysicalPropertyImpl extends HqdmObject implements KindOfPhys
      *
      * @param id String of the KindOfPhysicalProperty.
      */
-    public KindOfPhysicalPropertyImpl(final String id) {
+    public KindOfPhysicalPropertyImpl(final IRI id) {
         super(id);
     }
 }

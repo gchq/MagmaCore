@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Sign;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Sign.
@@ -26,7 +27,7 @@ public class SignImpl extends HqdmObject implements Sign {
      *
      * @param id String of the Sign.
      */
-    public SignImpl(final String id) {
+    public SignImpl(final IRI id) {
         super(id);
     }
 }

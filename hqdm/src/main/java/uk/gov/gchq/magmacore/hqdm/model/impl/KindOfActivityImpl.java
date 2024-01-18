@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.KindOfActivity;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of KindOfActivity.
@@ -26,7 +27,7 @@ public class KindOfActivityImpl extends HqdmObject implements KindOfActivity {
      *
      * @param id String of the KindOfActivity.
      */
-    public KindOfActivityImpl(final String id) {
+    public KindOfActivityImpl(final IRI id) {
         super(id);
     }
 }

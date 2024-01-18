@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.BeginningOfOwnership;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of BeginningOfOwnership.
@@ -26,7 +27,7 @@ public class BeginningOfOwnershipImpl extends HqdmObject implements BeginningOfO
      *
      * @param id String of the BeginningOfOwnership.
      */
-    public BeginningOfOwnershipImpl(final String id) {
+    public BeginningOfOwnershipImpl(final IRI id) {
         super(id);
     }
 }

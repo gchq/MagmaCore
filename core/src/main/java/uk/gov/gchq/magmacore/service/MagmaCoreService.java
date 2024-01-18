@@ -698,7 +698,7 @@ public class MagmaCoreService {
     private static DbChangeSet toDbChangeSet(final Thing thing) {
 
         // Map the Thing's predicates to DbCreateOperation objects.
-        final IRI iri = new IRI(thing.getId());
+        final IRI iri = thing.getId();
         final List<DbCreateOperation> creates = thing.getPredicates()
                 .entrySet()
                 .stream()
@@ -750,7 +750,7 @@ public class MagmaCoreService {
      */
     public Thing getInTransaction(final IRI iri) {
         try {
-            database.begin();
+            database.beginRead();
             final Thing result = database.get(iri);
             database.commit();
             return result;
@@ -765,9 +765,25 @@ public class MagmaCoreService {
      *
      * @param func {@link Function} to run.
      */
-    public void runInTransaction(final Function<MagmaCoreService, MagmaCoreService> func) {
+    public void runInReadTransaction(final Function<MagmaCoreService, MagmaCoreService> func) {
         try {
-            database.begin();
+            database.beginRead();
+            func.apply(this);
+            database.commit();
+        } catch (final Exception e) {
+            database.abort();
+            throw e;
+        }
+    }
+
+    /**
+     * Run a {@link Function} in a transaction.
+     *
+     * @param func {@link Function} to run.
+     */
+    public void runInWriteTransaction(final Function<MagmaCoreService, MagmaCoreService> func) {
+        try {
+            database.beginWrite();
             func.apply(this);
             database.commit();
         } catch (final Exception e) {
@@ -784,7 +800,7 @@ public class MagmaCoreService {
      */
     public Map<String, Thing> findByEntityNameInTransaction(final List<String> entityNames) {
         try {
-            database.begin();
+            database.beginRead();
             final HashMap<String, Thing> result = new HashMap<String, Thing>();
 
             for (final String name : entityNames) {

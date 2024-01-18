@@ -35,11 +35,11 @@ public class MagmaCoreServiceFindByKindOfAssociationTest {
         final MagmaCoreService service = new MagmaCoreService(db);
 
         // Create the PointInTime we're looking for
-        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI("http://example.com/entity#now"));
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
-        db.begin();
+        db.beginRead();
         final List<? extends Thing> participants = service
                 .findByKindOfAssociation(AssociationPatternTestData.userAssociationKindIri, now);
 
@@ -57,8 +57,8 @@ public class MagmaCoreServiceFindByKindOfAssociationTest {
 
         assertEquals(2, people.size());
 
-        final String person1Iri = new IRI(AssociationPatternTestData.TEST_BASE, "person1").getIri();
-        final String person2Iri = new IRI(AssociationPatternTestData.TEST_BASE, "person2").getIri();
+        final IRI person1Iri = new IRI(AssociationPatternTestData.TEST_BASE, "person1");
+        final IRI person2Iri = new IRI(AssociationPatternTestData.TEST_BASE, "person2");
 
         people.forEach(person -> {
             assertTrue(person1Iri.equals(person.getId()) || person2Iri.equals(person.getId()));

@@ -33,15 +33,15 @@ public class MagmaCoreServiceFindByTypeKindAndSignPatternTest {
         final MagmaCoreService service = new MagmaCoreService(db);
 
         // Create the PointInTime we're looking for
-        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI("http://example.com/entity#now"));
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
-        db.begin();
+        db.beginRead();
         final List<? extends Thing> things = service.findByTypeKindAndSignPattern(
                 HQDM.PERSON,
                 SignPatternTestData.kindOfPersonIri,
-                new IRI(SignPatternTestData.pattern1.getId()),
+                SignPatternTestData.pattern1.getId(),
                 now);
 
         db.commit();
@@ -51,7 +51,7 @@ public class MagmaCoreServiceFindByTypeKindAndSignPatternTest {
         assertEquals(1, things.size());
 
         final Thing person = things.get(0);
-        final String personIri = new IRI(SignPatternTestData.TEST_BASE, "person1").getIri();
+        final IRI personIri = new IRI(SignPatternTestData.TEST_BASE, "person1");
         assertEquals(personIri, person.getId());
 
         // This query augments its object with HQDM.VALUE predicates for the current Sign values for the
