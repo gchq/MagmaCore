@@ -15,8 +15,10 @@
 package uk.gov.gchq.magmacore.hqdm.rdf.util;
 
 /**
- * A utility Pair with Left (L) and Right (R) values. L the type of the Left element. R the type of
- * the Right element.
+ * A utility Pair with Left (L) and Right (R) values.
+ *
+ * @param <L> The type of the Left element.
+ * @param <R> The type of the Right element.
  */
 public class Pair<L, R> {
     /** The left element. */
