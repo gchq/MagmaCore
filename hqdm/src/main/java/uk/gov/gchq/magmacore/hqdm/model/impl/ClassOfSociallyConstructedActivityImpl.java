@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSociallyConstructedActivity;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfSociallyConstructedActivity.
@@ -26,7 +27,7 @@ public class ClassOfSociallyConstructedActivityImpl extends HqdmObject implement
      *
      * @param id String of the ClassOfSociallyConstructedActivity.
      */
-    public ClassOfSociallyConstructedActivityImpl(final String id) {
+    public ClassOfSociallyConstructedActivityImpl(final IRI id) {
         super(id);
     }
 }

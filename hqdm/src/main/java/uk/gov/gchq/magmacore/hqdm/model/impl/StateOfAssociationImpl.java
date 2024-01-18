@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.StateOfAssociation;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of StateOfAssociation.
@@ -26,7 +27,7 @@ public class StateOfAssociationImpl extends HqdmObject implements StateOfAssocia
      *
      * @param id String of the StateOfAssociation.
      */
-    public StateOfAssociationImpl(final String id) {
+    public StateOfAssociationImpl(final IRI id) {
         super(id);
     }
 }

@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfAbstractObject;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfAbstractObject.
@@ -26,7 +27,7 @@ public class ClassOfAbstractObjectImpl extends HqdmObject implements ClassOfAbst
      *
      * @param id String of the ClassOfAbstractObject.
      */
-    public ClassOfAbstractObjectImpl(final String id) {
+    public ClassOfAbstractObjectImpl(final IRI id) {
         super(id);
     }
 }

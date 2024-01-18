@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfStateOfPerson;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfStateOfPerson.
@@ -26,7 +27,7 @@ public class ClassOfStateOfPersonImpl extends HqdmObject implements ClassOfState
      *
      * @param id String of the ClassOfStateOfPerson.
      */
-    public ClassOfStateOfPersonImpl(final String id) {
+    public ClassOfStateOfPersonImpl(final IRI id) {
         super(id);
     }
 }

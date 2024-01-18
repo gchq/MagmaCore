@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.FunctionalObject;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of FunctionalObject.
@@ -26,7 +27,7 @@ public class FunctionalObjectImpl extends HqdmObject implements FunctionalObject
      *
      * @param id String of the FunctionalObject.
      */
-    public FunctionalObjectImpl(final String id) {
+    public FunctionalObjectImpl(final IRI id) {
         super(id);
     }
 }

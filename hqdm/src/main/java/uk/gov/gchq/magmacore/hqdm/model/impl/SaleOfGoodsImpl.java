@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.SaleOfGoods;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of SaleOfGoods.
@@ -26,7 +27,7 @@ public class SaleOfGoodsImpl extends HqdmObject implements SaleOfGoods {
      *
      * @param id String of the SaleOfGoods.
      */
-    public SaleOfGoodsImpl(final String id) {
+    public SaleOfGoodsImpl(final IRI id) {
         super(id);
     }
 }

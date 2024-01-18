@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfStateOfPosition;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfStateOfPosition.
@@ -26,7 +27,7 @@ public class ClassOfStateOfPositionImpl extends HqdmObject implements ClassOfSta
      *
      * @param id String of the ClassOfStateOfPosition.
      */
-    public ClassOfStateOfPositionImpl(final String id) {
+    public ClassOfStateOfPositionImpl(final IRI id) {
         super(id);
     }
 }

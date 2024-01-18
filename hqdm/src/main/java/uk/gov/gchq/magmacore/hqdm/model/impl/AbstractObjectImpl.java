@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.AbstractObject;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of AbstractObject.
@@ -26,7 +27,7 @@ public class AbstractObjectImpl extends HqdmObject implements AbstractObject {
      *
      * @param id String of the AbstractObject.
      */
-    public AbstractObjectImpl(final String id) {
+    public AbstractObjectImpl(final IRI id) {
         super(id);
     }
 }

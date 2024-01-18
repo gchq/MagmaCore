@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfPhysicalObject;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfPhysicalObject.
@@ -26,7 +27,7 @@ public class ClassOfPhysicalObjectImpl extends HqdmObject implements ClassOfPhys
      *
      * @param id String of the ClassOfPhysicalObject.
      */
-    public ClassOfPhysicalObjectImpl(final String id) {
+    public ClassOfPhysicalObjectImpl(final IRI id) {
         super(id);
     }
 }

@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ProductBrand;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ProductBrand.
@@ -26,7 +27,7 @@ public class ProductBrandImpl extends HqdmObject implements ProductBrand {
      *
      * @param id String of the ProductBrand.
      */
-    public ProductBrandImpl(final String id) {
+    public ProductBrandImpl(final IRI id) {
         super(id);
     }
 }

@@ -35,6 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.StateOfPerson;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
@@ -42,6 +43,7 @@ import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
  * Check that {@link MagmaCoreService} works correctly.
  */
 public class MagmaCoreServiceTest {
+    static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
 
     /**
      * Test that triples can be deleted.
@@ -51,7 +53,7 @@ public class MagmaCoreServiceTest {
         final MagmaCoreJenaDatabase database = new MagmaCoreJenaDatabase();
 
         final IRI individualIri = new IRI(SignPatternTestData.TEST_BASE, "individual");
-        final Individual individual = SpatioTemporalExtentServices.createIndividual(individualIri.getIri());
+        final Individual individual = SpatioTemporalExtentServices.createIndividual(individualIri);
 
         individual.addValue(HQDM.MEMBER_OF, "classOfIndividual");
 
@@ -60,6 +62,7 @@ public class MagmaCoreServiceTest {
         database.commit();
 
         individual.removeValue(HQDM.MEMBER_OF, "classOfIndividual");
+        individual.removeValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
 
         database.beginWrite();
         database.update(individual);
@@ -91,7 +94,7 @@ public class MagmaCoreServiceTest {
         final MagmaCoreService service = new MagmaCoreService(db);
 
         // Create the PointInTime we're looking for
-        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI("http://example.com/entity#now"));
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
@@ -121,8 +124,8 @@ public class MagmaCoreServiceTest {
         assertEquals(1, parent1.size());
         assertEquals(1, parent2.size());
 
-        assertEquals(SignPatternTestData.person1.getId(), ((IRI) parent1.iterator().next()).getIri());
-        assertEquals(SignPatternTestData.person2.getId(), ((IRI) parent2.iterator().next()).getIri());
+        assertEquals(SignPatternTestData.person1.getId(), ((IRI) parent1.iterator().next()));
+        assertEquals(SignPatternTestData.person2.getId(), ((IRI) parent2.iterator().next()));
     }
 
     /**
@@ -139,7 +142,7 @@ public class MagmaCoreServiceTest {
         final MagmaCoreService service = new MagmaCoreService(db);
 
         // Create the PointInTime we're looking for
-        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI("http://example.com/entity#now"));
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
@@ -167,7 +170,7 @@ public class MagmaCoreServiceTest {
         final MagmaCoreService service = new MagmaCoreService(db);
 
         // Create the PointInTime we're looking for
-        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI("http://example.com/entity#now"));
 
         // Find the required Things by sign in a transaction.
         db.beginRead();
@@ -188,8 +191,8 @@ public class MagmaCoreServiceTest {
 
         final IRI individual1Iri = new IRI(SignPatternTestData.TEST_BASE, "individual1");
         final IRI individual2Iri = new IRI(SignPatternTestData.TEST_BASE, "individual2");
-        final Individual individual1 = SpatioTemporalExtentServices.createIndividual(individual1Iri.getIri());
-        final Individual individual2 = SpatioTemporalExtentServices.createIndividual(individual2Iri.getIri());
+        final Individual individual1 = SpatioTemporalExtentServices.createIndividual(individual1Iri);
+        final Individual individual2 = SpatioTemporalExtentServices.createIndividual(individual2Iri);
 
         individual1.addValue(HQDM.MEMBER_OF, "classOfIndividual");
         individual2.addValue(HQDM.MEMBER_OF_KIND, "kindOfIndividual");
@@ -248,7 +251,7 @@ public class MagmaCoreServiceTest {
         final MagmaCoreService service = new MagmaCoreService(db);
 
         // Create the PointInTime we're looking for
-        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI(TEST_BASE, "now"));
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
@@ -286,7 +289,7 @@ public class MagmaCoreServiceTest {
         final MagmaCoreService service = new MagmaCoreService(db);
 
         // Create the PointInTime we're looking for
-        final PointInTime now = SpatioTemporalExtentServices.createPointInTime("now");
+        final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI(TEST_BASE, "now"));
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
@@ -303,5 +306,4 @@ public class MagmaCoreServiceTest {
         assertTrue(found1.isEmpty());
         assertTrue(found2.isEmpty());
     }
-
 }

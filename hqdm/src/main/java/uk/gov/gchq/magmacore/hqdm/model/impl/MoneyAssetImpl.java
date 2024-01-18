@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.MoneyAsset;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of MoneyAsset.
@@ -26,7 +27,7 @@ public class MoneyAssetImpl extends HqdmObject implements MoneyAsset {
      *
      * @param id String of the MoneyAsset.
      */
-    public MoneyAssetImpl(final String id) {
+    public MoneyAssetImpl(final IRI id) {
         super(id);
     }
 }

@@ -45,8 +45,7 @@
       <module>core</module>
       <module>examples</module>
       <module>hqdm</module>
-      <module>hqdm-rdf</module>
-      <module>hqdm-rdf-canonical</module>
+      <module>hqdm-canonical</module>
   </modules>
 
   <scm>
@@ -76,12 +75,7 @@
       </dependency>
       <dependency>
         <groupId>uk.gov.gchq.magma-core</groupId>
-        <artifactId>hqdm-rdf</artifactId>
-        <version>3.0.3-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>uk.gov.gchq.magma-core</groupId>
-        <artifactId>hqdm-rdf-canonical</artifactId>
+        <artifactId>hqdm-canonical</artifactId>
         <version>3.0.3-SNAPSHOT</version>
       </dependency>
       <dependency>

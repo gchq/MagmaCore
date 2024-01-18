@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Association;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Association.
@@ -26,7 +27,7 @@ public class AssociationImpl extends HqdmObject implements Association {
      *
      * @param id String of the Association.
      */
-    public AssociationImpl(final String id) {
+    public AssociationImpl(final IRI id) {
         super(id);
     }
 }

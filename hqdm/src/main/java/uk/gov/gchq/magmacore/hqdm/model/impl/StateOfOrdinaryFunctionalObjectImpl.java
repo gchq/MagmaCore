@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.StateOfOrdinaryFunctionalObject;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of StateOfOrdinaryFunctionalObject.
@@ -26,7 +27,7 @@ public class StateOfOrdinaryFunctionalObjectImpl extends HqdmObject implements S
      *
      * @param id String of the StateOfOrdinaryFunctionalObject.
      */
-    public StateOfOrdinaryFunctionalObjectImpl(final String id) {
+    public StateOfOrdinaryFunctionalObjectImpl(final IRI id) {
         super(id);
     }
 }

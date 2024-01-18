@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Price;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Price.
@@ -26,7 +27,7 @@ public class PriceImpl extends HqdmObject implements Price {
      *
      * @param id String of the Price.
      */
-    public PriceImpl(final String id) {
+    public PriceImpl(final IRI id) {
         super(id);
     }
 }

@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfAmountOfMoney;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfAmountOfMoney.
@@ -26,7 +27,7 @@ public class ClassOfAmountOfMoneyImpl extends HqdmObject implements ClassOfAmoun
      *
      * @param id String of the ClassOfAmountOfMoney.
      */
-    public ClassOfAmountOfMoneyImpl(final String id) {
+    public ClassOfAmountOfMoneyImpl(final IRI id) {
         super(id);
     }
 }

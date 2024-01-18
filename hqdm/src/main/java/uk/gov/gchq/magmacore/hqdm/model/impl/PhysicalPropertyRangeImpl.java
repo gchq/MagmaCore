@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.PhysicalPropertyRange;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of PhysicalPropertyRange.
@@ -26,7 +27,7 @@ public class PhysicalPropertyRangeImpl extends HqdmObject implements PhysicalPro
      *
      * @param id String of the PhysicalPropertyRange.
      */
-    public PhysicalPropertyRangeImpl(final String id) {
+    public PhysicalPropertyRangeImpl(final IRI id) {
         super(id);
     }
 }

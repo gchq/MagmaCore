@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.PhysicalQuantityRange;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of PhysicalQuantityRange.
@@ -26,7 +27,7 @@ public class PhysicalQuantityRangeImpl extends HqdmObject implements PhysicalQua
      *
      * @param id String of the PhysicalQuantityRange.
      */
-    public PhysicalQuantityRangeImpl(final String id) {
+    public PhysicalQuantityRangeImpl(final IRI id) {
         super(id);
     }
 }

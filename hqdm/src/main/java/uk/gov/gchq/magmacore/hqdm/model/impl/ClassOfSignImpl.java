@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfSign;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfSign.
@@ -26,7 +27,7 @@ public class ClassOfSignImpl extends HqdmObject implements ClassOfSign {
      *
      * @param id String of the ClassOfSign.
      */
-    public ClassOfSignImpl(final String id) {
+    public ClassOfSignImpl(final IRI id) {
         super(id);
     }
 }

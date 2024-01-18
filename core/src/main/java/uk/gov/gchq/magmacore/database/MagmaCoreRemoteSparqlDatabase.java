@@ -163,7 +163,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
 
         final Model model = ModelFactory.createDefaultModel();
 
-        final Resource resource = model.createResource(object.getId());
+        final Resource resource = model.createResource(object.getId().getIri());
 
         object.getPredicates().forEach((iri, predicates) -> predicates.forEach(value -> {
             if (value instanceof IRI) {

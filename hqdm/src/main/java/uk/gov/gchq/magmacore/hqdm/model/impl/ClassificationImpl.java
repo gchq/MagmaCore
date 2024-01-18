@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Classification;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Classification.
@@ -26,7 +27,7 @@ public class ClassificationImpl extends HqdmObject implements Classification {
      *
      * @param id String of the Classification.
      */
-    public ClassificationImpl(final String id) {
+    public ClassificationImpl(final IRI id) {
         super(id);
     }
 }

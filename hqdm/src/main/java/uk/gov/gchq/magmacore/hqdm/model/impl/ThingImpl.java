@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Thing.
@@ -26,7 +27,7 @@ public class ThingImpl extends HqdmObject implements Thing {
      *
      * @param id String of the Thing.
      */
-    public ThingImpl(final String id) {
+    public ThingImpl(final IRI id) {
         super(id);
     }
 }

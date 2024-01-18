@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfRepresentation;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfRepresentation.
@@ -26,7 +27,7 @@ public class ClassOfRepresentationImpl extends HqdmObject implements ClassOfRepr
      *
      * @param id String of the ClassOfRepresentation.
      */
-    public ClassOfRepresentationImpl(final String id) {
+    public ClassOfRepresentationImpl(final IRI id) {
         super(id);
     }
 }

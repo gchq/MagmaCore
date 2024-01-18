@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.RepresentationBySign;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of RepresentationBySign.
@@ -26,7 +27,7 @@ public class RepresentationBySignImpl extends HqdmObject implements Representati
      *
      * @param id String of the RepresentationBySign.
      */
-    public RepresentationBySignImpl(final String id) {
+    public RepresentationBySignImpl(final IRI id) {
         super(id);
     }
 }
