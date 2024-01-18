@@ -24,10 +24,6 @@
       <artifactId>hqdm</artifactId>
     </dependency>
     <dependency>
-      <groupId>uk.gov.gchq.magma-core</groupId>
-      <artifactId>hqdm</artifactId>
-    </dependency>
-    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
     </dependency>

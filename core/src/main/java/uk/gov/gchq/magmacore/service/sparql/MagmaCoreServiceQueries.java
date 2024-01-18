@@ -63,6 +63,50 @@ public class MagmaCoreServiceQueries {
             """;
 
     /**
+     * This query is used to find the Things represented by a given partial sign value for a particular
+     * {@link uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity} and
+     * {@link uk.gov.gchq.magmacore.hqdm.model.Pattern}.
+     * <p>
+     * It needs three parameters provided using String.format() - the partial sign value {@link String}, the
+     * {@link uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity} IRI {@link String}, and the
+     * {@link uk.gov.gchq.magmacore.hqdm.model.Pattern} IRI String.
+     * </p>
+     * <p>
+     * The Things are likely to be states of some individual.
+     * </p>
+     */
+    public static final String FIND_BY_PARTIAL_SIGN_VALUE_CASE_INSENSITIVE_QUERY = """
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+
+            SELECT ?s ?p ?o ?start ?finish
+            WHERE {
+                BIND("%s" as ?text)
+                BIND(<%s> as ?rlc)
+                BIND(<%s> as ?pattern)
+
+                ?sign hqdm:value_ ?signvalue;
+                    hqdm:member_of_ ?pattern.
+                FILTER(CONTAINS(lcase(str(?signvalue)), lcase(?text)))
+                ?sos hqdm:temporal_part_of ?sign;
+                    hqdm:participant_in ?repBySign.
+                ?rlc hqdm:participant_in ?repBySign.
+                ?repBySign hqdm:represents ?s.
+                ?s ?p ?o.
+                OPTIONAL {
+                    ?repBySign hqdm:beginning ?begin.
+                    ?begin hqdm:data_EntityName ?start.
+                }
+                OPTIONAL {
+                    ?repBySign hqdm:ending ?end.
+                    ?end hqdm:data_EntityName ?finish.
+                }
+
+            }
+            """;
+
+    /**
      * This query finds PARTICIPANTS in associations of a specified kind between two individuals.
      * <p>
      * It needs three parameters repeated twice (three then the same three) which are the IRI String of
