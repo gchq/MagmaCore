@@ -13,6 +13,6 @@
  */
 
 /**
- * Utility classes for hqdm-rdf.
+ * RDF utility classes for hqdm.
  */
 package uk.gov.gchq.magmacore.hqdm.rdf.util;

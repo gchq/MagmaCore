@@ -8,10 +8,10 @@
   </parent>
 
   <groupId>uk.gov.gchq.magma-core</groupId>
-  <artifactId>hqdm-rdf-canonical</artifactId>
+  <artifactId>hqdm-canonical</artifactId>
   <version>3.0.3-SNAPSHOT</version>
 
-  <name>hqdm-rdf-canonical</name>
+  <name>hqdm-canonical</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -13,6 +13,6 @@
  */
 
 /**
- * Exceptions arising from HQDM-RDF code.
+ * RDF Exceptions arising from HQDM code.
  */
 package uk.gov.gchq.magmacore.hqdm.rdf.exception;
