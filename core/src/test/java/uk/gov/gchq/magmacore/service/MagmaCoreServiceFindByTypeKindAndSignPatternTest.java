@@ -37,7 +37,7 @@ public class MagmaCoreServiceFindByTypeKindAndSignPatternTest {
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
-        db.begin();
+        db.beginRead();
         final List<? extends Thing> things = service.findByTypeKindAndSignPattern(
                 HQDM.PERSON,
                 SignPatternTestData.kindOfPersonIri,

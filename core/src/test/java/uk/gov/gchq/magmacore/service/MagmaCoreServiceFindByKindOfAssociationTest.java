@@ -39,7 +39,7 @@ public class MagmaCoreServiceFindByKindOfAssociationTest {
         now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
-        db.begin();
+        db.beginRead();
         final List<? extends Thing> participants = service
                 .findByKindOfAssociation(AssociationPatternTestData.userAssociationKindIri, now);
 
