@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.SalesProductInstance;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of SalesProductInstance.
@@ -26,7 +27,7 @@ public class SalesProductInstanceImpl extends HqdmObject implements SalesProduct
      *
      * @param id String of the SalesProductInstance.
      */
-    public SalesProductInstanceImpl(final String id) {
+    public SalesProductInstanceImpl(final IRI id) {
         super(id);
     }
 }

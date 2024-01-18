@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Scale;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Scale.
@@ -26,7 +27,7 @@ public class ScaleImpl extends HqdmObject implements Scale {
      *
      * @param id String of the Scale.
      */
-    public ScaleImpl(final String id) {
+    public ScaleImpl(final IRI id) {
         super(id);
     }
 }

@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.UnitOfMeasure;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of UnitOfMeasure.
@@ -26,7 +27,7 @@ public class UnitOfMeasureImpl extends HqdmObject implements UnitOfMeasure {
      *
      * @param id String of the UnitOfMeasure.
      */
-    public UnitOfMeasureImpl(final String id) {
+    public UnitOfMeasureImpl(final IRI id) {
         super(id);
     }
 }

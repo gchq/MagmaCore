@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.BiologicalObject;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of BiologicalObject.
@@ -26,7 +27,7 @@ public class BiologicalObjectImpl extends HqdmObject implements BiologicalObject
      *
      * @param id String of the BiologicalObject.
      */
-    public BiologicalObjectImpl(final String id) {
+    public BiologicalObjectImpl(final IRI id) {
         super(id);
     }
 }

@@ -18,7 +18,6 @@
  */
 module uk.gov.gchq.magmacore.examples {
     requires uk.gov.gchq.magmacore.hqdm;
-    requires uk.gov.gchq.magmacore.hqdm.rdf;
     requires uk.gov.gchq.magmacore;
 
     exports uk.gov.gchq.magmacore.examples.service;

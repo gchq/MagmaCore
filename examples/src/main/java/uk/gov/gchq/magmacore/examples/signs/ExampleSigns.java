@@ -79,7 +79,7 @@ public class ExampleSigns {
         final Description descriptionByUrl = (Description) entities.get("Description By URL");
         final RecognizingLanguageCommunity englishSpeakers = (RecognizingLanguageCommunity) entities
                 .get("English Speakers");
-        final IRI englishSpeakersIri = new IRI(englishSpeakers.getId());
+        final IRI englishSpeakersIri = englishSpeakers.getId();
 
         // Create IRIs for the new entities.
         final IRI possibleWorld = new IRI(USER_BASE, uid());
@@ -106,34 +106,34 @@ public class ExampleSigns {
 
                 // Create the signs that represent the thing.
                 new DbCreateOperation(wikipediaSign, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN),
-                new DbCreateOperation(wikipediaSign, HQDM.MEMBER_OF_, new IRI(urlPattern.getId())),
+                new DbCreateOperation(wikipediaSign, HQDM.MEMBER_OF_, urlPattern.getId()),
                 new DbCreateOperation(wikipediaSign, HQDM.VALUE_, "https://en.wikipedia.org/wiki/Socrates"),
                 new DbCreateOperation(wikipediaSign, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld),
 
                 new DbCreateOperation(britannica, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN),
-                new DbCreateOperation(britannica, HQDM.MEMBER_OF_, new IRI(urlPattern.getId())),
+                new DbCreateOperation(britannica, HQDM.MEMBER_OF_, urlPattern.getId()),
                 new DbCreateOperation(britannica, HQDM.VALUE_, "https://www.britannica.com/biography/Socrates"),
                 new DbCreateOperation(britannica, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld),
 
                 new DbCreateOperation(biography, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN),
-                new DbCreateOperation(biography, HQDM.MEMBER_OF_, new IRI(urlPattern.getId())),
+                new DbCreateOperation(biography, HQDM.MEMBER_OF_, urlPattern.getId()),
                 new DbCreateOperation(biography, HQDM.VALUE_, "https://www.biography.com/scholar/socrates"),
                 new DbCreateOperation(biography, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld),
 
                 new DbCreateOperation(stanford, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN),
-                new DbCreateOperation(stanford, HQDM.MEMBER_OF_, new IRI(urlPattern.getId())),
+                new DbCreateOperation(stanford, HQDM.MEMBER_OF_, urlPattern.getId()),
                 new DbCreateOperation(stanford, HQDM.VALUE_, "https://plato.stanford.edu/entries/socrates/"),
                 new DbCreateOperation(stanford, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld),
 
                 new DbCreateOperation(nationalGeographic, RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN),
-                new DbCreateOperation(nationalGeographic, HQDM.MEMBER_OF_, new IRI(urlPattern.getId())),
+                new DbCreateOperation(nationalGeographic, HQDM.MEMBER_OF_, urlPattern.getId()),
                 new DbCreateOperation(nationalGeographic, HQDM.VALUE_,
                         "https://www.nationalgeographic.com/culture/article/socrates"),
                 new DbCreateOperation(nationalGeographic, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld),
 
                 // Create the representation by signs.
                 new DbCreateOperation(representationBySign, RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN),
-                new DbCreateOperation(representationBySign, HQDM.MEMBER_OF_, new IRI(descriptionByUrl.getId())),
+                new DbCreateOperation(representationBySign, HQDM.MEMBER_OF_, descriptionByUrl.getId()),
                 new DbCreateOperation(representationBySign, HQDM.REPRESENTS, person),
                 new DbCreateOperation(representationBySign, HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld),
 

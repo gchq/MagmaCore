@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ContractExecution;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ContractExecution.
@@ -26,7 +27,7 @@ public class ContractExecutionImpl extends HqdmObject implements ContractExecuti
      *
      * @param id String of the ContractExecution.
      */
-    public ContractExecutionImpl(final String id) {
+    public ContractExecutionImpl(final IRI id) {
         super(id);
     }
 }

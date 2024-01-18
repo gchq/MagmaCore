@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Participant;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Participant.
@@ -26,7 +27,7 @@ public class ParticipantImpl extends HqdmObject implements Participant {
      *
      * @param id String of the Participant.
      */
-    public ParticipantImpl(final String id) {
+    public ParticipantImpl(final IRI id) {
         super(id);
     }
 }

@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.StateOfOrdinaryPhysicalObject;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of StateOfOrdinaryPhysicalObject.
@@ -26,7 +27,7 @@ public class StateOfOrdinaryPhysicalObjectImpl extends HqdmObject implements Sta
      *
      * @param id String of the StateOfOrdinaryPhysicalObject.
      */
-    public StateOfOrdinaryPhysicalObjectImpl(final String id) {
+    public StateOfOrdinaryPhysicalObjectImpl(final IRI id) {
         super(id);
     }
 }

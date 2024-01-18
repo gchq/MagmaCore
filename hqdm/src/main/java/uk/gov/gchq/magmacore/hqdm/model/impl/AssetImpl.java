@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Asset;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Asset.
@@ -26,7 +27,7 @@ public class AssetImpl extends HqdmObject implements Asset {
      *
      * @param id String of the Asset.
      */
-    public AssetImpl(final String id) {
+    public AssetImpl(final IRI id) {
         super(id);
     }
 }

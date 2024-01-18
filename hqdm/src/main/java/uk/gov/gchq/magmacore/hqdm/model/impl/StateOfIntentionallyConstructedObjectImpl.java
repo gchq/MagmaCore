@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.StateOfIntentionallyConstructedObject;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of StateOfIntentionallyConstructedObject.
@@ -27,7 +28,7 @@ public class StateOfIntentionallyConstructedObjectImpl extends HqdmObject
      *
      * @param id String of the StateOfIntentionallyConstructedObject.
      */
-    public StateOfIntentionallyConstructedObjectImpl(final String id) {
+    public StateOfIntentionallyConstructedObjectImpl(final IRI id) {
         super(id);
     }
 }

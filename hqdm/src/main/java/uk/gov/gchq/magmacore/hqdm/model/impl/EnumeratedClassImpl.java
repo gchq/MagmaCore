@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.EnumeratedClass;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of EnumeratedClass.
@@ -26,7 +27,7 @@ public class EnumeratedClassImpl extends HqdmObject implements EnumeratedClass {
      *
      * @param id String of the EnumeratedClass.
      */
-    public EnumeratedClassImpl(final String id) {
+    public EnumeratedClassImpl(final IRI id) {
         super(id);
     }
 }

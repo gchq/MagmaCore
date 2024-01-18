@@ -36,7 +36,7 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  */
 public class DbOperationTest {
 
-    private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test");
+    private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
 
     /**
      * Test that DbCreateOperations can be applied to a database and can also be inverted and used to

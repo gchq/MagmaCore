@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.PhysicalProperty;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of PhysicalProperty.
@@ -26,7 +27,7 @@ public class PhysicalPropertyImpl extends HqdmObject implements PhysicalProperty
      *
      * @param id String of the PhysicalProperty.
      */
-    public PhysicalPropertyImpl(final String id) {
+    public PhysicalPropertyImpl(final IRI id) {
         super(id);
     }
 }

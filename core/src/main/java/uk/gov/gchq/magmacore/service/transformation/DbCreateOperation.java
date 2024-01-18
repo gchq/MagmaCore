@@ -57,7 +57,7 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
         final Thing thing = mcService.get(subject);
 
         if (thing == null) {
-            final Thing newThing = SpatioTemporalExtentServices.createThing(subject.getIri());
+            final Thing newThing = SpatioTemporalExtentServices.createThing(subject);
             newThing.addValue(predicate, object);
             mcService.create(newThing);
         } else {

@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Owner;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Owner.
@@ -26,7 +27,7 @@ public class OwnerImpl extends HqdmObject implements Owner {
      *
      * @param id String of the Owner.
      */
-    public OwnerImpl(final String id) {
+    public OwnerImpl(final IRI id) {
         super(id);
     }
 }

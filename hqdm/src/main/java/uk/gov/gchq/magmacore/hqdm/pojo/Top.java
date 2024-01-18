@@ -17,6 +17,8 @@ package uk.gov.gchq.magmacore.hqdm.pojo;
 import java.util.Map;
 import java.util.Set;
 
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+
 /**
  * Top-level interface for HQDM objects.
  */
@@ -27,14 +29,14 @@ public interface Top {
      *
      * @return ID of the HQDM object.
      */
-    String getId();
+    IRI getId();
 
     /**
      * Set the ID of the HQDM object.
      *
      * @param id ID of the HQDM object.
      */
-    void setId(String id);
+    void setId(IRI id);
 
     /**
      * Get the predications of the HQDM object.

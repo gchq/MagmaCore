@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Employment;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Employment.
@@ -26,7 +27,7 @@ public class EmploymentImpl extends HqdmObject implements Employment {
      *
      * @param id String of the Employment.
      */
-    public EmploymentImpl(final String id) {
+    public EmploymentImpl(final IRI id) {
         super(id);
     }
 }

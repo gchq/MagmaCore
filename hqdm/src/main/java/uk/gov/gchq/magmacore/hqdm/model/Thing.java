@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model;
 
 import uk.gov.gchq.magmacore.hqdm.model.impl.ThingImpl;
 import uk.gov.gchq.magmacore.hqdm.pojo.Top;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * Anything that exists, real or imagined.
@@ -27,7 +28,7 @@ public interface Thing extends Top {
      * @param id the String.
      * @return a Thing instance.
      */
-    public static Thing createThing(final String id) {
+    public static Thing createThing(final IRI id) {
         return new ThingImpl(id);
     }
 }

@@ -15,8 +15,6 @@
   <!-- hqdm-core suppressions -->
   <suppress checks="MethodName" files="impl/*" />
   <suppress checks="TypeName" files="Function_.java" />
-
-  <!-- hqdm-rdf suppressions -->
   <suppress checks="ConstantName" files="HQDM.java" />
   <suppress checks="AbbreviationAsWordInName" files="IRI.java|HQDM.java|RDFS.java|UID.java" />
 </suppressions>

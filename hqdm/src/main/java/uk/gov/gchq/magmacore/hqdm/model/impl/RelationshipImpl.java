@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.Relationship;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Relationship.
@@ -26,7 +27,7 @@ public class RelationshipImpl extends HqdmObject implements Relationship {
      *
      * @param id String of the Relationship.
      */
-    public RelationshipImpl(final String id) {
+    public RelationshipImpl(final IRI id) {
         super(id);
     }
 }

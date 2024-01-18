@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.model.impl;
 
 import uk.gov.gchq.magmacore.hqdm.model.ClassOfStateOfFunctionalSystemComponent;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of ClassOfStateOfFunctionalSystemComponent.
@@ -27,7 +28,7 @@ public class ClassOfStateOfFunctionalSystemComponentImpl extends HqdmObject
      *
      * @param id String of the ClassOfStateOfFunctionalSystemComponent.
      */
-    public ClassOfStateOfFunctionalSystemComponentImpl(final String id) {
+    public ClassOfStateOfFunctionalSystemComponentImpl(final IRI id) {
         super(id);
     }
 }
