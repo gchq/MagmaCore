@@ -7,6 +7,11 @@ import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An SPI interface for extending HQDM.
+ *
+ * <p>
+ * See: <a href="https://github.com/twalmsley/hqdm_model_extension_example">HQDM Model Extension Example</a> for
+ * an example of how to write an extension module.
+ * </p>
  */
 public interface ExtensionServiceProvider {
 
