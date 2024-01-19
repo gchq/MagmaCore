@@ -861,9 +861,9 @@ public final class HqdmObjectFactory {
                     }
                 }
                 //
-                // We still don't recognise the type so throw an exception.
+                // We still don't recognise the type so just create a Thing to represent it.
                 //
-                throw new HqdmException("Unknown type name: " + typeName);
+                return SpatioTemporalExtentServices.createThing(iri);
         }
     }
 }
