@@ -46,6 +46,7 @@
       <module>examples</module>
       <module>hqdm</module>
       <module>hqdm-canonical</module>
+      <module>model-extension-example</module>
   </modules>
 
   <scm>
