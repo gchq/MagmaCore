@@ -54,6 +54,20 @@ import uk.gov.gchq.magmacore.service.verify.DataIntegrityReport;
 
 /**
  * Service for interacting with a {@link MagmaCoreDatabase}.
+ *
+ * <p>
+ * Note that Transaction control is manual unless using any of the following:
+ * <ol>
+ * <li>getInTransaction()</li>
+ * <li>runInReadTransaction()</li>
+ * <li>runInWriteTransaction()</li>
+ * <li>exportTtl()</li>
+ * <li>importTtl()</li>
+ * <li>verifyModel()</li>
+ * </ol>
+ *
+ * Nested transactions are not supported.
+ * </p>
  */
 public class MagmaCoreService {
 
@@ -842,4 +856,34 @@ public class MagmaCoreService {
     public List<Thing> verifyModel() {
         return DataIntegrityReport.verify(database);
     }
+
+    /**
+     * Start a transaction in READ mode.
+     */
+    void beginRead() {
+        database.beginRead();
+    }
+
+    /**
+     * Start a transaction in Write mode.
+     */
+    void beginWrite() {
+        database.beginWrite();
+    }
+
+    /**
+     * Commit a transaction - Finish the current transaction and make any changes permanent (if a
+     * "write" transaction).
+     */
+    void commit() {
+        database.commit();
+    }
+
+    /**
+     * Abort a transaction - Finish the transaction and undo any changes (if a "write" transaction).
+     */
+    void abort() {
+        database.abort();
+    }
+
 }
