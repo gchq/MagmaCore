@@ -842,4 +842,14 @@ public class MagmaCoreService {
     public List<Thing> verifyModel() {
         return DataIntegrityReport.verify(database);
     }
+
+    /**
+     * Execute a SELECT query.
+     *
+     * @param query a SELECT query {@link String}
+     * @return a {@link QueryResultList}
+     */
+    public QueryResultList executeQuery(final String query) {
+        return database.executeQuery(query);
+    }
 }
