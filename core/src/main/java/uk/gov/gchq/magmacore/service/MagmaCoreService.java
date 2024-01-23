@@ -66,7 +66,8 @@ import uk.gov.gchq.magmacore.service.verify.DataIntegrityReport;
  * <li>verifyModel()</li>
  * </ol>
  *
- * Nested transactions are not supported.
+ * Nested transactions are not supported so ensure that no transaction is in progress before 
+ * using any of the above methods.
  * </p>
  */
 public class MagmaCoreService {
@@ -687,6 +688,24 @@ public class MagmaCoreService {
      */
     public void create(final Thing thing) {
         database.create(thing);
+    }
+
+    /**
+     * Delete an entity from the collection.
+     *
+     * @param object Entity to delete.
+     */
+    void delete(final Thing object) {
+        database.delete(object);
+    }
+
+    /**
+     * Apply a set of deletes to the database.
+     *
+     * @param deletes a {@link List} of {@link DbDeleteOperation}
+     */
+    void delete(final List<DbDeleteOperation> deletes) {
+        database.delete(deletes);
     }
 
     /**
