@@ -57,6 +57,7 @@ import uk.gov.gchq.magmacore.service.verify.DataIntegrityReport;
  *
  * <p>
  * Note that Transaction control is manual unless using any of the following:
+ * </p>
  * <ol>
  * <li>getInTransaction()</li>
  * <li>runInReadTransaction()</li>
@@ -65,7 +66,7 @@ import uk.gov.gchq.magmacore.service.verify.DataIntegrityReport;
  * <li>importTtl()</li>
  * <li>verifyModel()</li>
  * </ol>
- *
+ * <p>
  * Nested transactions are not supported so ensure that no transaction is in progress before 
  * using any of the above methods.
  * </p>
