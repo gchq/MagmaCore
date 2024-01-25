@@ -59,7 +59,7 @@ public class ExampleSigns {
 
         // Apply the DbChangeSet.
         mcService.runInWriteTransaction(signsChangeSet);
-        //
+        
         // Combine the DbChangeSets into a DbTransformation and return it as a record of the changes.
         return new DbTransformation(List.of(rdlChangeSet, signsChangeSet));
     }

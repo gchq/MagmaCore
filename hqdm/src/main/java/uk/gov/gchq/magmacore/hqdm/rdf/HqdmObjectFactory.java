@@ -851,18 +851,14 @@ public final class HqdmObjectFactory {
                 return RelationshipServices.createUnitOfMeasure(iri);
             case "participant_in_activity_or_association":
             default:
-                //
                 // Check whether any extensions can handle the type.
-                //
                 for (final var service : getExtensionServices()) {
                     final Thing t = service.createEntity(typeName, iri);
                     if (t != null) {
                         return t;
                     }
                 }
-                //
                 // We still don't recognise the type so just create a Thing to represent it.
-                //
                 return SpatioTemporalExtentServices.createThing(iri);
         }
     }

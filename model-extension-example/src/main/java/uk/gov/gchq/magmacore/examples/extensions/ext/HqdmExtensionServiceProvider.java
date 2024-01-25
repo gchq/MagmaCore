@@ -22,7 +22,6 @@ public class HqdmExtensionServiceProvider implements ExtensionServiceProvider {
     public ExtensionService createService(final Map<IRI, Class<? extends Thing>> map) {
 
         // Register our extension IRIs and the corresponding interfaces.
-        //
         map.put(Constants.UK_LIMITED_COMPANY_IRI, UkLimitedCompany.class);
         map.put(Constants.UK_SOFTWARE_DEVELOPMENT_COMPANY_IRI, UkSoftwareDevelopmentCompany.class);
 

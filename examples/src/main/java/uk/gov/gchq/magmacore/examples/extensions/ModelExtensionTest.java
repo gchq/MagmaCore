@@ -16,7 +16,8 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  * Test the model extension provided by the model-extension-example module.
  *
  * <p>
- * Run this using mvn exec:java -Dexec.mainClass=uk.gov.gchq.magmacore.examples.extensions.ModelExtensionTest
+ * Run this using mvn exec:java
+ * -Dexec.mainClass=uk.gov.gchq.magmacore.examples.extensions.ModelExtensionTest
  * </p>
  */
 public class ModelExtensionTest {
@@ -30,40 +31,28 @@ public class ModelExtensionTest {
      * @param args a String array
      */
     public static void main(final String[] args) {
-        //
         // Create a MagmaCoreService with an in-memory Apache Jena database.
-        //
         final var mcs = MagmaCoreServiceFactory.createWithJenaDatabase();
 
-        //
-        // The entity will be a part of a dummy possible_world, we just use the
-        // IRI rather than creating the possible_world for this example.
-        //
+        // The entity will be a part of a dummy possible_world, we just use the IRI
+        // rather than creating the possible_world for this example.
         final var possibleWorldIri = new IRI(TEST_BASE, UUID.randomUUID().toString());
 
-        //
         // Create an IRI for the entity we want to create, then create the entity.
-        //
         final var entityIri = new IRI(TEST_BASE, UUID.randomUUID().toString());
         final Thing entity = new UkLimitedCompanyImpl(entityIri);
 
-        //
         // Set the RDF_TYPE and add the entity as a `part_of_possible_world`.
-        //
         entity.addValue(RDFS.RDF_TYPE, Constants.UK_LIMITED_COMPANY_IRI);
         entity.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
 
-        //
         // Persist the entity in the database.
-        //
         mcs.runInWriteTransaction(svc -> {
             svc.create(entity);
             return svc;
         });
 
-        //
         // Read the entity back and assert that it matches the original.
-        //
         mcs.runInReadTransaction(svc -> {
             final var restoredEntity = svc.get(entityIri);
 

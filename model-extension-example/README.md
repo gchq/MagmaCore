@@ -2,7 +2,7 @@
 
 This project builds a JAR file with a small extension to the main HQDM model provided by MagmaCore. It provides
 an SPI Service that can be detected by MagmaCore as a model extenstion, and provides the `UkLimitedCompany` entity type
-as a subtype of `Organization`, and the `UkSoftwareDevelopmentCompany` as a subtype of `UkLimitedCompany`. 
+as a subtype of `Organization`, and the `UkSoftwareDevelopmentCompany` as a subtype of `UkLimitedCompany`.
 This allows MagmaCore to be extended without changing the core library.
 
 # How to Use
@@ -28,40 +28,28 @@ public class MagmaCoreExtensionTests {
     @Test
     public void test() {
 
-        //
         // Create a MagmaCoreService with an in-memory Apache Jena database.
-        //
         final var mcs = MagmaCoreServiceFactory.createWithJenaDatabase();
 
-        //
         // The entity will be a part of a dummy possible_world, we just use the
         // IRI rather than creating the possible_world for this example.
-        //
         final var possibleWorldIri = new IRI(TEST_BASE, UUID.randomUUID().toString());
 
-        //
         // Create an IRI for the entity we want to create, then create the entity.
-        //
         final var entityIri = new IRI(TEST_BASE, UUID.randomUUID().toString());
         final Thing entity = new UkLimitedCompanyImpl(entityIri);
 
-        //
         // Set the RDF_TYPE and add the entity as a `part_of_possible_world`.
-        //
         entity.addValue(RDFS.RDF_TYPE, Constants.UK_LIMITED_COMPANY_IRI);
         entity.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
 
-        //
         // Persist the entity in the database.
-        //
         mcs.runInWriteTransaction(svc -> {
             svc.create(entity);
             return svc;
         });
 
-        //
         // Read the entity back and assert that it matches the original.
-        //
         mcs.runInReadTransaction(svc -> {
             final var restoredEntity = svc.get(entityIri);
 
