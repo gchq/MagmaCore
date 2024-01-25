@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.hqdm.rdf;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS.RDF_TYPE;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
