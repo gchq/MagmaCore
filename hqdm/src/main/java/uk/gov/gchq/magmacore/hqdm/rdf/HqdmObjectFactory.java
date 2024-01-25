@@ -125,7 +125,7 @@ public final class HqdmObjectFactory {
      * @return Array of Class.
      */
     private static <T extends Thing> java.lang.Class<T>[] irisToClasses(final Set<IRI> iris) {
-        final List<java.lang.Class<? extends Thing>> classes = new ArrayList<>(3);
+        final Set<java.lang.Class<? extends Thing>> classes = new HashSet<>(3);
 
         // It will be a small list so just iterate it.
         for (final IRI iri : iris) {
