@@ -54,6 +54,22 @@ import uk.gov.gchq.magmacore.service.verify.DataIntegrityReport;
 
 /**
  * Service for interacting with a {@link MagmaCoreDatabase}.
+ *
+ * <p>
+ * Note that Transaction control is manual unless using any of the following:
+ * </p>
+ * <ol>
+ * <li>getInTransaction()</li>
+ * <li>runInReadTransaction()</li>
+ * <li>runInWriteTransaction()</li>
+ * <li>exportTtl()</li>
+ * <li>importTtl()</li>
+ * <li>verifyModel()</li>
+ * </ol>
+ * <p>
+ * Nested transactions are not supported so ensure that no transaction is in progress before 
+ * using any of the above methods.
+ * </p>
  */
 public class MagmaCoreService {
 
@@ -676,6 +692,24 @@ public class MagmaCoreService {
     }
 
     /**
+     * Delete an entity from the collection.
+     *
+     * @param object Entity to delete.
+     */
+    void delete(final Thing object) {
+        database.delete(object);
+    }
+
+    /**
+     * Apply a set of deletes to the database.
+     *
+     * @param deletes a {@link List} of {@link DbDeleteOperation}
+     */
+    void delete(final List<DbDeleteOperation> deletes) {
+        database.delete(deletes);
+    }
+
+    /**
      * Convert a {@link Collection} of {@link Thing} objects to a {@link DbTransformation} that can be
      * used to persist them. Typically this should be followed by a call to `runInTransaction`.
      *
@@ -841,5 +875,44 @@ public class MagmaCoreService {
      */
     public List<Thing> verifyModel() {
         return DataIntegrityReport.verify(database);
+    }
+
+    /**
+     * Start a transaction in READ mode.
+     */
+    void beginRead() {
+        database.beginRead();
+    }
+
+    /**
+     * Start a transaction in Write mode.
+     */
+    void beginWrite() {
+        database.beginWrite();
+    }
+
+    /**
+     * Commit a transaction - Finish the current transaction and make any changes permanent (if a
+     * "write" transaction).
+     */
+    void commit() {
+        database.commit();
+    }
+
+    /**
+     * Abort a transaction - Finish the transaction and undo any changes (if a "write" transaction).
+     */
+    void abort() {
+        database.abort();
+    }
+
+    /**
+     * Execute a SELECT query.
+     *
+     * @param query a SELECT query {@link String}
+     * @return a {@link QueryResultList}
+     */
+    public QueryResultList executeQuery(final String query) {
+        return database.executeQuery(query);
     }
 }

@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
+import uk.gov.gchq.magmacore.database.query.QueryResultList;
 import uk.gov.gchq.magmacore.exception.MagmaCoreException;
 import uk.gov.gchq.magmacore.hqdm.model.Individual;
 import uk.gov.gchq.magmacore.hqdm.model.PointInTime;
@@ -38,6 +39,8 @@ import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
+import uk.gov.gchq.magmacore.service.transformation.DbChangeSet;
+import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 
 /**
  * Check that {@link MagmaCoreService} works correctly.
@@ -342,5 +345,45 @@ public class MagmaCoreServiceTest {
         assertNotNull(found2);
         assertTrue(found1.isEmpty());
         assertTrue(found2.isEmpty());
+    }
+
+    /**
+     * Check that SPARQL queries can be executed and produce arbitrary results.
+     */
+    @Test
+    public void testSparqlQuery() {
+
+        // Create an in-memory databse.
+        final MagmaCoreService service = MagmaCoreServiceFactory.createWithJenaDatabase();
+
+        // Populate some arbitrary data.
+        final IRI subj1 = new IRI(TEST_BASE, "subj1");
+        final IRI pred1 = new IRI(TEST_BASE, "pred1");
+        final IRI obj1 = new IRI(TEST_BASE, "obj1");
+        final IRI pred2 = new IRI(TEST_BASE, "pred2");
+        final IRI obj2 = new IRI(TEST_BASE, "obj2");
+
+        new DbChangeSet(
+            List.of(), // no deletes
+            List.of(// Two creates
+                new DbCreateOperation(subj1, pred1, obj1),
+                new DbCreateOperation(obj1, pred2, obj2)
+                )
+        ).apply(service);
+
+        // Query the service by joining the two statements in a single result.
+        final QueryResultList result = service.executeQuery("SELECT * WHERE { ?a ?b ?c. ?c ?d ?e}");
+
+        // Verify the result.
+        assertNotNull(result);
+        assertTrue(result.getVarNames().contains("a"));
+        assertTrue(result.getVarNames().contains("b"));
+        assertTrue(result.getVarNames().contains("c"));
+        assertTrue(result.getVarNames().contains("d"));
+        assertTrue(result.getVarNames().contains("e"));
+
+        // There should be one result record with five columns.
+        assertEquals(1, result.getQueryResults().size());
+        assertEquals(5, result.getQueryResults().get(0).getMap().size());
     }
 }
