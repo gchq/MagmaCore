@@ -906,4 +906,13 @@ public class MagmaCoreService {
         database.abort();
     }
 
+    /**
+     * Execute a SELECT query.
+     *
+     * @param query a SELECT query {@link String}
+     * @return a {@link QueryResultList}
+     */
+    public QueryResultList executeQuery(final String query) {
+        return database.executeQuery(query);
+    }
 }

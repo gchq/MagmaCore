@@ -1122,7 +1122,7 @@ public class MagmaCoreServiceQueries {
             """;
 
     /**
-     * TODO: Comment.
+     * Find by field value and class query.
      */
     public static final String FIND_BY_FIELD_VALUE_AND_CLASS = """
             PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>

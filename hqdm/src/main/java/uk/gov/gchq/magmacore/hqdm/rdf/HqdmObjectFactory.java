@@ -21,10 +21,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.ServiceLoader;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
+import uk.gov.gchq.magmacore.hqdm.extensions.*;
 import uk.gov.gchq.magmacore.hqdm.model.*;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HqdmIri;
@@ -40,7 +42,23 @@ import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
  */
 public final class HqdmObjectFactory {
 
+    private static List<ExtensionService> providers = null;
+
     private HqdmObjectFactory() {
+    }
+
+    private static List<ExtensionService> getExtensionServices() {
+        if (providers == null) {
+            providers = new ArrayList<>();
+
+            ServiceLoader
+                .load(ExtensionServiceProvider.class)
+                .iterator()
+                .forEachRemaining(p -> {
+                    providers.add(p.createService(iriToClassMap));
+                });
+        }
+        return providers;
     }
 
     /**
@@ -833,7 +851,15 @@ public final class HqdmObjectFactory {
                 return RelationshipServices.createUnitOfMeasure(iri);
             case "participant_in_activity_or_association":
             default:
-                throw new HqdmException("Unknown type name: " + typeName);
+                // Check whether any extensions can handle the type.
+                for (final var service : getExtensionServices()) {
+                    final Thing t = service.createEntity(typeName, iri);
+                    if (t != null) {
+                        return t;
+                    }
+                }
+                // We still don't recognise the type so just create a Thing to represent it.
+                return SpatioTemporalExtentServices.createThing(iri);
         }
     }
 }

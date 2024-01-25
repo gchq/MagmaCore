@@ -21,17 +21,17 @@ public class ParticipantDetails {
         return "ParticipantDetails [participant=" + participant + ", roles=" + roles + "]";
     }
 
-    /** TODO: Comment. */
+    /** A {@link Participant}. */
     public final Participant participant;
 
-    /** TODO: Comment. */
+    /** A {@link Set} of {@link Role}s. */
     public final Set<Role> roles;
 
     /**
      * Constructor.
      *
      * @param participant A {@link Participant}.
-     * @param roles       A {@link Set} of {@link Role}.
+     * @param roles       A {@link Set} of {@link Role}s.
      */
     public ParticipantDetails(final Participant participant, final Set<Role> roles) {
         this.participant = participant;
