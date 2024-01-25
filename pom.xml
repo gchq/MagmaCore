@@ -46,6 +46,7 @@
       <module>examples</module>
       <module>hqdm</module>
       <module>hqdm-canonical</module>
+      <module>model-extension-example</module>
   </modules>
 
   <scm>
@@ -78,6 +79,11 @@
         <artifactId>hqdm-canonical</artifactId>
         <version>3.0.3-SNAPSHOT</version>
       </dependency>
+      <dependency>
+        <groupId>uk.gov.gchq.magma-core</groupId>
+        <artifactId>model-extension-example</artifactId>
+        <version>3.0.3-SNAPSHOT</version>
+      </dependency>  
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>

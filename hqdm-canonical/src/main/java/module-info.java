@@ -15,7 +15,7 @@
 /**
  * Classes for constructing HQDM objects as RDF triples.
  */
-module uk.gov.gchq.magmacore.hqdm.rdf_canonical {
+module uk.gov.gchq.magmacore.hqdm.canonical {
     requires transitive uk.gov.gchq.magmacore;
 
     exports uk.gov.gchq.magmacore.hqdm.rdfbuilders;
