@@ -6,14 +6,14 @@ import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 /**
  * An HQDM Extension class to add a new entity type to MagmaCore.
  */
-public class UkLimitedCompanyImpl extends HqdmObject implements UkLimitedCompany {
+public class UkSoftwareDevelopmentCompanyImpl extends HqdmObject implements UkLimitedCompany {
 
     /**
-     * {@code UkLimitedCompany} constructor.
+     * {@code UkSoftwareDevelopmentCompanyImpl} constructor.
      *
-     * @param id ID for the UkLimitedCompany.
+     * @param id ID for the {@code UkSoftwareDevelopmentCompany}.
      */
-    public UkLimitedCompanyImpl(final IRI id) {
+    public UkSoftwareDevelopmentCompanyImpl(final IRI id) {
         super(id);
     }
 }

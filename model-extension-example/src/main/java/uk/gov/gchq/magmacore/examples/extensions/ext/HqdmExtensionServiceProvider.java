@@ -4,7 +4,7 @@ import java.util.Map;
 
 import uk.gov.gchq.magmacore.examples.extensions.model.Constants;
 import uk.gov.gchq.magmacore.examples.extensions.model.UkLimitedCompany;
-import uk.gov.gchq.magmacore.examples.extensions.model.UkSoftwareDevelopmenCompany;
+import uk.gov.gchq.magmacore.examples.extensions.model.UkSoftwareDevelopmentCompany;
 import uk.gov.gchq.magmacore.hqdm.extensions.ExtensionService;
 import uk.gov.gchq.magmacore.hqdm.extensions.ExtensionServiceProvider;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
@@ -24,7 +24,7 @@ public class HqdmExtensionServiceProvider implements ExtensionServiceProvider {
         // Register our extension IRIs and the corresponding interfaces.
         //
         map.put(Constants.UK_LIMITED_COMPANY_IRI, UkLimitedCompany.class);
-        map.put(Constants.UK_SOFTWARE_DEVELOPMENT_COMPANY_IRI, UkSoftwareDevelopmenCompany.class);
+        map.put(Constants.UK_SOFTWARE_DEVELOPMENT_COMPANY_IRI, UkSoftwareDevelopmentCompany.class);
 
         // Create ane return the extension service.
         return new HqdmExtensionService();
