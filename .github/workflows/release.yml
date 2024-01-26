@@ -52,11 +52,11 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       run: mvn release:perform
 
-    - name: Create pull request
+    - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5.0.2
-      title: Release ${{ inputs.releaseVersion }}
+      title: Release v${{ inputs.releaseVersion }}
       body: |
-        Automatic release created by the release.yml GitHub Action.
+        Automatic release created by GitHub Action.
 
         - Release Version: ${{ inputs.releaseVersion }}
         - Development Version: ${{ inputs.developmentVersion }}
