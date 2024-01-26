@@ -35,8 +35,8 @@ jobs:
     - name: Create Release Branch
       run: |
         git checkout -b release/${{ inputs.releaseVersion }}
-        git config --global user.name "ReleaseBot"
-        git config --global user.email "release-bot"
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
     
     - name: Build
       run: mvn -B package --file pom.xml
