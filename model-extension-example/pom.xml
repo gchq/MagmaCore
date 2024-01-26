@@ -5,12 +5,12 @@
     <parent>
         <groupId>uk.gov.gchq.magma-core</groupId>
         <artifactId>magma-core</artifactId>
-        <version>4.0.0</version>
+        <version>4.0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>uk.gov.gchq.magma-core</groupId>
     <artifactId>model-extension-example</artifactId>
-    <version>4.0.0</version>
+    <version>4.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>model-extension-example</name>
