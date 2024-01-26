@@ -35,8 +35,8 @@ jobs:
     - name: Create Release Branch
       run: |
         git checkout -b release/${{ inputs.releaseVersion }}
-        git config --global user.name "ReleaseBot"
-        git config --global user.email "release-bot"
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
     
     - name: Build
       run: mvn -B package --file pom.xml
@@ -48,6 +48,8 @@ jobs:
       run: mvn -Dtag=v${{ inputs.releaseVersion }} release:prepare -DautoVersionSubmodules -DreleaseVersion=${{ inputs.releaseVersion }} -DdevelopmentVersion=${{ inputs.developmentVersion }}
 
     - name: Publish
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
       run: mvn release:perform
 
     - name: Merge release into main
@@ -59,7 +61,7 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ github.token }} # This token is provided by Actions, you do not need to create your own token
+        GITHUB_TOKEN: ${{ github.token }}
       with:
         tag_name: ${{ inputs.releaseVersion }}
         release_name: Magma Core v${{ inputs.releaseVersion }}
