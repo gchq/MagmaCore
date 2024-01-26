@@ -880,14 +880,14 @@ public class MagmaCoreService {
     /**
      * Start a transaction in READ mode.
      */
-    void beginRead() {
+    public void beginRead() {
         database.beginRead();
     }
 
     /**
      * Start a transaction in Write mode.
      */
-    void beginWrite() {
+    public void beginWrite() {
         database.beginWrite();
     }
 
@@ -895,14 +895,14 @@ public class MagmaCoreService {
      * Commit a transaction - Finish the current transaction and make any changes permanent (if a
      * "write" transaction).
      */
-    void commit() {
+    public void commit() {
         database.commit();
     }
 
     /**
      * Abort a transaction - Finish the transaction and undo any changes (if a "write" transaction).
      */
-    void abort() {
+    public void abort() {
         database.abort();
     }
 
