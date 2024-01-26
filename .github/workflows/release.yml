@@ -1,0 +1,67 @@
+# This workflow will build a package using Maven and then publish it to GitHub packages when a release is created
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
+
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      releaseVersion:
+        description: 'Version to use when preparing release.'
+        required: true
+        type: string
+      developmentVersion:
+        description: 'Version to use for new local working copy.'
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 20
+      uses: actions/setup-java@v3
+      with:
+        java-version: '20'
+        distribution: 'temurin'
+        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+        # settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+    - name: Create Release Branch
+      run: |
+        git checkout -b release/${{ inputs.releaseVersion }}
+        git config --global user.name "ReleaseBot"
+        git config --global user.email "release-bot"
+    
+    - name: Build
+      run: mvn -B package --file pom.xml
+
+    - name: Javadocs
+      run: mvn javadoc:aggregate
+
+    - name: Create Release
+      run: mvn -Dtag=v${{ inputs.releaseVersion }} release:prepare -DautoVersionSubmodules -DreleaseVersion=${{ inputs.releaseVersion }} -DdevelopmentVersion=${{ inputs.developmentVersion }}
+
+    - name: Publish
+      run: mvn release:perform
+
+    - name: Merge release into main
+      run: |
+        git checkout main; git merge release/${{ inputs.releaseVersion }}
+        git push
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: ${{ inputs.releaseVersion }}
+        release_name: Magma Core v${{ inputs.releaseVersion }}
+        draft: true
+        prerelease: false
