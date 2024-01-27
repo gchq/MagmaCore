@@ -1,89 +1,323 @@
 package uk.gov.gchq.magmacore.examples.functional;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.time.Instant;
+import java.util.UUID;
 import java.util.function.Function;
 
 import org.junit.Test;
 
+import uk.gov.gchq.magmacore.hqdm.model.Activity;
+import uk.gov.gchq.magmacore.hqdm.model.ClassOfPerson;
+import uk.gov.gchq.magmacore.hqdm.model.KindOfActivity;
+import uk.gov.gchq.magmacore.hqdm.model.Person;
+import uk.gov.gchq.magmacore.hqdm.model.PointInTime;
+import uk.gov.gchq.magmacore.hqdm.model.Role;
+import uk.gov.gchq.magmacore.hqdm.model.StateOfPerson;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
+import uk.gov.gchq.magmacore.hqdm.services.ClassServices;
+import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 import uk.gov.gchq.magmacore.service.MagmaCoreService;
 import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
 
 /**
  * A Functional Programming example for using MagmaCore.
+ *
+ * <p>
+ * The purpose of this example is to try to write a program that is more readable than the other examples.
+ * The {@link #test() test} method shows a clear sequence of steps carried out by the use case, and it 
+ * should be possible to write the steps as reusable and composable functions. 
+ * </p>
  */
 public class FunctionalProgrammingExample {
 
-    private Function<Database, Database> beginWriteTransaction = db -> {
-        db.service.beginWrite();
-        return db;
-    };
+    /**
+     * An IRI prefix for the test.
+     */
+    private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
 
-    private Function<Database, Database> commitTransaction = db -> {
-        db.service.commit();
-        return db;
-    };
+    /**
+     * A class name for collecting together persons who are reseaechers.
+     */
+    private static final String RESEARCHERS_CLASS_ENTITY_NAME = "Researchers";
 
+    /**
+     * The name of a kind of activity.
+     */
+    private static final String RESEARCH_ACTIVITY_KIND_ENTITY_NAME = "Research Activities";
+
+    /**
+     * The name of a role for participants of research activities.
+     */
+    private static final String RESEARCHER_ROLE_ENTITY_NAME = "Researcher Role";
+
+    /**
+     * A unit test showing how to use functional programming with MagmaCore.
+     */
     @Test
     public void test() {
 
-        final String ttl = 
-            new DatabaseCreator()
+        /*
+         * Use function composition to build up a program that we will run later.
+         * The program will use a Context object to keep track of entities that 
+         * are created. All functions in the processing chain accept a Context,
+         * mutate it, then return it. Ideally a `record` would be used instead
+         * and Lombok could be used to add 'wither' methods so that the Context
+         * could be immutable.
+         */
+        final Function<Context, Context> program = 
+
+            /*
+             * First create a MagmaCoreService in the Context.
+             */
+            createMagmaCoreService
+
+            /*
+             * The first transaction will populate the Reference Data needed by this test.
+             * Normally such data will already exist in the database and this step will not 
+             * be necessary.
+             */
             .andThen(beginWriteTransaction)
-            .andThen(new RefDataFinder())
+            .andThen(populateRefData)
+            .andThen(commitTransaction)
+
+            /*
+             * Often a program will need to look up some existing entities for Reference
+             * Data needed by the use case. In this case they are stored in the Context.
+             */
+            .andThen(beginReadTransaction)
+            .andThen(findRefData)
+            .andThen(commitTransaction)
+
+            /*
+             * New entities can be created making use of the Reference Data. No transaction
+             * is needed since the entities will be persisted at the end.
+             */
             .andThen(createPerson)
             .andThen(createResearchActivity)
-            .andThen(addPersonAsParticipantInActivity)
-            .andThen(exportTtl)
+            .andThen(createPersonAsParticipantInActivity)
+            
+            /*
+             * The last transaction persists all of the new entities.
+             */
+            .andThen(beginWriteTransaction)
+            .andThen(creatEntities)
             .andThen(commitTransaction)
-            .apply(Void.instance);
+            
+            /*
+             * Export to TTL for this unit test.
+             */
+            .andThen(exportTtl);
 
+        /*
+         * Now execute the program created above.
+         */
+        final Context ctx = program.apply(new Context());
+
+        /*
+         * Check that the results are as expected.
+         */
+        assertNotNull(ctx);
+        assertNotNull(ctx.ttlResult);
+        assertTrue(ctx.ttlResult.length() > 0);
+
+        // TODO: Do some more checks rather than dumping to stdout.
+        System.out.println(ctx.ttlResult);
     }
 
-    private static class Void {
-        public static Void instance = new Void();
+    /**
+     * A function to populate Reference Data for the test.
+     */
+    private Function<Context, Context> populateRefData = ctx -> {
 
-        private Void() {}
+        /*
+         * Create a Class of Person.
+         */
+        final ClassOfPerson cop = ClassServices.createClassOfPerson(randomIri());
+        cop.addValue(HQDM.ENTITY_NAME, RESEARCHERS_CLASS_ENTITY_NAME);
+        ctx.magmaCore.create(cop);
+
+        /*
+         * Create a Kind of Activity.
+         */
+        final KindOfActivity koa = ClassServices.createKindOfActivity(randomIri());
+        koa.addValue(HQDM.ENTITY_NAME, RESEARCH_ACTIVITY_KIND_ENTITY_NAME);
+        ctx.magmaCore.create(koa);
+
+        /*
+         * Create a Role.
+         */
+        final Role role = ClassServices.createRole(randomIri());
+        role.addValue(HQDM.ENTITY_NAME, RESEARCHER_ROLE_ENTITY_NAME);
+        ctx.magmaCore.create(role);
+
+        return ctx;
+    };
+
+    /**
+     * A class to hold the entities created and referenced by the use case.
+     *
+     * <p>
+     * All fields are public for ease of access and to reduce clutter from 
+     * adding getters and setters. Lombok could be used to generate them
+     * without adding clutter.
+     * </p>
+     */
+    private static class Context {
+        public MagmaCoreService magmaCore;
+        public String ttlResult;
+
+        // New entities to be created.
+        public Person person;
+        public Activity researchActivity;
+        public StateOfPerson stateOfPerson;
+        public PointInTime startOfResearch;
+
+        // Ref data items.
+        public ClassOfPerson researchersClass;
+        public KindOfActivity researchActivityKind;
+        public Role researchRole;
     }
 
-    private static class DatabaseCreator implements Function<Void, Database> {
+    /**
+     * A function to create the MagmaCoreService. In this case it is an in-memory
+     * database for the unit test.
+     */
+    private static final Function<Context, Context> createMagmaCoreService = ctx -> {
+        ctx.magmaCore = MagmaCoreServiceFactory.createWithJenaDatabase();
+        return ctx;
+    };
 
-        @Override
-        public Database apply(final Void v) {
-            return new Database(MagmaCoreServiceFactory.createWithJenaDatabase());
-        }
+    /**
+     * A function to export the database as TTL at the end of the use case.
+     */
+    private static final Function<Context, Context> exportTtl = ctx -> {
+        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        final var buffer = new PrintStream(baos);
+
+        ctx.magmaCore.exportTtl(buffer);
+        
+        ctx.ttlResult = baos.toString();
+        
+        return ctx;
+    };
+
+    /**
+     * A function to persist the new entities in the database.
+     */
+    private static final Function<Context, Context> creatEntities = ctx -> {
+        ctx.magmaCore.create(ctx.person);
+        ctx.magmaCore.create(ctx.researchActivity);
+        ctx.magmaCore.create(ctx.stateOfPerson);
+        ctx.magmaCore.create(ctx.startOfResearch);
+        return ctx;
+    };
+
+    /**
+     * A function to find the Reference Data required by this use case.
+     */
+    private static final Function<Context, Context> findRefData = ctx -> {
+        ctx.researchersClass = ctx.magmaCore.findByEntityName(RESEARCHERS_CLASS_ENTITY_NAME);
+        ctx.researchActivityKind = ctx.magmaCore.findByEntityName(RESEARCH_ACTIVITY_KIND_ENTITY_NAME);
+        ctx.researchRole = ctx.magmaCore.findByEntityName(RESEARCHER_ROLE_ENTITY_NAME);
+        return ctx;
+    };
+
+    /**
+     * A utility function to generate random IRI values.
+     */
+    private static final IRI randomIri() {
+        return new IRI(TEST_BASE, UUID.randomUUID().toString());
     }
 
-    private static class Database {
+    /**
+     * A function to create a Person.
+     */
+    private static final Function<Context, Context> createPerson = ctx -> {
 
-        private MagmaCoreService service;
+        /*
+         * Create a Person.
+         */
+        ctx.person = SpatioTemporalExtentServices
+            .createPerson(randomIri());
+        ctx.person.addValue(HQDM.MEMBER_OF, ctx.researchersClass.getId());
+        return ctx;
+    };
 
-        public MagmaCoreService getService() {
-            return service;
-        }
+    /**
+     * A function to create an Activity.
+     */
+    private static final Function<Context, Context> createResearchActivity = ctx -> {
+        /*
+         * Create a timestamp for use as the beginning of the axctivity.
+         */
+        final String now = Instant.now().toString();
 
-        public Database(final MagmaCoreService service) {
-            this.service = service;
-        }
-    }
+        /*
+         * Create a PointInTime event.
+         */
+        ctx.startOfResearch = SpatioTemporalExtentServices
+            .createPointInTime(randomIri());
+        ctx.startOfResearch.addValue(HQDM.VALUE_, now);
 
-    private static class RefDataFinder implements Function<Database, RefData> {
+        /*
+         * Create the Activity.
+         */
+        ctx.researchActivity = SpatioTemporalExtentServices
+            .createActivity(randomIri());
+        ctx.researchActivity.addValue(HQDM.MEMBER_OF_KIND, ctx.researchActivityKind.getId());
+        ctx.researchActivity.addValue(HQDM.BEGINNING, ctx.startOfResearch.getId());
+        return ctx;
+    };
 
-        @Override
-        public RefData apply(final Database database) {
-            return new RefData(database);
-        }
+    /**
+     * A function to add a state of person as a participant in the research activity.
+     */
+    private static final Function<Context, Context> createPersonAsParticipantInActivity = ctx -> {
+        /*
+         * The state of person will be a participant in the research activity.
+         */
+        ctx.stateOfPerson = SpatioTemporalExtentServices
+            .createStateOfPerson(randomIri());
+        ctx.stateOfPerson.addValue(HQDM.TEMPORAL_PART_OF, ctx.person.getId());
+        ctx.stateOfPerson.addValue(HQDM.PARTICIPANT_IN, ctx.researchActivity.getId());
+        ctx.stateOfPerson.addValue(HQDM.MEMBER_OF_KIND, ctx.researchRole.getId());
+        ctx.stateOfPerson.addValue(HQDM.BEGINNING, ctx.startOfResearch.getId());
+        ctx.stateOfPerson.addValue(RDFS.RDF_TYPE, HQDM.PARTICIPANT);
 
-    }
+        return ctx;
+    };
 
-    private static class RefData {
-        private final Database database;
+    /**
+     * A function to begin a read transaction.
+     */
+    private final Function<Context, Context> beginReadTransaction = magmaCore -> {
+        magmaCore.magmaCore.beginWrite();
+        return magmaCore;
+    };
 
-        public Database getDatabase() {
-            return database;
-        }
+    /**
+     * A function to begin a write transaction.
+     */
+    private final Function<Context, Context> beginWriteTransaction = magmaCore -> {
+        magmaCore.magmaCore.beginWrite();
+        return magmaCore;
+    };
 
-        public RefData(final Database database) {
-            this.database = database;
-        }
-    }
+    /**
+     * A function to commit a transaction.
+     */
+    private final Function<Context, Context> commitTransaction = magmaCore -> {
+        magmaCore.magmaCore.commit();
+        return magmaCore;
+    };
+
 }
 
