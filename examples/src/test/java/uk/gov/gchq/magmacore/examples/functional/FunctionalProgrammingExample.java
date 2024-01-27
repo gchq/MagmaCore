@@ -1,10 +1,7 @@
 package uk.gov.gchq.magmacore.examples.functional;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.time.Instant;
 import java.util.UUID;
 import java.util.function.Function;
@@ -37,26 +34,6 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  * </p>
  */
 public class FunctionalProgrammingExample {
-
-    /**
-     * An IRI prefix for the test.
-     */
-    private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
-
-    /**
-     * A class name for collecting together persons who are reseaechers.
-     */
-    private static final String RESEARCHERS_CLASS_ENTITY_NAME = "Researchers";
-
-    /**
-     * The name of a kind of activity.
-     */
-    private static final String RESEARCH_ACTIVITY_KIND_ENTITY_NAME = "Research Activities";
-
-    /**
-     * The name of a role for participants of research activities.
-     */
-    private static final String RESEARCHER_ROLE_ENTITY_NAME = "Researcher Role";
 
     /**
      * A unit test showing how to use functional programming with MagmaCore.
@@ -109,12 +86,7 @@ public class FunctionalProgrammingExample {
              */
             .andThen(beginWriteTransaction)
             .andThen(creatEntities)
-            .andThen(commitTransaction)
-            
-            /*
-             * Export to TTL for this unit test.
-             */
-            .andThen(exportTtl);
+            .andThen(commitTransaction);
 
         /*
          * Now execute the program created above.
@@ -124,42 +96,11 @@ public class FunctionalProgrammingExample {
         /*
          * Check that the results are as expected.
          */
-        assertNotNull(ctx);
-        assertNotNull(ctx.ttlResult);
-        assertTrue(ctx.ttlResult.length() > 0);
-
-        // TODO: Do some more checks rather than dumping to stdout.
-        System.out.println(ctx.ttlResult);
+        assertNotNull(ctx.magmaCore.get(ctx.person.getId()));
+        assertNotNull(ctx.magmaCore.get(ctx.researchActivity.getId()));
+        assertNotNull(ctx.magmaCore.get(ctx.startOfResearch.getId()));
+        assertNotNull(ctx.magmaCore.get(ctx.stateOfPerson.getId()));
     }
-
-    /**
-     * A function to populate Reference Data for the test.
-     */
-    private Function<Context, Context> populateRefData = ctx -> {
-
-        /*
-         * Create a Class of Person.
-         */
-        final ClassOfPerson cop = ClassServices.createClassOfPerson(randomIri());
-        cop.addValue(HQDM.ENTITY_NAME, RESEARCHERS_CLASS_ENTITY_NAME);
-        ctx.magmaCore.create(cop);
-
-        /*
-         * Create a Kind of Activity.
-         */
-        final KindOfActivity koa = ClassServices.createKindOfActivity(randomIri());
-        koa.addValue(HQDM.ENTITY_NAME, RESEARCH_ACTIVITY_KIND_ENTITY_NAME);
-        ctx.magmaCore.create(koa);
-
-        /*
-         * Create a Role.
-         */
-        final Role role = ClassServices.createRole(randomIri());
-        role.addValue(HQDM.ENTITY_NAME, RESEARCHER_ROLE_ENTITY_NAME);
-        ctx.magmaCore.create(role);
-
-        return ctx;
-    };
 
     /**
      * A class to hold the entities created and referenced by the use case.
@@ -172,19 +113,38 @@ public class FunctionalProgrammingExample {
      */
     private static class Context {
         public MagmaCoreService magmaCore;
-        public String ttlResult;
 
         // New entities to be created.
-        public Person person;
         public Activity researchActivity;
-        public StateOfPerson stateOfPerson;
+        public Person person;
         public PointInTime startOfResearch;
+        public StateOfPerson stateOfPerson;
 
         // Ref data items.
         public ClassOfPerson researchersClass;
         public KindOfActivity researchActivityKind;
         public Role researchRole;
     }
+
+    /**
+     * An IRI prefix for the test.
+     */
+    private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
+
+    /**
+     * A class name for collecting together persons who are reseaechers.
+     */
+    private static final String RESEARCHERS_CLASS_ENTITY_NAME = "Researchers";
+
+    /**
+     * The name of a kind of activity.
+     */
+    private static final String RESEARCH_ACTIVITY_KIND_ENTITY_NAME = "Research Activities";
+
+    /**
+     * The name of a role for participants of research activities.
+     */
+    private static final String RESEARCHER_ROLE_ENTITY_NAME = "Researcher Role";
 
     /**
      * A function to create the MagmaCoreService. In this case it is an in-memory
@@ -196,27 +156,13 @@ public class FunctionalProgrammingExample {
     };
 
     /**
-     * A function to export the database as TTL at the end of the use case.
-     */
-    private static final Function<Context, Context> exportTtl = ctx -> {
-        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        final var buffer = new PrintStream(baos);
-
-        ctx.magmaCore.exportTtl(buffer);
-        
-        ctx.ttlResult = baos.toString();
-        
-        return ctx;
-    };
-
-    /**
      * A function to persist the new entities in the database.
      */
     private static final Function<Context, Context> creatEntities = ctx -> {
         ctx.magmaCore.create(ctx.person);
         ctx.magmaCore.create(ctx.researchActivity);
-        ctx.magmaCore.create(ctx.stateOfPerson);
         ctx.magmaCore.create(ctx.startOfResearch);
+        ctx.magmaCore.create(ctx.stateOfPerson);
         return ctx;
     };
 
@@ -224,18 +170,11 @@ public class FunctionalProgrammingExample {
      * A function to find the Reference Data required by this use case.
      */
     private static final Function<Context, Context> findRefData = ctx -> {
-        ctx.researchersClass = ctx.magmaCore.findByEntityName(RESEARCHERS_CLASS_ENTITY_NAME);
         ctx.researchActivityKind = ctx.magmaCore.findByEntityName(RESEARCH_ACTIVITY_KIND_ENTITY_NAME);
         ctx.researchRole = ctx.magmaCore.findByEntityName(RESEARCHER_ROLE_ENTITY_NAME);
+        ctx.researchersClass = ctx.magmaCore.findByEntityName(RESEARCHERS_CLASS_ENTITY_NAME);
         return ctx;
     };
-
-    /**
-     * A utility function to generate random IRI values.
-     */
-    private static final IRI randomIri() {
-        return new IRI(TEST_BASE, UUID.randomUUID().toString());
-    }
 
     /**
      * A function to create a Person.
@@ -272,8 +211,8 @@ public class FunctionalProgrammingExample {
          */
         ctx.researchActivity = SpatioTemporalExtentServices
             .createActivity(randomIri());
-        ctx.researchActivity.addValue(HQDM.MEMBER_OF_KIND, ctx.researchActivityKind.getId());
         ctx.researchActivity.addValue(HQDM.BEGINNING, ctx.startOfResearch.getId());
+        ctx.researchActivity.addValue(HQDM.MEMBER_OF_KIND, ctx.researchActivityKind.getId());
         return ctx;
     };
 
@@ -286,11 +225,47 @@ public class FunctionalProgrammingExample {
          */
         ctx.stateOfPerson = SpatioTemporalExtentServices
             .createStateOfPerson(randomIri());
-        ctx.stateOfPerson.addValue(HQDM.TEMPORAL_PART_OF, ctx.person.getId());
-        ctx.stateOfPerson.addValue(HQDM.PARTICIPANT_IN, ctx.researchActivity.getId());
-        ctx.stateOfPerson.addValue(HQDM.MEMBER_OF_KIND, ctx.researchRole.getId());
         ctx.stateOfPerson.addValue(HQDM.BEGINNING, ctx.startOfResearch.getId());
+        ctx.stateOfPerson.addValue(HQDM.MEMBER_OF_KIND, ctx.researchRole.getId());
+        ctx.stateOfPerson.addValue(HQDM.PARTICIPANT_IN, ctx.researchActivity.getId());
+        ctx.stateOfPerson.addValue(HQDM.TEMPORAL_PART_OF, ctx.person.getId());
         ctx.stateOfPerson.addValue(RDFS.RDF_TYPE, HQDM.PARTICIPANT);
+
+        return ctx;
+    };
+
+    /**
+     * A utility function to generate random IRI values.
+     */
+    private static final IRI randomIri() {
+        return new IRI(TEST_BASE, UUID.randomUUID().toString());
+    }
+
+    /**
+     * A function to populate Reference Data for the test.
+     */
+    private Function<Context, Context> populateRefData = ctx -> {
+
+        /*
+         * Create a Class of Person.
+         */
+        final ClassOfPerson cop = ClassServices.createClassOfPerson(randomIri());
+        cop.addValue(HQDM.ENTITY_NAME, RESEARCHERS_CLASS_ENTITY_NAME);
+        ctx.magmaCore.create(cop);
+
+        /*
+         * Create a Kind of Activity.
+         */
+        final KindOfActivity koa = ClassServices.createKindOfActivity(randomIri());
+        koa.addValue(HQDM.ENTITY_NAME, RESEARCH_ACTIVITY_KIND_ENTITY_NAME);
+        ctx.magmaCore.create(koa);
+
+        /*
+         * Create a Role.
+         */
+        final Role role = ClassServices.createRole(randomIri());
+        role.addValue(HQDM.ENTITY_NAME, RESEARCHER_ROLE_ENTITY_NAME);
+        ctx.magmaCore.create(role);
 
         return ctx;
     };
