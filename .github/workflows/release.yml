@@ -52,10 +52,14 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       run: mvn release:perform
 
-    - name: Merge release into main
-      run: |
-        git checkout main; git merge release/${{ inputs.releaseVersion }}
-        git push
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v5.0.2
+      title: Release v${{ inputs.releaseVersion }}
+      body: |
+        Automatic release created by GitHub Action.
+
+        - Release Version: ${{ inputs.releaseVersion }}
+        - Development Version: ${{ inputs.developmentVersion }}
 
     - name: Create Release
       id: create_release
