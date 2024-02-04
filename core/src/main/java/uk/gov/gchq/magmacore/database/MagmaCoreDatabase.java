@@ -181,4 +181,16 @@ public interface MagmaCoreDatabase {
      * @return a {@link List} of {@link Thing}
      */
     List<Thing> executeConstruct(final String query);
+
+    /**
+     * Apply a set of inference rules to a subset of the model and return a MagmaCoreService attached to 
+     * the resulting inference model for further use by the caller.
+     *
+     * @param query a SPARQL query String to extract a subset of the model for inferencing.
+     * @param rules a set of inference rules to be applied to the model subset.
+     * @param includeRdfsRules boolean true if inferencing should include the standard RDFS entailments.
+     * @return an in-memory MagmaCoreDatabase attached to the inferencing results which is 
+     *     independent of the source dataset.
+     */
+    MagmaCoreDatabase applyInferenceRules(final String query, final String rules, final boolean includeRdfsRules);
 }
