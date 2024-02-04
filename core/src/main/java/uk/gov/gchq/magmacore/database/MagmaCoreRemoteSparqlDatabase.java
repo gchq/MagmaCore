@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.jena.query.Dataset;
+import org.apache.jena.query.DatasetFactory;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
@@ -41,6 +42,8 @@ import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.rdfconnection.RDFConnection;
 import org.apache.jena.rdfconnection.RDFConnectionRemote;
+import org.apache.jena.reasoner.rulesys.GenericRuleReasoner;
+import org.apache.jena.reasoner.rulesys.Rule;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.RDFFormat;
@@ -69,7 +72,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      */
     public MagmaCoreRemoteSparqlDatabase(final String serviceUrl) {
         connection = RDFConnectionRemote.newBuilder().destination(serviceUrl).queryEndpoint("query")
-                .updateEndpoint("update").triplesFormat(RDFFormat.RDFJSON).build();
+                     .updateEndpoint("update").triplesFormat(RDFFormat.RDFJSON).build();
     }
 
     /**
@@ -143,7 +146,8 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     @Override
     public Thing get(final IRI iri) {
 
-        final String query = String.format("SELECT (<%1$s> as ?s) ?p ?o WHERE {<%1$s> ?p ?o.}", iri.toString());
+        final String query = String.format("SELECT (<%1$s> as ?s) ?p ?o WHERE {<%1$s> ?p ?o.}",
+                                           iri.toString());
         final QueryResultList list = executeQuery(query);
         final List<Thing> objects = toTopObjects(list);
 
@@ -189,6 +193,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
             final Object value = create.object;
 
             final RDFNode o;
+
             if (value instanceof IRI) {
                 o = forCreation.createResource(value.toString());
             } else {
@@ -214,7 +219,8 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      */
     @Override
     public void delete(final Thing object) {
-        executeUpdate(String.format("delete {<%s> ?p ?o} WHERE {<%s> ?p ?o}", object.getId(), object.getId()));
+        executeUpdate(String.format("delete {<%s> ?p ?o} WHERE {<%s> ?p ?o}", object.getId(),
+                                    object.getId()));
     }
 
     /**
@@ -258,7 +264,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     @Override
     public List<Thing> findByPredicateIri(final IRI predicateIri, final IRI objectIri) {
         final String query = "SELECT ?s ?p ?o WHERE {?s ?p ?o. ?s <" + predicateIri.toString() + "> <"
-                + objectIri.toString() + ">.}";
+                             + objectIri.toString() + ">.}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -268,8 +274,9 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      */
     @Override
     public List<Thing> findByPredicateIriOnly(final IRI predicateIri) {
-        final String query = "SELECT ?s ?p ?o WHERE {{select ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
-                + predicateIri.toString() + "> ?o.}}}";
+        final String query =
+            "SELECT ?s ?p ?o WHERE {{select ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
+            + predicateIri.toString() + "> ?o.}}}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -288,6 +295,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
             query = "SELECT ?s ?p ?o WHERE { ?s ?p ?o.  ?s <" + predicateIri.toString() + "> \"\"\"" + value
                     + "\"\"\".}";
         }
+
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -296,10 +304,12 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
-    public List<Thing> findByPredicateIriAndStringCaseInsensitive(final IRI predicateIri, final String value) {
-        final String query = "SELECT ?s ?p ?o WHERE {{ SELECT ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
-                + predicateIri.toString() + "> ?o. BIND(LCASE(?o) AS ?lcase) FILTER(?lcase= \"\"\"" + value
-                + "\"\"\")}}}";
+    public List<Thing> findByPredicateIriAndStringCaseInsensitive(final IRI predicateIri,
+            final String value) {
+        final String query =
+            "SELECT ?s ?p ?o WHERE {{ SELECT ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
+            + predicateIri.toString() + "> ?o. BIND(LCASE(?o) AS ?lcase) FILTER(?lcase= \"\"\"" + value
+            + "\"\"\")}}}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -350,7 +360,9 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     private final QueryResultList getQueryResultList(final QueryExecution queryExec) {
         final ResultSet resultSet = queryExec.execSelect();
         final List<QueryResult> queryResults = new ArrayList<>();
-        final QueryResultList queryResultList = new QueryResultList(resultSet.getResultVars(), queryResults);
+        final QueryResultList queryResultList = new QueryResultList(resultSet.getResultVars(),
+            queryResults);
+
         while (resultSet.hasNext()) {
             final QuerySolution querySolution = resultSet.next();
             final Iterator<String> varNames = querySolution.varNames();
@@ -361,8 +373,10 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
                 final RDFNode node = querySolution.get(varName);
                 queryResult.set(varName, node);
             }
+
             queryResults.add(queryResult);
         }
+
         queryExec.close();
         return queryResultList;
     }
@@ -388,6 +402,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
             final RDFNode objectValue = queryResult.get(objectVarName);
 
             List<Pair<Object, Object>> dataModelObject = objectMap.get(subjectValue);
+
             if (dataModelObject == null) {
                 dataModelObject = new ArrayList<>();
                 objectMap.put(subjectValue, dataModelObject);
@@ -395,17 +410,18 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
             if (objectValue instanceof Literal) {
                 dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()), objectValue.toString()));
             } else if (objectValue instanceof Resource) {
-                dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()), new IRI(objectValue.toString())));
+                dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()),
+                                               new IRI(objectValue.toString())));
             } else {
                 throw new RuntimeException("objectValue is of unknown type: " + objectValue.getClass());
             }
         });
 
         return objectMap
-                .entrySet()
-                .stream()
-                .map(entry -> HqdmObjectFactory.create(new IRI(entry.getKey().toString()), entry.getValue()))
-                .collect(Collectors.toList());
+               .entrySet()
+               .stream()
+               .map(entry -> HqdmObjectFactory.create(new IRI(entry.getKey().toString()), entry.getValue()))
+               .collect(Collectors.toList());
     }
 
     /**
@@ -447,5 +463,30 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
         RDFDataMgr.read(model, in, language);
         connection.load(model);
         commit();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MagmaCoreDatabase applyInferenceRules(
+        final String constructQuery,
+        final String rules,
+        final boolean includeRdfsRules) {
+        // Execute the query to get a subset of the data model.
+        final QueryExecution queryExec = connection.query(constructQuery);
+        final Model subset = queryExec.execConstruct();
+
+        // Parse the rules and create a reasoner using the rules and the sunset Model.
+        final List<Rule> ruleSet = Rule.parseRules(rules);
+        final GenericRuleReasoner reasoner = new GenericRuleReasoner(ruleSet);
+
+        // Create an Inference Model which will run the rules.
+        final Model model = ModelFactory.createInfModel(reasoner, subset);
+
+        // Convert the inference model to a dataset and return it wrapped as
+        // an in-memory MagmaCoreDatabase.
+        final Dataset inferenceDataset = DatasetFactory.create(model);
+        return new MagmaCoreJenaDatabase(inferenceDataset);
     }
 }
