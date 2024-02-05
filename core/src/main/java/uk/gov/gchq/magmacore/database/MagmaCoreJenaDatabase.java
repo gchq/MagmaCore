@@ -32,6 +32,7 @@ import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.query.TxnType;
+import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -40,6 +41,8 @@ import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
+import org.apache.jena.reasoner.ValidityReport;
+import org.apache.jena.reasoner.ValidityReport.Report;
 import org.apache.jena.reasoner.rulesys.GenericRuleReasoner;
 import org.apache.jena.reasoner.rulesys.Rule;
 import org.apache.jena.riot.Lang;
@@ -53,6 +56,7 @@ import org.apache.jena.util.PrintUtil;
 
 import uk.gov.gchq.magmacore.database.query.QueryResult;
 import uk.gov.gchq.magmacore.database.query.QueryResultList;
+import uk.gov.gchq.magmacore.database.validation.ValidationReportEntry;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
@@ -485,6 +489,60 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
             final String constructQuery, 
             final String rules, 
             final boolean includeRdfsRules) {
+        // Create an Inference Model which will run the rules.
+        final InfModel model = getInferenceModel(constructQuery, rules, includeRdfsRules);
+
+        // Convert the inference model to a dataset and return it wrapped as 
+        // an in-memory MagmaCoreDatabase.
+        final Dataset inferenceDataset = DatasetFactory.create();
+        inferenceDataset.getDefaultModel().add(model);
+        return new MagmaCoreJenaDatabase(inferenceDataset);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<ValidationReportEntry> validate(final String constructQuery, 
+            final String rules, 
+            final boolean includeRdfsRules) {
+        //
+        // Create an Inference Model which will run the rules.
+        final InfModel model = getInferenceModel(constructQuery, rules, includeRdfsRules);
+
+        // Run the validation.
+        final ValidityReport validityReport = model.validate();
+
+        // Convert the result to be non-Jena-specific.
+        final List<ValidationReportEntry> entries = new ArrayList<>();
+        final Iterator<Report> reports = validityReport.getReports();
+
+        while (reports.hasNext()) {
+            final Report report = reports.next();
+
+            entries.add(new ValidationReportEntry(
+                        report.getType(),
+                        report.getExtension(),
+                        report.getDescription()
+                        ));
+        }
+        
+        return entries;
+    }
+
+    /**
+     * Create an in-memory model for inferencing.
+     *
+     * @param constructQuery {@link String}
+     * @param rules {@link String}
+     * @param includeRdfsRules boolean
+     * @return {@link InfModel}
+     */
+    private InfModel getInferenceModel(
+            final String constructQuery, 
+            final String rules, 
+            final boolean includeRdfsRules) {
+        // Get the default Model
         // Execute the query to get a subset of the data model.
         final QueryExecution queryExec = QueryExecutionFactory.create(constructQuery, dataset);
         final Model subset = queryExec.execConstruct();
@@ -494,11 +552,6 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
         final GenericRuleReasoner reasoner = new GenericRuleReasoner(ruleSet);
 
         // Create an Inference Model which will run the rules.
-        final Model model = ModelFactory.createInfModel(reasoner, subset);
-
-        // Convert the inference model to a dataset and return it wrapped as 
-        // an in-memory MagmaCoreDatabase.
-        final Dataset inferenceDataset = DatasetFactory.create(model);
-        return new MagmaCoreJenaDatabase(inferenceDataset);
+        return ModelFactory.createInfModel(reasoner, subset);
     }
 }

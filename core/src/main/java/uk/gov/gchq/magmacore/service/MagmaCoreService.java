@@ -31,6 +31,7 @@ import org.apache.jena.riot.Lang;
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 import uk.gov.gchq.magmacore.database.query.QueryResult;
 import uk.gov.gchq.magmacore.database.query.QueryResultList;
+import uk.gov.gchq.magmacore.database.validation.ValidationReportEntry;
 import uk.gov.gchq.magmacore.exception.MagmaCoreException;
 import uk.gov.gchq.magmacore.hqdm.model.Individual;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfAssociation;
@@ -929,5 +930,18 @@ public class MagmaCoreService {
         // This functionality is likely to be database-implementation-specific, so delegate.
         final MagmaCoreDatabase db = database.applyInferenceRules(query, rules, includeRdfsRules);
         return new MagmaCoreService(db);
+    }
+
+    /**
+     * Apply a set of inference rules to a subset of the model and return a List of ValidationReportEntry objects.
+     *
+     * @param query a SPARQL query String to extract a subset of the model for inferencing.
+     * @param rules a set of inference rules to be applied to the model subset.
+     * @param includeRdfsRules boolean true if inferencing should include the standard RDFS entailments.
+     * @return A {@link List} of {@link ValidationReportEntry} objects.
+     *     It will be Optional.empty if the underlying database is not an inference model.
+     */
+    public List<ValidationReportEntry> validate(final String query, final String rules, final boolean includeRdfsRules) {
+        return database.validate(query, rules, includeRdfsRules);
     }
 }
