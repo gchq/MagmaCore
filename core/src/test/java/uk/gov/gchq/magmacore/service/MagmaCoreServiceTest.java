@@ -22,6 +22,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
@@ -409,13 +410,13 @@ public class MagmaCoreServiceTest {
         ).apply(service);
 
         // Query the service by joining the two statements in a single result.
-        final Set<Thing> result = service.executeQueryForThings("SELECT ?s ?p ?o WHERE { ?s ?p ?o}");
+        final Map<IRI, Thing> result = service.executeQueryForThings("SELECT ?s ?p ?o WHERE { ?s ?p ?o}");
 
         // Verify the result.
         assertNotNull(result);
         //
         // There should be one result record with five columns.
         assertEquals(2, result.size());
-        result.forEach(t -> assertTrue(t instanceof Thing));
+        result.values().forEach(t -> assertTrue(t instanceof Thing));
     }
 }

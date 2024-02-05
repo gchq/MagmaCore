@@ -924,11 +924,17 @@ public class MagmaCoreService {
      * The third column can contain IRIs or primitive values.
      *
      * @param query a SELECT query {@link String}
-     * @return a {@link QueryResultList}
+     * @return a {@link Map} of {@link IRI} to {@link Thing}
      */
-    public Set<Thing> executeQueryForThings(final String query) {
+    public Map<IRI, Thing> executeQueryForThings(final String query) {
         final QueryResultList resultsList = database.executeQuery(query);
+        
         final List<Thing> things = database.toTopObjects(resultsList);
-        return Set.copyOf(things);
+        
+        final Map<IRI, Thing> result = new HashMap<>();
+        
+        things.forEach(t -> result.put(t.getId(), t));
+
+        return result;
     }
 }
