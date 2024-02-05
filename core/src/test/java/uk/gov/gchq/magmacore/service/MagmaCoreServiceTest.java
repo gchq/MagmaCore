@@ -386,4 +386,36 @@ public class MagmaCoreServiceTest {
         assertEquals(1, result.getQueryResults().size());
         assertEquals(5, result.getQueryResults().get(0).getMap().size());
     }
+
+    /**
+     * Check that it is possible to query for a Set of Things.
+     */
+    @Test
+    public void testQueryForThingsSuccess() {
+        // Create an in-memory databse.
+        final MagmaCoreService service = MagmaCoreServiceFactory.createWithJenaDatabase();
+
+        // Populate some arbitrary data.
+        final IRI subj1 = new IRI(TEST_BASE, "subj1");
+        final IRI obj1 = new IRI(TEST_BASE, "obj1");
+
+        new DbChangeSet(
+            List.of(), // no deletes
+            List.of(// Two creates
+                new DbCreateOperation(subj1, HQDM.MEMBER_OF, obj1),
+                new DbCreateOperation(subj1, RDFS.RDF_TYPE, HQDM.PERSON),
+                new DbCreateOperation(obj1, RDFS.RDF_TYPE, HQDM.CLASS_OF_PERSON)
+                )
+        ).apply(service);
+
+        // Query the service by joining the two statements in a single result.
+        final Set<Thing> result = service.executeQueryForThings("SELECT ?s ?p ?o WHERE { ?s ?p ?o}");
+
+        // Verify the result.
+        assertNotNull(result);
+        //
+        // There should be one result record with five columns.
+        assertEquals(2, result.size());
+        result.forEach(t -> assertTrue(t instanceof Thing));
+    }
 }

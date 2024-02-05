@@ -915,4 +915,20 @@ public class MagmaCoreService {
     public QueryResultList executeQuery(final String query) {
         return database.executeQuery(query);
     }
+
+    /**
+     * SPARQL queries restricted to having 3 columns for the subject, predicate, and object, with any names but they must be in that order. E.g.
+     * SELECT ?s ?p ?o WHERE {...} order by ?s ?p ?o
+     * The first column must contain entity IDs.
+     * The second column must contain predicates.
+     * The third column can contain IRIs or primitive values.
+     *
+     * @param query a SELECT query {@link String}
+     * @return a {@link QueryResultList}
+     */
+    public Set<Thing> executeQueryForThings(final String query) {
+        final QueryResultList resultsList = database.executeQuery(query);
+        final List<Thing> things = database.toTopObjects(resultsList);
+        return Set.copyOf(things);
+    }
 }
