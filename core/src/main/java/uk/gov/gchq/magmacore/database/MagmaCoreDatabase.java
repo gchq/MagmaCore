@@ -21,6 +21,7 @@ import java.util.List;
 import org.apache.jena.riot.Lang;
 
 import uk.gov.gchq.magmacore.database.query.QueryResultList;
+import uk.gov.gchq.magmacore.database.validation.ValidationReportEntry;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
@@ -181,4 +182,34 @@ public interface MagmaCoreDatabase {
      * @return a {@link List} of {@link Thing}
      */
     List<Thing> executeConstruct(final String query);
+
+    /**
+     * Apply a set of inference rules to a subset of the model and return a MagmaCoreService attached to 
+     * the resulting inference model for further use by the caller.
+     *
+     * @param constructQuery a SPARQL query String to extract a subset of the model for inferencing.
+     * @param rules a set of inference rules to be applied to the model subset.
+     * @param includeRdfsRules boolean true if inferencing should include the standard RDFS entailments.
+     * @return an in-memory MagmaCoreDatabase attached to the inferencing results which is 
+     *     independent of the source dataset.
+     */
+    MagmaCoreDatabase applyInferenceRules(
+            final String constructQuery, 
+            final String rules, 
+            final boolean includeRdfsRules);
+
+    /**
+     * Run a validation report. This is only valid for databases obtained from 
+     *     the {@link MagmaCoreDatabase.applyInferenceRules} method.
+     *
+     * @param constructQuery a SPARQL query String to extract a subset of the model for inferencing.
+     * @param rules a set of inference rules to be applied to the model subset.
+     * @param includeRdfsRules boolean true if inferencing should include the standard RDFS entailments.
+     * @return A {@link List} of {@link ValidationReportEntry} objects.
+     *     It will be Optional.empty if the underlying database is not an inference model.
+     */
+    List<ValidationReportEntry> validate(
+            final String constructQuery, 
+            final String rules, 
+            final boolean includeRdfsRules);
 }
