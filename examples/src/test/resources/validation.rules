@@ -1,0 +1,16 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix hqdm: <https://hqdmtop.github.io/hqdm#> .
+
+@include <RDFS>.
+
+#
+# Check that all classes have a data_EntityName predicate.
+#
+[checkForDataEntityName:
+    (?y rb:violation error('Mising Entity Name', 'Entity should have predicate data_EntityName', ?s))
+    <-
+    (?s rdf:type hqdm:class)
+    noValue(?s hqdm:data_EntityName)
+]

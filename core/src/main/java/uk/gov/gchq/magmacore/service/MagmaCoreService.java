@@ -966,4 +966,13 @@ public class MagmaCoreService {
     public List<ValidationReportEntry> validate(final String query, final String rules, final boolean includeRdfsRules) {
         return database.validate(query, rules, includeRdfsRules);
     }
+
+    /**
+     * Load some TTL from an InputStream.
+     *
+     * @param stream {@link InputStream}
+     */
+    public void loadTtl(final InputStream stream) {
+        database.load(stream, Lang.TTL);
+    }
 }
