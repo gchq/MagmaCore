@@ -340,60 +340,60 @@ public class SaleOfGoodsBuilder {
      */
     public SaleOfGoods build() throws HqdmException {
         if (this.saleOfGoods.hasValue(AGGREGATED_INTO)
-                && this.saleOfGoods.value(AGGREGATED_INTO).isEmpty()) {
+                && this.saleOfGoods.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.saleOfGoods.hasValue(BEGINNING)
-                && this.saleOfGoods.value(BEGINNING).isEmpty()) {
+                && this.saleOfGoods.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (!this.saleOfGoods.hasValue(CAUSES)) {
             throw new HqdmException("Property Not Set: causes");
         }
         if (this.saleOfGoods.hasValue(DETERMINES)
-                && this.saleOfGoods.value(DETERMINES).isEmpty()) {
+                && this.saleOfGoods.values(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
         if (this.saleOfGoods.hasValue(ENDING)
-                && this.saleOfGoods.value(ENDING).isEmpty()) {
+                && this.saleOfGoods.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.saleOfGoods.hasValue(MEMBER__OF)
-                && this.saleOfGoods.value(MEMBER__OF).isEmpty()) {
+                && this.saleOfGoods.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.saleOfGoods.hasValue(MEMBER_OF)
-                && this.saleOfGoods.value(MEMBER_OF).isEmpty()) {
+                && this.saleOfGoods.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.saleOfGoods.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.saleOfGoods.hasValue(PART__OF)
-                && this.saleOfGoods.value(PART__OF).isEmpty()) {
+                && this.saleOfGoods.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (this.saleOfGoods.hasValue(PART_OF)
-                && this.saleOfGoods.value(PART_OF).isEmpty()) {
+                && this.saleOfGoods.values(PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of");
         }
         if (this.saleOfGoods.hasValue(PART_OF_)
-                && this.saleOfGoods.value(PART_OF_).isEmpty()) {
+                && this.saleOfGoods.values(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
         if (!this.saleOfGoods.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.saleOfGoods.hasValue(REFERENCES)
-                && this.saleOfGoods.value(REFERENCES).isEmpty()) {
+                && this.saleOfGoods.values(REFERENCES).isEmpty()) {
             throw new HqdmException("Property Not Set: references");
         }
         if (this.saleOfGoods.hasValue(TEMPORAL__PART_OF)
-                && this.saleOfGoods.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.saleOfGoods.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.saleOfGoods.hasValue(TEMPORAL_PART_OF)
-                && this.saleOfGoods.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.saleOfGoods.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return saleOfGoods;

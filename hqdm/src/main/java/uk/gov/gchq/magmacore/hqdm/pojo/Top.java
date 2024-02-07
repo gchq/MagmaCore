@@ -55,10 +55,18 @@ public interface Top {
     /**
      * Get predicate value(s) by predicate Object.
      *
-     * @param predicateId Predicate ID.
+     * @param predicateId Predicate ID. {@link IRI}
      * @return Set of predicate values (Object or string-literals).
      */
-    Set<Object> value(Object predicateId);
+    <T> Set<T> values(IRI predicateId);
+
+    /**
+     * Get predicate value(s) by predicate Object.
+     *
+     * @param predicateId Predicate ID. {@link IRI}
+     * @return A single value of type T or null (Object or string-literals).
+     */
+    <T> T oneValue(IRI predicateId);
 
     /**
      * Add predicate and object String reference to entity.

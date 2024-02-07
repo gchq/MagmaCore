@@ -86,15 +86,15 @@ public class EnumeratedClassBuilder {
      */
     public EnumeratedClass build() throws HqdmException {
         if (this.enumeratedClass.hasValue(HAS_SUPERCLASS)
-                && this.enumeratedClass.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.enumeratedClass.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.enumeratedClass.hasValue(MEMBER__OF)
-                && this.enumeratedClass.value(MEMBER__OF).isEmpty()) {
+                && this.enumeratedClass.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.enumeratedClass.hasValue(MEMBER_OF)
-                && this.enumeratedClass.value(MEMBER_OF).isEmpty()) {
+                && this.enumeratedClass.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return enumeratedClass;

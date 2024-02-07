@@ -159,23 +159,23 @@ public class KindOfPersonBuilder {
             throw new HqdmException("Property Not Set: has_component_by_class");
         }
         if (this.kindOfPerson.hasValue(HAS_SUPERCLASS)
-                && this.kindOfPerson.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfPerson.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.kindOfPerson.hasValue(MEMBER__OF)
-                && this.kindOfPerson.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfPerson.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfPerson.hasValue(MEMBER_OF)
-                && this.kindOfPerson.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfPerson.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.kindOfPerson.hasValue(MEMBER_OF_)
-                && this.kindOfPerson.value(MEMBER_OF_).isEmpty()) {
+                && this.kindOfPerson.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.kindOfPerson.hasValue(PART__OF_BY_CLASS)
-                && this.kindOfPerson.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.kindOfPerson.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return kindOfPerson;

@@ -138,23 +138,23 @@ public class PatternBuilder {
      */
     public Pattern build() throws HqdmException {
         if (this.pattern.hasValue(HAS_SUPERCLASS)
-                && this.pattern.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.pattern.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.pattern.hasValue(MEMBER__OF)
-                && this.pattern.value(MEMBER__OF).isEmpty()) {
+                && this.pattern.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.pattern.hasValue(MEMBER_OF)
-                && this.pattern.value(MEMBER_OF).isEmpty()) {
+                && this.pattern.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.pattern.hasValue(MEMBER_OF_)
-                && this.pattern.value(MEMBER_OF_).isEmpty()) {
+                && this.pattern.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.pattern.hasValue(PART__OF_BY_CLASS)
-                && this.pattern.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.pattern.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return pattern;

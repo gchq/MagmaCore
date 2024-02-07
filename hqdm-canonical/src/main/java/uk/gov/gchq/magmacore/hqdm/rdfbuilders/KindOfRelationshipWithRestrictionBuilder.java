@@ -116,15 +116,15 @@ public class KindOfRelationshipWithRestrictionBuilder {
      */
     public KindOfRelationshipWithRestriction build() throws HqdmException {
         if (this.kindOfRelationshipWithRestriction.hasValue(HAS_SUPERCLASS)
-                && this.kindOfRelationshipWithRestriction.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfRelationshipWithRestriction.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.kindOfRelationshipWithRestriction.hasValue(MEMBER__OF)
-                && this.kindOfRelationshipWithRestriction.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfRelationshipWithRestriction.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfRelationshipWithRestriction.hasValue(MEMBER_OF)
-                && this.kindOfRelationshipWithRestriction.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfRelationshipWithRestriction.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.kindOfRelationshipWithRestriction.hasValue(REQUIRED_ROLE_PLAYER)) {

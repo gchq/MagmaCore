@@ -146,24 +146,24 @@ public class ClassOfStateOfSociallyConstructedActivityBuilder {
      */
     public ClassOfStateOfSociallyConstructedActivity build() throws HqdmException {
         if (this.classOfStateOfSociallyConstructedActivity.hasValue(HAS_SUPERCLASS)
-                && this.classOfStateOfSociallyConstructedActivity.value(HAS_SUPERCLASS)
+                && this.classOfStateOfSociallyConstructedActivity.values(HAS_SUPERCLASS)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfStateOfSociallyConstructedActivity.hasValue(MEMBER__OF)
-                && this.classOfStateOfSociallyConstructedActivity.value(MEMBER__OF).isEmpty()) {
+                && this.classOfStateOfSociallyConstructedActivity.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfStateOfSociallyConstructedActivity.hasValue(MEMBER_OF)
-                && this.classOfStateOfSociallyConstructedActivity.value(MEMBER_OF).isEmpty()) {
+                && this.classOfStateOfSociallyConstructedActivity.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfStateOfSociallyConstructedActivity.hasValue(MEMBER_OF_)
-                && this.classOfStateOfSociallyConstructedActivity.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfStateOfSociallyConstructedActivity.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfStateOfSociallyConstructedActivity.hasValue(PART__OF_BY_CLASS)
-                && this.classOfStateOfSociallyConstructedActivity.value(PART__OF_BY_CLASS)
+                && this.classOfStateOfSociallyConstructedActivity.values(PART__OF_BY_CLASS)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }

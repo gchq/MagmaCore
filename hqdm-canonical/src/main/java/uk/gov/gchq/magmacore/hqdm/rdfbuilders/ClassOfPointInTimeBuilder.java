@@ -141,23 +141,23 @@ public class ClassOfPointInTimeBuilder {
      */
     public ClassOfPointInTime build() throws HqdmException {
         if (this.classOfPointInTime.hasValue(HAS_SUPERCLASS)
-                && this.classOfPointInTime.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfPointInTime.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfPointInTime.hasValue(MEMBER__OF)
-                && this.classOfPointInTime.value(MEMBER__OF).isEmpty()) {
+                && this.classOfPointInTime.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfPointInTime.hasValue(MEMBER_OF)
-                && this.classOfPointInTime.value(MEMBER_OF).isEmpty()) {
+                && this.classOfPointInTime.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfPointInTime.hasValue(MEMBER_OF_)
-                && this.classOfPointInTime.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfPointInTime.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfPointInTime.hasValue(PART__OF_BY_CLASS)
-                && this.classOfPointInTime.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfPointInTime.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfPointInTime;

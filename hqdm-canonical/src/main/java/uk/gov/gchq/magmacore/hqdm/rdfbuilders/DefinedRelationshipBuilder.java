@@ -108,11 +108,11 @@ public class DefinedRelationshipBuilder {
             throw new HqdmException("Property Not Set: involves");
         }
         if (this.definedRelationship.hasValue(MEMBER__OF)
-                && this.definedRelationship.value(MEMBER__OF).isEmpty()) {
+                && this.definedRelationship.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.definedRelationship.hasValue(MEMBER_OF)
-                && this.definedRelationship.value(MEMBER_OF).isEmpty()) {
+                && this.definedRelationship.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.definedRelationship.hasValue(MEMBER_OF_KIND)) {

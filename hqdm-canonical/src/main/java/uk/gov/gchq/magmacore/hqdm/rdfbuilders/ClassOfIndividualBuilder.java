@@ -139,23 +139,23 @@ public class ClassOfIndividualBuilder {
      */
     public ClassOfIndividual build() throws HqdmException {
         if (this.classOfIndividual.hasValue(HAS_SUPERCLASS)
-                && this.classOfIndividual.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfIndividual.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfIndividual.hasValue(MEMBER__OF)
-                && this.classOfIndividual.value(MEMBER__OF).isEmpty()) {
+                && this.classOfIndividual.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfIndividual.hasValue(MEMBER_OF)
-                && this.classOfIndividual.value(MEMBER_OF).isEmpty()) {
+                && this.classOfIndividual.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfIndividual.hasValue(MEMBER_OF_)
-                && this.classOfIndividual.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfIndividual.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfIndividual.hasValue(PART__OF_BY_CLASS)
-                && this.classOfIndividual.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfIndividual.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfIndividual;

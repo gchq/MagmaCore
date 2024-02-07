@@ -260,40 +260,40 @@ public class OwnershipBuilder {
      */
     public Ownership build() throws HqdmException {
         if (this.ownership.hasValue(AGGREGATED_INTO)
-                && this.ownership.value(AGGREGATED_INTO).isEmpty()) {
+                && this.ownership.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (!this.ownership.hasValue(BEGINNING)) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.ownership.hasValue(ENDING)
-                && this.ownership.value(ENDING).isEmpty()) {
+                && this.ownership.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.ownership.hasValue(MEMBER__OF)
-                && this.ownership.value(MEMBER__OF).isEmpty()) {
+                && this.ownership.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.ownership.hasValue(MEMBER_OF)
-                && this.ownership.value(MEMBER_OF).isEmpty()) {
+                && this.ownership.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.ownership.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.ownership.hasValue(PART__OF)
-                && this.ownership.value(PART__OF).isEmpty()) {
+                && this.ownership.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.ownership.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.ownership.hasValue(TEMPORAL__PART_OF)
-                && this.ownership.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.ownership.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.ownership.hasValue(TEMPORAL_PART_OF)
-                && this.ownership.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.ownership.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return ownership;

@@ -73,11 +73,11 @@ public class UnitOfMeasureBuilder {
      */
     public UnitOfMeasure build() throws HqdmException {
         if (this.unitOfMeasure.hasValue(MEMBER__OF)
-                && this.unitOfMeasure.value(MEMBER__OF).isEmpty()) {
+                && this.unitOfMeasure.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.unitOfMeasure.hasValue(MEMBER_OF)
-                && this.unitOfMeasure.value(MEMBER_OF).isEmpty()) {
+                && this.unitOfMeasure.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return unitOfMeasure;

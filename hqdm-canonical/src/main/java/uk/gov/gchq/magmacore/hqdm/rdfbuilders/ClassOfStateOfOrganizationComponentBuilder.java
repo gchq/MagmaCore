@@ -145,23 +145,23 @@ public class ClassOfStateOfOrganizationComponentBuilder {
      */
     public ClassOfStateOfOrganizationComponent build() throws HqdmException {
         if (this.classOfStateOfOrganizationComponent.hasValue(HAS_SUPERCLASS)
-                && this.classOfStateOfOrganizationComponent.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfStateOfOrganizationComponent.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfStateOfOrganizationComponent.hasValue(MEMBER__OF)
-                && this.classOfStateOfOrganizationComponent.value(MEMBER__OF).isEmpty()) {
+                && this.classOfStateOfOrganizationComponent.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfStateOfOrganizationComponent.hasValue(MEMBER_OF)
-                && this.classOfStateOfOrganizationComponent.value(MEMBER_OF).isEmpty()) {
+                && this.classOfStateOfOrganizationComponent.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfStateOfOrganizationComponent.hasValue(MEMBER_OF_)
-                && this.classOfStateOfOrganizationComponent.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfStateOfOrganizationComponent.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfStateOfOrganizationComponent.hasValue(PART__OF_BY_CLASS)
-                && this.classOfStateOfOrganizationComponent.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfStateOfOrganizationComponent.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfStateOfOrganizationComponent;

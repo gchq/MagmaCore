@@ -138,23 +138,23 @@ public class ClassOfPartyBuilder {
      */
     public ClassOfParty build() throws HqdmException {
         if (this.classOfParty.hasValue(HAS_SUPERCLASS)
-                && this.classOfParty.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfParty.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfParty.hasValue(MEMBER__OF)
-                && this.classOfParty.value(MEMBER__OF).isEmpty()) {
+                && this.classOfParty.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfParty.hasValue(MEMBER_OF)
-                && this.classOfParty.value(MEMBER_OF).isEmpty()) {
+                && this.classOfParty.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfParty.hasValue(MEMBER_OF_)
-                && this.classOfParty.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfParty.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfParty.hasValue(PART__OF_BY_CLASS)
-                && this.classOfParty.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfParty.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfParty;

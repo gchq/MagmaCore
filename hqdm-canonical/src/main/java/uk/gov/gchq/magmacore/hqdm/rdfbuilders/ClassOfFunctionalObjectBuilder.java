@@ -141,23 +141,23 @@ public class ClassOfFunctionalObjectBuilder {
      */
     public ClassOfFunctionalObject build() throws HqdmException {
         if (this.classOfFunctionalObject.hasValue(HAS_SUPERCLASS)
-                && this.classOfFunctionalObject.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfFunctionalObject.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfFunctionalObject.hasValue(MEMBER__OF)
-                && this.classOfFunctionalObject.value(MEMBER__OF).isEmpty()) {
+                && this.classOfFunctionalObject.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfFunctionalObject.hasValue(MEMBER_OF)
-                && this.classOfFunctionalObject.value(MEMBER_OF).isEmpty()) {
+                && this.classOfFunctionalObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfFunctionalObject.hasValue(MEMBER_OF_)
-                && this.classOfFunctionalObject.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfFunctionalObject.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfFunctionalObject.hasValue(PART__OF_BY_CLASS)
-                && this.classOfFunctionalObject.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfFunctionalObject.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfFunctionalObject;

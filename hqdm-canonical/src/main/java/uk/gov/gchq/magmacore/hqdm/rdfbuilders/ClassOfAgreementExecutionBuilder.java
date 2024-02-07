@@ -180,31 +180,31 @@ public class ClassOfAgreementExecutionBuilder {
      */
     public ClassOfAgreementExecution build() throws HqdmException {
         if (this.classOfAgreementExecution.hasValue(HAS_SUPERCLASS)
-                && this.classOfAgreementExecution.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfAgreementExecution.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfAgreementExecution.hasValue(MEMBER__OF)
-                && this.classOfAgreementExecution.value(MEMBER__OF).isEmpty()) {
+                && this.classOfAgreementExecution.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfAgreementExecution.hasValue(MEMBER_OF)
-                && this.classOfAgreementExecution.value(MEMBER_OF).isEmpty()) {
+                && this.classOfAgreementExecution.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfAgreementExecution.hasValue(MEMBER_OF_)
-                && this.classOfAgreementExecution.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfAgreementExecution.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfAgreementExecution.hasValue(PART__OF_BY_CLASS)
-                && this.classOfAgreementExecution.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfAgreementExecution.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         if (this.classOfAgreementExecution.hasValue(PART_OF_BY_CLASS)
-                && this.classOfAgreementExecution.value(PART_OF_BY_CLASS).isEmpty()) {
+                && this.classOfAgreementExecution.values(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
         if (this.classOfAgreementExecution.hasValue(PART_OF_BY_CLASS_)
-                && this.classOfAgreementExecution.value(PART_OF_BY_CLASS_).isEmpty()) {
+                && this.classOfAgreementExecution.values(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
         return this.classOfAgreementExecution;

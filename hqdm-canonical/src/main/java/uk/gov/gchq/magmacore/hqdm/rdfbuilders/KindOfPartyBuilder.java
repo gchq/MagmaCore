@@ -159,23 +159,23 @@ public class KindOfPartyBuilder {
             throw new HqdmException("Property Not Set: has_component_by_class");
         }
         if (this.kindOfParty.hasValue(HAS_SUPERCLASS)
-                && this.kindOfParty.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfParty.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.kindOfParty.hasValue(MEMBER__OF)
-                && this.kindOfParty.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfParty.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfParty.hasValue(MEMBER_OF)
-                && this.kindOfParty.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfParty.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.kindOfParty.hasValue(MEMBER_OF_)
-                && this.kindOfParty.value(MEMBER_OF_).isEmpty()) {
+                && this.kindOfParty.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.kindOfParty.hasValue(PART__OF_BY_CLASS)
-                && this.kindOfParty.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.kindOfParty.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return kindOfParty;

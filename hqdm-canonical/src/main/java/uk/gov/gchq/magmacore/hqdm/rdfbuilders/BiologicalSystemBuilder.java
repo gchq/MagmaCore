@@ -229,45 +229,45 @@ public class BiologicalSystemBuilder {
      */
     public BiologicalSystem build() throws HqdmException {
         if (this.biologicalSystem.hasValue(AGGREGATED_INTO)
-                && this.biologicalSystem.value(AGGREGATED_INTO).isEmpty()) {
+                && this.biologicalSystem.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.biologicalSystem.hasValue(BEGINNING)
-                && this.biologicalSystem.value(BEGINNING).isEmpty()) {
+                && this.biologicalSystem.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.biologicalSystem.hasValue(ENDING)
-                && this.biologicalSystem.value(ENDING).isEmpty()) {
+                && this.biologicalSystem.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.biologicalSystem.hasValue(MEMBER__OF)
-                && this.biologicalSystem.value(MEMBER__OF).isEmpty()) {
+                && this.biologicalSystem.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.biologicalSystem.hasValue(MEMBER_OF)
-                && this.biologicalSystem.value(MEMBER_OF).isEmpty()) {
+                && this.biologicalSystem.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.biologicalSystem.hasValue(MEMBER_OF_KIND)
-                && this.biologicalSystem.value(MEMBER_OF_KIND).isEmpty()) {
+                && this.biologicalSystem.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (!this.biologicalSystem.hasValue(NATURAL_ROLE)) {
             throw new HqdmException("Property Not Set: natural_role");
         }
         if (this.biologicalSystem.hasValue(PART__OF)
-                && this.biologicalSystem.value(PART__OF).isEmpty()) {
+                && this.biologicalSystem.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.biologicalSystem.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.biologicalSystem.hasValue(TEMPORAL__PART_OF)
-                && this.biologicalSystem.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.biologicalSystem.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.biologicalSystem.hasValue(TEMPORAL_PART_OF)
-                && this.biologicalSystem.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.biologicalSystem.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return this.biologicalSystem;

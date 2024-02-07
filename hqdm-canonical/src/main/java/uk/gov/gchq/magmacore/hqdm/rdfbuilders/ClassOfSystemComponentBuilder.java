@@ -141,23 +141,23 @@ public class ClassOfSystemComponentBuilder {
      */
     public ClassOfSystemComponent build() throws HqdmException {
         if (this.classOfSystemComponent.hasValue(HAS_SUPERCLASS)
-                && this.classOfSystemComponent.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfSystemComponent.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfSystemComponent.hasValue(MEMBER__OF)
-                && this.classOfSystemComponent.value(MEMBER__OF).isEmpty()) {
+                && this.classOfSystemComponent.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfSystemComponent.hasValue(MEMBER_OF)
-                && this.classOfSystemComponent.value(MEMBER_OF).isEmpty()) {
+                && this.classOfSystemComponent.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfSystemComponent.hasValue(MEMBER_OF_)
-                && this.classOfSystemComponent.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfSystemComponent.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfSystemComponent.hasValue(PART__OF_BY_CLASS)
-                && this.classOfSystemComponent.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfSystemComponent.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfSystemComponent;

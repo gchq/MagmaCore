@@ -57,7 +57,7 @@ public class ThingBuilder {
      */
     public Thing build() throws HqdmException {
         if (this.thing.hasValue(MEMBER__OF)
-                && this.thing.value(MEMBER__OF).isEmpty()) {
+                && this.thing.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         return thing;

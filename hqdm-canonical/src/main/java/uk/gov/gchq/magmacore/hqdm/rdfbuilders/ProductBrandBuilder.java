@@ -138,23 +138,23 @@ public class ProductBrandBuilder {
      */
     public ProductBrand build() throws HqdmException {
         if (this.productBrand.hasValue(HAS_SUPERCLASS)
-                && this.productBrand.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.productBrand.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.productBrand.hasValue(MEMBER__OF)
-                && this.productBrand.value(MEMBER__OF).isEmpty()) {
+                && this.productBrand.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.productBrand.hasValue(MEMBER_OF)
-                && this.productBrand.value(MEMBER_OF).isEmpty()) {
+                && this.productBrand.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.productBrand.hasValue(MEMBER_OF_)
-                && this.productBrand.value(MEMBER_OF_).isEmpty()) {
+                && this.productBrand.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.productBrand.hasValue(PART__OF_BY_CLASS)
-                && this.productBrand.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.productBrand.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return productBrand;

@@ -138,23 +138,23 @@ public class CurrencyBuilder {
      */
     public Currency build() throws HqdmException {
         if (this.currency.hasValue(HAS_SUPERCLASS)
-                && this.currency.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.currency.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.currency.hasValue(MEMBER__OF)
-                && this.currency.value(MEMBER__OF).isEmpty()) {
+                && this.currency.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.currency.hasValue(MEMBER_OF)
-                && this.currency.value(MEMBER_OF).isEmpty()) {
+                && this.currency.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.currency.hasValue(MEMBER_OF_)
-                && this.currency.value(MEMBER_OF_).isEmpty()) {
+                && this.currency.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.currency.hasValue(PART__OF_BY_CLASS)
-                && this.currency.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.currency.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.currency;

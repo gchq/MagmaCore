@@ -142,23 +142,23 @@ public class ClassOfStateOfAmountOfMoneyBuilder {
      */
     public ClassOfStateOfAmountOfMoney build() throws HqdmException {
         if (this.classOfStateOfAmountOfMoney.hasValue(HAS_SUPERCLASS)
-                && this.classOfStateOfAmountOfMoney.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfStateOfAmountOfMoney.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfStateOfAmountOfMoney.hasValue(MEMBER__OF)
-                && this.classOfStateOfAmountOfMoney.value(MEMBER__OF).isEmpty()) {
+                && this.classOfStateOfAmountOfMoney.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfStateOfAmountOfMoney.hasValue(MEMBER_OF)
-                && this.classOfStateOfAmountOfMoney.value(MEMBER_OF).isEmpty()) {
+                && this.classOfStateOfAmountOfMoney.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfStateOfAmountOfMoney.hasValue(MEMBER_OF_)
-                && this.classOfStateOfAmountOfMoney.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfStateOfAmountOfMoney.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfStateOfAmountOfMoney.hasValue(PART__OF_BY_CLASS)
-                && this.classOfStateOfAmountOfMoney.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfStateOfAmountOfMoney.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfStateOfAmountOfMoney;

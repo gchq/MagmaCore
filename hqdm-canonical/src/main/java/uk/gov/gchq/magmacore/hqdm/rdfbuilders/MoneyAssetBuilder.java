@@ -230,30 +230,30 @@ public class MoneyAssetBuilder {
      */
     public MoneyAsset build() throws HqdmException {
         if (this.moneyAsset.hasValue(AGGREGATED_INTO)
-                && this.moneyAsset.value(AGGREGATED_INTO).isEmpty()) {
+                && this.moneyAsset.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.moneyAsset.hasValue(BEGINNING)
-                && this.moneyAsset.value(BEGINNING).isEmpty()) {
+                && this.moneyAsset.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.moneyAsset.hasValue(ENDING)
-                && this.moneyAsset.value(ENDING).isEmpty()) {
+                && this.moneyAsset.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.moneyAsset.hasValue(MEMBER__OF)
-                && this.moneyAsset.value(MEMBER__OF).isEmpty()) {
+                && this.moneyAsset.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.moneyAsset.hasValue(MEMBER_OF)
-                && this.moneyAsset.value(MEMBER_OF).isEmpty()) {
+                && this.moneyAsset.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.moneyAsset.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.moneyAsset.hasValue(PART__OF)
-                && this.moneyAsset.value(PART__OF).isEmpty()) {
+                && this.moneyAsset.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.moneyAsset.hasValue(PART_OF_POSSIBLE_WORLD)) {
@@ -263,11 +263,11 @@ public class MoneyAssetBuilder {
             throw new HqdmException("Property Not Set: participant_in");
         }
         if (this.moneyAsset.hasValue(TEMPORAL__PART_OF)
-                && this.moneyAsset.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.moneyAsset.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.moneyAsset.hasValue(TEMPORAL_PART_OF)
-                && this.moneyAsset.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.moneyAsset.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return moneyAsset;

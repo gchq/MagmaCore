@@ -199,38 +199,38 @@ public class StateOfAssociationBuilder {
      */
     public StateOfAssociation build() throws HqdmException {
         if (this.stateOfAssociation.hasValue(AGGREGATED_INTO)
-                && this.stateOfAssociation.value(AGGREGATED_INTO).isEmpty()) {
+                && this.stateOfAssociation.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.stateOfAssociation.hasValue(BEGINNING)
-                && this.stateOfAssociation.value(BEGINNING).isEmpty()) {
+                && this.stateOfAssociation.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.stateOfAssociation.hasValue(ENDING)
-                && this.stateOfAssociation.value(ENDING).isEmpty()) {
+                && this.stateOfAssociation.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.stateOfAssociation.hasValue(MEMBER__OF)
-                && this.stateOfAssociation.value(MEMBER__OF).isEmpty()) {
+                && this.stateOfAssociation.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.stateOfAssociation.hasValue(MEMBER_OF)
-                && this.stateOfAssociation.value(MEMBER_OF).isEmpty()) {
+                && this.stateOfAssociation.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.stateOfAssociation.hasValue(PART__OF)
-                && this.stateOfAssociation.value(PART__OF).isEmpty()) {
+                && this.stateOfAssociation.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.stateOfAssociation.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.stateOfAssociation.hasValue(TEMPORAL__PART_OF)
-                && this.stateOfAssociation.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.stateOfAssociation.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.stateOfAssociation.hasValue(TEMPORAL_PART_OF)
-                && this.stateOfAssociation.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.stateOfAssociation.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfAssociation;

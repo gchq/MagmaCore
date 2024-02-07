@@ -89,15 +89,15 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
      */
     public ClassOfClassOfSpatioTemporalExtent build() throws HqdmException {
         if (this.classOfClassOfSpatioTemporalExtent.hasValue(HAS_SUPERCLASS)
-                && this.classOfClassOfSpatioTemporalExtent.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfClassOfSpatioTemporalExtent.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfClassOfSpatioTemporalExtent.hasValue(MEMBER__OF)
-                && this.classOfClassOfSpatioTemporalExtent.value(MEMBER__OF).isEmpty()) {
+                && this.classOfClassOfSpatioTemporalExtent.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfClassOfSpatioTemporalExtent.hasValue(MEMBER_OF)
-                && this.classOfClassOfSpatioTemporalExtent.value(MEMBER_OF).isEmpty()) {
+                && this.classOfClassOfSpatioTemporalExtent.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return this.classOfClassOfSpatioTemporalExtent;

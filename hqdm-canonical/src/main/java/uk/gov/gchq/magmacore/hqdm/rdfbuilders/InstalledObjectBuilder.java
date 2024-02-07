@@ -199,38 +199,38 @@ public class InstalledObjectBuilder {
      */
     public InstalledObject build() throws HqdmException {
         if (this.installedObject.hasValue(AGGREGATED_INTO)
-                && this.installedObject.value(AGGREGATED_INTO).isEmpty()) {
+                && this.installedObject.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.installedObject.hasValue(BEGINNING)
-                && this.installedObject.value(BEGINNING).isEmpty()) {
+                && this.installedObject.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.installedObject.hasValue(ENDING)
-                && this.installedObject.value(ENDING).isEmpty()) {
+                && this.installedObject.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.installedObject.hasValue(MEMBER__OF)
-                && this.installedObject.value(MEMBER__OF).isEmpty()) {
+                && this.installedObject.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.installedObject.hasValue(MEMBER_OF)
-                && this.installedObject.value(MEMBER_OF).isEmpty()) {
+                && this.installedObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.installedObject.hasValue(PART__OF)
-                && this.installedObject.value(PART__OF).isEmpty()) {
+                && this.installedObject.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.installedObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.installedObject.hasValue(TEMPORAL__PART_OF)
-                && this.installedObject.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.installedObject.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.installedObject.hasValue(TEMPORAL_PART_OF)
-                && this.installedObject.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.installedObject.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return installedObject;
