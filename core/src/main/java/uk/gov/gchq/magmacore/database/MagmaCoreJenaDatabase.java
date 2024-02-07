@@ -494,8 +494,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
 
         // Convert the inference model to a dataset and return it wrapped as 
         // an in-memory MagmaCoreDatabase.
-        final Dataset inferenceDataset = DatasetFactory.create();
-        inferenceDataset.getDefaultModel().add(model);
+        final Dataset inferenceDataset = DatasetFactory.wrap(model);
         return new MagmaCoreJenaDatabase(inferenceDataset);
     }
 
