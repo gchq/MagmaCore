@@ -43,14 +43,14 @@ public interface Top {
      *
      * @return Map of HQDM objects and Object predicates of the entity.
      */
-    Map<Object, Set<Object>> getPredicates();
+    Map<IRI, Set<Object>> getPredicates();
 
     /**
      * Set the predications of the HQDM object.
      *
      * @param predicates Predicates of the HQDM object.
      */
-    void setPredicates(Map<Object, Set<Object>> predicates);
+    void setPredicates(Map<IRI, Set<Object>> predicates);
 
     /**
      * Get predicate value(s) by predicate Object.
@@ -58,7 +58,7 @@ public interface Top {
      * @param predicateId Predicate ID.
      * @return Set of predicate values (Object or string-literals).
      */
-    Set<Object> value(Object predicateId);
+    Set<Object> value(IRI predicateId);
 
     /**
      * Add predicate and object String reference to entity.
@@ -66,7 +66,7 @@ public interface Top {
      * @param predicateId Predicate ID.
      * @param objectId    ID of the object.
      */
-    void addValue(Object predicateId, Object objectId);
+    void addValue(IRI predicateId, IRI objectId);
 
     /**
      * Add predicate Object and string value to object.
@@ -74,7 +74,7 @@ public interface Top {
      * @param predicateId Predicate ID.
      * @param value       String value.
      */
-    void addStringValue(Object predicateId, String value);
+    void addStringValue(IRI predicateId, String value);
 
     /**
      * Add predicate Object and real number value to object.
@@ -82,7 +82,7 @@ public interface Top {
      * @param predicateId Predicate ID.
      * @param value       Real number value.
      */
-    void addRealValue(Object predicateId, double value);
+    void addRealValue(IRI predicateId, double value);
 
     /**
      * Remove a predicate value.
@@ -90,7 +90,7 @@ public interface Top {
      * @param predicateId The ID of the predicate.
      * @param value       The {@link Object} value to be removed.
      */
-    void removeValue(Object predicateId, Object value);
+    void removeValue(IRI predicateId, Object value);
 
     /**
      * Does the entity have a given predicate.
@@ -98,7 +98,7 @@ public interface Top {
      * @param predicateId Predicate ID.
      * @return {@code true} if has predicate value.
      */
-    boolean hasValue(Object predicateId);
+    boolean hasValue(IRI predicateId);
 
     /**
      * Does the entity have a given predicate and object value.
@@ -107,7 +107,7 @@ public interface Top {
      * @param objectId    ID of the object.
      * @return {@code true} if has this object value.
      */
-    boolean hasThisValue(Object predicateId, Object objectId);
+    boolean hasThisValue(IRI predicateId, Object objectId);
 
     /**
      * Does the entity have a given predicate and string value.
@@ -116,7 +116,7 @@ public interface Top {
      * @param value       String value.
      * @return {@code true} if has this string value.
      */
-    boolean hasThisStringValue(Object predicateId, String value);
+    boolean hasThisStringValue(IRI predicateId, String value);
 
     /**
      * Does the entity have a given predicate and string value (case-insensitive).
@@ -125,7 +125,7 @@ public interface Top {
      * @param value       Case-insensitive string value.
      * @return {@code true} if has this string value.
      */
-    boolean hasThisStringValueIgnoreCase(Object predicateId, String value);
+    boolean hasThisStringValueIgnoreCase(IRI predicateId, String value);
 
     /**
      * Does the entity have a given predicate and string value.
@@ -134,5 +134,5 @@ public interface Top {
      * @param value       String value.
      * @return {@code true} if has fuzzy string value.
      */
-    boolean hasThisStringValueFuzzy(Object predicateId, String value);
+    boolean hasThisStringValueFuzzy(IRI predicateId, String value);
 }

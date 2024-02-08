@@ -58,11 +58,27 @@ public class DbCreateOperation implements Function<MagmaCoreService, MagmaCoreSe
 
         if (thing == null) {
             final Thing newThing = SpatioTemporalExtentServices.createThing(subject);
-            newThing.addValue(predicate, object);
+            if (object instanceof IRI iri) {
+                newThing.addValue(predicate, iri);
+            } else if (object instanceof String s) {
+                newThing.addStringValue(predicate, s);
+            } else if (object instanceof Double d) {
+                newThing.addRealValue(predicate, d);
+            } else {
+                throw new ClassCastException("Unknown object type: " + object.getClass().getName());
+            }
             mcService.create(newThing);
         } else {
             if (!thing.hasThisValue(predicate, object)) {
-                thing.addValue(predicate, object);
+                if (object instanceof IRI iri) {
+                    thing.addValue(predicate, iri);
+                } else if (object instanceof String s) {
+                    thing.addStringValue(predicate, s);
+                } else if (object instanceof Double d) {
+                    thing.addRealValue(predicate, d);
+                } else {
+                    throw new ClassCastException("Unknown object type: " + object.getClass().getName());
+                }
                 mcService.update(thing);
             } else {
                 throw new DbTransformationException(
