@@ -14,3 +14,55 @@
     (?s rdf:type hqdm:class)
     noValue(?s hqdm:data_EntityName)
 ]
+
+#
+# Check that participants have roles.
+#
+[checkParticipantRoles:
+    (?y rb:violation error('Missing Participant Role', 'All participants should be a member_of_kind of a Role', ?s))
+    <-
+    (?s rdf:type hqdm:participant)
+    noValue(?s hqdm:member_of_kind)
+]
+
+#
+# Check that SpatioTemporalExtents are part of some PossibleWorld
+#
+[checkPartOfPossibleWorld:
+    (?y rb:violation error('Missing PossibleWorld', 'All SpatioTemporalExtents should be a part of a PossibleWorld', ?s))
+    <-
+    (?s rdf:type hqdm:spatio_temporal_extent)
+    noValue(?s hqdm:part_of_possible_world)
+]
+
+#
+# Check that temporal parts are a part of a subtype.
+#
+[checkTemporalPartsPartOfSubtype:
+    (?y rb:violation error('Invalid temporal parthood', 'All temporal parts must be temporal parts of a subtype.', ?s, ?t))
+    <-
+    (?s hqdm:temporal_part_of ?t)
+    noValue(?t rdfs:subClassOf ?s)
+]
+[checkTemporalPartsPartOfSubtype2:
+    (?y rb:violation error('Invalid temporal parthood', 'All temporal parts must be temporal parts of a subtype.', ?s, ?t))
+    <-
+    (?s hqdm:temporal_part_of_ ?t)
+    noValue(?t rdfs:subClassOf ?s)
+]
+[checkTemporalPartsPartOfSubtype3:
+    (?y rb:violation error('Invalid temporal parthood', 'All temporal parts must be temporal parts of a subtype.', ?s, ?t))
+    <-
+    (?s hqdm:temporal__part_of ?t)
+    noValue(?t rdfs:subClassOf ?s)
+]
+
+#
+# Check that all signs have a value_
+#
+[checkAllSignsHaveAValue:
+    (?y rb:violation error('Sign has no value', 'All signs should have a value_ predicate.', ?s))
+    <-
+    (?s rdf:type hqdm:sign)
+    noValue(?t hqdm:value_ ?v)
+]
