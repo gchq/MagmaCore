@@ -1,20 +1,26 @@
 package uk.gov.gchq.magmacore.examples.verify;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import uk.gov.gchq.magmacore.database.validation.ValidationReportEntry;
 import uk.gov.gchq.magmacore.hqdm.model.Organization;
+import uk.gov.gchq.magmacore.hqdm.model.Pattern;
 import uk.gov.gchq.magmacore.hqdm.model.Person;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
+import uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern;
+import uk.gov.gchq.magmacore.hqdm.model.RepresentationBySign;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.Sign;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
@@ -33,6 +39,25 @@ public class DataIntegrityChecksTest {
 
     private static final boolean INCLUDE_RDFS = true;
     private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
+
+    private static List<String> expectedErrors = null;
+
+    /**
+     * Get all the errors we expect to see.
+     *
+     * @throws IOException on error.
+     * @throws URISyntaxException on error.
+     */
+    @BeforeClass
+    public static void beforeClass() throws IOException, URISyntaxException {
+        final var rulesUri = DataIntegrityChecksTest.class.getResource("/validation.rules").toURI();
+        expectedErrors = Files.readAllLines(Paths.get(rulesUri))
+            .stream()
+            .filter(line -> line.contains("error"))
+            .map(line -> line.split("'")[1])
+            .map(s -> "\"" + s + "\"")
+            .toList();
+    }
 
     /**
      * Run some data integrity checks.
@@ -77,6 +102,8 @@ public class DataIntegrityChecksTest {
             svc.create(organization);
 
             // Create a sign without a value_ predicate.
+            // Also tests the member_of_ for pattern since that is also missing.
+            //
             final Sign sign = SpatioTemporalExtentServices.createSign(randomIri());
             sign.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
             final Role signRole = ClassServices.createRole(randomIri());
@@ -84,6 +111,27 @@ public class DataIntegrityChecksTest {
             sign.addValue(HQDM.MEMBER_OF_KIND, signRole.getId());
             svc.create(sign);
             svc.create(signRole);
+
+            // Create a RepresentationByPattern without a pattern and a pattern without a 
+            // RepresentationByPattern. The RepresentationByPattern also has no community,
+            // and no sign.
+            //
+            final RepresentationByPattern rbp = ClassServices.createRepresentationByPattern(randomIri());
+            rbp.addValue(HQDM.ENTITY_NAME, "A RepresentationByPattern with no pattern");
+            svc.create(rbp);
+
+            final Pattern pattern = ClassServices.createPattern(randomIri());
+            pattern.addValue(HQDM.ENTITY_NAME, "A Pattern with no RepresentationByPattern");
+            svc.create(pattern);
+
+            // Create a RepresentationBySign with no community, and no sign, and does not
+            // represent a thing.
+            //
+            final RepresentationBySign rbs = SpatioTemporalExtentServices.createRepresentationBySign(randomIri());
+            rbs.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
+            rbs.addValue(HQDM.ENTITY_NAME, "A RepresentationBySign with no community and no sign and no thing");
+            svc.create(rbs);
+
             return svc;
         });
 
@@ -94,10 +142,22 @@ public class DataIntegrityChecksTest {
         // Validate the model.
         final List<ValidationReportEntry> validationResult = service.validate(query, rules, INCLUDE_RDFS);
 
+        final List<String> actualErrors = new ArrayList<>();
+
         if (validationResult.size() > 0) {
-            System.out.println(validationResult);
+            validationResult.forEach(result -> {
+                actualErrors.add(result.type());
+                System.out.println(result.type());
+                System.out.println(result.description());
+                System.out.println(result.additionalInformation());
+                System.out.println();
+            });
         }
-        assertEquals(5, validationResult.size());
+        // Check that each rule has fired.
+        expectedErrors.forEach(e -> {
+            assertTrue(e + " was expected but not present.", actualErrors.contains(e));
+        });
+        assertEquals(expectedErrors.size(), actualErrors.size());
     }
 
     /**

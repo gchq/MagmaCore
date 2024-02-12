@@ -9,7 +9,7 @@
 # Check that all classes have a data_EntityName predicate.
 #
 [checkForDataEntityName:
-    (?y rb:violation error('Mising Entity Name', 'Entity should have predicate data_EntityName', ?s))
+    (?y rb:violation error('Missing Entity Name', 'Entity should have predicate data_EntityName', ?s))
     <-
     (?s rdf:type hqdm:class)
     noValue(?s hqdm:data_EntityName)
@@ -39,19 +39,19 @@
 # Check that temporal parts are a part of a subtype.
 #
 [checkTemporalPartsPartOfSubtype:
-    (?y rb:violation error('Invalid temporal parthood', 'All temporal parts must be temporal parts of a subtype.', ?s, ?t))
+    (?y rb:violation error('Invalid temporal_part_of parthood', 'All temporal parts must be temporal parts of a subtype.', ?s, ?t))
     <-
     (?s hqdm:temporal_part_of ?t)
     noValue(?t rdfs:subClassOf ?s)
 ]
 [checkTemporalPartsPartOfSubtype2:
-    (?y rb:violation error('Invalid temporal parthood', 'All temporal parts must be temporal parts of a subtype.', ?s, ?t))
+    (?y rb:violation error('Invalid temporal_part_of_ parthood', 'All temporal parts must be temporal parts of a subtype.', ?s, ?t))
     <-
     (?s hqdm:temporal_part_of_ ?t)
     noValue(?t rdfs:subClassOf ?s)
 ]
 [checkTemporalPartsPartOfSubtype3:
-    (?y rb:violation error('Invalid temporal parthood', 'All temporal parts must be temporal parts of a subtype.', ?s, ?t))
+    (?y rb:violation error('Invalid temporal__part_of parthood', 'All temporal parts must be temporal parts of a subtype.', ?s, ?t))
     <-
     (?s hqdm:temporal__part_of ?t)
     noValue(?t rdfs:subClassOf ?s)
@@ -66,3 +66,74 @@
     (?s rdf:type hqdm:sign)
     noValue(?t hqdm:value_ ?v)
 ]
+
+#
+# Check that all signs are member_of_ a pattern.
+#
+[checkSignsMemberOfPattern:
+    (?y rb:violation error('Sign has no pattern', 'All signs should be member_of_ a pattern.', ?s))
+    <-
+    (?s rdf:type hqdm:sign)
+    noValue(?t hqdm:member_of_ ?pattern)
+]
+
+#
+# Check that all representation_by_pattern consists_of_by_class a pattern.
+#
+[checkAllRepByPatternConsistOfPattern:
+    (?y rb:violation error('representation_by_pattern has no pattern', 'All representation_by_pattern should consists_of_by_class a pattern.', ?s))
+    <-
+    (?r rdf:type hqdm:representation_by_pattern)
+    noValue(?r hqdm:consists_of_by_class ?pattern)
+]
+
+#
+# Check that all representation_by_pattern consists_of_in_members a community.
+#
+[checkAllRepByPatternConsistOfCommunity:
+    (?y rb:violation error('representation_by_pattern has no community', 'All representation_by_pattern should consists_of_in_members a community.', ?s))
+    <-
+    (?r rdf:type hqdm:representation_by_pattern)
+    noValue(?r hqdm:consists_of_in_members ?community)
+]
+
+#
+# Check that all patterns have a representation_by_pattern.
+#
+[checkAllRepByPatternConsistOfPattern:
+    (?y rb:violation error('pattern has no representation_by_pattern', 'All patterns should have representation_by_patterns', ?s))
+    <-
+    (?pattern rdf:type hqdm:pattern)
+    noValue(?r hqdm:consists_of_by_class ?pattern)
+]
+
+#
+# Check that all representation_by_sign consists_of_ a community.
+#
+[checkAllRepBySignConsistOfCommunity:
+    (?y rb:violation error('representation_by_sign has no community', 'All representation_by_sign should consists_of_ a community.', ?s))
+    <-
+    (?r rdf:type hqdm:representation_by_sign)
+    noValue(?r hqdm:consists_of_ ?community)
+]
+
+#
+# Check that all representation_by_sign consists_of_ a sign.
+#
+[checkAllRepBySignConsistOfSign:
+    (?y rb:violation error('representation_by_sign has no sign', 'All representation_by_sign should consists_of a sign.', ?s))
+    <-
+    (?r rdf:type hqdm:representation_by_sign)
+    noValue(?r hqdm:consists_of ?sign)
+]
+
+#
+# Check that all representation_by_sign represent some thing.
+#
+[checkAllRepBySignRepresentThing:
+    (?y rb:violation error('representation_by_sign represents nothing', 'All representation_by_sign should represent a thing.', ?s))
+    <-
+    (?r rdf:type hqdm:representation_by_sign)
+    noValue(?r hqdm:represents ?thing)
+]
+
