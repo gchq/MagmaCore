@@ -414,7 +414,6 @@ public class MagmaCoreServiceTest {
 
         // Verify the result.
         assertNotNull(result);
-        //
         // There should be one result record with five columns.
         assertEquals(2, result.size());
         result.values().forEach(t -> assertTrue(t instanceof Thing));
