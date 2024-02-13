@@ -63,8 +63,8 @@ public interface Top {
     /**
      * Add predicate and object String reference to entity.
      *
-     * @param predicateId Predicate ID.
-     * @param objectId    ID of the object.
+     * @param predicateIri Predicate IRI.
+     * @param objectIri    IRI of the object.
      */
     void addValue(IRI predicateId, IRI objectId);
 
