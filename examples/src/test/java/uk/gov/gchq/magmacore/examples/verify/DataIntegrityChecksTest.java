@@ -39,9 +39,10 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  */
 public class DataIntegrityChecksTest {
 
-    private static final boolean INCLUDE_RDFS = true;
+    private static final boolean INCLUDE_RDFS_YES = true;
     private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
 
+    private static MagmaCoreService service = null;
     private static List<String> expectedErrors = null;
 
     /**
@@ -61,22 +62,12 @@ public class DataIntegrityChecksTest {
             .toList();
         final Set<String> deduped = Set.copyOf(expectedErrors);
         assertEquals("Posible duplicate errors in validation rules file.", deduped.size(), expectedErrors.size());
-    }
-
-    /**
-     * Run some data integrity checks.
-     *
-     * @throws URISyntaxException if the URI is invalid.
-     * @throws IOException if the rules file can't be read.
-     */
-    @Test
-    public void test() throws IOException, URISyntaxException {
 
         // Create the in-memory MagmaCoreService object.
-        final MagmaCoreService service = MagmaCoreServiceFactory.createWithJenaDatabase();
+        service = MagmaCoreServiceFactory.createWithJenaDatabase();
 
         // Load the HQDM data model.
-        service.loadTtl(getClass().getResourceAsStream("/hqdm-0.0.1-alpha.ttl"));
+        service.loadTtl(DataIntegrityChecksTest.class.getResourceAsStream("/hqdm-0.0.1-alpha.ttl"));
 
         // Populate some data to prove that the rules are applied.
         service.runInWriteTransaction(svc -> {
@@ -144,27 +135,39 @@ public class DataIntegrityChecksTest {
             return svc;
         });
 
+    }
+
+    /**
+     * Run some data integrity checks.
+     *
+     * @throws URISyntaxException if the URI is invalid.
+     * @throws IOException if the rules file can't be read.
+     */
+    @Test
+    public void test() throws IOException, URISyntaxException {
         // Create the construct query and load the validation rules.
         final String query = "CONSTRUCT {?s ?p ?o} WHERE {?s ?p ?o}";
         final String rules  = Files.readString(Paths.get(getClass().getResource("/validation.rules").toURI()));
 
         // Validate the model.
-        final List<ValidationReportEntry> validationResult = service.validate(query, rules, INCLUDE_RDFS);
+        final List<ValidationReportEntry> validationResult = service.validate(query, rules, INCLUDE_RDFS_YES);
 
+        // Create a Set of the actual errors found.
         final Set<String> actualErrors = new HashSet<>();
-
         validationResult.forEach(result -> {
             actualErrors.add(result.type());
         });
 
         // Check that each rule has fired.
         final List<String> missing = expectedErrors.stream()
-            .filter(e -> !actualErrors.contains(e))
+            .filter(e -> !actualErrors.contains(e)) // Find the missing errors
             .map(e -> e + " was expected but not present.")
             .toList();
 
         missing.forEach(System.err::println);
         assertTrue("Not all rules fired - see log for details", missing.isEmpty());
+
+        // Make sure that the actual number of errors found matches the expected number.
         assertEquals(expectedErrors.size(), actualErrors.size());
     }
 
