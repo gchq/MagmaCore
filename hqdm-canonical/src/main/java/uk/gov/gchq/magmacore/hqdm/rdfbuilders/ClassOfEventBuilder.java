@@ -139,23 +139,23 @@ public class ClassOfEventBuilder {
      */
     public ClassOfEvent build() throws HqdmException {
         if (this.classOfEvent.hasValue(HAS_SUPERCLASS)
-                && this.classOfEvent.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfEvent.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfEvent.hasValue(MEMBER__OF)
-                && this.classOfEvent.value(MEMBER__OF).isEmpty()) {
+                && this.classOfEvent.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfEvent.hasValue(MEMBER_OF)
-                && this.classOfEvent.value(MEMBER_OF).isEmpty()) {
+                && this.classOfEvent.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfEvent.hasValue(MEMBER_OF_)
-                && this.classOfEvent.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfEvent.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfEvent.hasValue(PART__OF_BY_CLASS)
-                && this.classOfEvent.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfEvent.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfEvent;

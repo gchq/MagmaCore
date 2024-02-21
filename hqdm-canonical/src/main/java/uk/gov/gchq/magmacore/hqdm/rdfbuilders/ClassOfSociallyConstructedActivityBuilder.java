@@ -183,31 +183,31 @@ public class ClassOfSociallyConstructedActivityBuilder {
      */
     public ClassOfSociallyConstructedActivity build() throws HqdmException {
         if (this.classOfSociallyConstructedActivity.hasValue(HAS_SUPERCLASS)
-                && this.classOfSociallyConstructedActivity.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfSociallyConstructedActivity.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfSociallyConstructedActivity.hasValue(MEMBER__OF)
-                && this.classOfSociallyConstructedActivity.value(MEMBER__OF).isEmpty()) {
+                && this.classOfSociallyConstructedActivity.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfSociallyConstructedActivity.hasValue(MEMBER_OF)
-                && this.classOfSociallyConstructedActivity.value(MEMBER_OF).isEmpty()) {
+                && this.classOfSociallyConstructedActivity.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfSociallyConstructedActivity.hasValue(MEMBER_OF_)
-                && this.classOfSociallyConstructedActivity.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfSociallyConstructedActivity.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfSociallyConstructedActivity.hasValue(PART__OF_BY_CLASS)
-                && this.classOfSociallyConstructedActivity.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfSociallyConstructedActivity.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         if (this.classOfSociallyConstructedActivity.hasValue(PART_OF_BY_CLASS)
-                && this.classOfSociallyConstructedActivity.value(PART_OF_BY_CLASS).isEmpty()) {
+                && this.classOfSociallyConstructedActivity.values(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
         if (this.classOfSociallyConstructedActivity.hasValue(PART_OF_BY_CLASS_)
-                && this.classOfSociallyConstructedActivity.value(PART_OF_BY_CLASS_).isEmpty()) {
+                && this.classOfSociallyConstructedActivity.values(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
         return this.classOfSociallyConstructedActivity;

@@ -141,23 +141,23 @@ public class ClassOfSpatioTemporalExtentBuilder {
      */
     public ClassOfSpatioTemporalExtent build() throws HqdmException {
         if (this.classOfSpatioTemporalExtent.hasValue(HAS_SUPERCLASS)
-                && this.classOfSpatioTemporalExtent.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfSpatioTemporalExtent.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfSpatioTemporalExtent.hasValue(MEMBER__OF)
-                && this.classOfSpatioTemporalExtent.value(MEMBER__OF).isEmpty()) {
+                && this.classOfSpatioTemporalExtent.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfSpatioTemporalExtent.hasValue(MEMBER_OF)
-                && this.classOfSpatioTemporalExtent.value(MEMBER_OF).isEmpty()) {
+                && this.classOfSpatioTemporalExtent.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfSpatioTemporalExtent.hasValue(MEMBER_OF_)
-                && this.classOfSpatioTemporalExtent.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfSpatioTemporalExtent.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfSpatioTemporalExtent.hasValue(PART__OF_BY_CLASS)
-                && this.classOfSpatioTemporalExtent.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfSpatioTemporalExtent.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfSpatioTemporalExtent;

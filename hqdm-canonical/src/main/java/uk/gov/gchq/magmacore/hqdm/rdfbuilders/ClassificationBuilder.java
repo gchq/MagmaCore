@@ -107,11 +107,11 @@ public class ClassificationBuilder {
             throw new HqdmException("Property Not Set: member");
         }
         if (this.classification.hasValue(MEMBER__OF)
-                && this.classification.value(MEMBER__OF).isEmpty()) {
+                && this.classification.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classification.hasValue(MEMBER_OF)
-                && this.classification.value(MEMBER_OF).isEmpty()) {
+                && this.classification.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return this.classification;

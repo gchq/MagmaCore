@@ -171,31 +171,31 @@ public class SalesProductBuilder {
      */
     public SalesProduct build() throws HqdmException {
         if (this.salesProduct.hasValue(HAS_SUPERCLASS)
-                && this.salesProduct.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.salesProduct.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.salesProduct.hasValue(MEETS_SPECIFICATION)
-                && this.salesProduct.value(MEETS_SPECIFICATION).isEmpty()) {
+                && this.salesProduct.values(MEETS_SPECIFICATION).isEmpty()) {
             throw new HqdmException("Property Not Set: meets_specification");
         }
         if (this.salesProduct.hasValue(MEMBER__OF)
-                && this.salesProduct.value(MEMBER__OF).isEmpty()) {
+                && this.salesProduct.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.salesProduct.hasValue(MEMBER_OF)
-                && this.salesProduct.value(MEMBER_OF).isEmpty()) {
+                && this.salesProduct.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.salesProduct.hasValue(MEMBER_OF_)
-                && this.salesProduct.value(MEMBER_OF_).isEmpty()) {
+                && this.salesProduct.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.salesProduct.hasValue(PART__OF_BY_CLASS)
-                && this.salesProduct.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.salesProduct.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         if (this.salesProduct.hasValue(SOLD_UNDER)
-                && this.salesProduct.value(SOLD_UNDER).isEmpty()) {
+                && this.salesProduct.values(SOLD_UNDER).isEmpty()) {
             throw new HqdmException("Property Not Set: sold_under");
         }
         return salesProduct;

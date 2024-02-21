@@ -155,23 +155,23 @@ public class KindOfAssociationBuilder {
      */
     public KindOfAssociation build() throws HqdmException {
         if (this.kindOfAssociation.hasValue(HAS_SUPERCLASS)
-                && this.kindOfAssociation.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfAssociation.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.kindOfAssociation.hasValue(MEMBER__OF)
-                && this.kindOfAssociation.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfAssociation.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfAssociation.hasValue(MEMBER_OF)
-                && this.kindOfAssociation.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfAssociation.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.kindOfAssociation.hasValue(MEMBER_OF_)
-                && this.kindOfAssociation.value(MEMBER_OF_).isEmpty()) {
+                && this.kindOfAssociation.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.kindOfAssociation.hasValue(PART__OF_BY_CLASS)
-                && this.kindOfAssociation.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.kindOfAssociation.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return kindOfAssociation;

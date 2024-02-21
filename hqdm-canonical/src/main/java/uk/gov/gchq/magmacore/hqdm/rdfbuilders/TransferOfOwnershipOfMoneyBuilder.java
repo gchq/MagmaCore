@@ -378,11 +378,11 @@ public class TransferOfOwnershipOfMoneyBuilder {
      */
     public TransferOfOwnershipOfMoney build() throws HqdmException {
         if (this.transferOfOwnershipOfMoney.hasValue(AGGREGATED_INTO)
-                && this.transferOfOwnershipOfMoney.value(AGGREGATED_INTO).isEmpty()) {
+                && this.transferOfOwnershipOfMoney.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.transferOfOwnershipOfMoney.hasValue(BEGINNING)
-                && this.transferOfOwnershipOfMoney.value(BEGINNING).isEmpty()) {
+                && this.transferOfOwnershipOfMoney.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (!this.transferOfOwnershipOfMoney.hasValue(CAUSES)) {
@@ -395,34 +395,34 @@ public class TransferOfOwnershipOfMoneyBuilder {
             throw new HqdmException("Property Not Set: causes_ending");
         }
         if (this.transferOfOwnershipOfMoney.hasValue(DETERMINES)
-                && this.transferOfOwnershipOfMoney.value(DETERMINES).isEmpty()) {
+                && this.transferOfOwnershipOfMoney.values(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
         if (this.transferOfOwnershipOfMoney.hasValue(ENDING)
-                && this.transferOfOwnershipOfMoney.value(ENDING).isEmpty()) {
+                && this.transferOfOwnershipOfMoney.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.transferOfOwnershipOfMoney.hasValue(MEMBER__OF)
-                && this.transferOfOwnershipOfMoney.value(MEMBER__OF).isEmpty()) {
+                && this.transferOfOwnershipOfMoney.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.transferOfOwnershipOfMoney.hasValue(MEMBER_OF)
-                && this.transferOfOwnershipOfMoney.value(MEMBER_OF).isEmpty()) {
+                && this.transferOfOwnershipOfMoney.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.transferOfOwnershipOfMoney.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.transferOfOwnershipOfMoney.hasValue(PART__OF)
-                && this.transferOfOwnershipOfMoney.value(PART__OF).isEmpty()) {
+                && this.transferOfOwnershipOfMoney.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (this.transferOfOwnershipOfMoney.hasValue(PART_OF)
-                && this.transferOfOwnershipOfMoney.value(PART_OF).isEmpty()) {
+                && this.transferOfOwnershipOfMoney.values(PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of");
         }
         if (this.transferOfOwnershipOfMoney.hasValue(PART_OF_)
-                && this.transferOfOwnershipOfMoney.value(PART_OF_).isEmpty()) {
+                && this.transferOfOwnershipOfMoney.values(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
         if (!this.transferOfOwnershipOfMoney.hasValue(PART_OF_POSSIBLE_WORLD)) {
@@ -432,11 +432,11 @@ public class TransferOfOwnershipOfMoneyBuilder {
             throw new HqdmException("Property Not Set: references");
         }
         if (this.transferOfOwnershipOfMoney.hasValue(TEMPORAL__PART_OF)
-                && this.transferOfOwnershipOfMoney.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.transferOfOwnershipOfMoney.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.transferOfOwnershipOfMoney.hasValue(TEMPORAL_PART_OF)
-                && this.transferOfOwnershipOfMoney.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.transferOfOwnershipOfMoney.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return transferOfOwnershipOfMoney;

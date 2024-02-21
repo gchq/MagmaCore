@@ -141,23 +141,23 @@ public class ClassOfBiologicalSystemBuilder {
      */
     public ClassOfBiologicalSystem build() throws HqdmException {
         if (this.classOfBiologicalSystem.hasValue(HAS_SUPERCLASS)
-                && this.classOfBiologicalSystem.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfBiologicalSystem.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfBiologicalSystem.hasValue(MEMBER__OF)
-                && this.classOfBiologicalSystem.value(MEMBER__OF).isEmpty()) {
+                && this.classOfBiologicalSystem.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfBiologicalSystem.hasValue(MEMBER_OF)
-                && this.classOfBiologicalSystem.value(MEMBER_OF).isEmpty()) {
+                && this.classOfBiologicalSystem.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfBiologicalSystem.hasValue(MEMBER_OF_)
-                && this.classOfBiologicalSystem.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfBiologicalSystem.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfBiologicalSystem.hasValue(PART__OF_BY_CLASS)
-                && this.classOfBiologicalSystem.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfBiologicalSystem.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfBiologicalSystem;

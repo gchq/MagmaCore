@@ -121,8 +121,8 @@ public class MagmaCoreServiceTest {
         assertEquals(SignPatternTestData.stateOfPerson1.getId(), personState1.getId());
         assertEquals(SignPatternTestData.stateOfPerson2.getId(), personState2.getId());
 
-        final Set<Object> parent1 = personState1.value(HQDM.TEMPORAL_PART_OF);
-        final Set<Object> parent2 = personState2.value(HQDM.TEMPORAL_PART_OF);
+        final Set<Object> parent1 = personState1.values(HQDM.TEMPORAL_PART_OF);
+        final Set<Object> parent2 = personState2.values(HQDM.TEMPORAL_PART_OF);
 
         // Check that the `temporal_part_of` relationship is correct.
         assertEquals(1, parent1.size());

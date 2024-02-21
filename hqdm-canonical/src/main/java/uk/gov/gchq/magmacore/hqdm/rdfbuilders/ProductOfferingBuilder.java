@@ -238,34 +238,34 @@ public class ProductOfferingBuilder {
             throw new HqdmException("Property Not Set: consideration_by_class");
         }
         if (this.productOffering.hasValue(HAS_SUPERCLASS)
-                && this.productOffering.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.productOffering.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.productOffering.hasValue(MEMBER__OF)
-                && this.productOffering.value(MEMBER__OF).isEmpty()) {
+                && this.productOffering.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.productOffering.hasValue(MEMBER_OF)
-                && this.productOffering.value(MEMBER_OF).isEmpty()) {
+                && this.productOffering.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.productOffering.hasValue(MEMBER_OF_)
-                && this.productOffering.value(MEMBER_OF_).isEmpty()) {
+                && this.productOffering.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (!this.productOffering.hasValue(OFFEROR)) {
             throw new HqdmException("Property Not Set: offeror");
         }
         if (this.productOffering.hasValue(PART__OF_BY_CLASS)
-                && this.productOffering.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.productOffering.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         if (this.productOffering.hasValue(PART_OF_BY_CLASS)
-                && this.productOffering.value(PART_OF_BY_CLASS).isEmpty()) {
+                && this.productOffering.values(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
         if (this.productOffering.hasValue(PART_OF_BY_CLASS_)
-                && this.productOffering.value(PART_OF_BY_CLASS_).isEmpty()) {
+                && this.productOffering.values(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
         if (!this.productOffering.hasValue(PERIOD_OFFERED)) {

@@ -138,23 +138,23 @@ public class ClassOfStateBuilder {
      */
     public ClassOfState build() throws HqdmException {
         if (this.classOfState.hasValue(HAS_SUPERCLASS)
-                && this.classOfState.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfState.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfState.hasValue(MEMBER__OF)
-                && this.classOfState.value(MEMBER__OF).isEmpty()) {
+                && this.classOfState.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfState.hasValue(MEMBER_OF)
-                && this.classOfState.value(MEMBER_OF).isEmpty()) {
+                && this.classOfState.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfState.hasValue(MEMBER_OF_)
-                && this.classOfState.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfState.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfState.hasValue(PART__OF_BY_CLASS)
-                && this.classOfState.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfState.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfState;

@@ -198,38 +198,38 @@ public class StateOfPersonBuilder {
      */
     public StateOfPerson build() throws HqdmException {
         if (this.stateOfPerson.hasValue(AGGREGATED_INTO)
-                && this.stateOfPerson.value(AGGREGATED_INTO).isEmpty()) {
+                && this.stateOfPerson.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.stateOfPerson.hasValue(BEGINNING)
-                && this.stateOfPerson.value(BEGINNING).isEmpty()) {
+                && this.stateOfPerson.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.stateOfPerson.hasValue(ENDING)
-                && this.stateOfPerson.value(ENDING).isEmpty()) {
+                && this.stateOfPerson.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.stateOfPerson.hasValue(MEMBER__OF)
-                && this.stateOfPerson.value(MEMBER__OF).isEmpty()) {
+                && this.stateOfPerson.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.stateOfPerson.hasValue(MEMBER_OF)
-                && this.stateOfPerson.value(MEMBER_OF).isEmpty()) {
+                && this.stateOfPerson.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.stateOfPerson.hasValue(PART__OF)
-                && this.stateOfPerson.value(PART__OF).isEmpty()) {
+                && this.stateOfPerson.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.stateOfPerson.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.stateOfPerson.hasValue(TEMPORAL__PART_OF)
-                && this.stateOfPerson.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.stateOfPerson.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.stateOfPerson.hasValue(TEMPORAL_PART_OF)
-                && this.stateOfPerson.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.stateOfPerson.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfPerson;

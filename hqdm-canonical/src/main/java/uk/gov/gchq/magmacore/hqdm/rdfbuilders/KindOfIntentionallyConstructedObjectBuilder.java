@@ -145,23 +145,23 @@ public class KindOfIntentionallyConstructedObjectBuilder {
      */
     public KindOfIntentionallyConstructedObject build() throws HqdmException {
         if (this.kindOfIntentionallyConstructedObject.hasValue(HAS_SUPERCLASS)
-                && this.kindOfIntentionallyConstructedObject.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfIntentionallyConstructedObject.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.kindOfIntentionallyConstructedObject.hasValue(MEMBER__OF)
-                && this.kindOfIntentionallyConstructedObject.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfIntentionallyConstructedObject.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfIntentionallyConstructedObject.hasValue(MEMBER_OF)
-                && this.kindOfIntentionallyConstructedObject.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfIntentionallyConstructedObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.kindOfIntentionallyConstructedObject.hasValue(MEMBER_OF_)
-                && this.kindOfIntentionallyConstructedObject.value(MEMBER_OF_).isEmpty()) {
+                && this.kindOfIntentionallyConstructedObject.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.kindOfIntentionallyConstructedObject.hasValue(PART__OF_BY_CLASS)
-                && this.kindOfIntentionallyConstructedObject.value(PART__OF_BY_CLASS)
+                && this.kindOfIntentionallyConstructedObject.values(PART__OF_BY_CLASS)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }

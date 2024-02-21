@@ -98,11 +98,11 @@ public class SpecializationBuilder {
      */
     public Specialization build() throws HqdmException {
         if (this.specialization.hasValue(MEMBER__OF)
-                && this.specialization.value(MEMBER__OF).isEmpty()) {
+                && this.specialization.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.specialization.hasValue(MEMBER_OF)
-                && this.specialization.value(MEMBER_OF).isEmpty()) {
+                && this.specialization.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.specialization.hasValue(SUBCLASS)) {

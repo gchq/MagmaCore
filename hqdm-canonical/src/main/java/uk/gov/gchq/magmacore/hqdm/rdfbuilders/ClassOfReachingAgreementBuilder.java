@@ -179,31 +179,31 @@ public class ClassOfReachingAgreementBuilder {
      */
     public ClassOfReachingAgreement build() throws HqdmException {
         if (this.classOfReachingAgreement.hasValue(HAS_SUPERCLASS)
-                && this.classOfReachingAgreement.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfReachingAgreement.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfReachingAgreement.hasValue(MEMBER__OF)
-                && this.classOfReachingAgreement.value(MEMBER__OF).isEmpty()) {
+                && this.classOfReachingAgreement.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfReachingAgreement.hasValue(MEMBER_OF)
-                && this.classOfReachingAgreement.value(MEMBER_OF).isEmpty()) {
+                && this.classOfReachingAgreement.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfReachingAgreement.hasValue(MEMBER_OF_)
-                && this.classOfReachingAgreement.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfReachingAgreement.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfReachingAgreement.hasValue(PART__OF_BY_CLASS)
-                && this.classOfReachingAgreement.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfReachingAgreement.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         if (this.classOfReachingAgreement.hasValue(PART_OF_BY_CLASS)
-                && this.classOfReachingAgreement.value(PART_OF_BY_CLASS).isEmpty()) {
+                && this.classOfReachingAgreement.values(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
         if (this.classOfReachingAgreement.hasValue(PART_OF_BY_CLASS_)
-                && this.classOfReachingAgreement.value(PART_OF_BY_CLASS_).isEmpty()) {
+                && this.classOfReachingAgreement.values(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
         return this.classOfReachingAgreement;

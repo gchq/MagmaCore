@@ -243,45 +243,45 @@ public class OrdinaryFunctionalObjectBuilder {
      */
     public OrdinaryFunctionalObject build() throws HqdmException {
         if (this.ordinaryFunctionalObject.hasValue(AGGREGATED_INTO)
-                && this.ordinaryFunctionalObject.value(AGGREGATED_INTO).isEmpty()) {
+                && this.ordinaryFunctionalObject.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.ordinaryFunctionalObject.hasValue(BEGINNING)
-                && this.ordinaryFunctionalObject.value(BEGINNING).isEmpty()) {
+                && this.ordinaryFunctionalObject.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.ordinaryFunctionalObject.hasValue(ENDING)
-                && this.ordinaryFunctionalObject.value(ENDING).isEmpty()) {
+                && this.ordinaryFunctionalObject.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (!this.ordinaryFunctionalObject.hasValue(INTENDED_ROLE)) {
             throw new HqdmException("Property Not Set: intended_role");
         }
         if (this.ordinaryFunctionalObject.hasValue(MEMBER__OF)
-                && this.ordinaryFunctionalObject.value(MEMBER__OF).isEmpty()) {
+                && this.ordinaryFunctionalObject.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.ordinaryFunctionalObject.hasValue(MEMBER_OF)
-                && this.ordinaryFunctionalObject.value(MEMBER_OF).isEmpty()) {
+                && this.ordinaryFunctionalObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.ordinaryFunctionalObject.hasValue(MEMBER_OF_KIND)
-                && this.ordinaryFunctionalObject.value(MEMBER_OF_KIND).isEmpty()) {
+                && this.ordinaryFunctionalObject.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.ordinaryFunctionalObject.hasValue(PART__OF)
-                && this.ordinaryFunctionalObject.value(PART__OF).isEmpty()) {
+                && this.ordinaryFunctionalObject.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.ordinaryFunctionalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.ordinaryFunctionalObject.hasValue(TEMPORAL__PART_OF)
-                && this.ordinaryFunctionalObject.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.ordinaryFunctionalObject.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.ordinaryFunctionalObject.hasValue(TEMPORAL_PART_OF)
-                && this.ordinaryFunctionalObject.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.ordinaryFunctionalObject.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return ordinaryFunctionalObject;

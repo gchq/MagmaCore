@@ -201,38 +201,38 @@ public class StateOfLanguageCommunityBuilder {
      */
     public StateOfLanguageCommunity build() throws HqdmException {
         if (this.stateOfLanguageCommunity.hasValue(AGGREGATED_INTO)
-                && this.stateOfLanguageCommunity.value(AGGREGATED_INTO).isEmpty()) {
+                && this.stateOfLanguageCommunity.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.stateOfLanguageCommunity.hasValue(BEGINNING)
-                && this.stateOfLanguageCommunity.value(BEGINNING).isEmpty()) {
+                && this.stateOfLanguageCommunity.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.stateOfLanguageCommunity.hasValue(ENDING)
-                && this.stateOfLanguageCommunity.value(ENDING).isEmpty()) {
+                && this.stateOfLanguageCommunity.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.stateOfLanguageCommunity.hasValue(MEMBER__OF)
-                && this.stateOfLanguageCommunity.value(MEMBER__OF).isEmpty()) {
+                && this.stateOfLanguageCommunity.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.stateOfLanguageCommunity.hasValue(MEMBER_OF)
-                && this.stateOfLanguageCommunity.value(MEMBER_OF).isEmpty()) {
+                && this.stateOfLanguageCommunity.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.stateOfLanguageCommunity.hasValue(PART__OF)
-                && this.stateOfLanguageCommunity.value(PART__OF).isEmpty()) {
+                && this.stateOfLanguageCommunity.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.stateOfLanguageCommunity.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.stateOfLanguageCommunity.hasValue(TEMPORAL__PART_OF)
-                && this.stateOfLanguageCommunity.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.stateOfLanguageCommunity.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.stateOfLanguageCommunity.hasValue(TEMPORAL_PART_OF)
-                && this.stateOfLanguageCommunity.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.stateOfLanguageCommunity.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfLanguageCommunity;

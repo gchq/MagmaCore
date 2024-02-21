@@ -155,23 +155,23 @@ public class PhysicalPropertyRangeBuilder {
      */
     public PhysicalPropertyRange build() throws HqdmException {
         if (this.physicalPropertyRange.hasValue(HAS_SUPERCLASS)
-                && this.physicalPropertyRange.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.physicalPropertyRange.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.physicalPropertyRange.hasValue(MEMBER__OF)
-                && this.physicalPropertyRange.value(MEMBER__OF).isEmpty()) {
+                && this.physicalPropertyRange.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.physicalPropertyRange.hasValue(MEMBER_OF)
-                && this.physicalPropertyRange.value(MEMBER_OF).isEmpty()) {
+                && this.physicalPropertyRange.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.physicalPropertyRange.hasValue(MEMBER_OF_)
-                && this.physicalPropertyRange.value(MEMBER_OF_).isEmpty()) {
+                && this.physicalPropertyRange.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.physicalPropertyRange.hasValue(PART__OF_BY_CLASS)
-                && this.physicalPropertyRange.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.physicalPropertyRange.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         if (!this.physicalPropertyRange.hasValue(RANGES_OVER)) {

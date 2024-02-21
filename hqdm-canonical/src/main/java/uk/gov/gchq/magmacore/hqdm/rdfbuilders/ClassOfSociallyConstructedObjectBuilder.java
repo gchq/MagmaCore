@@ -144,23 +144,23 @@ public class ClassOfSociallyConstructedObjectBuilder {
      */
     public ClassOfSociallyConstructedObject build() throws HqdmException {
         if (this.classOfSociallyConstructedObject.hasValue(HAS_SUPERCLASS)
-                && this.classOfSociallyConstructedObject.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfSociallyConstructedObject.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfSociallyConstructedObject.hasValue(MEMBER__OF)
-                && this.classOfSociallyConstructedObject.value(MEMBER__OF).isEmpty()) {
+                && this.classOfSociallyConstructedObject.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfSociallyConstructedObject.hasValue(MEMBER_OF)
-                && this.classOfSociallyConstructedObject.value(MEMBER_OF).isEmpty()) {
+                && this.classOfSociallyConstructedObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfSociallyConstructedObject.hasValue(MEMBER_OF_)
-                && this.classOfSociallyConstructedObject.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfSociallyConstructedObject.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfSociallyConstructedObject.hasValue(PART__OF_BY_CLASS)
-                && this.classOfSociallyConstructedObject.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfSociallyConstructedObject.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfSociallyConstructedObject;

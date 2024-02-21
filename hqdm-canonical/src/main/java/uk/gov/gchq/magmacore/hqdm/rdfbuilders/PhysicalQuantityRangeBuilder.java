@@ -185,26 +185,26 @@ public class PhysicalQuantityRangeBuilder {
      */
     public PhysicalQuantityRange build() throws HqdmException {
         if (this.physicalQuantityRange.hasValue(HAS_SUPERCLASS)
-                && this.physicalQuantityRange.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.physicalQuantityRange.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (!this.physicalQuantityRange.hasValue(LOWER_BOUND)) {
             throw new HqdmException("Property Not Set: lower_bound");
         }
         if (this.physicalQuantityRange.hasValue(MEMBER__OF)
-                && this.physicalQuantityRange.value(MEMBER__OF).isEmpty()) {
+                && this.physicalQuantityRange.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.physicalQuantityRange.hasValue(MEMBER_OF)
-                && this.physicalQuantityRange.value(MEMBER_OF).isEmpty()) {
+                && this.physicalQuantityRange.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.physicalQuantityRange.hasValue(MEMBER_OF_)
-                && this.physicalQuantityRange.value(MEMBER_OF_).isEmpty()) {
+                && this.physicalQuantityRange.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.physicalQuantityRange.hasValue(PART__OF_BY_CLASS)
-                && this.physicalQuantityRange.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.physicalQuantityRange.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         if (!this.physicalQuantityRange.hasValue(RANGES_OVER)) {

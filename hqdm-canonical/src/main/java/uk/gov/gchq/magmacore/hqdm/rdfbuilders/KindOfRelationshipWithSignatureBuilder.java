@@ -99,15 +99,15 @@ public class KindOfRelationshipWithSignatureBuilder {
      */
     public KindOfRelationshipWithSignature build() throws HqdmException {
         if (this.kindOfRelationshipWithSignature.hasValue(HAS_SUPERCLASS)
-                && this.kindOfRelationshipWithSignature.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfRelationshipWithSignature.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.kindOfRelationshipWithSignature.hasValue(MEMBER__OF)
-                && this.kindOfRelationshipWithSignature.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfRelationshipWithSignature.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfRelationshipWithSignature.hasValue(MEMBER_OF)
-                && this.kindOfRelationshipWithSignature.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfRelationshipWithSignature.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.kindOfRelationshipWithSignature.hasValue(ROLES)) {

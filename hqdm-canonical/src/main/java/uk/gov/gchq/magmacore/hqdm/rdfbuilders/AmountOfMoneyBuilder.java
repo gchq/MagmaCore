@@ -230,46 +230,46 @@ public class AmountOfMoneyBuilder {
      */
     public AmountOfMoney build() throws HqdmException {
         if (this.amountOfMoney.hasValue(AGGREGATED_INTO)
-                && this.amountOfMoney.value(AGGREGATED_INTO).isEmpty()) {
+                && this.amountOfMoney.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.amountOfMoney.hasValue(BEGINNING)
-                && this.amountOfMoney.value(BEGINNING).isEmpty()) {
+                && this.amountOfMoney.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.amountOfMoney.hasValue(ENDING)
-                && this.amountOfMoney.value(ENDING).isEmpty()) {
+                && this.amountOfMoney.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.amountOfMoney.hasValue(MEMBER__OF)
-                && this.amountOfMoney.value(MEMBER__OF).isEmpty()) {
+                && this.amountOfMoney.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.amountOfMoney.hasValue(MEMBER_OF)
-                && this.amountOfMoney.value(MEMBER_OF).isEmpty()) {
+                && this.amountOfMoney.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.amountOfMoney.hasValue(MEMBER_OF_CURRENCY)
-                && this.amountOfMoney.value(MEMBER_OF_CURRENCY).isEmpty()) {
+                && this.amountOfMoney.values(MEMBER_OF_CURRENCY).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_currency");
         }
         if (this.amountOfMoney.hasValue(MEMBER_OF_KIND)
-                && this.amountOfMoney.value(MEMBER_OF_KIND).isEmpty()) {
+                && this.amountOfMoney.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.amountOfMoney.hasValue(PART__OF)
-                && this.amountOfMoney.value(PART__OF).isEmpty()) {
+                && this.amountOfMoney.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.amountOfMoney.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.amountOfMoney.hasValue(TEMPORAL__PART_OF)
-                && this.amountOfMoney.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.amountOfMoney.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.amountOfMoney.hasValue(TEMPORAL_PART_OF)
-                && this.amountOfMoney.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.amountOfMoney.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return this.amountOfMoney;

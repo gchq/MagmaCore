@@ -73,11 +73,11 @@ public class RelationshipBuilder {
      */
     public Relationship build() throws HqdmException {
         if (this.relationship.hasValue(MEMBER__OF)
-                && this.relationship.value(MEMBER__OF).isEmpty()) {
+                && this.relationship.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.relationship.hasValue(MEMBER_OF)
-                && this.relationship.value(MEMBER_OF).isEmpty()) {
+                && this.relationship.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return relationship;

@@ -182,34 +182,34 @@ public class EventBuilder {
      */
     public Event build() throws HqdmException {
         if (this.event.hasValue(AGGREGATED_INTO)
-                && this.event.value(AGGREGATED_INTO).isEmpty()) {
+                && this.event.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.event.hasValue(BEGINNING)
-                && this.event.value(BEGINNING).isEmpty()) {
+                && this.event.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.event.hasValue(ENDING)
-                && this.event.value(ENDING).isEmpty()) {
+                && this.event.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.event.hasValue(MEMBER__OF)
-                && this.event.value(MEMBER__OF).isEmpty()) {
+                && this.event.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.event.hasValue(MEMBER_OF)
-                && this.event.value(MEMBER_OF).isEmpty()) {
+                && this.event.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.event.hasValue(PART__OF)
-                && this.event.value(PART__OF).isEmpty()) {
+                && this.event.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.event.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.event.hasValue(TEMPORAL__PART_OF)
-                && this.event.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.event.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         return event;

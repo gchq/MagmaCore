@@ -214,30 +214,30 @@ public class RequirementBuilder {
      */
     public Requirement build() throws HqdmException {
         if (this.requirement.hasValue(AGGREGATED_INTO)
-                && this.requirement.value(AGGREGATED_INTO).isEmpty()) {
+                && this.requirement.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.requirement.hasValue(BEGINNING)
-                && this.requirement.value(BEGINNING).isEmpty()) {
+                && this.requirement.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (!this.requirement.hasValue(DEFINED_BY)) {
             throw new HqdmException("Property Not Set: defined_by");
         }
         if (this.requirement.hasValue(ENDING)
-                && this.requirement.value(ENDING).isEmpty()) {
+                && this.requirement.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.requirement.hasValue(MEMBER__OF)
-                && this.requirement.value(MEMBER__OF).isEmpty()) {
+                && this.requirement.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.requirement.hasValue(MEMBER_OF)
-                && this.requirement.value(MEMBER_OF).isEmpty()) {
+                && this.requirement.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.requirement.hasValue(PART__OF)
-                && this.requirement.value(PART__OF).isEmpty()) {
+                && this.requirement.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.requirement.hasValue(PART_OF_PLAN)) {
@@ -247,7 +247,7 @@ public class RequirementBuilder {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.requirement.hasValue(TEMPORAL__PART_OF)
-                && this.requirement.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.requirement.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         return requirement;

@@ -100,11 +100,11 @@ public class AggregationBuilder {
      */
     public Aggregation build() throws HqdmException {
         if (this.aggregation.hasValue(MEMBER__OF)
-                && this.aggregation.value(MEMBER__OF).isEmpty()) {
+                && this.aggregation.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.aggregation.hasValue(MEMBER_OF)
-                && this.aggregation.value(MEMBER_OF).isEmpty()) {
+                && this.aggregation.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.aggregation.hasValue(PART)) {

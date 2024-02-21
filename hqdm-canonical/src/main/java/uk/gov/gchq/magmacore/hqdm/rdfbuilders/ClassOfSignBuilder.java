@@ -138,23 +138,23 @@ public class ClassOfSignBuilder {
      */
     public ClassOfSign build() throws HqdmException {
         if (this.classOfSign.hasValue(HAS_SUPERCLASS)
-                && this.classOfSign.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfSign.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfSign.hasValue(MEMBER__OF)
-                && this.classOfSign.value(MEMBER__OF).isEmpty()) {
+                && this.classOfSign.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfSign.hasValue(MEMBER_OF)
-                && this.classOfSign.value(MEMBER_OF).isEmpty()) {
+                && this.classOfSign.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfSign.hasValue(MEMBER_OF_)
-                && this.classOfSign.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfSign.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfSign.hasValue(PART__OF_BY_CLASS)
-                && this.classOfSign.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfSign.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfSign;

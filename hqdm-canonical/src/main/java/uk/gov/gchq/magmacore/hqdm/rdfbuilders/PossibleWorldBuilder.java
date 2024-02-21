@@ -237,46 +237,46 @@ public class PossibleWorldBuilder {
      */
     public PossibleWorld build() throws HqdmException {
         if (this.possibleWorld.hasValue(AGGREGATED_INTO)
-                && this.possibleWorld.value(AGGREGATED_INTO).isEmpty()) {
+                && this.possibleWorld.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.possibleWorld.hasValue(BEGINNING)
-                && this.possibleWorld.value(BEGINNING).isEmpty()) {
+                && this.possibleWorld.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.possibleWorld.hasValue(ENDING)
-                && this.possibleWorld.value(ENDING).isEmpty()) {
+                && this.possibleWorld.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.possibleWorld.hasValue(MEMBER__OF)
-                && this.possibleWorld.value(MEMBER__OF).isEmpty()) {
+                && this.possibleWorld.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.possibleWorld.hasValue(MEMBER_OF)
-                && this.possibleWorld.value(MEMBER_OF).isEmpty()) {
+                && this.possibleWorld.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.possibleWorld.hasValue(MEMBER_OF_KIND)
-                && this.possibleWorld.value(MEMBER_OF_KIND).isEmpty()) {
+                && this.possibleWorld.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.possibleWorld.hasValue(PART__OF)
-                && this.possibleWorld.value(PART__OF).isEmpty()) {
+                && this.possibleWorld.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.possibleWorld.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.possibleWorld.hasValue(TEMPORAL__PART_OF)
-                && this.possibleWorld.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.possibleWorld.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.possibleWorld.hasValue(TEMPORAL_PART_OF)
-                && this.possibleWorld.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.possibleWorld.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         if (this.possibleWorld.hasValue(TEMPORAL_PART_OF_)
-                && this.possibleWorld.value(TEMPORAL_PART_OF_).isEmpty()) {
+                && this.possibleWorld.values(TEMPORAL_PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of_");
         }
         return possibleWorld;

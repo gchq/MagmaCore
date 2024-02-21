@@ -199,38 +199,38 @@ public class StateOfPositionBuilder {
      */
     public StateOfPosition build() throws HqdmException {
         if (this.stateOfPosition.hasValue(AGGREGATED_INTO)
-                && this.stateOfPosition.value(AGGREGATED_INTO).isEmpty()) {
+                && this.stateOfPosition.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.stateOfPosition.hasValue(BEGINNING)
-                && this.stateOfPosition.value(BEGINNING).isEmpty()) {
+                && this.stateOfPosition.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.stateOfPosition.hasValue(ENDING)
-                && this.stateOfPosition.value(ENDING).isEmpty()) {
+                && this.stateOfPosition.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.stateOfPosition.hasValue(MEMBER__OF)
-                && this.stateOfPosition.value(MEMBER__OF).isEmpty()) {
+                && this.stateOfPosition.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.stateOfPosition.hasValue(MEMBER_OF)
-                && this.stateOfPosition.value(MEMBER_OF).isEmpty()) {
+                && this.stateOfPosition.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.stateOfPosition.hasValue(PART__OF)
-                && this.stateOfPosition.value(PART__OF).isEmpty()) {
+                && this.stateOfPosition.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.stateOfPosition.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.stateOfPosition.hasValue(TEMPORAL__PART_OF)
-                && this.stateOfPosition.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.stateOfPosition.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.stateOfPosition.hasValue(TEMPORAL_PART_OF)
-                && this.stateOfPosition.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.stateOfPosition.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfPosition;
