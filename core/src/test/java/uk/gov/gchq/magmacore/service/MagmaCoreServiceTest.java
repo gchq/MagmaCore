@@ -59,13 +59,13 @@ public class MagmaCoreServiceTest {
         final IRI individualIri = new IRI(SignPatternTestData.TEST_BASE, "individual");
         final Individual individual = SpatioTemporalExtentServices.createIndividual(individualIri);
 
-        individual.addValue(HQDM.MEMBER_OF, "classOfIndividual");
+        individual.addValue(HQDM.MEMBER_OF, new IRI(TEST_BASE, "classOfIndividual"));
 
         database.beginWrite();
         database.create(individual);
         database.commit();
 
-        individual.removeValue(HQDM.MEMBER_OF, "classOfIndividual");
+        individual.removeValue(HQDM.MEMBER_OF, new IRI(TEST_BASE, "classOfIndividual"));
         individual.removeValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
 
         database.beginWrite();
@@ -99,7 +99,7 @@ public class MagmaCoreServiceTest {
 
         // Create the PointInTime we're looking for
         final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI("http://example.com/entity#now"));
-        now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
+        now.addStringValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
         db.beginRead();
@@ -152,7 +152,7 @@ public class MagmaCoreServiceTest {
 
         // Create the PointInTime we're looking for
         final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI(TEST_BASE, "now"));
-        now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
+        now.addStringValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
         db.beginWrite();
@@ -184,7 +184,7 @@ public class MagmaCoreServiceTest {
 
         // Create the PointInTime we're looking for
         final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI("http://example.com/entity#now"));
-        now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
+        now.addStringValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
         db.beginRead();
@@ -235,8 +235,8 @@ public class MagmaCoreServiceTest {
         final Individual individual1 = SpatioTemporalExtentServices.createIndividual(individual1Iri);
         final Individual individual2 = SpatioTemporalExtentServices.createIndividual(individual2Iri);
 
-        individual1.addValue(HQDM.MEMBER_OF, "classOfIndividual");
-        individual2.addValue(HQDM.MEMBER_OF_KIND, "kindOfIndividual");
+        individual1.addValue(HQDM.MEMBER_OF, new IRI(TEST_BASE, "classOfIndividual"));
+        individual2.addValue(HQDM.MEMBER_OF_KIND, new IRI(TEST_BASE, "kindOfIndividual"));
         individual1.addValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
         individual2.addValue(RDFS.RDF_TYPE, HQDM.INDIVIDUAL);
 
@@ -269,7 +269,9 @@ public class MagmaCoreServiceTest {
 
         // Find individual1 by a String value
         svc.runInReadTransaction(mc -> {
-            final List<Thing> result = mc.findByPredicateIriAndValue(HQDM.MEMBER_OF, "classOfIndividual");
+            final List<Thing> result = mc.findByPredicateIriAndValue(
+                    HQDM.MEMBER_OF, 
+                    new IRI(TEST_BASE, "classOfIndividual"));
 
             assertEquals(1, result.size());
             assertTrue(result.contains(individual1));
@@ -293,7 +295,7 @@ public class MagmaCoreServiceTest {
 
         // Create the PointInTime we're looking for
         final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI(TEST_BASE, "now"));
-        now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
+        now.addStringValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
         db.beginRead();
@@ -331,7 +333,7 @@ public class MagmaCoreServiceTest {
 
         // Create the PointInTime we're looking for
         final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI(TEST_BASE, "now"));
-        now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
+        now.addStringValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
         db.beginRead();

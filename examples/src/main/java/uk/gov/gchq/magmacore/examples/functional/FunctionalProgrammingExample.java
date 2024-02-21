@@ -207,7 +207,7 @@ public class FunctionalProgrammingExample {
          */
         ctx.startOfResearch = SpatioTemporalExtentServices
             .createPointInTime(randomIri());
-        ctx.startOfResearch.addValue(HQDM.VALUE_, now);
+        ctx.startOfResearch.addStringValue(HQDM.VALUE_, now);
 
         /*
          * Create the Activity.
@@ -253,21 +253,21 @@ public class FunctionalProgrammingExample {
          * Create a Class of Person.
          */
         final ClassOfPerson cop = ClassServices.createClassOfPerson(randomIri());
-        cop.addValue(HQDM.ENTITY_NAME, RESEARCHERS_CLASS_ENTITY_NAME);
+        cop.addStringValue(HQDM.ENTITY_NAME, RESEARCHERS_CLASS_ENTITY_NAME);
         ctx.magmaCore.create(cop);
 
         /*
          * Create a Kind of Activity.
          */
         final KindOfActivity koa = ClassServices.createKindOfActivity(randomIri());
-        koa.addValue(HQDM.ENTITY_NAME, RESEARCH_ACTIVITY_KIND_ENTITY_NAME);
+        koa.addStringValue(HQDM.ENTITY_NAME, RESEARCH_ACTIVITY_KIND_ENTITY_NAME);
         ctx.magmaCore.create(koa);
 
         /*
          * Create a Role.
          */
         final Role role = ClassServices.createRole(randomIri());
-        role.addValue(HQDM.ENTITY_NAME, RESEARCHER_ROLE_ENTITY_NAME);
+        role.addStringValue(HQDM.ENTITY_NAME, RESEARCHER_ROLE_ENTITY_NAME);
         ctx.magmaCore.create(role);
 
         return ctx;

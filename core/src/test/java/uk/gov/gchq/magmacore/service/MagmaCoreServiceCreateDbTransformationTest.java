@@ -37,7 +37,7 @@ public class MagmaCoreServiceCreateDbTransformationTest {
         final IRI iri = new IRI(TEST_IRI);
         final Thing newThing = SpatioTemporalExtentServices.createThing(iri);
         newThing.addValue(RDFS.RDF_TYPE, HQDM.PERSON);
-        newThing.addValue(HQDM.ENTITY_NAME, TEST_ENTITY_NAME);
+        newThing.addStringValue(HQDM.ENTITY_NAME, TEST_ENTITY_NAME);
 
         // Convert the new Thing to a DbTransformation and use it to persist the Thing.
         final DbTransformation transformation = svc.createDbTransformation(List.of(newThing));

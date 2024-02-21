@@ -83,10 +83,10 @@ public final class HqdmObjectFactory {
      * @return The constructed HQDM object.
      * @throws HqdmException If the HqdmObject could not be built.
      */
-    public static Thing create(final IRI iri, final List<Pair<Object, Object>> pairs) throws HqdmException {
+    public static Thing create(final IRI iri, final List<Pair<IRI, Object>> pairs) throws HqdmException {
         try {
             final Set<IRI> iris = new HashSet<>();
-            for (final Pair<Object, Object> pair : pairs.stream()
+            for (final Pair<IRI, Object> pair : pairs.stream()
                     .filter(pair -> pair.getLeft().equals(RDF_TYPE))
                     .filter(pair -> pair.getRight().toString().startsWith(HQDM.HQDM.getNamespace()))
                     .collect(Collectors.toList())) {
@@ -102,9 +102,9 @@ public final class HqdmObjectFactory {
                     result = DynamicObjects.create(iri, Thing.class, irisToClasses(iris));
                 }
 
-                for (final Pair<Object, Object> pair : pairs) {
-                    if (pair.getRight() instanceof IRI) {
-                        result.addValue(pair.getLeft(), pair.getRight());
+                for (final Pair<IRI, Object> pair : pairs) {
+                    if (pair.getRight() instanceof IRI i) {
+                        result.addValue(pair.getLeft(), i);
                     } else {
                         result.addStringValue(pair.getLeft(), pair.getRight().toString());
                     }
