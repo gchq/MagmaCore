@@ -7,8 +7,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.junit.BeforeClass;
@@ -23,6 +24,7 @@ import uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern;
 import uk.gov.gchq.magmacore.hqdm.model.RepresentationBySign;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.Sign;
+import uk.gov.gchq.magmacore.hqdm.model.StateOfSign;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
@@ -57,6 +59,8 @@ public class DataIntegrityChecksTest {
             .map(line -> line.split("'")[1])
             .map(s -> "\"" + s + "\"")
             .toList();
+        final Set<String> deduped = Set.copyOf(expectedErrors);
+        assertEquals("Posible duplicate errors in validation rules file.", deduped.size(), expectedErrors.size());
     }
 
     /**
@@ -132,6 +136,11 @@ public class DataIntegrityChecksTest {
             rbs.addValue(HQDM.ENTITY_NAME, "A RepresentationBySign with no community and no sign and no thing");
             svc.create(rbs);
 
+            // Create a state_of_sign with no participant_in relation.
+            final StateOfSign stateOfSign = SpatioTemporalExtentServices.createStateOfSign(randomIri());
+            stateOfSign.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
+            svc.create(stateOfSign);
+
             return svc;
         });
 
@@ -142,21 +151,20 @@ public class DataIntegrityChecksTest {
         // Validate the model.
         final List<ValidationReportEntry> validationResult = service.validate(query, rules, INCLUDE_RDFS);
 
-        final List<String> actualErrors = new ArrayList<>();
+        final Set<String> actualErrors = new HashSet<>();
 
-        if (validationResult.size() > 0) {
-            validationResult.forEach(result -> {
-                actualErrors.add(result.type());
-                System.out.println(result.type());
-                System.out.println(result.description());
-                System.out.println(result.additionalInformation());
-                System.out.println();
-            });
-        }
-        // Check that each rule has fired.
-        expectedErrors.forEach(e -> {
-            assertTrue(e + " was expected but not present.", actualErrors.contains(e));
+        validationResult.forEach(result -> {
+            actualErrors.add(result.type());
         });
+
+        // Check that each rule has fired.
+        final List<String> missing = expectedErrors.stream()
+            .filter(e -> !actualErrors.contains(e))
+            .map(e -> e + " was expected but not present.")
+            .toList();
+
+        missing.forEach(System.err::println);
+        assertTrue("Not all rules fired - see log for details", missing.isEmpty());
         assertEquals(expectedErrors.size(), actualErrors.size());
     }
 
