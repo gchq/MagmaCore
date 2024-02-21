@@ -183,34 +183,34 @@ public class PointInTimeBuilder {
      */
     public PointInTime build() throws HqdmException {
         if (this.pointInTime.hasValue(AGGREGATED_INTO)
-                && this.pointInTime.value(AGGREGATED_INTO).isEmpty()) {
+                && this.pointInTime.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.pointInTime.hasValue(BEGINNING)
-                && this.pointInTime.value(BEGINNING).isEmpty()) {
+                && this.pointInTime.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.pointInTime.hasValue(ENDING)
-                && this.pointInTime.value(ENDING).isEmpty()) {
+                && this.pointInTime.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.pointInTime.hasValue(MEMBER__OF)
-                && this.pointInTime.value(MEMBER__OF).isEmpty()) {
+                && this.pointInTime.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.pointInTime.hasValue(MEMBER_OF)
-                && this.pointInTime.value(MEMBER_OF).isEmpty()) {
+                && this.pointInTime.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.pointInTime.hasValue(PART__OF)
-                && this.pointInTime.value(PART__OF).isEmpty()) {
+                && this.pointInTime.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.pointInTime.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.pointInTime.hasValue(TEMPORAL__PART_OF)
-                && this.pointInTime.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.pointInTime.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         return pointInTime;

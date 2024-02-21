@@ -198,38 +198,38 @@ public class StateOfSignBuilder {
      */
     public StateOfSign build() throws HqdmException {
         if (this.stateOfSign.hasValue(AGGREGATED_INTO)
-                && this.stateOfSign.value(AGGREGATED_INTO).isEmpty()) {
+                && this.stateOfSign.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.stateOfSign.hasValue(BEGINNING)
-                && this.stateOfSign.value(BEGINNING).isEmpty()) {
+                && this.stateOfSign.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.stateOfSign.hasValue(ENDING)
-                && this.stateOfSign.value(ENDING).isEmpty()) {
+                && this.stateOfSign.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.stateOfSign.hasValue(MEMBER__OF)
-                && this.stateOfSign.value(MEMBER__OF).isEmpty()) {
+                && this.stateOfSign.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.stateOfSign.hasValue(MEMBER_OF)
-                && this.stateOfSign.value(MEMBER_OF).isEmpty()) {
+                && this.stateOfSign.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.stateOfSign.hasValue(PART__OF)
-                && this.stateOfSign.value(PART__OF).isEmpty()) {
+                && this.stateOfSign.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.stateOfSign.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.stateOfSign.hasValue(TEMPORAL__PART_OF)
-                && this.stateOfSign.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.stateOfSign.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.stateOfSign.hasValue(TEMPORAL_PART_OF)
-                && this.stateOfSign.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.stateOfSign.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfSign;

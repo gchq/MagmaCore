@@ -399,7 +399,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * @return a {@link List} of {@link Thing}
      */
     public final List<Thing> toTopObjects(final QueryResultList queryResultsList) {
-        final Map<RDFNode, List<Pair<Object, Object>>> objectMap = new HashMap<>();
+        final Map<RDFNode, List<Pair<IRI, Object>>> objectMap = new HashMap<>();
         final List<String> varNames = (List<String>) queryResultsList.getVarNames();
 
         final String subjectVarName = varNames.get(0);
@@ -413,7 +413,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
             final RDFNode predicateValue = queryResult.get(predicateVarName);
             final RDFNode objectValue = queryResult.get(objectVarName);
 
-            List<Pair<Object, Object>> dataModelObject = objectMap.get(subjectValue);
+            List<Pair<IRI, Object>> dataModelObject = objectMap.get(subjectValue);
             if (dataModelObject == null) {
                 dataModelObject = new ArrayList<>();
                 objectMap.put(subjectValue, dataModelObject);

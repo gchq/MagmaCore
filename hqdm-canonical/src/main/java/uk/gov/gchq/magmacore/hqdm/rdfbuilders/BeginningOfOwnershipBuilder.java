@@ -183,34 +183,34 @@ public class BeginningOfOwnershipBuilder {
      */
     public BeginningOfOwnership build() throws HqdmException {
         if (this.beginningOfOwnership.hasValue(AGGREGATED_INTO)
-                && this.beginningOfOwnership.value(AGGREGATED_INTO).isEmpty()) {
+                && this.beginningOfOwnership.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.beginningOfOwnership.hasValue(BEGINNING)
-                && this.beginningOfOwnership.value(BEGINNING).isEmpty()) {
+                && this.beginningOfOwnership.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.beginningOfOwnership.hasValue(ENDING)
-                && this.beginningOfOwnership.value(ENDING).isEmpty()) {
+                && this.beginningOfOwnership.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.beginningOfOwnership.hasValue(MEMBER__OF)
-                && this.beginningOfOwnership.value(MEMBER__OF).isEmpty()) {
+                && this.beginningOfOwnership.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.beginningOfOwnership.hasValue(MEMBER_OF)
-                && this.beginningOfOwnership.value(MEMBER_OF).isEmpty()) {
+                && this.beginningOfOwnership.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.beginningOfOwnership.hasValue(PART__OF)
-                && this.beginningOfOwnership.value(PART__OF).isEmpty()) {
+                && this.beginningOfOwnership.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.beginningOfOwnership.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.beginningOfOwnership.hasValue(TEMPORAL__PART_OF)
-                && this.beginningOfOwnership.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.beginningOfOwnership.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         return this.beginningOfOwnership;

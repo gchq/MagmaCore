@@ -141,23 +141,23 @@ public class ClassOfPeriodOfTimeBuilder {
      */
     public ClassOfPeriodOfTime build() throws HqdmException {
         if (this.classOfPeriodOfTime.hasValue(HAS_SUPERCLASS)
-                && this.classOfPeriodOfTime.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfPeriodOfTime.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfPeriodOfTime.hasValue(MEMBER__OF)
-                && this.classOfPeriodOfTime.value(MEMBER__OF).isEmpty()) {
+                && this.classOfPeriodOfTime.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfPeriodOfTime.hasValue(MEMBER_OF)
-                && this.classOfPeriodOfTime.value(MEMBER_OF).isEmpty()) {
+                && this.classOfPeriodOfTime.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfPeriodOfTime.hasValue(MEMBER_OF_)
-                && this.classOfPeriodOfTime.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfPeriodOfTime.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfPeriodOfTime.hasValue(PART__OF_BY_CLASS)
-                && this.classOfPeriodOfTime.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfPeriodOfTime.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfPeriodOfTime;

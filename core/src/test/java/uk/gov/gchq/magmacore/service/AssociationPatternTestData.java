@@ -79,36 +79,36 @@ public class AssociationPatternTestData {
         userAssociationKindIri = new IRI(TEST_BASE, "userOfSystemKindOfAssociation");
         userAssociationKind = ClassServices.createKindOfAssociation(userAssociationKindIri);
         userAssociationKind.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ASSOCIATION);
-        userAssociationKind.addValue(HQDM.ENTITY_NAME, "userOfSystemKindOfAssociation");
+        userAssociationKind.addStringValue(HQDM.ENTITY_NAME, "userOfSystemKindOfAssociation");
 
         final IRI managerKindIri = new IRI(TEST_BASE, "managerKindOfAssociation");
         final KindOfAssociation managerKind = ClassServices.createKindOfAssociation(managerKindIri);
         managerKind.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ASSOCIATION);
-        managerKind.addValue(HQDM.ENTITY_NAME, "managerKindOfAssociation");
+        managerKind.addStringValue(HQDM.ENTITY_NAME, "managerKindOfAssociation");
 
         // Create Roles
         userRoleIri = new IRI(TEST_BASE, "userRole");
         userRole = ClassServices.createRole(userRoleIri);
         userRole.addValue(RDFS.RDF_TYPE, HQDM.ROLE);
-        userRole.addValue(HQDM.ENTITY_NAME, "userRole");
+        userRole.addStringValue(HQDM.ENTITY_NAME, "userRole");
         userRole.addValue(HQDM.PART_OF_BY_CLASS_, userAssociationKindIri);
 
         systemRoleIri = new IRI(TEST_BASE, "systemRole");
         systemRole = ClassServices.createRole(systemRoleIri);
         systemRole.addValue(RDFS.RDF_TYPE, HQDM.ROLE);
-        systemRole.addValue(HQDM.ENTITY_NAME, "systemRole");
+        systemRole.addStringValue(HQDM.ENTITY_NAME, "systemRole");
         systemRole.addValue(HQDM.PART_OF_BY_CLASS_, userAssociationKindIri);
 
         final IRI managerRoleIri = new IRI(TEST_BASE, "managerRole");
         final Role managerRole = ClassServices.createRole(managerRoleIri);
         managerRole.addValue(RDFS.RDF_TYPE, HQDM.ROLE);
-        managerRole.addValue(HQDM.ENTITY_NAME, "managerRole");
+        managerRole.addStringValue(HQDM.ENTITY_NAME, "managerRole");
         managerRole.addValue(HQDM.PART_OF_BY_CLASS_, managerKindIri);
 
         final IRI workerRoleIri = new IRI(TEST_BASE, "workerRole");
         final Role workerRole = ClassServices.createRole(workerRoleIri);
         workerRole.addValue(RDFS.RDF_TYPE, HQDM.ROLE);
-        workerRole.addValue(HQDM.ENTITY_NAME, "workerRole");
+        workerRole.addStringValue(HQDM.ENTITY_NAME, "workerRole");
         workerRole.addValue(HQDM.PART_OF_BY_CLASS_, managerKindIri);
 
         // Create People
@@ -263,7 +263,7 @@ public class AssociationPatternTestData {
         final IRI patternIri = new IRI(TEST_BASE, UID.uid());
         final Pattern pattern = ClassServices.createPattern(patternIri);
         pattern.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
-        pattern.addValue(HQDM.ENTITY_NAME, "pattern");
+        pattern.addStringValue(HQDM.ENTITY_NAME, "pattern");
 
         final IRI repByPatternIri = new IRI(TEST_BASE, UID.uid());
         final RepresentationByPattern repByPattern = ClassServices
@@ -284,7 +284,7 @@ public class AssociationPatternTestData {
         sign1.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
         sign1.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
         sign1.addValue(HQDM.MEMBER_OF_, patternIri);
-        sign1.addValue(HQDM.VALUE_, "sign1Value");
+        sign1.addStringValue(HQDM.VALUE_, "sign1Value");
 
         final IRI stateOfSign1Iri = new IRI(TEST_BASE, UID.uid());
         final StateOfSign stateOfSign1 = SpatioTemporalExtentServices.createStateOfSign(stateOfSign1Iri);
@@ -310,7 +310,7 @@ public class AssociationPatternTestData {
         sign2.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
         sign2.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
         sign2.addValue(HQDM.MEMBER_OF_, patternIri);
-        sign2.addValue(HQDM.VALUE_, "sign2Value");
+        sign2.addStringValue(HQDM.VALUE_, "sign2Value");
 
         final IRI stateOfSign2Iri = new IRI(TEST_BASE, UID.uid());
         final StateOfSign stateOfSign2 = SpatioTemporalExtentServices.createStateOfSign(stateOfSign2Iri);

@@ -58,7 +58,7 @@ public class ClassOfRepresentationBuilder {
      */
     public ClassOfRepresentation build() throws HqdmException {
         if (this.classOfRepresentation.hasValue(HAS_SUPERCLASS)
-                && this.classOfRepresentation.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfRepresentation.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         return this.classOfRepresentation;

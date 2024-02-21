@@ -114,15 +114,15 @@ public class ScaleBuilder {
             throw new HqdmException("Property Not Set: domain");
         }
         if (this.scale.hasValue(MEMBER__OF)
-                && this.scale.value(MEMBER__OF).isEmpty()) {
+                && this.scale.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.scale.hasValue(MEMBER_OF)
-                && this.scale.value(MEMBER_OF).isEmpty()) {
+                && this.scale.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.scale.hasValue(UNIT)
-                && this.scale.value(UNIT).isEmpty()) {
+                && this.scale.values(UNIT).isEmpty()) {
             throw new HqdmException("Property Not Set: unit");
         }
         return scale;

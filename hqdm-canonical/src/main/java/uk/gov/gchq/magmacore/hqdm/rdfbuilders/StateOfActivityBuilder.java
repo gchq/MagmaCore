@@ -199,38 +199,38 @@ public class StateOfActivityBuilder {
      */
     public StateOfActivity build() throws HqdmException {
         if (this.stateOfActivity.hasValue(AGGREGATED_INTO)
-                && this.stateOfActivity.value(AGGREGATED_INTO).isEmpty()) {
+                && this.stateOfActivity.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.stateOfActivity.hasValue(BEGINNING)
-                && this.stateOfActivity.value(BEGINNING).isEmpty()) {
+                && this.stateOfActivity.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.stateOfActivity.hasValue(ENDING)
-                && this.stateOfActivity.value(ENDING).isEmpty()) {
+                && this.stateOfActivity.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.stateOfActivity.hasValue(MEMBER__OF)
-                && this.stateOfActivity.value(MEMBER__OF).isEmpty()) {
+                && this.stateOfActivity.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.stateOfActivity.hasValue(MEMBER_OF)
-                && this.stateOfActivity.value(MEMBER_OF).isEmpty()) {
+                && this.stateOfActivity.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.stateOfActivity.hasValue(PART__OF)
-                && this.stateOfActivity.value(PART__OF).isEmpty()) {
+                && this.stateOfActivity.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.stateOfActivity.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.stateOfActivity.hasValue(TEMPORAL__PART_OF)
-                && this.stateOfActivity.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.stateOfActivity.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.stateOfActivity.hasValue(TEMPORAL_PART_OF)
-                && this.stateOfActivity.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.stateOfActivity.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfActivity;

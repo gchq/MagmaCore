@@ -202,38 +202,38 @@ public class StateOfBiologicalSystemBuilder {
      */
     public StateOfBiologicalSystem build() throws HqdmException {
         if (this.stateOfBiologicalSystem.hasValue(AGGREGATED_INTO)
-                && this.stateOfBiologicalSystem.value(AGGREGATED_INTO).isEmpty()) {
+                && this.stateOfBiologicalSystem.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.stateOfBiologicalSystem.hasValue(BEGINNING)
-                && this.stateOfBiologicalSystem.value(BEGINNING).isEmpty()) {
+                && this.stateOfBiologicalSystem.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.stateOfBiologicalSystem.hasValue(ENDING)
-                && this.stateOfBiologicalSystem.value(ENDING).isEmpty()) {
+                && this.stateOfBiologicalSystem.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.stateOfBiologicalSystem.hasValue(MEMBER__OF)
-                && this.stateOfBiologicalSystem.value(MEMBER__OF).isEmpty()) {
+                && this.stateOfBiologicalSystem.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.stateOfBiologicalSystem.hasValue(MEMBER_OF)
-                && this.stateOfBiologicalSystem.value(MEMBER_OF).isEmpty()) {
+                && this.stateOfBiologicalSystem.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.stateOfBiologicalSystem.hasValue(PART__OF)
-                && this.stateOfBiologicalSystem.value(PART__OF).isEmpty()) {
+                && this.stateOfBiologicalSystem.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.stateOfBiologicalSystem.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.stateOfBiologicalSystem.hasValue(TEMPORAL__PART_OF)
-                && this.stateOfBiologicalSystem.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.stateOfBiologicalSystem.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.stateOfBiologicalSystem.hasValue(TEMPORAL_PART_OF)
-                && this.stateOfBiologicalSystem.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.stateOfBiologicalSystem.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfBiologicalSystem;

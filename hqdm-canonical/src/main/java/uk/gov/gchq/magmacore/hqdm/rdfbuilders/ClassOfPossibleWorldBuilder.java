@@ -141,23 +141,23 @@ public class ClassOfPossibleWorldBuilder {
      */
     public ClassOfPossibleWorld build() throws HqdmException {
         if (this.classOfPossibleWorld.hasValue(HAS_SUPERCLASS)
-                && this.classOfPossibleWorld.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfPossibleWorld.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfPossibleWorld.hasValue(MEMBER__OF)
-                && this.classOfPossibleWorld.value(MEMBER__OF).isEmpty()) {
+                && this.classOfPossibleWorld.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfPossibleWorld.hasValue(MEMBER_OF)
-                && this.classOfPossibleWorld.value(MEMBER_OF).isEmpty()) {
+                && this.classOfPossibleWorld.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfPossibleWorld.hasValue(MEMBER_OF_)
-                && this.classOfPossibleWorld.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfPossibleWorld.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfPossibleWorld.hasValue(PART__OF_BY_CLASS)
-                && this.classOfPossibleWorld.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfPossibleWorld.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfPossibleWorld;

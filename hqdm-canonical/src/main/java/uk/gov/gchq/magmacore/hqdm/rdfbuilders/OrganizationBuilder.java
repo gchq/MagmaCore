@@ -213,42 +213,42 @@ public class OrganizationBuilder {
      */
     public Organization build() throws HqdmException {
         if (this.organization.hasValue(AGGREGATED_INTO)
-                && this.organization.value(AGGREGATED_INTO).isEmpty()) {
+                && this.organization.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.organization.hasValue(BEGINNING)
-                && this.organization.value(BEGINNING).isEmpty()) {
+                && this.organization.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.organization.hasValue(ENDING)
-                && this.organization.value(ENDING).isEmpty()) {
+                && this.organization.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.organization.hasValue(MEMBER__OF)
-                && this.organization.value(MEMBER__OF).isEmpty()) {
+                && this.organization.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.organization.hasValue(MEMBER_OF)
-                && this.organization.value(MEMBER_OF).isEmpty()) {
+                && this.organization.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.organization.hasValue(MEMBER_OF_KIND)
-                && this.organization.value(MEMBER_OF_KIND).isEmpty()) {
+                && this.organization.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.organization.hasValue(PART__OF)
-                && this.organization.value(PART__OF).isEmpty()) {
+                && this.organization.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.organization.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.organization.hasValue(TEMPORAL__PART_OF)
-                && this.organization.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.organization.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.organization.hasValue(TEMPORAL_PART_OF)
-                && this.organization.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.organization.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return organization;

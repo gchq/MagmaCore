@@ -236,34 +236,34 @@ public class OfferingBuilder {
             throw new HqdmException("Property Not Set: consideration_by_class");
         }
         if (this.offering.hasValue(HAS_SUPERCLASS)
-                && this.offering.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.offering.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.offering.hasValue(MEMBER__OF)
-                && this.offering.value(MEMBER__OF).isEmpty()) {
+                && this.offering.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.offering.hasValue(MEMBER_OF)
-                && this.offering.value(MEMBER_OF).isEmpty()) {
+                && this.offering.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.offering.hasValue(MEMBER_OF_)
-                && this.offering.value(MEMBER_OF_).isEmpty()) {
+                && this.offering.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (!this.offering.hasValue(OFFEROR)) {
             throw new HqdmException("Property Not Set: offeror");
         }
         if (this.offering.hasValue(PART__OF_BY_CLASS)
-                && this.offering.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.offering.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         if (this.offering.hasValue(PART_OF_BY_CLASS)
-                && this.offering.value(PART_OF_BY_CLASS).isEmpty()) {
+                && this.offering.values(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
         if (this.offering.hasValue(PART_OF_BY_CLASS_)
-                && this.offering.value(PART_OF_BY_CLASS_).isEmpty()) {
+                && this.offering.values(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
         if (!this.offering.hasValue(PERIOD_OFFERED)) {

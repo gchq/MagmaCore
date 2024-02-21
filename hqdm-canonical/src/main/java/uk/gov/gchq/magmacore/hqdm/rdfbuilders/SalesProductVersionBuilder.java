@@ -167,31 +167,31 @@ public class SalesProductVersionBuilder {
      */
     public SalesProductVersion build() throws HqdmException {
         if (this.salesProductVersion.hasValue(HAS_SUPERCLASS)
-                && this.salesProductVersion.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.salesProductVersion.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.salesProductVersion.hasValue(MEMBER__OF)
-                && this.salesProductVersion.value(MEMBER__OF).isEmpty()) {
+                && this.salesProductVersion.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.salesProductVersion.hasValue(MEMBER_OF)
-                && this.salesProductVersion.value(MEMBER_OF).isEmpty()) {
+                && this.salesProductVersion.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.salesProductVersion.hasValue(MEMBER_OF_)
-                && this.salesProductVersion.value(MEMBER_OF_).isEmpty()) {
+                && this.salesProductVersion.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.salesProductVersion.hasValue(PART__OF_BY_CLASS)
-                && this.salesProductVersion.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.salesProductVersion.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         if (this.salesProductVersion.hasValue(SOLD_AS)
-                && this.salesProductVersion.value(SOLD_AS).isEmpty()) {
+                && this.salesProductVersion.values(SOLD_AS).isEmpty()) {
             throw new HqdmException("Property Not Set: sold_as");
         }
         if (this.salesProductVersion.hasValue(SUCCESSOR)
-                && this.salesProductVersion.value(SUCCESSOR).isEmpty()) {
+                && this.salesProductVersion.values(SUCCESSOR).isEmpty()) {
             throw new HqdmException("Property Not Set: successor");
         }
         return salesProductVersion;

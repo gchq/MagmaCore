@@ -143,23 +143,23 @@ public class KindOfFunctionalSystemComponentBuilder {
      */
     public KindOfFunctionalSystemComponent build() throws HqdmException {
         if (this.kindOfFunctionalSystemComponent.hasValue(HAS_SUPERCLASS)
-                && this.kindOfFunctionalSystemComponent.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfFunctionalSystemComponent.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.kindOfFunctionalSystemComponent.hasValue(MEMBER__OF)
-                && this.kindOfFunctionalSystemComponent.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfFunctionalSystemComponent.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfFunctionalSystemComponent.hasValue(MEMBER_OF)
-                && this.kindOfFunctionalSystemComponent.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfFunctionalSystemComponent.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.kindOfFunctionalSystemComponent.hasValue(MEMBER_OF_)
-                && this.kindOfFunctionalSystemComponent.value(MEMBER_OF_).isEmpty()) {
+                && this.kindOfFunctionalSystemComponent.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.kindOfFunctionalSystemComponent.hasValue(PART__OF_BY_CLASS)
-                && this.kindOfFunctionalSystemComponent.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.kindOfFunctionalSystemComponent.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return kindOfFunctionalSystemComponent;

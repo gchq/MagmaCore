@@ -141,23 +141,23 @@ public class ClassOfStateOfPositionBuilder {
      */
     public ClassOfStateOfPosition build() throws HqdmException {
         if (this.classOfStateOfPosition.hasValue(HAS_SUPERCLASS)
-                && this.classOfStateOfPosition.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfStateOfPosition.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfStateOfPosition.hasValue(MEMBER__OF)
-                && this.classOfStateOfPosition.value(MEMBER__OF).isEmpty()) {
+                && this.classOfStateOfPosition.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfStateOfPosition.hasValue(MEMBER_OF)
-                && this.classOfStateOfPosition.value(MEMBER_OF).isEmpty()) {
+                && this.classOfStateOfPosition.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfStateOfPosition.hasValue(MEMBER_OF_)
-                && this.classOfStateOfPosition.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfStateOfPosition.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfStateOfPosition.hasValue(PART__OF_BY_CLASS)
-                && this.classOfStateOfPosition.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfStateOfPosition.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfStateOfPosition;

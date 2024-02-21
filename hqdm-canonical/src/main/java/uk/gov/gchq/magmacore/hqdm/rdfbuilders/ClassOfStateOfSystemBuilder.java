@@ -141,23 +141,23 @@ public class ClassOfStateOfSystemBuilder {
      */
     public ClassOfStateOfSystem build() throws HqdmException {
         if (this.classOfStateOfSystem.hasValue(HAS_SUPERCLASS)
-                && this.classOfStateOfSystem.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfStateOfSystem.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfStateOfSystem.hasValue(MEMBER__OF)
-                && this.classOfStateOfSystem.value(MEMBER__OF).isEmpty()) {
+                && this.classOfStateOfSystem.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfStateOfSystem.hasValue(MEMBER_OF)
-                && this.classOfStateOfSystem.value(MEMBER_OF).isEmpty()) {
+                && this.classOfStateOfSystem.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfStateOfSystem.hasValue(MEMBER_OF_)
-                && this.classOfStateOfSystem.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfStateOfSystem.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfStateOfSystem.hasValue(PART__OF_BY_CLASS)
-                && this.classOfStateOfSystem.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfStateOfSystem.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfStateOfSystem;

@@ -339,60 +339,60 @@ public class ContractProcessBuilder {
      */
     public ContractProcess build() throws HqdmException {
         if (this.contractProcess.hasValue(AGGREGATED_INTO)
-                && this.contractProcess.value(AGGREGATED_INTO).isEmpty()) {
+                && this.contractProcess.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.contractProcess.hasValue(BEGINNING)
-                && this.contractProcess.value(BEGINNING).isEmpty()) {
+                && this.contractProcess.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (!this.contractProcess.hasValue(CAUSES)) {
             throw new HqdmException("Property Not Set: causes");
         }
         if (this.contractProcess.hasValue(DETERMINES)
-                && this.contractProcess.value(DETERMINES).isEmpty()) {
+                && this.contractProcess.values(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
         if (this.contractProcess.hasValue(ENDING)
-                && this.contractProcess.value(ENDING).isEmpty()) {
+                && this.contractProcess.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.contractProcess.hasValue(MEMBER__OF)
-                && this.contractProcess.value(MEMBER__OF).isEmpty()) {
+                && this.contractProcess.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.contractProcess.hasValue(MEMBER_OF)
-                && this.contractProcess.value(MEMBER_OF).isEmpty()) {
+                && this.contractProcess.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.contractProcess.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.contractProcess.hasValue(PART__OF)
-                && this.contractProcess.value(PART__OF).isEmpty()) {
+                && this.contractProcess.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (this.contractProcess.hasValue(PART_OF)
-                && this.contractProcess.value(PART_OF).isEmpty()) {
+                && this.contractProcess.values(PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of");
         }
         if (this.contractProcess.hasValue(PART_OF_)
-                && this.contractProcess.value(PART_OF_).isEmpty()) {
+                && this.contractProcess.values(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
         if (!this.contractProcess.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.contractProcess.hasValue(REFERENCES)
-                && this.contractProcess.value(REFERENCES).isEmpty()) {
+                && this.contractProcess.values(REFERENCES).isEmpty()) {
             throw new HqdmException("Property Not Set: references");
         }
         if (this.contractProcess.hasValue(TEMPORAL__PART_OF)
-                && this.contractProcess.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.contractProcess.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.contractProcess.hasValue(TEMPORAL_PART_OF)
-                && this.contractProcess.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.contractProcess.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return this.contractProcess;

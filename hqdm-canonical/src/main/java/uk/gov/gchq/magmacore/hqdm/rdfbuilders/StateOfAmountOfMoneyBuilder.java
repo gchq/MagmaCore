@@ -201,38 +201,38 @@ public class StateOfAmountOfMoneyBuilder {
      */
     public StateOfAmountOfMoney build() throws HqdmException {
         if (this.stateOfAmountOfMoney.hasValue(AGGREGATED_INTO)
-                && this.stateOfAmountOfMoney.value(AGGREGATED_INTO).isEmpty()) {
+                && this.stateOfAmountOfMoney.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.stateOfAmountOfMoney.hasValue(BEGINNING)
-                && this.stateOfAmountOfMoney.value(BEGINNING).isEmpty()) {
+                && this.stateOfAmountOfMoney.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.stateOfAmountOfMoney.hasValue(ENDING)
-                && this.stateOfAmountOfMoney.value(ENDING).isEmpty()) {
+                && this.stateOfAmountOfMoney.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.stateOfAmountOfMoney.hasValue(MEMBER__OF)
-                && this.stateOfAmountOfMoney.value(MEMBER__OF).isEmpty()) {
+                && this.stateOfAmountOfMoney.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.stateOfAmountOfMoney.hasValue(MEMBER_OF)
-                && this.stateOfAmountOfMoney.value(MEMBER_OF).isEmpty()) {
+                && this.stateOfAmountOfMoney.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.stateOfAmountOfMoney.hasValue(PART__OF)
-                && this.stateOfAmountOfMoney.value(PART__OF).isEmpty()) {
+                && this.stateOfAmountOfMoney.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.stateOfAmountOfMoney.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.stateOfAmountOfMoney.hasValue(TEMPORAL__PART_OF)
-                && this.stateOfAmountOfMoney.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.stateOfAmountOfMoney.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.stateOfAmountOfMoney.hasValue(TEMPORAL_PART_OF)
-                && this.stateOfAmountOfMoney.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.stateOfAmountOfMoney.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfAmountOfMoney;

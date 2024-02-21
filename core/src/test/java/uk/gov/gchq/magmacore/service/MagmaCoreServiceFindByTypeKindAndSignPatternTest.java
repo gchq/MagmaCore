@@ -34,7 +34,7 @@ public class MagmaCoreServiceFindByTypeKindAndSignPatternTest {
 
         // Create the PointInTime we're looking for
         final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI("http://example.com/entity#now"));
-        now.addValue(HQDM.ENTITY_NAME, Instant.now().toString());
+        now.addStringValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
         db.beginRead();
@@ -56,7 +56,7 @@ public class MagmaCoreServiceFindByTypeKindAndSignPatternTest {
 
         // This query augments its object with HQDM.VALUE predicates for the current Sign values for the
         // object.
-        final Set<Object> values = person.value(HQDM.VALUE_);
+        final Set<Object> values = person.values(HQDM.VALUE_);
         assertNotNull(values);
         assertEquals(1, values.size());
         assertEquals("person1", values.iterator().next().toString());

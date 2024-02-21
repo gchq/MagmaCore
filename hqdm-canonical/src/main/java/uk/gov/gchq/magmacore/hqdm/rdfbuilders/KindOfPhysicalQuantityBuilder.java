@@ -86,15 +86,15 @@ public class KindOfPhysicalQuantityBuilder {
      */
     public KindOfPhysicalQuantity build() throws HqdmException {
         if (this.kindOfPhysicalQuantity.hasValue(HAS_SUPERCLASS)
-                && this.kindOfPhysicalQuantity.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfPhysicalQuantity.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.kindOfPhysicalQuantity.hasValue(MEMBER__OF)
-                && this.kindOfPhysicalQuantity.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfPhysicalQuantity.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfPhysicalQuantity.hasValue(MEMBER_OF)
-                && this.kindOfPhysicalQuantity.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfPhysicalQuantity.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return kindOfPhysicalQuantity;

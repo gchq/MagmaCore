@@ -86,15 +86,15 @@ public class ClassOfRelationshipBuilder {
      */
     public ClassOfRelationship build() throws HqdmException {
         if (this.classOfRelationship.hasValue(HAS_SUPERCLASS)
-                && this.classOfRelationship.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfRelationship.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfRelationship.hasValue(MEMBER__OF)
-                && this.classOfRelationship.value(MEMBER__OF).isEmpty()) {
+                && this.classOfRelationship.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfRelationship.hasValue(MEMBER_OF)
-                && this.classOfRelationship.value(MEMBER_OF).isEmpty()) {
+                && this.classOfRelationship.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return this.classOfRelationship;

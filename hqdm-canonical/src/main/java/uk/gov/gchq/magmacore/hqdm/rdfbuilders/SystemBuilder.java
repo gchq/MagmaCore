@@ -212,42 +212,42 @@ public class SystemBuilder {
      */
     public System build() throws HqdmException {
         if (this.system.hasValue(AGGREGATED_INTO)
-                && this.system.value(AGGREGATED_INTO).isEmpty()) {
+                && this.system.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.system.hasValue(BEGINNING)
-                && this.system.value(BEGINNING).isEmpty()) {
+                && this.system.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.system.hasValue(ENDING)
-                && this.system.value(ENDING).isEmpty()) {
+                && this.system.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.system.hasValue(MEMBER__OF)
-                && this.system.value(MEMBER__OF).isEmpty()) {
+                && this.system.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.system.hasValue(MEMBER_OF)
-                && this.system.value(MEMBER_OF).isEmpty()) {
+                && this.system.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.system.hasValue(MEMBER_OF_KIND)
-                && this.system.value(MEMBER_OF_KIND).isEmpty()) {
+                && this.system.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.system.hasValue(PART__OF)
-                && this.system.value(PART__OF).isEmpty()) {
+                && this.system.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.system.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.system.hasValue(TEMPORAL__PART_OF)
-                && this.system.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.system.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.system.hasValue(TEMPORAL_PART_OF)
-                && this.system.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.system.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return system;
