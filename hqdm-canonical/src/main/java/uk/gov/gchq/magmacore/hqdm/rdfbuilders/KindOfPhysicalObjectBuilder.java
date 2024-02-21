@@ -141,23 +141,23 @@ public class KindOfPhysicalObjectBuilder {
      */
     public KindOfPhysicalObject build() throws HqdmException {
         if (this.kindOfPhysicalObject.hasValue(HAS_SUPERCLASS)
-                && this.kindOfPhysicalObject.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfPhysicalObject.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.kindOfPhysicalObject.hasValue(MEMBER__OF)
-                && this.kindOfPhysicalObject.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfPhysicalObject.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfPhysicalObject.hasValue(MEMBER_OF)
-                && this.kindOfPhysicalObject.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfPhysicalObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.kindOfPhysicalObject.hasValue(MEMBER_OF_)
-                && this.kindOfPhysicalObject.value(MEMBER_OF_).isEmpty()) {
+                && this.kindOfPhysicalObject.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.kindOfPhysicalObject.hasValue(PART__OF_BY_CLASS)
-                && this.kindOfPhysicalObject.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.kindOfPhysicalObject.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return kindOfPhysicalObject;

@@ -147,27 +147,27 @@ public class ClassOfStateOfIntentionallyConstructedObjectBuilder {
      */
     public ClassOfStateOfIntentionallyConstructedObject build() throws HqdmException {
         if (this.classOfStateOfIntentionallyConstructedObject.hasValue(HAS_SUPERCLASS)
-                && this.classOfStateOfIntentionallyConstructedObject.value(HAS_SUPERCLASS)
+                && this.classOfStateOfIntentionallyConstructedObject.values(HAS_SUPERCLASS)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfStateOfIntentionallyConstructedObject.hasValue(MEMBER__OF)
-                && this.classOfStateOfIntentionallyConstructedObject.value(MEMBER__OF)
+                && this.classOfStateOfIntentionallyConstructedObject.values(MEMBER__OF)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfStateOfIntentionallyConstructedObject.hasValue(MEMBER_OF)
-                && this.classOfStateOfIntentionallyConstructedObject.value(MEMBER_OF)
+                && this.classOfStateOfIntentionallyConstructedObject.values(MEMBER_OF)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfStateOfIntentionallyConstructedObject.hasValue(MEMBER_OF_)
-                && this.classOfStateOfIntentionallyConstructedObject.value(MEMBER_OF_)
+                && this.classOfStateOfIntentionallyConstructedObject.values(MEMBER_OF_)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfStateOfIntentionallyConstructedObject.hasValue(PART__OF_BY_CLASS)
-                && this.classOfStateOfIntentionallyConstructedObject.value(PART__OF_BY_CLASS)
+                && this.classOfStateOfIntentionallyConstructedObject.values(PART__OF_BY_CLASS)
                         .isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }

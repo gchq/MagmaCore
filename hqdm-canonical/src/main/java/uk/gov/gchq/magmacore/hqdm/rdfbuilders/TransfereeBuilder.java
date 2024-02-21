@@ -229,30 +229,30 @@ public class TransfereeBuilder {
      */
     public Transferee build() throws HqdmException {
         if (this.transferee.hasValue(AGGREGATED_INTO)
-                && this.transferee.value(AGGREGATED_INTO).isEmpty()) {
+                && this.transferee.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.transferee.hasValue(BEGINNING)
-                && this.transferee.value(BEGINNING).isEmpty()) {
+                && this.transferee.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.transferee.hasValue(ENDING)
-                && this.transferee.value(ENDING).isEmpty()) {
+                && this.transferee.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.transferee.hasValue(MEMBER__OF)
-                && this.transferee.value(MEMBER__OF).isEmpty()) {
+                && this.transferee.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.transferee.hasValue(MEMBER_OF)
-                && this.transferee.value(MEMBER_OF).isEmpty()) {
+                && this.transferee.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.transferee.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.transferee.hasValue(PART__OF)
-                && this.transferee.value(PART__OF).isEmpty()) {
+                && this.transferee.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.transferee.hasValue(PART_OF_POSSIBLE_WORLD)) {
@@ -262,11 +262,11 @@ public class TransfereeBuilder {
             throw new HqdmException("Property Not Set: participant_in");
         }
         if (this.transferee.hasValue(TEMPORAL__PART_OF)
-                && this.transferee.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.transferee.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.transferee.hasValue(TEMPORAL_PART_OF)
-                && this.transferee.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.transferee.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return transferee;

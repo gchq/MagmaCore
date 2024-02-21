@@ -198,35 +198,35 @@ public class KindOfActivityBuilder {
      */
     public KindOfActivity build() throws HqdmException {
         if (this.kindOfActivity.hasValue(CAUSES_BY_CLASS)
-                && this.kindOfActivity.value(CAUSES_BY_CLASS).isEmpty()) {
+                && this.kindOfActivity.values(CAUSES_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: causes_by_class");
         }
         if (this.kindOfActivity.hasValue(DETERMINES_BY_CLASS)
-                && this.kindOfActivity.value(DETERMINES_BY_CLASS).isEmpty()) {
+                && this.kindOfActivity.values(DETERMINES_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: determines_by_class");
         }
         if (this.kindOfActivity.hasValue(HAS_SUPERCLASS)
-                && this.kindOfActivity.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfActivity.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.kindOfActivity.hasValue(MEMBER__OF)
-                && this.kindOfActivity.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfActivity.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfActivity.hasValue(MEMBER_OF)
-                && this.kindOfActivity.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfActivity.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.kindOfActivity.hasValue(MEMBER_OF_)
-                && this.kindOfActivity.value(MEMBER_OF_).isEmpty()) {
+                && this.kindOfActivity.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.kindOfActivity.hasValue(PART__OF_BY_CLASS)
-                && this.kindOfActivity.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.kindOfActivity.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         if (this.kindOfActivity.hasValue(REFERENCES_BY_CLASS)
-                && this.kindOfActivity.value(REFERENCES_BY_CLASS).isEmpty()) {
+                && this.kindOfActivity.values(REFERENCES_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: references_by_class");
         }
         return kindOfActivity;

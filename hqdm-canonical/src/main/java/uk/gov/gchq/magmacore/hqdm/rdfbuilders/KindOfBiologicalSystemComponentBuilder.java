@@ -143,23 +143,23 @@ public class KindOfBiologicalSystemComponentBuilder {
      */
     public KindOfBiologicalSystemComponent build() throws HqdmException {
         if (this.kindOfBiologicalSystemComponent.hasValue(HAS_SUPERCLASS)
-                && this.kindOfBiologicalSystemComponent.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfBiologicalSystemComponent.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.kindOfBiologicalSystemComponent.hasValue(MEMBER__OF)
-                && this.kindOfBiologicalSystemComponent.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfBiologicalSystemComponent.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfBiologicalSystemComponent.hasValue(MEMBER_OF)
-                && this.kindOfBiologicalSystemComponent.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfBiologicalSystemComponent.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.kindOfBiologicalSystemComponent.hasValue(MEMBER_OF_)
-                && this.kindOfBiologicalSystemComponent.value(MEMBER_OF_).isEmpty()) {
+                && this.kindOfBiologicalSystemComponent.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.kindOfBiologicalSystemComponent.hasValue(PART__OF_BY_CLASS)
-                && this.kindOfBiologicalSystemComponent.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.kindOfBiologicalSystemComponent.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return kindOfBiologicalSystemComponent;

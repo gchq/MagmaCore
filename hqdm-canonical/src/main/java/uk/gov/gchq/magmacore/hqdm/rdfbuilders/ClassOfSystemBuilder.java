@@ -138,23 +138,23 @@ public class ClassOfSystemBuilder {
      */
     public ClassOfSystem build() throws HqdmException {
         if (this.classOfSystem.hasValue(HAS_SUPERCLASS)
-                && this.classOfSystem.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfSystem.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfSystem.hasValue(MEMBER__OF)
-                && this.classOfSystem.value(MEMBER__OF).isEmpty()) {
+                && this.classOfSystem.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfSystem.hasValue(MEMBER_OF)
-                && this.classOfSystem.value(MEMBER_OF).isEmpty()) {
+                && this.classOfSystem.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfSystem.hasValue(MEMBER_OF_)
-                && this.classOfSystem.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfSystem.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfSystem.hasValue(PART__OF_BY_CLASS)
-                && this.classOfSystem.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfSystem.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfSystem;

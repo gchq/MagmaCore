@@ -230,30 +230,30 @@ public class AssetBuilder {
      */
     public Asset build() throws HqdmException {
         if (this.asset.hasValue(AGGREGATED_INTO)
-                && this.asset.value(AGGREGATED_INTO).isEmpty()) {
+                && this.asset.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.asset.hasValue(BEGINNING)
-                && this.asset.value(BEGINNING).isEmpty()) {
+                && this.asset.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.asset.hasValue(ENDING)
-                && this.asset.value(ENDING).isEmpty()) {
+                && this.asset.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.asset.hasValue(MEMBER__OF)
-                && this.asset.value(MEMBER__OF).isEmpty()) {
+                && this.asset.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.asset.hasValue(MEMBER_OF)
-                && this.asset.value(MEMBER_OF).isEmpty()) {
+                && this.asset.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.asset.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.asset.hasValue(PART__OF)
-                && this.asset.value(PART__OF).isEmpty()) {
+                && this.asset.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.asset.hasValue(PART_OF_POSSIBLE_WORLD)) {
@@ -263,11 +263,11 @@ public class AssetBuilder {
             throw new HqdmException("Property Not Set: participant_in");
         }
         if (this.asset.hasValue(TEMPORAL__PART_OF)
-                && this.asset.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.asset.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.asset.hasValue(TEMPORAL_PART_OF)
-                && this.asset.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.asset.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return this.asset;

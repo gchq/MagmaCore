@@ -258,47 +258,47 @@ public class FunctionalSystemComponentBuilder {
      */
     public FunctionalSystemComponent build() throws HqdmException {
         if (this.functionalSystemComponent.hasValue(AGGREGATED_INTO)
-                && this.functionalSystemComponent.value(AGGREGATED_INTO).isEmpty()) {
+                && this.functionalSystemComponent.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.functionalSystemComponent.hasValue(BEGINNING)
-                && this.functionalSystemComponent.value(BEGINNING).isEmpty()) {
+                && this.functionalSystemComponent.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (!this.functionalSystemComponent.hasValue(COMPONENT_OF)) {
             throw new HqdmException("Property Not Set: component_of");
         }
         if (this.functionalSystemComponent.hasValue(ENDING)
-                && this.functionalSystemComponent.value(ENDING).isEmpty()) {
+                && this.functionalSystemComponent.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (!this.functionalSystemComponent.hasValue(INTENDED_ROLE)) {
             throw new HqdmException("Property Not Set: intended_role");
         }
         if (this.functionalSystemComponent.hasValue(MEMBER__OF)
-                && this.functionalSystemComponent.value(MEMBER__OF).isEmpty()) {
+                && this.functionalSystemComponent.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.functionalSystemComponent.hasValue(MEMBER_OF)
-                && this.functionalSystemComponent.value(MEMBER_OF).isEmpty()) {
+                && this.functionalSystemComponent.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.functionalSystemComponent.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.functionalSystemComponent.hasValue(PART__OF)
-                && this.functionalSystemComponent.value(PART__OF).isEmpty()) {
+                && this.functionalSystemComponent.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.functionalSystemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.functionalSystemComponent.hasValue(TEMPORAL__PART_OF)
-                && this.functionalSystemComponent.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.functionalSystemComponent.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.functionalSystemComponent.hasValue(TEMPORAL_PART_OF)
-                && this.functionalSystemComponent.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.functionalSystemComponent.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return functionalSystemComponent;

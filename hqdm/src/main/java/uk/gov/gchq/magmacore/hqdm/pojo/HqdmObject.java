@@ -87,8 +87,19 @@ public abstract class HqdmObject implements Thing {
     /**
      * {@inheritDoc}
      */
-    public Set<Object> value(final IRI predicateId) {
-        return predicates.get(predicateId);
+    public <T> Set<T> values(final IRI predicateId) {
+        return (Set<T>) predicates.get(predicateId);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public <T> T oneValue(final IRI predicateId) {
+        final Set<T> predicateValues = (Set<T>) predicates.get(predicateId);
+        if (predicateValues != null && !predicateValues.isEmpty()) {
+            return predicateValues.iterator().next();
+        }
+        return null;
     }
 
     /**

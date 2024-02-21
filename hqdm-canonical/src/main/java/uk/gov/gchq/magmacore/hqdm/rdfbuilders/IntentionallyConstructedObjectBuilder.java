@@ -237,42 +237,42 @@ public class IntentionallyConstructedObjectBuilder {
      */
     public IntentionallyConstructedObject build() throws HqdmException {
         if (this.intentionallyConstructedObject.hasValue(AGGREGATED_INTO)
-                && this.intentionallyConstructedObject.value(AGGREGATED_INTO).isEmpty()) {
+                && this.intentionallyConstructedObject.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.intentionallyConstructedObject.hasValue(BEGINNING)
-                && this.intentionallyConstructedObject.value(BEGINNING).isEmpty()) {
+                && this.intentionallyConstructedObject.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.intentionallyConstructedObject.hasValue(ENDING)
-                && this.intentionallyConstructedObject.value(ENDING).isEmpty()) {
+                && this.intentionallyConstructedObject.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.intentionallyConstructedObject.hasValue(MEMBER__OF)
-                && this.intentionallyConstructedObject.value(MEMBER__OF).isEmpty()) {
+                && this.intentionallyConstructedObject.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.intentionallyConstructedObject.hasValue(MEMBER_OF)
-                && this.intentionallyConstructedObject.value(MEMBER_OF).isEmpty()) {
+                && this.intentionallyConstructedObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.intentionallyConstructedObject.hasValue(MEMBER_OF_KIND)
-                && this.intentionallyConstructedObject.value(MEMBER_OF_KIND).isEmpty()) {
+                && this.intentionallyConstructedObject.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.intentionallyConstructedObject.hasValue(PART__OF)
-                && this.intentionallyConstructedObject.value(PART__OF).isEmpty()) {
+                && this.intentionallyConstructedObject.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.intentionallyConstructedObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.intentionallyConstructedObject.hasValue(TEMPORAL__PART_OF)
-                && this.intentionallyConstructedObject.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.intentionallyConstructedObject.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.intentionallyConstructedObject.hasValue(TEMPORAL_PART_OF)
-                && this.intentionallyConstructedObject.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.intentionallyConstructedObject.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return intentionallyConstructedObject;

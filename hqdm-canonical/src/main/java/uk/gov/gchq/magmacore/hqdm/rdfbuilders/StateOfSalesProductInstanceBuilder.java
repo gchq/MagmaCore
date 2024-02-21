@@ -207,38 +207,38 @@ public class StateOfSalesProductInstanceBuilder {
      */
     public StateOfSalesProductInstance build() throws HqdmException {
         if (this.stateOfSalesProductInstance.hasValue(AGGREGATED_INTO)
-                && this.stateOfSalesProductInstance.value(AGGREGATED_INTO).isEmpty()) {
+                && this.stateOfSalesProductInstance.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.stateOfSalesProductInstance.hasValue(BEGINNING)
-                && this.stateOfSalesProductInstance.value(BEGINNING).isEmpty()) {
+                && this.stateOfSalesProductInstance.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.stateOfSalesProductInstance.hasValue(ENDING)
-                && this.stateOfSalesProductInstance.value(ENDING).isEmpty()) {
+                && this.stateOfSalesProductInstance.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.stateOfSalesProductInstance.hasValue(MEMBER__OF)
-                && this.stateOfSalesProductInstance.value(MEMBER__OF).isEmpty()) {
+                && this.stateOfSalesProductInstance.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.stateOfSalesProductInstance.hasValue(MEMBER_OF)
-                && this.stateOfSalesProductInstance.value(MEMBER_OF).isEmpty()) {
+                && this.stateOfSalesProductInstance.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.stateOfSalesProductInstance.hasValue(PART__OF)
-                && this.stateOfSalesProductInstance.value(PART__OF).isEmpty()) {
+                && this.stateOfSalesProductInstance.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.stateOfSalesProductInstance.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.stateOfSalesProductInstance.hasValue(TEMPORAL__PART_OF)
-                && this.stateOfSalesProductInstance.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.stateOfSalesProductInstance.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.stateOfSalesProductInstance.hasValue(TEMPORAL_PART_OF)
-                && this.stateOfSalesProductInstance.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.stateOfSalesProductInstance.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfSalesProductInstance;

@@ -142,23 +142,23 @@ public class ClassOfSalesProductInstanceBuilder {
      */
     public ClassOfSalesProductInstance build() throws HqdmException {
         if (this.classOfSalesProductInstance.hasValue(HAS_SUPERCLASS)
-                && this.classOfSalesProductInstance.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfSalesProductInstance.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfSalesProductInstance.hasValue(MEMBER__OF)
-                && this.classOfSalesProductInstance.value(MEMBER__OF).isEmpty()) {
+                && this.classOfSalesProductInstance.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfSalesProductInstance.hasValue(MEMBER_OF)
-                && this.classOfSalesProductInstance.value(MEMBER_OF).isEmpty()) {
+                && this.classOfSalesProductInstance.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfSalesProductInstance.hasValue(MEMBER_OF_)
-                && this.classOfSalesProductInstance.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfSalesProductInstance.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfSalesProductInstance.hasValue(PART__OF_BY_CLASS)
-                && this.classOfSalesProductInstance.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfSalesProductInstance.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfSalesProductInstance;

@@ -230,42 +230,42 @@ public class SociallyConstructedObjectBuilder {
      */
     public SociallyConstructedObject build() throws HqdmException {
         if (this.sociallyConstructedObject.hasValue(AGGREGATED_INTO)
-                && this.sociallyConstructedObject.value(AGGREGATED_INTO).isEmpty()) {
+                && this.sociallyConstructedObject.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.sociallyConstructedObject.hasValue(BEGINNING)
-                && this.sociallyConstructedObject.value(BEGINNING).isEmpty()) {
+                && this.sociallyConstructedObject.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.sociallyConstructedObject.hasValue(ENDING)
-                && this.sociallyConstructedObject.value(ENDING).isEmpty()) {
+                && this.sociallyConstructedObject.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.sociallyConstructedObject.hasValue(MEMBER__OF)
-                && this.sociallyConstructedObject.value(MEMBER__OF).isEmpty()) {
+                && this.sociallyConstructedObject.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.sociallyConstructedObject.hasValue(MEMBER_OF)
-                && this.sociallyConstructedObject.value(MEMBER_OF).isEmpty()) {
+                && this.sociallyConstructedObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.sociallyConstructedObject.hasValue(MEMBER_OF_KIND)
-                && this.sociallyConstructedObject.value(MEMBER_OF_KIND).isEmpty()) {
+                && this.sociallyConstructedObject.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.sociallyConstructedObject.hasValue(PART__OF)
-                && this.sociallyConstructedObject.value(PART__OF).isEmpty()) {
+                && this.sociallyConstructedObject.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.sociallyConstructedObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.sociallyConstructedObject.hasValue(TEMPORAL__PART_OF)
-                && this.sociallyConstructedObject.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.sociallyConstructedObject.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.sociallyConstructedObject.hasValue(TEMPORAL_PART_OF)
-                && this.sociallyConstructedObject.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.sociallyConstructedObject.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return sociallyConstructedObject;

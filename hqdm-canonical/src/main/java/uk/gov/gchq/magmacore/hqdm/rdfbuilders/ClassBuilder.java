@@ -85,15 +85,15 @@ public class ClassBuilder {
      */
     public Class build() throws HqdmException {
         if (this.clazz.hasValue(HAS_SUPERCLASS)
-                && this.clazz.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.clazz.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.clazz.hasValue(MEMBER__OF)
-                && this.clazz.value(MEMBER__OF).isEmpty()) {
+                && this.clazz.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.clazz.hasValue(MEMBER_OF)
-                && this.clazz.value(MEMBER_OF).isEmpty()) {
+                && this.clazz.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return this.clazz;

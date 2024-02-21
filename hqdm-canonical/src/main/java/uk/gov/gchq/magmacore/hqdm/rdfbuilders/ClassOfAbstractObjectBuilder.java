@@ -86,15 +86,15 @@ public class ClassOfAbstractObjectBuilder {
      */
     public ClassOfAbstractObject build() throws HqdmException {
         if (this.classOfAbstractObject.hasValue(HAS_SUPERCLASS)
-                && this.classOfAbstractObject.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfAbstractObject.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfAbstractObject.hasValue(MEMBER__OF)
-                && this.classOfAbstractObject.value(MEMBER__OF).isEmpty()) {
+                && this.classOfAbstractObject.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfAbstractObject.hasValue(MEMBER_OF)
-                && this.classOfAbstractObject.value(MEMBER_OF).isEmpty()) {
+                && this.classOfAbstractObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return this.classOfAbstractObject;

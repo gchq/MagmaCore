@@ -236,45 +236,45 @@ public class PersonBuilder {
      */
     public Person build() throws HqdmException {
         if (this.person.hasValue(AGGREGATED_INTO)
-                && this.person.value(AGGREGATED_INTO).isEmpty()) {
+                && this.person.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.person.hasValue(BEGINNING)
-                && this.person.value(BEGINNING).isEmpty()) {
+                && this.person.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.person.hasValue(ENDING)
-                && this.person.value(ENDING).isEmpty()) {
+                && this.person.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.person.hasValue(MEMBER__OF)
-                && this.person.value(MEMBER__OF).isEmpty()) {
+                && this.person.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.person.hasValue(MEMBER_OF)
-                && this.person.value(MEMBER_OF).isEmpty()) {
+                && this.person.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.person.hasValue(MEMBER_OF_KIND)
-                && this.person.value(MEMBER_OF_KIND).isEmpty()) {
+                && this.person.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (!this.person.hasValue(NATURAL_ROLE)) {
             throw new HqdmException("Property Not Set: natural_role");
         }
         if (this.person.hasValue(PART__OF)
-                && this.person.value(PART__OF).isEmpty()) {
+                && this.person.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.person.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.person.hasValue(TEMPORAL__PART_OF)
-                && this.person.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.person.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.person.hasValue(TEMPORAL_PART_OF)
-                && this.person.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.person.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return person;

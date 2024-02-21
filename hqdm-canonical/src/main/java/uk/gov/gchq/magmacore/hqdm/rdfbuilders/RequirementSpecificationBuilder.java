@@ -156,26 +156,26 @@ public class RequirementSpecificationBuilder {
      */
     public RequirementSpecification build() throws HqdmException {
         if (this.requirementSpecification.hasValue(HAS_SUPERCLASS)
-                && this.requirementSpecification.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.requirementSpecification.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (!this.requirementSpecification.hasValue(INTERSECTION_OF)) {
             throw new HqdmException("Property Not Set: intersection_of");
         }
         if (this.requirementSpecification.hasValue(MEMBER__OF)
-                && this.requirementSpecification.value(MEMBER__OF).isEmpty()) {
+                && this.requirementSpecification.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.requirementSpecification.hasValue(MEMBER_OF)
-                && this.requirementSpecification.value(MEMBER_OF).isEmpty()) {
+                && this.requirementSpecification.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.requirementSpecification.hasValue(MEMBER_OF_)
-                && this.requirementSpecification.value(MEMBER_OF_).isEmpty()) {
+                && this.requirementSpecification.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.requirementSpecification.hasValue(PART__OF_BY_CLASS)
-                && this.requirementSpecification.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.requirementSpecification.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return requirementSpecification;

@@ -158,26 +158,26 @@ public class KindOfOrdinaryFunctionalObjectBuilder {
      */
     public KindOfOrdinaryFunctionalObject build() throws HqdmException {
         if (this.kindOfOrdinaryFunctionalObject.hasValue(HAS_SUPERCLASS)
-                && this.kindOfOrdinaryFunctionalObject.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfOrdinaryFunctionalObject.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (!this.kindOfOrdinaryFunctionalObject.hasValue(INTENDED_ROLE_BY_CLASS)) {
             throw new HqdmException("Property Not Set: intended_role_by_class");
         }
         if (this.kindOfOrdinaryFunctionalObject.hasValue(MEMBER__OF)
-                && this.kindOfOrdinaryFunctionalObject.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfOrdinaryFunctionalObject.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfOrdinaryFunctionalObject.hasValue(MEMBER_OF)
-                && this.kindOfOrdinaryFunctionalObject.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfOrdinaryFunctionalObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.kindOfOrdinaryFunctionalObject.hasValue(MEMBER_OF_)
-                && this.kindOfOrdinaryFunctionalObject.value(MEMBER_OF_).isEmpty()) {
+                && this.kindOfOrdinaryFunctionalObject.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.kindOfOrdinaryFunctionalObject.hasValue(PART__OF_BY_CLASS)
-                && this.kindOfOrdinaryFunctionalObject.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.kindOfOrdinaryFunctionalObject.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return kindOfOrdinaryFunctionalObject;

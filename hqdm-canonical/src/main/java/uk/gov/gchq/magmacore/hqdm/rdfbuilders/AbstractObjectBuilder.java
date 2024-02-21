@@ -57,7 +57,7 @@ public class AbstractObjectBuilder {
      */
     public AbstractObject build() throws HqdmException {
         if (this.abstractObject.hasValue(HQDM.MEMBER__OF)
-                && this.abstractObject.value(HQDM.MEMBER__OF).isEmpty()) {
+                && this.abstractObject.values(HQDM.MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         return this.abstractObject;

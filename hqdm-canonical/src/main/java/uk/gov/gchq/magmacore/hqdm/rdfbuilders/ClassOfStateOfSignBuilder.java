@@ -141,23 +141,23 @@ public class ClassOfStateOfSignBuilder {
      */
     public ClassOfStateOfSign build() throws HqdmException {
         if (this.classOfStateOfSign.hasValue(HAS_SUPERCLASS)
-                && this.classOfStateOfSign.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfStateOfSign.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfStateOfSign.hasValue(MEMBER__OF)
-                && this.classOfStateOfSign.value(MEMBER__OF).isEmpty()) {
+                && this.classOfStateOfSign.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfStateOfSign.hasValue(MEMBER_OF)
-                && this.classOfStateOfSign.value(MEMBER_OF).isEmpty()) {
+                && this.classOfStateOfSign.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfStateOfSign.hasValue(MEMBER_OF_)
-                && this.classOfStateOfSign.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfStateOfSign.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfStateOfSign.hasValue(PART__OF_BY_CLASS)
-                && this.classOfStateOfSign.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfStateOfSign.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfStateOfSign;

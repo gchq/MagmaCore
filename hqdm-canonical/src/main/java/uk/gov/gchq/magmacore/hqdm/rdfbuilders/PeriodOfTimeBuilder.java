@@ -223,42 +223,42 @@ public class PeriodOfTimeBuilder {
      */
     public PeriodOfTime build() throws HqdmException {
         if (this.periodOfTime.hasValue(AGGREGATED_INTO)
-                && this.periodOfTime.value(AGGREGATED_INTO).isEmpty()) {
+                && this.periodOfTime.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.periodOfTime.hasValue(BEGINNING)
-                && this.periodOfTime.value(BEGINNING).isEmpty()) {
+                && this.periodOfTime.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.periodOfTime.hasValue(ENDING)
-                && this.periodOfTime.value(ENDING).isEmpty()) {
+                && this.periodOfTime.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.periodOfTime.hasValue(MEMBER__OF)
-                && this.periodOfTime.value(MEMBER__OF).isEmpty()) {
+                && this.periodOfTime.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.periodOfTime.hasValue(MEMBER_OF)
-                && this.periodOfTime.value(MEMBER_OF).isEmpty()) {
+                && this.periodOfTime.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.periodOfTime.hasValue(PART__OF)
-                && this.periodOfTime.value(PART__OF).isEmpty()) {
+                && this.periodOfTime.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.periodOfTime.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.periodOfTime.hasValue(TEMPORAL__PART_OF)
-                && this.periodOfTime.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.periodOfTime.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.periodOfTime.hasValue(TEMPORAL_PART_OF)
-                && this.periodOfTime.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.periodOfTime.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         if (this.periodOfTime.hasValue(TEMPORAL_PART_OF_)
-                && this.periodOfTime.value(TEMPORAL_PART_OF_).isEmpty()) {
+                && this.periodOfTime.values(TEMPORAL_PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of_");
         }
         return periodOfTime;

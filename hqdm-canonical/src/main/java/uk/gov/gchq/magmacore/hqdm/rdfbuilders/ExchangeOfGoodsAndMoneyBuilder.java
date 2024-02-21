@@ -338,59 +338,59 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      */
     public ExchangeOfGoodsAndMoney build() throws HqdmException {
         if (this.exchangeOfGoodsAndMoney.hasValue(AGGREGATED_INTO)
-                && this.exchangeOfGoodsAndMoney.value(AGGREGATED_INTO).isEmpty()) {
+                && this.exchangeOfGoodsAndMoney.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.exchangeOfGoodsAndMoney.hasValue(BEGINNING)
-                && this.exchangeOfGoodsAndMoney.value(BEGINNING).isEmpty()) {
+                && this.exchangeOfGoodsAndMoney.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (!this.exchangeOfGoodsAndMoney.hasValue(CAUSES)) {
             throw new HqdmException("Property Not Set: causes");
         }
         if (this.exchangeOfGoodsAndMoney.hasValue(DETERMINES)
-                && this.exchangeOfGoodsAndMoney.value(DETERMINES).isEmpty()) {
+                && this.exchangeOfGoodsAndMoney.values(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
         if (this.exchangeOfGoodsAndMoney.hasValue(ENDING)
-                && this.exchangeOfGoodsAndMoney.value(ENDING).isEmpty()) {
+                && this.exchangeOfGoodsAndMoney.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.exchangeOfGoodsAndMoney.hasValue(MEMBER__OF)
-                && this.exchangeOfGoodsAndMoney.value(MEMBER__OF).isEmpty()) {
+                && this.exchangeOfGoodsAndMoney.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.exchangeOfGoodsAndMoney.hasValue(MEMBER_OF)
-                && this.exchangeOfGoodsAndMoney.value(MEMBER_OF).isEmpty()) {
+                && this.exchangeOfGoodsAndMoney.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.exchangeOfGoodsAndMoney.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.exchangeOfGoodsAndMoney.hasValue(PART__OF)
-                && this.exchangeOfGoodsAndMoney.value(PART__OF).isEmpty()) {
+                && this.exchangeOfGoodsAndMoney.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.exchangeOfGoodsAndMoney.hasValue(PART_OF)) {
             throw new HqdmException("Property Not Set: part_of");
         }
         if (this.exchangeOfGoodsAndMoney.hasValue(PART_OF_)
-                && this.exchangeOfGoodsAndMoney.value(PART_OF_).isEmpty()) {
+                && this.exchangeOfGoodsAndMoney.values(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
         if (!this.exchangeOfGoodsAndMoney.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.exchangeOfGoodsAndMoney.hasValue(REFERENCES)
-                && this.exchangeOfGoodsAndMoney.value(REFERENCES).isEmpty()) {
+                && this.exchangeOfGoodsAndMoney.values(REFERENCES).isEmpty()) {
             throw new HqdmException("Property Not Set: references");
         }
         if (this.exchangeOfGoodsAndMoney.hasValue(TEMPORAL__PART_OF)
-                && this.exchangeOfGoodsAndMoney.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.exchangeOfGoodsAndMoney.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.exchangeOfGoodsAndMoney.hasValue(TEMPORAL_PART_OF)
-                && this.exchangeOfGoodsAndMoney.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.exchangeOfGoodsAndMoney.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return exchangeOfGoodsAndMoney;

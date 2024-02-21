@@ -209,38 +209,38 @@ public class StateOfOrganizationComponentBuilder {
      */
     public StateOfOrganizationComponent build() throws HqdmException {
         if (this.stateOfOrganizationComponent.hasValue(AGGREGATED_INTO)
-                && this.stateOfOrganizationComponent.value(AGGREGATED_INTO).isEmpty()) {
+                && this.stateOfOrganizationComponent.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.stateOfOrganizationComponent.hasValue(BEGINNING)
-                && this.stateOfOrganizationComponent.value(BEGINNING).isEmpty()) {
+                && this.stateOfOrganizationComponent.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.stateOfOrganizationComponent.hasValue(ENDING)
-                && this.stateOfOrganizationComponent.value(ENDING).isEmpty()) {
+                && this.stateOfOrganizationComponent.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.stateOfOrganizationComponent.hasValue(MEMBER__OF)
-                && this.stateOfOrganizationComponent.value(MEMBER__OF).isEmpty()) {
+                && this.stateOfOrganizationComponent.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.stateOfOrganizationComponent.hasValue(MEMBER_OF)
-                && this.stateOfOrganizationComponent.value(MEMBER_OF).isEmpty()) {
+                && this.stateOfOrganizationComponent.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.stateOfOrganizationComponent.hasValue(PART__OF)
-                && this.stateOfOrganizationComponent.value(PART__OF).isEmpty()) {
+                && this.stateOfOrganizationComponent.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.stateOfOrganizationComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.stateOfOrganizationComponent.hasValue(TEMPORAL__PART_OF)
-                && this.stateOfOrganizationComponent.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.stateOfOrganizationComponent.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.stateOfOrganizationComponent.hasValue(TEMPORAL_PART_OF)
-                && this.stateOfOrganizationComponent.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.stateOfOrganizationComponent.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return stateOfOrganizationComponent;

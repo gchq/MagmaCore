@@ -332,44 +332,44 @@ public class AcceptanceOfOfferBuilder {
      */
     public AcceptanceOfOffer build() throws HqdmException {
         if (this.acceptanceOfOffer.hasValue(AGGREGATED_INTO)
-                && this.acceptanceOfOffer.value(AGGREGATED_INTO).isEmpty()) {
+                && this.acceptanceOfOffer.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.acceptanceOfOffer.hasValue(BEGINNING)
-                && this.acceptanceOfOffer.value(BEGINNING).isEmpty()) {
+                && this.acceptanceOfOffer.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (!this.acceptanceOfOffer.hasValue(CAUSES)) {
             throw new HqdmException("Property Not Set: causes");
         }
         if (this.acceptanceOfOffer.hasValue(DETERMINES)
-                && this.acceptanceOfOffer.value(DETERMINES).isEmpty()) {
+                && this.acceptanceOfOffer.values(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
         if (this.acceptanceOfOffer.hasValue(ENDING)
-                && this.acceptanceOfOffer.value(ENDING).isEmpty()) {
+                && this.acceptanceOfOffer.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.acceptanceOfOffer.hasValue(MEMBER__OF)
-                && this.acceptanceOfOffer.value(MEMBER__OF).isEmpty()) {
+                && this.acceptanceOfOffer.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.acceptanceOfOffer.hasValue(MEMBER_OF)
-                && this.acceptanceOfOffer.value(MEMBER_OF).isEmpty()) {
+                && this.acceptanceOfOffer.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.acceptanceOfOffer.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.acceptanceOfOffer.hasValue(PART__OF)
-                && this.acceptanceOfOffer.value(PART__OF).isEmpty()) {
+                && this.acceptanceOfOffer.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.acceptanceOfOffer.hasValue(PART_OF)) {
             throw new HqdmException("Property Not Set: part_of");
         }
         if (this.acceptanceOfOffer.hasValue(PART_OF_)
-                && this.acceptanceOfOffer.value(PART_OF_).isEmpty()) {
+                && this.acceptanceOfOffer.values(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
         if (!this.acceptanceOfOffer.hasValue(PART_OF_POSSIBLE_WORLD)) {
@@ -379,11 +379,11 @@ public class AcceptanceOfOfferBuilder {
             throw new HqdmException("Property Not Set: references");
         }
         if (this.acceptanceOfOffer.hasValue(TEMPORAL__PART_OF)
-                && this.acceptanceOfOffer.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.acceptanceOfOffer.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.acceptanceOfOffer.hasValue(TEMPORAL_PART_OF)
-                && this.acceptanceOfOffer.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.acceptanceOfOffer.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return this.acceptanceOfOffer;

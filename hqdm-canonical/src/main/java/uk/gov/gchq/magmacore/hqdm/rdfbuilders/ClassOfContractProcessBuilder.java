@@ -180,31 +180,31 @@ public class ClassOfContractProcessBuilder {
      */
     public ClassOfContractProcess build() throws HqdmException {
         if (this.classOfContractProcess.hasValue(HAS_SUPERCLASS)
-                && this.classOfContractProcess.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfContractProcess.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfContractProcess.hasValue(MEMBER__OF)
-                && this.classOfContractProcess.value(MEMBER__OF).isEmpty()) {
+                && this.classOfContractProcess.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfContractProcess.hasValue(MEMBER_OF)
-                && this.classOfContractProcess.value(MEMBER_OF).isEmpty()) {
+                && this.classOfContractProcess.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfContractProcess.hasValue(MEMBER_OF_)
-                && this.classOfContractProcess.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfContractProcess.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfContractProcess.hasValue(PART__OF_BY_CLASS)
-                && this.classOfContractProcess.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfContractProcess.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         if (this.classOfContractProcess.hasValue(PART_OF_BY_CLASS)
-                && this.classOfContractProcess.value(PART_OF_BY_CLASS).isEmpty()) {
+                && this.classOfContractProcess.values(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
         if (this.classOfContractProcess.hasValue(PART_OF_BY_CLASS_)
-                && this.classOfContractProcess.value(PART_OF_BY_CLASS_).isEmpty()) {
+                && this.classOfContractProcess.values(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
         return this.classOfContractProcess;
