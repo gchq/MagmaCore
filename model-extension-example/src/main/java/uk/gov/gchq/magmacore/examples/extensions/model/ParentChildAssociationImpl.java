@@ -1,5 +1,7 @@
 package uk.gov.gchq.magmacore.examples.extensions.model;
 
+import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.*;
+
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
@@ -16,7 +18,7 @@ public class ParentChildAssociationImpl extends HqdmObject implements ParentChil
      */
     public ParentChildAssociationImpl(final IRI id) {
         super(id);
-        addValue(RDFS.RDF_TYPE, Constants.PARENT_CHILD_ASSOCIATION_IRI);
+        addValue(RDFS.RDF_TYPE, PARENT_CHILD_ASSOCIATION_IRI);
     }
 
     /**
@@ -24,7 +26,7 @@ public class ParentChildAssociationImpl extends HqdmObject implements ParentChil
      */
     @Override
     public IRI getParentIri() {
-        return oneValue(Constants.PARENT_ROLE_IRI);
+        return oneValue(PARENT_ROLE_IRI);
     }
 
     /**
@@ -32,7 +34,7 @@ public class ParentChildAssociationImpl extends HqdmObject implements ParentChil
      */
     @Override
     public IRI getChildIri() {
-        return oneValue(Constants.CHILD_ROLE_IRI);
+        return oneValue(CHILD_ROLE_IRI);
     }
 
     /**
@@ -40,7 +42,7 @@ public class ParentChildAssociationImpl extends HqdmObject implements ParentChil
      */
     @Override
     public void setParentIri(final IRI iri) {
-        addValue(Constants.PARENT_ROLE_IRI, iri);
+        addValue(PARENT_ROLE_IRI, iri);
     }
 
     /**
@@ -48,7 +50,7 @@ public class ParentChildAssociationImpl extends HqdmObject implements ParentChil
      */
     @Override
     public void setChildIri(final IRI iri) {
-        addValue(Constants.CHILD_ROLE_IRI, iri);
+        addValue(CHILD_ROLE_IRI, iri);
     }
 
 }

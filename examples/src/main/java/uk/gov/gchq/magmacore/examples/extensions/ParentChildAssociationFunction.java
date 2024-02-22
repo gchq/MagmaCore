@@ -1,11 +1,12 @@
 package uk.gov.gchq.magmacore.examples.extensions;
 
+import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.*;
+
 import java.util.UUID;
 import java.util.function.Function;
 
 import uk.gov.gchq.magmacore.examples.extensions.ext.HqdmExtensionService;
 import uk.gov.gchq.magmacore.examples.extensions.model.Child;
-import uk.gov.gchq.magmacore.examples.extensions.model.Constants;
 import uk.gov.gchq.magmacore.examples.extensions.model.Parent;
 import uk.gov.gchq.magmacore.examples.extensions.model.ParentChildAssociation;
 import uk.gov.gchq.magmacore.hqdm.model.Event;
@@ -70,7 +71,7 @@ public class ParentChildAssociationFunction implements Function<MagmaCoreService
 
         // The required entity is defined in an extension module so use the service
         // to create an instance.
-        result = new HqdmExtensionService().createEntity(Constants.PARENT_CHILD_ASSOCIATION_TYPE_NAME, randomIri());
+        result = new HqdmExtensionService().createEntity(PARENT_CHILD_ASSOCIATION_TYPE_NAME, randomIri());
 
         // Add the parent and child to the association.
         result.setParentIri(parent.getId());
@@ -85,8 +86,8 @@ public class ParentChildAssociationFunction implements Function<MagmaCoreService
         child.addValue(HQDM.PARTICIPANT_IN, result.getId());
 
         // Obtain the required parent and child roles.
-        final Role parentRole = getOrCreateRole(mcSvc, Constants.PARENT_ROLE_NAME);
-        final Role childRole = getOrCreateRole(mcSvc, Constants.CHILD_ROLE_NAME);
+        final Role parentRole = getOrCreateRole(mcSvc, PARENT_ROLE_NAME);
+        final Role childRole = getOrCreateRole(mcSvc, CHILD_ROLE_NAME);
         
         // Apply the roles to the parent and child.
         parent.addValue(HQDM.MEMBER_OF_KIND, parentRole.getId());
