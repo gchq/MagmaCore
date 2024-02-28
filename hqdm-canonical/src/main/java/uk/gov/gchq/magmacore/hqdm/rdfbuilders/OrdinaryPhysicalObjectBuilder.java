@@ -36,6 +36,7 @@ import uk.gov.gchq.magmacore.hqdm.model.OrdinaryPhysicalObject;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -147,8 +148,8 @@ public class OrdinaryPhysicalObjectBuilder {
      */
     public final OrdinaryPhysicalObjectBuilder member_Of_Kind(
             final KindOfOrdinaryPhysicalObject kindOfOrdinaryPhysicalObject) {
-        this.ordinaryPhysicalObject.addValue(MEMBER_OF_KIND,
-                kindOfOrdinaryPhysicalObject.getId());
+        this.ordinaryPhysicalObject.addValue(MEMBER_OF_KIND, kindOfOrdinaryPhysicalObject.getId());
+        this.ordinaryPhysicalObject.addValue(RDFS.RDF_TYPE, kindOfOrdinaryPhysicalObject.getId());
         return this;
     }
 

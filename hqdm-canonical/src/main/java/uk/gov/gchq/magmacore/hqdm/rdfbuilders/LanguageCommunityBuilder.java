@@ -35,6 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.LanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -146,6 +147,7 @@ public class LanguageCommunityBuilder {
      */
     public final LanguageCommunityBuilder member_Of_Kind(final KindOfOrganization kindOfOrganization) {
         this.languageCommunity.addValue(MEMBER_OF_KIND, kindOfOrganization.getId());
+        this.languageCommunity.addValue(RDFS.RDF_TYPE, kindOfOrganization.getId());
         return this;
     }
 

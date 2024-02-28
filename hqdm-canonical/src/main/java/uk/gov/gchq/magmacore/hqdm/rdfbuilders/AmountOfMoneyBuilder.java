@@ -37,6 +37,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfSociallyConstructedObject;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -160,6 +161,7 @@ public class AmountOfMoneyBuilder {
     public final AmountOfMoneyBuilder member_Of_Kind(
             final KindOfSociallyConstructedObject kindOfSociallyConstructedObject) {
         this.amountOfMoney.addValue(MEMBER_OF_KIND, kindOfSociallyConstructedObject.getId());
+        this.amountOfMoney.addValue(RDFS.RDF_TYPE, kindOfSociallyConstructedObject.getId());
         return this;
     }
 

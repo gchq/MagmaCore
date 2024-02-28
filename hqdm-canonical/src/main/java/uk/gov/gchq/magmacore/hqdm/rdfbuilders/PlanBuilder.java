@@ -37,6 +37,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Plan;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -145,6 +146,7 @@ public class PlanBuilder {
      */
     public final PlanBuilder member_Of_Kind(final KindOfIndividual kindOfIndividual) {
         this.plan.addValue(MEMBER_OF_KIND, kindOfIndividual.getId());
+        this.plan.addValue(RDFS.RDF_TYPE, kindOfIndividual.getId());
         return this;
     }
 

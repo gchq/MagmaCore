@@ -36,6 +36,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfIntentionallyConstructedObject;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -152,8 +153,8 @@ public class IntentionallyConstructedObjectBuilder {
      */
     public final IntentionallyConstructedObjectBuilder member_Of_Kind(
             final KindOfIntentionallyConstructedObject kindOfIntentionallyConstructedObject) {
-        this.intentionallyConstructedObject.addValue(MEMBER_OF_KIND,
-                kindOfIntentionallyConstructedObject.getId());
+        this.intentionallyConstructedObject.addValue(MEMBER_OF_KIND, kindOfIntentionallyConstructedObject.getId());
+        this.intentionallyConstructedObject.addValue(RDFS.RDF_TYPE, kindOfIntentionallyConstructedObject.getId());
         return this;
     }
 

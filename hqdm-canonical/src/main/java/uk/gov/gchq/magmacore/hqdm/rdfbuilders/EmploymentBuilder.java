@@ -40,6 +40,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfAssociation;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -174,6 +175,7 @@ public class EmploymentBuilder {
      */
     public final EmploymentBuilder member_Of_Kind_M(final KindOfAssociation kindOfAssociation) {
         this.employment.addValue(MEMBER_OF_KIND, kindOfAssociation.getId());
+        this.employment.addValue(RDFS.RDF_TYPE, kindOfAssociation.getId());
         return this;
     }
 

@@ -37,6 +37,7 @@ import uk.gov.gchq.magmacore.hqdm.model.OrganizationComponent;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -160,8 +161,8 @@ public class OrganizationComponentBuilder {
      */
     public final OrganizationComponentBuilder member_Of_Kind(
             final KindOfOrganizationComponent kindOfOrganizationComponent) {
-        this.organizationComponent.addValue(MEMBER_OF_KIND,
-                kindOfOrganizationComponent.getId());
+        this.organizationComponent.addValue(MEMBER_OF_KIND, kindOfOrganizationComponent.getId());
+        this.organizationComponent.addValue(RDFS.RDF_TYPE, kindOfOrganizationComponent.getId());
         return this;
     }
 

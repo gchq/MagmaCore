@@ -38,6 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.RepresentationBySign;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -150,6 +151,7 @@ public class RecognizingLanguageCommunityBuilder {
      */
     public final RecognizingLanguageCommunityBuilder member_Of_Kind_M(final Role role) {
         this.recognizingLanguageCommunity.addValue(MEMBER_OF_KIND, role.getId());
+        this.recognizingLanguageCommunity.addValue(RDFS.RDF_TYPE, role.getId());
         return this;
     }
 

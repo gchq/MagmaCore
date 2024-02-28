@@ -35,6 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Party;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -143,6 +144,7 @@ public class PartyBuilder {
      */
     public final PartyBuilder member_Of_Kind(final KindOfParty kindOfParty) {
         this.party.addValue(MEMBER_OF_KIND, kindOfParty.getId());
+        this.party.addValue(RDFS.RDF_TYPE, kindOfParty.getId());
         return this;
     }
 

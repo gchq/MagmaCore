@@ -55,6 +55,7 @@ import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership;
 import uk.gov.gchq.magmacore.hqdm.model.Transferee;
 import uk.gov.gchq.magmacore.hqdm.model.Transferor;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -254,6 +255,7 @@ public class TransferOfOwnershipBuilder {
      */
     public final TransferOfOwnershipBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
         this.transferOfOwnership.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
+        this.transferOfOwnership.addValue(RDFS.RDF_TYPE, kindOfActivity.getId());
         return this;
     }
 

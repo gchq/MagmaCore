@@ -48,6 +48,7 @@ import uk.gov.gchq.magmacore.hqdm.model.ReachingAgreement;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -217,6 +218,7 @@ public class AgreementProcessBuilder {
      */
     public final AgreementProcessBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
         this.agreementProcess.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
+        this.agreementProcess.addValue(RDFS.RDF_TYPE, kindOfActivity.getId());
         return this;
     }
 

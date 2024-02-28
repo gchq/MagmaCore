@@ -41,6 +41,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Ownership;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -181,6 +182,7 @@ public class OwnershipBuilder {
      */
     public final OwnershipBuilder member_Of_Kind_M(final KindOfAssociation kindOfAssociation) {
         this.ownership.addValue(MEMBER_OF_KIND, kindOfAssociation.getId());
+        this.ownership.addValue(RDFS.RDF_TYPE, kindOfAssociation.getId());
         return this;
     }
 
