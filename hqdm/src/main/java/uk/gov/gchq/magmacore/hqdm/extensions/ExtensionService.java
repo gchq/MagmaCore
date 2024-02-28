@@ -21,6 +21,6 @@ public interface ExtensionService {
      * @param iri The IRI to use when creating the instance.
      * @return A Thing if the typeName is recognised, null otherwise.
      */
-    Thing createEntity(final String typeName, final IRI iri);
+    <T extends Thing> T createEntity(final String typeName, final IRI iri);
 
 }
