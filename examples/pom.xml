@@ -21,6 +21,10 @@
   <dependencies>
     <dependency>
       <groupId>uk.gov.gchq.magma-core</groupId>
+      <artifactId>hqdm-canonical</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>uk.gov.gchq.magma-core</groupId>
       <artifactId>core</artifactId>
     </dependency>
     <dependency>

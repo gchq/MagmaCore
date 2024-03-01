@@ -70,6 +70,9 @@ public class PersonBuilderTest {
         assertTrue(person.hasThisValue(HQDM.PART__OF, iriFromThing(spatioTemporalExtent)));
         assertTrue(person.hasThisValue(HQDM.TEMPORAL_PART_OF, iriFromThing(ordinaryBiologicalObject)));
         assertTrue(person.hasThisValue(HQDM.TEMPORAL__PART_OF, iriFromThing(spatioTemporalExtent)));
+
+        assertTrue(person.hasThisValue(RDFS.RDF_TYPE, iriFromThing(kindOfPerson)));
+        assertTrue(kindOfPerson.hasThisValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.PERSON));
     }
 
     private IRI iriFromThing(final Thing thing) {
