@@ -48,6 +48,7 @@ import uk.gov.gchq.magmacore.hqdm.model.SociallyConstructedActivity;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -208,6 +209,7 @@ public class SociallyConstructedActivityBuilder {
      */
     public final SociallyConstructedActivityBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
         this.sociallyConstructedActivity.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
+        this.sociallyConstructedActivity.addValue(RDFS.RDF_TYPE, kindOfActivity.getId());
         return this;
     }
 

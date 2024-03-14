@@ -50,6 +50,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -220,6 +221,7 @@ public class AgreeContractBuilder {
      */
     public final AgreeContractBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
         this.agreeContract.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
+        this.agreeContract.addValue(RDFS.RDF_TYPE, kindOfActivity.getId());
         return this;
     }
 

@@ -38,6 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -157,6 +158,7 @@ public class FunctionalObjectBuilder {
      */
     public final FunctionalObjectBuilder member_Of_Kind(final KindOfFunctionalObject kindOfFunctionalObject) {
         this.functionalObject.addValue(MEMBER_OF_KIND, kindOfFunctionalObject.getId());
+        this.functionalObject.addValue(RDFS.RDF_TYPE, kindOfFunctionalObject.getId());
         return this;
     }
 

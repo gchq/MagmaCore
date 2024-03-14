@@ -37,6 +37,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SalesProductInstance;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -160,8 +161,8 @@ public class SalesProductInstanceBuilder {
      */
     public final SalesProductInstanceBuilder member_Of_Kind(
             final KindOfOrdinaryFunctionalObject kindOfOrdinaryFunctionalObject) {
-        this.salesProductInstance.addValue(MEMBER_OF_KIND,
-                kindOfOrdinaryFunctionalObject.getId());
+        this.salesProductInstance.addValue(MEMBER_OF_KIND, kindOfOrdinaryFunctionalObject.getId());
+        this.salesProductInstance.addValue(RDFS.RDF_TYPE, kindOfOrdinaryFunctionalObject.getId());
         return this;
     }
 

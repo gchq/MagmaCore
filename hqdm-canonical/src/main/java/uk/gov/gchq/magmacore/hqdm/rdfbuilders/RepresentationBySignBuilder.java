@@ -46,6 +46,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Sign;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -211,6 +212,7 @@ public class RepresentationBySignBuilder {
      */
     public final RepresentationBySignBuilder member_Of_Kind_M(final KindOfAssociation kindOfAssociation) {
         this.representationBySign.addValue(MEMBER_OF_KIND, kindOfAssociation.getId());
+        this.representationBySign.addValue(RDFS.RDF_TYPE, kindOfAssociation.getId());
         return this;
     }
 

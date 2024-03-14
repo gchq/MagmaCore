@@ -50,6 +50,7 @@ import uk.gov.gchq.magmacore.hqdm.model.SaleOfGoods;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -221,6 +222,7 @@ public class OfferAndAcceptanceForGoodsBuilder {
      */
     public final OfferAndAcceptanceForGoodsBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
         this.offerAndAcceptanceForGoods.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
+        this.offerAndAcceptanceForGoods.addValue(RDFS.RDF_TYPE, kindOfActivity.getId());
         return this;
     }
 

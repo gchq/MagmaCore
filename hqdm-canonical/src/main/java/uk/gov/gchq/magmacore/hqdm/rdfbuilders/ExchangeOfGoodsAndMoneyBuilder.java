@@ -50,6 +50,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership;
 import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnershipOfMoney;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -220,6 +221,7 @@ public class ExchangeOfGoodsAndMoneyBuilder {
      */
     public final ExchangeOfGoodsAndMoneyBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
         this.exchangeOfGoodsAndMoney.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
+        this.exchangeOfGoodsAndMoney.addValue(RDFS.RDF_TYPE, kindOfActivity.getId());
         return this;
     }
 

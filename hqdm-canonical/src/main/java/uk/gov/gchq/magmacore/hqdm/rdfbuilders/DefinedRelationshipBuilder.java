@@ -26,6 +26,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Classification;
 import uk.gov.gchq.magmacore.hqdm.model.DefinedRelationship;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfRelationshipWithSignature;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.RelationshipServices;
 
 /**
@@ -92,8 +93,8 @@ public class DefinedRelationshipBuilder {
      */
     public final DefinedRelationshipBuilder member_Of_Kind_M(
             final KindOfRelationshipWithSignature kindOfRelationshipWithSignature) {
-        this.definedRelationship.addValue(MEMBER_OF_KIND,
-                kindOfRelationshipWithSignature.getId());
+        this.definedRelationship.addValue(MEMBER_OF_KIND, kindOfRelationshipWithSignature.getId());
+        this.definedRelationship.addValue(RDFS.RDF_TYPE, kindOfRelationshipWithSignature.getId());
         return this;
     }
 

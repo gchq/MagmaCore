@@ -36,6 +36,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SociallyConstructedObject;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -148,8 +149,8 @@ public class SociallyConstructedObjectBuilder {
      */
     public final SociallyConstructedObjectBuilder member_Of_Kind(
             final KindOfSociallyConstructedObject kindOfSociallyConstructedObject) {
-        this.sociallyConstructedObject.addValue(MEMBER_OF_KIND,
-                kindOfSociallyConstructedObject.getId());
+        this.sociallyConstructedObject.addValue(MEMBER_OF_KIND, kindOfSociallyConstructedObject.getId());
+        this.sociallyConstructedObject.addValue(RDFS.RDF_TYPE, kindOfSociallyConstructedObject.getId());
         return this;
     }
 

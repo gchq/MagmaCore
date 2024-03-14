@@ -35,6 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.KindOfBiologicalObject;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -143,6 +144,7 @@ public class BiologicalObjectBuilder {
      */
     public final BiologicalObjectBuilder member_Of_Kind(final KindOfBiologicalObject kindOfBiologicalObject) {
         this.biologicalObject.addValue(MEMBER_OF_KIND, kindOfBiologicalObject.getId());
+        this.biologicalObject.addValue(RDFS.RDF_TYPE, kindOfBiologicalObject.getId());
         return this;
     }
 
