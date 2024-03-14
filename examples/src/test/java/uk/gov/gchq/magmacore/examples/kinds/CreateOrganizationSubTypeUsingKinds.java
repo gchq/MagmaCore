@@ -25,7 +25,9 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  * Create a KindOfOrganization and make a Thing a member_of_kind of it,
  * then persist the Thing and make sure it is read back as an Organization.
  *
+ * <p>
  * This demonstrates the implementation of instances of 'kinds' as new entity types.
+ * </p>
  */
 public class CreateOrganizationSubTypeUsingKinds {
     /*
