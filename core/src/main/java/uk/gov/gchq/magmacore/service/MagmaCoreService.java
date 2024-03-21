@@ -25,12 +25,12 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.riot.Lang;
 
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 import uk.gov.gchq.magmacore.database.query.QueryResult;
 import uk.gov.gchq.magmacore.database.query.QueryResultList;
+import uk.gov.gchq.magmacore.database.query.RdfNode;
 import uk.gov.gchq.magmacore.exception.MagmaCoreException;
 import uk.gov.gchq.magmacore.hqdm.model.Individual;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfAssociation;
@@ -136,8 +136,8 @@ public class MagmaCoreService {
         final List<QueryResult> queryResults = queryResultList.getQueryResults()
                 .stream()
                 .filter(qr -> {
-                    final RDFNode start = qr.get("start");
-                    final RDFNode finish = qr.get("finish");
+                    final RdfNode start = qr.get("start");
+                    final RdfNode finish = qr.get("finish");
                     final Instant from = (start != null) ? Instant.parse(start.toString())
                             : Instant.MIN;
                     final Instant to = (finish != null) ? Instant.parse(finish.toString())

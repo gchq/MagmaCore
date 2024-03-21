@@ -51,6 +51,7 @@ import org.apache.jena.util.PrintUtil;
 
 import uk.gov.gchq.magmacore.database.query.QueryResult;
 import uk.gov.gchq.magmacore.database.query.QueryResultList;
+import uk.gov.gchq.magmacore.database.query.RdfNode;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.HqdmObjectFactory;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
@@ -384,7 +385,11 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
             while (varNames.hasNext()) {
                 final String varName = varNames.next();
                 final RDFNode node = querySolution.get(varName);
-                queryResult.set(varName, node);
+                if (node instanceof Literal literal) {
+                    queryResult.set(varName, new uk.gov.gchq.magmacore.database.query.Literal(literal.toString()));
+                } else if (node instanceof Resource resource) {
+                    queryResult.set(varName, new uk.gov.gchq.magmacore.database.query.Resource(resource.toString()));
+                }
             }
             queryResults.add(queryResult);
         }
@@ -399,7 +404,7 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * @return a {@link List} of {@link Thing}
      */
     public final List<Thing> toTopObjects(final QueryResultList queryResultsList) {
-        final Map<RDFNode, List<Pair<IRI, Object>>> objectMap = new HashMap<>();
+        final Map<RdfNode, List<Pair<IRI, Object>>> objectMap = new HashMap<>();
         final List<String> varNames = (List<String>) queryResultsList.getVarNames();
 
         final String subjectVarName = varNames.get(0);
@@ -409,21 +414,20 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
         // Create a map of the triples for each unique subject IRI
         final List<QueryResult> queryResults = queryResultsList.getQueryResults();
         queryResults.forEach(queryResult -> {
-            final RDFNode subjectValue = queryResult.get(subjectVarName);
-            final RDFNode predicateValue = queryResult.get(predicateVarName);
-            final RDFNode objectValue = queryResult.get(objectVarName);
+            final RdfNode subjectValue = queryResult.get(subjectVarName);
+            final RdfNode predicateValue = queryResult.get(predicateVarName);
+            final RdfNode objectValue = queryResult.get(objectVarName);
 
             List<Pair<IRI, Object>> dataModelObject = objectMap.get(subjectValue);
             if (dataModelObject == null) {
                 dataModelObject = new ArrayList<>();
-                objectMap.put(subjectValue, dataModelObject);
+                objectMap.put(
+                        new uk.gov.gchq.magmacore.database.query.Resource(subjectValue.toString()), dataModelObject);
             }
-            if (objectValue instanceof Literal) {
+            if (objectValue instanceof uk.gov.gchq.magmacore.database.query.Literal) {
                 dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()), objectValue.toString()));
-            } else if (objectValue instanceof Resource) {
-                dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()), new IRI(objectValue.toString())));
             } else {
-                throw new RuntimeException("objectValue is of unknown type: " + objectValue.getClass());
+                dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()), new IRI(objectValue.toString())));
             }
         });
 

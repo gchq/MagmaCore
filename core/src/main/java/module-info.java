@@ -26,6 +26,14 @@ module uk.gov.gchq.magmacore {
     requires com.fasterxml.jackson.annotation;
     requires java.net.http;
 
+    requires rdf4j.repository.api;
+    requires rdf4j.repository.sail;
+    requires rdf4j.sail.memory;
+    requires rdf4j.model;
+    requires rdf4j.model.api;
+    requires rdf4j.query;
+    requires rdf4j.rio.api;
+
     requires transitive uk.gov.gchq.magmacore.hqdm;
 
     exports uk.gov.gchq.magmacore.database.query;

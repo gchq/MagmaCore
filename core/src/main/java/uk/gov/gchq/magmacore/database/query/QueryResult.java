@@ -18,24 +18,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.apache.jena.rdf.model.Literal;
-import org.apache.jena.rdf.model.RDFNode;
-import org.apache.jena.rdf.model.Resource;
 
 /**
  * A single result returned from a SPARQL query.
  */
 public class QueryResult {
 
-    private final Map<String, RDFNode> map = new HashMap<>();
+    private final Map<String, RdfNode> map = new HashMap<>();
 
     /**
      * Get either the subject (s), object (o), or predicate (p) of the result triple.
      *
      * @param varName Name of variable within query result to get.
-     * @return Corresponding RDFNode.
+     * @return Corresponding RdfNode.
      */
-    public final RDFNode get(final String varName) {
+    public final RdfNode get(final String varName) {
         return map.get(varName);
     }
 
@@ -43,9 +40,9 @@ public class QueryResult {
      * Set either the subject (s), object (o), or predicate (p) of the result triple.
      *
      * @param varName Name of variable within the query result to set.
-     * @param node    RDF node to set.
+     * @param node    Rdf node to set.
      */
-    public final void set(final String varName, final RDFNode node) {
+    public final void set(final String varName, final RdfNode node) {
         map.put(varName, node);
     }
 
@@ -57,34 +54,8 @@ public class QueryResult {
     @JsonProperty("binding")
     public final Map<String, String> getMap() {
         final HashMap<String, String> results = new HashMap<>();
-        map.keySet().forEach(key -> results.put(key, getValue(map.get(key))));
+        map.keySet().forEach(key -> results.put(key, map.get(key).toString()));
         return results;
-    }
-
-    /**
-     * Get the value of an RDF node. This could either be the URI of the node, string literal, or the
-     * local name of the property within this namespace.
-     *
-     * @param node Node to get the value of.
-     * @return Value of the RDF node.
-     */
-    private static String getValue(final RDFNode node) {
-        if (node instanceof Literal) {
-            return node.asLiteral().getString();
-        }
-        if (node instanceof Resource) {
-            final Resource resource = node.asResource();
-            final String uri = resource.getURI();
-            if (uri != null) {
-                return uri;
-            }
-            final String localName = resource.getLocalName();
-            if (localName != null) {
-                return localName;
-            }
-            return resource.toString();
-        }
-        return "";
     }
 
     @Override
