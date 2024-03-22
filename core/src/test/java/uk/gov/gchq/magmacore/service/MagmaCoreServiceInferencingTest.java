@@ -41,20 +41,20 @@ import uk.gov.gchq.magmacore.service.transformation.DbTransformation;
 public class MagmaCoreServiceInferencingTest {
     private static final String RULE_SET = """
 
-@prefix ex: <http://example.com/test#> .
+            @prefix ex: <http://example.com/test#> .
 
-[transitiveDependencies: 
-    (?x ex:depends_on ?y) (?y ex:depends_on ?z)
-    ->
-    (?x ex:depends_on ?z)
-]
+            [transitiveDependencies:
+                (?x ex:depends_on ?y) (?y ex:depends_on ?z)
+                ->
+                (?x ex:depends_on ?z)
+            ]
 
-[validationRule1:
-    (?y rb:violation error('Object has ex:some_predicate', 'No objects should have ex:some_predicate', ?s))
-    <-
-    (?s ex:some_predicate ?value)
-]
-                    """;
+            [validationRule1:
+                (?y rb:violation error('Object has ex:some_predicate', 'No objects should have ex:some_predicate', ?s))
+                <-
+                (?s ex:some_predicate ?value)
+            ]
+                                """;
     private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
     private static final IRI DEPENDS_ON = new IRI(TEST_BASE, "depends_on");
     private static final IRI SOME_PREDICATE = new IRI(TEST_BASE, "some_predicate");
@@ -80,10 +80,8 @@ public class MagmaCoreServiceInferencingTest {
         final List<DbChangeSet> changes = List.of(new DbChangeSet(
                 List.of(),
                 List.of(
-                    new DbCreateOperation(a, DEPENDS_ON, b),
-                    new DbCreateOperation(b, DEPENDS_ON, c)
-                    )
-            ));
+                        new DbCreateOperation(a, DEPENDS_ON, b),
+                        new DbCreateOperation(b, DEPENDS_ON, c))));
         final DbTransformation transform = new DbTransformation(changes);
         service.runInWriteTransaction(transform);
 
@@ -92,7 +90,8 @@ public class MagmaCoreServiceInferencingTest {
         final MagmaCoreService inferencingSvc = service.applyInferenceRules(query, RULE_SET, false);
 
         // Query the database to check the result.
-        final QueryResultList result = inferencingSvc.executeQuery("PREFIX ex: <http://example.com/test#> SELECT * WHERE {?s ex:depends_on ?o.}");
+        final QueryResultList result = inferencingSvc
+                .executeQuery("PREFIX ex: <http://example.com/test#> SELECT * WHERE {?s ex:depends_on ?o.}");
 
         // The result should be 3 since " a depends_on c" is inferred.
         assertEquals(3, result.getQueryResults().size());
@@ -123,11 +122,9 @@ public class MagmaCoreServiceInferencingTest {
         final List<DbChangeSet> changes = List.of(new DbChangeSet(
                 List.of(),
                 List.of(
-                    new DbCreateOperation(a, DEPENDS_ON, b),
-                    new DbCreateOperation(b, DEPENDS_ON, c),
-                    new DbCreateOperation(b, SOME_PREDICATE, "This predicate is invalid")
-                    )
-            ));
+                        new DbCreateOperation(a, DEPENDS_ON, b),
+                        new DbCreateOperation(b, DEPENDS_ON, c),
+                        new DbCreateOperation(b, SOME_PREDICATE, "This predicate is invalid"))));
         final DbTransformation transform = new DbTransformation(changes);
         service.runInWriteTransaction(transform);
 
@@ -136,13 +133,15 @@ public class MagmaCoreServiceInferencingTest {
 
         // Make sure there are no validation errors.
         final List<ValidationReportEntry> entries = service.validate(query, RULE_SET, false);
-        
+
         assertEquals(1, entries.size());
 
         final ValidationReportEntry entry = entries.get(0);
 
         assertEquals("\"Object has ex:some_predicate\"", entry.type());
-        assertEquals("\"No objects should have ex:some_predicate\"\nCulprit = *\nImplicated node: <http://example.com/test#b>\n", entry.description());
+        assertEquals(
+                "\"No objects should have ex:some_predicate\"\nCulprit = *\nImplicated node: <http://example.com/test#b>\n",
+                entry.description());
         assertTrue(entry.additionalInformation() instanceof ResourceImpl);
 
         final Resource resource = (Resource) entry.additionalInformation();

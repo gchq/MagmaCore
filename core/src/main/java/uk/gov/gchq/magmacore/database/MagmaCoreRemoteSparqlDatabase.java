@@ -76,11 +76,12 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      */
     public MagmaCoreRemoteSparqlDatabase(final String serviceUrl) {
         connection = RDFConnectionRemote.newBuilder().destination(serviceUrl).queryEndpoint("query")
-                     .updateEndpoint("update").triplesFormat(RDFFormat.RDFJSON).build();
+                .updateEndpoint("update").triplesFormat(RDFFormat.RDFJSON).build();
     }
 
     /**
-     * Constructs a MagmaCoreRemoteSparqlDatabase connection to a SPARQL server and populates it with
+     * Constructs a MagmaCoreRemoteSparqlDatabase connection to a SPARQL server and
+     * populates it with
      * the dataset.
      *
      * @param serviceUrl The URL String of the SPARQL update endpoint.
@@ -151,7 +152,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     public Thing get(final IRI iri) {
 
         final String query = String.format("SELECT (<%1$s> as ?s) ?p ?o WHERE {<%1$s> ?p ?o.}",
-                                           iri.toString());
+                iri.toString());
         final QueryResultList list = executeQuery(query);
         final List<Thing> objects = toTopObjects(list);
 
@@ -224,7 +225,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     @Override
     public void delete(final Thing object) {
         executeUpdate(String.format("delete {<%s> ?p ?o} WHERE {<%s> ?p ?o}", object.getId(),
-                                    object.getId()));
+                object.getId()));
     }
 
     /**
@@ -268,7 +269,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     @Override
     public List<Thing> findByPredicateIri(final IRI predicateIri, final IRI objectIri) {
         final String query = "SELECT ?s ?p ?o WHERE {?s ?p ?o. ?s <" + predicateIri.toString() + "> <"
-                             + objectIri.toString() + ">.}";
+                + objectIri.toString() + ">.}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -278,9 +279,8 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      */
     @Override
     public List<Thing> findByPredicateIriOnly(final IRI predicateIri) {
-        final String query =
-            "SELECT ?s ?p ?o WHERE {{select ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
-            + predicateIri.toString() + "> ?o.}}}";
+        final String query = "SELECT ?s ?p ?o WHERE {{select ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
+                + predicateIri.toString() + "> ?o.}}}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -310,10 +310,9 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     @Override
     public List<Thing> findByPredicateIriAndStringCaseInsensitive(final IRI predicateIri,
             final String value) {
-        final String query =
-            "SELECT ?s ?p ?o WHERE {{ SELECT ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
-            + predicateIri.toString() + "> ?o. BIND(LCASE(?o) AS ?lcase) FILTER(?lcase= \"\"\"" + value
-            + "\"\"\")}}}";
+        final String query = "SELECT ?s ?p ?o WHERE {{ SELECT ?s ?p ?o where { ?s ?p ?o.}}{select ?s where {?s <"
+                + predicateIri.toString() + "> ?o. BIND(LCASE(?o) AS ?lcase) FILTER(?lcase= \"\"\"" + value
+                + "\"\"\")}}}";
         final QueryResultList list = executeQuery(query);
         return toTopObjects(list);
     }
@@ -356,7 +355,8 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
     }
 
     /**
-     * Execute a SPARQL query and construct a list of HQDM objects from the resulting RDF triples.
+     * Execute a SPARQL query and construct a list of HQDM objects from the
+     * resulting RDF triples.
      *
      * @param queryExec SPARQL query to execute.
      * @return Results of the query.
@@ -365,7 +365,7 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
         final ResultSet resultSet = queryExec.execSelect();
         final List<QueryResult> queryResults = new ArrayList<>();
         final QueryResultList queryResultList = new QueryResultList(resultSet.getResultVars(),
-            queryResults);
+                queryResults);
 
         while (resultSet.hasNext()) {
             final QuerySolution querySolution = resultSet.next();
@@ -414,17 +414,17 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
                 dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()), objectValue.toString()));
             } else if (objectValue instanceof Resource) {
                 dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()),
-                                               new IRI(objectValue.toString())));
+                        new IRI(objectValue.toString())));
             } else {
                 throw new RuntimeException("objectValue is of unknown type: " + objectValue.getClass());
             }
         });
 
         return objectMap
-               .entrySet()
-               .stream()
-               .map(entry -> HqdmObjectFactory.create(new IRI(entry.getKey().toString()), entry.getValue()))
-               .collect(Collectors.toList());
+                .entrySet()
+                .stream()
+                .map(entry -> HqdmObjectFactory.create(new IRI(entry.getKey().toString()), entry.getValue()))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -473,9 +473,9 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      */
     @Override
     public MagmaCoreDatabase applyInferenceRules(
-        final String constructQuery,
-        final String rules,
-        final boolean includeRdfsRules) {
+            final String constructQuery,
+            final String rules,
+            final boolean includeRdfsRules) {
 
         // Create an Inference Model which will run the rules.
         final InfModel model = getInferenceModel(constructQuery, rules, includeRdfsRules);
@@ -491,10 +491,10 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
      */
     @Override
     public List<ValidationReportEntry> validate(
-        final String constructQuery,
-        final String rules,
-        final boolean includeRdfsRules) {
-        //
+            final String constructQuery,
+            final String rules,
+            final boolean includeRdfsRules) {
+
         // Create an Inference Model which will run the rules.
         final InfModel model = getInferenceModel(constructQuery, rules, includeRdfsRules);
 
@@ -509,26 +509,25 @@ public class MagmaCoreRemoteSparqlDatabase implements MagmaCoreDatabase {
             final Report report = reports.next();
 
             entries.add(new ValidationReportEntry(
-                        report.getType(),
-                        report.getExtension(),
-                        report.getDescription()
-                        ));
+                    report.getType(),
+                    report.getExtension(),
+                    report.getDescription()));
         }
-        
+
         return entries;
     }
 
     /**
      * Create an in-memory model for inferencing.
      *
-     * @param constructQuery {@link String}
-     * @param rules {@link String}
+     * @param constructQuery   {@link String}
+     * @param rules            {@link String}
      * @param includeRdfsRules boolean
      * @return {@link InfModel}
      */
     private InfModel getInferenceModel(
-            final String constructQuery, 
-            final String rules, 
+            final String constructQuery,
+            final String rules,
             final boolean includeRdfsRules) {
         // Execute the query to get a subset of the data model.
         final QueryExecution queryExec = connection.query(constructQuery);

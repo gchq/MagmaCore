@@ -48,18 +48,18 @@ public class DataIntegrityChecksTest {
     /**
      * Get all the errors we expect to see.
      *
-     * @throws IOException on error.
+     * @throws IOException        on error.
      * @throws URISyntaxException on error.
      */
     @BeforeClass
     public static void beforeClass() throws IOException, URISyntaxException {
         final var rulesUri = DataIntegrityChecksTest.class.getResource("/validation.rules").toURI();
         expectedErrors = Files.readAllLines(Paths.get(rulesUri))
-            .stream()
-            .filter(line -> line.contains("error"))
-            .map(line -> line.split("'")[1])
-            .map(s -> "\"" + s + "\"")
-            .toList();
+                .stream()
+                .filter(line -> line.contains("error"))
+                .map(line -> line.split("'")[1])
+                .map(s -> "\"" + s + "\"")
+                .toList();
         final Set<String> deduped = Set.copyOf(expectedErrors);
         assertEquals("Posible duplicate errors in validation rules file.", deduped.size(), expectedErrors.size());
 
@@ -76,7 +76,8 @@ public class DataIntegrityChecksTest {
             svc.create(kind);
 
             // Create a participant that isn't a member_of_kind of a role.
-            // Also, as a SpatioTemporalExtent it should have a part_of_possible_world predicate.
+            // Also, as a SpatioTemporalExtent it should have a part_of_possible_world
+            // predicate.
             final Thing participant = SpatioTemporalExtentServices.createParticipant(randomIri());
             svc.create(participant);
 
@@ -98,7 +99,6 @@ public class DataIntegrityChecksTest {
 
             // Create a sign without a value_ predicate.
             // Also tests the member_of_ for pattern since that is also missing.
-            //
             final Sign sign = SpatioTemporalExtentServices.createSign(randomIri());
             sign.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
             final Role signRole = ClassServices.createRole(randomIri());
@@ -107,10 +107,9 @@ public class DataIntegrityChecksTest {
             svc.create(sign);
             svc.create(signRole);
 
-            // Create a RepresentationByPattern without a pattern and a pattern without a 
+            // Create a RepresentationByPattern without a pattern and a pattern without a
             // RepresentationByPattern. The RepresentationByPattern also has no community,
             // and no sign.
-            //
             final RepresentationByPattern rbp = ClassServices.createRepresentationByPattern(randomIri());
             rbp.addStringValue(HQDM.ENTITY_NAME, "A RepresentationByPattern with no pattern");
             svc.create(rbp);
@@ -121,7 +120,6 @@ public class DataIntegrityChecksTest {
 
             // Create a RepresentationBySign with no community, and no sign, and does not
             // represent a thing.
-            //
             final RepresentationBySign rbs = SpatioTemporalExtentServices.createRepresentationBySign(randomIri());
             rbs.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
             rbs.addStringValue(HQDM.ENTITY_NAME, "A RepresentationBySign with no community and no sign and no thing");
@@ -134,20 +132,19 @@ public class DataIntegrityChecksTest {
 
             return svc;
         });
-
     }
 
     /**
      * Run some data integrity checks.
      *
      * @throws URISyntaxException if the URI is invalid.
-     * @throws IOException if the rules file can't be read.
+     * @throws IOException        if the rules file can't be read.
      */
     @Test
     public void test() throws IOException, URISyntaxException {
         // Create the construct query and load the validation rules.
         final String query = "CONSTRUCT {?s ?p ?o} WHERE {?s ?p ?o}";
-        final String rules  = Files.readString(Paths.get(getClass().getResource("/validation.rules").toURI()));
+        final String rules = Files.readString(Paths.get(getClass().getResource("/validation.rules").toURI()));
 
         // Validate the model.
         final List<ValidationReportEntry> validationResult = service.validate(query, rules, INCLUDE_RDFS_YES);
@@ -160,9 +157,9 @@ public class DataIntegrityChecksTest {
 
         // Check that each rule has fired.
         final List<String> missing = expectedErrors.stream()
-            .filter(e -> !actualErrors.contains(e)) // Find the missing errors
-            .map(e -> e + " was expected but not present.")
-            .toList();
+                .filter(e -> !actualErrors.contains(e)) // Find the missing errors
+                .map(e -> e + " was expected but not present.")
+                .toList();
 
         missing.forEach(System.err::println);
         assertTrue("Not all rules fired - see log for details", missing.isEmpty());

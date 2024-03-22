@@ -68,7 +68,8 @@ import uk.gov.gchq.magmacore.service.verify.DataIntegrityReport;
  * <li>verifyModel()</li>
  * </ol>
  * <p>
- * Nested transactions are not supported so ensure that no transaction is in progress before 
+ * Nested transactions are not supported so ensure that no transaction is in
+ * progress before
  * using any of the above methods.
  * </p>
  */
@@ -86,13 +87,15 @@ public class MagmaCoreService {
     }
 
     /**
-     * Find the details of participants in associations of a specific kind between two
+     * Find the details of participants in associations of a specific kind between
+     * two
      * {@link Individual} objects at a point in time.
      *
      * @param individual1 The first {@link Individual}.
      * @param individual2 The second {@link Individual}.
      * @param kind        The {@link KindOfAssociation}.
-     * @param pointInTime The {@link PointInTime} that the associations should exist.
+     * @param pointInTime The {@link PointInTime} that the associations should
+     *                    exist.
      * @return A {@link Set} of {@link ParticipantDetails}.
      */
     public Set<ParticipantDetails> findParticipantDetails(final Individual individual1, final Individual individual2,
@@ -126,7 +129,8 @@ public class MagmaCoreService {
     }
 
     /**
-     * Filter a {@link QueryResultList} by a {@link PointInTime}. The {@link QueryResultList} should
+     * Filter a {@link QueryResultList} by a {@link PointInTime}. The
+     * {@link QueryResultList} should
      * have `start` and `finish` columns to allow filtering.
      *
      * @param when            {@link Instant}.
@@ -155,16 +159,20 @@ public class MagmaCoreService {
      * Find the Set of {@link Thing} represented by the given sign value.
      *
      * <p>
-     * This could probably be replaced with a (rather complex) SPARQL query if {@link MagmaCoreDatabase}
+     * This could probably be replaced with a (rather complex) SPARQL query if
+     * {@link MagmaCoreDatabase}
      * allowed the execution of such queries.
      * </p>
      *
-     * @param community   The {@link RecognizingLanguageCommunity} that recognizes the sign value.
+     * @param community   The {@link RecognizingLanguageCommunity} that recognizes
+     *                    the sign value.
      * @param pattern     The {@link Pattern} the sign conforms to.
      * @param value       {@link String} the sign value to look for.
-     * @param pointInTime {@link PointInTime} the point in time we are interested in.
+     * @param pointInTime {@link PointInTime} the point in time we are interested
+     *                    in.
      * @return {@link List} of {@link Thing} represented by the value.
-     * @throws MagmaCoreException if the number of {@link RepresentationByPattern} found is not 1.
+     * @throws MagmaCoreException if the number of {@link RepresentationByPattern}
+     *                            found is not 1.
      */
     public List<? extends Thing> findBySignValue(
             final RecognizingLanguageCommunity community,
@@ -196,16 +204,20 @@ public class MagmaCoreService {
      *
      * <p>
      * The search is case-insensitive.
-     * This could probably be replaced with a (rather complex) SPARQL query if {@link MagmaCoreDatabase}
+     * This could probably be replaced with a (rather complex) SPARQL query if
+     * {@link MagmaCoreDatabase}
      * allowed the execution of such queries.
      * </p>
      *
-     * @param community   The {@link RecognizingLanguageCommunity} that recognizes the sign value.
+     * @param community   The {@link RecognizingLanguageCommunity} that recognizes
+     *                    the sign value.
      * @param pattern     The {@link Pattern} the sign conforms to.
      * @param value       {@link String} the partial sign value to look for.
-     * @param pointInTime {@link PointInTime} the point in time we are interested in.
+     * @param pointInTime {@link PointInTime} the point in time we are interested
+     *                    in.
      * @return {@link List} of {@link Thing} represented by the value.
-     * @throws MagmaCoreException if the number of {@link RepresentationByPattern} found is not 1.
+     * @throws MagmaCoreException if the number of {@link RepresentationByPattern}
+     *                            found is not 1.
      */
     public List<? extends Thing> findByPartialSignValue(
             final RecognizingLanguageCommunity community,
@@ -233,7 +245,8 @@ public class MagmaCoreService {
     }
 
     /**
-     * Find Things of a giver rdf:type and Class and their signs that are of a particular pattern.
+     * Find Things of a giver rdf:type and Class and their signs that are of a
+     * particular pattern.
      *
      * @param type        IRI.
      * @param clazz       IRI.
@@ -265,7 +278,8 @@ public class MagmaCoreService {
     }
 
     /**
-     * Find Things of a giver rdf:type and Kind and their signs that are of a particular pattern.
+     * Find Things of a giver rdf:type and Kind and their signs that are of a
+     * particular pattern.
      *
      * @param type        IRI.
      * @param kind        IRI.
@@ -297,7 +311,8 @@ public class MagmaCoreService {
     }
 
     /**
-     * Find Individuals with states participating in associations of a specified kind, their roles and
+     * Find Individuals with states participating in associations of a specified
+     * kind, their roles and
      * signs.
      *
      * @param kindOfAssociation {@link IRI}.
@@ -344,14 +359,16 @@ public class MagmaCoreService {
     }
 
     /**
-     * Find the items associated to an item by an association of a specified kind that are valid at a PointInTime.
+     * Find the items associated to an item by an association of a specified kind
+     * that are valid at a PointInTime.
      *
      * @param item              IRI
      * @param kindOfAssociation IRI
-     * @param pointInTime {@link PointInTime}
+     * @param pointInTime       {@link PointInTime}
      * @return {@link List} of {@link Thing}
      */
-    public List<? extends Thing> findAssociated(final IRI item, final IRI kindOfAssociation, final PointInTime pointInTime) {
+    public List<? extends Thing> findAssociated(final IRI item, final IRI kindOfAssociation,
+            final PointInTime pointInTime) {
 
         final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
         if (pointInTimeValue == null) {
@@ -372,10 +389,12 @@ public class MagmaCoreService {
     }
 
     /**
-     * A case-sensitive search for entities in a specified class with a sign containing the given text.
+     * A case-sensitive search for entities in a specified class with a sign
+     * containing the given text.
      *
      * @param text        The String to search for.
-     * @param classIri    The IRI of the class that the entities should be a member_of.
+     * @param classIri    The IRI of the class that the entities should be a
+     *                    member_of.
      * @param pointInTime When the entities should have the matching sign.
      * @return A {@link List} of {@link Thing}.
      */
@@ -404,10 +423,12 @@ public class MagmaCoreService {
     }
 
     /**
-     * A case-insensitive search for entities in a specified class with a sign containing the given text.
+     * A case-insensitive search for entities in a specified class with a sign
+     * containing the given text.
      *
      * @param text        The String to search for.
-     * @param classIri    The IRI of the class that the entities should be a member_of.
+     * @param classIri    The IRI of the class that the entities should be a
+     *                    member_of.
      * @param pointInTime When the entities should have the matching sign.
      * @return A {@link List} of {@link Thing}.
      */
@@ -436,12 +457,14 @@ public class MagmaCoreService {
     }
 
     /**
-     * A case-insensitive search for entities in a specified class with a sign containing the given text
+     * A case-insensitive search for entities in a specified class with a sign
+     * containing the given text
      * that are referenced by an activity.
      *
      * @param wholeIri    The object that the required entities are composed into.
      * @param text        The String to search for.
-     * @param classIri    The IRI of the class that the entities should be a member_of.
+     * @param classIri    The IRI of the class that the entities should be a
+     *                    member_of.
      * @param pointInTime When the entities should have the matching sign.
      * @return A {@link List} of {@link Thing}.
      */
@@ -470,12 +493,14 @@ public class MagmaCoreService {
     }
 
     /**
-     * A case-sensitive search for entities in a specified class with a sign containing the given text
+     * A case-sensitive search for entities in a specified class with a sign
+     * containing the given text
      * that are referenced by an activity.
      *
      * @param wholeIri    The object that the required entities are composed into.
      * @param text        The String to search for.
-     * @param classIri    The IRI of the class that the entities should be a member_of.
+     * @param classIri    The IRI of the class that the entities should be a
+     *                    member_of.
      * @param pointInTime When the entities should have the matching sign.
      * @return A {@link List} of {@link Thing}.
      */
@@ -504,12 +529,14 @@ public class MagmaCoreService {
     }
 
     /**
-     * A case-sensitive search for entities in a specified class with a sign containing the given text
+     * A case-sensitive search for entities in a specified class with a sign
+     * containing the given text
      * that are parts of a given whole.
      *
      * @param wholeIri    The object that the required entities are composed into.
      * @param text        The String to search for.
-     * @param classIri    The IRI of the class that the entities should be a member_of.
+     * @param classIri    The IRI of the class that the entities should be a
+     *                    member_of.
      * @param pointInTime When the entities should have the matching sign.
      * @return A {@link List} of {@link Thing}.
      */
@@ -538,12 +565,14 @@ public class MagmaCoreService {
     }
 
     /**
-     * A case-insensitive search for entities in a specified class with a sign containing the given text
+     * A case-insensitive search for entities in a specified class with a sign
+     * containing the given text
      * that are parts of a given whole.
      *
      * @param wholeIri    The object that the required entities are composed into.
      * @param text        The String to search for.
-     * @param classIri    The IRI of the class that the entities should be a member_of.
+     * @param classIri    The IRI of the class that the entities should be a
+     *                    member_of.
      * @param pointInTime When the entities should have the matching sign.
      * @return A {@link List} of {@link Thing}.
      */
@@ -599,10 +628,12 @@ public class MagmaCoreService {
     }
 
     /**
-     * Find the Thing referenced by a field value where the thing is a member of the given class.
+     * Find the Thing referenced by a field value where the thing is a member of the
+     * given class.
      *
      * @param fieldIri   The HQDM predicate IRI.
-     * @param fieldValue The field value - typically a {@link String} or {@link IRI}.
+     * @param fieldValue The field value - typically a {@link String} or
+     *                   {@link IRI}.
      * @param classIri   The class {@link IRI}.
      * @return A {@link List} of {@link Thing}.
      */
@@ -711,8 +742,10 @@ public class MagmaCoreService {
     }
 
     /**
-     * Convert a {@link Collection} of {@link Thing} objects to a {@link DbTransformation} that can be
-     * used to persist them. Typically this should be followed by a call to `runInTransaction`.
+     * Convert a {@link Collection} of {@link Thing} objects to a
+     * {@link DbTransformation} that can be
+     * used to persist them. Typically this should be followed by a call to
+     * `runInTransaction`.
      *
      * @param things a {@link Collection} of {@link Thing} objects to be persisted.
      * @return {@link DbTransformation}
@@ -724,7 +757,8 @@ public class MagmaCoreService {
     }
 
     /**
-     * Convert a {@link Thing} to a {@link DbChangeSet} by creating a {@link DbCreateOperation} for each
+     * Convert a {@link Thing} to a {@link DbChangeSet} by creating a
+     * {@link DbCreateOperation} for each
      * of its predicate valiues.
      *
      * @param thing a {@link Thing}
@@ -893,7 +927,8 @@ public class MagmaCoreService {
     }
 
     /**
-     * Commit a transaction - Finish the current transaction and make any changes permanent (if a
+     * Commit a transaction - Finish the current transaction and make any changes
+     * permanent (if a
      * "write" transaction).
      */
     public void commit() {
@@ -901,7 +936,8 @@ public class MagmaCoreService {
     }
 
     /**
-     * Abort a transaction - Finish the transaction and undo any changes (if a "write" transaction).
+     * Abort a transaction - Finish the transaction and undo any changes (if a
+     * "write" transaction).
      */
     public void abort() {
         database.abort();
@@ -918,7 +954,8 @@ public class MagmaCoreService {
     }
 
     /**
-     * SPARQL queries restricted to having 3 columns for the subject, predicate, and object, with any names but they must be in that order. E.g.
+     * SPARQL queries restricted to having 3 columns for the subject, predicate, and
+     * object, with any names but they must be in that order. E.g.
      * SELECT ?s ?p ?o WHERE {...} order by ?s ?p ?o
      * The first column must contain entity IDs.
      * The second column must contain predicates.
@@ -929,41 +966,54 @@ public class MagmaCoreService {
      */
     public Map<IRI, Thing> executeQueryForThings(final String query) {
         final QueryResultList resultsList = database.executeQuery(query);
-        
+
         final List<Thing> things = database.toTopObjects(resultsList);
-        
+
         final Map<IRI, Thing> result = new HashMap<>();
-        
+
         things.forEach(t -> result.put(t.getId(), t));
 
         return result;
     }
 
     /**
-     * Apply a set of inference rules to a subset of the model and return a MagmaCoreService attached to 
+     * Apply a set of inference rules to a subset of the model and return a
+     * MagmaCoreService attached to
      * the resulting inference model for further use by the caller.
      *
-     * @param query a SPARQL query String to extract a subset of the model for inferencing.
-     * @param rules a set of inference rules to be applied to the model subset.
-     * @param includeRdfsRules boolean true if inferencing should include the standard RDFS entailments.
-     * @return an in-memory MagmaCoreService attached to the inferencing results which is independent of the source dataset.
+     * @param query            a SPARQL query String to extract a subset of the
+     *                         model for inferencing.
+     * @param rules            a set of inference rules to be applied to the model
+     *                         subset.
+     * @param includeRdfsRules boolean true if inferencing should include the
+     *                         standard RDFS entailments.
+     * @return an in-memory MagmaCoreService attached to the inferencing results
+     *         which is independent of the source dataset.
      */
-    public MagmaCoreService applyInferenceRules(final String query, final String rules, final boolean includeRdfsRules) {
-        // This functionality is likely to be database-implementation-specific, so delegate.
+    public MagmaCoreService applyInferenceRules(final String query, final String rules,
+            final boolean includeRdfsRules) {
+        // This functionality is likely to be database-implementation-specific, so
+        // delegate.
         final MagmaCoreDatabase db = database.applyInferenceRules(query, rules, includeRdfsRules);
         return new MagmaCoreService(db);
     }
 
     /**
-     * Apply a set of inference rules to a subset of the model and return a List of ValidationReportEntry objects.
+     * Apply a set of inference rules to a subset of the model and return a List of
+     * ValidationReportEntry objects.
      *
-     * @param query a SPARQL query String to extract a subset of the model for inferencing.
-     * @param rules a set of inference rules to be applied to the model subset.
-     * @param includeRdfsRules boolean true if inferencing should include the standard RDFS entailments.
+     * @param query            a SPARQL query String to extract a subset of the
+     *                         model for inferencing.
+     * @param rules            a set of inference rules to be applied to the model
+     *                         subset.
+     * @param includeRdfsRules boolean true if inferencing should include the
+     *                         standard RDFS entailments.
      * @return A {@link List} of {@link ValidationReportEntry} objects.
-     *     It will be Optional.empty if the underlying database is not an inference model.
+     *         It will be Optional.empty if the underlying database is not an
+     *         inference model.
      */
-    public List<ValidationReportEntry> validate(final String query, final String rules, final boolean includeRdfsRules) {
+    public List<ValidationReportEntry> validate(final String query, final String rules,
+            final boolean includeRdfsRules) {
         return database.validate(query, rules, includeRdfsRules);
     }
 

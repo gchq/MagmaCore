@@ -486,13 +486,13 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      */
     @Override
     public MagmaCoreDatabase applyInferenceRules(
-            final String constructQuery, 
-            final String rules, 
+            final String constructQuery,
+            final String rules,
             final boolean includeRdfsRules) {
         // Create an Inference Model which will run the rules.
         final InfModel model = getInferenceModel(constructQuery, rules, includeRdfsRules);
 
-        // Convert the inference model to a dataset and return it wrapped as 
+        // Convert the inference model to a dataset and return it wrapped as
         // an in-memory MagmaCoreDatabase.
         final Dataset inferenceDataset = DatasetFactory.wrap(model);
         return new MagmaCoreJenaDatabase(inferenceDataset);
@@ -502,10 +502,9 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
      * {@inheritDoc}
      */
     @Override
-    public List<ValidationReportEntry> validate(final String constructQuery, 
-            final String rules, 
+    public List<ValidationReportEntry> validate(final String constructQuery,
+            final String rules,
             final boolean includeRdfsRules) {
-        //
         // Create an Inference Model which will run the rules.
         final InfModel model = getInferenceModel(constructQuery, rules, includeRdfsRules);
 
@@ -520,26 +519,25 @@ public class MagmaCoreJenaDatabase implements MagmaCoreDatabase {
             final Report report = reports.next();
 
             entries.add(new ValidationReportEntry(
-                        report.getType(),
-                        report.getExtension(),
-                        report.getDescription()
-                        ));
+                    report.getType(),
+                    report.getExtension(),
+                    report.getDescription()));
         }
-        
+
         return entries;
     }
 
     /**
      * Create an in-memory model for inferencing.
      *
-     * @param constructQuery {@link String}
-     * @param rules {@link String}
+     * @param constructQuery   {@link String}
+     * @param rules            {@link String}
      * @param includeRdfsRules boolean
      * @return {@link InfModel}
      */
     private InfModel getInferenceModel(
-            final String constructQuery, 
-            final String rules, 
+            final String constructQuery,
+            final String rules,
             final boolean includeRdfsRules) {
         // Get the default Model
         // Execute the query to get a subset of the data model.

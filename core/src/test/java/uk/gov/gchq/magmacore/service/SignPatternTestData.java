@@ -57,7 +57,8 @@ public class SignPatternTestData {
      * Populate a {@link MagmaCoreDatabase} with an instance of the sign pattern.
      *
      * <p>
-     * This will create two {@link RepresentationBySign} associations that each use a String to
+     * This will create two {@link RepresentationBySign} associations that each use
+     * a String to
      * represent a {@link StateOfPerson}, but for different {@link Pattern} and
      * {@link RecognizingLanguageCommunity} objects.
      * </p>
