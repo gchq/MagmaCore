@@ -39,7 +39,7 @@ import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
  */
 public class SignPatternTestData {
 
-    static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
+    public static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
     static RecognizingLanguageCommunity community1;
     static RecognizingLanguageCommunity community2;
     static Pattern pattern1;

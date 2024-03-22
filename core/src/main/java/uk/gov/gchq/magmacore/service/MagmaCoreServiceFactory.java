@@ -16,6 +16,7 @@ package uk.gov.gchq.magmacore.service;
 
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
 import uk.gov.gchq.magmacore.database.MagmaCoreRemoteSparqlDatabase;
+import uk.gov.gchq.magmacore.database.MagmaCoreSailInMemoryDatabase;
 
 /**
  * Factory for creating MagmaCoreService instances. This removes the need to expose
@@ -52,5 +53,14 @@ public class MagmaCoreServiceFactory {
      */
     public static MagmaCoreService attachRemoteSparqlEndpoint(final String serviceUrl) {
         return new MagmaCoreService(new MagmaCoreRemoteSparqlDatabase(serviceUrl));
+    }
+
+    /**
+     * Create a {@link MagmaCoreService} for a new {@link MagmaCoreSailInMemoryDatabase}.
+     *
+     * @return {@link MagmaCoreService}
+     */
+    public static MagmaCoreService createWithSailInMemoryDatabase() {
+        return new MagmaCoreService(new MagmaCoreSailInMemoryDatabase());
     }
 }

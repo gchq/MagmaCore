@@ -26,13 +26,13 @@ module uk.gov.gchq.magmacore {
     requires com.fasterxml.jackson.annotation;
     requires java.net.http;
 
-    requires rdf4j.repository.api;
-    requires rdf4j.repository.sail;
-    requires rdf4j.sail.memory;
-    requires rdf4j.model;
-    requires rdf4j.model.api;
-    requires rdf4j.query;
-    requires rdf4j.rio.api;
+    requires transitive rdf4j.repository.api;
+    requires transitive rdf4j.repository.sail;
+    requires transitive rdf4j.sail.memory;
+    requires transitive rdf4j.model;
+    requires transitive rdf4j.model.api;
+    requires transitive rdf4j.query;
+    requires transitive rdf4j.rio.api;
 
     requires transitive uk.gov.gchq.magmacore.hqdm;
 
