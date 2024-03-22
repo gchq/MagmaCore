@@ -98,7 +98,8 @@ public class MagmaCoreServiceTest {
         final MagmaCoreService service = new MagmaCoreService(db);
 
         // Create the PointInTime we're looking for
-        final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI("http://example.com/entity#now"));
+        final PointInTime now = SpatioTemporalExtentServices
+                .createPointInTime(new IRI("http://example.com/entity#now"));
         now.addStringValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
@@ -133,7 +134,8 @@ public class MagmaCoreServiceTest {
     }
 
     /**
-     * Test that findByPartialSignValue can be used to find the right Things represented by
+     * Test that findByPartialSignValue can be used to find the right Things
+     * represented by
      * a sign value for
      * the given {@link uk.gov.gchq.magmacore.hqdm.model.Pattern} and
      * {@link uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity} at the
@@ -183,7 +185,8 @@ public class MagmaCoreServiceTest {
         final MagmaCoreService service = new MagmaCoreService(db);
 
         // Create the PointInTime we're looking for
-        final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI("http://example.com/entity#now"));
+        final PointInTime now = SpatioTemporalExtentServices
+                .createPointInTime(new IRI("http://example.com/entity#now"));
         now.addStringValue(HQDM.ENTITY_NAME, Instant.now().toString());
 
         // Find the required Things by sign in a transaction.
@@ -211,7 +214,8 @@ public class MagmaCoreServiceTest {
         final MagmaCoreService service = new MagmaCoreService(db);
 
         // Create the PointInTime we're looking for
-        final PointInTime now = SpatioTemporalExtentServices.createPointInTime(new IRI("http://example.com/entity#now"));
+        final PointInTime now = SpatioTemporalExtentServices
+                .createPointInTime(new IRI("http://example.com/entity#now"));
 
         // Find the required Things by sign in a transaction.
         db.beginRead();
@@ -270,7 +274,7 @@ public class MagmaCoreServiceTest {
         // Find individual1 by a String value
         svc.runInReadTransaction(mc -> {
             final List<Thing> result = mc.findByPredicateIriAndValue(
-                    HQDM.MEMBER_OF, 
+                    HQDM.MEMBER_OF,
                     new IRI(TEST_BASE, "classOfIndividual"));
 
             assertEquals(1, result.size());
@@ -367,12 +371,11 @@ public class MagmaCoreServiceTest {
         final IRI obj2 = new IRI(TEST_BASE, "obj2");
 
         new DbChangeSet(
-            List.of(), // no deletes
-            List.of(// Two creates
-                new DbCreateOperation(subj1, pred1, obj1),
-                new DbCreateOperation(obj1, pred2, obj2)
-                )
-        ).apply(service);
+                List.of(), // no deletes
+                List.of(// Two creates
+                        new DbCreateOperation(subj1, pred1, obj1),
+                        new DbCreateOperation(obj1, pred2, obj2)))
+                .apply(service);
 
         // Query the service by joining the two statements in a single result.
         final QueryResultList result = service.executeQuery("SELECT * WHERE { ?a ?b ?c. ?c ?d ?e}");
@@ -403,13 +406,12 @@ public class MagmaCoreServiceTest {
         final IRI obj1 = new IRI(TEST_BASE, "obj1");
 
         new DbChangeSet(
-            List.of(), // no deletes
-            List.of(// Two creates
-                new DbCreateOperation(subj1, HQDM.MEMBER_OF, obj1),
-                new DbCreateOperation(subj1, RDFS.RDF_TYPE, HQDM.PERSON),
-                new DbCreateOperation(obj1, RDFS.RDF_TYPE, HQDM.CLASS_OF_PERSON)
-                )
-        ).apply(service);
+                List.of(), // no deletes
+                List.of(// Two creates
+                        new DbCreateOperation(subj1, HQDM.MEMBER_OF, obj1),
+                        new DbCreateOperation(subj1, RDFS.RDF_TYPE, HQDM.PERSON),
+                        new DbCreateOperation(obj1, RDFS.RDF_TYPE, HQDM.CLASS_OF_PERSON)))
+                .apply(service);
 
         // Query the service by joining the two statements in a single result.
         final Map<IRI, Thing> result = service.executeQueryForThings("SELECT ?s ?p ?o WHERE { ?s ?p ?o}");

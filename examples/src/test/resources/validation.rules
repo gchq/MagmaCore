@@ -1,0 +1,163 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix hqdm: <https://hqdmtop.github.io/hqdm#> .
+
+@include <RDFS>.
+
+#
+# NOTE that these rules are not as strict as they should be since they are 'for all' rules and we actually
+# need 'there exists' rules.
+#
+
+#
+# Check that all classes have a data_EntityName predicate.
+#
+[checkForDataEntityName:
+    (?y rb:violation error('Missing Entity Name', 'Entity should have predicate data_EntityName', ?s))
+    <-
+    (?s rdf:type hqdm:class)
+    noValue(?s hqdm:data_EntityName)
+]
+
+#
+# Check that participants have roles.
+#
+[checkParticipantRoles:
+    (?y rb:violation error('Missing Participant Role', 'All participants should be a member_of_kind of a Role', ?s))
+    <-
+    (?s rdf:type hqdm:participant)
+    noValue(?s hqdm:member_of_kind)
+]
+
+#
+# Check that SpatioTemporalExtents are part of some PossibleWorld
+#
+[checkPartOfPossibleWorld:
+    (?y rb:violation error('Missing PossibleWorld', 'All SpatioTemporalExtents should be a part of a PossibleWorld', ?s))
+    <-
+    (?s rdf:type hqdm:spatio_temporal_extent)
+    noValue(?s hqdm:part_of_possible_world)
+]
+
+#
+# Check that temporal parts are a part of a subtype.
+#
+[checkTemporalPartsPartOfSubtype:
+    (?y rb:violation error('Invalid temporal_part_of parthood', 'All temporal parts must be temporal parts of a subtype.', ?s, ?t))
+    <-
+    (?s hqdm:temporal_part_of ?t)
+    noValue(?t rdfs:subClassOf ?s)
+]
+
+#
+# Check that all signs have a value_
+#
+[checkAllSignsHaveAValue:
+    (?y rb:violation error('Sign has no value', 'All signs should have a value_ predicate.', ?s))
+    <-
+    (?s rdf:type hqdm:sign)
+    noValue(?t hqdm:value_ ?v)
+]
+
+#
+# Check that all signs are member_of_ a pattern.
+#
+[checkSignsMemberOfPattern:
+    (?y rb:violation error('Sign has no pattern', 'All signs should be member_of_ a pattern.', ?s))
+    <-
+    (?s rdf:type hqdm:sign)
+    noValue(?t hqdm:member_of_ ?pattern)
+]
+
+#
+# Check that all representation_by_pattern consists_of_by_class a pattern.
+#
+[checkAllRepByPatternConsistOfPattern:
+    (?y rb:violation error('representation_by_pattern has no pattern', 'All representation_by_pattern should consists_of_by_class a pattern.', ?r))
+    <-
+    (?r rdf:type hqdm:representation_by_pattern)
+    noValue(?r hqdm:consists_of_by_class ?pattern)
+]
+
+#
+# Check that all representation_by_pattern consists_of_in_members a community.
+#
+[checkAllRepByPatternConsistOfCommunity:
+    (?y rb:violation error('representation_by_pattern has no community', 'All representation_by_pattern should consists_of_in_members a community.', ?r))
+    <-
+    (?r rdf:type hqdm:representation_by_pattern)
+    noValue(?r hqdm:consists_of_in_members ?community)
+]
+
+#
+# Check that all patterns have a representation_by_pattern.
+#
+[checkAllRepByPatternConsistOfPattern:
+    (?y rb:violation error('pattern has no representation_by_pattern', 'All patterns should have representation_by_patterns', ?pattern))
+    <-
+    (?pattern rdf:type hqdm:pattern)
+    noValue(?r hqdm:consists_of_by_class ?pattern)
+]
+
+#
+# Check that all representation_by_sign consists_of_ a community.
+#
+[checkAllRepBySignConsistOfCommunity:
+    (?y rb:violation error('representation_by_sign has no community', 'All representation_by_sign should consists_of_ a community.', ?r))
+    <-
+    (?r rdf:type hqdm:representation_by_sign)
+    noValue(?r hqdm:consists_of_ ?community)
+]
+
+#
+# Check that all representation_by_sign consists_of_ a sign.
+#
+[checkAllRepBySignConsistOfSign:
+    (?y rb:violation error('representation_by_sign has no sign', 'All representation_by_sign should consists_of a sign.', ?r))
+    <-
+    (?r rdf:type hqdm:representation_by_sign)
+    noValue(?r hqdm:consists_of ?sign)
+]
+
+#
+# Check that all representation_by_sign represent some thing.
+#
+[checkAllRepBySignRepresentThing:
+    (?y rb:violation error('representation_by_sign represents nothing', 'All representation_by_sign should represent a thing.', ?r))
+    <-
+    (?r rdf:type hqdm:representation_by_sign)
+    noValue(?r hqdm:represents ?thing)
+]
+
+#
+# Check that all state_of_sign are participants in representation_by_sign
+#
+[checkAllStateOfSignParticipantInRepBySign:
+    (?y rb:violation error('state_of_sign not participant_in representation_by_sign', 'All state_of_sign should be participant_in a representation_by_sign', ?r))
+    <-
+    (?r rdf:type hqdm:state_of_sign)
+    noValue(?r hqdm:participant_in ?thing)
+]
+
+#
+# Check that all representation_by_sign have a state_of_sign as a participant
+#
+[checkAllRepBySignHaveStateOfSignParticipant:
+    (?y rb:violation error('representation_by_sign missing a state_of_sign', 'All representation_by_sign should have state_of_sign as a participant', ?r))
+    <-
+    (?r rdf:type hqdm:representation_by_sign)
+    noValue(?s hqdm:participant_in ?r)
+]
+
+#
+# Check that all representation_by_sign have a recognizing_language_community as a participant
+#
+[checkAllRepBySignHaveACommunityParticipant:
+    (?y rb:violation error('representation_by_sign missing a recognizing_language_community', 'All representation_by_sign should have recognizing_language_community as a participant', ?r))
+    <-
+    (?r rdf:type hqdm:representation_by_sign)
+    noValue(?s hqdm:participant_in ?r)
+    noValue(?s rdf:type hqdm:recognizing_language_community)
+]
+

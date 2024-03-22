@@ -21,13 +21,15 @@ import java.util.List;
 import org.apache.jena.riot.Lang;
 
 import uk.gov.gchq.magmacore.database.query.QueryResultList;
+import uk.gov.gchq.magmacore.database.validation.ValidationReportEntry;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.service.transformation.DbCreateOperation;
 import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
 
 /**
- * Interface defining CRUD operations and generic queries for Magma Core data collections.
+ * Interface defining CRUD operations and generic queries for Magma Core data
+ * collections.
  */
 public interface MagmaCoreDatabase {
 
@@ -42,13 +44,15 @@ public interface MagmaCoreDatabase {
     void beginWrite();
 
     /**
-     * Commit a transaction - Finish the current transaction and make any changes permanent (if a
+     * Commit a transaction - Finish the current transaction and make any changes
+     * permanent (if a
      * "write" transaction).
      */
     void commit();
 
     /**
-     * Abort a transaction - Finish the transaction and undo any changes (if a "write" transaction).
+     * Abort a transaction - Finish the transaction and undo any changes (if a
+     * "write" transaction).
      */
     void abort();
 
@@ -127,7 +131,8 @@ public interface MagmaCoreDatabase {
     List<Thing> findByPredicateIriAndValue(IRI predicateIri, Object value);
 
     /**
-     * Find object(s) that have a specific string-value attribute associated with them.
+     * Find object(s) that have a specific string-value attribute associated with
+     * them.
      *
      * @param predicateIri IRI of the predicate being queried.
      * @param value        Case-insensitive string to match.
@@ -143,7 +148,8 @@ public interface MagmaCoreDatabase {
     void dump(PrintStream out);
 
     /**
-     * Write the database as TTL using the {@link PrintStream} and {@link org.apache.jena.riot.Lang}.
+     * Write the database as TTL using the {@link PrintStream} and
+     * {@link org.apache.jena.riot.Lang}.
      *
      * @param out      a {@link PrintStream}
      * @param language a {@link Lang}
@@ -181,4 +187,43 @@ public interface MagmaCoreDatabase {
      * @return a {@link List} of {@link Thing}
      */
     List<Thing> executeConstruct(final String query);
+
+    /**
+     * Apply a set of inference rules to a subset of the model and return a
+     * MagmaCoreService attached to
+     * the resulting inference model for further use by the caller.
+     *
+     * @param constructQuery   a SPARQL query String to extract a subset of the
+     *                         model for inferencing.
+     * @param rules            a set of inference rules to be applied to the model
+     *                         subset.
+     * @param includeRdfsRules boolean true if inferencing should include the
+     *                         standard RDFS entailments.
+     * @return an in-memory MagmaCoreDatabase attached to the inferencing results
+     *         which is
+     *         independent of the source dataset.
+     */
+    MagmaCoreDatabase applyInferenceRules(
+            final String constructQuery,
+            final String rules,
+            final boolean includeRdfsRules);
+
+    /**
+     * Run a validation report. This is only valid for databases obtained from
+     * the {@link MagmaCoreDatabase.applyInferenceRules} method.
+     *
+     * @param constructQuery   a SPARQL query String to extract a subset of the
+     *                         model for inferencing.
+     * @param rules            a set of inference rules to be applied to the model
+     *                         subset.
+     * @param includeRdfsRules boolean true if inferencing should include the
+     *                         standard RDFS entailments.
+     * @return A {@link List} of {@link ValidationReportEntry} objects.
+     *         It will be Optional.empty if the underlying database is not an
+     *         inference model.
+     */
+    List<ValidationReportEntry> validate(
+            final String constructQuery,
+            final String rules,
+            final boolean includeRdfsRules);
 }
