@@ -42,7 +42,7 @@ public class MultiInheritFromDataApp {
     public static void main(final String[] args) {
 
         // Create a new type specification.
-        final List<Pair<Object, Object>> newTypeSpecification = List.of(
+        final List<Pair<IRI, Object>> newTypeSpecification = List.of(
                 new Pair<>(RDFS.RDF_TYPE, HQDM.STATE_OF_ORGANIZATION),
                 new Pair<>(RDFS.RDF_TYPE, HQDM.PARTICIPANT));
 

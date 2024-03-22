@@ -138,23 +138,23 @@ public class PriceBuilder {
      */
     public Price build() throws HqdmException {
         if (this.price.hasValue(HAS_SUPERCLASS)
-                && this.price.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.price.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.price.hasValue(MEMBER__OF)
-                && this.price.value(MEMBER__OF).isEmpty()) {
+                && this.price.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.price.hasValue(MEMBER_OF)
-                && this.price.value(MEMBER_OF).isEmpty()) {
+                && this.price.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.price.hasValue(MEMBER_OF_)
-                && this.price.value(MEMBER_OF_).isEmpty()) {
+                && this.price.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.price.hasValue(PART__OF_BY_CLASS)
-                && this.price.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.price.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return price;

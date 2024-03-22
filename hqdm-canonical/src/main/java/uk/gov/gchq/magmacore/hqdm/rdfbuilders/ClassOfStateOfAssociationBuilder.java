@@ -141,23 +141,23 @@ public class ClassOfStateOfAssociationBuilder {
      */
     public ClassOfStateOfAssociation build() throws HqdmException {
         if (this.classOfStateOfAssociation.hasValue(HAS_SUPERCLASS)
-                && this.classOfStateOfAssociation.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfStateOfAssociation.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfStateOfAssociation.hasValue(MEMBER__OF)
-                && this.classOfStateOfAssociation.value(MEMBER__OF).isEmpty()) {
+                && this.classOfStateOfAssociation.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfStateOfAssociation.hasValue(MEMBER_OF)
-                && this.classOfStateOfAssociation.value(MEMBER_OF).isEmpty()) {
+                && this.classOfStateOfAssociation.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfStateOfAssociation.hasValue(MEMBER_OF_)
-                && this.classOfStateOfAssociation.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfStateOfAssociation.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfStateOfAssociation.hasValue(PART__OF_BY_CLASS)
-                && this.classOfStateOfAssociation.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfStateOfAssociation.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfStateOfAssociation;

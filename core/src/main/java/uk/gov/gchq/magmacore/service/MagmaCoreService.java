@@ -98,7 +98,7 @@ public class MagmaCoreService {
     public Set<ParticipantDetails> findParticipantDetails(final Individual individual1, final Individual individual2,
             final KindOfAssociation kind, final PointInTime pointInTime) {
 
-        final Instant when = Instant.parse(pointInTime.value(HQDM.ENTITY_NAME).iterator().next().toString());
+        final Instant when = Instant.parse(pointInTime.oneValue(HQDM.ENTITY_NAME));
 
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_PARTICIPANT_DETAILS_QUERY, individual1.getId(),
@@ -114,7 +114,7 @@ public class MagmaCoreService {
                 // Map them to ParticipantDetails objects.
                 .map(p -> {
                     // Get the Roles of the Participant.
-                    final Set<Role> roles = p.value(HQDM.MEMBER_OF_KIND)
+                    final Set<Role> roles = p.values(HQDM.MEMBER_OF_KIND)
                             .stream()
                             .map(o -> (IRI) o)
                             .map(roleIri -> database.get(roleIri))
@@ -172,12 +172,12 @@ public class MagmaCoreService {
             final String value,
             final PointInTime pointInTime) throws MagmaCoreException {
 
-        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
-        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+        final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
+        if (pointInTimeValue == null) {
             return List.of();
         }
 
-        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValue);
 
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_BY_SIGN_VALUE_QUERY,
@@ -213,12 +213,12 @@ public class MagmaCoreService {
             final String value,
             final PointInTime pointInTime) throws MagmaCoreException {
 
-        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
-        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+        final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
+        if (pointInTimeValue == null) {
             return List.of();
         }
 
-        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValue);
 
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_BY_PARTIAL_SIGN_VALUE_CASE_INSENSITIVE_QUERY,
@@ -247,12 +247,12 @@ public class MagmaCoreService {
             final IRI pattern,
             final PointInTime pointInTime) {
 
-        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
-        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+        final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
+        if (pointInTimeValue == null) {
             return List.of();
         }
 
-        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValue);
 
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_OBJECTS_BY_TYPE_CLASS_AND_SIGN_PATTERN,
@@ -279,12 +279,12 @@ public class MagmaCoreService {
             final IRI pattern,
             final PointInTime pointInTime) {
 
-        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
-        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+        final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
+        if (pointInTimeValue == null) {
             return List.of();
         }
 
-        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValue);
 
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_OBJECTS_BY_TYPE_AND_SIGN_PATTERN,
@@ -306,12 +306,12 @@ public class MagmaCoreService {
      */
     public List<? extends Thing> findByKindOfAssociation(final IRI kindOfAssociation, final PointInTime pointInTime) {
 
-        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
-        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+        final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
+        if (pointInTimeValue == null) {
             return List.of();
         }
 
-        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValue);
 
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_BY_KIND_OF_ASSOCIATION,
@@ -353,12 +353,12 @@ public class MagmaCoreService {
      */
     public List<? extends Thing> findAssociated(final IRI item, final IRI kindOfAssociation, final PointInTime pointInTime) {
 
-        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
-        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+        final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
+        if (pointInTimeValue == null) {
             return List.of();
         }
 
-        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValue);
 
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_ASSOCIATED,
@@ -382,12 +382,12 @@ public class MagmaCoreService {
     public List<? extends Thing> findByPartialSignAndClassCaseSensitive(final String text, final IRI classIri,
             final PointInTime pointInTime) {
 
-        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
-        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+        final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
+        if (pointInTimeValue == null) {
             return List.of();
         }
 
-        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValue);
 
         final QueryResultList queryResultList = database
                 .executeQuery(
@@ -414,12 +414,12 @@ public class MagmaCoreService {
     public List<? extends Thing> findByPartialSignAndClass(final String text, final IRI classIri,
             final PointInTime pointInTime) {
 
-        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
-        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+        final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
+        if (pointInTimeValue == null) {
             return List.of();
         }
 
-        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValue);
 
         final QueryResultList queryResultList = database
                 .executeQuery(
@@ -449,12 +449,12 @@ public class MagmaCoreService {
             final String text, final IRI classIri,
             final PointInTime pointInTime) {
 
-        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
-        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+        final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
+        if (pointInTimeValue == null) {
             return List.of();
         }
 
-        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValue);
 
         final QueryResultList queryResultList = database.executeQuery(String.format(
                 MagmaCoreServiceQueries.FIND_MEMBERS_OF_CLASS_BY_ACTIVITY_AND_PARTIAL_SIGN_CASE_INSENSITIVE,
@@ -483,12 +483,12 @@ public class MagmaCoreService {
             final String text, final IRI classIri,
             final PointInTime pointInTime) {
 
-        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
-        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+        final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
+        if (pointInTimeValue == null) {
             return List.of();
         }
 
-        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValue);
 
         final QueryResultList queryResultList = database.executeQuery(String.format(
                 MagmaCoreServiceQueries.FIND_MEMBERS_OF_CLASS_BY_ACTIVITY_AND_PARTIAL_SIGN_CASE_SENSITIVE,
@@ -517,12 +517,12 @@ public class MagmaCoreService {
             final String text, final IRI classIri,
             final PointInTime pointInTime) {
 
-        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
-        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+        final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
+        if (pointInTimeValue == null) {
             return List.of();
         }
 
-        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValue);
 
         final QueryResultList queryResultList = database.executeQuery(String.format(
                 MagmaCoreServiceQueries.FIND_MEMBERS_OF_CLASS_BY_COMPOSITION_AND_PARTIAL_SIGN_CASE_SENSITIVE,
@@ -551,12 +551,12 @@ public class MagmaCoreService {
             final String text, final IRI classIri,
             final PointInTime pointInTime) {
 
-        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
-        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+        final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
+        if (pointInTimeValue == null) {
             return List.of();
         }
 
-        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValue);
 
         final QueryResultList queryResultList = database.executeQuery(String.format(
                 MagmaCoreServiceQueries.FIND_MEMBERS_OF_CLASS_BY_COMPOSITION_AND_PARTIAL_SIGN_CASE_INSENSITIVE,
@@ -580,12 +580,12 @@ public class MagmaCoreService {
      */
     public List<SignPatternDto> findSignsForEntity(final IRI entityIri, final PointInTime pointInTime) {
 
-        final Set<Object> pointInTimeValues = pointInTime.value(HQDM.ENTITY_NAME);
-        if (pointInTimeValues == null || pointInTimeValues.isEmpty()) {
+        final String pointInTimeValue = pointInTime.oneValue(HQDM.ENTITY_NAME);
+        if (pointInTimeValue == null) {
             return List.of();
         }
 
-        final Instant when = Instant.parse(pointInTimeValues.iterator().next().toString());
+        final Instant when = Instant.parse(pointInTimeValue);
 
         final QueryResultList queryResultList = database.executeQuery(String.format(
                 MagmaCoreServiceQueries.FIND_SIGNS_FOR_ENTITY, entityIri));

@@ -216,42 +216,42 @@ public class LanguageCommunityBuilder {
      */
     public LanguageCommunity build() throws HqdmException {
         if (this.languageCommunity.hasValue(AGGREGATED_INTO)
-                && this.languageCommunity.value(AGGREGATED_INTO).isEmpty()) {
+                && this.languageCommunity.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.languageCommunity.hasValue(BEGINNING)
-                && this.languageCommunity.value(BEGINNING).isEmpty()) {
+                && this.languageCommunity.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.languageCommunity.hasValue(ENDING)
-                && this.languageCommunity.value(ENDING).isEmpty()) {
+                && this.languageCommunity.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.languageCommunity.hasValue(MEMBER__OF)
-                && this.languageCommunity.value(MEMBER__OF).isEmpty()) {
+                && this.languageCommunity.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.languageCommunity.hasValue(MEMBER_OF)
-                && this.languageCommunity.value(MEMBER_OF).isEmpty()) {
+                && this.languageCommunity.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.languageCommunity.hasValue(MEMBER_OF_KIND)
-                && this.languageCommunity.value(MEMBER_OF_KIND).isEmpty()) {
+                && this.languageCommunity.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.languageCommunity.hasValue(PART__OF)
-                && this.languageCommunity.value(PART__OF).isEmpty()) {
+                && this.languageCommunity.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.languageCommunity.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.languageCommunity.hasValue(TEMPORAL__PART_OF)
-                && this.languageCommunity.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.languageCommunity.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.languageCommunity.hasValue(TEMPORAL_PART_OF)
-                && this.languageCommunity.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.languageCommunity.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return languageCommunity;

@@ -227,45 +227,45 @@ public class FunctionalSystemBuilder {
      */
     public FunctionalSystem build() throws HqdmException {
         if (this.functionalSystem.hasValue(AGGREGATED_INTO)
-                && this.functionalSystem.value(AGGREGATED_INTO).isEmpty()) {
+                && this.functionalSystem.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.functionalSystem.hasValue(BEGINNING)
-                && this.functionalSystem.value(BEGINNING).isEmpty()) {
+                && this.functionalSystem.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.functionalSystem.hasValue(ENDING)
-                && this.functionalSystem.value(ENDING).isEmpty()) {
+                && this.functionalSystem.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (!this.functionalSystem.hasValue(INTENDED_ROLE)) {
             throw new HqdmException("Property Not Set: intended_role");
         }
         if (this.functionalSystem.hasValue(MEMBER__OF)
-                && this.functionalSystem.value(MEMBER__OF).isEmpty()) {
+                && this.functionalSystem.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.functionalSystem.hasValue(MEMBER_OF)
-                && this.functionalSystem.value(MEMBER_OF).isEmpty()) {
+                && this.functionalSystem.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.functionalSystem.hasValue(MEMBER_OF_KIND)
-                && this.functionalSystem.value(MEMBER_OF_KIND).isEmpty()) {
+                && this.functionalSystem.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.functionalSystem.hasValue(PART__OF)
-                && this.functionalSystem.value(PART__OF).isEmpty()) {
+                && this.functionalSystem.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.functionalSystem.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.functionalSystem.hasValue(TEMPORAL__PART_OF)
-                && this.functionalSystem.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.functionalSystem.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.functionalSystem.hasValue(TEMPORAL_PART_OF)
-                && this.functionalSystem.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.functionalSystem.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return functionalSystem;

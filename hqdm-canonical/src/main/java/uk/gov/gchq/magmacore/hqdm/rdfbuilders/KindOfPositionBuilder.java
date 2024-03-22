@@ -139,23 +139,23 @@ public class KindOfPositionBuilder {
      */
     public KindOfPosition build() throws HqdmException {
         if (this.kindOfPosition.hasValue(HAS_SUPERCLASS)
-                && this.kindOfPosition.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfPosition.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.kindOfPosition.hasValue(MEMBER__OF)
-                && this.kindOfPosition.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfPosition.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfPosition.hasValue(MEMBER_OF)
-                && this.kindOfPosition.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfPosition.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.kindOfPosition.hasValue(MEMBER_OF_)
-                && this.kindOfPosition.value(MEMBER_OF_).isEmpty()) {
+                && this.kindOfPosition.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.kindOfPosition.hasValue(PART__OF_BY_CLASS)
-                && this.kindOfPosition.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.kindOfPosition.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return kindOfPosition;

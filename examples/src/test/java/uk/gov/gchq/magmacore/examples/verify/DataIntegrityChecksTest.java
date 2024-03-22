@@ -102,7 +102,7 @@ public class DataIntegrityChecksTest {
             final Sign sign = SpatioTemporalExtentServices.createSign(randomIri());
             sign.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
             final Role signRole = ClassServices.createRole(randomIri());
-            signRole.addValue(HQDM.ENTITY_NAME, "A role for a sign");
+            signRole.addStringValue(HQDM.ENTITY_NAME, "A role for a sign");
             sign.addValue(HQDM.MEMBER_OF_KIND, signRole.getId());
             svc.create(sign);
             svc.create(signRole);
@@ -112,11 +112,11 @@ public class DataIntegrityChecksTest {
             // and no sign.
             //
             final RepresentationByPattern rbp = ClassServices.createRepresentationByPattern(randomIri());
-            rbp.addValue(HQDM.ENTITY_NAME, "A RepresentationByPattern with no pattern");
+            rbp.addStringValue(HQDM.ENTITY_NAME, "A RepresentationByPattern with no pattern");
             svc.create(rbp);
 
             final Pattern pattern = ClassServices.createPattern(randomIri());
-            pattern.addValue(HQDM.ENTITY_NAME, "A Pattern with no RepresentationByPattern");
+            pattern.addStringValue(HQDM.ENTITY_NAME, "A Pattern with no RepresentationByPattern");
             svc.create(pattern);
 
             // Create a RepresentationBySign with no community, and no sign, and does not
@@ -124,7 +124,7 @@ public class DataIntegrityChecksTest {
             //
             final RepresentationBySign rbs = SpatioTemporalExtentServices.createRepresentationBySign(randomIri());
             rbs.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
-            rbs.addValue(HQDM.ENTITY_NAME, "A RepresentationBySign with no community and no sign and no thing");
+            rbs.addStringValue(HQDM.ENTITY_NAME, "A RepresentationBySign with no community and no sign and no thing");
             svc.create(rbs);
 
             // Create a state_of_sign with no participant_in relation.

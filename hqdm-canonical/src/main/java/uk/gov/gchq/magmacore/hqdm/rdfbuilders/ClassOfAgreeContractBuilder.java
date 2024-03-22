@@ -179,31 +179,31 @@ public class ClassOfAgreeContractBuilder {
      */
     public ClassOfAgreeContract build() throws HqdmException {
         if (this.classOfAgreeContract.hasValue(HAS_SUPERCLASS)
-                && this.classOfAgreeContract.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfAgreeContract.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfAgreeContract.hasValue(MEMBER__OF)
-                && this.classOfAgreeContract.value(MEMBER__OF).isEmpty()) {
+                && this.classOfAgreeContract.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfAgreeContract.hasValue(MEMBER_OF)
-                && this.classOfAgreeContract.value(MEMBER_OF).isEmpty()) {
+                && this.classOfAgreeContract.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfAgreeContract.hasValue(MEMBER_OF_)
-                && this.classOfAgreeContract.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfAgreeContract.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfAgreeContract.hasValue(PART__OF_BY_CLASS)
-                && this.classOfAgreeContract.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfAgreeContract.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         if (this.classOfAgreeContract.hasValue(PART_OF_BY_CLASS)
-                && this.classOfAgreeContract.value(PART_OF_BY_CLASS).isEmpty()) {
+                && this.classOfAgreeContract.values(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
         }
         if (this.classOfAgreeContract.hasValue(PART_OF_BY_CLASS_)
-                && this.classOfAgreeContract.value(PART_OF_BY_CLASS_).isEmpty()) {
+                && this.classOfAgreeContract.values(PART_OF_BY_CLASS_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class_");
         }
         return this.classOfAgreeContract;

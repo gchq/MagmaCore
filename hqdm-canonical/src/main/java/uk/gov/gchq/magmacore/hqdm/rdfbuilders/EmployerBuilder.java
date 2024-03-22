@@ -229,30 +229,30 @@ public class EmployerBuilder {
      */
     public Employer build() throws HqdmException {
         if (this.employer.hasValue(AGGREGATED_INTO)
-                && this.employer.value(AGGREGATED_INTO).isEmpty()) {
+                && this.employer.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.employer.hasValue(BEGINNING)
-                && this.employer.value(BEGINNING).isEmpty()) {
+                && this.employer.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.employer.hasValue(ENDING)
-                && this.employer.value(ENDING).isEmpty()) {
+                && this.employer.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.employer.hasValue(MEMBER__OF)
-                && this.employer.value(MEMBER__OF).isEmpty()) {
+                && this.employer.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.employer.hasValue(MEMBER_OF)
-                && this.employer.value(MEMBER_OF).isEmpty()) {
+                && this.employer.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.employer.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.employer.hasValue(PART__OF)
-                && this.employer.value(PART__OF).isEmpty()) {
+                && this.employer.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.employer.hasValue(PART_OF_POSSIBLE_WORLD)) {
@@ -262,11 +262,11 @@ public class EmployerBuilder {
             throw new HqdmException("Property Not Set: participant_in");
         }
         if (this.employer.hasValue(TEMPORAL__PART_OF)
-                && this.employer.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.employer.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.employer.hasValue(TEMPORAL_PART_OF)
-                && this.employer.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.employer.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return this.employer;

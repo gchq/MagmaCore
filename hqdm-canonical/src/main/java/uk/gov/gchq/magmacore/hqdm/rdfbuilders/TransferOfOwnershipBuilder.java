@@ -372,11 +372,11 @@ public class TransferOfOwnershipBuilder {
      */
     public TransferOfOwnership build() throws HqdmException {
         if (this.transferOfOwnership.hasValue(AGGREGATED_INTO)
-                && this.transferOfOwnership.value(AGGREGATED_INTO).isEmpty()) {
+                && this.transferOfOwnership.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.transferOfOwnership.hasValue(BEGINNING)
-                && this.transferOfOwnership.value(BEGINNING).isEmpty()) {
+                && this.transferOfOwnership.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (!this.transferOfOwnership.hasValue(CAUSES)) {
@@ -389,34 +389,34 @@ public class TransferOfOwnershipBuilder {
             throw new HqdmException("Property Not Set: causes_ending");
         }
         if (this.transferOfOwnership.hasValue(DETERMINES)
-                && this.transferOfOwnership.value(DETERMINES).isEmpty()) {
+                && this.transferOfOwnership.values(DETERMINES).isEmpty()) {
             throw new HqdmException("Property Not Set: determines");
         }
         if (this.transferOfOwnership.hasValue(ENDING)
-                && this.transferOfOwnership.value(ENDING).isEmpty()) {
+                && this.transferOfOwnership.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.transferOfOwnership.hasValue(MEMBER__OF)
-                && this.transferOfOwnership.value(MEMBER__OF).isEmpty()) {
+                && this.transferOfOwnership.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.transferOfOwnership.hasValue(MEMBER_OF)
-                && this.transferOfOwnership.value(MEMBER_OF).isEmpty()) {
+                && this.transferOfOwnership.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.transferOfOwnership.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.transferOfOwnership.hasValue(PART__OF)
-                && this.transferOfOwnership.value(PART__OF).isEmpty()) {
+                && this.transferOfOwnership.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (this.transferOfOwnership.hasValue(PART_OF)
-                && this.transferOfOwnership.value(PART_OF).isEmpty()) {
+                && this.transferOfOwnership.values(PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of");
         }
         if (this.transferOfOwnership.hasValue(PART_OF_)
-                && this.transferOfOwnership.value(PART_OF_).isEmpty()) {
+                && this.transferOfOwnership.values(PART_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_");
         }
         if (!this.transferOfOwnership.hasValue(PART_OF_POSSIBLE_WORLD)) {
@@ -426,11 +426,11 @@ public class TransferOfOwnershipBuilder {
             throw new HqdmException("Property Not Set: references");
         }
         if (this.transferOfOwnership.hasValue(TEMPORAL__PART_OF)
-                && this.transferOfOwnership.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.transferOfOwnership.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.transferOfOwnership.hasValue(TEMPORAL_PART_OF)
-                && this.transferOfOwnership.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.transferOfOwnership.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return transferOfOwnership;

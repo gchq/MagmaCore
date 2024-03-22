@@ -149,17 +149,17 @@ public class SignPatternTestData {
         final Sign sign1 = SpatioTemporalExtentServices.createSign(new IRI(TEST_BASE, "sign1"));
         sign1.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
         sign1.addValue(HQDM.MEMBER_OF_, pattern1Iri);
-        sign1.addValue(HQDM.VALUE_, "person1");
+        sign1.addStringValue(HQDM.VALUE_, "person1");
 
         final Sign sign2 = SpatioTemporalExtentServices.createSign(new IRI(TEST_BASE, "sign2"));
         sign2.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
         sign2.addValue(HQDM.MEMBER_OF_, pattern2Iri);
-        sign2.addValue(HQDM.VALUE_, "person2");
+        sign2.addStringValue(HQDM.VALUE_, "person2");
 
         final Sign sign3 = SpatioTemporalExtentServices.createSign(new IRI(TEST_BASE, "sign3"));
         sign3.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
         sign3.addValue(HQDM.MEMBER_OF_, pattern2Iri);
-        sign3.addValue(HQDM.VALUE_, "person3");
+        sign3.addStringValue(HQDM.VALUE_, "person3");
 
         // Create states for the Signs
         final StateOfSign stateOfSign1 = SpatioTemporalExtentServices

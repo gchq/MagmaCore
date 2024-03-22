@@ -100,11 +100,11 @@ public class CompositionBuilder {
      */
     public Composition build() throws HqdmException {
         if (this.composition.hasValue(MEMBER__OF)
-                && this.composition.value(MEMBER__OF).isEmpty()) {
+                && this.composition.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.composition.hasValue(MEMBER_OF)
-                && this.composition.value(MEMBER_OF).isEmpty()) {
+                && this.composition.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (!this.composition.hasValue(PART)) {

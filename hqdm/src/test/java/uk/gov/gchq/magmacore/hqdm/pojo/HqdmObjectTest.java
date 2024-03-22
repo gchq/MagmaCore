@@ -32,6 +32,7 @@ import uk.gov.gchq.magmacore.hqdm.model.impl.PointInTimeImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.PossibleWorldImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.SpatioTemporalExtentImpl;
 import uk.gov.gchq.magmacore.hqdm.model.impl.ThingImpl;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
 
@@ -50,18 +51,18 @@ public class HqdmObjectTest {
         final IRI beginEventIri = new IRI(TEST_BASE, beginDateTime);
         final PointInTime beginEvent = new PointInTimeImpl(beginEventIri);
 
-        beginEvent.addValue("HQDM.PART_OF_POSSIBLE_WORLD", possibleWorld.getId());
+        beginEvent.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
 
         final IRI endEventIri = new IRI(TEST_BASE, endDate);
         final PointInTime endEvent = new PointInTimeImpl(endEventIri);
 
-        endEvent.addValue("HQDM.PART_OF_POSSIBLE_WORLD", possibleWorld.getId());
+        endEvent.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
 
         final SpatioTemporalExtent object1 = new SpatioTemporalExtentImpl(new IRI(TEST_BASE, "Object1"));
 
-        object1.addValue("HQDM.BEGINNING", beginEvent.getId());
-        object1.addValue("HQDM.ENDING", endEvent.getId());
-        object1.addValue("HQDM.PART_OF_POSSIBLE_WORLD", possibleWorld.getId());
+        object1.addValue(HQDM.BEGINNING, beginEvent.getId());
+        object1.addValue(HQDM.ENDING, endEvent.getId());
+        object1.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
 
         Assert.assertEquals(beginEventIri, beginEvent.getId());
         Assert.assertEquals(endEventIri, endEvent.getId());
@@ -69,23 +70,28 @@ public class HqdmObjectTest {
 
     @Test
     public void testDeleteValueFromThing() {
-        final var thing = new ThingImpl(new IRI(TEST_BASE, "test"));
+        final Thing thing = new ThingImpl(new IRI(TEST_BASE, "test"));
+        final IRI testPredicate1 = new IRI(TEST_BASE, "test-predicate-1");
+        final IRI testPredicate2 = new IRI(TEST_BASE, "test-predicate-2");
+        final IRI testValue1 = new IRI(TEST_BASE, "test-value-1");
+        final IRI testValue2 = new IRI(TEST_BASE, "test-value-2");
+        final IRI testValue3 = new IRI(TEST_BASE, "test-value-3");
 
         // Add a predicate and confirm it is present.
-        thing.addValue("test-predicate", "test-value");
-        Assert.assertTrue(thing.hasThisValue("test-predicate", "test-value"));
+        thing.addValue(testPredicate1, testValue1);
+        Assert.assertTrue(thing.hasThisValue(testPredicate1, testValue1));
 
         // Delete a non-existent predicate and make sure the test predicate is still present.
-        thing.removeValue("test-predicate-2", "test-value-2");
-        Assert.assertTrue(thing.hasThisValue("test-predicate", "test-value"));
+        thing.removeValue(testPredicate2, testValue2);
+        Assert.assertTrue(thing.hasThisValue(testPredicate1, testValue1));
 
         // Delete a non-existent value for the predicate and make sure the test value is still present.
-        thing.removeValue("test-predicate", "test-value-3");
-        Assert.assertTrue(thing.hasThisValue("test-predicate", "test-value"));
+        thing.removeValue(testPredicate1, testValue3);
+        Assert.assertTrue(thing.hasThisValue(testPredicate1, testValue1));
 
         // Remove the test predicate and make sure it is no longer present.
-        thing.removeValue("test-predicate", "test-value");
-        Assert.assertFalse(thing.hasThisValue("test-predicate", "test-value"));
+        thing.removeValue(testPredicate1, testValue1);
+        Assert.assertFalse(thing.hasThisValue(testPredicate1, testValue1));
     }
 
     /**
@@ -94,10 +100,15 @@ public class HqdmObjectTest {
     @Test
     public void testTwoObjectsAreEqual() {
         final Thing thing1 = new ThingImpl(new IRI(TEST_BASE, "thing1"));
-        thing1.addValue("test-predicate", "test-value");
+        final IRI testPredicate1 = new IRI(TEST_BASE, "test-predicate-1");
+        final IRI testPredicate2 = new IRI(TEST_BASE, "test-predicate-2");
+        final IRI testValue1 = new IRI(TEST_BASE, "test-value-1");
+        final IRI testValue2 = new IRI(TEST_BASE, "test-value-2");
+
+        thing1.addValue(testPredicate1, testValue1);
 
         final Thing thing2 = new ThingImpl(new IRI(TEST_BASE, "thing1"));
-        thing2.addValue("test-predicate2", "test-value2");
+        thing2.addValue(testPredicate2, testValue2);
 
         assertEquals(thing1, thing2);
     }
@@ -109,10 +120,15 @@ public class HqdmObjectTest {
     @Test
     public void testSetContainsHqdmObject() {
         final Thing thing1 = new ThingImpl(new IRI(TEST_BASE, "thing1"));
-        thing1.addValue("test-predicate", "test-value");
+        final IRI testPredicate1 = new IRI(TEST_BASE, "test-predicate-1");
+        final IRI testPredicate2 = new IRI(TEST_BASE, "test-predicate-2");
+        final IRI testValue1 = new IRI(TEST_BASE, "test-value-1");
+        final IRI testValue2 = new IRI(TEST_BASE, "test-value-2");
+
+        thing1.addValue(testPredicate1, testValue1);
 
         final SpatioTemporalExtent thing2 = new SpatioTemporalExtentImpl(new IRI(TEST_BASE, "thing1"));
-        thing2.addValue("test-predicate2", "test-value2");
+        thing2.addValue(testPredicate2, testValue2);
 
         final Set<Thing> things = new HashSet<>();
         things.add(thing2);

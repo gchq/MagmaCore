@@ -223,42 +223,42 @@ public class PhysicalObjectBuilder {
      */
     public PhysicalObject build() throws HqdmException {
         if (this.physicalObject.hasValue(AGGREGATED_INTO)
-                && this.physicalObject.value(AGGREGATED_INTO).isEmpty()) {
+                && this.physicalObject.values(AGGREGATED_INTO).isEmpty()) {
             throw new HqdmException("Property Not Set: aggregated_into");
         }
         if (this.physicalObject.hasValue(BEGINNING)
-                && this.physicalObject.value(BEGINNING).isEmpty()) {
+                && this.physicalObject.values(BEGINNING).isEmpty()) {
             throw new HqdmException("Property Not Set: beginning");
         }
         if (this.physicalObject.hasValue(ENDING)
-                && this.physicalObject.value(ENDING).isEmpty()) {
+                && this.physicalObject.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
         if (this.physicalObject.hasValue(MEMBER__OF)
-                && this.physicalObject.value(MEMBER__OF).isEmpty()) {
+                && this.physicalObject.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.physicalObject.hasValue(MEMBER_OF)
-                && this.physicalObject.value(MEMBER_OF).isEmpty()) {
+                && this.physicalObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.physicalObject.hasValue(MEMBER_OF_KIND)
-                && this.physicalObject.value(MEMBER_OF_KIND).isEmpty()) {
+                && this.physicalObject.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
         if (this.physicalObject.hasValue(PART__OF)
-                && this.physicalObject.value(PART__OF).isEmpty()) {
+                && this.physicalObject.values(PART__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of");
         }
         if (!this.physicalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (this.physicalObject.hasValue(TEMPORAL__PART_OF)
-                && this.physicalObject.value(TEMPORAL__PART_OF).isEmpty()) {
+                && this.physicalObject.values(TEMPORAL__PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.physicalObject.hasValue(TEMPORAL_PART_OF)
-                && this.physicalObject.value(TEMPORAL_PART_OF).isEmpty()) {
+                && this.physicalObject.values(TEMPORAL_PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: temporal_part_of");
         }
         return physicalObject;

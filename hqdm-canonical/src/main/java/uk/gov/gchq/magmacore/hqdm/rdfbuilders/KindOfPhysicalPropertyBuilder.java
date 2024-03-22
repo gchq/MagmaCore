@@ -86,15 +86,15 @@ public class KindOfPhysicalPropertyBuilder {
      */
     public KindOfPhysicalProperty build() throws HqdmException {
         if (this.kindOfPhysicalProperty.hasValue(HAS_SUPERCLASS)
-                && this.kindOfPhysicalProperty.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.kindOfPhysicalProperty.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.kindOfPhysicalProperty.hasValue(MEMBER__OF)
-                && this.kindOfPhysicalProperty.value(MEMBER__OF).isEmpty()) {
+                && this.kindOfPhysicalProperty.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.kindOfPhysicalProperty.hasValue(MEMBER_OF)
-                && this.kindOfPhysicalProperty.value(MEMBER_OF).isEmpty()) {
+                && this.kindOfPhysicalProperty.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         return kindOfPhysicalProperty;

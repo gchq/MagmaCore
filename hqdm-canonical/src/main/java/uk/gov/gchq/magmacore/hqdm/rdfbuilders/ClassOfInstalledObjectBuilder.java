@@ -141,23 +141,23 @@ public class ClassOfInstalledObjectBuilder {
      */
     public ClassOfInstalledObject build() throws HqdmException {
         if (this.classOfInstalledObject.hasValue(HAS_SUPERCLASS)
-                && this.classOfInstalledObject.value(HAS_SUPERCLASS).isEmpty()) {
+                && this.classOfInstalledObject.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
         if (this.classOfInstalledObject.hasValue(MEMBER__OF)
-                && this.classOfInstalledObject.value(MEMBER__OF).isEmpty()) {
+                && this.classOfInstalledObject.values(MEMBER__OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfInstalledObject.hasValue(MEMBER_OF)
-                && this.classOfInstalledObject.value(MEMBER_OF).isEmpty()) {
+                && this.classOfInstalledObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
         if (this.classOfInstalledObject.hasValue(MEMBER_OF_)
-                && this.classOfInstalledObject.value(MEMBER_OF_).isEmpty()) {
+                && this.classOfInstalledObject.values(MEMBER_OF_).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_");
         }
         if (this.classOfInstalledObject.hasValue(PART__OF_BY_CLASS)
-                && this.classOfInstalledObject.value(PART__OF_BY_CLASS).isEmpty()) {
+                && this.classOfInstalledObject.values(PART__OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part__of_by_class");
         }
         return this.classOfInstalledObject;
