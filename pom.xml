@@ -64,14 +64,6 @@
 
   <dependencyManagement>
     <dependencies>
-      <!-- https://mvnrepository.com/artifact/org.eclipse.rdf4j/rdf4j-bom -->
-      <dependency>
-        <groupId>org.eclipse.rdf4j</groupId>
-        <artifactId>rdf4j-bom</artifactId>
-        <version>4.3.10</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
       <dependency>
         <groupId>uk.gov.gchq.magma-core</groupId>
         <artifactId>core</artifactId>
@@ -172,6 +164,13 @@
         <version>3.0.1</version>
         <configuration>
           <tagNameFormat>@{project.version}</tagNameFormat>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <useModulePath>false</useModulePath>  <!-- tests use classpath -->
         </configuration>
       </plugin>
     </plugins>

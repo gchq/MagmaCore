@@ -260,7 +260,7 @@ public class MagmaCoreSailInMemoryDatabase implements MagmaCoreDatabase {
      * @param statement SPARQL update query to execute.
      */
     protected void executeUpdate(final String statement) {
-        repository.prepareGraphQuery(statement).evaluate();
+        repository.prepareUpdate(statement).execute();
     }
 
     @Override
