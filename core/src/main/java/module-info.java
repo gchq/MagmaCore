@@ -29,6 +29,7 @@ module uk.gov.gchq.magmacore {
     requires rdf4j.repository.api;
     requires rdf4j.repository.sail;
     requires rdf4j.sail.memory;
+    requires rdf4j.sail.nativerdf;
     requires rdf4j.model;
     requires rdf4j.model.api;
     requires rdf4j.query;

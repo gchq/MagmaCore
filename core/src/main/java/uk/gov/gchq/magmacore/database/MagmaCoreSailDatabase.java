@@ -1,5 +1,6 @@
 package uk.gov.gchq.magmacore.database;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -29,6 +30,7 @@ import org.eclipse.rdf4j.rio.RDFParseException;
 import org.eclipse.rdf4j.rio.RDFWriter;
 import org.eclipse.rdf4j.rio.Rio;
 import org.eclipse.rdf4j.sail.memory.MemoryStore;
+import org.eclipse.rdf4j.sail.nativerdf.NativeStore;
 
 import uk.gov.gchq.magmacore.database.query.QueryResult;
 import uk.gov.gchq.magmacore.database.query.QueryResultList;
@@ -43,12 +45,16 @@ import uk.gov.gchq.magmacore.service.transformation.DbDeleteOperation;
 /**
  * RDF4J Sail Repository with In-Memory data store.
  */
-public class MagmaCoreSailInMemoryDatabase implements MagmaCoreDatabase {
+public class  MagmaCoreSailDatabase implements MagmaCoreDatabase {
 
     private final RepositoryConnection repository;
 
-    public MagmaCoreSailInMemoryDatabase() {
+    public MagmaCoreSailDatabase() {
         repository = new SailRepository(new MemoryStore()).getConnection();
+    }
+
+    public MagmaCoreSailDatabase(final File dataDir) {
+        repository = new SailRepository(new NativeStore(dataDir)).getConnection();
     }
 
     @Override

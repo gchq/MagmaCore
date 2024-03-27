@@ -14,9 +14,11 @@
 
 package uk.gov.gchq.magmacore.service;
 
+import java.io.File;
+
 import uk.gov.gchq.magmacore.database.MagmaCoreJenaDatabase;
 import uk.gov.gchq.magmacore.database.MagmaCoreRemoteSparqlDatabase;
-import uk.gov.gchq.magmacore.database.MagmaCoreSailInMemoryDatabase;
+import uk.gov.gchq.magmacore.database.MagmaCoreSailDatabase;
 
 /**
  * Factory for creating MagmaCoreService instances. This removes the need to expose
@@ -61,6 +63,15 @@ public class MagmaCoreServiceFactory {
      * @return {@link MagmaCoreService}
      */
     public static MagmaCoreService createWithSailInMemoryDatabase() {
-        return new MagmaCoreService(new MagmaCoreSailInMemoryDatabase());
+        return new MagmaCoreService(new MagmaCoreSailDatabase());
+    }
+
+    /**
+     * Create a {@link MagmaCoreService} for a new {@link MagmaCoreSailNativeDatabase}.
+     *
+     * @return {@link MagmaCoreService}
+     */
+    public static MagmaCoreService createWithSailNativeDatabase(final File dataDir) {
+        return new MagmaCoreService(new MagmaCoreSailDatabase(dataDir));
     }
 }
