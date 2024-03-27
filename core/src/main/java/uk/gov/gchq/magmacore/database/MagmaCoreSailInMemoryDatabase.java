@@ -355,9 +355,9 @@ public class MagmaCoreSailInMemoryDatabase implements MagmaCoreDatabase {
                 dataModelObject = new ArrayList<>();
                 objectMap.put(subjectValue, dataModelObject);
             }
-            if (objectValue instanceof Literal) {
+            if (objectValue instanceof uk.gov.gchq.magmacore.database.query.Literal) {
                 dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()), objectValue.toString()));
-            } else if (objectValue instanceof Resource) {
+            } else if (objectValue instanceof uk.gov.gchq.magmacore.database.query.Resource) {
                 dataModelObject.add(new Pair<>(new IRI(predicateValue.toString()), new IRI(objectValue.toString())));
             } else {
                 throw new RuntimeException("objectValue is of unknown type: " + objectValue.getClass());
