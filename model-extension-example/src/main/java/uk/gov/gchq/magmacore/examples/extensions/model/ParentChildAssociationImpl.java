@@ -1,6 +1,8 @@
 package uk.gov.gchq.magmacore.examples.extensions.model;
 
-import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.*;
+import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.CHILD_ROLE_IRI;
+import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.PARENT_CHILD_ASSOCIATION_IRI;
+import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.PARENT_ROLE_IRI;
 
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
@@ -10,7 +12,6 @@ import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
  * An implementation of the ParentChildAssociation interface.
  */
 public class ParentChildAssociationImpl extends HqdmObject implements ParentChildAssociation {
-
     /**
      * Constructor.
      *
@@ -52,5 +53,4 @@ public class ParentChildAssociationImpl extends HqdmObject implements ParentChil
     public void setChildIri(final IRI iri) {
         addValue(CHILD_ROLE_IRI, iri);
     }
-
 }

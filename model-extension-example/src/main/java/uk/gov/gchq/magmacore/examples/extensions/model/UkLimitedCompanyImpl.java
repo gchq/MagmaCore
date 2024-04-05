@@ -8,7 +8,6 @@ import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
  * An HQDM Extension class to add a new entity type to MagmaCore.
  */
 public class UkLimitedCompanyImpl extends HqdmObject implements UkLimitedCompany {
-
     /**
      * {@code UkLimitedCompany} constructor.
      *

@@ -16,21 +16,20 @@ public interface Constants {
 
     /** UK software development company type name. */
     public static final String UK_SOFTWARE_DEVELOPMENT_COMPANY_TYPE_NAME = "uk_software_development_company";
-    
+
     /** UK software development company IRI. */
-    public static final HqdmIri UK_SOFTWARE_DEVELOPMENT_COMPANY_IRI = 
-        new HqdmIri(HQDM, UK_SOFTWARE_DEVELOPMENT_COMPANY_TYPE_NAME);
+    public static final HqdmIri UK_SOFTWARE_DEVELOPMENT_COMPANY_IRI = new HqdmIri(HQDM,
+            UK_SOFTWARE_DEVELOPMENT_COMPANY_TYPE_NAME);
 
     /** Parent/Child Association type name. */
     public static final String PARENT_CHILD_ASSOCIATION_TYPE_NAME = "parent_child_association";
 
     /** Parent/Child Association IRI. */
-    public static final HqdmIri PARENT_CHILD_ASSOCIATION_IRI 
-        = new HqdmIri(HQDM, PARENT_CHILD_ASSOCIATION_TYPE_NAME);
+    public static final HqdmIri PARENT_CHILD_ASSOCIATION_IRI = new HqdmIri(HQDM, PARENT_CHILD_ASSOCIATION_TYPE_NAME);
 
     /** Parent role type name. */
     public static final String PARENT_ROLE_NAME = "parent_role";
-    
+
     /** Parent role IRI. */
     public static final HqdmIri PARENT_ROLE_IRI = new HqdmIri(HQDM, PARENT_ROLE_NAME);
 

@@ -1,6 +1,8 @@
 package uk.gov.gchq.magmacore.examples.extensions;
 
-import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.*;
+import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.CHILD_ROLE_NAME;
+import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.PARENT_CHILD_ASSOCIATION_TYPE_NAME;
+import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.PARENT_ROLE_NAME;
 
 import java.util.UUID;
 import java.util.function.Function;
@@ -41,14 +43,14 @@ public class ParentChildAssociationFunction implements Function<MagmaCoreService
      * Constructor that initialises all of the parameters.
      *
      * @param possibleWorld {@link PossibleWorld}
-     * @param parent {@link Parent}
-     * @param child {@link Child}
-     * @param beginning {@link Event}
-     * @param ending {@link Event}
+     * @param parent        {@link Parent}
+     * @param child         {@link Child}
+     * @param beginning     {@link Event}
+     * @param ending        {@link Event}
      */
     public ParentChildAssociationFunction(
             final PossibleWorld possibleWorld,
-            final Parent parent, 
+            final Parent parent,
             final Child child,
             final Event beginning,
             final Event ending) {
@@ -88,7 +90,7 @@ public class ParentChildAssociationFunction implements Function<MagmaCoreService
         // Obtain the required parent and child roles.
         final Role parentRole = getOrCreateRole(mcSvc, PARENT_ROLE_NAME);
         final Role childRole = getOrCreateRole(mcSvc, CHILD_ROLE_NAME);
-        
+
         // Apply the roles to the parent and child.
         parent.addValue(HQDM.MEMBER_OF_KIND, parentRole.getId());
         child.addValue(HQDM.MEMBER_OF_KIND, childRole.getId());
@@ -120,7 +122,7 @@ public class ParentChildAssociationFunction implements Function<MagmaCoreService
         parent.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
         child.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorld.getId());
 
-        // Persist everything - including the supplied parameters and roles in 
+        // Persist everything - including the supplied parameters and roles in
         // case they weren't already persisted.
         mcSvc.create(possibleWorld);
         mcSvc.create(result);
@@ -133,10 +135,10 @@ public class ParentChildAssociationFunction implements Function<MagmaCoreService
     }
 
     /**
-     * The Roles should exist as Reference Data entities, but for this example 
-     * we create them if they don't exist. This may also be useful in production.
+     * The Roles should exist as Reference Data entities, but for this example we create them if they
+     * don't exist. This may also be useful in production.
      *
-     * @param mcSvc {@link MagmaCoreService}
+     * @param mcSvc    {@link MagmaCoreService}
      * @param roleName {@link String}
      * @return {@link Role}
      */

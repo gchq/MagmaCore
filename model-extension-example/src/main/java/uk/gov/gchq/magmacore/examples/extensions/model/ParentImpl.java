@@ -8,7 +8,6 @@ import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
  * An implementation of the Parent interface.
  */
 public class ParentImpl extends HqdmObject implements Parent {
-
     /**
      * Constructor.
      *
@@ -18,5 +17,4 @@ public class ParentImpl extends HqdmObject implements Parent {
         super(id);
         addValue(RDFS.RDF_TYPE, Constants.PARENT_IRI);
     }
-
 }

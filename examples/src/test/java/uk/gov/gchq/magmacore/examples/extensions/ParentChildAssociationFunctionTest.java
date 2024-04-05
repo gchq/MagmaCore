@@ -21,7 +21,7 @@ import uk.gov.gchq.magmacore.service.MagmaCoreServiceFactory;
  * Tests for the ParentChildAssociationFunction class.
  */
 public class ParentChildAssociationFunctionTest {
-    
+
     // An IRI Base for the test entities.
     private static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
 
@@ -32,7 +32,7 @@ public class ParentChildAssociationFunctionTest {
     private static final MagmaCoreService svc = MagmaCoreServiceFactory.createWithJenaDatabase();
 
     /**
-     * Demonstrate how to use the ParentChildAssociationFunction to create a 
+     * Demonstrate how to use the ParentChildAssociationFunction to create a
      * fully populated and persisted ParentChildAssociation.
      */
     @Test
@@ -51,11 +51,12 @@ public class ParentChildAssociationFunctionTest {
 
         // Create the Parent.
         final Parent parent = ext.createEntity(Constants.PARENT_TYPE_NAME, randomIri());
-        
+
         // Create the Child.
         final Child child = ext.createEntity(Constants.CHILD_TYPE_NAME, randomIri());
 
-        // Instantiate a ParentChildAssociationFunction and execute it n a write transaction.
+        // Instantiate a ParentChildAssociationFunction and execute it n a write
+        // transaction.
         svc.runInWriteTransaction(new ParentChildAssociationFunction(
                 possibleWorld,
                 parent,

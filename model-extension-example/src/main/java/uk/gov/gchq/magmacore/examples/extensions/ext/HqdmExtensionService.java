@@ -1,6 +1,10 @@
 package uk.gov.gchq.magmacore.examples.extensions.ext;
 
-import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.*;
+import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.CHILD_TYPE_NAME;
+import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.PARENT_CHILD_ASSOCIATION_TYPE_NAME;
+import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.PARENT_TYPE_NAME;
+import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.UK_LIMITED_COMPANY_TYPE_NAME;
+import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.UK_SOFTWARE_DEVELOPMENT_COMPANY_TYPE_NAME;
 
 import uk.gov.gchq.magmacore.examples.extensions.model.ChildImpl;
 import uk.gov.gchq.magmacore.examples.extensions.model.ParentChildAssociationImpl;
@@ -12,10 +16,10 @@ import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
- * An example HQDM ExtensionService for adding some extension classes to MagmaCore.
+ * An example HQDM ExtensionService for adding some extension classes to
+ * MagmaCore.
  */
 public class HqdmExtensionService implements ExtensionService {
-
     /**
      * {@inheritDoc}
      */
