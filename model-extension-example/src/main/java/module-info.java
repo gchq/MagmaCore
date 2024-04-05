@@ -7,5 +7,6 @@ module uk.gov.gchq.magmacore.examples.extensions {
 
     requires transitive uk.gov.gchq.magmacore.hqdm;
 
-    provides uk.gov.gchq.magmacore.hqdm.extensions.ExtensionServiceProvider with uk.gov.gchq.magmacore.examples.extensions.ext.HqdmExtensionServiceProvider;
+    provides uk.gov.gchq.magmacore.hqdm.extensions.ExtensionServiceProvider
+            with uk.gov.gchq.magmacore.examples.extensions.ext.HqdmExtensionServiceProvider;
 }
