@@ -11,10 +11,10 @@ import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
- * An example ExtensionServiceProvider for adding some extension classes to MagmaCore.
+ * An example ExtensionServiceProvider for adding some extension classes to
+ * MagmaCore.
  */
 public class HqdmExtensionServiceProvider implements ExtensionServiceProvider {
-
     /**
      * {@inheritDoc}
      */
@@ -28,5 +28,4 @@ public class HqdmExtensionServiceProvider implements ExtensionServiceProvider {
         // Create ane return the extension service.
         return new HqdmExtensionService();
     }
-
 }
