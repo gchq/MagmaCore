@@ -9,7 +9,6 @@ tdb/
 out
 *.code-workspace
 *.iml
-*.ttl
 .DS_Store
 .factorypath
 .devcontainer
