@@ -39,7 +39,7 @@ import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
  */
 public class SignPatternTestData {
 
-    static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
+    public static final IriBase TEST_BASE = new IriBase("test", "http://example.com/test#");
     static RecognizingLanguageCommunity community1;
     static RecognizingLanguageCommunity community2;
     static Pattern pattern1;
@@ -57,7 +57,8 @@ public class SignPatternTestData {
      * Populate a {@link MagmaCoreDatabase} with an instance of the sign pattern.
      *
      * <p>
-     * This will create two {@link RepresentationBySign} associations that each use a String to
+     * This will create two {@link RepresentationBySign} associations that each use
+     * a String to
      * represent a {@link StateOfPerson}, but for different {@link Pattern} and
      * {@link RecognizingLanguageCommunity} objects.
      * </p>
