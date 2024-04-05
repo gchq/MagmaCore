@@ -731,8 +731,7 @@ public class ClassServices {
      */
     public static ClassOfStateOfFunctionalSystemComponent createClassOfStateOfFunctionalSystemComponent(
             final IRI id) {
-        final ClassOfStateOfFunctionalSystemComponent result = 
-            new ClassOfStateOfFunctionalSystemComponentImpl(id);
+        final ClassOfStateOfFunctionalSystemComponent result = new ClassOfStateOfFunctionalSystemComponentImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_FUNCTIONAL_SYSTEM_COMPONENT);
         return result;
     }
@@ -745,8 +744,8 @@ public class ClassServices {
      */
     public static ClassOfStateOfIntentionallyConstructedObject createClassOfStateOfIntentionallyConstructedObject(
             final IRI id) {
-        final ClassOfStateOfIntentionallyConstructedObject result = 
-            new ClassOfStateOfIntentionallyConstructedObjectImpl(id);
+        final ClassOfStateOfIntentionallyConstructedObject result = new ClassOfStateOfIntentionallyConstructedObjectImpl(
+                id);
         result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_INTENTIONALLY_CONSTRUCTED_OBJECT);
         return result;
     }
