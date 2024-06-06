@@ -15,6 +15,7 @@
 package uk.gov.gchq.magmacore.hqdm.rdf;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS.RDF_TYPE;
+import static uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ServiceLoader;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
@@ -71,6 +73,7 @@ public final class HqdmObjectFactory {
      * @return The constructed HQDM object.
      * @throws HqdmException If the HqdmObject could not be built.
      */
+    @SuppressWarnings("unchecked")
     public static <T extends Thing> T create(final HqdmIri hqdmType, final IRI iri) throws HqdmException {
         return (T) mapToThing(hqdmType.getResource(), iri);
     }
@@ -124,6 +127,7 @@ public final class HqdmObjectFactory {
      * @param iris List of {@link IRI}.
      * @return Array of Class.
      */
+    @SuppressWarnings("unchecked")
     private static <T extends Thing> java.lang.Class<T>[] irisToClasses(final Set<IRI> iris) {
         final Set<java.lang.Class<? extends Thing>> classes = new HashSet<>(3);
 
@@ -136,7 +140,7 @@ public final class HqdmObjectFactory {
     }
 
     // A statically initialized Map of IRIs to HQDM classes.
-    private static final Map<IRI, java.lang.Class<? extends Thing>> iriToClassMap = new HashMap<>(250);
+    private static final Map<IRI, java.lang.Class<? extends Thing>> iriToClassMap = new HashMap<>(400);
 
     static {
         iriToClassMap.put(HQDM.ABSTRACT_OBJECT, AbstractObject.class);
@@ -389,477 +393,312 @@ public final class HqdmObjectFactory {
      * @throws HqdmException If the typeName is invalid.
      */
     private static Thing mapToThing(final String typeName, final IRI iri) {
+        // Get a method to create a new Thing of the right type.
+        return factoryMethods.getOrDefault(typeName, 
+            // If no method then return a lambda that will search for extensions.
+            (ir) -> {
+                return findExtendedTypes(typeName, ir);
+            })
+        // Call the method to create the new entity.
+        .apply(iri);
+    }
 
-        switch (typeName) {
-            case "abstract_object":
-                return SpatioTemporalExtentServices.createAbstractObject(iri);
-            case "acceptance_of_offer":
-                return SpatioTemporalExtentServices.createAcceptanceOfOffer(iri);
-            case "acceptance_of_offer_for_goods":
-                return SpatioTemporalExtentServices.createAcceptanceOfOfferForGoods(iri);
-            case "activity":
-                return SpatioTemporalExtentServices.createActivity(iri);
-            case "aggregation":
-                return RelationshipServices.createAggregation(iri);
-            case "agree_contract":
-                return SpatioTemporalExtentServices.createAgreeContract(iri);
-            case "agreement_execution":
-                return SpatioTemporalExtentServices.createAgreementExecution(iri);
-            case "agreement_process":
-                return SpatioTemporalExtentServices.createAgreementProcess(iri);
-            case "amount_of_money":
-                return SpatioTemporalExtentServices.createAmountOfMoney(iri);
-            case "asset":
-                return SpatioTemporalExtentServices.createAsset(iri);
-            case "association":
-                return SpatioTemporalExtentServices.createAssociation(iri);
-            case "beginning_of_ownership":
-                return SpatioTemporalExtentServices.createBeginningOfOwnership(iri);
-            case "biological_object":
-                return SpatioTemporalExtentServices.createBiologicalObject(iri);
-            case "biological_system":
-                return SpatioTemporalExtentServices.createBiologicalSystem(iri);
-            case "biological_system_component":
-                return SpatioTemporalExtentServices.createBiologicalSystemComponent(iri);
-            case "class":
-                return ClassServices.createClass(iri);
-            case "classification":
-                return RelationshipServices.createClassification(iri);
-            case "class_of_abstract_object":
-                return ClassServices.createClassOfAbstractObject(iri);
-            case "class_of_activity":
-                return ClassServices.createClassOfActivity(iri);
-            case "class_of_agree_contract":
-                return ClassServices.createClassOfAgreeContract(iri);
-            case "class_of_agreement_execution":
-                return ClassServices.createClassOfAgreementExecution(iri);
-            case "class_of_agreement_process":
-                return ClassServices.createClassOfAgreementProcess(iri);
-            case "class_of_amount_of_money":
-                return ClassServices.createClassOfAmountOfMoney(iri);
-            case "class_of_association":
-                return ClassServices.createClassOfAssociation(iri);
-            case "class_of_biological_object":
-                return ClassServices.createClassOfBiologicalObject(iri);
-            case "class_of_biological_system":
-                return ClassServices.createClassOfBiologicalSystem(iri);
-            case "class_of_biological_system_component":
-                return ClassServices.createClassOfBiologicalSystemComponent(iri);
-            case "class_of_class":
-                return ClassServices.createClassOfClass(iri);
-            case "class_of_class_of_spatio_temporal_extent":
-                return ClassServices.createClassOfSpatioTemporalExtent(iri);
-            case "class_of_contract_execution":
-                return ClassServices.createClassOfContractExecution(iri);
-            case "class_of_contract_process":
-                return ClassServices.createClassOfContractProcess(iri);
-            case "class_of_event":
-                return ClassServices.createClassOfEvent(iri);
-            case "class_of_functional_object":
-                return ClassServices.createClassOfFunctionalObject(iri);
-            case "class_of_functional_system":
-                return ClassServices.createClassOfFunctionalSystem(iri);
-            case "class_of_functional_system_component":
-                return ClassServices.createClassOfFunctionalSystemComponent(iri);
-            case "class_of_individual":
-                return ClassServices.createClassOfIndividual(iri);
-            case "class_of_in_place_biological_component":
-                return ClassServices.createClassOfInPlaceBiologicalComponent(iri);
-            case "class_of_installed_functional_system_component":
-                return ClassServices.createClassOfInstalledFunctionalSystemComponent(iri);
-            case "class_of_installed_object":
-                return ClassServices.createClassOfInstalledObject(iri);
-            case "class_of_intentionally_constructed_object":
-                return ClassServices.createClassOfIntentionallyConstructedObject(iri);
-            case "class_of_offer":
-                return ClassServices.createClassOfOffer(iri);
-            case "class_of_ordinary_biological_object":
-                return ClassServices.createClassOfOrdinaryBiologicalObject(iri);
-            case "class_of_ordinary_functional_object":
-                return ClassServices.createClassOfOrdinaryFunctionalObject(iri);
-            case "class_of_ordinary_physical_object":
-                return ClassServices.createClassOfOrdinaryPhysicalObject(iri);
-            case "class_of_organization":
-                return ClassServices.createClassOfOrganization(iri);
-            case "class_of_organization_component":
-                return ClassServices.createClassOfOrganizationComponent(iri);
-            case "class_of_participant":
-                return ClassServices.createClassOfParticipant(iri);
-            case "class_of_party":
-                return ClassServices.createClassOfParty(iri);
-            case "class_of_period_of_time":
-                return ClassServices.createClassOfPeriodOfTime(iri);
-            case "class_of_person":
-                return ClassServices.createClassOfPerson(iri);
-            case "class_of_person_in_position":
-                return ClassServices.createClassOfPersonInPosition(iri);
-            case "class_of_physical_object":
-                return ClassServices.createClassOfPhysicalObject(iri);
-            case "class_of_physical_property":
-                return ClassServices.createClassOfPhysicalProperty(iri);
-            case "class_of_physical_quantity":
-                return ClassServices.createClassOfPhysicalQuantity(iri);
-            case "class_of_point_in_time":
-                return ClassServices.createClassOfPointInTime(iri);
-            case "class_of_position":
-                return ClassServices.createClassOfPosition(iri);
-            case "class_of_possible_world":
-                return ClassServices.createClassOfPossibleWorld(iri);
-            case "class_of_reaching_agreement":
-                return ClassServices.createClassOfReachingAgreement(iri);
-            case "class_of_relationship":
-                return ClassServices.createClassOfRelationship(iri);
-            case "class_of_representation":
-                return ClassServices.createClassOfRepresentation(iri);
-            case "class_of_sales_product_instance":
-                return ClassServices.createClassOfSalesProductInstance(iri);
-            case "class_of_sign":
-                return ClassServices.createClassOfSign(iri);
-            case "class_of_socially_constructed_activity":
-                return ClassServices.createClassOfSociallyConstructedActivity(iri);
-            case "class_of_socially_constructed_object":
-                return ClassServices.createClassOfSociallyConstructedObject(iri);
-            case "class_of_spatio_temporal_extent":
-                return ClassServices.createClassOfSpatioTemporalExtent(iri);
-            case "class_of_state":
-                return ClassServices.createClassOfState(iri);
-            case "class_of_state_of_activity":
-                return ClassServices.createClassOfStateOfActivity(iri);
-            case "class_of_state_of_amount_of_money":
-                return ClassServices.createClassOfStateOfAmountOfMoney(iri);
-            case "class_of_state_of_association":
-                return ClassServices.createClassOfStateOfAssociation(iri);
-            case "class_of_state_of_biological_object":
-                return ClassServices.createClassOfStateOfBiologicalObject(iri);
-            case "class_of_state_of_biological_system":
-                return ClassServices.createClassOfStateOfBiologicalSystem(iri);
-            case "class_of_state_of_biological_system_component":
-                return ClassServices.createClassOfStateOfBiologicalSystemComponent(iri);
-            case "class_of_state_of_functional_object":
-                return ClassServices.createClassOfStateOfFunctionalObject(iri);
-            case "class_of_state_of_functional_system":
-                return ClassServices.createClassOfStateOfFunctionalSystem(iri);
-            case "class_of_state_of_functional_system_component":
-                return ClassServices.createClassOfStateOfFunctionalSystemComponent(iri);
-            case "class_of_state_of_intentionally_constructed_object":
-                return ClassServices.createClassOfStateOfIntentionallyConstructedObject(iri);
-            case "class_of_state_of_ordinary_biological_object":
-                return ClassServices.createClassOfStateOfOrdinaryBiologicalObject(iri);
-            case "class_of_state_of_ordinary_functional_object":
-                return ClassServices.createClassOfStateOfOrdinaryFunctionalObject(iri);
-            case "class_of_state_of_ordinary_physical_object":
-                return ClassServices.createClassOfStateOfOrdinaryPhysicalObject(iri);
-            case "class_of_state_of_organization":
-                return ClassServices.createClassOfStateOfOrganization(iri);
-            case "class_of_state_of_organization_component":
-                return ClassServices.createClassOfStateOfOrganizationComponent(iri);
-            case "class_of_state_of_party":
-                return ClassServices.createClassOfStateOfParty(iri);
-            case "class_of_state_of_person":
-                return ClassServices.createClassOfStateOfPerson(iri);
-            case "class_of_state_of_physical_object":
-                return ClassServices.createClassOfStateOfPhysicalObject(iri);
-            case "class_of_state_of_position":
-                return ClassServices.createClassOfStateOfPosition(iri);
-            case "class_of_state_of_sales_product_instance":
-                return ClassServices.createClassOfStateOfSalesProductInstance(iri);
-            case "class_of_state_of_sign":
-                return ClassServices.createClassOfStateOfSign(iri);
-            case "class_of_state_of_socially_constructed_activity":
-                return ClassServices.createClassOfStateOfSociallyConstructedActivity(iri);
-            case "class_of_state_of_socially_constructed_object":
-                return ClassServices.createClassOfStateOfSociallyConstructedObject(iri);
-            case "class_of_state_of_system":
-                return ClassServices.createClassOfStateOfSystem(iri);
-            case "class_of_state_of_system_component":
-                return ClassServices.createClassOfStateOfSystemComponent(iri);
-            case "class_of_system":
-                return ClassServices.createClassOfSystem(iri);
-            case "class_of_system_component":
-                return ClassServices.createClassOfSystemComponent(iri);
-            case "composition":
-                return RelationshipServices.createComposition(iri);
-            case "contract_execution":
-                return SpatioTemporalExtentServices.createContractExecution(iri);
-            case "contract_process":
-                return SpatioTemporalExtentServices.createContractProcess(iri);
-            case "currency":
-                return SpatioTemporalExtentServices.createCurrency(iri);
-            case "defined_relationship":
-                return RelationshipServices.createDefinedRelationship(iri);
-            case "definition":
-                return ClassServices.createDefinition(iri);
-            case "description":
-                return ClassServices.createDescription(iri);
-            case "employee":
-                return SpatioTemporalExtentServices.createEmployee(iri);
-            case "employer":
-                return SpatioTemporalExtentServices.createEmployer(iri);
-            case "employment":
-                return SpatioTemporalExtentServices.createEmployment(iri);
-            case "ending_of_ownership":
-                return SpatioTemporalExtentServices.createEndingOfOwnership(iri);
-            case "enumerated_class":
-                return ClassServices.createEnumeratedClass(iri);
-            case "event":
-                return SpatioTemporalExtentServices.createEvent(iri);
-            case "exchange_of_goods_and_money":
-                return SpatioTemporalExtentServices.createExchangeOfGoodsAndMoney(iri);
-            case "function_":
-                return RelationshipServices.createFunction(iri);
-            case "functional_object":
-                return SpatioTemporalExtentServices.createFunctionalObject(iri);
-            case "functional_system":
-                return SpatioTemporalExtentServices.createFunctionalSystem(iri);
-            case "functional_system_component":
-                return SpatioTemporalExtentServices.createFunctionalSystemComponent(iri);
-            case "identification":
-                return ClassServices.createIdentification(iri);
-            case "identification_of_physical_quantity":
-                return SpatioTemporalExtentServices.createIdentificationOfPhysicalQuantity(iri);
-            case "individual":
-                return SpatioTemporalExtentServices.createIndividual(iri);
-            case "in_place_biological_component":
-                return SpatioTemporalExtentServices.createInPlaceBiologicalComponent(iri);
-            case "installed_functional_system_component":
-                return SpatioTemporalExtentServices.createInstalledFunctionalSystemComponent(iri);
-            case "installed_object":
-                return SpatioTemporalExtentServices.createInstalledObject(iri);
-            case "intentionally_constructed_object":
-                return SpatioTemporalExtentServices.createIntentionallyConstructedObject(iri);
-            case "kind_of_activity":
-                return ClassServices.createKindOfActivity(iri);
-            case "kind_of_association":
-                return ClassServices.createKindOfAssociation(iri);
-            case "kind_of_biological_object":
-                return ClassServices.createKindOfBiologicalObject(iri);
-            case "kind_of_biological_system":
-                return ClassServices.createKindOfBiologicalSystem(iri);
-            case "kind_of_biological_system_component":
-                return ClassServices.createKindOfBiologicalSystemComponent(iri);
-            case "kind_of_functional_object":
-                return ClassServices.createKindOfFunctionalObject(iri);
-            case "kind_of_functional_system":
-                return ClassServices.createKindOfFunctionalSystem(iri);
-            case "kind_of_functional_system_component":
-                return ClassServices.createKindOfFunctionalSystemComponent(iri);
-            case "kind_of_individual":
-                return ClassServices.createKindOfIndividual(iri);
-            case "kind_of_intentionally_constructed_object":
-                return ClassServices.createKindOfIntentionallyConstructedObject(iri);
-            case "kind_of_ordinary_biological_object":
-                return ClassServices.createKindOfOrdinaryBiologicalObject(iri);
-            case "kind_of_ordinary_functional_object":
-                return ClassServices.createKindOfOrdinaryFunctionalObject(iri);
-            case "kind_of_ordinary_physical_object":
-                return ClassServices.createKindOfOrdinaryPhysicalObject(iri);
-            case "kind_of_organization":
-                return ClassServices.createKindOfOrganization(iri);
-            case "kind_of_organization_component":
-                return ClassServices.createKindOfOrganizationComponent(iri);
-            case "kind_of_party":
-                return ClassServices.createKindOfParty(iri);
-            case "kind_of_person":
-                return ClassServices.createKindOfPerson(iri);
-            case "kind_of_physical_object":
-                return ClassServices.createKindOfPhysicalObject(iri);
-            case "kind_of_physical_property":
-                return ClassServices.createKindOfPhysicalProperty(iri);
-            case "kind_of_physical_quantity":
-                return ClassServices.createKindOfPhysicalQuantity(iri);
-            case "kind_of_position":
-                return ClassServices.createKindOfPosition(iri);
-            case "kind_of_relationship_with_restriction":
-                return ClassServices.createKindOfRelationshipWithRestriction(iri);
-            case "kind_of_relationship_with_signature":
-                return ClassServices.createKindOfRelationshipWithSignature(iri);
-            case "kind_of_socially_constructed_object":
-                return ClassServices.createKindOfSociallyConstructedObject(iri);
-            case "kind_of_system":
-                return ClassServices.createKindOfSystem(iri);
-            case "kind_of_system_component":
-                return ClassServices.createKindOfSystemComponent(iri);
-            case "language_community":
-                return SpatioTemporalExtentServices.createLanguageCommunity(iri);
-            case "money_asset":
-                return SpatioTemporalExtentServices.createMoneyAsset(iri);
-            case "offer":
-                return SpatioTemporalExtentServices.createOffer(iri);
-            case "offer_and_acceptance_for_goods":
-                return SpatioTemporalExtentServices.createOfferAndAcceptanceForGoods(iri);
-            case "offer_for_goods":
-                return SpatioTemporalExtentServices.createOfferForGoods(iri);
-            case "offering":
-                return SpatioTemporalExtentServices.createOffering(iri);
-            case "ordinary_biological_object":
-                return SpatioTemporalExtentServices.createOrdinaryBiologicalObject(iri);
-            case "ordinary_functional_object":
-                return SpatioTemporalExtentServices.createOrdinaryFunctionalObject(iri);
-            case "ordinary_physical_object":
-                return SpatioTemporalExtentServices.createOrdinaryPhysicalObject(iri);
-            case "organization":
-                return SpatioTemporalExtentServices.createOrganization(iri);
-            case "organization_component":
-                return SpatioTemporalExtentServices.createOrganizationComponent(iri);
-            case "owner":
-                return SpatioTemporalExtentServices.createOwner(iri);
-            case "ownership":
-                return SpatioTemporalExtentServices.createOwnership(iri);
-            case "participant":
-                return SpatioTemporalExtentServices.createParticipant(iri);
-            case "party":
-                return SpatioTemporalExtentServices.createParty(iri);
-            case "pattern":
-                return ClassServices.createPattern(iri);
-            case "period_of_time":
-                return SpatioTemporalExtentServices.createPeriodOfTime(iri);
-            case "person":
-                return SpatioTemporalExtentServices.createPerson(iri);
-            case "person_in_position":
-                return SpatioTemporalExtentServices.createPersonInPosition(iri);
-            case "physical_object":
-                return SpatioTemporalExtentServices.createPhysicalObject(iri);
-            case "physical_property":
-                return SpatioTemporalExtentServices.createPhysicalProperty(iri);
-            case "physical_property_range":
-                return SpatioTemporalExtentServices.createPhysicalPropertyRange(iri);
-            case "physical_quantity":
-                return SpatioTemporalExtentServices.createPhysicalQuantity(iri);
-            case "physical_quantity_range":
-                return SpatioTemporalExtentServices.createPhysicalQuantityRange(iri);
-            case "plan":
-                return SpatioTemporalExtentServices.createPlan(iri);
-            case "point_in_time":
-                return SpatioTemporalExtentServices.createPointInTime(iri);
-            case "position":
-                return SpatioTemporalExtentServices.createPosition(iri);
-            case "possible_world":
-                return SpatioTemporalExtentServices.createPossibleWorld(iri);
-            case "price":
-                return SpatioTemporalExtentServices.createPrice(iri);
-            case "product_brand":
-                return SpatioTemporalExtentServices.createProductBrand(iri);
-            case "product_offering":
-                return SpatioTemporalExtentServices.createProductOffering(iri);
-            case "reaching_agreement":
-                return SpatioTemporalExtentServices.createReachingAgreement(iri);
-            case "recognizing_language_community":
-                return SpatioTemporalExtentServices.createRecognizingLanguageCommunity(iri);
-            case "relationship":
-                return RelationshipServices.createRelationship(iri);
-            case "representation_by_pattern":
-                return ClassServices.createRepresentationByPattern(iri);
-            case "representation_by_sign":
-                return SpatioTemporalExtentServices.createRepresentationBySign(iri);
-            case "requirement":
-                return SpatioTemporalExtentServices.createRequirement(iri);
-            case "requirement_specification":
-                return SpatioTemporalExtentServices.createRequirementSpecification(iri);
-            case "role":
-                return ClassServices.createRole(iri);
-            case "sale_of_goods":
-                return SpatioTemporalExtentServices.createSaleOfGoods(iri);
-            case "sales_product":
-                return SpatioTemporalExtentServices.createSalesProduct(iri);
-            case "sales_product_instance":
-                return SpatioTemporalExtentServices.createSalesProductInstance(iri);
-            case "sales_product_version":
-                return SpatioTemporalExtentServices.createSalesProductVersion(iri);
-            case "scale":
-                return RelationshipServices.createScale(iri);
-            case "sign":
-                return SpatioTemporalExtentServices.createSign(iri);
-            case "socially_constructed_activity":
-                return SpatioTemporalExtentServices.createSociallyConstructedActivity(iri);
-            case "socially_constructed_object":
-                return SpatioTemporalExtentServices.createSociallyConstructedObject(iri);
-            case "spatio_temporal_extent":
-                return SpatioTemporalExtentServices.createSpatioTemporalExtent(iri);
-            case "specialization":
-                return RelationshipServices.createSpecialization(iri);
-            case "state":
-                return SpatioTemporalExtentServices.createState(iri);
-            case "state_of_activity":
-                return SpatioTemporalExtentServices.createStateOfActivity(iri);
-            case "state_of_amount_of_money":
-                return SpatioTemporalExtentServices.createStateOfAmountOfMoney(iri);
-            case "state_of_association":
-                return SpatioTemporalExtentServices.createStateOfAssociation(iri);
-            case "state_of_biological_object":
-                return SpatioTemporalExtentServices.createStateOfBiologicalObject(iri);
-            case "state_of_biological_system":
-                return SpatioTemporalExtentServices.createStateOfBiologicalSystem(iri);
-            case "state_of_biological_system_component":
-                return SpatioTemporalExtentServices.createStateOfBiologicalSystemComponent(iri);
-            case "state_of_functional_object":
-                return SpatioTemporalExtentServices.createStateOfFunctionalObject(iri);
-            case "state_of_functional_system":
-                return SpatioTemporalExtentServices.createStateOfFunctionalSystem(iri);
-            case "state_of_functional_system_component":
-                return SpatioTemporalExtentServices.createStateOfFunctionalSystemComponent(iri);
-            case "state_of_intentionally_constructed_object":
-                return SpatioTemporalExtentServices.createStateOfIntentionallyConstructedObject(iri);
-            case "state_of_language_community":
-                return SpatioTemporalExtentServices.createStateOfLanguageCommunity(iri);
-            case "state_of_ordinary_biological_object":
-                return SpatioTemporalExtentServices.createStateOfOrdinaryBiologicalObject(iri);
-            case "state_of_ordinary_functional_object":
-                return SpatioTemporalExtentServices.createStateOfOrdinaryFunctionalObject(iri);
-            case "state_of_ordinary_physical_object":
-                return SpatioTemporalExtentServices.createStateOfOrdinaryPhysicalObject(iri);
-            case "state_of_organization":
-                return SpatioTemporalExtentServices.createStateOfOrganization(iri);
-            case "state_of_organization_component":
-                return SpatioTemporalExtentServices.createStateOfOrganizationComponent(iri);
-            case "state_of_party":
-                return SpatioTemporalExtentServices.createStateOfParty(iri);
-            case "state_of_person":
-                return SpatioTemporalExtentServices.createStateOfPerson(iri);
-            case "state_of_physical_object":
-                return SpatioTemporalExtentServices.createStateOfPhysicalObject(iri);
-            case "state_of_position":
-                return SpatioTemporalExtentServices.createStateOfPosition(iri);
-            case "state_of_sales_product_instance":
-                return SpatioTemporalExtentServices.createStateOfSalesProductInstance(iri);
-            case "state_of_sign":
-                return SpatioTemporalExtentServices.createStateOfSign(iri);
-            case "state_of_socially_constructed_activity":
-                return SpatioTemporalExtentServices.createStateOfSociallyConstructedActivity(iri);
-            case "state_of_socially_constructed_object":
-                return SpatioTemporalExtentServices.createStateOfSociallyConstructedObject(iri);
-            case "state_of_system":
-                return SpatioTemporalExtentServices.createStateOfSystem(iri);
-            case "state_of_system_component":
-                return SpatioTemporalExtentServices.createStateOfSystemComponent(iri);
-            case "system":
-                return SpatioTemporalExtentServices.createSystem(iri);
-            case "system_component":
-                return SpatioTemporalExtentServices.createSystemComponent(iri);
-            case "temporal_composition":
-                return RelationshipServices.createTemporalComposition(iri);
-            case "thing":
-                return SpatioTemporalExtentServices.createThing(iri);
-            case "transferee":
-                return SpatioTemporalExtentServices.createTransferee(iri);
-            case "transfer_of_ownership":
-                return SpatioTemporalExtentServices.createTransferOfOwnership(iri);
-            case "transfer_of_ownership_of_money":
-                return SpatioTemporalExtentServices.createTransferOfOwnershipOfMoney(iri);
-            case "transferor":
-                return SpatioTemporalExtentServices.createTransferor(iri);
-            case "unit_of_measure":
-                return RelationshipServices.createUnitOfMeasure(iri);
-            case "participant_in_activity_or_association":
-            default:
-                // Check whether any extensions can handle the type.
-                for (final var service : getExtensionServices()) {
-                    final Thing t = service.createEntity(typeName, iri);
-                    if (t != null) {
-                        return t;
-                    }
-                }
-                // We still don't recognise the type so just create a Thing to represent it.
-                return SpatioTemporalExtentServices.createThing(iri);
+    /**
+     * Search extension libraries for the named type.
+     *
+     * @param typeName String type name.
+     * @param iri {@link IRI}
+     * @return {@link Thing}
+     */
+    private static Thing findExtendedTypes(final String typeName, final IRI iri) {
+        // Check whether any extensions can handle the type.
+        for (final var service : getExtensionServices()) {
+            final Thing t = service.createEntity(typeName, iri);
+            if (t != null) {
+                return t;
+            }
         }
+        // We still don't recognise the type so just create a Thing to represent it.
+        return createThing(iri);
+    }
+
+    // A Map of type names to factoryMethods that create instances of the type.
+    private static Map<String, Function<IRI, Thing>> factoryMethods = new HashMap<>();
+
+    static {
+        //
+        // Populate a map of type names to factory methods.
+        //
+        factoryMethods.put("abstract_object", SpatioTemporalExtentServices::createAbstractObject);
+        factoryMethods.put("acceptance_of_offer", SpatioTemporalExtentServices::createAcceptanceOfOffer);
+        factoryMethods.put("acceptance_of_offer_for_goods", 
+                SpatioTemporalExtentServices::createAcceptanceOfOfferForGoods);
+        factoryMethods.put("activity", SpatioTemporalExtentServices::createActivity);
+        factoryMethods.put("aggregation", RelationshipServices::createAggregation);
+        factoryMethods.put("agree_contract", SpatioTemporalExtentServices::createAgreeContract);
+        factoryMethods.put("agreement_execution", SpatioTemporalExtentServices::createAgreementExecution);
+        factoryMethods.put("agreement_process", SpatioTemporalExtentServices::createAgreementProcess);
+        factoryMethods.put("amount_of_money", SpatioTemporalExtentServices::createAmountOfMoney);
+        factoryMethods.put("asset", SpatioTemporalExtentServices::createAsset);
+        factoryMethods.put("association", SpatioTemporalExtentServices::createAssociation);
+        factoryMethods.put("beginning_of_ownership", SpatioTemporalExtentServices::createBeginningOfOwnership);
+        factoryMethods.put("biological_object", SpatioTemporalExtentServices::createBiologicalObject);
+        factoryMethods.put("biological_system", SpatioTemporalExtentServices::createBiologicalSystem);
+        factoryMethods.put("biological_system_component", 
+                SpatioTemporalExtentServices::createBiologicalSystemComponent);
+        factoryMethods.put("class", ClassServices::createClass);
+        factoryMethods.put("classification", RelationshipServices::createClassification);
+        factoryMethods.put("class_of_abstract_object", ClassServices::createClassOfAbstractObject);
+        factoryMethods.put("class_of_activity", ClassServices::createClassOfActivity);
+        factoryMethods.put("class_of_agree_contract", ClassServices::createClassOfAgreeContract);
+        factoryMethods.put("class_of_agreement_execution", ClassServices::createClassOfAgreementExecution);
+        factoryMethods.put("class_of_agreement_process", ClassServices::createClassOfAgreementProcess);
+        factoryMethods.put("class_of_amount_of_money", ClassServices::createClassOfAmountOfMoney);
+        factoryMethods.put("class_of_association", ClassServices::createClassOfAssociation);
+        factoryMethods.put("class_of_biological_object", ClassServices::createClassOfBiologicalObject);
+        factoryMethods.put("class_of_biological_system", ClassServices::createClassOfBiologicalSystem);
+        factoryMethods.put("class_of_biological_system_component", 
+                ClassServices::createClassOfBiologicalSystemComponent);
+        factoryMethods.put("class_of_class", ClassServices::createClassOfClass);
+        factoryMethods.put("class_of_class_of_spatio_temporal_extent", 
+                ClassServices::createClassOfSpatioTemporalExtent);
+        factoryMethods.put("class_of_contract_execution", ClassServices::createClassOfContractExecution);
+        factoryMethods.put("class_of_contract_process", ClassServices::createClassOfContractProcess);
+        factoryMethods.put("class_of_event", ClassServices::createClassOfEvent);
+        factoryMethods.put("class_of_functional_object", ClassServices::createClassOfFunctionalObject);
+        factoryMethods.put("class_of_functional_system", ClassServices::createClassOfFunctionalSystem);
+        factoryMethods.put("class_of_functional_system_component", 
+                ClassServices::createClassOfFunctionalSystemComponent);
+        factoryMethods.put("class_of_individual", ClassServices::createClassOfIndividual);
+        factoryMethods.put("class_of_in_place_biological_component", 
+                ClassServices::createClassOfInPlaceBiologicalComponent);
+        factoryMethods.put("class_of_installed_functional_system_component", 
+                ClassServices::createClassOfInstalledFunctionalSystemComponent);
+        factoryMethods.put("class_of_installed_object", ClassServices::createClassOfInstalledObject);
+        factoryMethods.put("class_of_intentionally_constructed_object", 
+                ClassServices::createClassOfIntentionallyConstructedObject);
+        factoryMethods.put("class_of_offer", ClassServices::createClassOfOffer);
+        factoryMethods.put("class_of_ordinary_biological_object", ClassServices::createClassOfOrdinaryBiologicalObject);
+        factoryMethods.put("class_of_ordinary_functional_object", ClassServices::createClassOfOrdinaryFunctionalObject);
+        factoryMethods.put("class_of_ordinary_physical_object", ClassServices::createClassOfOrdinaryPhysicalObject);
+        factoryMethods.put("class_of_organization", ClassServices::createClassOfOrganization);
+        factoryMethods.put("class_of_organization_component", ClassServices::createClassOfOrganizationComponent);
+        factoryMethods.put("class_of_participant", ClassServices::createClassOfParticipant);
+        factoryMethods.put("class_of_party", ClassServices::createClassOfParty);
+        factoryMethods.put("class_of_period_of_time", ClassServices::createClassOfPeriodOfTime);
+        factoryMethods.put("class_of_person", ClassServices::createClassOfPerson);
+        factoryMethods.put("class_of_person_in_position", ClassServices::createClassOfPersonInPosition);
+        factoryMethods.put("class_of_physical_object", ClassServices::createClassOfPhysicalObject);
+        factoryMethods.put("class_of_physical_property", ClassServices::createClassOfPhysicalProperty);
+        factoryMethods.put("class_of_physical_quantity", ClassServices::createClassOfPhysicalQuantity);
+        factoryMethods.put("class_of_point_in_time", ClassServices::createClassOfPointInTime);
+        factoryMethods.put("class_of_position", ClassServices::createClassOfPosition);
+        factoryMethods.put("class_of_possible_world", ClassServices::createClassOfPossibleWorld);
+        factoryMethods.put("class_of_reaching_agreement", ClassServices::createClassOfReachingAgreement);
+        factoryMethods.put("class_of_relationship", ClassServices::createClassOfRelationship);
+        factoryMethods.put("class_of_representation", ClassServices::createClassOfRepresentation);
+        factoryMethods.put("class_of_sales_product_instance", ClassServices::createClassOfSalesProductInstance);
+        factoryMethods.put("class_of_sign", ClassServices::createClassOfSign);
+        factoryMethods.put("class_of_socially_constructed_activity", 
+                ClassServices::createClassOfSociallyConstructedActivity);
+        factoryMethods.put("class_of_socially_constructed_object", 
+                ClassServices::createClassOfSociallyConstructedObject);
+        factoryMethods.put("class_of_spatio_temporal_extent", ClassServices::createClassOfSpatioTemporalExtent);
+        factoryMethods.put("class_of_state", ClassServices::createClassOfState);
+        factoryMethods.put("class_of_state_of_activity", ClassServices::createClassOfStateOfActivity);
+        factoryMethods.put("class_of_state_of_amount_of_money", ClassServices::createClassOfStateOfAmountOfMoney);
+        factoryMethods.put("class_of_state_of_association", ClassServices::createClassOfStateOfAssociation);
+        factoryMethods.put("class_of_state_of_biological_object", ClassServices::createClassOfStateOfBiologicalObject);
+        factoryMethods.put("class_of_state_of_biological_system", ClassServices::createClassOfStateOfBiologicalSystem);
+        factoryMethods.put("class_of_state_of_biological_system_component", 
+                ClassServices::createClassOfStateOfBiologicalSystemComponent);
+        factoryMethods.put("class_of_state_of_functional_object", ClassServices::createClassOfStateOfFunctionalObject);
+        factoryMethods.put("class_of_state_of_functional_system", ClassServices::createClassOfStateOfFunctionalSystem);
+        factoryMethods.put("class_of_state_of_functional_system_component", 
+                ClassServices::createClassOfStateOfFunctionalSystemComponent);
+        factoryMethods.put("class_of_state_of_intentionally_constructed_object", 
+                ClassServices::createClassOfStateOfIntentionallyConstructedObject);
+        factoryMethods.put("class_of_state_of_ordinary_biological_object", 
+                ClassServices::createClassOfStateOfOrdinaryBiologicalObject);
+        factoryMethods.put("class_of_state_of_ordinary_functional_object", 
+                ClassServices::createClassOfStateOfOrdinaryFunctionalObject);
+        factoryMethods.put("class_of_state_of_ordinary_physical_object", 
+                ClassServices::createClassOfStateOfOrdinaryPhysicalObject);
+        factoryMethods.put("class_of_state_of_organization", ClassServices::createClassOfStateOfOrganization);
+        factoryMethods.put("class_of_state_of_organization_component", 
+                ClassServices::createClassOfStateOfOrganizationComponent);
+        factoryMethods.put("class_of_state_of_party", ClassServices::createClassOfStateOfParty);
+        factoryMethods.put("class_of_state_of_person", ClassServices::createClassOfStateOfPerson);
+        factoryMethods.put("class_of_state_of_physical_object", ClassServices::createClassOfStateOfPhysicalObject);
+        factoryMethods.put("class_of_state_of_position", ClassServices::createClassOfStateOfPosition);
+        factoryMethods.put("class_of_state_of_sales_product_instance", 
+                ClassServices::createClassOfStateOfSalesProductInstance);
+        factoryMethods.put("class_of_state_of_sign", ClassServices::createClassOfStateOfSign);
+        factoryMethods.put("class_of_state_of_socially_constructed_activity", 
+                ClassServices::createClassOfStateOfSociallyConstructedActivity);
+        factoryMethods.put("class_of_state_of_socially_constructed_object", 
+                ClassServices::createClassOfStateOfSociallyConstructedObject);
+        factoryMethods.put("class_of_state_of_system", ClassServices::createClassOfStateOfSystem);
+        factoryMethods.put("class_of_state_of_system_component", ClassServices::createClassOfStateOfSystemComponent);
+        factoryMethods.put("class_of_system", ClassServices::createClassOfSystem);
+        factoryMethods.put("class_of_system_component", ClassServices::createClassOfSystemComponent);
+        factoryMethods.put("composition", RelationshipServices::createComposition);
+        factoryMethods.put("contract_execution", SpatioTemporalExtentServices::createContractExecution);
+        factoryMethods.put("contract_process", SpatioTemporalExtentServices::createContractProcess);
+        factoryMethods.put("currency", SpatioTemporalExtentServices::createCurrency);
+        factoryMethods.put("defined_relationship", RelationshipServices::createDefinedRelationship);
+        factoryMethods.put("definition", ClassServices::createDefinition);
+        factoryMethods.put("description", ClassServices::createDescription);
+        factoryMethods.put("employee", SpatioTemporalExtentServices::createEmployee);
+        factoryMethods.put("employer", SpatioTemporalExtentServices::createEmployer);
+        factoryMethods.put("employment", SpatioTemporalExtentServices::createEmployment);
+        factoryMethods.put("ending_of_ownership", SpatioTemporalExtentServices::createEndingOfOwnership);
+        factoryMethods.put("enumerated_class", ClassServices::createEnumeratedClass);
+        factoryMethods.put("event", SpatioTemporalExtentServices::createEvent);
+        factoryMethods.put("exchange_of_goods_and_money", SpatioTemporalExtentServices::createExchangeOfGoodsAndMoney);
+        factoryMethods.put("function_", RelationshipServices::createFunction);
+        factoryMethods.put("functional_object", SpatioTemporalExtentServices::createFunctionalObject);
+        factoryMethods.put("functional_system", SpatioTemporalExtentServices::createFunctionalSystem);
+        factoryMethods.put("functional_system_component", 
+                SpatioTemporalExtentServices::createFunctionalSystemComponent);
+        factoryMethods.put("identification", ClassServices::createIdentification);
+        factoryMethods.put("identification_of_physical_quantity", 
+                SpatioTemporalExtentServices::createIdentificationOfPhysicalQuantity);
+        factoryMethods.put("individual", SpatioTemporalExtentServices::createIndividual);
+        factoryMethods.put("in_place_biological_component", 
+                SpatioTemporalExtentServices::createInPlaceBiologicalComponent);
+        factoryMethods.put("installed_functional_system_component", 
+                SpatioTemporalExtentServices::createInstalledFunctionalSystemComponent);
+        factoryMethods.put("installed_object", SpatioTemporalExtentServices::createInstalledObject);
+        factoryMethods.put("intentionally_constructed_object", 
+                SpatioTemporalExtentServices::createIntentionallyConstructedObject);
+        factoryMethods.put("kind_of_activity", ClassServices::createKindOfActivity);
+        factoryMethods.put("kind_of_association", ClassServices::createKindOfAssociation);
+        factoryMethods.put("kind_of_biological_object", ClassServices::createKindOfBiologicalObject);
+        factoryMethods.put("kind_of_biological_system", ClassServices::createKindOfBiologicalSystem);
+        factoryMethods.put("kind_of_biological_system_component", ClassServices::createKindOfBiologicalSystemComponent);
+        factoryMethods.put("kind_of_functional_object", ClassServices::createKindOfFunctionalObject);
+        factoryMethods.put("kind_of_functional_system", ClassServices::createKindOfFunctionalSystem);
+        factoryMethods.put("kind_of_functional_system_component", ClassServices::createKindOfFunctionalSystemComponent);
+        factoryMethods.put("kind_of_individual", ClassServices::createKindOfIndividual);
+        factoryMethods.put("kind_of_intentionally_constructed_object", 
+                ClassServices::createKindOfIntentionallyConstructedObject);
+        factoryMethods.put("kind_of_ordinary_biological_object", ClassServices::createKindOfOrdinaryBiologicalObject);
+        factoryMethods.put("kind_of_ordinary_functional_object", ClassServices::createKindOfOrdinaryFunctionalObject);
+        factoryMethods.put("kind_of_ordinary_physical_object", ClassServices::createKindOfOrdinaryPhysicalObject);
+        factoryMethods.put("kind_of_organization", ClassServices::createKindOfOrganization);
+        factoryMethods.put("kind_of_organization_component", ClassServices::createKindOfOrganizationComponent);
+        factoryMethods.put("kind_of_party", ClassServices::createKindOfParty);
+        factoryMethods.put("kind_of_person", ClassServices::createKindOfPerson);
+        factoryMethods.put("kind_of_physical_object", ClassServices::createKindOfPhysicalObject);
+        factoryMethods.put("kind_of_physical_property", ClassServices::createKindOfPhysicalProperty);
+        factoryMethods.put("kind_of_physical_quantity", ClassServices::createKindOfPhysicalQuantity);
+        factoryMethods.put("kind_of_position", ClassServices::createKindOfPosition);
+        factoryMethods.put("kind_of_relationship_with_restriction", 
+                ClassServices::createKindOfRelationshipWithRestriction);
+        factoryMethods.put("kind_of_relationship_with_signature", ClassServices::createKindOfRelationshipWithSignature);
+        factoryMethods.put("kind_of_socially_constructed_object", ClassServices::createKindOfSociallyConstructedObject);
+        factoryMethods.put("kind_of_system", ClassServices::createKindOfSystem);
+        factoryMethods.put("kind_of_system_component", ClassServices::createKindOfSystemComponent);
+        factoryMethods.put("language_community", SpatioTemporalExtentServices::createLanguageCommunity);
+        factoryMethods.put("money_asset", SpatioTemporalExtentServices::createMoneyAsset);
+        factoryMethods.put("offer", SpatioTemporalExtentServices::createOffer);
+        factoryMethods.put("offer_and_acceptance_for_goods", 
+                SpatioTemporalExtentServices::createOfferAndAcceptanceForGoods);
+        factoryMethods.put("offer_for_goods", SpatioTemporalExtentServices::createOfferForGoods);
+        factoryMethods.put("offering", SpatioTemporalExtentServices::createOffering);
+        factoryMethods.put("ordinary_biological_object", SpatioTemporalExtentServices::createOrdinaryBiologicalObject);
+        factoryMethods.put("ordinary_functional_object", SpatioTemporalExtentServices::createOrdinaryFunctionalObject);
+        factoryMethods.put("ordinary_physical_object", SpatioTemporalExtentServices::createOrdinaryPhysicalObject);
+        factoryMethods.put("organization", SpatioTemporalExtentServices::createOrganization);
+        factoryMethods.put("organization_component", SpatioTemporalExtentServices::createOrganizationComponent);
+        factoryMethods.put("owner", SpatioTemporalExtentServices::createOwner);
+        factoryMethods.put("ownership", SpatioTemporalExtentServices::createOwnership);
+        factoryMethods.put("participant", SpatioTemporalExtentServices::createParticipant);
+        factoryMethods.put("party", SpatioTemporalExtentServices::createParty);
+        factoryMethods.put("pattern", ClassServices::createPattern);
+        factoryMethods.put("period_of_time", SpatioTemporalExtentServices::createPeriodOfTime);
+        factoryMethods.put("person", SpatioTemporalExtentServices::createPerson);
+        factoryMethods.put("person_in_position", SpatioTemporalExtentServices::createPersonInPosition);
+        factoryMethods.put("physical_object", SpatioTemporalExtentServices::createPhysicalObject);
+        factoryMethods.put("physical_property", SpatioTemporalExtentServices::createPhysicalProperty);
+        factoryMethods.put("physical_property_range", SpatioTemporalExtentServices::createPhysicalPropertyRange);
+        factoryMethods.put("physical_quantity", SpatioTemporalExtentServices::createPhysicalQuantity);
+        factoryMethods.put("physical_quantity_range", SpatioTemporalExtentServices::createPhysicalQuantityRange);
+        factoryMethods.put("plan", SpatioTemporalExtentServices::createPlan);
+        factoryMethods.put("point_in_time", SpatioTemporalExtentServices::createPointInTime);
+        factoryMethods.put("position", SpatioTemporalExtentServices::createPosition);
+        factoryMethods.put("possible_world", SpatioTemporalExtentServices::createPossibleWorld);
+        factoryMethods.put("price", SpatioTemporalExtentServices::createPrice);
+        factoryMethods.put("product_brand", SpatioTemporalExtentServices::createProductBrand);
+        factoryMethods.put("product_offering", SpatioTemporalExtentServices::createProductOffering);
+        factoryMethods.put("reaching_agreement", SpatioTemporalExtentServices::createReachingAgreement);
+        factoryMethods.put("recognizing_language_community", 
+                SpatioTemporalExtentServices::createRecognizingLanguageCommunity);
+        factoryMethods.put("relationship", RelationshipServices::createRelationship);
+        factoryMethods.put("representation_by_pattern", ClassServices::createRepresentationByPattern);
+        factoryMethods.put("representation_by_sign", SpatioTemporalExtentServices::createRepresentationBySign);
+        factoryMethods.put("requirement", SpatioTemporalExtentServices::createRequirement);
+        factoryMethods.put("requirement_specification", SpatioTemporalExtentServices::createRequirementSpecification);
+        factoryMethods.put("role", ClassServices::createRole);
+        factoryMethods.put("sale_of_goods", SpatioTemporalExtentServices::createSaleOfGoods);
+        factoryMethods.put("sales_product", SpatioTemporalExtentServices::createSalesProduct);
+        factoryMethods.put("sales_product_instance", SpatioTemporalExtentServices::createSalesProductInstance);
+        factoryMethods.put("sales_product_version", SpatioTemporalExtentServices::createSalesProductVersion);
+        factoryMethods.put("scale", RelationshipServices::createScale);
+        factoryMethods.put("sign", SpatioTemporalExtentServices::createSign);
+        factoryMethods.put("socially_constructed_activity", 
+                SpatioTemporalExtentServices::createSociallyConstructedActivity);
+        factoryMethods.put("socially_constructed_object", 
+                SpatioTemporalExtentServices::createSociallyConstructedObject);
+        factoryMethods.put("spatio_temporal_extent", SpatioTemporalExtentServices::createSpatioTemporalExtent);
+        factoryMethods.put("specialization", RelationshipServices::createSpecialization);
+        factoryMethods.put("state", SpatioTemporalExtentServices::createState);
+        factoryMethods.put("state_of_activity", SpatioTemporalExtentServices::createStateOfActivity);
+        factoryMethods.put("state_of_amount_of_money", SpatioTemporalExtentServices::createStateOfAmountOfMoney);
+        factoryMethods.put("state_of_association", SpatioTemporalExtentServices::createStateOfAssociation);
+        factoryMethods.put("state_of_biological_object", SpatioTemporalExtentServices::createStateOfBiologicalObject);
+        factoryMethods.put("state_of_biological_system", SpatioTemporalExtentServices::createStateOfBiologicalSystem);
+        factoryMethods.put("state_of_biological_system_component", 
+                SpatioTemporalExtentServices::createStateOfBiologicalSystemComponent);
+        factoryMethods.put("state_of_functional_object", SpatioTemporalExtentServices::createStateOfFunctionalObject);
+        factoryMethods.put("state_of_functional_system", SpatioTemporalExtentServices::createStateOfFunctionalSystem);
+        factoryMethods.put("state_of_functional_system_component", 
+                SpatioTemporalExtentServices::createStateOfFunctionalSystemComponent);
+        factoryMethods.put("state_of_intentionally_constructed_object", 
+                SpatioTemporalExtentServices::createStateOfIntentionallyConstructedObject);
+        factoryMethods.put("state_of_language_community", SpatioTemporalExtentServices::createStateOfLanguageCommunity);
+        factoryMethods.put("state_of_ordinary_biological_object", 
+                SpatioTemporalExtentServices::createStateOfOrdinaryBiologicalObject);
+        factoryMethods.put("state_of_ordinary_functional_object", 
+                SpatioTemporalExtentServices::createStateOfOrdinaryFunctionalObject);
+        factoryMethods.put("state_of_ordinary_physical_object", 
+                SpatioTemporalExtentServices::createStateOfOrdinaryPhysicalObject);
+        factoryMethods.put("state_of_organization", SpatioTemporalExtentServices::createStateOfOrganization);
+        factoryMethods.put("state_of_organization_component", 
+                SpatioTemporalExtentServices::createStateOfOrganizationComponent);
+        factoryMethods.put("state_of_party", SpatioTemporalExtentServices::createStateOfParty);
+        factoryMethods.put("state_of_person", SpatioTemporalExtentServices::createStateOfPerson);
+        factoryMethods.put("state_of_physical_object", SpatioTemporalExtentServices::createStateOfPhysicalObject);
+        factoryMethods.put("state_of_position", SpatioTemporalExtentServices::createStateOfPosition);
+        factoryMethods.put("state_of_sales_product_instance", 
+                SpatioTemporalExtentServices::createStateOfSalesProductInstance);
+        factoryMethods.put("state_of_sign", SpatioTemporalExtentServices::createStateOfSign);
+        factoryMethods.put("state_of_socially_constructed_activity", 
+                SpatioTemporalExtentServices::createStateOfSociallyConstructedActivity);
+        factoryMethods.put("state_of_socially_constructed_object", 
+                SpatioTemporalExtentServices::createStateOfSociallyConstructedObject);
+        factoryMethods.put("state_of_system", SpatioTemporalExtentServices::createStateOfSystem);
+        factoryMethods.put("state_of_system_component", SpatioTemporalExtentServices::createStateOfSystemComponent);
+        factoryMethods.put("system", SpatioTemporalExtentServices::createSystem);
+        factoryMethods.put("system_component", SpatioTemporalExtentServices::createSystemComponent);
+        factoryMethods.put("temporal_composition", RelationshipServices::createTemporalComposition);
+        factoryMethods.put("thing", SpatioTemporalExtentServices::createThing);
+        factoryMethods.put("transferee", SpatioTemporalExtentServices::createTransferee);
+        factoryMethods.put("transfer_of_ownership", SpatioTemporalExtentServices::createTransferOfOwnership);
+        factoryMethods.put("transfer_of_ownership_of_money", 
+                SpatioTemporalExtentServices::createTransferOfOwnershipOfMoney);
+        factoryMethods.put("transferor", SpatioTemporalExtentServices::createTransferor);
+        factoryMethods.put("unit_of_measure", RelationshipServices::createUnitOfMeasure);
     }
 }
