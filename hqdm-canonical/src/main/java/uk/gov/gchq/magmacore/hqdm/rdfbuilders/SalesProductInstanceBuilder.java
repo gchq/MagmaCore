@@ -37,6 +37,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SalesProductInstance;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -136,9 +137,8 @@ public class SalesProductInstanceBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where a
-     * {@link SalesProductInstance} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
-     * {@link ClassOfSalesProductInstance}.
+     * {@link SalesProductInstance} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * one or more {@link ClassOfSalesProductInstance}.
      *
      * @param classOfSalesProductInstance The ClassOfSalesProductInstance.
      * @return This builder.
@@ -160,8 +160,8 @@ public class SalesProductInstanceBuilder {
      */
     public final SalesProductInstanceBuilder member_Of_Kind(
             final KindOfOrdinaryFunctionalObject kindOfOrdinaryFunctionalObject) {
-        this.salesProductInstance.addValue(MEMBER_OF_KIND,
-                kindOfOrdinaryFunctionalObject.getId());
+        this.salesProductInstance.addValue(MEMBER_OF_KIND, kindOfOrdinaryFunctionalObject.getId());
+        this.salesProductInstance.addValue(RDFS.RDF_TYPE, kindOfOrdinaryFunctionalObject.getId());
         return this;
     }
 
@@ -180,13 +180,12 @@ public class SalesProductInstanceBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.

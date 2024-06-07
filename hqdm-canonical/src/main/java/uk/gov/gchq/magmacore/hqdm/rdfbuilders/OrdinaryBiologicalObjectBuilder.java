@@ -35,6 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.OrdinaryBiologicalObject;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -147,8 +148,8 @@ public class OrdinaryBiologicalObjectBuilder {
      */
     public final OrdinaryBiologicalObjectBuilder member_Of_Kind(
             final KindOfOrdinaryBiologicalObject kindOfOrdinaryBiologicalObject) {
-        this.ordinaryBiologicalObject.addValue(MEMBER_OF_KIND,
-                kindOfOrdinaryBiologicalObject.getId());
+        this.ordinaryBiologicalObject.addValue(MEMBER_OF_KIND, kindOfOrdinaryBiologicalObject.getId());
+        this.ordinaryBiologicalObject.addValue(RDFS.RDF_TYPE, kindOfOrdinaryBiologicalObject.getId());
         return this;
     }
 
@@ -167,13 +168,12 @@ public class OrdinaryBiologicalObjectBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.

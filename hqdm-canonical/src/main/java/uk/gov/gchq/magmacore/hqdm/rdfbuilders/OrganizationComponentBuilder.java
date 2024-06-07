@@ -37,6 +37,7 @@ import uk.gov.gchq.magmacore.hqdm.model.OrganizationComponent;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -136,9 +137,8 @@ public class OrganizationComponentBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where an
-     * {@link OrganizationComponent} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
-     * {@link ClassOfOrganizationComponent}.
+     * {@link OrganizationComponent} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * one or more {@link ClassOfOrganizationComponent}.
      *
      * @param classOfOrganizationComponent The ClassOfOrganizationComponent.
      * @return This builder.
@@ -151,17 +151,16 @@ public class OrganizationComponentBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF_KIND} relationship type where an
-     * {@link OrganizationComponent} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
-     * {@link KindOfOrganizationComponent}.
+     * {@link OrganizationComponent} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * one or more {@link KindOfOrganizationComponent}.
      *
      * @param kindOfOrganizationComponent The KindOfOrganizationComponent.
      * @return This builder.
      */
     public final OrganizationComponentBuilder member_Of_Kind(
             final KindOfOrganizationComponent kindOfOrganizationComponent) {
-        this.organizationComponent.addValue(MEMBER_OF_KIND,
-                kindOfOrganizationComponent.getId());
+        this.organizationComponent.addValue(MEMBER_OF_KIND, kindOfOrganizationComponent.getId());
+        this.organizationComponent.addValue(RDFS.RDF_TYPE, kindOfOrganizationComponent.getId());
         return this;
     }
 
@@ -180,13 +179,12 @@ public class OrganizationComponentBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.

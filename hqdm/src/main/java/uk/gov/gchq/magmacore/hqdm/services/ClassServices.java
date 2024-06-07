@@ -731,8 +731,7 @@ public class ClassServices {
      */
     public static ClassOfStateOfFunctionalSystemComponent createClassOfStateOfFunctionalSystemComponent(
             final IRI id) {
-        final ClassOfStateOfFunctionalSystemComponent result = 
-            new ClassOfStateOfFunctionalSystemComponentImpl(id);
+        final ClassOfStateOfFunctionalSystemComponent result = new ClassOfStateOfFunctionalSystemComponentImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_FUNCTIONAL_SYSTEM_COMPONENT);
         return result;
     }
@@ -745,8 +744,8 @@ public class ClassServices {
      */
     public static ClassOfStateOfIntentionallyConstructedObject createClassOfStateOfIntentionallyConstructedObject(
             final IRI id) {
-        final ClassOfStateOfIntentionallyConstructedObject result = 
-            new ClassOfStateOfIntentionallyConstructedObjectImpl(id);
+        final ClassOfStateOfIntentionallyConstructedObject result = new ClassOfStateOfIntentionallyConstructedObjectImpl(
+                id);
         result.addValue(RDFS.RDF_TYPE, HQDM.CLASS_OF_STATE_OF_INTENTIONALLY_CONSTRUCTED_OBJECT);
         return result;
     }
@@ -1002,6 +1001,7 @@ public class ClassServices {
     public static KindOfActivity createKindOfActivity(final IRI id) {
         final KindOfActivity result = new KindOfActivityImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ACTIVITY);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.ACTIVITY);
         return result;
     }
 
@@ -1014,6 +1014,7 @@ public class ClassServices {
     public static KindOfAssociation createKindOfAssociation(final IRI id) {
         final KindOfAssociation result = new KindOfAssociationImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ASSOCIATION);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.ASSOCIATION);
         return result;
     }
 
@@ -1026,6 +1027,7 @@ public class ClassServices {
     public static KindOfBiologicalObject createKindOfBiologicalObject(final IRI id) {
         final KindOfBiologicalObject result = new KindOfBiologicalObjectImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_BIOLOGICAL_OBJECT);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.BIOLOGICAL_OBJECT);
         return result;
     }
 
@@ -1038,6 +1040,7 @@ public class ClassServices {
     public static KindOfBiologicalSystem createKindOfBiologicalSystem(final IRI id) {
         final KindOfBiologicalSystem result = new KindOfBiologicalSystemImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_BIOLOGICAL_SYSTEM);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.BIOLOGICAL_SYSTEM);
         return result;
     }
 
@@ -1050,6 +1053,7 @@ public class ClassServices {
     public static KindOfBiologicalSystemComponent createKindOfBiologicalSystemComponent(final IRI id) {
         final KindOfBiologicalSystemComponent result = new KindOfBiologicalSystemComponentImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_BIOLOGICAL_SYSTEM_COMPONENT);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.BIOLOGICAL_SYSTEM_COMPONENT);
         return result;
     }
 
@@ -1062,6 +1066,7 @@ public class ClassServices {
     public static KindOfFunctionalObject createKindOfFunctionalObject(final IRI id) {
         final KindOfFunctionalObject result = new KindOfFunctionalObjectImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_FUNCTIONAL_OBJECT);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.FUNCTIONAL_OBJECT);
         return result;
     }
 
@@ -1074,6 +1079,7 @@ public class ClassServices {
     public static KindOfFunctionalSystem createKindOfFunctionalSystem(final IRI id) {
         final KindOfFunctionalSystem result = new KindOfFunctionalSystemImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_FUNCTIONAL_SYSTEM);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.FUNCTIONAL_SYSTEM);
         return result;
     }
 
@@ -1086,6 +1092,7 @@ public class ClassServices {
     public static KindOfFunctionalSystemComponent createKindOfFunctionalSystemComponent(final IRI id) {
         final KindOfFunctionalSystemComponent result = new KindOfFunctionalSystemComponentImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_FUNCTIONAL_SYSTEM_COMPONENT);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.FUNCTIONAL_SYSTEM_COMPONENT);
         return result;
     }
 
@@ -1098,6 +1105,7 @@ public class ClassServices {
     public static KindOfIndividual createKindOfIndividual(final IRI id) {
         final KindOfIndividual result = new KindOfIndividualImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_INDIVIDUAL);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.INDIVIDUAL);
         return result;
     }
 
@@ -1110,6 +1118,7 @@ public class ClassServices {
     public static KindOfIntentionallyConstructedObject createKindOfIntentionallyConstructedObject(final IRI id) {
         final KindOfIntentionallyConstructedObject result = new KindOfIntentionallyConstructedObjectImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_INTENTIONALLY_CONSTRUCTED_OBJECT);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.INTENTIONALLY_CONSTRUCTED_OBJECT);
         return result;
     }
 
@@ -1122,6 +1131,7 @@ public class ClassServices {
     public static KindOfOrdinaryBiologicalObject createKindOfOrdinaryBiologicalObject(final IRI id) {
         final KindOfOrdinaryBiologicalObject result = new KindOfOrdinaryBiologicalObjectImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ORDINARY_BIOLOGICAL_OBJECT);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.ORDINARY_BIOLOGICAL_OBJECT);
         return result;
     }
 
@@ -1134,6 +1144,7 @@ public class ClassServices {
     public static KindOfOrdinaryFunctionalObject createKindOfOrdinaryFunctionalObject(final IRI id) {
         final KindOfOrdinaryFunctionalObject result = new KindOfOrdinaryFunctionalObjectImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ORDINARY_FUNCTIONAL_OBJECT);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.ORDINARY_FUNCTIONAL_OBJECT);
         return result;
     }
 
@@ -1146,6 +1157,7 @@ public class ClassServices {
     public static KindOfOrdinaryPhysicalObject createKindOfOrdinaryPhysicalObject(final IRI id) {
         final KindOfOrdinaryPhysicalObject result = new KindOfOrdinaryPhysicalObjectImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ORDINARY_PHYSICAL_OBJECT);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.ORDINARY_PHYSICAL_OBJECT);
         return result;
     }
 
@@ -1158,6 +1170,7 @@ public class ClassServices {
     public static KindOfOrganization createKindOfOrganization(final IRI id) {
         final KindOfOrganization result = new KindOfOrganizationImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ORGANIZATION);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.ORGANIZATION);
         return result;
     }
 
@@ -1170,6 +1183,7 @@ public class ClassServices {
     public static KindOfOrganizationComponent createKindOfOrganizationComponent(final IRI id) {
         final KindOfOrganizationComponent result = new KindOfOrganizationComponentImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_ORGANIZATION_COMPONENT);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.ORGANIZATION_COMPONENT);
         return result;
     }
 
@@ -1182,6 +1196,7 @@ public class ClassServices {
     public static KindOfParty createKindOfParty(final IRI id) {
         final KindOfParty result = new KindOfPartyImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_PARTY);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.PARTY);
         return result;
     }
 
@@ -1194,6 +1209,7 @@ public class ClassServices {
     public static KindOfPerson createKindOfPerson(final IRI id) {
         final KindOfPerson result = new KindOfPersonImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_PERSON);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.PERSON);
         return result;
     }
 
@@ -1206,6 +1222,7 @@ public class ClassServices {
     public static KindOfPhysicalObject createKindOfPhysicalObject(final IRI id) {
         final KindOfPhysicalObject result = new KindOfPhysicalObjectImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_PHYSICAL_OBJECT);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.PHYSICAL_OBJECT);
         return result;
     }
 
@@ -1218,6 +1235,7 @@ public class ClassServices {
     public static KindOfPhysicalProperty createKindOfPhysicalProperty(final IRI id) {
         final KindOfPhysicalProperty result = new KindOfPhysicalPropertyImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_PHYSICAL_PROPERTY);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.PHYSICAL_PROPERTY);
         return result;
     }
 
@@ -1230,6 +1248,7 @@ public class ClassServices {
     public static KindOfPhysicalQuantity createKindOfPhysicalQuantity(final IRI id) {
         final KindOfPhysicalQuantity result = new KindOfPhysicalQuantityImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_PHYSICAL_QUANTITY);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.PHYSICAL_QUANTITY);
         return result;
     }
 
@@ -1242,6 +1261,7 @@ public class ClassServices {
     public static KindOfPosition createKindOfPosition(final IRI id) {
         final KindOfPosition result = new KindOfPositionImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_POSITION);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.POSITION);
         return result;
     }
 
@@ -1254,6 +1274,7 @@ public class ClassServices {
     public static KindOfRelationshipWithRestriction createKindOfRelationshipWithRestriction(final IRI id) {
         final KindOfRelationshipWithRestriction result = new KindOfRelationshipWithRestrictionImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_RELATIONSHIP_WITH_RESTRICTION);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.RELATIONSHIP);
         return result;
     }
 
@@ -1266,6 +1287,7 @@ public class ClassServices {
     public static KindOfRelationshipWithSignature createKindOfRelationshipWithSignature(final IRI id) {
         final KindOfRelationshipWithSignature result = new KindOfRelationshipWithSignatureImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_RELATIONSHIP_WITH_SIGNATURE);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.RELATIONSHIP);
         return result;
     }
 
@@ -1278,6 +1300,7 @@ public class ClassServices {
     public static KindOfSociallyConstructedObject createKindOfSociallyConstructedObject(final IRI id) {
         final KindOfSociallyConstructedObject result = new KindOfSociallyConstructedObjectImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_SOCIALLY_CONSTRUCTED_OBJECT);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.SOCIALLY_CONSTRUCTED_OBJECT);
         return result;
     }
 
@@ -1290,6 +1313,7 @@ public class ClassServices {
     public static KindOfSystem createKindOfSystem(final IRI id) {
         final KindOfSystem result = new KindOfSystemImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_SYSTEM);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.SYSTEM);
         return result;
     }
 
@@ -1302,6 +1326,7 @@ public class ClassServices {
     public static KindOfSystemComponent createKindOfSystemComponent(final IRI id) {
         final KindOfSystemComponent result = new KindOfSystemComponentImpl(id);
         result.addValue(RDFS.RDF_TYPE, HQDM.KIND_OF_SYSTEM_COMPONENT);
+        result.addValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.SYSTEM_COMPONENT);
         return result;
     }
 

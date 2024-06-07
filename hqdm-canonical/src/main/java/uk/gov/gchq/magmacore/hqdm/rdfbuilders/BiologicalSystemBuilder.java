@@ -38,6 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -125,8 +126,8 @@ public class BiologicalSystemBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where a
-     * {@link BiologicalSystem} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
-     * one or more {@link ClassOfBiologicalSystem}.
+     * {@link BiologicalSystem} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
+     * or more {@link ClassOfBiologicalSystem}.
      *
      * @param classOfBiologicalSystem The ClassOfBiologicalSystem.
      * @return Builder
@@ -138,14 +139,15 @@ public class BiologicalSystemBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF_KIND} relationship type where a
-     * {@link BiologicalSystem} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
-     * one or more {@link KindOfBiologicalSystem}.
+     * {@link BiologicalSystem} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
+     * or more {@link KindOfBiologicalSystem}.
      *
      * @param kindOfBiologicalSystem The KindOfBiologicalSystem.
      * @return Builder
      */
     public final BiologicalSystemBuilder member_Of_Kind(final KindOfBiologicalSystem kindOfBiologicalSystem) {
         this.biologicalSystem.addValue(MEMBER_OF_KIND, kindOfBiologicalSystem.getId());
+        this.biologicalSystem.addValue(RDFS.RDF_TYPE, kindOfBiologicalSystem.getId());
         return this;
     }
 
@@ -176,13 +178,12 @@ public class BiologicalSystemBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.

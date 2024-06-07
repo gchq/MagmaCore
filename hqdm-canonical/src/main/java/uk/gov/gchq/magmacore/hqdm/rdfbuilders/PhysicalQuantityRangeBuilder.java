@@ -52,11 +52,10 @@ public class PhysicalQuantityRangeBuilder {
     }
 
     /**
-     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF_BY_CLASS} relationship
-     * type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
-     * {@link ClassOfSpatioTemporalExtent}
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF} another
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
+     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF_BY_CLASS} relationship type
+     * where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
+     * {@link ClassOfSpatioTemporalExtent} {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF}
+     * another {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
@@ -83,8 +82,7 @@ public class PhysicalQuantityRangeBuilder {
 
     /**
      * A supertype_of relationship type where each {@link PhysicalQuantityRange} must have as
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#LOWER_BOUND} exactly one
-     * {@link PhysicalQuantity}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#LOWER_BOUND} exactly one {@link PhysicalQuantity}.
      *
      * @param physicalQuantity The PhysicalQuantity.
      * @return This builder.
@@ -136,8 +134,7 @@ public class PhysicalQuantityRangeBuilder {
 
     /**
      * A relationship type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
-     * {@link ClassOfSpatioTemporalExtent} is
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
+     * {@link ClassOfSpatioTemporalExtent} is {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} some
      * {@link ClassOfSpatioTemporalExtent}.
      *
@@ -166,8 +163,7 @@ public class PhysicalQuantityRangeBuilder {
 
     /**
      * A supertype_of relationship type where each {@link PhysicalQuantityRange} must have as
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#UPPER_BOUND} exactly one
-     * {@link PhysicalQuantity}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#UPPER_BOUND} exactly one {@link PhysicalQuantity}.
      *
      * @param physicalQuantity The PhysicalQuantity.
      * @return This builder.

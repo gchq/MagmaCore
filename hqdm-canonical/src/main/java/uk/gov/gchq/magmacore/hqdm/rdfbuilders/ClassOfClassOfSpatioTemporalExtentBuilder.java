@@ -38,8 +38,7 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
      * @param iri IRI of the ClassOfClassOfSpatioTemporalExtent.
      */
     public ClassOfClassOfSpatioTemporalExtentBuilder(final IRI iri) {
-        this.classOfClassOfSpatioTemporalExtent = 
-            ClassServices.createClassOfClassOfSpatioTemporalExtent(iri);
+        this.classOfClassOfSpatioTemporalExtent = ClassServices.createClassOfClassOfSpatioTemporalExtent(iri);
     }
 
     /**
