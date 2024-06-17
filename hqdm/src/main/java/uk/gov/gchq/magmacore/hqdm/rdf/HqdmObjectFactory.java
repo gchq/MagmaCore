@@ -448,7 +448,7 @@ public final class HqdmObjectFactory {
             case "class_of_class":
                 return ClassServices.createClassOfClass(iri);
             case "class_of_class_of_spatio_temporal_extent":
-                return ClassServices.createClassOfSpatioTemporalExtent(iri);
+                return ClassServices.createClassOfClassOfSpatioTemporalExtent(iri);
             case "class_of_contract_execution":
                 return ClassServices.createClassOfContractExecution(iri);
             case "class_of_contract_process":
