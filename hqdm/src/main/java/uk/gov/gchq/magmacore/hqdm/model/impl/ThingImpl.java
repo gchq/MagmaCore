@@ -14,14 +14,13 @@
 
 package uk.gov.gchq.magmacore.hqdm.model.impl;
 
-import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
 /**
  * An implementation of Thing.
  */
-public class ThingImpl extends HqdmObject implements Thing {
+public class ThingImpl extends HqdmObject /* implements Thing */ {
     /**
      * Constructs a new Thing.
      *

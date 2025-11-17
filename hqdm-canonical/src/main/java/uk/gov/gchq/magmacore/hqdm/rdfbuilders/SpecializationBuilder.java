@@ -15,7 +15,6 @@
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.SUBCLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.SUPERCLASS;
 
@@ -49,8 +48,8 @@ public class SpecializationBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final SpecializationBuilder member__Of(final Class clazz) {
-        this.specialization.addValue(MEMBER__OF, clazz.getId());
+    public final SpecializationBuilder member_Of(final Class clazz) {
+        this.specialization.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -97,10 +96,6 @@ public class SpecializationBuilder {
      * @throws HqdmException If the Specialization is missing any mandatory properties.
      */
     public Specialization build() throws HqdmException {
-        if (this.specialization.hasValue(MEMBER__OF)
-                && this.specialization.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.specialization.hasValue(MEMBER_OF)
                 && this.specialization.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");

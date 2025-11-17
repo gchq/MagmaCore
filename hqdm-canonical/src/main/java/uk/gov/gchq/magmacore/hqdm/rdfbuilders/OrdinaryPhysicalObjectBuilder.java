@@ -16,15 +16,13 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.AGGREGATED_INTO;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.BEGINNING;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_KIND;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -36,6 +34,7 @@ import uk.gov.gchq.magmacore.hqdm.model.OrdinaryPhysicalObject;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -86,14 +85,14 @@ public class OrdinaryPhysicalObjectBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OrdinaryPhysicalObjectBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ordinaryPhysicalObject.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
+    public final OrdinaryPhysicalObjectBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.ordinaryPhysicalObject.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -116,16 +115,15 @@ public class OrdinaryPhysicalObjectBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final OrdinaryPhysicalObjectBuilder member__Of(final Class clazz) {
-        this.ordinaryPhysicalObject.addValue(MEMBER__OF, clazz.getId());
+    public final OrdinaryPhysicalObjectBuilder member_Of(final Class clazz) {
+        this.ordinaryPhysicalObject.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where an
-     * {@link OrdinaryPhysicalObject} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
-     * {@link ClassOfOrdinaryPhysicalObject}.
+     * {@link OrdinaryPhysicalObject} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * one or more {@link ClassOfOrdinaryPhysicalObject}.
      *
      * @param classOfOrdinaryPhysicalObject The ClassOfOrdinaryPhysicalObject.
      * @return This builder.
@@ -138,17 +136,16 @@ public class OrdinaryPhysicalObjectBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF_KIND} relationship type where an
-     * {@link OrdinaryPhysicalObject} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
-     * {@link KindOfOrdinaryPhysicalObject}.
+     * {@link OrdinaryPhysicalObject} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * one or more {@link KindOfOrdinaryPhysicalObject}.
      *
      * @param kindOfOrdinaryPhysicalObject The KindOfOrdinaryPhysicalObject.
      * @return This builder.
      */
     public final OrdinaryPhysicalObjectBuilder member_Of_Kind(
             final KindOfOrdinaryPhysicalObject kindOfOrdinaryPhysicalObject) {
-        this.ordinaryPhysicalObject.addValue(MEMBER_OF_KIND,
-                kindOfOrdinaryPhysicalObject.getId());
+        this.ordinaryPhysicalObject.addValue(MEMBER_OF_KIND, kindOfOrdinaryPhysicalObject.getId());
+        this.ordinaryPhysicalObject.addValue(RDFS.RDF_TYPE, kindOfOrdinaryPhysicalObject.getId());
         return this;
     }
 
@@ -160,20 +157,19 @@ public class OrdinaryPhysicalObjectBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OrdinaryPhysicalObjectBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ordinaryPhysicalObject.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final OrdinaryPhysicalObjectBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.ordinaryPhysicalObject.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -192,24 +188,23 @@ public class OrdinaryPhysicalObjectBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OrdinaryPhysicalObjectBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ordinaryPhysicalObject.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
+    public final OrdinaryPhysicalObjectBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.ordinaryPhysicalObject.addValue(TEMPORAL_PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} relationship type where a
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more
-     * {@link Individual}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more {@link Individual}.
      *
      * <p>
      * Note: The relationship is optional because an {@link Individual} is not necessarily a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual},
-     * yet is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual}, yet
+     * is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} as well as {@link Individual}. This applies to all
-     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between
-     * a {@code state_of_X} and {@code X}.
+     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between a
+     * {@code state_of_X} and {@code X}.
      * </p>
      *
      * @param individual The Individual.
@@ -239,10 +234,6 @@ public class OrdinaryPhysicalObjectBuilder {
                 && this.ordinaryPhysicalObject.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.ordinaryPhysicalObject.hasValue(MEMBER__OF)
-                && this.ordinaryPhysicalObject.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.ordinaryPhysicalObject.hasValue(MEMBER_OF)
                 && this.ordinaryPhysicalObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
@@ -251,16 +242,12 @@ public class OrdinaryPhysicalObjectBuilder {
                 && this.ordinaryPhysicalObject.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (this.ordinaryPhysicalObject.hasValue(PART__OF)
-                && this.ordinaryPhysicalObject.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
+        if (this.ordinaryPhysicalObject.hasValue(PART_OF)
+                && this.ordinaryPhysicalObject.values(PART_OF).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of");
         }
         if (!this.ordinaryPhysicalObject.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
-        }
-        if (this.ordinaryPhysicalObject.hasValue(TEMPORAL__PART_OF)
-                && this.ordinaryPhysicalObject.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.ordinaryPhysicalObject.hasValue(TEMPORAL_PART_OF)
                 && this.ordinaryPhysicalObject.values(TEMPORAL_PART_OF).isEmpty()) {

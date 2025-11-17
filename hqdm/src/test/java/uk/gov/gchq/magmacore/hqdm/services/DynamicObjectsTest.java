@@ -40,6 +40,7 @@ public class DynamicObjectsTest {
 
         // Create the object with three interfaces.
         final IRI personIri = new IRI(TEST_BASE, "person");
+        @SuppressWarnings("unchecked")
         final Person person = DynamicObjects.create(personIri, Person.class,
                 new Class[] { Person.class, Participant.class, Party.class });
 
@@ -67,6 +68,7 @@ public class DynamicObjectsTest {
         assertEquals(person1Iri, person1.getId());
 
         // Add two more interfaces to the object - this time return it as a Participant.
+        @SuppressWarnings("unchecked")
         final Participant person2 = DynamicObjects.implementInterfaces(person1, Participant.class,
                 new Class[] { Person.class, Participant.class, Party.class });
 

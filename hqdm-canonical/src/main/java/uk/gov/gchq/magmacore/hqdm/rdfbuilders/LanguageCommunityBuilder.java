@@ -16,15 +16,13 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.AGGREGATED_INTO;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.BEGINNING;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_KIND;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -35,6 +33,7 @@ import uk.gov.gchq.magmacore.hqdm.model.LanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -85,14 +84,14 @@ public class LanguageCommunityBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final LanguageCommunityBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.languageCommunity.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
+    public final LanguageCommunityBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.languageCommunity.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -115,8 +114,8 @@ public class LanguageCommunityBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final LanguageCommunityBuilder member__Of(final Class clazz) {
-        this.languageCommunity.addValue(MEMBER__OF, clazz.getId());
+    public final LanguageCommunityBuilder member_Of(final Class clazz) {
+        this.languageCommunity.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -138,14 +137,14 @@ public class LanguageCommunityBuilder {
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF_KIND} relationship type where
      * {@link uk.gov.gchq.magmacore.hqdm.model.Organization} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
-     * {@link KindOfOrganization}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more {@link KindOfOrganization}.
      *
      * @param kindOfOrganization The KindOfOrganization.
      * @return This builder.
      */
     public final LanguageCommunityBuilder member_Of_Kind(final KindOfOrganization kindOfOrganization) {
         this.languageCommunity.addValue(MEMBER_OF_KIND, kindOfOrganization.getId());
+        this.languageCommunity.addValue(RDFS.RDF_TYPE, kindOfOrganization.getId());
         return this;
     }
 
@@ -157,20 +156,19 @@ public class LanguageCommunityBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final LanguageCommunityBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.languageCommunity.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final LanguageCommunityBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.languageCommunity.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -189,8 +187,8 @@ public class LanguageCommunityBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final LanguageCommunityBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.languageCommunity.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
+    public final LanguageCommunityBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.languageCommunity.addValue(TEMPORAL_PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -227,10 +225,6 @@ public class LanguageCommunityBuilder {
                 && this.languageCommunity.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.languageCommunity.hasValue(MEMBER__OF)
-                && this.languageCommunity.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.languageCommunity.hasValue(MEMBER_OF)
                 && this.languageCommunity.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
@@ -239,16 +233,12 @@ public class LanguageCommunityBuilder {
                 && this.languageCommunity.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (this.languageCommunity.hasValue(PART__OF)
-                && this.languageCommunity.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
+        if (this.languageCommunity.hasValue(PART_OF)
+                && this.languageCommunity.values(PART_OF).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of");
         }
         if (!this.languageCommunity.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
-        }
-        if (this.languageCommunity.hasValue(TEMPORAL__PART_OF)
-                && this.languageCommunity.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.languageCommunity.hasValue(TEMPORAL_PART_OF)
                 && this.languageCommunity.values(TEMPORAL_PART_OF).isEmpty()) {

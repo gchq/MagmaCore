@@ -15,7 +15,6 @@
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -47,8 +46,8 @@ public class RelationshipBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final RelationshipBuilder member__Of(final Class clazz) {
-        this.relationship.addValue(MEMBER__OF, clazz.getId());
+    public final RelationshipBuilder member_Of(final Class clazz) {
+        this.relationship.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -72,10 +71,6 @@ public class RelationshipBuilder {
      * @throws HqdmException If the Relationship is missing any mandatory properties.
      */
     public Relationship build() throws HqdmException {
-        if (this.relationship.hasValue(MEMBER__OF)
-                && this.relationship.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.relationship.hasValue(MEMBER_OF)
                 && this.relationship.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");

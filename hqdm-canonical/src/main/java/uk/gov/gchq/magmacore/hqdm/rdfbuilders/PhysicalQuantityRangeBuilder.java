@@ -14,13 +14,11 @@
 
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF_BY_CLASS;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_BY_CLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.HAS_SUPERCLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.LOWER_BOUND;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF_BY_CLASS;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_BY_CLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.RANGES_OVER;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.UPPER_BOUND;
 
@@ -52,19 +50,18 @@ public class PhysicalQuantityRangeBuilder {
     }
 
     /**
-     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF_BY_CLASS} relationship
-     * type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
-     * {@link ClassOfSpatioTemporalExtent}
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF} another
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
+     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF_BY_CLASS} relationship type
+     * where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
+     * {@link ClassOfSpatioTemporalExtent} {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF}
+     * another {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final PhysicalQuantityRangeBuilder consists__Of_By_Class(
+    public final PhysicalQuantityRangeBuilder consists_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.physicalQuantityRange.addValue(CONSISTS__OF_BY_CLASS,
+        this.physicalQuantityRange.addValue(CONSISTS_OF_BY_CLASS,
                 classOfSpatioTemporalExtent.getId());
         return this;
     }
@@ -83,8 +80,7 @@ public class PhysicalQuantityRangeBuilder {
 
     /**
      * A supertype_of relationship type where each {@link PhysicalQuantityRange} must have as
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#LOWER_BOUND} exactly one
-     * {@link PhysicalQuantity}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#LOWER_BOUND} exactly one {@link PhysicalQuantity}.
      *
      * @param physicalQuantity The PhysicalQuantity.
      * @return This builder.
@@ -101,8 +97,8 @@ public class PhysicalQuantityRangeBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final PhysicalQuantityRangeBuilder member__Of(final Class clazz) {
-        this.physicalQuantityRange.addValue(MEMBER__OF, clazz.getId());
+    public final PhysicalQuantityRangeBuilder member_Of(final Class clazz) {
+        this.physicalQuantityRange.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -127,26 +123,25 @@ public class PhysicalQuantityRangeBuilder {
      * @param classOfClassOfSpatioTemporalExtent The ClassOfClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final PhysicalQuantityRangeBuilder member_Of_(
+    public final PhysicalQuantityRangeBuilder member_Of(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.physicalQuantityRange.addValue(MEMBER_OF_,
+        this.physicalQuantityRange.addValue(MEMBER_OF,
                 classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A relationship type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
-     * {@link ClassOfSpatioTemporalExtent} is
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
+     * {@link ClassOfSpatioTemporalExtent} is {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} some
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final PhysicalQuantityRangeBuilder part__Of_By_Class(
+    public final PhysicalQuantityRangeBuilder part_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.physicalQuantityRange.addValue(PART__OF_BY_CLASS,
+        this.physicalQuantityRange.addValue(PART_OF_BY_CLASS,
                 classOfSpatioTemporalExtent.getId());
         return this;
     }
@@ -166,8 +161,7 @@ public class PhysicalQuantityRangeBuilder {
 
     /**
      * A supertype_of relationship type where each {@link PhysicalQuantityRange} must have as
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#UPPER_BOUND} exactly one
-     * {@link PhysicalQuantity}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#UPPER_BOUND} exactly one {@link PhysicalQuantity}.
      *
      * @param physicalQuantity The PhysicalQuantity.
      * @return This builder.
@@ -191,21 +185,13 @@ public class PhysicalQuantityRangeBuilder {
         if (!this.physicalQuantityRange.hasValue(LOWER_BOUND)) {
             throw new HqdmException("Property Not Set: lower_bound");
         }
-        if (this.physicalQuantityRange.hasValue(MEMBER__OF)
-                && this.physicalQuantityRange.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.physicalQuantityRange.hasValue(MEMBER_OF)
                 && this.physicalQuantityRange.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (this.physicalQuantityRange.hasValue(MEMBER_OF_)
-                && this.physicalQuantityRange.values(MEMBER_OF_).isEmpty()) {
-            throw new HqdmException("Property Not Set: member_of_");
-        }
-        if (this.physicalQuantityRange.hasValue(PART__OF_BY_CLASS)
-                && this.physicalQuantityRange.values(PART__OF_BY_CLASS).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of_by_class");
+        if (this.physicalQuantityRange.hasValue(PART_OF_BY_CLASS)
+                && this.physicalQuantityRange.values(PART_OF_BY_CLASS).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of_by_class");
         }
         if (!this.physicalQuantityRange.hasValue(RANGES_OVER)) {
             throw new HqdmException("Property Not Set: ranges_over");

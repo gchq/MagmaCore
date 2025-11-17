@@ -16,7 +16,6 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.HAS_SUPERCLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -38,8 +37,7 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
      * @param iri IRI of the ClassOfClassOfSpatioTemporalExtent.
      */
     public ClassOfClassOfSpatioTemporalExtentBuilder(final IRI iri) {
-        this.classOfClassOfSpatioTemporalExtent = 
-            ClassServices.createClassOfClassOfSpatioTemporalExtent(iri);
+        this.classOfClassOfSpatioTemporalExtent = ClassServices.createClassOfClassOfSpatioTemporalExtent(iri);
     }
 
     /**
@@ -61,8 +59,8 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final ClassOfClassOfSpatioTemporalExtentBuilder member__Of(final Class clazz) {
-        this.classOfClassOfSpatioTemporalExtent.addValue(MEMBER__OF, clazz.getId());
+    public final ClassOfClassOfSpatioTemporalExtentBuilder member_Of(final Class clazz) {
+        this.classOfClassOfSpatioTemporalExtent.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -91,10 +89,6 @@ public class ClassOfClassOfSpatioTemporalExtentBuilder {
         if (this.classOfClassOfSpatioTemporalExtent.hasValue(HAS_SUPERCLASS)
                 && this.classOfClassOfSpatioTemporalExtent.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
-        }
-        if (this.classOfClassOfSpatioTemporalExtent.hasValue(MEMBER__OF)
-                && this.classOfClassOfSpatioTemporalExtent.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfClassOfSpatioTemporalExtent.hasValue(MEMBER_OF)
                 && this.classOfClassOfSpatioTemporalExtent.values(MEMBER_OF).isEmpty()) {

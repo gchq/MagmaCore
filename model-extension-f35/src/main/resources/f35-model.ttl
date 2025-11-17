@@ -1,0 +1,161 @@
+@prefix hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+
+hqdm:cc342252-08f0-4f81-a71b-723794f9a7af a hqdm:Role;
+    skos:definition "A Lockheed Martin F-35 Lightning II aircraft".
+
+hqdm:3c85a699-71a5-4158-8404-0a39dff7df2c a hqdm:Role;
+    skos:definition "An airframe for a Lockheed Martin F-35 Lightning II aircraft".
+
+hqdm:84cb77e9-409e-4f54-a7df-f50561f3c930 a hqdm:Role;
+    skos:definition "An afterburning turbofan for the Lockheed Martin F-35 Lightning II aircraft.".
+
+hqdm:8a1fcd10-6db4-48c1-86b9-3e9c63f70b41 a hqdm:Role;
+    skos:definition "A turbine for an F135 turbofan engine for the Lockheed Martin F-35 Lightning II aircraft".
+
+hqdm:7be97087-1f41-4108-8294-23d699d753e9 a hqdm:Role;
+    skos:definition "A Rolls-Royce LiftSystem for the F135 turbofan engine for the Lockheed Martin F-35 Lightning II aircraft".
+
+hqdm:79760082-e77a-43d1-bf13-0ef212f2f2f7 a hqdm:Role;
+    skos:definition "A US16E Ejection Seat for a Lockheed Martin F-35 Lightning II aircraft".
+
+hqdm:F135EngineComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:84cb77e9-409e-4f54-a7df-f50561f3c930;
+    rdfs:subClassOf hqdm:FunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF135EngineComponent.
+hqdm:F135EngineSystem a rdfs:Class; 
+    hqdm:intendedRole hqdm:84cb77e9-409e-4f54-a7df-f50561f3c930;
+    rdfs:subClassOf hqdm:FunctionalSystem.
+hqdm:F135Engine a rdfs:Class; 
+    hqdm:intendedRole hqdm:84cb77e9-409e-4f54-a7df-f50561f3c930;
+    rdfs:subClassOf hqdm:OrdinaryFunctionalObject;
+    rdfs:subClassOf hqdm:StateOfF135Engine.
+hqdm:F135TurbineComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:8a1fcd10-6db4-48c1-86b9-3e9c63f70b41;
+    rdfs:subClassOf hqdm:FunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF135TurbineComponent.
+hqdm:F135Turbine a rdfs:Class; 
+    hqdm:intendedRole hqdm:8a1fcd10-6db4-48c1-86b9-3e9c63f70b41;
+    rdfs:subClassOf hqdm:OrdinaryFunctionalObject;
+    rdfs:subClassOf hqdm:StateOfF135Turbine.
+hqdm:F135VerticalLiftSystemComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:7be97087-1f41-4108-8294-23d699d753e9;
+    rdfs:subClassOf hqdm:FunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF135VLSComponent.
+hqdm:F135VerticalLiftSystem a rdfs:Class; 
+    hqdm:intendedRole hqdm:7be97087-1f41-4108-8294-23d699d753e9;
+    rdfs:subClassOf hqdm:OrdinaryFunctionalObject;
+    rdfs:subClassOf hqdm:StateOfF135VLS.
+hqdm:F35Aircraft a rdfs:Class; 
+    hqdm:intendedRole hqdm:cc342252-08f0-4f81-a71b-723794f9a7af;
+    rdfs:subClassOf hqdm:FunctionalSystem.
+hqdm:F35AirframeComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:3c85a699-71a5-4158-8404-0a39dff7df2c;
+    rdfs:subClassOf hqdm:FunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF35AirframeComponent.
+hqdm:F35Airframe a rdfs:Class; 
+    hqdm:intendedRole hqdm:3c85a699-71a5-4158-8404-0a39dff7df2c;
+    rdfs:subClassOf hqdm:OrdinaryFunctionalObject;
+    rdfs:subClassOf hqdm:StateOfF35Airframe.
+hqdm:F35EjectionSeatComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:79760082-e77a-43d1-bf13-0ef212f2f2f7;
+    rdfs:subClassOf hqdm:FunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF35EjectionSeatComponent.
+hqdm:F35EngineComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:84cb77e9-409e-4f54-a7df-f50561f3c930;
+    rdfs:subClassOf hqdm:FunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF35EngineComponent.
+hqdm:F35TurbineComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:8a1fcd10-6db4-48c1-86b9-3e9c63f70b41;
+    rdfs:subClassOf hqdm:FunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF35TurbineComponent.
+hqdm:F35VerticalLiftSystemComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:7be97087-1f41-4108-8294-23d699d753e9;
+    rdfs:subClassOf hqdm:FunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF135VLSComponent.
+hqdm:InstalledF135EngineInF135EngineSystem a rdfs:Class; 
+    hqdm:intendedRole hqdm:84cb77e9-409e-4f54-a7df-f50561f3c930;
+    rdfs:subClassOf hqdm:InstalledFunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF135Engine;
+    rdfs:subClassOf hqdm:StateOfF135EngineComponent.
+hqdm:InstalledF135EngineInF35Aircraft a rdfs:Class; 
+    hqdm:intendedRole hqdm:84cb77e9-409e-4f54-a7df-f50561f3c930;
+    rdfs:subClassOf hqdm:InstalledFunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF135Engine;
+    rdfs:subClassOf hqdm:StateOfF35EngineComponent.
+hqdm:InstalledF135TurbineInF135EngineSystem a rdfs:Class; 
+    hqdm:intendedRole hqdm:8a1fcd10-6db4-48c1-86b9-3e9c63f70b41;
+    rdfs:subClassOf hqdm:InstalledFunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF135Turbine;
+    rdfs:subClassOf hqdm:StateOfF135TurbineComponent.
+hqdm:InstalledF135TurbineInF35Aircraft a rdfs:Class; 
+    hqdm:intendedRole hqdm:8a1fcd10-6db4-48c1-86b9-3e9c63f70b41;
+    rdfs:subClassOf hqdm:InstalledFunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF135Turbine;
+    rdfs:subClassOf hqdm:StateOfF135TurbineComponent.
+hqdm:InstalledF135VLSInF135EngineSystem a rdfs:Class; 
+    hqdm:intendedRole hqdm:7be97087-1f41-4108-8294-23d699d753e9;
+    rdfs:subClassOf hqdm:InstalledFunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF135VLS;
+    rdfs:subClassOf hqdm:StateOfF35VLSComponent.
+hqdm:InstalledF135VLSInF35Aircraft a rdfs:Class; 
+    hqdm:intendedRole hqdm:7be97087-1f41-4108-8294-23d699d753e9;
+    rdfs:subClassOf hqdm:InstalledFunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF135VLS;
+    rdfs:subClassOf hqdm:StateOfF35VLSComponent.
+hqdm:InstalledF35AirframeInF35Aircraft a rdfs:Class; 
+    hqdm:intendedRole hqdm:3c85a699-71a5-4158-8404-0a39dff7df2c;
+    rdfs:subClassOf hqdm:InstalledFunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfF35Airframe;
+    rdfs:subClassOf hqdm:StateOfF35AirframeComponent.
+hqdm:InstalledUS16EEjectionSeatInF35Aircraft a rdfs:Class; 
+    hqdm:intendedRole hqdm:79760082-e77a-43d1-bf13-0ef212f2f2f7;
+    rdfs:subClassOf hqdm:InstalledFunctionalSystemComponent;
+    rdfs:subClassOf hqdm:StateOfUS16EEjectionSeat;
+    rdfs:subClassOf hqdm:StateOfF35EjectionSeatComponent.
+hqdm:StateOfF135EngineComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:84cb77e9-409e-4f54-a7df-f50561f3c930;
+    rdfs:subClassOf hqdm:StateOfFunctionalSystemComponent.
+hqdm:StateOfF135Engine a rdfs:Class; 
+    hqdm:intendedRole hqdm:84cb77e9-409e-4f54-a7df-f50561f3c930;
+    rdfs:subClassOf hqdm:StateOfFunctionalSystemComponent.
+hqdm:StateOfF135TurbineComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:8a1fcd10-6db4-48c1-86b9-3e9c63f70b41;
+    rdfs:subClassOf hqdm:StateOfFunctionalSystemComponent.
+hqdm:StateOfF135Turbine a rdfs:Class; 
+    hqdm:intendedRole hqdm:8a1fcd10-6db4-48c1-86b9-3e9c63f70b41;
+    rdfs:subClassOf hqdm:StateOfFunctionalSystemComponent.
+hqdm:StateOfF135VLSComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:7be97087-1f41-4108-8294-23d699d753e9;
+    rdfs:subClassOf hqdm:StateOfFunctionalSystemComponent.
+hqdm:StateOfF135VLS a rdfs:Class; 
+    hqdm:intendedRole hqdm:7be97087-1f41-4108-8294-23d699d753e9;
+    rdfs:subClassOf hqdm:StateOfFunctionalSystemComponent.
+hqdm:StateOfF35AirframeComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:3c85a699-71a5-4158-8404-0a39dff7df2c;
+    rdfs:subClassOf hqdm:StateOfFunctionalSystemComponent.
+hqdm:StateOfF35Airframe a rdfs:Class; 
+    hqdm:intendedRole hqdm:3c85a699-71a5-4158-8404-0a39dff7df2c;
+    rdfs:subClassOf hqdm:StateOfFunctionalSystemComponent.
+hqdm:StateOfF35EjectionSeatComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:79760082-e77a-43d1-bf13-0ef212f2f2f7;
+    rdfs:subClassOf hqdm:StateOfFunctionalSystemComponent.
+hqdm:StateOfF35EngineComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:84cb77e9-409e-4f54-a7df-f50561f3c930;
+    rdfs:subClassOf hqdm:StateOfFunctionalSystemComponent.
+hqdm:StateOfF35TurbineComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:8a1fcd10-6db4-48c1-86b9-3e9c63f70b41;
+    rdfs:subClassOf hqdm:StateOfFunctionalSystemComponent.
+hqdm:StateOfF35VLSComponent a rdfs:Class; 
+    hqdm:intendedRole hqdm:7be97087-1f41-4108-8294-23d699d753e9;
+    rdfs:subClassOf hqdm:StateOfFunctionalSystemComponent.
+hqdm:StateOfUS16EEjectionSeat a rdfs:Class; 
+    hqdm:intendedRole hqdm:79760082-e77a-43d1-bf13-0ef212f2f2f7;
+    rdfs:subClassOf hqdm:StateOfFunctionalSystemComponent.
+hqdm:US16EEjectionSeat a rdfs:Class; 
+    hqdm:intendedRole hqdm:79760082-e77a-43d1-bf13-0ef212f2f2f7;
+    rdfs:subClassOf hqdm:OrdinaryFunctionalObject;
+    rdfs:subClassOf hqdm:StateOfUS16EEjectionSeat.
+

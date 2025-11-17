@@ -14,12 +14,10 @@
 
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF_BY_CLASS;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_BY_CLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.HAS_SUPERCLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF_BY_CLASS;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_BY_CLASS;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -47,19 +45,18 @@ public class ClassOfSalesProductInstanceBuilder {
     }
 
     /**
-     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF_BY_CLASS} relationship
-     * type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
-     * {@link ClassOfSpatioTemporalExtent}
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF} another
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
+     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF_BY_CLASS} relationship type
+     * where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
+     * {@link ClassOfSpatioTemporalExtent} {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF}
+     * another {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final ClassOfSalesProductInstanceBuilder consists__Of_By_Class(
+    public final ClassOfSalesProductInstanceBuilder consists_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfSalesProductInstance.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfSalesProductInstance.addValue(CONSISTS_OF_BY_CLASS,
                 classOfSpatioTemporalExtent.getId());
         return this;
     }
@@ -83,8 +80,8 @@ public class ClassOfSalesProductInstanceBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final ClassOfSalesProductInstanceBuilder member__Of(final Class clazz) {
-        this.classOfSalesProductInstance.addValue(MEMBER__OF, clazz.getId());
+    public final ClassOfSalesProductInstanceBuilder member_Of(final Class clazz) {
+        this.classOfSalesProductInstance.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -109,26 +106,25 @@ public class ClassOfSalesProductInstanceBuilder {
      * @param classOfClassOfSpatioTemporalExtent The ClassOfClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final ClassOfSalesProductInstanceBuilder member_Of_(
+    public final ClassOfSalesProductInstanceBuilder member_Of(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.classOfSalesProductInstance.addValue(MEMBER_OF_,
+        this.classOfSalesProductInstance.addValue(MEMBER_OF,
                 classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A relationship type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
-     * {@link ClassOfSpatioTemporalExtent} is
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
+     * {@link ClassOfSpatioTemporalExtent} is {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} some
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final ClassOfSalesProductInstanceBuilder part__Of_By_Class(
+    public final ClassOfSalesProductInstanceBuilder part_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfSalesProductInstance.addValue(PART__OF_BY_CLASS,
+        this.classOfSalesProductInstance.addValue(PART_OF_BY_CLASS,
                 classOfSpatioTemporalExtent.getId());
         return this;
     }
@@ -145,21 +141,13 @@ public class ClassOfSalesProductInstanceBuilder {
                 && this.classOfSalesProductInstance.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (this.classOfSalesProductInstance.hasValue(MEMBER__OF)
-                && this.classOfSalesProductInstance.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.classOfSalesProductInstance.hasValue(MEMBER_OF)
                 && this.classOfSalesProductInstance.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (this.classOfSalesProductInstance.hasValue(MEMBER_OF_)
-                && this.classOfSalesProductInstance.values(MEMBER_OF_).isEmpty()) {
-            throw new HqdmException("Property Not Set: member_of_");
-        }
-        if (this.classOfSalesProductInstance.hasValue(PART__OF_BY_CLASS)
-                && this.classOfSalesProductInstance.values(PART__OF_BY_CLASS).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of_by_class");
+        if (this.classOfSalesProductInstance.hasValue(PART_OF_BY_CLASS)
+                && this.classOfSalesProductInstance.values(PART_OF_BY_CLASS).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of_by_class");
         }
         return this.classOfSalesProductInstance;
     }

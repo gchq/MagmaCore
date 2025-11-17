@@ -17,15 +17,13 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.AGGREGATED_INTO;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.BEGINNING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.COMPONENT_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_KIND;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -38,6 +36,7 @@ import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.System;
 import uk.gov.gchq.magmacore.hqdm.model.SystemComponent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -86,8 +85,8 @@ public class SystemComponentBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where each
-     * {@link SystemComponent} is {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} exactly
-     * one {@link System}.
+     * {@link SystemComponent} is {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} exactly one
+     * {@link System}.
      *
      * @param system The System.
      * @return This builder.
@@ -101,14 +100,14 @@ public class SystemComponentBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final SystemComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.systemComponent.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
+    public final SystemComponentBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.systemComponent.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -131,15 +130,15 @@ public class SystemComponentBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final SystemComponentBuilder member__Of(final Class clazz) {
-        this.systemComponent.addValue(MEMBER__OF, clazz.getId());
+    public final SystemComponentBuilder member_Of(final Class clazz) {
+        this.systemComponent.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where a
-     * {@link SystemComponent} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
-     * one or more {@link ClassOfSystemComponent}.
+     * {@link SystemComponent} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or
+     * more {@link ClassOfSystemComponent}.
      *
      * @param classOfSystemComponent The ClassOfSystemComponent.
      * @return This builder.
@@ -160,6 +159,7 @@ public class SystemComponentBuilder {
      */
     public final SystemComponentBuilder member_Of_Kind(final KindOfPhysicalObject kindOfPhysicalObject) {
         this.systemComponent.addValue(MEMBER_OF_KIND, kindOfPhysicalObject.getId());
+        this.systemComponent.addValue(RDFS.RDF_TYPE, kindOfPhysicalObject.getId());
         return this;
     }
 
@@ -171,20 +171,19 @@ public class SystemComponentBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final SystemComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.systemComponent.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final SystemComponentBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.systemComponent.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -203,24 +202,23 @@ public class SystemComponentBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final SystemComponentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.systemComponent.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
+    public final SystemComponentBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.systemComponent.addValue(TEMPORAL_PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} relationship type where a
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more
-     * {@link Individual}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more {@link Individual}.
      *
      * <p>
      * Note: The relationship is optional because an {@link Individual} is not necessarily a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual},
-     * yet is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual}, yet
+     * is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} as well as {@link Individual}. This applies to all
-     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between
-     * a {@code state_of_X} and {@code X}.
+     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between a
+     * {@code state_of_X} and {@code X}.
      * </p>
      *
      * @param individual The Individual.
@@ -253,10 +251,6 @@ public class SystemComponentBuilder {
                 && this.systemComponent.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.systemComponent.hasValue(MEMBER__OF)
-                && this.systemComponent.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.systemComponent.hasValue(MEMBER_OF)
                 && this.systemComponent.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
@@ -265,16 +259,12 @@ public class SystemComponentBuilder {
                 && this.systemComponent.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (this.systemComponent.hasValue(PART__OF)
-                && this.systemComponent.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
+        if (this.systemComponent.hasValue(PART_OF)
+                && this.systemComponent.values(PART_OF).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of");
         }
         if (!this.systemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
-        }
-        if (this.systemComponent.hasValue(TEMPORAL__PART_OF)
-                && this.systemComponent.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.systemComponent.hasValue(TEMPORAL_PART_OF)
                 && this.systemComponent.values(TEMPORAL_PART_OF).isEmpty()) {

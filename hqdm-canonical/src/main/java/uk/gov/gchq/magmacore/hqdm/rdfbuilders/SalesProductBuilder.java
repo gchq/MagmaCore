@@ -14,13 +14,11 @@
 
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF_BY_CLASS;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_BY_CLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.HAS_SUPERCLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEETS_SPECIFICATION;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF_BY_CLASS;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_BY_CLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.SOLD_UNDER;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
@@ -51,19 +49,18 @@ public class SalesProductBuilder {
     }
 
     /**
-     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF_BY_CLASS} relationship
-     * type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
-     * {@link ClassOfSpatioTemporalExtent}
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF} another
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
+     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF_BY_CLASS} relationship type
+     * where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
+     * {@link ClassOfSpatioTemporalExtent} {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF}
+     * another {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final SalesProductBuilder consists__Of_By_Class(
+    public final SalesProductBuilder consists_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.salesProduct.addValue(CONSISTS__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
+        this.salesProduct.addValue(CONSISTS_OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -82,9 +79,8 @@ public class SalesProductBuilder {
     /**
      * A subclass_of relationship type where when a {@link SalesProduct}
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEETS_SPECIFICATION} of a
-     * {@link RequirementSpecification}, each
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a {@link SalesProduct} is a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} the
+     * {@link RequirementSpecification}, each {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * a {@link SalesProduct} is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} the
      * {@link RequirementSpecification}.
      *
      * @param requirementSpecification The RequirementSpecification.
@@ -103,8 +99,8 @@ public class SalesProductBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final SalesProductBuilder member__Of(final Class clazz) {
-        this.salesProduct.addValue(MEMBER__OF, clazz.getId());
+    public final SalesProductBuilder member_Of(final Class clazz) {
+        this.salesProduct.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -129,25 +125,24 @@ public class SalesProductBuilder {
      * @param classOfClassOfSpatioTemporalExtent The ClassOfClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final SalesProductBuilder member_Of_(
+    public final SalesProductBuilder member_Of(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.salesProduct.addValue(MEMBER_OF_, classOfClassOfSpatioTemporalExtent.getId());
+        this.salesProduct.addValue(MEMBER_OF, classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A relationship type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
-     * {@link ClassOfSpatioTemporalExtent} is
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
+     * {@link ClassOfSpatioTemporalExtent} is {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} some
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final SalesProductBuilder part__Of_By_Class(
+    public final SalesProductBuilder part_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.salesProduct.addValue(PART__OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
+        this.salesProduct.addValue(PART_OF_BY_CLASS, classOfSpatioTemporalExtent.getId());
         return this;
     }
 
@@ -178,21 +173,13 @@ public class SalesProductBuilder {
                 && this.salesProduct.values(MEETS_SPECIFICATION).isEmpty()) {
             throw new HqdmException("Property Not Set: meets_specification");
         }
-        if (this.salesProduct.hasValue(MEMBER__OF)
-                && this.salesProduct.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.salesProduct.hasValue(MEMBER_OF)
                 && this.salesProduct.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (this.salesProduct.hasValue(MEMBER_OF_)
-                && this.salesProduct.values(MEMBER_OF_).isEmpty()) {
-            throw new HqdmException("Property Not Set: member_of_");
-        }
-        if (this.salesProduct.hasValue(PART__OF_BY_CLASS)
-                && this.salesProduct.values(PART__OF_BY_CLASS).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of_by_class");
+        if (this.salesProduct.hasValue(PART_OF_BY_CLASS)
+                && this.salesProduct.values(PART_OF_BY_CLASS).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of_by_class");
         }
         if (this.salesProduct.hasValue(SOLD_UNDER)
                 && this.salesProduct.values(SOLD_UNDER).isEmpty()) {

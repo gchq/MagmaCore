@@ -16,16 +16,14 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.AGGREGATED_INTO;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.BEGINNING;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.INTENDED_ROLE;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_KIND;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -37,6 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SalesProductInstance;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -87,14 +86,14 @@ public class SalesProductInstanceBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final SalesProductInstanceBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.salesProductInstance.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
+    public final SalesProductInstanceBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.salesProductInstance.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -129,16 +128,15 @@ public class SalesProductInstanceBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final SalesProductInstanceBuilder member__Of(final Class clazz) {
-        this.salesProductInstance.addValue(MEMBER__OF, clazz.getId());
+    public final SalesProductInstanceBuilder member_Of(final Class clazz) {
+        this.salesProductInstance.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where a
-     * {@link SalesProductInstance} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
-     * {@link ClassOfSalesProductInstance}.
+     * {@link SalesProductInstance} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * one or more {@link ClassOfSalesProductInstance}.
      *
      * @param classOfSalesProductInstance The ClassOfSalesProductInstance.
      * @return This builder.
@@ -160,8 +158,8 @@ public class SalesProductInstanceBuilder {
      */
     public final SalesProductInstanceBuilder member_Of_Kind(
             final KindOfOrdinaryFunctionalObject kindOfOrdinaryFunctionalObject) {
-        this.salesProductInstance.addValue(MEMBER_OF_KIND,
-                kindOfOrdinaryFunctionalObject.getId());
+        this.salesProductInstance.addValue(MEMBER_OF_KIND, kindOfOrdinaryFunctionalObject.getId());
+        this.salesProductInstance.addValue(RDFS.RDF_TYPE, kindOfOrdinaryFunctionalObject.getId());
         return this;
     }
 
@@ -173,20 +171,19 @@ public class SalesProductInstanceBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final SalesProductInstanceBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.salesProductInstance.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final SalesProductInstanceBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.salesProductInstance.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -205,8 +202,8 @@ public class SalesProductInstanceBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final SalesProductInstanceBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.salesProductInstance.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
+    public final SalesProductInstanceBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.salesProductInstance.addValue(TEMPORAL_PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -246,10 +243,6 @@ public class SalesProductInstanceBuilder {
         if (!this.salesProductInstance.hasValue(INTENDED_ROLE)) {
             throw new HqdmException("Property Not Set: intended_role");
         }
-        if (this.salesProductInstance.hasValue(MEMBER__OF)
-                && this.salesProductInstance.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.salesProductInstance.hasValue(MEMBER_OF)
                 && this.salesProductInstance.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
@@ -258,16 +251,12 @@ public class SalesProductInstanceBuilder {
                 && this.salesProductInstance.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (this.salesProductInstance.hasValue(PART__OF)
-                && this.salesProductInstance.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
+        if (this.salesProductInstance.hasValue(PART_OF)
+                && this.salesProductInstance.values(PART_OF).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of");
         }
         if (!this.salesProductInstance.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
-        }
-        if (this.salesProductInstance.hasValue(TEMPORAL__PART_OF)
-                && this.salesProductInstance.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.salesProductInstance.hasValue(TEMPORAL_PART_OF)
                 && this.salesProductInstance.values(TEMPORAL_PART_OF).isEmpty()) {

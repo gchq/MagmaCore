@@ -46,7 +46,7 @@ public class ExampleSignsRdl {
         // Add DbCreateOperations to create the objects and their properties.
         final List<DbCreateOperation> creates = List.of(
                 new DbCreateOperation(urlPattern, RDFS.RDF_TYPE, HQDM.PATTERN),
-                new DbCreateOperation(urlPattern, HQDM.ENTITY_NAME, "URL Pattern"),
+                new DbCreateOperation(urlPattern, HQDM.SKOS_DEFINITION, "URL Pattern"),
 
                 new DbCreateOperation(description, RDFS.RDF_TYPE, HQDM.DESCRIPTION),
                 new DbCreateOperation(description, HQDM.ENTITY_NAME, "Description By URL"),

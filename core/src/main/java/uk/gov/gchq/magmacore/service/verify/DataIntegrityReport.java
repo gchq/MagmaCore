@@ -12,125 +12,125 @@ import uk.gov.gchq.magmacore.hqdm.model.Thing;
 public class DataIntegrityReport {
 
     private static final String CHECK_MISSING_DATA_ENTITY_NAME = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-            ?s hqdm:error_missing_entity_name "Should have a data_EntityName.".
+            ?s hqdm:errorMissingEntityName "Should have a dataentityName.".
             ?s a ?type.
             }
             where {
             ?s a ?type;
             ?p ?o.
             OPTIONAL {
-            ?s hqdm:data_EntityName ?name.
+            ?s hqdm:dataentityName ?name.
             }
 
             FILTER(!bound(?name))
             FILTER(?type in (
             hqdm:class,
             hqdm:classification,
-            hqdm:class_of_abstract_object,
-            hqdm:class_of_activity,
-            hqdm:class_of_agree_contract,
-            hqdm:class_of_agreement_execution,
-            hqdm:class_of_agreement_process,
-            hqdm:class_of_amount_of_money,
-            hqdm:class_of_association,
-            hqdm:class_of_biological_object,
-            hqdm:class_of_biological_system,
-            hqdm:class_of_biological_system_component,
-            hqdm:class_of_class,
-            hqdm:class_of_class_of_spatio_temporal_extent,
-            hqdm:class_of_contract_execution,
-            hqdm:class_of_contract_process,
-            hqdm:class_of_event,
-            hqdm:class_of_functional_object,
-            hqdm:class_of_functional_system,
-            hqdm:class_of_functional_system_component,
-            hqdm:class_of_individual,
-            hqdm:class_of_in_place_biological_component,
-            hqdm:class_of_installed_functional_system_component,
-            hqdm:class_of_installed_object,
-            hqdm:class_of_intentionally_constructed_object,
-            hqdm:class_of_offer,
-            hqdm:class_of_ordinary_biological_object,
-            hqdm:class_of_ordinary_functional_object,
-            hqdm:class_of_ordinary_physical_object,
-            hqdm:class_of_organization,
-            hqdm:class_of_organization_component,
-            hqdm:class_of_participant,
-            hqdm:class_of_party,
-            hqdm:class_of_period_of_time,
-            hqdm:class_of_person,
-            hqdm:class_of_person_in_position,
-            hqdm:class_of_physical_object,
-            hqdm:class_of_physical_property,
-            hqdm:class_of_physical_quantity,
-            hqdm:class_of_point_in_time,
-            hqdm:class_of_position,
-            hqdm:class_of_possible_world,
-            hqdm:class_of_reaching_agreement,
-            hqdm:class_of_relationship,
-            hqdm:class_of_representation,
-            hqdm:class_of_sales_product_instance,
-            hqdm:class_of_sign,
-            hqdm:class_of_socially_constructed_activity,
-            hqdm:class_of_socially_constructed_object,
-            hqdm:class_of_spatio_temporal_extent,
-            hqdm:class_of_state,
-            hqdm:class_of_state_of_activity,
-            hqdm:class_of_state_of_amount_of_money,
-            hqdm:class_of_state_of_association,
-            hqdm:class_of_state_of_biological_object,
-            hqdm:class_of_state_of_biological_system,
-            hqdm:class_of_state_of_biological_system_component,
-            hqdm:class_of_state_of_functional_object,
-            hqdm:class_of_state_of_functional_system,
-            hqdm:class_of_state_of_functional_system_component,
-            hqdm:class_of_state_of_intentionally_constructed_object,
-            hqdm:class_of_state_of_ordinary_biological_object,
-            hqdm:class_of_state_of_ordinary_functional_object,
-            hqdm:class_of_state_of_ordinary_physical_object,
-            hqdm:class_of_state_of_organization,
-            hqdm:class_of_state_of_organization_component,
-            hqdm:class_of_state_of_party,
-            hqdm:class_of_state_of_person,
-            hqdm:class_of_state_of_physical_object,
-            hqdm:class_of_state_of_position,
-            hqdm:class_of_state_of_sales_product_instance,
-            hqdm:class_of_state_of_sign,
-            hqdm:class_of_state_of_socially_constructed_activity,
-            hqdm:class_of_state_of_socially_constructed_object,
-            hqdm:class_of_state_of_system,
-            hqdm:class_of_state_of_system_component,
-            hqdm:class_of_system,
-            hqdm:class_of_system_component,
-            hqdm:kind_of_activity,
-            hqdm:kind_of_association,
-            hqdm:kind_of_biological_object,
-            hqdm:kind_of_biological_system,
-            hqdm:kind_of_biological_system_component,
-            hqdm:kind_of_functional_object,
-            hqdm:kind_of_functional_system,
-            hqdm:kind_of_functional_system_component,
-            hqdm:kind_of_individual,
-            hqdm:kind_of_intentionally_constructed_object,
-            hqdm:kind_of_ordinary_biological_object,
-            hqdm:kind_of_ordinary_functional_object,
-            hqdm:kind_of_ordinary_physical_object,
-            hqdm:kind_of_organization,
-            hqdm:kind_of_organization_component,
-            hqdm:kind_of_party,
-            hqdm:kind_of_person,
-            hqdm:kind_of_physical_object,
-            hqdm:kind_of_physical_property,
-            hqdm:kind_of_physical_quantity,
-            hqdm:kind_of_position,
-            hqdm:kind_of_relationship_with_restriction,
-            hqdm:kind_of_relationship_with_signature,
-            hqdm:kind_of_socially_constructed_object,
-            hqdm:kind_of_system,
-            hqdm:kind_of_system_component,
+            hqdm:classOfAbstractObject,
+            hqdm:classOfActivity,
+            hqdm:classOfAgreeContract,
+            hqdm:classOfAgreementExecution,
+            hqdm:classOfAgreementProcess,
+            hqdm:classOfAmountOfMoney,
+            hqdm:classOfAssociation,
+            hqdm:classOfBiologicalObject,
+            hqdm:classOfBiologicalSystem,
+            hqdm:classOfBiologicalSystemComponent,
+            hqdm:classOfClass,
+            hqdm:classOfClassOfSpatioTemporalExtent,
+            hqdm:classOfContractExecution,
+            hqdm:classOfContractProcess,
+            hqdm:classOfEvent,
+            hqdm:classOfFunctionalObject,
+            hqdm:classOfFunctionalSystem,
+            hqdm:classOfFunctionalSystemComponent,
+            hqdm:classOfIndividual,
+            hqdm:classOfInPlaceBiologicalComponent,
+            hqdm:classOfInstalledFunctionalSystemComponent,
+            hqdm:classOfInstalledObject,
+            hqdm:classOfIntentionallyConstructedObject,
+            hqdm:classOfOffer,
+            hqdm:classOfOrdinaryBiologicalObject,
+            hqdm:classOfOrdinaryFunctionalObject,
+            hqdm:classOfOrdinaryPhysicalObject,
+            hqdm:classOfOrganization,
+            hqdm:classOfOrganizationComponent,
+            hqdm:classOfParticipant,
+            hqdm:classOfParty,
+            hqdm:classOfPeriodOfTime,
+            hqdm:classOfPerson,
+            hqdm:classOfpersonInPosition,
+            hqdm:classOfPhysicalObject,
+            hqdm:classOfPhysicalProperty,
+            hqdm:classOfPhysicalQuantity,
+            hqdm:classOfPointInTime,
+            hqdm:classOfPosition,
+            hqdm:classOfPossibleWorld,
+            hqdm:classOfReachingAgreement,
+            hqdm:classOfRelationship,
+            hqdm:classOfRepresentation,
+            hqdm:classOfSalesProductInstance,
+            hqdm:classOfSign,
+            hqdm:classOfSociallyConstructedActivity,
+            hqdm:classOfSociallyConstructedObject,
+            hqdm:classOfSpatioTemporalExtent,
+            hqdm:classOfState,
+            hqdm:classOfStateOfActivity,
+            hqdm:classOfStateOfAmountOfMoney,
+            hqdm:classOfStateOfAssociation,
+            hqdm:classOfStateOfBiologicalObject,
+            hqdm:classOfStateOfBiologicalSystem,
+            hqdm:classOfStateOfBiologicalSystemComponent,
+            hqdm:classOfStateOfFunctionalObject,
+            hqdm:classOfStateOfFunctionalSystem,
+            hqdm:classOfStateOfFunctionalSystemComponent,
+            hqdm:classOfStateOfIntentionallyConstructedObject,
+            hqdm:classOfStateOfOrdinaryBiologicalObject,
+            hqdm:classOfStateOfOrdinaryFunctionalObject,
+            hqdm:classOfStateOfOrdinaryPhysicalObject,
+            hqdm:classOfStateOfOrganization,
+            hqdm:classOfStateOfOrganizationComponent,
+            hqdm:classOfStateOfParty,
+            hqdm:classOfStateOfPerson,
+            hqdm:classOfStateOfPhysicalObject,
+            hqdm:classOfStateOfPosition,
+            hqdm:classOfStateOfSalesProductInstance,
+            hqdm:classOfStateOfSign,
+            hqdm:classOfStateOfSociallyConstructedActivity,
+            hqdm:classOfStateOfSociallyConstructedObject,
+            hqdm:classOfStateOfSystem,
+            hqdm:classOfStateOfSystemComponent,
+            hqdm:classOfSystem,
+            hqdm:classOfSystemComponent,
+            hqdm:kindOfActivity,
+            hqdm:kindOfAssociation,
+            hqdm:kindOfBiologicalObject,
+            hqdm:kindOfBiologicalSystem,
+            hqdm:kindOfBiologicalSystemComponent,
+            hqdm:kindOfFunctionalObject,
+            hqdm:kindOfFunctionalSystem,
+            hqdm:kindOfFunctionalSystemComponent,
+            hqdm:kindOfIndividual,
+            hqdm:kindOfIntentionallyConstructedObject,
+            hqdm:kindOfOrdinaryBiologicalObject,
+            hqdm:kindOfOrdinaryFunctionalObject,
+            hqdm:kindOfOrdinaryPhysicalObject,
+            hqdm:kindOfOrganization,
+            hqdm:kindOfOrganizationComponent,
+            hqdm:kindOfParty,
+            hqdm:kindOfPerson,
+            hqdm:kindOfPhysicalObject,
+            hqdm:kindOfPhysicalProperty,
+            hqdm:kindOfPhysicalQuantity,
+            hqdm:kindOfPosition,
+            hqdm:kindOfRelationshipWithRestriction,
+            hqdm:kindOfRelationshipWithSignature,
+            hqdm:kindOfSociallyConstructedObject,
+            hqdm:kindOfSystem,
+            hqdm:kindOfSystemComponent,
             hqdm:role,
             hqdm:pattern,
             hqdm:description,
@@ -141,20 +141,20 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_MISSING_PARTICIPANT_ROLES = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-            ?s hqdm:error_participant_with_no_role "Should be a member_of_kind of a role.".
+            ?s hqdm:errorParticipantWithNoRole "Should be a memberOfKind of a role.".
             ?s a ?type.
             }
             where {
-            ?s hqdm:participant_in ?association;
+            ?s hqdm:participantIn ?association;
             a ?type.
 
             ?association a hqdm:association.
 
             OPTIONAL {
-            ?s hqdm:member_of_kind ?kind.
+            ?s hqdm:memberOfKind ?kind.
             ?kind a hqdm:role.
             }
 
@@ -163,199 +163,199 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_POSSIBLE_WORLD_MEMBERSHIP = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
             construct {
-            ?s hqdm:error_possible_world "Should be part of a possible world.".
+            ?s hqdm:errorPossibleWorld "Should be part of a possible world.".
             ?s a ?type.
             }
             where {
             ?s a ?type;
             ?p ?o.
             OPTIONAL {
-            ?s hqdm:part_of_possible_world ?pw.
+            ?s hqdm:partOfPossibleWorld ?pw.
             }
 
             FILTER(!bound(?pw))
             FILTER(?type in (
-            hqdm:acceptance_of_offer,
-            hqdm:acceptance_of_offer_for_goods,
+            hqdm:acceptanceOfOffer,
+            hqdm:acceptanceOfOfferForGoods,
             hqdm:activity,
             hqdm:aggregation,
-            hqdm:agree_contract,
-            hqdm:agreement_execution,
-            hqdm:agreement_process,
-            hqdm:amount_of_money,
+            hqdm:agreeContract,
+            hqdm:agreementExecution,
+            hqdm:agreementProcess,
+            hqdm:amountOfMoney,
             hqdm:asset,
             hqdm:association,
-            hqdm:beginning_of_ownership,
-            hqdm:biological_object,
-            hqdm:biological_system,
-            hqdm:biological_system_component,
+            hqdm:beginningOfOwnership,
+            hqdm:biologicalObject,
+            hqdm:biologicalSystem,
+            hqdm:biologicalSystemComponent,
             hqdm:composition,
-            hqdm:contract_execution,
-            hqdm:contract_process,
+            hqdm:contractExecution,
+            hqdm:contractProcess,
             hqdm:currency,
             hqdm:employee,
             hqdm:employer,
             hqdm:employment,
-            hqdm:ending_of_ownership,
+            hqdm:endingOfOwnership,
             hqdm:event,
-            hqdm:exchange_of_goods_and_money,
-            hqdm:function_,
-            hqdm:functional_object,
-            hqdm:functional_system,
-            hqdm:functional_system_component,
-            hqdm:identification_of_physical_quantity,
+            hqdm:exchangeOfGoodsAndMoney,
+            hqdm:function,
+            hqdm:functionalObject,
+            hqdm:functionalSystem,
+            hqdm:functionalSystemComponent,
+            hqdm:identificationOfPhysicalQuantity,
             hqdm:individual,
-            hqdm:in_place_biological_component,
-            hqdm:installed_functional_system_component,
-            hqdm:installed_object,
-            hqdm:intentionally_constructed_object,
-            hqdm:language_community,
-            hqdm:money_asset,
+            hqdm:inPlaceBiologicalComponent,
+            hqdm:installedFunctionalSystemComponent,
+            hqdm:installedObject,
+            hqdm:intentionallyConstructedObject,
+            hqdm:languageCommunity,
+            hqdm:moneyAsset,
             hqdm:offer,
-            hqdm:offer_and_acceptance_for_goods,
-            hqdm:offer_for_goods,
+            hqdm:offerAndAcceptanceForGoods,
+            hqdm:offerForGoods,
             hqdm:offering,
-            hqdm:ordinary_biological_object,
-            hqdm:ordinary_functional_object,
-            hqdm:ordinary_physical_object,
+            hqdm:ordinaryBiologicalObject,
+            hqdm:ordinaryFunctionalObject,
+            hqdm:ordinaryPhysicalObject,
             hqdm:organization,
-            hqdm:organization_component,
+            hqdm:organizationComponent,
             hqdm:owner,
             hqdm:ownership,
             hqdm:participant,
-            hqdm:participant_in_activity_or_association,
+            hqdm:participantInActivityOrAssociation,
             hqdm:party,
-            hqdm:period_of_time,
+            hqdm:periodOfTime,
             hqdm:person,
-            hqdm:person_in_position,
-            hqdm:physical_object,
-            hqdm:physical_property,
-            hqdm:physical_property_range,
-            hqdm:physical_quantity,
-            hqdm:physical_quantity_range,
+            hqdm:personInPosition,
+            hqdm:physicalObject,
+            hqdm:physicalProperty,
+            hqdm:physicalPropertyRange,
+            hqdm:physicalQuantity,
+            hqdm:physicalQuantityRange,
             hqdm:plan,
-            hqdm:point_in_time,
+            hqdm:pointInTime,
             hqdm:position,
-            hqdm:possible_world,
+            hqdm:possibleWorld,
             hqdm:price,
-            hqdm:product_brand,
-            hqdm:product_offering,
-            hqdm:reaching_agreement,
-            hqdm:recognizing_language_community,
+            hqdm:productBrand,
+            hqdm:productOffering,
+            hqdm:reachingAgreement,
+            hqdm:recognizingLanguageCommunity,
             hqdm:relationship,
-            hqdm:representation_by_sign,
+            hqdm:representationBySign,
             hqdm:requirement,
-            hqdm:requirement_specification,
-            hqdm:sale_of_goods,
-            hqdm:sales_product,
-            hqdm:sales_product_instance,
-            hqdm:sales_product_version,
+            hqdm:requirementSpecification,
+            hqdm:saleOfGoods,
+            hqdm:salesProduct,
+            hqdm:salesProductInstance,
+            hqdm:salesProductVersion,
             hqdm:scale,
             hqdm:sign,
-            hqdm:socially_constructed_activity,
-            hqdm:socially_constructed_object,
-            hqdm:spatio_temporal_extent,
+            hqdm:sociallyConstructedActivity,
+            hqdm:sociallyConstructedObject,
+            hqdm:spatioTemporalExtent,
             hqdm:state,
-            hqdm:state_of_activity,
-            hqdm:state_of_amount_of_money,
-            hqdm:state_of_association,
-            hqdm:state_of_biological_object,
-            hqdm:state_of_biological_system,
-            hqdm:state_of_biological_system_component,
-            hqdm:state_of_functional_object,
-            hqdm:state_of_functional_system,
-            hqdm:state_of_functional_system_component,
-            hqdm:state_of_intentionally_constructed_object,
-            hqdm:state_of_language_community,
-            hqdm:state_of_ordinary_biological_object,
-            hqdm:state_of_ordinary_functional_object,
-            hqdm:state_of_ordinary_physical_object,
-            hqdm:state_of_organization,
-            hqdm:state_of_organization_component,
-            hqdm:state_of_party,
-            hqdm:state_of_person,
-            hqdm:state_of_physical_object,
-            hqdm:state_of_position,
-            hqdm:state_of_sales_product_instance,
-            hqdm:state_of_sign,
-            hqdm:state_of_socially_constructed_activity,
-            hqdm:state_of_socially_constructed_object,
-            hqdm:state_of_system,
-            hqdm:state_of_system_component,
+            hqdm:stateOfActivity,
+            hqdm:stateOfAmountOfMoney,
+            hqdm:stateOfAssociation,
+            hqdm:stateOfBiologicalObject,
+            hqdm:stateOfBiologicalSystem,
+            hqdm:stateOfBiologicalSystemComponent,
+            hqdm:stateOfFunctionalObject,
+            hqdm:stateOfFunctionalSystem,
+            hqdm:stateOfFunctionalSystemComponent,
+            hqdm:stateOfIntentionallyConstructedObject,
+            hqdm:stateOfLanguageCommunity,
+            hqdm:stateOfOrdinaryBiologicalObject,
+            hqdm:stateOfOrdinaryFunctionalObject,
+            hqdm:stateOfOrdinaryPhysicalObject,
+            hqdm:stateOfOrganization,
+            hqdm:stateOfOrganizationComponent,
+            hqdm:stateOfParty,
+            hqdm:stateOfPerson,
+            hqdm:stateOfPhysicalObject,
+            hqdm:stateOfPosition,
+            hqdm:stateOfSalesProductInstance,
+            hqdm:stateOfSign,
+            hqdm:stateOfSociallyConstructedActivity,
+            hqdm:stateOfSociallyConstructedObject,
+            hqdm:stateOfSystem,
+            hqdm:stateOfSystemComponent,
             hqdm:system,
-            hqdm:system_component,
-            hqdm:temporal_composition,
+            hqdm:systemComponent,
+            hqdm:temporalComposition,
             hqdm:transferee,
-            hqdm:transfer_of_ownership,
-            hqdm:transfer_of_ownership_of_money,
+            hqdm:transferOfOwnership,
+            hqdm:transferOfOwnershipOfMoney,
             hqdm:transferor,
-            hqdm:unit_of_measure
+            hqdm:unitOfMeasure
             ))
             }
             """;
 
     private static final String CHECK_STATE_TEMPORAL_PART_OF = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_temporal_part_of "Should be a temporal_part_of some individual.".
+              ?s hqdm:errorMissingTemporalPartOf "Should be a temporalPartOf some individual.".
               ?s a ?type.
             }
             where {
                 ?s a ?type;
                    ?p ?o.
                 OPTIONAL {
-                  ?s hqdm:temporal_part_of ?individual.
+                  ?s hqdm:temporalPartOf ?individual.
                 }
 
               FILTER(!bound(?individual))
               FILTER(?type in (
-                    hqdm:state_of_activity,
-                    hqdm:state_of_amount_of_money,
-                    hqdm:state_of_association,
-                    hqdm:state_of_biological_object,
-                    hqdm:state_of_biological_system,
-                    hqdm:state_of_biological_system_component,
-                    hqdm:state_of_functional_object,
-                    hqdm:state_of_functional_system,
-                    hqdm:state_of_functional_system_component,
-                    hqdm:state_of_intentionally_constructed_object,
-                    hqdm:state_of_language_community,
-                    hqdm:state_of_ordinary_biological_object,
-                    hqdm:state_of_ordinary_functional_object,
-                    hqdm:state_of_ordinary_physical_object,
-                    hqdm:state_of_organization,
-                    hqdm:state_of_organization_component,
-                    hqdm:state_of_party,
-                    hqdm:state_of_person,
-                    hqdm:state_of_physical_object,
-                    hqdm:state_of_position,
-                    hqdm:state_of_sales_product_instance,
-                    hqdm:state_of_sign,
-                    hqdm:state_of_socially_constructed_activity,
-                    hqdm:state_of_socially_constructed_object,
-                    hqdm:state_of_system,
-                    hqdm:state_of_system_component
+                    hqdm:stateOfActivity,
+                    hqdm:stateOfAmountOfMoney,
+                    hqdm:stateOfAssociation,
+                    hqdm:stateOfBiologicalObject,
+                    hqdm:stateOfBiologicalSystem,
+                    hqdm:stateOfBiologicalSystemComponent,
+                    hqdm:stateOfFunctionalObject,
+                    hqdm:stateOfFunctionalSystem,
+                    hqdm:stateOfFunctionalSystemComponent,
+                    hqdm:stateOfIntentionallyConstructedObject,
+                    hqdm:stateOfLanguageCommunity,
+                    hqdm:stateOfOrdinaryBiologicalObject,
+                    hqdm:stateOfOrdinaryFunctionalObject,
+                    hqdm:stateOfOrdinaryPhysicalObject,
+                    hqdm:stateOfOrganization,
+                    hqdm:stateOfOrganizationComponent,
+                    hqdm:stateOfParty,
+                    hqdm:stateOfPerson,
+                    hqdm:stateOfPhysicalObject,
+                    hqdm:stateOfPosition,
+                    hqdm:stateOfSalesProductInstance,
+                    hqdm:stateOfSign,
+                    hqdm:stateOfSociallyConstructedActivity,
+                    hqdm:stateOfSociallyConstructedObject,
+                    hqdm:stateOfSystem,
+                    hqdm:stateOfSystemComponent
                 ))
             }
             """;
 
     private static final String CHECK_SIGN_VALUE_ = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_value_ "Should have a value_ for a sign.".
+              ?s hqdm:errorMissingValue "Should have a value for a sign.".
               ?s a hqdm:sign.
             }
             where {
                 ?s a hqdm:sign;
                    ?p ?o.
                 OPTIONAL {
-                  ?s hqdm:value_ ?v.
+                  ?s skos:definition ?v.
                 }
 
               FILTER(!bound(?v))
@@ -363,17 +363,17 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_SIGN_MEMBER_OF_PATTERN = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_member_of_ "Should be a member_of_ of some pattern.".
+              ?s hqdm:errorMissingMemberOf "Should be a memberOf of some pattern.".
               ?s a hqdm:sign.
             }
             where {
                 ?s a hqdm:sign;
                    ?p ?o.
                 OPTIONAL {
-                  ?s hqdm:member_of_ ?pattern.
+                  ?s hqdm:memberOf ?pattern.
                 }
 
               FILTER(!bound(?pattern))
@@ -381,17 +381,17 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_PATTERN_CONSISTS_OF_BY_CLASS = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_consists_of_by_class
-                  "Should be a target of a consists_of_by_class from Rep By Pattern.".
+              ?s hqdm:errorMissingConsistsOfByClass
+                  "Should be a target of a consistsOfByClass from Rep By Pattern.".
               ?s a hqdm:pattern.
             }
             where {
                 ?s a hqdm:pattern.
                 OPTIONAL {
-                  ?repByPattern hqdm:consists_of_by_class ?s.
+                  ?repByPattern hqdm:consistsOfByClass ?s.
                 }
 
               FILTER(!bound(?repByPattern))
@@ -399,16 +399,16 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_SIGN_CONSISTS_OF_COMMUNITY = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_consists_of_ "Should have a consists_of_ from Rep By Sign.".
-              ?s a hqdm:representation_by_sign.
+              ?s hqdm:errorMissingConsistsOf "Should have a consistsOf from Rep By Sign.".
+              ?s a hqdm:representationBySign.
             }
             where {
-                ?s a hqdm:representation_by_sign.
+                ?s a hqdm:representationBySign.
                 OPTIONAL {
-                  ?s hqdm:consists_of_ ?community.
+                  ?s hqdm:consistsOf ?community.
                 }
 
               FILTER(!bound(?community))
@@ -416,38 +416,38 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_SIGN_CONSISTS_OF_SIGN = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_consists_of "Should have a consists_of from Rep By Sign.".
-              ?s a hqdm:representation_by_sign.
+              ?s hqdm:errorMissingConsistsOf "Should have a consistsOf from Rep By Sign.".
+              ?s a hqdm:representationBySign.
             }
             where {
-                ?s a hqdm:representation_by_sign.
+                ?s a hqdm:representationBySign.
                 OPTIONAL {
-                  ?s hqdm:consists_of ?state_of_sign.
+                  ?s hqdm:consistsOf ?stateOfSign.
                 }
 
-              FILTER(!bound(?state_of_sign))
+              FILTER(!bound(?stateOfSign))
             }
             """;
 
     private static final String CHECK_REP_BY_PATTERN_CONSISTS_OF_IN_MEMBERS = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_consists_of_in_members "Should have a consists_of_in_members from Rep By Pattern.".
+              ?s hqdm:errorMissingConsistsOfInMembers "Should have a consistsOfInMembers from Rep By Pattern.".
               ?s a ?type.
             }
             where {
                 ?s a ?type.
                 OPTIONAL {
-                  ?s hqdm:consists_of_in_members ?community.
+                  ?s hqdm:consistsOfInMembers ?community.
                 }
 
               FILTER(!bound(?community))
                   FILTER(?type in (
-                              hqdm:representation_by_pattern,
+                              hqdm:representationByPattern,
                               hqdm:identification,
                               hqdm:definition,
                               hqdm:description
@@ -456,14 +456,14 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_SIGN_REPRESENTS = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_represents "Should have a represents from Rep By Sign.".
-              ?s a hqdm:representation_by_sign.
+              ?s hqdm:errorMissingRepresents "Should have a represents from Rep By Sign.".
+              ?s a hqdm:representationBySign.
             }
             where {
-                ?s a hqdm:representation_by_sign.
+                ?s a hqdm:representationBySign.
                 OPTIONAL {
                   ?s hqdm:represents ?thing.
                 }
@@ -473,16 +473,16 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_STATE_OF_SIGN_PARTICIPANT_IN = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_sign_participant_in "Should have a participant_in to Rep By Sign.".
-              ?s a hqdm:state_of_sign.
+              ?s hqdm:errorMissingSignParticipantIn "Should have a participantIn to Rep By Sign.".
+              ?s a hqdm:stateOfSign.
             }
             where {
-                ?s a hqdm:state_of_sign.
+                ?s a hqdm:stateOfSign.
                 OPTIONAL {
-                  ?s hqdm:participant_in ?repBySign.
+                  ?s hqdm:participantIn ?repBySign.
                 }
 
               FILTER(!bound(?repBySign))
@@ -490,16 +490,16 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_SIGN_MEMBER_OF = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdTop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_member_of_ "Should have a member_of_ to Rep By Pattern.".
-              ?s a hqdm:representation_by_sign.
+              ?s hqdm:errorMissingMemberOf "Should have a memberOf to Rep By Pattern.".
+              ?s a hqdm:representationBySign.
             }
             where {
-                ?s a hqdm:representation_by_sign.
+                ?s a hqdm:representationBySign.
                 OPTIONAL {
-                  ?s hqdm:member_of_ ?repByPattern.
+                  ?s hqdm:memberOf ?repByPattern.
                 }
 
               FILTER(!bound(?repByPattern))
@@ -507,17 +507,17 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_SIGN_HAS_SIGN_PARTICIPANT = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_sign "Should have a state_of_sign as a participant_in this Rep By Sign.".
-              ?s a hqdm:representation_by_sign.
+              ?s hqdm:errorMissingSign "Should have a stateOfSign as a participantIn this Rep By Sign.".
+              ?s a hqdm:representationBySign.
             }
             where {
-                ?s a hqdm:representation_by_sign.
+                ?s a hqdm:representationBySign.
                 OPTIONAL {
-                  ?sign hqdm:participant_in ?s;
-                        a hqdm:state_of_sign.
+                  ?sign hqdm:participantIn ?s;
+                        a hqdm:stateOfSign.
                 }
 
               FILTER(!bound(?sign))
@@ -525,18 +525,18 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_REP_BY_SIGN_HAS_COMMUNITY_PARTICIPANT = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_community
-                  "Should have a recognizing_language_community as a participant_in this Rep By Sign.".
-              ?s a hqdm:representation_by_sign.
+              ?s hqdm:errorMissingCommunity
+                  "Should have a recognizingLanguageCommunity as a participantIn this Rep By Sign.".
+              ?s a hqdm:representationBySign.
             }
             where {
-                ?s a hqdm:representation_by_sign.
+                ?s a hqdm:representationBySign.
                 OPTIONAL {
-                  ?community hqdm:participant_in ?s;
-                        a hqdm:recognizing_language_community.
+                  ?community hqdm:participantIn ?s;
+                        a hqdm:recognizingLanguageCommunity.
                 }
 
               FILTER(!bound(?community))
@@ -544,38 +544,38 @@ public class DataIntegrityReport {
             """;
 
     private static final String CHECK_ROLE_PART_OF_BY_CLASS_ = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_part_of_by_class_ "Should have a part_of_by_class_ to a kind_of_association.".
+              ?s hqdm:errorMissingPartOfByClass "Should have a partOfByClass to a kindOfAssociation.".
               ?s a hqdm:role.
             }
             where {
                 ?s a hqdm:role.
                 OPTIONAL {
-                  ?s hqdm:part_of_by_class_ ?kind_of_association.
-                  ?kind_of_association a hqdm:kind_of_association.
+                  ?s hqdm:partOfByClass ?kindOfAssociation.
+                  ?kindOfAssociation a hqdm:kindOfAssociation.
                 }
 
-              FILTER(!bound(?kind_of_association))
+              FILTER(!bound(?kindOfAssociation))
             }
             """;
 
     private static final String CHECK_ASSOCIATION_MEMBER_OF_KIND = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
 
             construct {
-              ?s hqdm:error_missing_kind_of_association "Should have a member_of_kind to a kind_of_association.".
+              ?s hqdm:errorMissingKindOfAssociation "Should have a memberOfKind to a kindOfAssociation.".
               ?s a hqdm:association.
             }
             where {
                 ?s a hqdm:association.
                 OPTIONAL {
-                  ?s hqdm:member_of_kind ?kind_of_association.
-                  ?kind_of_association a hqdm:kind_of_association.
+                  ?s hqdm:memberOfKind ?kindOfAssociation.
+                  ?kindOfAssociation a hqdm:kindOfAssociation.
                 }
 
-              FILTER(!bound(?kind_of_association))
+              FILTER(!bound(?kindOfAssociation))
             }
             """;
 

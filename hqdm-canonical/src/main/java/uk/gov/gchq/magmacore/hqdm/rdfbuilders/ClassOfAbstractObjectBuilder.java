@@ -16,7 +16,6 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.HAS_SUPERCLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -60,8 +59,8 @@ public class ClassOfAbstractObjectBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final ClassOfAbstractObjectBuilder member__Of(final Class clazz) {
-        this.classOfAbstractObject.addValue(MEMBER__OF, clazz.getId());
+    public final ClassOfAbstractObjectBuilder member_Of(final Class clazz) {
+        this.classOfAbstractObject.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -88,10 +87,6 @@ public class ClassOfAbstractObjectBuilder {
         if (this.classOfAbstractObject.hasValue(HAS_SUPERCLASS)
                 && this.classOfAbstractObject.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
-        }
-        if (this.classOfAbstractObject.hasValue(MEMBER__OF)
-                && this.classOfAbstractObject.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfAbstractObject.hasValue(MEMBER_OF)
                 && this.classOfAbstractObject.values(MEMBER_OF).isEmpty()) {

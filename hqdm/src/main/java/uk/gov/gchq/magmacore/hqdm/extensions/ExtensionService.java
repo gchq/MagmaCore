@@ -1,5 +1,7 @@
 package uk.gov.gchq.magmacore.hqdm.extensions;
 
+import java.io.InputStream;
+
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 
@@ -21,4 +23,11 @@ public interface ExtensionService {
      * @return A Thing if the typeName is recognised, null otherwise.
      */
     <T extends Thing> T createEntity(final String typeName, final IRI iri);
+
+    /**
+     * Extensions need to provide their model as TTL.
+     *
+     * @return an InputStream of TTL that defines the schema extension.
+     */
+    InputStream getDomainTtl();
 }

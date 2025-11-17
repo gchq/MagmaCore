@@ -19,19 +19,14 @@ import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.BEGINNING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CAUSES;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_PARTICIPANT;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.DETERMINES;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_KIND;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.REFERENCES;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Activity;
@@ -48,6 +43,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -109,14 +105,14 @@ public class OfferBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OfferBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.offer.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
+    public final OfferBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.offer.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -176,8 +172,8 @@ public class OfferBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final OfferBuilder member__Of(final Class clazz) {
-        this.offer.addValue(MEMBER__OF, clazz.getId());
+    public final OfferBuilder member_Of(final Class clazz) {
+        this.offer.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -204,6 +200,7 @@ public class OfferBuilder {
      */
     public final OfferBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
         this.offer.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
+        this.offer.addValue(RDFS.RDF_TYPE, kindOfActivity.getId());
         return this;
     }
 
@@ -215,8 +212,8 @@ public class OfferBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OfferBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.offer.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final OfferBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.offer.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -236,26 +233,24 @@ public class OfferBuilder {
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
      * {@link uk.gov.gchq.magmacore.hqdm.model.SociallyConstructedObject} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one or more
-     * {@link AgreementExecution}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one or more {@link AgreementExecution}.
      *
      * @param agreementExecution The AgreementExecution.
      * @return This builder.
      */
-    public final OfferBuilder part_Of_(final AgreementExecution agreementExecution) {
-        this.offer.addValue(PART_OF_, agreementExecution.getId());
+    public final OfferBuilder part_Of(final AgreementExecution agreementExecution) {
+        this.offer.addValue(PART_OF, agreementExecution.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -285,24 +280,23 @@ public class OfferBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OfferBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.offer.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
+    public final OfferBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.offer.addValue(TEMPORAL_PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} relationship type where a
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more
-     * {@link Individual}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more {@link Individual}.
      *
      * <p>
      * Note: The relationship is optional because an {@link Individual} is not necessarily a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual},
-     * yet is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual}, yet
+     * is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} as well as {@link Individual}. This applies to all
-     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between
-     * a {@code state_of_X} and {@code X}.
+     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between a
+     * {@code state_of_X} and {@code X}.
      * </p>
      *
      * @param individual The Individual.
@@ -339,10 +333,6 @@ public class OfferBuilder {
                 && this.offer.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.offer.hasValue(MEMBER__OF)
-                && this.offer.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.offer.hasValue(MEMBER_OF)
                 && this.offer.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
@@ -350,17 +340,9 @@ public class OfferBuilder {
         if (!this.offer.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (this.offer.hasValue(PART__OF)
-                && this.offer.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
-        }
         if (this.offer.hasValue(PART_OF)
                 && this.offer.values(PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of");
-        }
-        if (this.offer.hasValue(PART_OF_)
-                && this.offer.values(PART_OF_).isEmpty()) {
-            throw new HqdmException("Property Not Set: part_of_");
         }
         if (!this.offer.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
@@ -368,10 +350,6 @@ public class OfferBuilder {
         if (this.offer.hasValue(REFERENCES)
                 && this.offer.values(REFERENCES).isEmpty()) {
             throw new HqdmException("Property Not Set: references");
-        }
-        if (this.offer.hasValue(TEMPORAL__PART_OF)
-                && this.offer.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.offer.hasValue(TEMPORAL_PART_OF)
                 && this.offer.values(TEMPORAL_PART_OF).isEmpty()) {

@@ -19,27 +19,20 @@ import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.BEGINNING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CAUSES;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_PARTICIPANT;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.DETERMINES;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_KIND;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.REFERENCES;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.AcceptanceOfOffer;
 import uk.gov.gchq.magmacore.hqdm.model.Activity;
 import uk.gov.gchq.magmacore.hqdm.model.AgreeContract;
-import uk.gov.gchq.magmacore.hqdm.model.AgreementExecution;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
-import uk.gov.gchq.magmacore.hqdm.model.ClassOfSociallyConstructedActivity;
 import uk.gov.gchq.magmacore.hqdm.model.Event;
 import uk.gov.gchq.magmacore.hqdm.model.Individual;
 import uk.gov.gchq.magmacore.hqdm.model.KindOfActivity;
@@ -49,6 +42,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -110,27 +104,14 @@ public class AcceptanceOfOfferBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final AcceptanceOfOfferBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.acceptanceOfOffer.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
-        return this;
-    }
-
-    /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF} relationship type where an
-     * {@link Activity} may {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF} one or more
-     * other {@link Activity}.
-     *
-     * @param activity The Activity.
-     * @return This builder.
-     */
-    public final AcceptanceOfOfferBuilder consists_Of(final Activity activity) {
-        this.acceptanceOfOffer.addValue(CONSISTS_OF, activity.getId());
+    public final AcceptanceOfOfferBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.acceptanceOfOffer.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -183,23 +164,8 @@ public class AcceptanceOfOfferBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final AcceptanceOfOfferBuilder member__Of(final Class clazz) {
-        this.acceptanceOfOffer.addValue(MEMBER__OF, clazz.getId());
-        return this;
-    }
-
-    /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where a
-     * {@link uk.gov.gchq.magmacore.hqdm.model.SociallyConstructedActivity} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
-     * {@link ClassOfSociallyConstructedActivity}.
-     *
-     * @param classOfSociallyConstructedActivity The ClassOfSociallyConstructedActivity.
-     * @return This builder.
-     */
-    public final AcceptanceOfOfferBuilder member_Of(
-            final ClassOfSociallyConstructedActivity classOfSociallyConstructedActivity) {
-        this.acceptanceOfOffer.addValue(MEMBER_OF, classOfSociallyConstructedActivity.getId());
+    public final AcceptanceOfOfferBuilder member_Of(final Class clazz) {
+        this.acceptanceOfOffer.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -213,6 +179,7 @@ public class AcceptanceOfOfferBuilder {
      */
     public final AcceptanceOfOfferBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
         this.acceptanceOfOffer.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
+        this.acceptanceOfOffer.addValue(RDFS.RDF_TYPE, kindOfActivity.getId());
         return this;
     }
 
@@ -224,8 +191,8 @@ public class AcceptanceOfOfferBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final AcceptanceOfOfferBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.acceptanceOfOffer.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final AcceptanceOfOfferBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.acceptanceOfOffer.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -244,27 +211,12 @@ public class AcceptanceOfOfferBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link uk.gov.gchq.magmacore.hqdm.model.SociallyConstructedObject} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one or more
-     * {@link AgreementExecution}.
-     *
-     * @param agreementExecution The AgreementExecution.
-     * @return This builder.
-     */
-    public final AcceptanceOfOfferBuilder part_Of_(final AgreementExecution agreementExecution) {
-        this.acceptanceOfOffer.addValue(PART_OF_, agreementExecution.getId());
-        return this;
-    }
-
-    /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -277,8 +229,8 @@ public class AcceptanceOfOfferBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#REFERENCES} relationship type where an
-     * {@link AcceptanceOfOffer} {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#REFERENCES} exactly
-     * one {@link Offer} that is accepted.
+     * {@link AcceptanceOfOffer} {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#REFERENCES} exactly one
+     * {@link Offer} that is accepted.
      *
      * @param offer The Offer.
      * @return Builder
@@ -296,24 +248,23 @@ public class AcceptanceOfOfferBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final AcceptanceOfOfferBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.acceptanceOfOffer.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
+    public final AcceptanceOfOfferBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.acceptanceOfOffer.addValue(TEMPORAL_PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} relationship type where a
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more
-     * {@link Individual}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more {@link Individual}.
      *
      * <p>
      * Note: The relationship is optional because an {@link Individual} is not necessarily a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual},
-     * yet is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual}, yet
+     * is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} as well as {@link Individual}. This applies to all
-     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between
-     * a {@code state_of_X} and {@code X}.
+     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between a
+     * {@code state_of_X} and {@code X}.
      * </p>
      *
      * @param individual The Individual.
@@ -350,10 +301,6 @@ public class AcceptanceOfOfferBuilder {
                 && this.acceptanceOfOffer.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.acceptanceOfOffer.hasValue(MEMBER__OF)
-                && this.acceptanceOfOffer.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.acceptanceOfOffer.hasValue(MEMBER_OF)
                 && this.acceptanceOfOffer.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
@@ -361,26 +308,15 @@ public class AcceptanceOfOfferBuilder {
         if (!this.acceptanceOfOffer.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (this.acceptanceOfOffer.hasValue(PART__OF)
-                && this.acceptanceOfOffer.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
-        }
-        if (!this.acceptanceOfOffer.hasValue(PART_OF)) {
+        if (this.acceptanceOfOffer.hasValue(PART_OF)
+                && this.acceptanceOfOffer.values(PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of");
-        }
-        if (this.acceptanceOfOffer.hasValue(PART_OF_)
-                && this.acceptanceOfOffer.values(PART_OF_).isEmpty()) {
-            throw new HqdmException("Property Not Set: part_of_");
         }
         if (!this.acceptanceOfOffer.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (!this.acceptanceOfOffer.hasValue(REFERENCES)) {
             throw new HqdmException("Property Not Set: references");
-        }
-        if (this.acceptanceOfOffer.hasValue(TEMPORAL__PART_OF)
-                && this.acceptanceOfOffer.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.acceptanceOfOffer.hasValue(TEMPORAL_PART_OF)
                 && this.acceptanceOfOffer.values(TEMPORAL_PART_OF).isEmpty()) {

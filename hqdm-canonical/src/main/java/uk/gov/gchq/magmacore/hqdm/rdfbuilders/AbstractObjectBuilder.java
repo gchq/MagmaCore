@@ -44,8 +44,8 @@ public class AbstractObjectBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final AbstractObjectBuilder member__Of(final Class clazz) {
-        this.abstractObject.addValue(HQDM.MEMBER__OF, clazz.getId());
+    public final AbstractObjectBuilder member_Of(final Class clazz) {
+        this.abstractObject.addValue(HQDM.MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -56,9 +56,9 @@ public class AbstractObjectBuilder {
      * @throws HqdmException If the AbstractObject is missing any mandatory properties.
      */
     public AbstractObject build() throws HqdmException {
-        if (this.abstractObject.hasValue(HQDM.MEMBER__OF)
-                && this.abstractObject.values(HQDM.MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
+        if (this.abstractObject.hasValue(HQDM.MEMBER_OF)
+                && this.abstractObject.values(HQDM.MEMBER_OF).isEmpty()) {
+            throw new HqdmException("Property Not Set: member_of");
         }
         return this.abstractObject;
     }

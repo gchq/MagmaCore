@@ -26,12 +26,9 @@ import uk.gov.gchq.magmacore.hqdm.model.Person;
 import uk.gov.gchq.magmacore.hqdm.model.PointInTime;
 import uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern;
-import uk.gov.gchq.magmacore.hqdm.model.RepresentationBySign;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
-import uk.gov.gchq.magmacore.hqdm.model.Sign;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfFunctionalSystem;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfPerson;
-import uk.gov.gchq.magmacore.hqdm.model.StateOfSign;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
@@ -69,7 +66,8 @@ public class AssociationPatternTestData {
     /**
      * Create some Associations for the test.
      *
-     * @param db A {@link MagmaCoreDatabase}.
+     * @param db
+     *            A {@link MagmaCoreDatabase}.
      */
     static void createAssociationPattern(final MagmaCoreDatabase db) {
         // Create PossibleWorlds IRI.
@@ -91,25 +89,25 @@ public class AssociationPatternTestData {
         userRole = ClassServices.createRole(userRoleIri);
         userRole.addValue(RDFS.RDF_TYPE, HQDM.ROLE);
         userRole.addStringValue(HQDM.ENTITY_NAME, "userRole");
-        userRole.addValue(HQDM.PART_OF_BY_CLASS_, userAssociationKindIri);
+        userRole.addValue(HQDM.PART_OF_BY_CLASS, userAssociationKindIri);
 
         systemRoleIri = new IRI(TEST_BASE, "systemRole");
         systemRole = ClassServices.createRole(systemRoleIri);
         systemRole.addValue(RDFS.RDF_TYPE, HQDM.ROLE);
         systemRole.addStringValue(HQDM.ENTITY_NAME, "systemRole");
-        systemRole.addValue(HQDM.PART_OF_BY_CLASS_, userAssociationKindIri);
+        systemRole.addValue(HQDM.PART_OF_BY_CLASS, userAssociationKindIri);
 
         final IRI managerRoleIri = new IRI(TEST_BASE, "managerRole");
         final Role managerRole = ClassServices.createRole(managerRoleIri);
         managerRole.addValue(RDFS.RDF_TYPE, HQDM.ROLE);
         managerRole.addStringValue(HQDM.ENTITY_NAME, "managerRole");
-        managerRole.addValue(HQDM.PART_OF_BY_CLASS_, managerKindIri);
+        managerRole.addValue(HQDM.PART_OF_BY_CLASS, managerKindIri);
 
         final IRI workerRoleIri = new IRI(TEST_BASE, "workerRole");
         final Role workerRole = ClassServices.createRole(workerRoleIri);
         workerRole.addValue(RDFS.RDF_TYPE, HQDM.ROLE);
         workerRole.addStringValue(HQDM.ENTITY_NAME, "workerRole");
-        workerRole.addValue(HQDM.PART_OF_BY_CLASS_, managerKindIri);
+        workerRole.addValue(HQDM.PART_OF_BY_CLASS, managerKindIri);
 
         // Create People
         final IRI person1Iri = new IRI(TEST_BASE, "person1");
@@ -159,13 +157,13 @@ public class AssociationPatternTestData {
         final IRI person2WorkerForPerson3Iri = new IRI(TEST_BASE, "person2WorkerForPerson3");
 
         final Association person1UserOfSystem1 = SpatioTemporalExtentServices
-                .createAssociation(person1UserOfSystem1Iri);
+            .createAssociation(person1UserOfSystem1Iri);
         final Association person2UserOfSystem2 = SpatioTemporalExtentServices
-                .createAssociation(person2UserOfSystem2Iri);
+            .createAssociation(person2UserOfSystem2Iri);
         final Association person1WorkerForPerson2 = SpatioTemporalExtentServices
-                .createAssociation(person1WorkerForPerson2Iri);
+            .createAssociation(person1WorkerForPerson2Iri);
         final Association person2WorkerForPerson3 = SpatioTemporalExtentServices
-                .createAssociation(person2WorkerForPerson3Iri);
+            .createAssociation(person2WorkerForPerson3Iri);
 
         person1UserOfSystem1.addValue(RDFS.RDF_TYPE, HQDM.ASSOCIATION);
         person1UserOfSystem1.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
@@ -201,7 +199,7 @@ public class AssociationPatternTestData {
         person1State1.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
 
         system1State1 = SpatioTemporalExtentServices
-                .createStateOfFunctionalSystem(new IRI(TEST_BASE, "system1State1"));
+            .createStateOfFunctionalSystem(new IRI(TEST_BASE, "system1State1"));
         system1State1.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_FUNCTIONAL_SYSTEM);
         system1State1.addValue(RDFS.RDF_TYPE, HQDM.PARTICIPANT);
         system1State1.addValue(HQDM.TEMPORAL_PART_OF, system1Iri);
@@ -219,7 +217,7 @@ public class AssociationPatternTestData {
         person2State1.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
 
         system2State1 = SpatioTemporalExtentServices
-                .createStateOfFunctionalSystem(new IRI(TEST_BASE, "system2State1"));
+            .createStateOfFunctionalSystem(new IRI(TEST_BASE, "system2State1"));
         system2State1.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_FUNCTIONAL_SYSTEM);
         system2State1.addValue(RDFS.RDF_TYPE, HQDM.PARTICIPANT);
         system2State1.addValue(HQDM.TEMPORAL_PART_OF, system2Iri);
@@ -259,76 +257,42 @@ public class AssociationPatternTestData {
         person3State1.addValue(HQDM.PARTICIPANT_IN, person2WorkerForPerson3Iri);
         person3State1.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
 
-        // Add signs to name the people, re-using person states for brevity.
-        final IRI patternIri = new IRI(TEST_BASE, UID.uid());
-        final Pattern pattern = ClassServices.createPattern(patternIri);
-        pattern.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
-        pattern.addStringValue(HQDM.ENTITY_NAME, "pattern");
-
-        final IRI repByPatternIri = new IRI(TEST_BASE, UID.uid());
-        final RepresentationByPattern repByPattern = ClassServices
-                .createRepresentationByPattern(repByPatternIri);
-        repByPattern.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_PATTERN);
-        repByPattern.addValue(HQDM.CONSISTS_OF_BY_CLASS, patternIri);
+        // Create a community to recognize the patterns
 
         final IRI communityIri = new IRI(TEST_BASE, UID.uid());
         final RecognizingLanguageCommunity community = SpatioTemporalExtentServices
-                .createRecognizingLanguageCommunity(communityIri);
+            .createRecognizingLanguageCommunity(communityIri);
         community.addValue(RDFS.RDF_TYPE, HQDM.RECOGNIZING_LANGUAGE_COMMUNITY);
         community.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
-        repByPattern.addValue(HQDM.CONSISTS_OF_IN_MEMBERS, communityIri);
 
-        // Represent person1State1 using sign1
-        final IRI sign1Iri = new IRI(TEST_BASE, UID.uid());
-        final Sign sign1 = SpatioTemporalExtentServices.createSign(sign1Iri);
-        sign1.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
-        sign1.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
-        sign1.addValue(HQDM.MEMBER_OF_, patternIri);
-        sign1.addStringValue(HQDM.VALUE_, "sign1Value");
+        // Represent person1State1 using pattern1
 
-        final IRI stateOfSign1Iri = new IRI(TEST_BASE, UID.uid());
-        final StateOfSign stateOfSign1 = SpatioTemporalExtentServices.createStateOfSign(stateOfSign1Iri);
-        stateOfSign1.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN);
-        stateOfSign1.addValue(HQDM.TEMPORAL_PART_OF, sign1Iri);
-        stateOfSign1.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
+        final IRI pattern1Iri = new IRI(TEST_BASE, UID.uid());
+        final Pattern pattern1 = ClassServices.createPattern(pattern1Iri);
+        pattern1.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
+        pattern1.addStringValue(HQDM.SKOS_DEFINITION, "sign1Value");
 
-        final IRI repBySign1Iri = new IRI(TEST_BASE, UID.uid());
-        final RepresentationBySign repBySign1 = SpatioTemporalExtentServices
-                .createRepresentationBySign(repBySign1Iri);
-        repBySign1.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN);
-        repBySign1.addValue(HQDM.REPRESENTS, person1State1Iri);
-        repBySign1.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
-        repBySign1.addValue(HQDM.CONSISTS_OF, stateOfSign1Iri);
-        repBySign1.addValue(HQDM.MEMBER_OF_, repByPatternIri);
-        repBySign1.addValue(HQDM.CONSISTS_OF_, communityIri);
-        stateOfSign1.addValue(HQDM.PARTICIPANT_IN, repBySign1Iri);
-        community.addValue(HQDM.PARTICIPANT_IN, repBySign1Iri);
+        final IRI repByPattern1Iri = new IRI(TEST_BASE, UID.uid());
+        final RepresentationByPattern repByPattern1 = ClassServices
+            .createRepresentationByPattern(repByPattern1Iri);
+        repByPattern1.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_PATTERN);
+        repByPattern1.addValue(HQDM.REPRESENTED, person1State1Iri);
+        repByPattern1.addValue(HQDM.CONSISTS_OF_BY_CLASS, pattern1Iri);
+        repByPattern1.addValue(HQDM.CONSISTS_OF_IN_MEMBERS, communityIri);
 
-        // Represent person2State1 using sign2
-        final IRI sign2Iri = new IRI(TEST_BASE, UID.uid());
-        final Sign sign2 = SpatioTemporalExtentServices.createSign(sign2Iri);
-        sign2.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
-        sign2.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
-        sign2.addValue(HQDM.MEMBER_OF_, patternIri);
-        sign2.addStringValue(HQDM.VALUE_, "sign2Value");
+        // Represent person2State1 using pattern2
+        final IRI pattern2Iri = new IRI(TEST_BASE, UID.uid());
+        final Pattern pattern2 = ClassServices.createPattern(pattern2Iri);
+        pattern2.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
+        pattern2.addStringValue(HQDM.SKOS_DEFINITION, "sign2Value");
 
-        final IRI stateOfSign2Iri = new IRI(TEST_BASE, UID.uid());
-        final StateOfSign stateOfSign2 = SpatioTemporalExtentServices.createStateOfSign(stateOfSign2Iri);
-        stateOfSign2.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN);
-        stateOfSign2.addValue(HQDM.TEMPORAL_PART_OF, sign2Iri);
-        stateOfSign2.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
-
-        final IRI repBySign2Iri = new IRI(TEST_BASE, UID.uid());
-        final RepresentationBySign repBySign2 = SpatioTemporalExtentServices
-                .createRepresentationBySign(repBySign2Iri);
-        repBySign2.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN);
-        repBySign2.addValue(HQDM.REPRESENTS, person2State1Iri);
-        repBySign2.addValue(HQDM.PART_OF_POSSIBLE_WORLD, possibleWorldIri);
-        repBySign2.addValue(HQDM.CONSISTS_OF, stateOfSign2Iri);
-        repBySign2.addValue(HQDM.MEMBER_OF_, repByPatternIri);
-        repBySign2.addValue(HQDM.CONSISTS_OF_, communityIri);
-        stateOfSign2.addValue(HQDM.PARTICIPANT_IN, repBySign2Iri);
-        community.addValue(HQDM.PARTICIPANT_IN, repBySign2Iri);
+        final IRI repByPattern2Iri = new IRI(TEST_BASE, UID.uid());
+        final RepresentationByPattern repByPattern2 = ClassServices
+            .createRepresentationByPattern(repByPattern2Iri);
+        repByPattern2.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_PATTERN);
+        repByPattern2.addValue(HQDM.REPRESENTED, person2State1Iri);
+        repByPattern2.addValue(HQDM.CONSISTS_OF_BY_CLASS, pattern2Iri);
+        repByPattern2.addValue(HQDM.CONSISTS_OF_IN_MEMBERS, communityIri);
 
         // Persist all objects
         db.beginWrite();
@@ -359,16 +323,13 @@ public class AssociationPatternTestData {
         db.create(system1State1);
         db.create(system2State1);
 
-        db.create(sign1);
-        db.create(stateOfSign1);
-        db.create(pattern);
         db.create(community);
-        db.create(repByPattern);
-        db.create(repBySign1);
 
-        db.create(sign2);
-        db.create(stateOfSign2);
-        db.create(repBySign2);
+        db.create(pattern1);
+        db.create(pattern2);
+
+        db.create(repByPattern1);
+        db.create(repByPattern2);
 
         db.commit();
     }

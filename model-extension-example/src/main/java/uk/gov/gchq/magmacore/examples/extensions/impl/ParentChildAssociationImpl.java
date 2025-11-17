@@ -1,9 +1,10 @@
-package uk.gov.gchq.magmacore.examples.extensions.model;
+package uk.gov.gchq.magmacore.examples.extensions.impl;
 
 import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.CHILD_ROLE_IRI;
 import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.PARENT_CHILD_ASSOCIATION_IRI;
 import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.PARENT_ROLE_IRI;
 
+import uk.gov.gchq.magmacore.examples.extensions.model.ParentChildAssociation;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;

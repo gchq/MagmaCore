@@ -51,7 +51,7 @@ public class IdentificationOfPhysicalQuantityBuilder {
      * @param value The Value.
      * @return This builder.
      */
-    public final IdentificationOfPhysicalQuantityBuilder value__M(final double value) {
+    public final IdentificationOfPhysicalQuantityBuilder value_M(final double value) {
         this.identificationOfPhysicalQuantity.addRealValue(VALUE_, value);
         return this;
     }

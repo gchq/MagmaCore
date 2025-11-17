@@ -66,7 +66,7 @@ public class MagmaCoreServiceFindByKindOfAssociationTest {
             // This query augments its object with HQDM.VALUE predicates for the current Sign values for the
             // object.
 
-            final Set<Object> values = person.values(HQDM.VALUE_);
+            final Set<Object> values = person.values(HQDM.SKOS_DEFINITION);
 
             assertNotNull(values);
             assertEquals(1, values.size());

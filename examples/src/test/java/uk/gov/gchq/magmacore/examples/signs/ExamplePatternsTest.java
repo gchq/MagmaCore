@@ -25,7 +25,7 @@ import uk.gov.gchq.magmacore.service.transformation.DbTransformation;
 /**
  * Exercise the {@link ExampleSigns} code during the build.
  */
-public class ExampleSignsTest {
+public class ExamplePatternsTest {
 
     /**
      * Test the {@link ExampleSigns} code.
@@ -33,7 +33,7 @@ public class ExampleSignsTest {
     @Test
     public void testSignsExample() {
         final MagmaCoreService service = MagmaCoreServiceFactory.createWithJenaDatabase();
-        final DbTransformation transformation = ExampleSigns.populateExampleData(service);
+        final DbTransformation transformation = ExamplePatterns.populateExampleData(service);
 
         assertNotNull(transformation);
     }

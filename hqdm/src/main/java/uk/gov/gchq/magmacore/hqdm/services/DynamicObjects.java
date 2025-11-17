@@ -40,6 +40,7 @@ public class DynamicObjects {
      * @param classes    The array of classes to implement.
      * @return An object of type U.
      */
+    @SuppressWarnings("unchecked")
     public static <T extends Thing, U extends Thing> U create(final IRI id, final java.lang.Class<U> returnType,
             final java.lang.Class<T>[] classes) {
 
@@ -56,6 +57,7 @@ public class DynamicObjects {
      * @param classes    The array of classes to implement.
      * @return An object of type U.
      */
+    @SuppressWarnings("unchecked")
     public static <T extends Thing, U extends Thing> U implementInterfaces(final T thing,
             final java.lang.Class<U> returnType, final java.lang.Class<T>[] classes) {
         return (U) Proxy.newProxyInstance(ClassServices.class.getClassLoader(), classes, new ThingHandler(thing));

@@ -14,13 +14,11 @@
 
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF_BY_CLASS;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_BY_CLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.HAS_SUPERCLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.INTERSECTION_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF_BY_CLASS;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_BY_CLASS;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -49,19 +47,18 @@ public class RequirementSpecificationBuilder {
     }
 
     /**
-     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF_BY_CLASS} relationship
-     * type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
-     * {@link ClassOfSpatioTemporalExtent}
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF} another
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
+     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF_BY_CLASS} relationship type
+     * where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
+     * {@link ClassOfSpatioTemporalExtent} {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF}
+     * another {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final RequirementSpecificationBuilder consists__Of_By_Class(
+    public final RequirementSpecificationBuilder consists_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.requirementSpecification.addValue(CONSISTS__OF_BY_CLASS,
+        this.requirementSpecification.addValue(CONSISTS_OF_BY_CLASS,
                 classOfSpatioTemporalExtent.getId());
         return this;
     }
@@ -80,8 +77,7 @@ public class RequirementSpecificationBuilder {
 
     /**
      * A subtype_of relationship type where each {@link RequirementSpecification} is the
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#INTERSECTION_OF} one or more
-     * {@link ClassOfState}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#INTERSECTION_OF} one or more {@link ClassOfState}.
      *
      * @param classOfState The ClassOfState.
      * @return This builder.
@@ -98,8 +94,8 @@ public class RequirementSpecificationBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final RequirementSpecificationBuilder member__Of(final Class clazz) {
-        this.requirementSpecification.addValue(MEMBER__OF, clazz.getId());
+    public final RequirementSpecificationBuilder member_Of(final Class clazz) {
+        this.requirementSpecification.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -124,26 +120,25 @@ public class RequirementSpecificationBuilder {
      * @param classOfClassOfSpatioTemporalExtent The ClassOfClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final RequirementSpecificationBuilder member_Of_(
+    public final RequirementSpecificationBuilder member_Of(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.requirementSpecification.addValue(MEMBER_OF_,
+        this.requirementSpecification.addValue(MEMBER_OF,
                 classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A relationship type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
-     * {@link ClassOfSpatioTemporalExtent} is
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
+     * {@link ClassOfSpatioTemporalExtent} is {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} some
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final RequirementSpecificationBuilder part__Of_By_Class(
+    public final RequirementSpecificationBuilder part_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.requirementSpecification.addValue(PART__OF_BY_CLASS,
+        this.requirementSpecification.addValue(PART_OF_BY_CLASS,
                 classOfSpatioTemporalExtent.getId());
         return this;
     }
@@ -162,21 +157,13 @@ public class RequirementSpecificationBuilder {
         if (!this.requirementSpecification.hasValue(INTERSECTION_OF)) {
             throw new HqdmException("Property Not Set: intersection_of");
         }
-        if (this.requirementSpecification.hasValue(MEMBER__OF)
-                && this.requirementSpecification.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.requirementSpecification.hasValue(MEMBER_OF)
                 && this.requirementSpecification.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (this.requirementSpecification.hasValue(MEMBER_OF_)
-                && this.requirementSpecification.values(MEMBER_OF_).isEmpty()) {
-            throw new HqdmException("Property Not Set: member_of_");
-        }
-        if (this.requirementSpecification.hasValue(PART__OF_BY_CLASS)
-                && this.requirementSpecification.values(PART__OF_BY_CLASS).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of_by_class");
+        if (this.requirementSpecification.hasValue(PART_OF_BY_CLASS)
+                && this.requirementSpecification.values(PART_OF_BY_CLASS).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of_by_class");
         }
         return requirementSpecification;
     }

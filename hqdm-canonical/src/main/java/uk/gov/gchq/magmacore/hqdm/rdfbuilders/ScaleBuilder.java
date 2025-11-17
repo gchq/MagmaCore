@@ -16,7 +16,6 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.DOMAIN;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.UNIT;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
@@ -62,8 +61,8 @@ public class ScaleBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final ScaleBuilder member__Of(final Class clazz) {
-        this.scale.addValue(MEMBER__OF, clazz.getId());
+    public final ScaleBuilder member_Of(final Class clazz) {
+        this.scale.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -112,10 +111,6 @@ public class ScaleBuilder {
     public Scale build() throws HqdmException {
         if (!this.scale.hasValue(DOMAIN)) {
             throw new HqdmException("Property Not Set: domain");
-        }
-        if (this.scale.hasValue(MEMBER__OF)
-                && this.scale.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
         }
         if (this.scale.hasValue(MEMBER_OF)
                 && this.scale.values(MEMBER_OF).isEmpty()) {

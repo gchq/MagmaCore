@@ -16,7 +16,6 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.HAS_SUPERCLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -60,8 +59,8 @@ public class ClassOfRelationshipBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final ClassOfRelationshipBuilder member__Of(final Class clazz) {
-        this.classOfRelationship.addValue(MEMBER__OF, clazz.getId());
+    public final ClassOfRelationshipBuilder member_Of(final Class clazz) {
+        this.classOfRelationship.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -88,10 +87,6 @@ public class ClassOfRelationshipBuilder {
         if (this.classOfRelationship.hasValue(HAS_SUPERCLASS)
                 && this.classOfRelationship.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
-        }
-        if (this.classOfRelationship.hasValue(MEMBER__OF)
-                && this.classOfRelationship.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfRelationship.hasValue(MEMBER_OF)
                 && this.classOfRelationship.values(MEMBER_OF).isEmpty()) {

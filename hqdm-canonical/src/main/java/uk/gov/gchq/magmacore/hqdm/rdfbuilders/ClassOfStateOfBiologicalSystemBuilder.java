@@ -14,12 +14,10 @@
 
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF_BY_CLASS;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_BY_CLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.HAS_SUPERCLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF_BY_CLASS;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_BY_CLASS;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -48,19 +46,18 @@ public class ClassOfStateOfBiologicalSystemBuilder {
     }
 
     /**
-     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF_BY_CLASS} relationship
-     * type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
-     * {@link ClassOfSpatioTemporalExtent}
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF} another
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
+     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF_BY_CLASS} relationship type
+     * where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
+     * {@link ClassOfSpatioTemporalExtent} {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF}
+     * another {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final ClassOfStateOfBiologicalSystemBuilder consists__Of_By_Class(
+    public final ClassOfStateOfBiologicalSystemBuilder consists_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfStateOfBiologicalSystem.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfStateOfBiologicalSystem.addValue(CONSISTS_OF_BY_CLASS,
                 classOfSpatioTemporalExtent.getId());
         return this;
     }
@@ -84,8 +81,8 @@ public class ClassOfStateOfBiologicalSystemBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final ClassOfStateOfBiologicalSystemBuilder member__Of(final Class clazz) {
-        this.classOfStateOfBiologicalSystem.addValue(MEMBER__OF, clazz.getId());
+    public final ClassOfStateOfBiologicalSystemBuilder member_Of(final Class clazz) {
+        this.classOfStateOfBiologicalSystem.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -110,26 +107,25 @@ public class ClassOfStateOfBiologicalSystemBuilder {
      * @param classOfClassOfSpatioTemporalExtent The ClassOfClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final ClassOfStateOfBiologicalSystemBuilder member_Of_(
+    public final ClassOfStateOfBiologicalSystemBuilder member_Of(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.classOfStateOfBiologicalSystem.addValue(MEMBER_OF_,
+        this.classOfStateOfBiologicalSystem.addValue(MEMBER_OF,
                 classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A relationship type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
-     * {@link ClassOfSpatioTemporalExtent} is
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
+     * {@link ClassOfSpatioTemporalExtent} is {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} some
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final ClassOfStateOfBiologicalSystemBuilder part__Of_By_Class(
+    public final ClassOfStateOfBiologicalSystemBuilder part_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfStateOfBiologicalSystem.addValue(PART__OF_BY_CLASS,
+        this.classOfStateOfBiologicalSystem.addValue(PART_OF_BY_CLASS,
                 classOfSpatioTemporalExtent.getId());
         return this;
     }
@@ -146,21 +142,13 @@ public class ClassOfStateOfBiologicalSystemBuilder {
                 && this.classOfStateOfBiologicalSystem.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (this.classOfStateOfBiologicalSystem.hasValue(MEMBER__OF)
-                && this.classOfStateOfBiologicalSystem.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.classOfStateOfBiologicalSystem.hasValue(MEMBER_OF)
                 && this.classOfStateOfBiologicalSystem.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (this.classOfStateOfBiologicalSystem.hasValue(MEMBER_OF_)
-                && this.classOfStateOfBiologicalSystem.values(MEMBER_OF_).isEmpty()) {
-            throw new HqdmException("Property Not Set: member_of_");
-        }
-        if (this.classOfStateOfBiologicalSystem.hasValue(PART__OF_BY_CLASS)
-                && this.classOfStateOfBiologicalSystem.values(PART__OF_BY_CLASS).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of_by_class");
+        if (this.classOfStateOfBiologicalSystem.hasValue(PART_OF_BY_CLASS)
+                && this.classOfStateOfBiologicalSystem.values(PART_OF_BY_CLASS).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of_by_class");
         }
         return this.classOfStateOfBiologicalSystem;
     }

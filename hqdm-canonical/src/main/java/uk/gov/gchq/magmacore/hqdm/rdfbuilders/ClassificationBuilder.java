@@ -17,7 +17,6 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CLASSIFIER;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -76,14 +75,15 @@ public class ClassificationBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final ClassificationBuilder member__Of(final Class clazz) {
-        this.classification.addValue(MEMBER__OF, clazz.getId());
+    public final ClassificationBuilder member_Of(final Class clazz) {
+        this.classification.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where a relationship is a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a {@link ClassOfRelationship}.
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where a
+     * relationship is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
+     * {@link ClassOfRelationship}.
      *
      * @param classOfRelationship The ClassOfRelationship.
      * @return This builder.
@@ -105,10 +105,6 @@ public class ClassificationBuilder {
         }
         if (!this.classification.hasValue(MEMBER)) {
             throw new HqdmException("Property Not Set: member");
-        }
-        if (this.classification.hasValue(MEMBER__OF)
-                && this.classification.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classification.hasValue(MEMBER_OF)
                 && this.classification.values(MEMBER_OF).isEmpty()) {

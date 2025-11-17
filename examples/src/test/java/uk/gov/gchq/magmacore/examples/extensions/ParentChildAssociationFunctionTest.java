@@ -40,11 +40,11 @@ public class ParentChildAssociationFunctionTest {
 
         // Create a beginning event for the association and its participants.
         final PointInTime beginning = SpatioTemporalExtentServices.createPointInTime(randomIri());
-        beginning.addStringValue(HQDM.VALUE_, "1967-04-04T10:15:30.00Z");
+        beginning.addStringValue(HQDM.SKOS_DEFINITION, "1967-04-04T10:15:30.00Z");
 
         // Create an ending event for the association and its participants.
         final PointInTime ending = SpatioTemporalExtentServices.createPointInTime(randomIri());
-        ending.addStringValue(HQDM.VALUE_, "2040-12-03T10:15:30.00Z");
+        ending.addStringValue(HQDM.SKOS_DEFINITION, "2040-12-03T10:15:30.00Z");
 
         // The entities will all be added to this PossibleWorld.
         final PossibleWorld possibleWorld = SpatioTemporalExtentServices.createPossibleWorld(randomIri());
@@ -65,7 +65,7 @@ public class ParentChildAssociationFunctionTest {
                 ending));
 
         // Export the TTL for inspection.
-        svc.exportTtl(System.out);
+        // svc.exportTtl(System.out);
 
     }
 

@@ -16,16 +16,14 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.AGGREGATED_INTO;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.BEGINNING;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_KIND;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PARTICIPANT_IN;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -38,6 +36,7 @@ import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership;
 import uk.gov.gchq.magmacore.hqdm.model.Transferee;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -88,14 +87,14 @@ public class TransfereeBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final TransfereeBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferee.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
+    public final TransfereeBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.transferee.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -118,8 +117,8 @@ public class TransfereeBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final TransfereeBuilder member__Of(final Class clazz) {
-        this.transferee.addValue(MEMBER__OF, clazz.getId());
+    public final TransfereeBuilder member_Of(final Class clazz) {
+        this.transferee.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -147,6 +146,7 @@ public class TransfereeBuilder {
      */
     public final TransfereeBuilder member_Of_Kind_M(final Role role) {
         this.transferee.addValue(MEMBER_OF_KIND, role.getId());
+        this.transferee.addValue(RDFS.RDF_TYPE, role.getId());
         return this;
     }
 
@@ -158,20 +158,19 @@ public class TransfereeBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final TransfereeBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferee.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final TransfereeBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.transferee.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -203,8 +202,8 @@ public class TransfereeBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final TransfereeBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferee.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
+    public final TransfereeBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.transferee.addValue(TEMPORAL_PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -240,10 +239,6 @@ public class TransfereeBuilder {
                 && this.transferee.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.transferee.hasValue(MEMBER__OF)
-                && this.transferee.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.transferee.hasValue(MEMBER_OF)
                 && this.transferee.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
@@ -251,19 +246,15 @@ public class TransfereeBuilder {
         if (!this.transferee.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (this.transferee.hasValue(PART__OF)
-                && this.transferee.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
+        if (this.transferee.hasValue(PART_OF)
+                && this.transferee.values(PART_OF).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of");
         }
         if (!this.transferee.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (!this.transferee.hasValue(PARTICIPANT_IN)) {
             throw new HqdmException("Property Not Set: participant_in");
-        }
-        if (this.transferee.hasValue(TEMPORAL__PART_OF)
-                && this.transferee.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.transferee.hasValue(TEMPORAL_PART_OF)
                 && this.transferee.values(TEMPORAL_PART_OF).isEmpty()) {

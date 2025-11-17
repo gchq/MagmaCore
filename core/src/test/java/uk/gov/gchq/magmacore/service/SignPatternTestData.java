@@ -14,19 +14,13 @@
 
 package uk.gov.gchq.magmacore.service;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-
 import uk.gov.gchq.magmacore.database.MagmaCoreDatabase;
 import uk.gov.gchq.magmacore.hqdm.model.Pattern;
 import uk.gov.gchq.magmacore.hqdm.model.Person;
-import uk.gov.gchq.magmacore.hqdm.model.PointInTime;
 import uk.gov.gchq.magmacore.hqdm.model.RecognizingLanguageCommunity;
 import uk.gov.gchq.magmacore.hqdm.model.RepresentationByPattern;
 import uk.gov.gchq.magmacore.hqdm.model.RepresentationBySign;
-import uk.gov.gchq.magmacore.hqdm.model.Sign;
 import uk.gov.gchq.magmacore.hqdm.model.StateOfPerson;
-import uk.gov.gchq.magmacore.hqdm.model.StateOfSign;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IriBase;
@@ -44,6 +38,7 @@ public class SignPatternTestData {
     static RecognizingLanguageCommunity community2;
     static Pattern pattern1;
     static Pattern pattern2;
+    static Pattern pattern3;
     static Person person1;
     static Person person2;
     static Person person3;
@@ -81,10 +76,17 @@ public class SignPatternTestData {
         final IRI pattern1Iri = new IRI(TEST_BASE, "pattern1");
         pattern1 = ClassServices.createPattern(pattern1Iri);
         pattern1.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
+        pattern1.addStringValue(HQDM.SKOS_DEFINITION, "person1");
 
         final IRI pattern2Iri = new IRI(TEST_BASE, "pattern2");
         pattern2 = ClassServices.createPattern(pattern2Iri);
         pattern2.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
+        pattern2.addStringValue(HQDM.SKOS_DEFINITION, "person2");
+
+        final IRI pattern3Iri = new IRI(TEST_BASE, "pattern3");
+        pattern3 = ClassServices.createPattern(pattern3Iri);
+        pattern3.addValue(RDFS.RDF_TYPE, HQDM.PATTERN);
+        pattern3.addStringValue(HQDM.SKOS_DEFINITION, "person3");
 
         // Create RepresentationByPatterns
         final RepresentationByPattern repByPattern1 = ClassServices
@@ -106,7 +108,7 @@ public class SignPatternTestData {
 
         repByPattern1.addValue(HQDM.CONSISTS_OF_BY_CLASS, pattern1.getId());
         repByPattern2.addValue(HQDM.CONSISTS_OF_BY_CLASS, pattern2.getId());
-        repByPattern3.addValue(HQDM.CONSISTS_OF_BY_CLASS, pattern2.getId());
+        repByPattern3.addValue(HQDM.CONSISTS_OF_BY_CLASS, pattern3.getId());
 
         // Create KindOfPerson
         kindOfPersonIri = new IRI(TEST_BASE, "kindOfPerson1");
@@ -146,82 +148,9 @@ public class SignPatternTestData {
         stateOfPerson3.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_PERSON);
         stateOfPerson3.addValue(HQDM.TEMPORAL_PART_OF, person3.getId());
 
-        // Create signs
-        final Sign sign1 = SpatioTemporalExtentServices.createSign(new IRI(TEST_BASE, "sign1"));
-        sign1.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
-        sign1.addValue(HQDM.MEMBER_OF_, pattern1Iri);
-        sign1.addStringValue(HQDM.VALUE_, "person1");
-
-        final Sign sign2 = SpatioTemporalExtentServices.createSign(new IRI(TEST_BASE, "sign2"));
-        sign2.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
-        sign2.addValue(HQDM.MEMBER_OF_, pattern2Iri);
-        sign2.addStringValue(HQDM.VALUE_, "person2");
-
-        final Sign sign3 = SpatioTemporalExtentServices.createSign(new IRI(TEST_BASE, "sign3"));
-        sign3.addValue(RDFS.RDF_TYPE, HQDM.SIGN);
-        sign3.addValue(HQDM.MEMBER_OF_, pattern2Iri);
-        sign3.addStringValue(HQDM.VALUE_, "person3");
-
-        // Create states for the Signs
-        final StateOfSign stateOfSign1 = SpatioTemporalExtentServices
-                .createStateOfSign(new IRI(TEST_BASE, "stateOfSign1"));
-        stateOfSign1.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN);
-        stateOfSign1.addValue(HQDM.TEMPORAL_PART_OF, sign1.getId());
-
-        final StateOfSign stateOfSign2 = SpatioTemporalExtentServices
-                .createStateOfSign(new IRI(TEST_BASE, "stateOfSign2"));
-        stateOfSign2.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN);
-        stateOfSign2.addValue(HQDM.TEMPORAL_PART_OF, sign2.getId());
-
-        final StateOfSign stateOfSign3 = SpatioTemporalExtentServices
-                .createStateOfSign(new IRI(TEST_BASE, "stateOfSign3"));
-        stateOfSign3.addValue(RDFS.RDF_TYPE, HQDM.STATE_OF_SIGN);
-        stateOfSign3.addValue(HQDM.TEMPORAL_PART_OF, sign3.getId());
-
-        // Create Events for the BEGINNING and ENDING of the RepresentationBySigns
-        final PointInTime begin = SpatioTemporalExtentServices.createPointInTime(new IRI(TEST_BASE, "begin"));
-        final PointInTime end = SpatioTemporalExtentServices.createPointInTime(new IRI(TEST_BASE, "end"));
-
-        begin.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
-        end.addValue(RDFS.RDF_TYPE, HQDM.POINT_IN_TIME);
-
-        begin.addStringValue(HQDM.ENTITY_NAME, LocalDateTime.now().minusDays(1L).toInstant(ZoneOffset.UTC).toString());
-        end.addStringValue(HQDM.ENTITY_NAME, LocalDateTime.now().plusDays(1L).toInstant(ZoneOffset.UTC).toString());
-
-        final IRI objectId = begin.getId();
-        final IRI objectId2 = end.getId();
-
-        // Create RepresentationBySigns
-        final RepresentationBySign repBySign1 = SpatioTemporalExtentServices
-                .createRepresentationBySign(new IRI(TEST_BASE, "repBySign1"));
-        repBySign1.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN);
-        repBySign1.addValue(HQDM.REPRESENTS, stateOfPerson1.getId());
-        repBySign1.addValue(HQDM.MEMBER_OF_, repByPattern1.getId());
-        repBySign1.addValue(HQDM.BEGINNING, objectId);
-        repBySign1.addValue(HQDM.ENDING, objectId2);
-        community1.addValue(HQDM.PARTICIPANT_IN, repBySign1.getId());
-        stateOfSign1.addValue(HQDM.PARTICIPANT_IN, repBySign1.getId());
-
-        final RepresentationBySign repBySign2 = SpatioTemporalExtentServices
-                .createRepresentationBySign(new IRI(TEST_BASE, "repBySign2"));
-        repBySign2.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN);
-        repBySign2.addValue(HQDM.REPRESENTS, stateOfPerson2.getId());
-        repBySign2.addValue(HQDM.MEMBER_OF_, repByPattern2.getId());
-        repBySign2.addValue(HQDM.BEGINNING, objectId);
-        repBySign2.addValue(HQDM.ENDING, objectId2);
-        community2.addValue(HQDM.PARTICIPANT_IN, repBySign2.getId());
-        stateOfSign2.addValue(HQDM.PARTICIPANT_IN, repBySign2.getId());
-
-        final RepresentationBySign repBySign3 = SpatioTemporalExtentServices
-                .createRepresentationBySign(new IRI(TEST_BASE, "repBySign3"));
-        repBySign3.addValue(RDFS.RDF_TYPE, HQDM.REPRESENTATION_BY_SIGN);
-        repBySign3.addValue(HQDM.REPRESENTS, stateOfPerson3.getId());
-        repBySign3.addValue(HQDM.MEMBER_OF_, repByPattern2.getId());
-        repBySign3.addValue(HQDM.BEGINNING, objectId);
-        repBySign3.addValue(HQDM.ENDING, objectId2);
-        community2.addValue(HQDM.PARTICIPANT_IN, repBySign3.getId());
-        stateOfSign3.addValue(HQDM.PARTICIPANT_IN, repBySign3.getId());
-
+        repByPattern1.addValue(HQDM.REPRESENTED, stateOfPerson1.getId());
+        repByPattern2.addValue(HQDM.REPRESENTED, stateOfPerson2.getId());
+        repByPattern3.addValue(HQDM.REPRESENTED, stateOfPerson3.getId());
         // Persist all objects
         db.beginWrite();
 
@@ -229,6 +158,7 @@ public class SignPatternTestData {
         db.create(community2);
         db.create(pattern1);
         db.create(pattern2);
+        db.create(pattern3);
         db.create(repByPattern1);
         db.create(repByPattern2);
         db.create(repByPattern3);
@@ -238,17 +168,6 @@ public class SignPatternTestData {
         db.create(stateOfPerson1);
         db.create(stateOfPerson2);
         db.create(stateOfPerson3);
-        db.create(sign1);
-        db.create(sign2);
-        db.create(sign3);
-        db.create(stateOfSign1);
-        db.create(stateOfSign2);
-        db.create(stateOfSign3);
-        db.create(begin);
-        db.create(end);
-        db.create(repBySign1);
-        db.create(repBySign2);
-        db.create(repBySign3);
 
         db.commit();
     }

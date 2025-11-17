@@ -6,11 +6,13 @@ import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.PARENT_T
 import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.UK_LIMITED_COMPANY_TYPE_NAME;
 import static uk.gov.gchq.magmacore.examples.extensions.model.Constants.UK_SOFTWARE_DEVELOPMENT_COMPANY_TYPE_NAME;
 
-import uk.gov.gchq.magmacore.examples.extensions.model.ChildImpl;
-import uk.gov.gchq.magmacore.examples.extensions.model.ParentChildAssociationImpl;
-import uk.gov.gchq.magmacore.examples.extensions.model.ParentImpl;
-import uk.gov.gchq.magmacore.examples.extensions.model.UkLimitedCompanyImpl;
-import uk.gov.gchq.magmacore.examples.extensions.model.UkSoftwareDevelopmentCompanyImpl;
+import java.io.InputStream;
+
+import uk.gov.gchq.magmacore.examples.extensions.impl.ChildImpl;
+import uk.gov.gchq.magmacore.examples.extensions.impl.ParentChildAssociationImpl;
+import uk.gov.gchq.magmacore.examples.extensions.impl.ParentImpl;
+import uk.gov.gchq.magmacore.examples.extensions.impl.UkLimitedCompanyImpl;
+import uk.gov.gchq.magmacore.examples.extensions.impl.UkSoftwareDevelopmentCompanyImpl;
 import uk.gov.gchq.magmacore.hqdm.extensions.ExtensionService;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
@@ -20,6 +22,9 @@ import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
  * MagmaCore.
  */
 public class HqdmExtensionService implements ExtensionService {
+
+    private static InputStream ttl = null;
+
     /**
      * {@inheritDoc}
      */
@@ -47,5 +52,13 @@ public class HqdmExtensionService implements ExtensionService {
                 // Or null if it's not a class from this extension package.
                 return null;
         }
+    }
+
+    @Override
+    public InputStream getDomainTtl() {
+        if (ttl == null) {
+            ttl = HqdmExtensionService.class.getResourceAsStream("/example-model.ttl");
+        }
+        return ttl;
     }
 }

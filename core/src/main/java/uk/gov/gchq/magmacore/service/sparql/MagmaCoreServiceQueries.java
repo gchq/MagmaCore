@@ -33,32 +33,23 @@ public class MagmaCoreServiceQueries {
      * </p>
      */
     public static final String FIND_BY_SIGN_VALUE_QUERY = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 
             SELECT ?s ?p ?o ?start ?finish
             WHERE {
-                BIND("%s" as ?signvalue)
+                BIND("%s" as ?patternValue)
                 BIND(<%s> as ?rlc)
-                BIND(<%s> as ?pattern)
+                BIND(<%s> as ?patternIri)
 
-                ?sign hqdm:value_ ?signvalue;
-                    hqdm:member_of_ ?pattern.
-                ?sos hqdm:temporal_part_of ?sign;
-                    hqdm:participant_in ?repBySign.
-                ?rlc hqdm:participant_in ?repBySign.
-                ?repBySign hqdm:represents ?s.
+                ?patternIri skos:definition ?patternValue;
+                    a hqdm:Pattern.
+                ?repByPattern hqdm:consistsOfByClass ?patternIri;
+                    hqdm:represented ?s;
+                    hqdm:consistsOfInMembers ?rlc.
                 ?s ?p ?o.
-                OPTIONAL {
-                    ?repBySign hqdm:beginning ?begin.
-                    ?begin hqdm:data_EntityName ?start.
-                }
-                OPTIONAL {
-                    ?repBySign hqdm:ending ?end.
-                    ?end hqdm:data_EntityName ?finish.
-                }
-
             }
             """;
 
@@ -76,7 +67,8 @@ public class MagmaCoreServiceQueries {
      * </p>
      */
     public static final String FIND_BY_PARTIAL_SIGN_VALUE_CASE_INSENSITIVE_QUERY = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 
@@ -84,25 +76,15 @@ public class MagmaCoreServiceQueries {
             WHERE {
                 BIND("%s" as ?text)
                 BIND(<%s> as ?rlc)
-                BIND(<%s> as ?pattern)
 
-                ?sign hqdm:value_ ?signvalue;
-                    hqdm:member_of_ ?pattern.
-                FILTER(CONTAINS(lcase(str(?signvalue)), lcase(?text)))
-                ?sos hqdm:temporal_part_of ?sign;
-                    hqdm:participant_in ?repBySign.
-                ?rlc hqdm:participant_in ?repBySign.
-                ?repBySign hqdm:represents ?s.
+                ?patternIri skos:definition ?patternValue;
+                    a hqdm:Pattern.
+                ?repByPattern hqdm:consistsOfByClass ?patternIri;
+                    hqdm:consistsOfInMembers ?rlc;
+                    hqdm:represented ?s.
+                FILTER(CONTAINS(lcase(str(?patternValue)), lcase(?text)))
+                
                 ?s ?p ?o.
-                OPTIONAL {
-                    ?repBySign hqdm:beginning ?begin.
-                    ?begin hqdm:data_EntityName ?start.
-                }
-                OPTIONAL {
-                    ?repBySign hqdm:ending ?end.
-                    ?end hqdm:data_EntityName ?finish.
-                }
-
             }
             """;
 
@@ -115,7 +97,8 @@ public class MagmaCoreServiceQueries {
      * </p>
      */
     public static final String FIND_PARTICIPANT_DETAILS_QUERY = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
@@ -128,20 +111,20 @@ public class MagmaCoreServiceQueries {
                         BIND( <%s> as ?ind2)
                         BIND( <%s> as ?kind)
 
-                        ?s hqdm:temporal_part_of ?ind1;
-                            hqdm:participant_in ?assoc1;
+                        ?s hqdm:temporalPartOf ?ind1;
+                            hqdm:participantIn ?assoc1;
                             ?p ?o.
-                        ?i2stat hqdm:temporal_part_of ?ind2;
-                            hqdm:participant_in ?assoc1;
+                        ?i2stat hqdm:temporalPartOf ?ind2;
+                            hqdm:participantIn ?assoc1;
                             ?i2statp ?i2stato.
-                        ?assoc1 hqdm:member_of_kind ?kind.
+                        ?assoc1 hqdm:memberOfKind ?kind.
                         OPTIONAL {
                             ?assoc1 hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start
+                            ?begin skos:prefLabel ?start
                         }
                         OPTIONAL {
                             ?assoc1 hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish
+                            ?end skos:prefLabel ?finish
                         }
                     }
                 }
@@ -153,20 +136,20 @@ public class MagmaCoreServiceQueries {
                         BIND( <%s> as ?ind2)
                         BIND( <%s> as ?kind)
 
-                        ?i2stat hqdm:temporal_part_of ?ind1;
-                            hqdm:participant_in ?assoc1;
+                        ?i2stat hqdm:temporalPartOf ?ind1;
+                            hqdm:participantIn ?assoc1;
                             ?i2statp ?i2stato.
-                        ?s hqdm:temporal_part_of ?ind2;
-                            hqdm:participant_in ?assoc1;
+                        ?s hqdm:temporalPartOf ?ind2;
+                            hqdm:participantIn ?assoc1;
                             ?p ?o.
-                        ?assoc1 hqdm:member_of_kind ?kind.
+                        ?assoc1 hqdm:memberOfKind ?kind.
                         OPTIONAL {
                             ?assoc1 hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start
+                            ?begin skos:prefLabel ?start
                         }
                         OPTIONAL {
                             ?assoc1 hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish.
+                            ?end skos:prefLabel ?finish.
                         }
                     }
                 }
@@ -186,11 +169,12 @@ public class MagmaCoreServiceQueries {
      * </ol>
      * </p>
      * <p>
-     * The result includes `hqdm:value_` predicates for the signValues.
+     * The result includes `skos:definition` predicates for the signValues.
      * </p>
      */
     public static final String FIND_OBJECTS_BY_TYPE_CLASS_AND_SIGN_PATTERN = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
             select distinct *
@@ -198,61 +182,39 @@ public class MagmaCoreServiceQueries {
                 {
                     SELECT ?s ?p ?o ?start ?finish
                     WHERE {
-                    BIND(<%s> as ?type)
-                    BIND(<%s> as ?kind)
-                    BIND(<%s> as ?pattern)
+                        BIND(<%s> as ?typeIri)
+                        BIND(<%s> as ?kindIri)
+                        BIND(<%s> as ?patternIri)
 
-                    ?s a ?type;
-                        hqdm:member_of ?kind;
-                    ?p ?o.
-                    ?st hqdm:temporal_part_of ?s.
-                    ?repBySign hqdm:represents ?st.
-                    ?signst hqdm:participant_in ?repBySign;
-                        a hqdm:state_of_sign;
-                        hqdm:temporal_part_of ?sign.
-                    ?sign hqdm:value_ ?signvalue;
-                        hqdm:member_of_ ?pattern.
-
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start
-                        }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish
-                        }
-
+                        ?s a ?typeIri;
+                            hqdm:memberOf ?kindIri;
+                            ?p ?o.
+                        ?st hqdm:temporalPartOf ?s.
+                        ?repByPattern hqdm:represented ?st;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfByClass ?patternIri.
+                        ?patternIri a hqdm:Pattern;
+                            skos:definition ?patternValue.
                     }
                 }
                 UNION
                 {
                     SELECT ?s ?p ?o ?start ?finish
                     WHERE {
-                        BIND(<%s> as ?type)
-                        BIND(<%s> as ?kind)
-                        BIND(<%s> as ?pattern)
+                        BIND(<%s> as ?typeIri)
+                        BIND(<%s> as ?kindIri)
+                        BIND(<%s> as ?patternIri)
 
-                        ?s a ?type;
-                            hqdm:member_of ?kind;
+                        ?s a ?typeIri;
+                            hqdm:memberOf ?kindIri;
                             ?pr ?ob.
-                        ?st hqdm:temporal_part_of ?s.
-                        ?repBySign hqdm:represents ?st.
-                        ?signst hqdm:participant_in ?repBySign;
-                            a hqdm:state_of_sign;
-                            hqdm:temporal_part_of ?sign.
-                        ?sign hqdm:value_ ?o;
-                            ?p ?o;
-                            hqdm:member_of_ ?pattern.
-
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start
-                        }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish
-                        }
-
+                        ?st hqdm:temporalPartOf ?s.
+                        ?repByPattern hqdm:represented ?st;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfByClass ?patternIri.
+                        ?patternIri a hqdm:Pattern;
+                            skos:definition ?o;
+                            ?p ?o.
                     }
                 }
             }
@@ -271,11 +233,12 @@ public class MagmaCoreServiceQueries {
      * </ol>
      * </p>
      * <p>
-     * The result includes `hqdm:value_` predicates for the signValues.
+     * The result includes `skos:definition` predicates for the signValues.
      * </p>
      */
     public static final String FIND_OBJECTS_BY_TYPE_AND_SIGN_PATTERN = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
             select distinct *
@@ -283,30 +246,17 @@ public class MagmaCoreServiceQueries {
                 {
                     SELECT ?s ?p ?o ?start ?finish
                     WHERE {
-                    BIND(<%s> as ?type)
-                    BIND(<%s> as ?kind)
-                    BIND(<%s> as ?pattern)
+                        BIND(<%s> as ?typeIri)
+                        BIND(<%s> as ?kindIri)
+                        BIND(<%s> as ?patternIri)
 
-                    ?s a ?type;
-                        hqdm:member_of_kind ?kind;
-                    ?p ?o.
-                    ?st hqdm:temporal_part_of ?s.
-                    ?repBySign hqdm:represents ?st.
-                    ?signst hqdm:participant_in ?repBySign;
-                        a hqdm:state_of_sign;
-                        hqdm:temporal_part_of ?sign.
-                    ?sign hqdm:value_ ?signvalue;
-                        hqdm:member_of_ ?pattern.
-
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start
-                        }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish
-                        }
-
+                        ?s a ?typeIri;
+                            hqdm:memberOfKind ?kindIri;
+                            ?p ?o.
+                        ?st hqdm:temporalPartOf ?s.
+                        ?repByPattern a hqdm:RepresentationByPattern;
+                            hqdm:represented ?st;
+                            hqdm:consistsOfByClass ?patternIri.
                     }
                 }
                 UNION
@@ -318,26 +268,14 @@ public class MagmaCoreServiceQueries {
                         BIND(<%s> as ?pattern)
 
                         ?s a ?type;
-                            hqdm:member_of_kind ?kind;
+                            hqdm:memberOfKind ?kind;
                             ?pr ?ob.
-                        ?st hqdm:temporal_part_of ?s.
-                        ?repBySign hqdm:represents ?st.
-                        ?signst hqdm:participant_in ?repBySign;
-                            a hqdm:state_of_sign;
-                            hqdm:temporal_part_of ?sign.
-                        ?sign hqdm:value_ ?o;
-                            ?p ?o;
-                            hqdm:member_of_ ?pattern.
-
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start
-                        }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish
-                        }
-
+                        ?st hqdm:temporalPartOf ?s.
+                        ?repByPattern a hqdm:RepresentationByPattern;
+                            hqdm:represented ?st;
+                            hqdm:consistsOfByClass ?pattern.
+                        ?pattern skos:definition ?o;
+                            ?p ?o.
                     }
                 }
             }
@@ -352,7 +290,8 @@ public class MagmaCoreServiceQueries {
      * </p>
      */
     public static final String FIND_BY_KIND_OF_ASSOCIATION = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
             select ?s ?p ?o
             where
@@ -360,11 +299,11 @@ public class MagmaCoreServiceQueries {
                 {
                     select distinct ?s ?p ?o
                     WHERE {
-                        BIND(<%s> as ?kind_of_association)
-                        ?association hqdm:member_of_kind ?kind_of_association.
-                        ?participant hqdm:participant_in ?association;
-                            hqdm:member_of_kind ?role;
-                            hqdm:temporal_part_of ?s.
+                        BIND(<%s> as ?kindOfAssociation)
+                        ?association hqdm:memberOfKind ?kindOfAssociation.
+                        ?participant hqdm:participantIn ?association;
+                            hqdm:memberOfKind ?role;
+                            hqdm:temporalPartOf ?s.
                         ?s ?p ?o.
                     }
                 }
@@ -372,12 +311,12 @@ public class MagmaCoreServiceQueries {
                 {
                     select distinct ?s ?p ?o
                     WHERE {
-                        BIND(<%s> as ?kind_of_association)
-                        ?association hqdm:member_of_kind ?kind_of_association.
-                        ?participant hqdm:participant_in ?association;
-                            hqdm:member_of_kind ?role;
-                            hqdm:temporal_part_of ?s.
-                        ?role hqdm:data_EntityName ?o;
+                        BIND(<%s> as ?kindOfAssociation)
+                        ?association hqdm:memberOfKind ?kindOfAssociation.
+                        ?participant hqdm:participantIn ?association;
+                            hqdm:memberOfKind ?role;
+                            hqdm:temporalPartOf ?s.
+                        ?role skos:prefLabel ?o;
                             ?p ?o.
                     }
                 }
@@ -385,17 +324,16 @@ public class MagmaCoreServiceQueries {
                 {
                     select distinct ?s ?p ?o
                     WHERE {
-                        BIND(<%s> as ?kind_of_association)
-                        ?association hqdm:member_of_kind ?kind_of_association.
-                        ?participant hqdm:participant_in ?association;
-                            hqdm:temporal_part_of ?s.
-                        ?state_of_individual hqdm:temporal_part_of ?s.
-                        ?repBySign hqdm:represents ?state_of_individual.
-                        ?repBySign a hqdm:representation_by_sign.
-                        ?state_of_sign hqdm:participant_in ?repBySign;
-                            a hqdm:state_of_sign;
-                            hqdm:temporal_part_of ?sign.
-                        ?sign hqdm:value_ ?o;
+                        BIND(<%s> as ?kindOfAssociation)
+                        ?association hqdm:memberOfKind ?kindOfAssociation.
+                        ?participant hqdm:participantIn ?association;
+                            hqdm:temporalPartOf ?s.
+                        ?stateOfIndividual hqdm:temporalPartOf ?s.
+                        ?repByPattern hqdm:represented ?stateOfIndividual;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfByClass ?patternIri.
+
+                        ?patternIri skos:definition ?o;
                             ?p ?o.
 
                     }
@@ -408,7 +346,8 @@ public class MagmaCoreServiceQueries {
      * Find things associated to a given thing by an association of a given kind.
      */
     public static final String FIND_ASSOCIATED = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 
             select ?s ?p ?o ?start ?finish
@@ -417,21 +356,21 @@ public class MagmaCoreServiceQueries {
                 {
                 select distinct ?s ?p ?o ?start ?finish
                 WHERE {
-                    BIND(<%s> as ?kind_of_association)
-                    ?from hqdm:temporal_part_of <%s>;
-                        hqdm:participant_in ?association.
-                    ?association hqdm:member_of_kind ?kind_of_association.
-                    ?participant hqdm:participant_in ?association;
-                        hqdm:temporal_part_of ?s.
+                    BIND(<%s> as ?kindOfAssociation)
+                    ?from hqdm:temporalPartOf <%s>;
+                        hqdm:participantIn ?association.
+                    ?association hqdm:memberOfKind ?kindOfAssociation.
+                    ?participant hqdm:participantIn ?association;
+                        hqdm:temporalPartOf ?s.
                     ?s ?p ?o.
                     FILTER(?s != <%s>)
                     OPTIONAL {
                         ?association hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
+                        ?begin skos:prefLabel ?start.
                     }
                     OPTIONAL {
                         ?association hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
+                        ?end skos:prefLabel ?finish.
                     }
                 }
             }
@@ -439,23 +378,23 @@ public class MagmaCoreServiceQueries {
             {
                 select distinct ?s ?p ?o ?start ?finish
                 WHERE {
-                    BIND(<%s> as ?kind_of_association)
-                    ?from hqdm:temporal_part_of <%s>;
-                        hqdm:participant_in ?association.
-                    ?association hqdm:member_of_kind ?kind_of_association.
-                    ?participant hqdm:participant_in ?association;
-                        hqdm:temporal_part_of ?s;
-                    hqdm:member_of_kind ?role.
+                    BIND(<%s> as ?kindOfAssociation)
+                    ?from hqdm:temporalPartOf <%s>;
+                        hqdm:participantIn ?association.
+                    ?association hqdm:memberOfKind ?kindOfAssociation.
+                    ?participant hqdm:participantIn ?association;
+                        hqdm:temporalPartOf ?s;
+                    hqdm:memberOfKind ?role.
                     FILTER(?s != <%s>)
                     OPTIONAL {
                         ?association hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
+                        ?begin skos:prefLabel ?start.
                     }
                     OPTIONAL {
                         ?association hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
+                        ?end skos:prefLabel ?finish.
                     }
-                    ?role hqdm:data_EntityName ?o;
+                    ?role skos:prefLabel ?o;
                     ?p ?o.
                 }
             }
@@ -463,28 +402,26 @@ public class MagmaCoreServiceQueries {
             {
                 select distinct ?s ?p ?o ?start ?finish
                 WHERE {
-                    BIND(<%s> as ?kind_of_association)
-                    ?from hqdm:temporal_part_of <%s>;
-                        hqdm:participant_in ?association.
-                    ?association hqdm:member_of_kind ?kind_of_association.
-                    ?participant hqdm:participant_in ?association;
-                        hqdm:temporal_part_of ?s.
+                    BIND(<%s> as ?kindOfAssociation)
+                    ?from hqdm:temporalPartOf <%s>;
+                        hqdm:participantIn ?association.
+                    ?association hqdm:memberOfKind ?kindOfAssociation.
+                    ?participant hqdm:participantIn ?association;
+                        hqdm:temporalPartOf ?s.
                     FILTER(?s != <%s>)
-                    ?state_of_individual hqdm:temporal_part_of ?s.
-                    ?repBySign hqdm:represents ?state_of_individual.
-                    ?repBySign a hqdm:representation_by_sign.
-                    ?state_of_sign hqdm:participant_in ?repBySign;
-                        a hqdm:state_of_sign;
-                    hqdm:temporal_part_of ?sign.
+                    ?stateOfIndividual hqdm:temporalPartOf ?s.
+                    ?repByPattern hqdm:represented ?stateOfIndividual.
+                    ?repByPattern a hqdm:RepresentationByPattern.
+                    ?repByPattern hqdm:consistsOfByClass ?patternIri.
                     OPTIONAL {
                         ?association hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
+                        ?begin skos:prefLabel ?start.
                     }
                     OPTIONAL {
                         ?association hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
+                        ?end skos:prefLabel ?finish.
                     }
-                    ?sign hqdm:value_ ?o;
+                    ?patternIri skos:definition ?o;
                         ?p ?o.
                 }
             }
@@ -497,7 +434,8 @@ public class MagmaCoreServiceQueries {
      * Search for items whose sign contains some text and are members of a specific class.
      */
     public static final String FIND_MEMBERS_OF_CLASS_BY_PARTIAL_SIGN_CASE_SENSITIVE = """
-                PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+                PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+                PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
                 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
                 SELECT distinct ?s ?p ?o ?start ?finish
@@ -508,78 +446,51 @@ public class MagmaCoreServiceQueries {
                         BIND("%s" as ?text)
                         BIND(<%s> as ?class) # IRI of the class
 
-                        ?sign hqdm:value_ ?signvalue;
-                            hqdm:member_of_ ?pattern.
-                        FILTER(CONTAINS(str(?signvalue), ?text))
-                        ?sos hqdm:temporal_part_of ?sign;
-                            hqdm:participant_in ?repBySign.
-                        ?rlc hqdm:participant_in ?repBySign.
-                        ?repBySign hqdm:represents ?state.
-                        ?state hqdm:temporal_part_of ?s.
-                        ?s hqdm:member_of ?class.
+                        ?pattern skos:definition ?patternValue.
+                        FILTER(CONTAINS(str(?patternValue), ?text))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
                         ?s ?p ?o.
-                        OPTIONAL {
-                            ?repBySign hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start.
-                        }
-                        OPTIONAL {
-                            ?repBySign hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish.
-                        }
                     }
                 }
                 UNION
                 {
-                    SELECT ?s (hqdm:value_ as ?p) ?o ?start ?finish
+                    SELECT ?s (skos:definition as ?p) ?o ?start ?finish
                     WHERE {
                         BIND("%s" as ?text)
                         BIND(<%s> as ?class) # IRI of the class
 
-                        ?sign hqdm:value_ ?o;
-                            hqdm:member_of_ ?pattern.
+                        ?pattern skos:definition ?o.
                         FILTER(CONTAINS(str(?o), ?text))
-                        ?sos hqdm:temporal_part_of ?sign;
-                            hqdm:participant_in ?repBySign.
-                        ?rlc hqdm:participant_in ?repBySign.
-                        ?repBySign hqdm:represents ?state.
-                        ?state hqdm:temporal_part_of ?s.
-                        ?s hqdm:member_of ?class.
-                        OPTIONAL {
-                            ?repBySign hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start.
-                        }
-                        OPTIONAL {
-                            ?repBySign hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish.
-                        }
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
                     }
                 }
                 UNION
                 {
-                    SELECT ?s (hqdm:data_EntityName as ?p) ?o ?start ?finish
+                    SELECT ?s (skos:prefLabel as ?p) ?o ?start ?finish
                     WHERE {
                         BIND("%s" as ?text)
                         BIND(<%s> as ?class)
 
-                        ?sign hqdm:value_ ?signValue;
-                            hqdm:member_of_ ?pattern.
-                        FILTER(CONTAINS(str(?signValue), ?text))
-                        ?sos hqdm:temporal_part_of ?sign;
-                            hqdm:participant_in ?repBySign.
-                        ?rlc hqdm:participant_in ?repBySign.
-                        ?repBySign hqdm:represents ?state.
-                        ?state hqdm:temporal_part_of ?s.
-                        ?s hqdm:member_of ?class.
-                        ?s hqdm:member_of_kind ?kind.
-                        ?kind hqdm:data_EntityName ?o.
-                        OPTIONAL {
-                            ?repBySign hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start.
-                        }
-                        OPTIONAL {
-                            ?repBySign hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish.
-                        }
+                        ?pattern skos:definition ?patternValue.
+                        FILTER(CONTAINS(str(?patternValue), ?text))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+                        ?s hqdm:memberOfKind ?kind.
+                        ?kind skos:prefLabel ?o.
                     }
                 }
 
@@ -591,7 +502,8 @@ public class MagmaCoreServiceQueries {
      * Search for items whose sign contains some text and are members of a specific class.
      */
     public static final String FIND_MEMBERS_OF_CLASS_BY_PARTIAL_SIGN_CASE_INSENSITIVE = """
-                PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+                PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+                PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
                 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
                 SELECT distinct ?s ?p ?o ?start ?finish
@@ -602,78 +514,51 @@ public class MagmaCoreServiceQueries {
                         BIND("%s" as ?text)
                         BIND(<%s> as ?class) # IRI of the class
 
-                        ?sign hqdm:value_ ?signvalue;
-                            hqdm:member_of_ ?pattern.
-                        FILTER(CONTAINS(lcase(str(?signvalue)), lcase(?text)))
-                        ?sos hqdm:temporal_part_of ?sign;
-                            hqdm:participant_in ?repBySign.
-                        ?rlc hqdm:participant_in ?repBySign.
-                        ?repBySign hqdm:represents ?state.
-                        ?state hqdm:temporal_part_of ?s.
-                        ?s hqdm:member_of ?class.
+                        ?pattern skos:definition ?patternValue.
+                        FILTER(CONTAINS(lcase(str(?patternValue)), lcase(?text)))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
                         ?s ?p ?o.
-                        OPTIONAL {
-                            ?repBySign hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start.
-                        }
-                        OPTIONAL {
-                            ?repBySign hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish.
-                        }
                     }
                 }
                 UNION
                 {
-                    SELECT ?s (hqdm:value_ as ?p) ?o ?start ?finish
+                    SELECT ?s (skos:definition as ?p) ?o ?start ?finish
                     WHERE {
                         BIND("%s" as ?text)
                         BIND(<%s> as ?class) # IRI of the class
 
-                        ?sign hqdm:value_ ?o;
-                            hqdm:member_of_ ?pattern.
+                        ?pattern skos:definition ?o.
                         FILTER(CONTAINS(lcase(str(?o)), lcase(?text)))
-                        ?sos hqdm:temporal_part_of ?sign;
-                            hqdm:participant_in ?repBySign.
-                        ?rlc hqdm:participant_in ?repBySign.
-                        ?repBySign hqdm:represents ?state.
-                        ?state hqdm:temporal_part_of ?s.
-                        ?s hqdm:member_of ?class.
-                        OPTIONAL {
-                            ?repBySign hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start.
-                        }
-                        OPTIONAL {
-                            ?repBySign hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish.
-                        }
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
                     }
                 }
                 UNION
                 {
-                    SELECT ?s (hqdm:data_EntityName as ?p) ?o ?start ?finish
+                    SELECT ?s (skos:prefLabel as ?p) ?o ?start ?finish
                     WHERE {
                         BIND("%s" as ?text)
                         BIND(<%s> as ?class)
 
-                        ?sign hqdm:value_ ?signValue;
-                            hqdm:member_of_ ?pattern.
-                        FILTER(CONTAINS(lcase(str(?signValue)), lcase(?text)))
-                        ?sos hqdm:temporal_part_of ?sign;
-                            hqdm:participant_in ?repBySign.
-                        ?rlc hqdm:participant_in ?repBySign.
-                        ?repBySign hqdm:represents ?state.
-                        ?state hqdm:temporal_part_of ?s.
-                        ?s hqdm:member_of ?class.
-                        ?s hqdm:member_of_kind ?kind.
-                        ?kind hqdm:data_EntityName ?o.
-                        OPTIONAL {
-                            ?repBySign hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start.
-                        }
-                        OPTIONAL {
-                            ?repBySign hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish.
-                        }
+                        ?pattern skos:definition ?patternValue.
+                        FILTER(CONTAINS(lcase(str(?patternValue)), lcase(?text)))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+                        ?s hqdm:memberOfKind ?kind.
+                        ?kind skos:prefLabel ?o.
                     }
                 }
 
@@ -685,7 +570,8 @@ public class MagmaCoreServiceQueries {
      * A partial search by sign for entities referenced by an Activity.
      */
     public static final String FIND_MEMBERS_OF_CLASS_BY_ACTIVITY_AND_PARTIAL_SIGN_CASE_SENSITIVE = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
             SELECT distinct ?s ?p ?o ?start ?finish
@@ -693,87 +579,60 @@ public class MagmaCoreServiceQueries {
             {
                 SELECT ?s ?p ?o ?start ?finish
                 WHERE {
-                    BIND("%s" as ?text)
-                    BIND(<%s> as ?class)
-                    BIND(<%s> as ?topicId)
+                        BIND("%s" as ?text)
+                        BIND(<%s> as ?class)
+                        BIND(<%s> as ?topicId)
 
-                    ?sign hqdm:value_ ?signvalue;
-                        hqdm:member_of_ ?pattern.
-                    FILTER(CONTAINS(str(?signvalue), ?text))
-                    ?sos hqdm:temporal_part_of ?sign;
-                        hqdm:participant_in ?repBySign.
-                    ?rlc hqdm:participant_in ?repBySign.
-                    ?repBySign hqdm:represents ?state.
-                    ?state hqdm:temporal_part_of ?s.
-                    ?s hqdm:member_of ?class.
-                    ?topicId hqdm:references ?s.
-                    ?s ?p ?o.
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
-                    }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
-                    }
+                        ?pattern skos:definition ?patternValue.
+                        FILTER(CONTAINS(str(?patternValue), ?text))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+                        ?topicId hqdm:references ?s.
+                        ?s ?p ?o.
                     }
                 }
                 UNION
                 {
-                SELECT ?s (hqdm:value_ as ?p) ?o ?start ?finish
+                SELECT ?s (skos:definition as ?p) ?o ?start ?finish
                 WHERE {
-                    BIND("%s" as ?text)
-                    BIND(<%s> as ?class)
-                    BIND(<%s> as ?topicId)
+                        BIND("%s" as ?text)
+                        BIND(<%s> as ?class)
+                        BIND(<%s> as ?topicId)
 
-                    ?sign hqdm:value_ ?o;
-                        hqdm:member_of_ ?pattern.
-                    FILTER(CONTAINS(str(?o), ?text))
-                    ?sos hqdm:temporal_part_of ?sign;
-                        hqdm:participant_in ?repBySign.
-                    ?rlc hqdm:participant_in ?repBySign.
-                    ?repBySign hqdm:represents ?state.
-                    ?state hqdm:temporal_part_of ?s.
-                    ?s hqdm:member_of ?class.
-                    ?topicId hqdm:references ?s.
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
-                    }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
-                    }
+                        ?pattern skos:definition ?o.
+                        FILTER(CONTAINS(str(?o), ?text))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+                        ?topicId hqdm:references ?s.
                     }
                 }
                 UNION
                 {
-                SELECT ?s (hqdm:data_EntityName as ?p) ?o ?start ?finish
+                SELECT ?s (skos:prefLabel as ?p) ?o ?start ?finish
                 WHERE {
-                    BIND("%s" as ?text)
-                    BIND(<%s> as ?class)
-                    BIND(<%s> as ?topicId)
+                        BIND("%s" as ?text)
+                        BIND(<%s> as ?class)
+                        BIND(<%s> as ?topicId)
 
-                    ?sign hqdm:value_ ?signValue;
-                        hqdm:member_of_ ?pattern.
-                    FILTER(CONTAINS(str(?signValue), ?text))
-                    ?sos hqdm:temporal_part_of ?sign;
-                        hqdm:participant_in ?repBySign.
-                    ?rlc hqdm:participant_in ?repBySign.
-                    ?repBySign hqdm:represents ?state.
-                    ?state hqdm:temporal_part_of ?s.
-                    ?s hqdm:member_of ?class.
-                    ?topicId hqdm:references ?s.
-                    ?s hqdm:member_of_kind ?kind.
-                    ?kind hqdm:data_EntityName ?o.
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
-                    }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
-                    }
+                        ?pattern skos:definition ?patternValue.
+                        FILTER(CONTAINS(str(?patternValue), ?text))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+                        ?topicId hqdm:references ?s.
+                        ?s hqdm:memberOfKind ?kind.
+                        ?kind skos:prefLabel ?o.
                     }
                 }
             }
@@ -784,7 +643,8 @@ public class MagmaCoreServiceQueries {
      * A partial search by sign for entities referenced by an Activity.
      */
     public static final String FIND_MEMBERS_OF_CLASS_BY_ACTIVITY_AND_PARTIAL_SIGN_CASE_INSENSITIVE = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
             SELECT distinct ?s ?p ?o ?start ?finish
@@ -792,87 +652,60 @@ public class MagmaCoreServiceQueries {
             {
                 SELECT ?s ?p ?o ?start ?finish
                 WHERE {
-                    BIND("%s" as ?text)
-                    BIND(<%s> as ?class)
-                    BIND(<%s> as ?topicId)
+                        BIND("%s" as ?text)
+                        BIND(<%s> as ?class)
+                        BIND(<%s> as ?topicId)
 
-                    ?sign hqdm:value_ ?signvalue;
-                        hqdm:member_of_ ?pattern.
-                    FILTER(CONTAINS(lcase(str(?signvalue)), lcase(?text)))
-                    ?sos hqdm:temporal_part_of ?sign;
-                        hqdm:participant_in ?repBySign.
-                    ?rlc hqdm:participant_in ?repBySign.
-                    ?repBySign hqdm:represents ?state.
-                    ?state hqdm:temporal_part_of ?s.
-                    ?s hqdm:member_of ?class.
-                    ?topicId hqdm:references ?s.
-                    ?s ?p ?o.
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
-                    }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
-                    }
+                        ?pattern skos:definition ?patternValue.
+                        FILTER(CONTAINS(lcase(str(?patternValue)), lcase(?text)))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+                        ?topicId hqdm:references ?s.
+                        ?s ?p ?o.
                     }
                 }
                 UNION
                 {
-                SELECT ?s (hqdm:value_ as ?p) ?o ?start ?finish
+                SELECT ?s (skos:definition as ?p) ?o ?start ?finish
                 WHERE {
-                    BIND("%s" as ?text)
-                    BIND(<%s> as ?class)
-                    BIND(<%s> as ?topicId)
+                        BIND("%s" as ?text)
+                        BIND(<%s> as ?class)
+                        BIND(<%s> as ?topicId)
 
-                    ?sign hqdm:value_ ?o;
-                        hqdm:member_of_ ?pattern.
-                    FILTER(CONTAINS(lcase(str(?o)), lcase(?text)))
-                    ?sos hqdm:temporal_part_of ?sign;
-                        hqdm:participant_in ?repBySign.
-                    ?rlc hqdm:participant_in ?repBySign.
-                    ?repBySign hqdm:represents ?state.
-                    ?state hqdm:temporal_part_of ?s.
-                    ?s hqdm:member_of ?class.
-                    ?topicId hqdm:references ?s.
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
-                    }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
-                    }
+                        ?pattern skos:definition ?o.
+                        FILTER(CONTAINS(lcase(str(?o)), lcase(?text)))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+                        ?topicId hqdm:references ?s.
                     }
                 }
                 UNION
                 {
-                SELECT ?s (hqdm:data_EntityName as ?p) ?o ?start ?finish
+                SELECT ?s (skos:prefLabel as ?p) ?o ?start ?finish
                 WHERE {
-                    BIND("%s" as ?text)
-                    BIND(<%s> as ?class)
-                    BIND(<%s> as ?topicId)
+                        BIND("%s" as ?text)
+                        BIND(<%s> as ?class)
+                        BIND(<%s> as ?topicId)
 
-                    ?sign hqdm:value_ ?signValue;
-                        hqdm:member_of_ ?pattern.
-                    FILTER(CONTAINS(lcase(str(?signValue)), lcase(?text)))
-                    ?sos hqdm:temporal_part_of ?sign;
-                        hqdm:participant_in ?repBySign.
-                    ?rlc hqdm:participant_in ?repBySign.
-                    ?repBySign hqdm:represents ?state.
-                    ?state hqdm:temporal_part_of ?s.
-                    ?s hqdm:member_of ?class.
-                    ?topicId hqdm:references ?s.
-                    ?s hqdm:member_of_kind ?kind.
-                    ?kind hqdm:data_EntityName ?o.
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
-                    }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
-                    }
+                        ?pattern skos:definition ?patternValue.
+                        FILTER(CONTAINS(lcase(str(?patternValue)), lcase(?text)))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+                        ?topicId hqdm:references ?s.
+                        ?s hqdm:memberOfKind ?kind.
+                        ?kind skos:prefLabel ?o.
                     }
                 }
             }
@@ -883,7 +716,8 @@ public class MagmaCoreServiceQueries {
      * A partial search by sign for entities composed into a whole entity.
      */
     public static final String FIND_MEMBERS_OF_CLASS_BY_COMPOSITION_AND_PARTIAL_SIGN_CASE_SENSITIVE = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
             SELECT distinct ?s ?p ?o ?start ?finish
@@ -891,90 +725,65 @@ public class MagmaCoreServiceQueries {
             {
                 SELECT ?s ?p ?o ?start ?finish
                 WHERE {
-                    BIND("%s" as ?text)
-                    BIND(<%s> as ?class)
-                    BIND(<%s> as ?topicId)
+                        BIND("%s" as ?text)
+                        BIND(<%s> as ?class)
+                        BIND(<%s> as ?topicId)
 
-                    ?sign hqdm:value_ ?signvalue;
-                        hqdm:member_of_ ?pattern.
-                    FILTER(CONTAINS(str(?signvalue), ?text))
-                    ?sos hqdm:temporal_part_of ?sign;
-                        hqdm:participant_in ?repBySign.
-                    ?rlc hqdm:participant_in ?repBySign.
-                    ?repBySign hqdm:represents ?state.
-                    ?state hqdm:temporal_part_of ?s.
-                    ?s hqdm:member_of ?class.
-                    ?comp hqdm:part ?s;
-                        hqdm:whole ?topicId.
-                    ?s ?p ?o.
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
-                    }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
-                    }
+                        ?pattern skos:definition ?patternValue.
+                        FILTER(CONTAINS(str(?patternValue), ?text))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+
+                        ?comp hqdm:part ?s;
+                            hqdm:whole ?topicId.
+                        ?s ?p ?o.
                     }
                 }
                 UNION
                 {
-                SELECT ?s (hqdm:value_ as ?p) ?o ?start ?finish
+                SELECT ?s (skos:definition as ?p) ?o ?start ?finish
                 WHERE {
-                    BIND("%s" as ?text)
-                    BIND(<%s> as ?class)
-                    BIND(<%s> as ?topicId)
+                        BIND("%s" as ?text)
+                        BIND(<%s> as ?class)
+                        BIND(<%s> as ?topicId)
 
-                    ?sign hqdm:value_ ?o;
-                        hqdm:member_of_ ?pattern.
-                    FILTER(CONTAINS(str(?o), ?text))
-                    ?sos hqdm:temporal_part_of ?sign;
-                        hqdm:participant_in ?repBySign.
-                    ?rlc hqdm:participant_in ?repBySign.
-                    ?repBySign hqdm:represents ?state.
-                    ?state hqdm:temporal_part_of ?s.
-                    ?s hqdm:member_of ?class.
-                    ?comp hqdm:part ?s;
-                        hqdm:whole ?topicId.
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
-                    }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
-                    }
+                        ?pattern skos:definition ?o.
+                        FILTER(CONTAINS(str(?o), ?text))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+
+                        ?comp hqdm:part ?s;
+                            hqdm:whole ?topicId.
                     }
                 }
                 UNION
                 {
-                SELECT ?s (hqdm:data_EntityName as ?p) ?o ?start ?finish
+                SELECT ?s (skos:prefLabel as ?p) ?o ?start ?finish
                 WHERE {
-                    BIND("%s" as ?text)
-                    BIND(<%s> as ?class)
-                    BIND(<%s> as ?topicId)
+                        BIND("%s" as ?text)
+                        BIND(<%s> as ?class)
+                        BIND(<%s> as ?topicId)
 
-                    ?sign hqdm:value_ ?signValue;
-                        hqdm:member_of_ ?pattern.
-                    FILTER(CONTAINS(str(?signValue), ?text))
-                    ?sos hqdm:temporal_part_of ?sign;
-                        hqdm:participant_in ?repBySign.
-                    ?rlc hqdm:participant_in ?repBySign.
-                    ?repBySign hqdm:represents ?state.
-                    ?state hqdm:temporal_part_of ?s.
-                    ?s hqdm:member_of ?class.
-                    ?comp hqdm:part ?s;
-                        hqdm:whole ?topicId.
-                    ?s hqdm:member_of_kind ?kind.
-                    ?kind hqdm:data_EntityName ?o.
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
-                    }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
-                    }
+                        ?pattern skos:definition ?patternValue.
+                        FILTER(CONTAINS(str(?patternValue), ?text))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+                        ?comp hqdm:part ?s;
+                            hqdm:whole ?topicId.
+                        ?s hqdm:memberOfKind ?kind.
+                        ?kind skos:prefLabel ?o.
                     }
                 }
             }
@@ -985,7 +794,8 @@ public class MagmaCoreServiceQueries {
      * A partial search by sign for entities composed into a whole entity.
      */
     public static final String FIND_MEMBERS_OF_CLASS_BY_COMPOSITION_AND_PARTIAL_SIGN_CASE_INSENSITIVE = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
             SELECT distinct ?s ?p ?o ?start ?finish
@@ -993,90 +803,65 @@ public class MagmaCoreServiceQueries {
             {
                 SELECT ?s ?p ?o ?start ?finish
                 WHERE {
-                    BIND("%s" as ?text)
-                    BIND(<%s> as ?class)
-                    BIND(<%s> as ?topicId)
+                        BIND("%s" as ?text)
+                        BIND(<%s> as ?class)
+                        BIND(<%s> as ?topicId)
 
-                    ?sign hqdm:value_ ?signvalue;
-                        hqdm:member_of_ ?pattern.
-                    FILTER(CONTAINS(lcase(str(?signvalue)), lcase(?text)))
-                    ?sos hqdm:temporal_part_of ?sign;
-                        hqdm:participant_in ?repBySign.
-                    ?rlc hqdm:participant_in ?repBySign.
-                    ?repBySign hqdm:represents ?state.
-                    ?state hqdm:temporal_part_of ?s.
-                    ?s hqdm:member_of ?class.
-                    ?comp hqdm:part ?s;
-                        hqdm:whole ?topicId.
-                    ?s ?p ?o.
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
-                    }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
-                    }
+                        ?pattern skos:definition ?patternValue.
+                        FILTER(CONTAINS(lcase(str(?patternValue)), lcase(?text)))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+
+                        ?comp hqdm:part ?s;
+                            hqdm:whole ?topicId.
+                        ?s ?p ?o.
                     }
                 }
                 UNION
                 {
-                SELECT ?s (hqdm:value_ as ?p) ?o ?start ?finish
+                SELECT ?s (skos:definition as ?p) ?o ?start ?finish
                 WHERE {
-                    BIND("%s" as ?text)
-                    BIND(<%s> as ?class)
-                    BIND(<%s> as ?topicId)
+                        BIND("%s" as ?text)
+                        BIND(<%s> as ?class)
+                        BIND(<%s> as ?topicId)
 
-                    ?sign hqdm:value_ ?o;
-                        hqdm:member_of_ ?pattern.
-                    FILTER(CONTAINS(lcase(str(?o)), lcase(?text)))
-                    ?sos hqdm:temporal_part_of ?sign;
-                        hqdm:participant_in ?repBySign.
-                    ?rlc hqdm:participant_in ?repBySign.
-                    ?repBySign hqdm:represents ?state.
-                    ?state hqdm:temporal_part_of ?s.
-                    ?s hqdm:member_of ?class.
-                    ?comp hqdm:part ?s;
-                        hqdm:whole ?topicId.
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
-                    }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
-                    }
+                        ?pattern skos:definition ?o.
+                        FILTER(CONTAINS(lcase(str(?o)), lcase(?text)))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+
+                        ?comp hqdm:part ?s;
+                            hqdm:whole ?topicId.
                     }
                 }
                 UNION
                 {
-                SELECT ?s (hqdm:data_EntityName as ?p) ?o ?start ?finish
+                SELECT ?s (skos:prefLabel as ?p) ?o ?start ?finish
                 WHERE {
-                    BIND("%s" as ?text)
-                    BIND(<%s> as ?class)
-                    BIND(<%s> as ?topicId)
+                        BIND("%s" as ?text)
+                        BIND(<%s> as ?class)
+                        BIND(<%s> as ?topicId)
 
-                    ?sign hqdm:value_ ?signValue;
-                        hqdm:member_of_ ?pattern.
-                    FILTER(CONTAINS(lcase(str(?signValue)), lcase(?text)))
-                    ?sos hqdm:temporal_part_of ?sign;
-                        hqdm:participant_in ?repBySign.
-                    ?rlc hqdm:participant_in ?repBySign.
-                    ?repBySign hqdm:represents ?state.
-                    ?state hqdm:temporal_part_of ?s.
-                    ?s hqdm:member_of ?class.
-                    ?comp hqdm:part ?s;
-                        hqdm:whole ?topicId.
-                    ?s hqdm:member_of_kind ?kind.
-                    ?kind hqdm:data_EntityName ?o.
-                    OPTIONAL {
-                        ?repBySign hqdm:beginning ?begin.
-                        ?begin hqdm:data_EntityName ?start.
-                    }
-                    OPTIONAL {
-                        ?repBySign hqdm:ending ?end.
-                        ?end hqdm:data_EntityName ?finish.
-                    }
+                        ?pattern skos:definition ?patternValue.
+                        FILTER(CONTAINS(lcase(str(?patternValue)), lcase(?text)))
+                        ?repByPattern hqdm:consistsOfByClass ?pattern;
+                            a hqdm:RepresentationByPattern;
+                            hqdm:consistsOfInMembers ?rlc;
+                            hqdm:represented ?state.
+                        ?state hqdm:temporalPartOf ?s.
+                        ?s hqdm:memberOf ?class.
+                        ?comp hqdm:part ?s;
+                            hqdm:whole ?topicId.
+                        ?s hqdm:memberOfKind ?kind.
+                        ?kind skos:prefLabel ?o.
                     }
                 }
             }
@@ -1087,35 +872,22 @@ public class MagmaCoreServiceQueries {
      * Find the signs for an entity and the pattern and representation by pattern ENTITY_NAMES.
      */
     public static final String FIND_SIGNS_FOR_ENTITY = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-            SELECT distinct ?sign_value ?pattern_name ?rep_by_pattern_name ?start ?finish
+            SELECT distinct ?signValue ?patternName ?repByPatternName ?start ?finish
             WHERE
             {
                 {
                     SELECT *
                     WHERE {
                         BIND(<%s> as ?s)
-                        ?state_of_s hqdm:temporal_part_of ?s.
-                        ?rep_by_sign hqdm:represents ?state_of_s;
-                            hqdm:member_of_ ?rep_by_pattern.
-                        ?rep_by_pattern hqdm:data_EntityName ?rep_by_pattern_name.
-                        ?state_of_sign hqdm:participant_in ?rep_by_sign;
-                            a hqdm:state_of_sign;
-                            hqdm:temporal_part_of ?sign.
-                        ?sign hqdm:value_ ?sign_value;
-                            hqdm:member_of_ ?pattern.
-                        ?pattern hqdm:data_EntityName ?pattern_name.
-                        OPTIONAL {
-                            ?rep_by_sign hqdm:beginning ?begin.
-                            ?begin hqdm:data_EntityName ?start.
-                        }
-                        OPTIONAL {
-                            ?rep_by_sign hqdm:ending ?end.
-                            ?end hqdm:data_EntityName ?finish.
-                        }
-
+                        ?stateOfS hqdm:temporalPartOf ?s.
+                        ?repByPattern hqdm:represented ?stateOfS;
+                            hqdm:consistsOfByClass ?pattenrIri;
+                            skos:prefLabel ?repByPatternName.
+                        ?patternIri skos:definition ?signValue.
                     }
                 }
             }
@@ -1125,7 +897,8 @@ public class MagmaCoreServiceQueries {
      * Find by field value and class query.
      */
     public static final String FIND_BY_FIELD_VALUE_AND_CLASS = """
-            PREFIX hqdm: <https://hqdmtop.github.io/hqdm#>
+            PREFIX hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
             SELECT ?s ?p ?o

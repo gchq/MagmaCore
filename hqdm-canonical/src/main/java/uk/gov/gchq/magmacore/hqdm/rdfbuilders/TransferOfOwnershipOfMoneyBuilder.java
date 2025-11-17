@@ -21,20 +21,14 @@ import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CAUSES_BEGINNING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CAUSES_ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_PARTICIPANT;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_PARTICIPANT_;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.DETERMINES;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_KIND;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.REFERENCES;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Activity;
@@ -55,6 +49,7 @@ import uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnershipOfMoney;
 import uk.gov.gchq.magmacore.hqdm.model.Transferee;
 import uk.gov.gchq.magmacore.hqdm.model.Transferor;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -115,8 +110,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CAUSES} relationship type where a
      * {@link uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership}
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CAUSES} exactly one
-     * {@link BeginningOfOwnership}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CAUSES} exactly one {@link BeginningOfOwnership}.
      *
      * @param beginningOfOwnership The BeginningOfOwnership.
      * @return This builder.
@@ -144,14 +138,14 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final TransferOfOwnershipOfMoneyBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferOfOwnershipOfMoney.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
+    public final TransferOfOwnershipOfMoneyBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.transferOfOwnershipOfMoney.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -169,8 +163,8 @@ public class TransferOfOwnershipOfMoneyBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT} relationship type
-     * where a {@link uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership}
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT} relationship type where
+     * a {@link uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership}
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT} exactly one
      * {@link Transferor}.
      *
@@ -183,16 +177,16 @@ public class TransferOfOwnershipOfMoneyBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT} relationship type
-     * where a {@link uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership}
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT} relationship type where
+     * a {@link uk.gov.gchq.magmacore.hqdm.model.TransferOfOwnership}
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT} exactly one
      * {@link Transferee}.
      *
      * @param transferee The Transferee.
      * @return This builder.
      */
-    public final TransferOfOwnershipOfMoneyBuilder consists_Of_Participant_(final Transferee transferee) {
-        this.transferOfOwnershipOfMoney.addValue(CONSISTS_OF_PARTICIPANT_, transferee.getId());
+    public final TransferOfOwnershipOfMoneyBuilder consists_Of_Participant(final Transferee transferee) {
+        this.transferOfOwnershipOfMoney.addValue(CONSISTS_OF_PARTICIPANT, transferee.getId());
         return this;
     }
 
@@ -226,8 +220,8 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final TransferOfOwnershipOfMoneyBuilder member__Of(final Class clazz) {
-        this.transferOfOwnershipOfMoney.addValue(MEMBER__OF, clazz.getId());
+    public final TransferOfOwnershipOfMoneyBuilder member_Of(final Class clazz) {
+        this.transferOfOwnershipOfMoney.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -257,6 +251,7 @@ public class TransferOfOwnershipOfMoneyBuilder {
      */
     public final TransferOfOwnershipOfMoneyBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
         this.transferOfOwnershipOfMoney.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
+        this.transferOfOwnershipOfMoney.addValue(RDFS.RDF_TYPE, kindOfActivity.getId());
         return this;
     }
 
@@ -268,8 +263,8 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final TransferOfOwnershipOfMoneyBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferOfOwnershipOfMoney.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final TransferOfOwnershipOfMoneyBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.transferOfOwnershipOfMoney.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -290,26 +285,24 @@ public class TransferOfOwnershipOfMoneyBuilder {
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
      * {@link uk.gov.gchq.magmacore.hqdm.model.SociallyConstructedObject} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one or more
-     * {@link AgreementExecution}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one or more {@link AgreementExecution}.
      *
      * @param agreementExecution The AgreementExecution.
      * @return This builder.
      */
-    public final TransferOfOwnershipOfMoneyBuilder part_Of_(final AgreementExecution agreementExecution) {
-        this.transferOfOwnershipOfMoney.addValue(PART_OF_, agreementExecution.getId());
+    public final TransferOfOwnershipOfMoneyBuilder part_Of(final AgreementExecution agreementExecution) {
+        this.transferOfOwnershipOfMoney.addValue(PART_OF, agreementExecution.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -340,8 +333,8 @@ public class TransferOfOwnershipOfMoneyBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final TransferOfOwnershipOfMoneyBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.transferOfOwnershipOfMoney.addValue(TEMPORAL__PART_OF,
+    public final TransferOfOwnershipOfMoneyBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.transferOfOwnershipOfMoney.addValue(TEMPORAL_PART_OF,
                 spatioTemporalExtent.getId());
         return this;
     }
@@ -349,16 +342,15 @@ public class TransferOfOwnershipOfMoneyBuilder {
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} relationship type where a
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more
-     * {@link Individual}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more {@link Individual}.
      *
      * <p>
      * Note: The relationship is optional because an {@link Individual} is not necessarily a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual},
-     * yet is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual}, yet
+     * is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} as well as {@link Individual}. This applies to all
-     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between
-     * a {@code state_of_X} and {@code X}.
+     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between a
+     * {@code state_of_X} and {@code X}.
      * </p>
      *
      * @param individual The Individual.
@@ -402,10 +394,6 @@ public class TransferOfOwnershipOfMoneyBuilder {
                 && this.transferOfOwnershipOfMoney.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.transferOfOwnershipOfMoney.hasValue(MEMBER__OF)
-                && this.transferOfOwnershipOfMoney.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.transferOfOwnershipOfMoney.hasValue(MEMBER_OF)
                 && this.transferOfOwnershipOfMoney.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
@@ -413,27 +401,15 @@ public class TransferOfOwnershipOfMoneyBuilder {
         if (!this.transferOfOwnershipOfMoney.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (this.transferOfOwnershipOfMoney.hasValue(PART__OF)
-                && this.transferOfOwnershipOfMoney.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
-        }
         if (this.transferOfOwnershipOfMoney.hasValue(PART_OF)
                 && this.transferOfOwnershipOfMoney.values(PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of");
-        }
-        if (this.transferOfOwnershipOfMoney.hasValue(PART_OF_)
-                && this.transferOfOwnershipOfMoney.values(PART_OF_).isEmpty()) {
-            throw new HqdmException("Property Not Set: part_of_");
         }
         if (!this.transferOfOwnershipOfMoney.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (!this.transferOfOwnershipOfMoney.hasValue(REFERENCES)) {
             throw new HqdmException("Property Not Set: references");
-        }
-        if (this.transferOfOwnershipOfMoney.hasValue(TEMPORAL__PART_OF)
-                && this.transferOfOwnershipOfMoney.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.transferOfOwnershipOfMoney.hasValue(TEMPORAL_PART_OF)
                 && this.transferOfOwnershipOfMoney.values(TEMPORAL_PART_OF).isEmpty()) {

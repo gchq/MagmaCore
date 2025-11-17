@@ -1,0 +1,18 @@
+@prefix hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+hqdm:child a rdfs:Class;
+   rdfs:subClassOf hqdm:StateOfPerson.
+
+hqdm:parent a rdfs:Class;
+    rdfs:subClassOf hqdm:StateOfPerson.
+
+hqdm:parent_child_association a rdfs:Class;
+    rdfs:subClassOf hqdm:Association.
+
+hqdm:uk_limited_company a rdfs:Class;
+    rdfs:subClassOf hqdm: Organization.
+
+hqdm:uk_software_development_company a rdfs:Class;
+    rdfs:subClassOf hqdm: Organization.

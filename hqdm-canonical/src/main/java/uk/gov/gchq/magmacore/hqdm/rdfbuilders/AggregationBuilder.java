@@ -15,7 +15,6 @@
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.WHOLE;
 
@@ -50,8 +49,8 @@ public class AggregationBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final AggregationBuilder member__Of(final Class clazz) {
-        this.aggregation.addValue(MEMBER__OF, clazz.getId());
+    public final AggregationBuilder member_Of(final Class clazz) {
+        this.aggregation.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -99,10 +98,6 @@ public class AggregationBuilder {
      * @throws HqdmException If the Aggregation is missing any mandatory properties.
      */
     public Aggregation build() throws HqdmException {
-        if (this.aggregation.hasValue(MEMBER__OF)
-                && this.aggregation.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.aggregation.hasValue(MEMBER_OF)
                 && this.aggregation.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");

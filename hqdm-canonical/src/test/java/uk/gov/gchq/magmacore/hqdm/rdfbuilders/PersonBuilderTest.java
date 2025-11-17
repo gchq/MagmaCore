@@ -44,32 +44,35 @@ public class PersonBuilderTest {
         final Person person = new PersonBuilder(new IRI(HQDM.HQDM, UUID.randomUUID().toString()))
                 .aggregated_Into(spatioTemporalExtent)
                 .beginning(event)
-                .consists__Of(spatioTemporalExtent)
+                .consists_Of(spatioTemporalExtent)
                 .ending(event)
                 .member_Of(classOfPerson)
                 .member_Of_Kind(kindOfPerson)
-                .member__Of(classOfPerson)
+                .member_Of(classOfPerson)
                 .natural_Role_M(role)
                 .part_Of_Possible_World_M(possibleWorld)
-                .part__Of(spatioTemporalExtent)
+                .part_Of(spatioTemporalExtent)
                 .temporal_Part_Of(ordinaryBiologicalObject)
-                .temporal__Part_Of(spatioTemporalExtent)
+                .temporal_Part_Of(spatioTemporalExtent)
                 .build();
 
         assertNotNull(person);
         assertTrue(person.hasThisValue(RDFS.RDF_TYPE, HQDM.PERSON));
         assertTrue(person.hasThisValue(HQDM.AGGREGATED_INTO, iriFromThing(spatioTemporalExtent)));
         assertTrue(person.hasThisValue(HQDM.BEGINNING, iriFromThing(event)));
-        assertTrue(person.hasThisValue(HQDM.CONSISTS__OF, iriFromThing(spatioTemporalExtent)));
+        assertTrue(person.hasThisValue(HQDM.CONSISTS_OF, iriFromThing(spatioTemporalExtent)));
         assertTrue(person.hasThisValue(HQDM.ENDING, iriFromThing(event)));
         assertTrue(person.hasThisValue(HQDM.MEMBER_OF, iriFromThing(classOfPerson)));
         assertTrue(person.hasThisValue(HQDM.MEMBER_OF_KIND, iriFromThing(kindOfPerson)));
-        assertTrue(person.hasThisValue(HQDM.MEMBER__OF, iriFromThing(classOfPerson)));
+        assertTrue(person.hasThisValue(HQDM.MEMBER_OF, iriFromThing(classOfPerson)));
         assertTrue(person.hasThisValue(HQDM.NATURAL_ROLE, iriFromThing(role)));
         assertTrue(person.hasThisValue(HQDM.PART_OF_POSSIBLE_WORLD, iriFromThing(possibleWorld)));
-        assertTrue(person.hasThisValue(HQDM.PART__OF, iriFromThing(spatioTemporalExtent)));
+        assertTrue(person.hasThisValue(HQDM.PART_OF, iriFromThing(spatioTemporalExtent)));
         assertTrue(person.hasThisValue(HQDM.TEMPORAL_PART_OF, iriFromThing(ordinaryBiologicalObject)));
-        assertTrue(person.hasThisValue(HQDM.TEMPORAL__PART_OF, iriFromThing(spatioTemporalExtent)));
+        assertTrue(person.hasThisValue(HQDM.TEMPORAL_PART_OF, iriFromThing(spatioTemporalExtent)));
+
+        assertTrue(person.hasThisValue(RDFS.RDF_TYPE, iriFromThing(kindOfPerson)));
+        assertTrue(kindOfPerson.hasThisValue(RDFS.RDFS_SUB_CLASS_OF, HQDM.PERSON));
     }
 
     private IRI iriFromThing(final Thing thing) {

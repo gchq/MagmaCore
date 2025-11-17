@@ -14,7 +14,7 @@
 
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -44,8 +44,8 @@ public class ThingBuilder {
      * @param clazz Class of the Thing.
      * @return This builder.
      */
-    public final ThingBuilder member__Of(final Class clazz) {
-        this.thing.addValue(MEMBER__OF, clazz.getId());
+    public final ThingBuilder member_Of(final Class clazz) {
+        this.thing.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -56,9 +56,9 @@ public class ThingBuilder {
      * @throws HqdmException If the Thing is missing any mandatory properties.
      */
     public Thing build() throws HqdmException {
-        if (this.thing.hasValue(MEMBER__OF)
-                && this.thing.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
+        if (this.thing.hasValue(MEMBER_OF)
+                && this.thing.values(MEMBER_OF).isEmpty()) {
+            throw new HqdmException("Property Not Set: member_of");
         }
         return thing;
     }

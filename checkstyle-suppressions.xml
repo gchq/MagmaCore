@@ -2,19 +2,20 @@
 <!DOCTYPE suppressions PUBLIC "-//Checkstyle//DTD Suppressions 1.2//EN" "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 
 <suppressions>
-  <!-- global suppressions -->
-  <suppress checks="AvoidStarImport" files="\.java" />
+    <!-- global suppressions -->
+    <suppress checks="AvoidStarImport" files="\.java" />
 
-  <!-- core suppressions -->
-  <suppress checks="AbbreviationAsWordInName" files="UID\.java" />
+    <!-- core suppressions -->
+    <suppress checks="AbbreviationAsWordInName" files="UID\.java" />
 
-  <!-- examples suppressions -->
-  <suppress checks="LineLength" files="ExampleDataObjects.java|ExampleRdl.java|ExampleAssociations.java|MagmaCoreService.java" />
-  <suppress checks="MethodLength" files="ExampleDataObjects.java" />
+    <!-- examples suppressions -->
+    <suppress checks="LineLength"
+        files="ClassServices.java|ExampleDataObjects.java|ExampleRdl.java|ExampleAssociations.java|MagmaCoreService.java" />
+    <suppress checks="MethodLength" files="ExampleDataObjects.java" />
 
-  <!-- hqdm-core suppressions -->
-  <suppress checks="MethodName" files="impl/*" />
-  <suppress checks="TypeName" files="Function_.java" />
-  <suppress checks="ConstantName" files="HQDM.java" />
-  <suppress checks="AbbreviationAsWordInName" files="IRI.java|HQDM.java|RDFS.java|UID.java" />
+    <!-- hqdm-core suppressions -->
+    <suppress checks="MethodName" files="impl/*" />
+    <suppress checks="TypeName" files="Function_.java" />
+    <suppress checks="ConstantName" files="HQDM.java" />
+    <suppress checks="AbbreviationAsWordInName" files="IRI.java|HQDM.java|RDFS.java|UID.java" />
 </suppressions>

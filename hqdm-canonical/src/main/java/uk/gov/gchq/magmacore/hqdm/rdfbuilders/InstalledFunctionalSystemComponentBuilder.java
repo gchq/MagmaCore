@@ -16,14 +16,12 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.AGGREGATED_INTO;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.BEGINNING;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -87,15 +85,15 @@ public class InstalledFunctionalSystemComponentBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final InstalledFunctionalSystemComponentBuilder consists__Of(
+    public final InstalledFunctionalSystemComponentBuilder consists_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        this.installedFunctionalSystemComponent.addValue(CONSISTS__OF,
+        this.installedFunctionalSystemComponent.addValue(CONSISTS_OF,
                 spatioTemporalExtent.getId());
         return this;
     }
@@ -119,8 +117,8 @@ public class InstalledFunctionalSystemComponentBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final InstalledFunctionalSystemComponentBuilder member__Of(final Class clazz) {
-        this.installedFunctionalSystemComponent.addValue(MEMBER__OF, clazz.getId());
+    public final InstalledFunctionalSystemComponentBuilder member_Of(final Class clazz) {
+        this.installedFunctionalSystemComponent.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -149,21 +147,20 @@ public class InstalledFunctionalSystemComponentBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final InstalledFunctionalSystemComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.installedFunctionalSystemComponent.addValue(PART__OF,
+    public final InstalledFunctionalSystemComponentBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.installedFunctionalSystemComponent.addValue(PART_OF,
                 spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -183,9 +180,9 @@ public class InstalledFunctionalSystemComponentBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final InstalledFunctionalSystemComponentBuilder temporal__Part_Of(
+    public final InstalledFunctionalSystemComponentBuilder temporal_Part_Of(
             final SpatioTemporalExtent spatioTemporalExtent) {
-        this.installedFunctionalSystemComponent.addValue(TEMPORAL__PART_OF,
+        this.installedFunctionalSystemComponent.addValue(TEMPORAL_PART_OF,
                 spatioTemporalExtent.getId());
         return this;
     }
@@ -227,24 +224,16 @@ public class InstalledFunctionalSystemComponentBuilder {
                 && this.installedFunctionalSystemComponent.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.installedFunctionalSystemComponent.hasValue(MEMBER__OF)
-                && this.installedFunctionalSystemComponent.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.installedFunctionalSystemComponent.hasValue(MEMBER_OF)
                 && this.installedFunctionalSystemComponent.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (this.installedFunctionalSystemComponent.hasValue(PART__OF)
-                && this.installedFunctionalSystemComponent.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
+        if (this.installedFunctionalSystemComponent.hasValue(PART_OF)
+                && this.installedFunctionalSystemComponent.values(PART_OF).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of");
         }
         if (!this.installedFunctionalSystemComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
-        }
-        if (this.installedFunctionalSystemComponent.hasValue(TEMPORAL__PART_OF)
-                && this.installedFunctionalSystemComponent.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.installedFunctionalSystemComponent.hasValue(TEMPORAL_PART_OF)
                 && this.installedFunctionalSystemComponent.values(TEMPORAL_PART_OF).isEmpty()) {

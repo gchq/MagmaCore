@@ -17,15 +17,13 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.AGGREGATED_INTO;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.BEGINNING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.COMPONENT_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_KIND;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -37,6 +35,7 @@ import uk.gov.gchq.magmacore.hqdm.model.OrganizationComponent;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -99,14 +98,14 @@ public class OrganizationComponentBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OrganizationComponentBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.organizationComponent.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
+    public final OrganizationComponentBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.organizationComponent.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -129,16 +128,15 @@ public class OrganizationComponentBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final OrganizationComponentBuilder member__Of(final Class clazz) {
-        this.organizationComponent.addValue(MEMBER__OF, clazz.getId());
+    public final OrganizationComponentBuilder member_Of(final Class clazz) {
+        this.organizationComponent.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where an
-     * {@link OrganizationComponent} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
-     * {@link ClassOfOrganizationComponent}.
+     * {@link OrganizationComponent} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * one or more {@link ClassOfOrganizationComponent}.
      *
      * @param classOfOrganizationComponent The ClassOfOrganizationComponent.
      * @return This builder.
@@ -151,17 +149,16 @@ public class OrganizationComponentBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF_KIND} relationship type where an
-     * {@link OrganizationComponent} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
-     * {@link KindOfOrganizationComponent}.
+     * {@link OrganizationComponent} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * one or more {@link KindOfOrganizationComponent}.
      *
      * @param kindOfOrganizationComponent The KindOfOrganizationComponent.
      * @return This builder.
      */
     public final OrganizationComponentBuilder member_Of_Kind(
             final KindOfOrganizationComponent kindOfOrganizationComponent) {
-        this.organizationComponent.addValue(MEMBER_OF_KIND,
-                kindOfOrganizationComponent.getId());
+        this.organizationComponent.addValue(MEMBER_OF_KIND, kindOfOrganizationComponent.getId());
+        this.organizationComponent.addValue(RDFS.RDF_TYPE, kindOfOrganizationComponent.getId());
         return this;
     }
 
@@ -173,20 +170,19 @@ public class OrganizationComponentBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OrganizationComponentBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.organizationComponent.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final OrganizationComponentBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.organizationComponent.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -205,8 +201,8 @@ public class OrganizationComponentBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OrganizationComponentBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.organizationComponent.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
+    public final OrganizationComponentBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.organizationComponent.addValue(TEMPORAL_PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -246,10 +242,6 @@ public class OrganizationComponentBuilder {
                 && this.organizationComponent.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.organizationComponent.hasValue(MEMBER__OF)
-                && this.organizationComponent.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.organizationComponent.hasValue(MEMBER_OF)
                 && this.organizationComponent.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
@@ -258,16 +250,12 @@ public class OrganizationComponentBuilder {
                 && this.organizationComponent.values(MEMBER_OF_KIND).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (this.organizationComponent.hasValue(PART__OF)
-                && this.organizationComponent.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
+        if (this.organizationComponent.hasValue(PART_OF)
+                && this.organizationComponent.values(PART_OF).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of");
         }
         if (!this.organizationComponent.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
-        }
-        if (this.organizationComponent.hasValue(TEMPORAL__PART_OF)
-                && this.organizationComponent.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.organizationComponent.hasValue(TEMPORAL_PART_OF)
                 && this.organizationComponent.values(TEMPORAL_PART_OF).isEmpty()) {

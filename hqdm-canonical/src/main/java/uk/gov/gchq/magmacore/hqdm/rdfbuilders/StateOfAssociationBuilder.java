@@ -16,14 +16,12 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.AGGREGATED_INTO;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.BEGINNING;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Association;
@@ -84,14 +82,14 @@ public class StateOfAssociationBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final StateOfAssociationBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfAssociation.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
+    public final StateOfAssociationBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.stateOfAssociation.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -114,15 +112,15 @@ public class StateOfAssociationBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final StateOfAssociationBuilder member__Of(final Class clazz) {
-        this.stateOfAssociation.addValue(MEMBER__OF, clazz.getId());
+    public final StateOfAssociationBuilder member_Of(final Class clazz) {
+        this.stateOfAssociation.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where a
-     * {@link StateOfAssociation} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
-     * one or more {@link ClassOfStateOfAssociation}.
+     * {@link StateOfAssociation} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
+     * or more {@link ClassOfStateOfAssociation}.
      *
      * @param classOfStateOfAssociation The ClassOfStateOfAssociation.
      * @return This builder.
@@ -140,20 +138,19 @@ public class StateOfAssociationBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final StateOfAssociationBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfAssociation.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final StateOfAssociationBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.stateOfAssociation.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -172,16 +169,15 @@ public class StateOfAssociationBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final StateOfAssociationBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.stateOfAssociation.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
+    public final StateOfAssociationBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.stateOfAssociation.addValue(TEMPORAL_PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} relationship type where a
      * {@link StateOfAssociation} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more
-     * {@link Association}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more {@link Association}.
      *
      * @param association The Association.
      * @return This builder.
@@ -210,24 +206,16 @@ public class StateOfAssociationBuilder {
                 && this.stateOfAssociation.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.stateOfAssociation.hasValue(MEMBER__OF)
-                && this.stateOfAssociation.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.stateOfAssociation.hasValue(MEMBER_OF)
                 && this.stateOfAssociation.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (this.stateOfAssociation.hasValue(PART__OF)
-                && this.stateOfAssociation.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
+        if (this.stateOfAssociation.hasValue(PART_OF)
+                && this.stateOfAssociation.values(PART_OF).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of");
         }
         if (!this.stateOfAssociation.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
-        }
-        if (this.stateOfAssociation.hasValue(TEMPORAL__PART_OF)
-                && this.stateOfAssociation.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.stateOfAssociation.hasValue(TEMPORAL_PART_OF)
                 && this.stateOfAssociation.values(TEMPORAL_PART_OF).isEmpty()) {

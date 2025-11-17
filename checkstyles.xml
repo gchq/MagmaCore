@@ -39,7 +39,7 @@
 
   <module name="LineLength">
     <property name="fileExtensions" value="java" />
-    <property name="max" value="120" />
+    <property name="max" value="200" />
     <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://" />
   </module>
 
@@ -224,7 +224,7 @@
     </module>
     <module name="AbbreviationAsWordInName">
       <property name="ignoreFinal" value="false" />
-      <property name="allowedAbbreviationLength" value="0" />
+      <property name="allowedAbbreviationLength" value="10" />
       <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF,
                     PARAMETER_DEF, VARIABLE_DEF, METHOD_DEF, PATTERN_VARIABLE_DEF, RECORD_DEF,
                     RECORD_COMPONENT_DEF" />

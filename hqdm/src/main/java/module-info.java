@@ -25,4 +25,7 @@ module uk.gov.gchq.magmacore.hqdm {
     exports uk.gov.gchq.magmacore.hqdm.rdf.iri;
     exports uk.gov.gchq.magmacore.hqdm.rdf.util;
     exports uk.gov.gchq.magmacore.hqdm.rdf;
+
+    uses uk.gov.gchq.magmacore.hqdm.extensions.ExtensionService;
+    uses uk.gov.gchq.magmacore.hqdm.extensions.ExtensionServiceProvider;
 }

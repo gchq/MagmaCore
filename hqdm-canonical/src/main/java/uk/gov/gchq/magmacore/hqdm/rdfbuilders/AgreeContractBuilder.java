@@ -20,19 +20,14 @@ import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CAUSES;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_PARTICIPANT;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.DETERMINES;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_KIND;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.REFERENCES;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.AcceptanceOfOffer;
@@ -50,6 +45,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.model.Thing;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -112,14 +108,14 @@ public class AgreeContractBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final AgreeContractBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.agreeContract.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
+    public final AgreeContractBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.agreeContract.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -192,15 +188,15 @@ public class AgreeContractBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final AgreeContractBuilder member__Of(final Class clazz) {
-        this.agreeContract.addValue(MEMBER__OF, clazz.getId());
+    public final AgreeContractBuilder member_Of(final Class clazz) {
+        this.agreeContract.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where an
-     * {@link AgreeContract} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
-     * or more {@link ClassOfAgreeContract}.
+     * {@link AgreeContract} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or
+     * more {@link ClassOfAgreeContract}.
      *
      * @param classOfAgreeContract The ClassOfAgreeContract.
      * @return Builder
@@ -220,6 +216,7 @@ public class AgreeContractBuilder {
      */
     public final AgreeContractBuilder member_Of_Kind_M(final KindOfActivity kindOfActivity) {
         this.agreeContract.addValue(MEMBER_OF_KIND, kindOfActivity.getId());
+        this.agreeContract.addValue(RDFS.RDF_TYPE, kindOfActivity.getId());
         return this;
     }
 
@@ -231,8 +228,8 @@ public class AgreeContractBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final AgreeContractBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.agreeContract.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final AgreeContractBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.agreeContract.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -252,26 +249,24 @@ public class AgreeContractBuilder {
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
      * {@link uk.gov.gchq.magmacore.hqdm.model.SociallyConstructedObject} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one or more
-     * {@link AgreementExecution}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one or more {@link AgreementExecution}.
      *
      * @param agreementExecution The AgreementExecution.
      * @return This builder.
      */
     public final AgreeContractBuilder part_Of_(final AgreementExecution agreementExecution) {
-        this.agreeContract.addValue(PART_OF_, agreementExecution.getId());
+        this.agreeContract.addValue(PART_OF, agreementExecution.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -302,24 +297,23 @@ public class AgreeContractBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final AgreeContractBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.agreeContract.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
+    public final AgreeContractBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.agreeContract.addValue(TEMPORAL_PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} relationship type where a
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more
-     * {@link Individual}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more {@link Individual}.
      *
      * <p>
      * Note: The relationship is optional because an {@link Individual} is not necessarily a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual},
-     * yet is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual}, yet
+     * is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} as well as {@link Individual}. This applies to all
-     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between
-     * a {@code state_of_X} and {@code X}.
+     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between a
+     * {@code state_of_X} and {@code X}.
      * </p>
      *
      * @param individual The Individual.
@@ -356,10 +350,6 @@ public class AgreeContractBuilder {
                 && this.agreeContract.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.agreeContract.hasValue(MEMBER__OF)
-                && this.agreeContract.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.agreeContract.hasValue(MEMBER_OF)
                 && this.agreeContract.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
@@ -367,16 +357,9 @@ public class AgreeContractBuilder {
         if (!this.agreeContract.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (this.agreeContract.hasValue(PART__OF)
-                && this.agreeContract.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
-        }
-        if (!this.agreeContract.hasValue(PART_OF)) {
+        if (this.agreeContract.hasValue(PART_OF)
+                && this.agreeContract.values(PART_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of");
-        }
-        if (this.agreeContract.hasValue(PART_OF_)
-                && this.agreeContract.values(PART_OF_).isEmpty()) {
-            throw new HqdmException("Property Not Set: part_of_");
         }
         if (!this.agreeContract.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
@@ -384,10 +367,6 @@ public class AgreeContractBuilder {
         if (this.agreeContract.hasValue(REFERENCES)
                 && this.agreeContract.values(REFERENCES).isEmpty()) {
             throw new HqdmException("Property Not Set: references");
-        }
-        if (this.agreeContract.hasValue(TEMPORAL__PART_OF)
-                && this.agreeContract.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.agreeContract.hasValue(TEMPORAL_PART_OF)
                 && this.agreeContract.values(TEMPORAL_PART_OF).isEmpty()) {

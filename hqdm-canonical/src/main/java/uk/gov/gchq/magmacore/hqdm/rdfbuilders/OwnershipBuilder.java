@@ -16,17 +16,14 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.AGGREGATED_INTO;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.BEGINNING;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_PARTICIPANT;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_PARTICIPANT_;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_KIND;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Asset;
@@ -41,6 +38,7 @@ import uk.gov.gchq.magmacore.hqdm.model.Ownership;
 import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -77,8 +75,8 @@ public class OwnershipBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#BEGINNING} relationship type where an
-     * {@link Ownership} has as {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#BEGINNING} exactly
-     * one {@link BeginningOfOwnership}.
+     * {@link Ownership} has as {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#BEGINNING} exactly one
+     * {@link BeginningOfOwnership}.
      *
      * @param beginningOfOwnership The BeginningOfOwnership.
      * @return This builder.
@@ -92,22 +90,21 @@ public class OwnershipBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OwnershipBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ownership.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
+    public final OwnershipBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.ownership.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT} relationship type
-     * where an {@link Ownership}
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT} exactly one
-     * {@link Owner}.
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT} relationship type where
+     * an {@link Ownership} {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT}
+     * exactly one {@link Owner}.
      *
      * @param owner The Owner.
      * @return This builder.
@@ -118,23 +115,22 @@ public class OwnershipBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT} relationship type
-     * where an {@link Ownership}
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT} exactly one
-     * {@link Asset}.
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT} relationship type where
+     * an {@link Ownership} {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF_PARTICIPANT}
+     * exactly one {@link Asset}.
      *
      * @param asset The Asset.
      * @return This builder.
      */
-    public final OwnershipBuilder consists_Of_Participant_(final Asset asset) {
-        this.ownership.addValue(CONSISTS_OF_PARTICIPANT_, asset.getId());
+    public final OwnershipBuilder consists_Of_Participant(final Asset asset) {
+        this.ownership.addValue(CONSISTS_OF_PARTICIPANT, asset.getId());
         return this;
     }
 
     /**
      * An {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#ENDING} relationship type where an
-     * {@link Ownership} has as {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#ENDING} not more than
-     * one {@link EndingOfOwnership}.
+     * {@link Ownership} has as {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#ENDING} not more than one
+     * {@link EndingOfOwnership}.
      *
      * @param endingOfOwnership The EndingOfOwnership.
      * @return This builder.
@@ -151,16 +147,15 @@ public class OwnershipBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final OwnershipBuilder member__Of(final Class clazz) {
-        this.ownership.addValue(MEMBER__OF, clazz.getId());
+    public final OwnershipBuilder member_Of(final Class clazz) {
+        this.ownership.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where an
      * {@link uk.gov.gchq.magmacore.hqdm.model.Association} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
-     * {@link ClassOfAssociation}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more {@link ClassOfAssociation}.
      *
      * @param classOfAssociation The ClassOfAssociation.
      * @return This builder.
@@ -173,14 +168,14 @@ public class OwnershipBuilder {
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF_KIND} relationship type where each
      * {@link uk.gov.gchq.magmacore.hqdm.model.Association} is a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more
-     * {@link KindOfAssociation}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one or more {@link KindOfAssociation}.
      *
      * @param kindOfAssociation The KindOfAssociation.
      * @return This builder.
      */
     public final OwnershipBuilder member_Of_Kind_M(final KindOfAssociation kindOfAssociation) {
         this.ownership.addValue(MEMBER_OF_KIND, kindOfAssociation.getId());
+        this.ownership.addValue(RDFS.RDF_TYPE, kindOfAssociation.getId());
         return this;
     }
 
@@ -192,20 +187,19 @@ public class OwnershipBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OwnershipBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ownership.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final OwnershipBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.ownership.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -224,24 +218,23 @@ public class OwnershipBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OwnershipBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.ownership.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
+    public final OwnershipBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.ownership.addValue(TEMPORAL_PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} relationship type where a
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} may be a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more
-     * {@link Individual}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} one or more {@link Individual}.
      *
      * <p>
      * Note: The relationship is optional because an {@link Individual} is not necessarily a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual},
-     * yet is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} another {@link Individual}, yet
+     * is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
      * {@link uk.gov.gchq.magmacore.hqdm.model.State} as well as {@link Individual}. This applies to all
-     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between
-     * a {@code state_of_X} and {@code X}.
+     * subtypes of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#TEMPORAL_PART_OF} that are between a
+     * {@code state_of_X} and {@code X}.
      * </p>
      *
      * @param individual The Individual.
@@ -270,10 +263,6 @@ public class OwnershipBuilder {
                 && this.ownership.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.ownership.hasValue(MEMBER__OF)
-                && this.ownership.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.ownership.hasValue(MEMBER_OF)
                 && this.ownership.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
@@ -281,16 +270,12 @@ public class OwnershipBuilder {
         if (!this.ownership.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (this.ownership.hasValue(PART__OF)
-                && this.ownership.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
+        if (this.ownership.hasValue(PART_OF)
+                && this.ownership.values(PART_OF).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of");
         }
         if (!this.ownership.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
-        }
-        if (this.ownership.hasValue(TEMPORAL__PART_OF)
-                && this.ownership.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.ownership.hasValue(TEMPORAL_PART_OF)
                 && this.ownership.values(TEMPORAL_PART_OF).isEmpty()) {

@@ -15,7 +15,6 @@
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.WHOLE;
 
@@ -50,8 +49,8 @@ public class CompositionBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final CompositionBuilder member__Of(final Class clazz) {
-        this.composition.addValue(MEMBER__OF, clazz.getId());
+    public final CompositionBuilder member_Of(final Class clazz) {
+        this.composition.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -99,10 +98,6 @@ public class CompositionBuilder {
      * @throws HqdmException If the Composition is missing any mandatory properties.
      */
     public Composition build() throws HqdmException {
-        if (this.composition.hasValue(MEMBER__OF)
-                && this.composition.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.composition.hasValue(MEMBER_OF)
                 && this.composition.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");

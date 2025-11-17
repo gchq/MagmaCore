@@ -1,0 +1,321 @@
+@startuml
+
+interface Constants {
+	{field} {static} +F135_ENGINE_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +F135_ENGINE_COMPONENT_TYPE_NAME : String
+	{field} {static} +F135_ENGINE_SYSTEM_TYPE_IRI : IRI
+	{field} {static} +F135_ENGINE_SYSTEM_TYPE_NAME : String
+	{field} {static} +F135_ENGINE_TYPE_IRI : IRI
+	{field} {static} +F135_ENGINE_TYPE_NAME : String
+	{field} {static} +F135_TURBINE_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +F135_TURBINE_COMPONENT_TYPE_NAME : String
+	{field} {static} +F135_TURBINE_TYPE_IRI : IRI
+	{field} {static} +F135_TURBINE_TYPE_NAME : String
+	{field} {static} +F135_VERTICAL_LIFT_SYSTEM_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +F135_VERTICAL_LIFT_SYSTEM_COMPONENT_TYPE_NAME : String
+	{field} {static} +F135_VERTICAL_LIFT_SYSTEM_TYPE_IRI : IRI
+	{field} {static} +F135_VERTICAL_LIFT_SYSTEM_TYPE_NAME : String
+	{field} {static} +F35_AIRCRAFT_TYPE_IRI : IRI
+	{field} {static} +F35_AIRCRAFT_TYPE_NAME : String
+	{field} {static} +F35_AIRFRAME_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +F35_AIRFRAME_COMPONENT_TYPE_NAME : String
+	{field} {static} +F35_AIRFRAME_TYPE_IRI : IRI
+	{field} {static} +F35_AIRFRAME_TYPE_NAME : String
+	{field} {static} +F35_EJECTION_SEAT_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +F35_EJECTION_SEAT_COMPONENT_TYPE_NAME : String
+	{field} {static} +F35_ENGINE_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +F35_ENGINE_COMPONENT_TYPE_NAME : String
+	{field} {static} +F35_TURBINE_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +F35_TURBINE_COMPONENT_TYPE_NAME : String
+	{field} {static} +F35_VERTICAL_LIFT_SYSTEM_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +F35_VERTICAL_LIFT_SYSTEM_COMPONENT_TYPE_NAME : String
+	{field} {static} +INSTALLED_F135_ENGINE_IN_F135_ENGINE_SYSTEM_TYPE_IRI : IRI
+	{field} {static} +INSTALLED_F135_ENGINE_IN_F135_ENGINE_SYSTEM_TYPE_NAME : String
+	{field} {static} +INSTALLED_F135_ENGINE_IN_F35_AIRCRAFT_IRI : IRI
+	{field} {static} +INSTALLED_F135_ENGINE_IN_F35_AIRCRAFT_NAME : String
+	{field} {static} +INSTALLED_F135_TURBINE_IN_F135_ENGINE_SYSTEM_TYPE_IRI : IRI
+	{field} {static} +INSTALLED_F135_TURBINE_IN_F135_ENGINE_SYSTEM_TYPE_NAME : String
+	{field} {static} +INSTALLED_F135_TURBINE_IN_F35_AIRCRAFT_TYPE_IRI : IRI
+	{field} {static} +INSTALLED_F135_TURBINE_IN_F35_AIRCRAFT_TYPE_NAME : String
+	{field} {static} +INSTALLED_F135_VLS_IN_F135_ENGINE_SYSTEM_TYPE_IRI : IRI
+	{field} {static} +INSTALLED_F135_VLS_IN_F135_ENGINE_SYSTEM_TYPE_NAME : String
+	{field} {static} +INSTALLED_F135_VLS_IN_F35_AIRCRAFT_TYPE_IRI : IRI
+	{field} {static} +INSTALLED_F135_VLS_IN_F35_AIRCRAFT_TYPE_NAME : String
+	{field} {static} +INSTALLED_F35_AIRFRAME_IN_F35_AIRCRAFT_IRI : IRI
+	{field} {static} +INSTALLED_F35_AIRFRAME_IN_F35_AIRCRAFT_NAME : String
+	{field} {static} +INSTALLED_US16E_EJECTION_SEAT_IN_F35_AIRCRAFT_IRI : IRI
+	{field} {static} +INSTALLED_US16E_EJECTION_SEAT_IN_F35_AIRCRAFT_NAME : String
+	{field} {static} +STATE_OF_F135_ENGINE_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +STATE_OF_F135_ENGINE_COMPONENT_TYPE_NAME : String
+	{field} {static} +STATE_OF_F135_ENGINE_TYPE_IRI : IRI
+	{field} {static} +STATE_OF_F135_ENGINE_TYPE_NAME : String
+	{field} {static} +STATE_OF_F135_TURBINE_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +STATE_OF_F135_TURBINE_COMPONENT_TYPE_NAME : String
+	{field} {static} +STATE_OF_F135_TURBINE_TYPE_IRI : IRI
+	{field} {static} +STATE_OF_F135_TURBINE_TYPE_NAME : String
+	{field} {static} +STATE_OF_F135_VLS_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +STATE_OF_F135_VLS_COMPONENT_TYPE_NAME : String
+	{field} {static} +STATE_OF_F135_VLS_TYPE_IRI : IRI
+	{field} {static} +STATE_OF_F135_VLS_TYPE_NAME : String
+	{field} {static} +STATE_OF_F35_AIRFRAME_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +STATE_OF_F35_AIRFRAME_COMPONENT_TYPE_NAME : String
+	{field} {static} +STATE_OF_F35_AIRFRAME_TYPE_IRI : IRI
+	{field} {static} +STATE_OF_F35_AIRFRAME_TYPE_NAME : String
+	{field} {static} +STATE_OF_F35_EJECTION_SEAT_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +STATE_OF_F35_EJECTION_SEAT_COMPONENT_TYPE_NAME : String
+	{field} {static} +STATE_OF_F35_ENGINE_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +STATE_OF_F35_ENGINE_COMPONENT_TYPE_NAME : String
+	{field} {static} +STATE_OF_F35_TURBINE_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +STATE_OF_F35_TURBINE_COMPONENT_TYPE_NAME : String
+	{field} {static} +STATE_OF_F35_VLS_COMPONENT_TYPE_IRI : IRI
+	{field} {static} +STATE_OF_F35_VLS_COMPONENT_TYPE_NAME : String
+	{field} {static} +STATE_OF_US16E_EJECTION_SEAT_TYPE_IRI : IRI
+	{field} {static} +STATE_OF_US16E_EJECTION_SEAT_TYPE_NAME : String
+	{field} {static} +US16E_EJECTION_SEAT_TYPE_IRI : IRI
+	{field} {static} +US16E_EJECTION_SEAT_TYPE_NAME : String
+}
+
+
+interface F135Engine {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface F135EngineComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface F135EngineSystem {
+	{field} {static} +intendedRole : Role
+	{method}  {abstract} +getEngine () : F135EngineComponent
+	{method}  {abstract} +getTurbine () : F135TurbineComponent
+	{method}  {abstract} +getVls () : F135VerticalLiftSystemComponent
+	{method}  {abstract} +setEngine ( paramF135EngineComponent1 : F135EngineComponent ) : void
+	{method}  {abstract} +setTurbine ( paramF135TurbineComponent1 : F135TurbineComponent ) : void
+	{method}  {abstract} +setVerticalLiftSystem ( paramF135VerticalLiftSystemComponent1 : F135VerticalLiftSystemComponent ) : void
+}
+
+
+interface F135Turbine {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface F135TurbineComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface F135VerticalLiftSystem {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface F135VerticalLiftSystemComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface F35Aircraft {
+	{field} {static} +intendedRole : Role
+	{method}  {abstract} +getAirframe () : F35AirframeComponent
+	{method}  {abstract} +getEjectionSeat () : F35EjectionSeatComponent
+	{method}  {abstract} +getEngine () : F35EngineComponent
+	{method}  {abstract} +getTurbine () : F35TurbineComponent
+	{method}  {abstract} +getVls () : F35VerticalLiftSystemComponent
+	{method}  {abstract} +setAirframe ( paramF35AirframeComponent1 : F35AirframeComponent ) : void
+	{method}  {abstract} +setEjectionSeat ( paramF35EjectionSeatComponent1 : F35EjectionSeatComponent ) : void
+	{method}  {abstract} +setEngine ( paramF35EngineComponent1 : F35EngineComponent ) : void
+	{method}  {abstract} +setTurbine ( paramF35TurbineComponent1 : F35TurbineComponent ) : void
+	{method}  {abstract} +setVerticalLiftSystem ( paramF35VerticalLiftSystemComponent1 : F35VerticalLiftSystemComponent ) : void
+}
+
+
+interface F35Airframe {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface F35AirframeComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface F35EjectionSeatComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface F35EngineComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface F35TurbineComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface F35VerticalLiftSystemComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface InstalledF135EngineInF135EngineSystem {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface InstalledF135EngineInF35Aircraft {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface InstalledF135TurbineInF135EngineSystem {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface InstalledF135TurbineInF35Aircraft {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface InstalledF135VLSInF135EngineSystem {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface InstalledF135VLSInF35Aircraft {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface InstalledF35AirframeInF35Aircraft {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface InstalledUS16EEjectionSeatInF35Aircraft {
+	{field} {static} +intendedRole : Role
+}
+
+
+class IntendedRoles {
+	{field} {static} +F135EngineIntendedRole : Role
+	{field} {static} +F135TurbineIntendedRole : Role
+	{field} {static} +F135VerticalLiftSystemIntendedRole : Role
+	{field} {static} +F35AircraftIntendedRole : Role
+	{field} {static} +F35AirframeIntendedRole : Role
+	{field} {static} +US16EEjectionSeatIntendedRole : Role
+}
+
+
+interface StateOfF135Engine {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface StateOfF135EngineComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface StateOfF135Turbine {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface StateOfF135TurbineComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface StateOfF135VLS {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface StateOfF135VLSComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface StateOfF35Airframe {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface StateOfF35AirframeComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface StateOfF35EjectionSeatComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface StateOfF35EngineComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface StateOfF35TurbineComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface StateOfF35VerticalLiftSystemComponent {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface StateOfUS16EEjectionSeat {
+	{field} {static} +intendedRole : Role
+}
+
+
+interface US16EEjectionSeat {
+	{field} {static} +intendedRole : Role
+}
+
+
+
+
+F135Engine ..|>  StateOfF135Engine
+F135EngineComponent ..|>  StateOfF135EngineComponent
+F135Turbine ..|>  StateOfF135Turbine
+F135TurbineComponent ..|>  StateOfF135TurbineComponent
+F135VerticalLiftSystem ..|>  StateOfF135VLS
+F135VerticalLiftSystemComponent ..|>  StateOfF135VLSComponent
+F35Airframe ..|>  StateOfF35Airframe
+F35AirframeComponent ..|>  StateOfF35AirframeComponent
+F35EjectionSeatComponent ..|>  StateOfF35EjectionSeatComponent
+F35EngineComponent ..|>  StateOfF35EngineComponent
+F35TurbineComponent ..|>  StateOfF35TurbineComponent
+F35VerticalLiftSystemComponent ..|>  StateOfF35VerticalLiftSystemComponent
+InstalledF135EngineInF135EngineSystem ..|>  StateOfF135Engine
+InstalledF135EngineInF135EngineSystem ..|>  StateOfF135EngineComponent
+InstalledF135EngineInF35Aircraft ..|>  StateOfF135Engine
+InstalledF135EngineInF35Aircraft ..|>  StateOfF35EngineComponent
+InstalledF135TurbineInF135EngineSystem ..|>  StateOfF135Turbine
+InstalledF135TurbineInF135EngineSystem ..|>  StateOfF135TurbineComponent
+InstalledF135TurbineInF35Aircraft ..|>  StateOfF135Turbine
+InstalledF135TurbineInF35Aircraft ..|>  StateOfF35TurbineComponent
+InstalledF135VLSInF135EngineSystem ..|>  StateOfF135VLS
+InstalledF135VLSInF135EngineSystem ..|>  StateOfF135VLSComponent
+InstalledF135VLSInF35Aircraft ..|>  StateOfF135VLS
+InstalledF135VLSInF35Aircraft ..|>  StateOfF35VerticalLiftSystemComponent
+InstalledF35AirframeInF35Aircraft ..|>  StateOfF35Airframe
+InstalledF35AirframeInF35Aircraft ..|>  StateOfF35AirframeComponent
+InstalledUS16EEjectionSeatInF35Aircraft ..|>  StateOfF35EjectionSeatComponent
+InstalledUS16EEjectionSeatInF35Aircraft ..|>  StateOfUS16EEjectionSeat
+US16EEjectionSeat ..|>  StateOfUS16EEjectionSeat
+
+hide methods
+hide Constants
+hide *Impl
+
+@enduml

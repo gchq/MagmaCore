@@ -1,5 +1,7 @@
-package uk.gov.gchq.magmacore.examples.extensions.model;
+package uk.gov.gchq.magmacore.examples.extensions.impl;
 
+import uk.gov.gchq.magmacore.examples.extensions.model.Constants;
+import uk.gov.gchq.magmacore.examples.extensions.model.UkLimitedCompany;
 import uk.gov.gchq.magmacore.hqdm.pojo.HqdmObject;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;

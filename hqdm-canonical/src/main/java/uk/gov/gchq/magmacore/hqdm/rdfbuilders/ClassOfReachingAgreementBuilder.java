@@ -14,14 +14,10 @@
 
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF_BY_CLASS;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_BY_CLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.HAS_SUPERCLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_BY_CLASS;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_BY_CLASS_;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF_BY_CLASS;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -51,19 +47,18 @@ public class ClassOfReachingAgreementBuilder {
     }
 
     /**
-     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF_BY_CLASS} relationship
-     * type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
-     * {@link ClassOfSpatioTemporalExtent}
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF} another
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
+     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF_BY_CLASS} relationship type
+     * where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
+     * {@link ClassOfSpatioTemporalExtent} {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF}
+     * another {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final ClassOfReachingAgreementBuilder consists__Of_By_Class(
+    public final ClassOfReachingAgreementBuilder consists_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfReachingAgreement.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfReachingAgreement.addValue(CONSISTS_OF_BY_CLASS,
                 classOfSpatioTemporalExtent.getId());
         return this;
     }
@@ -87,8 +82,8 @@ public class ClassOfReachingAgreementBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final ClassOfReachingAgreementBuilder member__Of(final Class clazz) {
-        this.classOfReachingAgreement.addValue(MEMBER__OF, clazz.getId());
+    public final ClassOfReachingAgreementBuilder member_Of(final Class clazz) {
+        this.classOfReachingAgreement.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -113,34 +108,33 @@ public class ClassOfReachingAgreementBuilder {
      * @param classOfClassOfSpatioTemporalExtent The ClassOfClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final ClassOfReachingAgreementBuilder member_Of_(
+    public final ClassOfReachingAgreementBuilder member_Of(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.classOfReachingAgreement.addValue(MEMBER_OF_,
+        this.classOfReachingAgreement.addValue(MEMBER_OF,
                 classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A relationship type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
-     * {@link ClassOfSpatioTemporalExtent} is
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
+     * {@link ClassOfSpatioTemporalExtent} is {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} some
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final ClassOfReachingAgreementBuilder part__Of_By_Class(
+    public final ClassOfReachingAgreementBuilder part_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfReachingAgreement.addValue(PART__OF_BY_CLASS,
+        this.classOfReachingAgreement.addValue(PART_OF_BY_CLASS,
                 classOfSpatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF_BY_CLASS} relationship type where a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a {@link ClassOfReachingAgreement}
-     * may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a {@link ClassOfReachingAgreement} may
+     * be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a {@link ClassOfAgreementProcess}.
      *
      * @param classOfAgreementProcess The ClassOfAgreementProcess.
@@ -158,15 +152,14 @@ public class ClassOfReachingAgreementBuilder {
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
      * {@link uk.gov.gchq.magmacore.hqdm.model.ClassOfSociallyConstructedActivity} may be a
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
-     * {@link ClassOfAgreementExecution}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a {@link ClassOfAgreementExecution}.
      *
      * @param classOfAgreementExecution The ClassOfAgreementExecution.
      * @return This builder.
      */
-    public final ClassOfReachingAgreementBuilder part_Of_By_Class_(
+    public final ClassOfReachingAgreementBuilder part_Of_By_Class(
             final ClassOfAgreementExecution classOfAgreementExecution) {
-        this.classOfReachingAgreement.addValue(PART_OF_BY_CLASS_,
+        this.classOfReachingAgreement.addValue(PART_OF_BY_CLASS,
                 classOfAgreementExecution.getId());
         return this;
     }
@@ -182,29 +175,13 @@ public class ClassOfReachingAgreementBuilder {
                 && this.classOfReachingAgreement.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (this.classOfReachingAgreement.hasValue(MEMBER__OF)
-                && this.classOfReachingAgreement.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.classOfReachingAgreement.hasValue(MEMBER_OF)
                 && this.classOfReachingAgreement.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (this.classOfReachingAgreement.hasValue(MEMBER_OF_)
-                && this.classOfReachingAgreement.values(MEMBER_OF_).isEmpty()) {
-            throw new HqdmException("Property Not Set: member_of_");
-        }
-        if (this.classOfReachingAgreement.hasValue(PART__OF_BY_CLASS)
-                && this.classOfReachingAgreement.values(PART__OF_BY_CLASS).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of_by_class");
-        }
         if (this.classOfReachingAgreement.hasValue(PART_OF_BY_CLASS)
                 && this.classOfReachingAgreement.values(PART_OF_BY_CLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: part_of_by_class");
-        }
-        if (this.classOfReachingAgreement.hasValue(PART_OF_BY_CLASS_)
-                && this.classOfReachingAgreement.values(PART_OF_BY_CLASS_).isEmpty()) {
-            throw new HqdmException("Property Not Set: part_of_by_class_");
         }
         return this.classOfReachingAgreement;
     }

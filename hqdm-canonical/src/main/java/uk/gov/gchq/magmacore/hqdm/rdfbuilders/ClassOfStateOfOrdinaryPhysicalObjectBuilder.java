@@ -14,12 +14,10 @@
 
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF_BY_CLASS;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF_BY_CLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.HAS_SUPERCLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF_BY_CLASS;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_BY_CLASS;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -49,19 +47,18 @@ public class ClassOfStateOfOrdinaryPhysicalObjectBuilder {
     }
 
     /**
-     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF_BY_CLASS} relationship
-     * type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
-     * {@link ClassOfSpatioTemporalExtent}
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF} another
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
+     * An inverse {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF_BY_CLASS} relationship type
+     * where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
+     * {@link ClassOfSpatioTemporalExtent} {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#CONSISTS_OF}
+     * another {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final ClassOfStateOfOrdinaryPhysicalObjectBuilder consists__Of_By_Class(
+    public final ClassOfStateOfOrdinaryPhysicalObjectBuilder consists_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfStateOfOrdinaryPhysicalObject.addValue(CONSISTS__OF_BY_CLASS,
+        this.classOfStateOfOrdinaryPhysicalObject.addValue(CONSISTS_OF_BY_CLASS,
                 classOfSpatioTemporalExtent.getId());
         return this;
     }
@@ -85,8 +82,8 @@ public class ClassOfStateOfOrdinaryPhysicalObjectBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final ClassOfStateOfOrdinaryPhysicalObjectBuilder member__Of(final Class clazz) {
-        this.classOfStateOfOrdinaryPhysicalObject.addValue(MEMBER__OF, clazz.getId());
+    public final ClassOfStateOfOrdinaryPhysicalObjectBuilder member_Of(final Class clazz) {
+        this.classOfStateOfOrdinaryPhysicalObject.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -111,26 +108,25 @@ public class ClassOfStateOfOrdinaryPhysicalObjectBuilder {
      * @param classOfClassOfSpatioTemporalExtent The ClassOfClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final ClassOfStateOfOrdinaryPhysicalObjectBuilder member_Of_(
+    public final ClassOfStateOfOrdinaryPhysicalObjectBuilder member_Of(
             final ClassOfClassOfSpatioTemporalExtent classOfClassOfSpatioTemporalExtent) {
-        this.classOfStateOfOrdinaryPhysicalObject.addValue(MEMBER_OF_,
+        this.classOfStateOfOrdinaryPhysicalObject.addValue(MEMBER_OF,
                 classOfClassOfSpatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A relationship type where a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} a
-     * {@link ClassOfSpatioTemporalExtent} is
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
+     * {@link ClassOfSpatioTemporalExtent} is {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} a
      * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} some
      * {@link ClassOfSpatioTemporalExtent}.
      *
      * @param classOfSpatioTemporalExtent The ClassOfSpatioTemporalExtent.
      * @return This builder.
      */
-    public final ClassOfStateOfOrdinaryPhysicalObjectBuilder part__Of_By_Class(
+    public final ClassOfStateOfOrdinaryPhysicalObjectBuilder part_Of_By_Class(
             final ClassOfSpatioTemporalExtent classOfSpatioTemporalExtent) {
-        this.classOfStateOfOrdinaryPhysicalObject.addValue(PART__OF_BY_CLASS,
+        this.classOfStateOfOrdinaryPhysicalObject.addValue(PART_OF_BY_CLASS,
                 classOfSpatioTemporalExtent.getId());
         return this;
     }
@@ -148,22 +144,14 @@ public class ClassOfStateOfOrdinaryPhysicalObjectBuilder {
                 && this.classOfStateOfOrdinaryPhysicalObject.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
         }
-        if (this.classOfStateOfOrdinaryPhysicalObject.hasValue(MEMBER__OF)
-                && this.classOfStateOfOrdinaryPhysicalObject.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.classOfStateOfOrdinaryPhysicalObject.hasValue(MEMBER_OF)
                 && this.classOfStateOfOrdinaryPhysicalObject.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
         }
-        if (this.classOfStateOfOrdinaryPhysicalObject.hasValue(MEMBER_OF_)
-                && this.classOfStateOfOrdinaryPhysicalObject.values(MEMBER_OF_).isEmpty()) {
-            throw new HqdmException("Property Not Set: member_of_");
-        }
-        if (this.classOfStateOfOrdinaryPhysicalObject.hasValue(PART__OF_BY_CLASS)
-                && this.classOfStateOfOrdinaryPhysicalObject.values(PART__OF_BY_CLASS)
+        if (this.classOfStateOfOrdinaryPhysicalObject.hasValue(PART_OF_BY_CLASS)
+                && this.classOfStateOfOrdinaryPhysicalObject.values(PART_OF_BY_CLASS)
                         .isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of_by_class");
+            throw new HqdmException("Property Not Set: part_of_by_class");
         }
         return this.classOfStateOfOrdinaryPhysicalObject;
     }

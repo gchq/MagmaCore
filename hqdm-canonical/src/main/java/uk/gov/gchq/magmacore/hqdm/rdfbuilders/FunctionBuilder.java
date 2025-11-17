@@ -15,7 +15,6 @@
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -47,8 +46,8 @@ public class FunctionBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final FunctionBuilder member__Of(final Class clazz) {
-        this.function.addValue(MEMBER__OF, clazz.getId());
+    public final FunctionBuilder member_Of(final Class clazz) {
+        this.function.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -72,10 +71,6 @@ public class FunctionBuilder {
      * @throws HqdmException If the Function_ is missing any mandatory properties.
      */
     public Function_ build() throws HqdmException {
-        if (this.function.hasValue(MEMBER__OF)
-                && this.function.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.function.hasValue(MEMBER_OF)
                 && this.function.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");

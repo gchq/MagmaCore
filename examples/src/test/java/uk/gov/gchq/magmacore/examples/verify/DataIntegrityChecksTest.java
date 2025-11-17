@@ -67,7 +67,7 @@ public class DataIntegrityChecksTest {
         service = MagmaCoreServiceFactory.createWithJenaDatabase();
 
         // Load the HQDM data model.
-        service.loadTtl(DataIntegrityChecksTest.class.getResourceAsStream("/hqdm-0.0.1-alpha.ttl"));
+        service.loadTtl(DataIntegrityChecksTest.class.getResourceAsStream("/hqdm.ttl"));
 
         // Populate some data to prove that the rules are applied.
         service.runInWriteTransaction(svc -> {
@@ -162,6 +162,9 @@ public class DataIntegrityChecksTest {
                 .toList();
 
         missing.forEach(System.err::println);
+        if (!missing.isEmpty()) {
+            service.exportTtl(System.err);
+        }
         assertTrue("Not all rules fired - see log for details", missing.isEmpty());
 
         // Make sure that the actual number of errors found matches the expected number.

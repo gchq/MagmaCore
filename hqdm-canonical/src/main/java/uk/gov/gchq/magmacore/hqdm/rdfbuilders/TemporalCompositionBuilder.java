@@ -15,7 +15,6 @@
 package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.WHOLE;
 
@@ -50,8 +49,8 @@ public class TemporalCompositionBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final TemporalCompositionBuilder member__Of(final Class clazz) {
-        this.temporalComposition.addValue(MEMBER__OF, clazz.getId());
+    public final TemporalCompositionBuilder member_Of(final Class clazz) {
+        this.temporalComposition.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -99,10 +98,6 @@ public class TemporalCompositionBuilder {
      * @throws HqdmException If the TemporalComposition is missing any mandatory properties.
      */
     public TemporalComposition build() throws HqdmException {
-        if (this.temporalComposition.hasValue(MEMBER__OF)
-                && this.temporalComposition.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.temporalComposition.hasValue(MEMBER_OF)
                 && this.temporalComposition.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");

@@ -211,7 +211,6 @@ public class MagmaCoreService {
      *
      * @param community   The {@link RecognizingLanguageCommunity} that recognizes
      *                    the sign value.
-     * @param pattern     The {@link Pattern} the sign conforms to.
      * @param value       {@link String} the partial sign value to look for.
      * @param pointInTime {@link PointInTime} the point in time we are interested
      *                    in.
@@ -221,7 +220,6 @@ public class MagmaCoreService {
      */
     public List<? extends Thing> findByPartialSignValue(
             final RecognizingLanguageCommunity community,
-            final Pattern pattern,
             final String value,
             final PointInTime pointInTime) throws MagmaCoreException {
 
@@ -235,8 +233,7 @@ public class MagmaCoreService {
         final QueryResultList queryResultList = database
                 .executeQuery(String.format(MagmaCoreServiceQueries.FIND_BY_PARTIAL_SIGN_VALUE_CASE_INSENSITIVE_QUERY,
                         value,
-                        community.getId(),
-                        pattern.getId()));
+                        community.getId()));
 
         // Filter by the pointInTime
         final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
@@ -300,9 +297,11 @@ public class MagmaCoreService {
 
         final Instant when = Instant.parse(pointInTimeValue);
 
+        final String queryString = String.format(MagmaCoreServiceQueries.FIND_OBJECTS_BY_TYPE_AND_SIGN_PATTERN,
+                        type, kind, pattern, type, kind, pattern);
+
         final QueryResultList queryResultList = database
-                .executeQuery(String.format(MagmaCoreServiceQueries.FIND_OBJECTS_BY_TYPE_AND_SIGN_PATTERN,
-                        type, kind, pattern, type, kind, pattern));
+                .executeQuery(queryString);
 
         // Filter by the pointInTime
         final QueryResultList queryResults = filterByPointInTime(when, queryResultList);
@@ -669,6 +668,7 @@ public class MagmaCoreService {
      * @return {@link Thing} that was found.
      * @throws RuntimeException If no or multiple results were found.
      */
+    @SuppressWarnings("unchecked")
     public <T extends Thing> T findByEntityName(final String entityName) {
         final List<Thing> searchResult = findByPredicateIriAndValue(HQDM.ENTITY_NAME, entityName);
 
@@ -688,6 +688,7 @@ public class MagmaCoreService {
      * @param predicate the predicate {@link IRI}
      * @return a List of {@link Thing} that were found.
      */
+    @SuppressWarnings("unchecked")
     public <T extends Thing> List<T> findByPredicateIriOnly(final IRI predicate) {
         return (List<T>) database.findByPredicateIriOnly(predicate);
     }
@@ -700,6 +701,7 @@ public class MagmaCoreService {
      * @param value     The value of the predicate.
      * @return a List of {@link Thing} that were found.
      */
+    @SuppressWarnings("unchecked")
     public <T extends Thing> List<T> findByPredicateIriAndValue(final IRI predicate, final Object value) {
         return (List<T>) database.findByPredicateIriAndValue(predicate, value);
     }

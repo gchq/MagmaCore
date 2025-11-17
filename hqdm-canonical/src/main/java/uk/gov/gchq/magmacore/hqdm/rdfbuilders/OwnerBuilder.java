@@ -16,16 +16,14 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.AGGREGATED_INTO;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.BEGINNING;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_KIND;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PARTICIPANT_IN;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -38,6 +36,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -88,14 +87,14 @@ public class OwnerBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OwnerBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.owner.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
+    public final OwnerBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.owner.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -118,8 +117,8 @@ public class OwnerBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final OwnerBuilder member__Of(final Class clazz) {
-        this.owner.addValue(MEMBER__OF, clazz.getId());
+    public final OwnerBuilder member_Of(final Class clazz) {
+        this.owner.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -147,6 +146,7 @@ public class OwnerBuilder {
      */
     public final OwnerBuilder member_Of_Kind_M(final Role role) {
         this.owner.addValue(MEMBER_OF_KIND, role.getId());
+        this.owner.addValue(RDFS.RDF_TYPE, role.getId());
         return this;
     }
 
@@ -158,20 +158,19 @@ public class OwnerBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OwnerBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.owner.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final OwnerBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.owner.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -183,8 +182,8 @@ public class OwnerBuilder {
     }
 
     /**
-     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PARTICIPANT_IN} relationship type where an
-     * owner is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PARTICIPANT_IN} exactly one
+     * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PARTICIPANT_IN} relationship type where an owner
+     * is a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PARTICIPANT_IN} exactly one
      * {@link Ownership}.
      *
      * @param ownership The Ownership.
@@ -203,8 +202,8 @@ public class OwnerBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final OwnerBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.owner.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
+    public final OwnerBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.owner.addValue(TEMPORAL_PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -240,10 +239,6 @@ public class OwnerBuilder {
                 && this.owner.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.owner.hasValue(MEMBER__OF)
-                && this.owner.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.owner.hasValue(MEMBER_OF)
                 && this.owner.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
@@ -251,19 +246,15 @@ public class OwnerBuilder {
         if (!this.owner.hasValue(MEMBER_OF_KIND)) {
             throw new HqdmException("Property Not Set: member_of_kind");
         }
-        if (this.owner.hasValue(PART__OF)
-                && this.owner.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
+        if (this.owner.hasValue(PART_OF)
+                && this.owner.values(PART_OF).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of");
         }
         if (!this.owner.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
         }
         if (!this.owner.hasValue(PARTICIPANT_IN)) {
             throw new HqdmException("Property Not Set: participant_in");
-        }
-        if (this.owner.hasValue(TEMPORAL__PART_OF)
-                && this.owner.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.owner.hasValue(TEMPORAL_PART_OF)
                 && this.owner.values(TEMPORAL_PART_OF).isEmpty()) {

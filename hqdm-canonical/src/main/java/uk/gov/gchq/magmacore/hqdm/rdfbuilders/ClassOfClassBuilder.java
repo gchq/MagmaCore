@@ -16,7 +16,6 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.HAS_SUPERCLASS;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.Class;
@@ -59,8 +58,8 @@ public class ClassOfClassBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final ClassOfClassBuilder member__Of(final Class clazz) {
-        this.classOfClass.addValue(MEMBER__OF, clazz.getId());
+    public final ClassOfClassBuilder member_Of(final Class clazz) {
+        this.classOfClass.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
@@ -87,10 +86,6 @@ public class ClassOfClassBuilder {
         if (this.classOfClass.hasValue(HAS_SUPERCLASS)
                 && this.classOfClass.values(HAS_SUPERCLASS).isEmpty()) {
             throw new HqdmException("Property Not Set: has_superclass");
-        }
-        if (this.classOfClass.hasValue(MEMBER__OF)
-                && this.classOfClass.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
         }
         if (this.classOfClass.hasValue(MEMBER_OF)
                 && this.classOfClass.values(MEMBER_OF).isEmpty()) {

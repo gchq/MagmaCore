@@ -74,7 +74,8 @@ public abstract class HqdmObject implements Thing {
                 final Object value = entry.getValue().iterator().next();
                 final IRI key = entry.getKey();
                 if (value instanceof Map) {
-                    final Map valueMap = (Map) value;
+                    @SuppressWarnings("unchecked")
+                    final Map<Object, Object> valueMap = (Map<Object, Object>) value;
                     this.predicates.remove(key);
                     this.addValue(key, (IRI) valueMap.get("id"));
                 } else {
@@ -87,6 +88,7 @@ public abstract class HqdmObject implements Thing {
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("unchecked")
     public <T> Set<T> values(final IRI predicateId) {
         return (Set<T>) predicates.get(predicateId);
     }
@@ -95,6 +97,7 @@ public abstract class HqdmObject implements Thing {
      * {@inheritDoc}
      */
     public <T> T oneValue(final IRI predicateId) {
+        @SuppressWarnings("unchecked")
         final Set<T> predicateValues = (Set<T>) predicates.get(predicateId);
         if (predicateValues != null && !predicateValues.isEmpty()) {
             return predicateValues.iterator().next();

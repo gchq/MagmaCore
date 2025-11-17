@@ -16,16 +16,14 @@ package uk.gov.gchq.magmacore.hqdm.rdfbuilders;
 
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.AGGREGATED_INTO;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.BEGINNING;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS__OF;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.CONSISTS_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.ENDING;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER_OF_KIND;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.MEMBER__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.NATURAL_ROLE;
+import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART_OF_POSSIBLE_WORLD;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.PART__OF;
 import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL_PART_OF;
-import static uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM.TEMPORAL__PART_OF;
 
 import uk.gov.gchq.magmacore.hqdm.exception.HqdmException;
 import uk.gov.gchq.magmacore.hqdm.model.BiologicalSystem;
@@ -38,6 +36,7 @@ import uk.gov.gchq.magmacore.hqdm.model.PossibleWorld;
 import uk.gov.gchq.magmacore.hqdm.model.Role;
 import uk.gov.gchq.magmacore.hqdm.model.SpatioTemporalExtent;
 import uk.gov.gchq.magmacore.hqdm.rdf.iri.IRI;
+import uk.gov.gchq.magmacore.hqdm.rdf.iri.RDFS;
 import uk.gov.gchq.magmacore.hqdm.services.SpatioTemporalExtentServices;
 
 /**
@@ -88,14 +87,14 @@ public class BiologicalSystemBuilder {
      * A relationship type where a {@link SpatioTemporalExtent} may consist of one or more others.
      *
      * <p>
-     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART__OF}.
+     * Note: This is the inverse of {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}.
      * </p>
      *
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final BiologicalSystemBuilder consists__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.biologicalSystem.addValue(CONSISTS__OF, spatioTemporalExtent.getId());
+    public final BiologicalSystemBuilder consists_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.biologicalSystem.addValue(CONSISTS_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -118,15 +117,15 @@ public class BiologicalSystemBuilder {
      * @param clazz The Class.
      * @return This builder.
      */
-    public final BiologicalSystemBuilder member__Of(final Class clazz) {
-        this.biologicalSystem.addValue(MEMBER__OF, clazz.getId());
+    public final BiologicalSystemBuilder member_Of(final Class clazz) {
+        this.biologicalSystem.addValue(MEMBER_OF, clazz.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} relationship type where a
-     * {@link BiologicalSystem} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
-     * one or more {@link ClassOfBiologicalSystem}.
+     * {@link BiologicalSystem} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
+     * or more {@link ClassOfBiologicalSystem}.
      *
      * @param classOfBiologicalSystem The ClassOfBiologicalSystem.
      * @return Builder
@@ -138,14 +137,15 @@ public class BiologicalSystemBuilder {
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF_KIND} relationship type where a
-     * {@link BiologicalSystem} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF}
-     * one or more {@link KindOfBiologicalSystem}.
+     * {@link BiologicalSystem} may be a {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#MEMBER_OF} one
+     * or more {@link KindOfBiologicalSystem}.
      *
      * @param kindOfBiologicalSystem The KindOfBiologicalSystem.
      * @return Builder
      */
     public final BiologicalSystemBuilder member_Of_Kind(final KindOfBiologicalSystem kindOfBiologicalSystem) {
         this.biologicalSystem.addValue(MEMBER_OF_KIND, kindOfBiologicalSystem.getId());
+        this.biologicalSystem.addValue(RDFS.RDF_TYPE, kindOfBiologicalSystem.getId());
         return this;
     }
 
@@ -169,20 +169,19 @@ public class BiologicalSystemBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final BiologicalSystemBuilder part__Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.biologicalSystem.addValue(PART__OF, spatioTemporalExtent.getId());
+    public final BiologicalSystemBuilder part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.biologicalSystem.addValue(PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
     /**
      * A {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} relationship type where a
-     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF}
-     * one or more {@link PossibleWorld}.
+     * {@link SpatioTemporalExtent} may be {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} one
+     * or more {@link PossibleWorld}.
      *
      * <p>
      * Note: The relationship is optional because a {@link PossibleWorld} is not
-     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other
-     * {@link SpatioTemporalExtent}.
+     * {@link uk.gov.gchq.magmacore.hqdm.rdf.iri.HQDM#PART_OF} any other {@link SpatioTemporalExtent}.
      * </p>
      *
      * @param possibleWorld The PossibleWorld.
@@ -201,8 +200,8 @@ public class BiologicalSystemBuilder {
      * @param spatioTemporalExtent The SpatioTemporalExtent.
      * @return This builder.
      */
-    public final BiologicalSystemBuilder temporal__Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
-        this.biologicalSystem.addValue(TEMPORAL__PART_OF, spatioTemporalExtent.getId());
+    public final BiologicalSystemBuilder temporal_Part_Of(final SpatioTemporalExtent spatioTemporalExtent) {
+        this.biologicalSystem.addValue(TEMPORAL_PART_OF, spatioTemporalExtent.getId());
         return this;
     }
 
@@ -240,10 +239,6 @@ public class BiologicalSystemBuilder {
                 && this.biologicalSystem.values(ENDING).isEmpty()) {
             throw new HqdmException("Property Not Set: ending");
         }
-        if (this.biologicalSystem.hasValue(MEMBER__OF)
-                && this.biologicalSystem.values(MEMBER__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: member__of");
-        }
         if (this.biologicalSystem.hasValue(MEMBER_OF)
                 && this.biologicalSystem.values(MEMBER_OF).isEmpty()) {
             throw new HqdmException("Property Not Set: member_of");
@@ -255,16 +250,12 @@ public class BiologicalSystemBuilder {
         if (!this.biologicalSystem.hasValue(NATURAL_ROLE)) {
             throw new HqdmException("Property Not Set: natural_role");
         }
-        if (this.biologicalSystem.hasValue(PART__OF)
-                && this.biologicalSystem.values(PART__OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: part__of");
+        if (this.biologicalSystem.hasValue(PART_OF)
+                && this.biologicalSystem.values(PART_OF).isEmpty()) {
+            throw new HqdmException("Property Not Set: part_of");
         }
         if (!this.biologicalSystem.hasValue(PART_OF_POSSIBLE_WORLD)) {
             throw new HqdmException("Property Not Set: part_of_possible_world");
-        }
-        if (this.biologicalSystem.hasValue(TEMPORAL__PART_OF)
-                && this.biologicalSystem.values(TEMPORAL__PART_OF).isEmpty()) {
-            throw new HqdmException("Property Not Set: temporal__part_of");
         }
         if (this.biologicalSystem.hasValue(TEMPORAL_PART_OF)
                 && this.biologicalSystem.values(TEMPORAL_PART_OF).isEmpty()) {

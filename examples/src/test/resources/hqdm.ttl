@@ -1,0 +1,1958 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix hqdm: <https://hqdmtop.github.io/hqdmOntology/1.0.0#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sdo: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://hqdmtop.github.io/hqdmOntology> a owl:Ontology ;
+    owl:versionIRI <https://github.com/hqdmTop/hqdmOntology/releases/tag/1.0.0> ;
+    dcterms:modified "2025-03-30"^^xsd:date ;
+    dcterms:creator "Dr Matthew West"@en ;
+    dcterms:contributor "jamrce, ClimbingAl, twalmsley, Fabalab, amrc-benmorrow"@en ;
+    rdfs:label "High-Quality Data Models (HQDM) Ontology"@en ;
+    owl:versionInfo "1.0.0"@en ;
+    rdfs:comment "The High-Quality Data Models (HQDM) Framework captured as a formal foundational ontology to ensure data consistency, interoperability, and quality across diverse domains."@en ;
+    vann:preferredNamespaceUri <https://github.com/hqdmTop/hqdmOntology#> ;
+    vann:preferredNamespacePrefix "hqdm"@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:created "2010-12-30"^^xsd:date ;
+    skos:historyNote "The High Quality Data Models (HQDM) Framework is a 4-Dimensionalist top level ontology with extensional identity criteria that aims to support large scale data integration. As such it aims to ensure there is consistency among data created using the framework. It is based on work developing and using ISO 15926 and lessons learnt from BORO, which influenced ISO 19526."@en ;
+    sdo:codeRepository <https://github.com/hqdmTop/hqdmOntology> ;
+    sdo:dateModified "2025-03-30"^^xsd:date ;
+    sdo:license <https://creativecommons.org/licenses/by/4.0/> .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+#### Top Properties ####
+
+hqdm:universalRelationSet a rdf:Property ;
+    skos:prefLabel "universal relation set"@en ;
+    skos:definition "The Binary Relation Set that is super Binary Relation Set for all HQDM Relationship Types."@en ;
+    rdfs:domain hqdm:Thing ;
+    rdfs:range hqdm:Thing .
+
+hqdm:universalPartRelationSet a rdfs:Class ;
+    skos:prefLabel "universal part relation set"@en ;
+    skos:definition "The Binary Relation Set that is super Binary Relation Set for all HQDM Whole-Part Relationship Types."@en ;
+    rdfs:subClassOf rdf:Property .
+
+hqdm:aggregatedInto a rdf:Property ;
+    skos:prefLabel "aggregated into"@en ;
+    skos:definition "A relationship type where a [Spatio-Temporal Extent](#SpatioTemporalExtent) may be aggregated into one or more others."@en ;
+    hqdm:memberOf hqdm:universalPartRelationSet ;
+    rdfs:domain hqdm:SpatioTemporalExtent ;
+    rdfs:range hqdm:SpatioTemporalExtent ;
+    rdfs:subPropertyOf hqdm:universalRelationSet ;
+    skos:scopeNote "Within the HQDM EXPRESS model, this has the same meaning to the `Aggregation` entity type that is now depreciated."@en .
+
+hqdm:partOf a rdf:Property ;
+    skos:prefLabel "part of"@en ;
+    skos:definition "An `aggregated into` relationship type where a [Spatio-Temporal Extent](#SpatioTemporalExtent) may be [part of](#partOf) another and the [whole](#whole) has emergent properties and is more than just the sum of its parts."@en ;
+    rdfs:domain hqdm:SpatioTemporalExtent ;
+    rdfs:range hqdm:SpatioTemporalExtent ;
+    rdfs:subPropertyOf hqdm:aggregatedInto ;
+    skos:scopeNote "This is the inverse of [consists of](#consistsOf)."@en ;
+    skos:scopeNote "Within the HQDM EXPRESS model, this has the same meaning to the `Composition` entity type that is now depreciated."@en .
+
+hqdm:temporalPartOf a rdf:Property ;
+    skos:prefLabel "temporal part of"@en ;
+    skos:definition "A `part of` relationship type where a [Spatio-Temporal Extent](#SpatioTemporalExtent) may be a temporal part of one or more other [Spatio-Temporal Extent](#SpatioTemporalExtent)."@en ;
+    rdfs:domain hqdm:SpatioTemporalExtent ;
+    rdfs:range hqdm:SpatioTemporalExtent ;
+    rdfs:subPropertyOf hqdm:partOf ;
+    skos:scopeNote "Within the HQDM EXPRESS model, this has the same meaning as `Temporal Composition` entity type that is now depreciated."@en ;
+    skos:scopeNote "When used between a state_of_X and X, this relationship is optional because an [Individual](#Individual) is not necessarily a `temporal part of` another [Individual](#Individual)"@en .
+
+hqdm:universalOrderRelationSet a rdfs:Class ;
+    skos:prefLabel "universal order relation set"@en ;
+    skos:definition "The Binary Relation Set that is super Binary Relation Set for all HQDM Relationship Types to do with Order (before-after, left-right, etc)."@en ; # part of the sequencing of elements
+    rdfs:subClassOf rdf:Property .
+
+hqdm:beginning a rdf:Property ;
+    skos:prefLabel "beginning"@en ;
+    skos:definition "A `part of` relationship type where a [Spatio-Temporal Extent](#SpatioTemporalExtent) has exactly one [Event](#Event) that is its beginning."@en ;
+    hqdm:memberOf hqdm:universalOrderRelationSet ;
+    rdfs:domain hqdm:SpatioTemporalExtent ;
+    rdfs:range hqdm:Event ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:ending a rdf:Property ;
+    skos:prefLabel "ending"@en ;
+    skos:definition "A `part of` relationship type where a [Spatio-Temporal Extent](#SpatioTemporalExtent) has exactly one [Event](#Event) that is its ending."@en ;
+    hqdm:memberOf hqdm:universalOrderRelationSet ;
+    rdfs:domain hqdm:SpatioTemporalExtent ;
+    rdfs:range hqdm:Event ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:hasSupertype a rdf:Property ;
+    skos:prefLabel "has supertype"@en ;
+    skos:definition "A Relationship where one [Thing](#Thing) is the more general category of [Thing](#Thing))."@en ;
+    rdfs:domain hqdm:Thing ;
+    rdfs:range hqdm:Thing ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:hasSuperclass a rdf:Property ;
+    skos:prefLabel "has superclass"@en ;
+    skos:definition "A Relationship where each [member of](#memberOf) the [Class](#Class) is a [member of](#memberOf) the superclass. [has superclass](#hasSuperclass) is a specialization of [has supertype](#hasSupertype)"@en ;
+    rdfs:domain hqdm:Class ;
+    rdfs:range hqdm:Class ;
+    rdfs:subPropertyOf hqdm:hasSupertype ;
+    rdfs:seeAlso rdfs:subClassOf .
+
+rdfs:subPropertyOf rdfs:subPropertyOf hqdm:hasSupertype .
+
+hqdm:universalSetRelationSet a rdfs:Class ;
+    skos:prefLabel "universal set relation set"@en ;
+    skos:definition "The Binary Relation Set that is super Binary Relation Set for all HQDM Set Relationship Types (Sets in HQDM are [Class](#Class) and all of its subclasses)."@en ;
+    rdfs:subClassOf rdf:Property .
+
+hqdm:memberOf a rdf:Property ;
+    skos:prefLabel "member of"@en ;
+    skos:definition "A relationship type where a [Thing](#Thing) may be a [member of](#memberOf) one or more [Class](#Class)."@en ;
+    hqdm:memberOf hqdm:universalSetRelationSet ;
+    rdfs:domain hqdm:Thing ;
+    rdfs:range hqdm:Class ;
+    rdfs:subPropertyOf hqdm:universalRelationSet ;
+    skos:scopeNote "This relationship is the same as the entity type [Classification](#Classification)."@en .
+
+hqdm:memberOfKind a rdf:Property ;
+    skos:prefLabel "member of kind"@en ;
+    skos:definition "A [member of](#memberOf) relationship type where an [Individual] may be a [member of](#memberOf) one or more [Kind Of Individual](#KindOfIndividual)."@en ;
+    rdfs:domain hqdm:Individual ;
+    rdfs:range hqdm:KindOfIndividual ;
+    rdfs:subPropertyOf hqdm:memberOf .
+
+hqdm:universalEmergentRelationSet a rdfs:Class ;
+    skos:prefLabel "universal emergent relation set"@en ;
+    skos:definition "The Binary Relation Set that is super Binary Relation Set for all HQDM Emergent Relationship Types.  Emergent relationships are those that are not fundamental to material existence.  An example is [represents](#represents)."@en ;
+    rdfs:subClassOf rdf:Property .
+
+#### Core Properties ####
+
+hqdm:causes a rdf:Property ;
+    skos:prefLabel "causes"@en ;
+    skos:definition "A relationship type where each [Activity](#Activity) is the cause of one or more [Event](#Event)."@en ;
+    hqdm:memberOf hqdm:universalOrderRelationSet ;
+    rdfs:domain hqdm:Activity ;
+    rdfs:range hqdm:Event ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:causesBeginning a rdf:Property ;
+    skos:prefLabel "causes beginning"@en ;
+    skos:definition "A causes relationship type where a [Transfer Of Ownership](#TransferOfOwnership) causes exactly one [Beginning Of Ownership](#BeginningOfOwnership)."@en ;
+    rdfs:domain hqdm:TransferOfOwnership ;
+    rdfs:range hqdm:BeginningOfOwnership ;
+    rdfs:subPropertyOf hqdm:causes .
+
+hqdm:causesByClass a rdf:Property ;
+    skos:prefLabel "causes by class"@en ;
+    skos:definition "A relationship type where a [member of](#memberOf) the [Kind Of Activity](#KindOfActivity) causes a [member of](#memberOf) the [Class Of Event](#ClassOfEvent)."@en ;
+    hqdm:memberOf hqdm:universalOrderRelationSet ;
+    rdfs:domain hqdm:KindOfActivity ;
+    rdfs:range hqdm:ClassOfEvent ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:causesEnding a rdf:Property ;
+    skos:prefLabel "causes ending"@en ;
+    skos:definition "A causes relationship type where a [Transfer Of Ownership](#TransferOfOwnership) causes exactly one [EndingOfOwnership](#EndingOfOwnership)."@en ;
+    rdfs:domain hqdm:TransferOfOwnership ;
+    rdfs:range hqdm:EndingOfOwnership ;
+    rdfs:subPropertyOf hqdm:causes .
+
+hqdm:consistsOf a rdf:Property ;
+    skos:prefLabel "consists of"@en ;
+    skos:definition "An `aggregated into` relationship type where a [Spatio-Temporal Extent](#SpatioTemporalExtent) includes a [part of](#partOf) another, with the [whole](#whole) having emergent properties that is more than just the sum of its parts."@en ;
+    rdfs:domain hqdm:SpatioTemporalExtent ;
+    rdfs:range hqdm:SpatioTemporalExtent ;
+    rdfs:subPropertyOf hqdm:aggregatedInto ;
+    skos:scopeNote "This is the inverse of [part of](#partOf)."@en .
+
+hqdm:classOfOffered a rdf:Property ;
+    skos:prefLabel "class of offered"@en ;
+    skos:definition "A relationship type where an [Offering](#Offering) has exactly one [ClassOfIndividual](#ClassOfIndividual) some `member of` which is offered."@en ;
+    rdfs:domain hqdm:Offering ;
+    rdfs:range hqdm:ClassOfIndividual ;
+    rdfs:subPropertyOf hqdm:referencesByClass .
+
+hqdm:componentByClass a rdf:Property ;
+    skos:prefLabel "component by class"@en ;
+    skos:definition "A [consists of by class](#consistsOfByClass) relationship type where each [member of](#memberOf) a [Kind Of System](#KindOfSystem) has a [member of](#memberOf) one or more [Kind Of System Component](#KindOfSystemComponent) as a component."@en ;
+    rdfs:domain hqdm:KindOfOrganization ;
+    rdfs:range hqdm:KindOfOrganizationComponent ;
+    rdfs:subPropertyOf hqdm:hasComponentByClass .
+
+hqdm:componentOf a rdf:Property ;
+    skos:prefLabel "component of"@en ;
+    skos:definition "A [part of](#partOf) relationship type where each [System Component](#SystemComponent) is [part of](#partOf) exactly one [System](#System)."@en ;
+    rdfs:domain hqdm:SystemComponent ;
+    rdfs:range hqdm:System ;
+    rdfs:subPropertyOf hqdm:partOf .
+
+hqdm:considerationByClass a rdf:Property ;
+    skos:prefLabel "consideration by class"@en ;
+    skos:definition "A relationship type where an [Offering](#Offering) has exactly one [Price](#Price) at which the [Offering](#Offering) is made."@en ;
+    rdfs:domain hqdm:Offering ;
+    rdfs:range hqdm:Price ;
+    rdfs:subPropertyOf hqdm:referencesByClass .
+
+hqdm:consistsOfInMembers a rdf:Property ;
+    skos:prefLabel "consists of in members"@en ;
+    skos:definition "A relationship type where a [Recognizing Language Community](#RecognizingLanguageCommunity) is a [participant in](#participantIn) each [member of](#memberOf) one or more [Representation By Pattern](#RepresentationByPattern)."@en ;
+    rdfs:domain hqdm:RepresentationByPattern ;
+    rdfs:range hqdm:RecognizingLanguageCommunity ;
+    rdfs:subPropertyOf hqdm:referencesByClass .
+
+hqdm:consistsOfParticipant a rdf:Property ;
+    skos:prefLabel "consists of participant"@en ;
+    skos:definition "A `consists of` relationship type where each association consists of two or more participants."@en ;
+    rdfs:domain hqdm:Activity,
+        hqdm:Association ;
+    rdfs:range hqdm:Participant ;
+    rdfs:subPropertyOf hqdm:consistsOf .
+
+hqdm:definedBy a rdf:Property ;
+    skos:prefLabel "defined by"@en ;
+    skos:definition "A [member of](#memberOf) relationship type where a [Requirement](#Requirement) is definedBy exactly one [Requirement Specification](#RequirementSpecification)."@en ;
+    rdfs:domain hqdm:Requirement ;
+    rdfs:range hqdm:RequirementSpecification ;
+    rdfs:subPropertyOf hqdm:memberOf .
+
+hqdm:determines a rdf:Property ;
+    skos:prefLabel "determines"@en ;
+    skos:definition "A relationship type where an [Activity](#Activity) may determine one or more [Thing](#Thing) to be the case."@en ;
+    hqdm:memberOf hqdm:universalEmergentRelationSet ;
+    rdfs:domain hqdm:Activity ;
+    rdfs:range hqdm:Thing ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:determinesByClass a rdf:Property ;
+    skos:prefLabel "determines by class"@en ;
+    skos:definition "A relationship type where a [member of](#memberOf) the [Kind Of Activity](#KindOfActivity) determines a [member of](#memberOf) the [Class](#Class)."@en ;
+    hqdm:memberOf hqdm:universalEmergentRelationSet ;
+    rdfs:domain hqdm:KindOfActivity ;
+    rdfs:range hqdm:Class ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:domain a rdf:Property ;
+    skos:prefLabel "domain"@en ;
+    skos:definition "A [Scale](#Scale) has exactly one [Kind Of Physical Quantity](#KindOfPhysicalQuantity) as its domain."@en ;
+    hqdm:memberOf hqdm:universalEmergentRelationSet ;
+    rdfs:domain hqdm:Scale ;
+    rdfs:range hqdm:KindOfPhysicalQuantity ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:hasComponentByClass a rdf:Property ;
+    skos:prefLabel "has component by class"@en ;
+    skos:definition "A [consists of by class](#consistsOfByClass) relationship type where each [member of](#memberOf) a [Kind Of System](#KindOfSystem) has a [member of](#memberOf) one or more [Kind Of System Component](#KindOfSystemComponent) as a component."@en ;
+    rdfs:domain hqdm:KindOfSystem ;
+    rdfs:range hqdm:KindOfSystemComponent ;
+    rdfs:subPropertyOf hqdm:consistsOfByClass .
+
+hqdm:intendedRole a rdf:Property ;
+    skos:prefLabel "intended role"@en ;
+    skos:definition "A relationship type where a [FunctionalObject](#FunctionalObject) has one or more intended [Role](#Role)(s)."@en ;
+    rdfs:domain hqdm:FunctionalObject ;
+    rdfs:range hqdm:Role ;
+    rdfs:subPropertyOf hqdm:memberOfKind .
+
+hqdm:intendedRoleByClass a rdf:Property ;
+    skos:prefLabel "intended role by class"@en ;
+    skos:definition "A relationship type where each [member of](#memberOf) a [Kind Of Functional Object](#KindOfFunctionalObject) is intended to play one or more [Role](#Role)(s)."@en ;
+    hqdm:memberOf hqdm:universalSetRelationSet ;
+    rdfs:domain hqdm:KindOfFunctionalObject ;
+    rdfs:range hqdm:Role ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:intersectionOf a rdf:Property ;
+    skos:prefLabel "intersection of"@en ;
+    skos:definition "A [has superclass](#hasSuperclass) relationship type where each [Requirement Specification](#RequirementSpecification) is the `intersection of` one or more [Class Of State](#ClassOfState)."@en ;
+    rdfs:domain hqdm:RequirementSpecification ;
+    rdfs:range hqdm:ClassOfState ;
+    rdfs:subPropertyOf hqdm:hasSuperclass ;
+    skos:scopeNote "The [Requirement Specification](#RequirementSpecification) is a subtype of each of the related [Class Of State](#ClassOfState)."@en .
+
+hqdm:lowerBound a rdf:Property ;
+    skos:prefLabel "lower bound"@en ;
+    skos:definition "A `supertype of` relationship type where each [PhysicalQuantityRange](#PhysicalQuantityRange) must have as Lower Bound exactly one [PhysicalQuantity](#PhysicalQuantity)."@en ;
+    rdfs:domain hqdm:PhysicalQuantity ;
+    rdfs:range hqdm:PhysicalQuantityRange ;
+    rdfs:subPropertyOf hqdm:rangesOver .
+
+hqdm:meetsSpecification a rdf:Property ;
+    skos:prefLabel "meets specification"@en ;
+    skos:definition "A `subclass of` relationship type where when a [Sales Product](#SalesProduct) `meets specification` of a [Requirement Specification](#RequirementSpecification), each [member of](#memberOf) a [Sales Product](#salesProduct) is a [member of](#memberOf) the [Requirement Specification](#RequirementSpecification)."@en ;
+    rdfs:domain hqdm:SalesProduct ;
+    rdfs:range hqdm:RequirementSpecification ;
+    rdfs:subPropertyOf hqdm:hasSuperclass .
+
+hqdm:memberOfCurrency a rdf:Property ;
+    skos:prefLabel "member of currency"@en ;
+    skos:definition "A [member of](#memberOf) relationship type where an [Amount Of Money](#AmountOfMoney) may be a [member of](#memberOf) exactly one [Currency](#Currency)."@en ;
+    rdfs:domain hqdm:AmountOfMoney ;
+    rdfs:range hqdm:Currency ;
+    rdfs:subPropertyOf hqdm:memberOf .
+
+hqdm:naturalRole a rdf:Property ;
+    skos:prefLabel "natural role"@en ;
+    skos:definition "A [member of](#memberOf) relationship type where a [BiologicalSystem](#BiologicalSystem) has a natural role that it plays."@en ;
+    rdfs:domain hqdm:BiologicalSystem ;
+    rdfs:range hqdm:Role ;
+    rdfs:subPropertyOf hqdm:memberOfKind ;
+    skos:example "My circulatory system has the natural role of circulating blood around the body."@en .
+
+hqdm:naturalRoleByClass a rdf:Property ;
+    skos:prefLabel "natural role by class"@en ;
+    skos:definition "A relationship type where each [member of](#memberOf) the [KindOfBiologicalSystem](#KindOfBiologicalSystem) naturally participates in the [Role](#Role)."@en ;
+    hqdm:memberOf hqdm:universalSetRelationSet ;
+    rdfs:domain hqdm:KindOfBiologicalSystem ;
+    rdfs:range hqdm:Role ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:offeror a rdf:Property ;
+    skos:prefLabel "offeror"@en ;
+    skos:definition "A relationship type where an [Offering](#Offering) has exactly one [Party](#Party) who makes the [Offering](#Offering)."@en ;
+    rdfs:domain hqdm:Offering ;
+    rdfs:range hqdm:Party ;
+    rdfs:subPropertyOf hqdm:referencesByClass .
+
+hqdm:partOfByClass a rdf:Property ;
+    skos:prefLabel "part of by class"@en ;
+    skos:definition "A relationship type where a [member of](#memberOf) a [Class Of Spatio-Temporal Extent](#ClassOfSpatioTemporalExtent) is [part of](#partOf) a [member of](#memberOf) some [Class Of Spatio-Temporal Extent](#ClassOfSpatioTemporalExtent)."@en ;
+    hqdm:memberOf hqdm:universalPartRelationSet ;
+    rdfs:domain hqdm:ClassOfSpatioTemporalExtent ;
+    rdfs:range hqdm:ClassOfSpatioTemporalExtent ;
+    rdfs:subPropertyOf hqdm:universalRelationSet ;
+    skos:scopeNote "Typical examples further down the structure are between [Kind Of Individual](#KindOfIndividual) and an expected [Role](#Role)."@en .
+
+hqdm:partOfPlan a rdf:Property ;
+    skos:prefLabel "part of plan"@en ;
+    skos:definition "A [part of](#partOf) relationship type where a [Requirement](#Requirement) must be [part of](#partOf) one or more [Plan](#Plan)."@en ;
+    rdfs:domain hqdm:Requirement ;
+    rdfs:range hqdm:Plan ;
+    rdfs:subPropertyOf hqdm:partOfPossibleWorld .
+
+hqdm:partOfPossibleWorld a rdf:Property ;
+    skos:prefLabel "part of possible world"@en ;
+    skos:definition "A [aggregated into](#aggregatedInto) relationship type where a [Spatio-Temporal Extent](#SpatioTemporalExtent) may be part of one or more [Possible World](#PossibleWorld)."@en ;
+    rdfs:domain hqdm:SpatioTemporalExtent ;
+    rdfs:range hqdm:PossibleWorld ;
+    rdfs:subPropertyOf hqdm:aggregatedInto ;
+    skos:scopeNote "The relationship is optional because a [Possible World](#PossibleWorld) is not part of any other [Spatio-Temporal Extent](#SpatioTemporalExtent)."@en .
+
+hqdm:participantIn a rdf:Property ;
+    skos:prefLabel "participant in"@en ;
+    skos:definition "A relationship type where a [State](#State) is participating in an [Activity](#Activity) or [Association](#Association)."@en ;
+    rdfs:domain hqdm:Participant ;
+    rdfs:range hqdm:Activity,
+        hqdm:Association ;
+    rdfs:subPropertyOf hqdm:partOf .
+
+hqdm:periodOffered a rdf:Property ;
+    skos:prefLabel "period offered"@en ;
+    skos:definition "A relationship that is exactly one [Period Of Time](#PeriodOfTime) for which the [Offering](#Offering) is valid."@en ;
+    rdfs:domain hqdm:Offering ;
+    rdfs:range hqdm:PeriodOfTime ;
+    rdfs:subPropertyOf hqdm:referencesByClass .
+
+hqdm:rangesOver a rdf:Property ;
+    skos:prefLabel "ranges over"@en ;
+    skos:definition "A supertype_of relationship type where the members of each [Physical Property](#PhysicalProperty) in the [Physical Property Range](#PhysicalPropertyRange) are members of the [Physical Property Range](#PhysicalPropertyRange)."@en ;
+    rdfs:domain hqdm:PhysicalProperty ;
+    rdfs:range hqdm:PhysicalPropertyRange ;
+    rdfs:subPropertyOf hqdm:hasSuperclass .
+
+hqdm:references a rdf:Property ;
+    skos:prefLabel "references"@en ;
+    skos:definition "A relationship type where an [Activity](#Activity) may reference one or more [Thing](#Thing)."@en ;
+    hqdm:memberOf hqdm:universalEmergentRelationSet ;
+    rdfs:domain hqdm:Activity ;
+    rdfs:range hqdm:Thing ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:referencesByClass a rdf:Property ;
+    skos:prefLabel "references by class"@en ;
+    skos:definition "A relationship type where a [member of](#memberOf) the [Kind Of Activity](#KindOfActivity) references a [member of](#memberOf) the [Class](#Class)."@en ;
+    hqdm:memberOf hqdm:universalEmergentRelationSet ;
+    rdfs:domain hqdm:KindOfActivity ;
+    rdfs:range hqdm:Class ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:represented a rdf:Property ;
+    skos:prefLabel "represented"@en ;
+    skos:definition "A relationship type where the [Thing](#Thing) is represented by each [member of](#memberOf) the [Representation By Pattern](#RepresentationByPattern)."@en ;
+    hqdm:memberOf hqdm:universalEmergentRelationSet ;
+    rdfs:domain hqdm:RepresentationByPattern ;
+    rdfs:range hqdm:Thing ;
+    rdfs:subPropertyOf hqdm:universalRelationSet ;
+    skos:scopeNote "When used with [IdentificationOfPhysicalQuantity](#IdentificationOfPhysicalQuantity), represents by class means that each [member of](#memberOf) an [IdentificationOfPhysicalQuantity](#IdentificationOfPhysicalQuantity) represents the [Physical Quantity](#PhysicalQuantity). For example any writing down of 20C represents that particular degree of hotness."@en .
+
+hqdm:represents a rdf:Property ;
+    skos:prefLabel "represents"@en ;
+    skos:definition "A relationship type where a [Representation By Sign](#RepresentationBySign) represents one or more [Thing](#Thing)."@en ;
+    hqdm:memberOf hqdm:universalEmergentRelationSet ;
+    rdfs:domain hqdm:RepresentationBySign ;
+    rdfs:range hqdm:Thing ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:soldAs a rdf:Property ;
+    skos:prefLabel "sold as"@en ;
+    skos:definition "A [has superclass](#hasSuperclass) where the [Sales Product Version](#SalesProductVersion) may be sold as a [Sales Product](#SalesProduct)."@en ;
+    rdfs:domain hqdm:SalesProductVersion ;
+    rdfs:range hqdm:SalesProduct ;
+    rdfs:subPropertyOf hqdm:hasSuperclass .
+
+hqdm:soldUnder a rdf:Property ;
+    skos:prefLabel "sold under"@en ;
+    skos:definition "A [has superclass](#hasSuperclass) where the [Sales Product](#SalesProduct) is sold under a [Product Brand](#ProductBrand)."@en ;
+    rdfs:domain hqdm:SalesProduct ;
+    rdfs:range hqdm:ProductBrand ;
+    rdfs:subPropertyOf hqdm:hasSuperclass .
+
+hqdm:successor a rdf:Property ;
+    skos:prefLabel "successor"@en ;
+    skos:definition "A relationship type where a [Sales Product Version](#SalesProductVersion) may have exactly one successor."@en ;
+    hqdm:memberOf hqdm:universalOrderRelationSet ;
+    rdfs:domain hqdm:SalesProductVersion ;
+    rdfs:range hqdm:SalesProductVersion ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:unit a rdf:Property ;
+    skos:prefLabel "unit"@en ;
+    skos:definition "A [Scale](#Scale) may have at most one [UnitOfMeasure](#UnitOfMeasure)."@en ;
+    hqdm:memberOf hqdm:universalEmergentRelationSet ;
+    rdfs:domain hqdm:Scale ;
+    rdfs:range hqdm:UnitOfMeasure ;
+    rdfs:subPropertyOf hqdm:universalRelationSet ;
+    skos:scopeNote "A [Scale](#Scale) may not have a [Unit Of Measure](#UnitOfMeasure). To have a [Unit Of Measure](#UnitOfMeasure) the points on the [Scale](#Scale) must be evenly placed so that adding one means the same thing. This is not true for some scales such as Rockwell Hardness where the points on the scale are an arbitrary distance apart. A [Scale](#Scale) will also not have a [Unit Of Measure](#UnitOfMeasure) when it is a dimensionless scale."@en,
+        "A [Unit Of Measure](#UnitOfMeasure) may apply to more than one [Scale](#Scale)."@en .
+
+hqdm:upperBound a rdf:Property ;
+    skos:prefLabel "upper bound"@en ;
+    skos:definition "A `supertype of` relationship type where each [PhysicalQuantityRange](#PhysicalQuantityRange) must have as UpperBound exactly one [PhysicalQuantity](#PhysicalQuantity)."@en ;
+    rdfs:domain hqdm:PhysicalQuantity ;
+    rdfs:range hqdm:PhysicalQuantityRange ;
+    rdfs:subPropertyOf hqdm:rangesOver .
+
+hqdm:uses a rdf:Property ;
+    skos:prefLabel "uses"@en ;
+    skos:definition "A relationship type where an [IdentificationOfPhysicalQuantity](#IdentificationOfPhysicalQuantity) uses exactly one [Scale](#Scale)."@en ;
+    hqdm:memberOf hqdm:universalEmergentRelationSet ;
+    rdfs:domain hqdm:IdentificationOfPhysicalQuantity ;
+    rdfs:range hqdm:Scale ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+hqdm:value a rdf:Property ;
+    skos:prefLabel "value"@en ;
+    skos:definition "A relationship type where an [IdentificationOfPhysicalQuantity](#IdentificationOfPhysicalQuantity) consists of exactly one decimal as its value."@en ;
+    rdfs:domain hqdm:IdentificationOfPhysicalQuantity ;
+    rdfs:range xsd:decimal ; 
+    rdfs:subPropertyOf hqdm:consistsOfByClass ;
+    skos:scopeNote "The members of this data type `xsd:decimal` is an identification of a value from the real world, not just a particular double when implemented as a data model. E.g. The Planck constant to 300 significant figures can't be captured by just a double."@en .
+
+hqdm:consistsOfByClass a rdf:Property ;
+    skos:prefLabel "consists of by class"@en ;
+    skos:definition "An inverse [part of by class](#partOfByClass) relationship type where a [member of](#memberOf) one [Class Of Spatio-Temporal Extent](#ClassOfSpatioTemporalExtent) [consists of](#consistsOf) another [member of](#memberOf) a [Class Of Spatio-Temporal Extent](#ClassOfSpatioTemporalExtent)."@en ;
+    hqdm:memberOf hqdm:universalPartRelationSet ;
+    rdfs:domain hqdm:ClassOfSpatioTemporalExtent ;
+    rdfs:range hqdm:ClassOfSpatioTemporalExtent ;
+    rdfs:subPropertyOf hqdm:universalRelationSet .
+
+#################################################################
+#    Classes
+#################################################################
+
+hqdm:AbstractObject a rdfs:Class ;
+    skos:prefLabel "Abstract Object"@en ;
+    skos:definition "A [Thing](#Thing) that does not exist in space or time."@en ;
+    rdfs:subClassOf hqdm:Thing ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_01.png> .
+
+hqdm:AcceptanceOfOffer a rdfs:Class ;
+    skos:prefLabel "Acceptance of Offer"@en ;
+    skos:definition "A [SociallyConstructedActivity](#SociallyConstructedActivity) that is the acceptance of an offer as `part of` an [AgreeContract](#AgreeContract)."@en ;
+    rdfs:subClassOf hqdm:SociallyConstructedActivity ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_41.png> .
+
+hqdm:AcceptanceOfOfferForGoods a rdfs:Class ;
+    skos:prefLabel "Acceptance of Offer for Goods"@en ;
+    skos:definition "A [ReachingAgreement](#ReachingAgreement) that consists of an [Offer](#Offer) of something in exchange for some consideration, and an [AcceptanceOfOffer](#AcceptanceOfOffer)."@en ;
+    rdfs:subClassOf hqdm:AcceptanceOfOffer ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_42.png> .
+
+hqdm:Activity a rdfs:Class ;
+    skos:prefLabel "Activity"@en ;
+    skos:definition "An [Individual](#Individual) that consists of its participants and causes some [Event](#Event)."@en ;
+    rdfs:subClassOf hqdm:Individual,
+        hqdm:StateOfActivity ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_14.png> .
+
+hqdm:AgreeContract a rdfs:Class ;
+    skos:prefLabel "Agree Contract"@en ;
+    skos:definition "A [ReachingAgreement](#ReachingAgreement) that consists of an [Offer](#Offer) of something in exchange for some consideration, and an [AcceptanceOfOffer](#AcceptanceOfOffer)."@en ;
+    rdfs:subClassOf hqdm:ReachingAgreement ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_40.png> .
+
+hqdm:AgreementExecution a rdfs:Class ;
+    skos:prefLabel "Agreement Execution"@en ;
+    skos:definition "A [SociallyConstructedActivity](#SociallyConstructedActivity) where two or more parties carry out a course of action previously agreed upon."@en ;
+    rdfs:subClassOf hqdm:SociallyConstructedActivity ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_39.png> .
+
+hqdm:AgreementProcess a rdfs:Class ;
+    skos:prefLabel "Agreement Process"@en ;
+    skos:definition "A [SociallyConstructedActivity](#SociallyConstructedActivity) that consists of a [ReachingAgreement](#ReachingAgreement) and an [AgreementExecution](#AgreementExecution), where the [AgreementExecution](#AgreementExecution) is the course of action agreed to in the [ReachingAgreement](#ReachingAgreement)."@en ;
+    rdfs:subClassOf hqdm:SociallyConstructedActivity ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_39.png> .
+
+hqdm:AmountOfMoney a rdfs:Class ;
+    skos:prefLabel "Amount of Money"@en ;
+    skos:definition "A [StateOfAmountOfMoney](#StateOfAmountOfMoney), that is also a [SociallyConstructedObject](#SociallyConstructedObject), and a [PhysicalObject](#PhysicalObject) that is intended and accepted for use as a means of exchange."@en ;
+    rdfs:subClassOf hqdm:PhysicalObject,
+        hqdm:SociallyConstructedObject,
+        hqdm:StateOfAmountOfMoney ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_34.png> .
+
+hqdm:Asset a rdfs:Class ;
+    skos:prefLabel "Asset"@en ;
+    skos:definition "A [StateOfPhysicalObject](#StateOfPhysicalObject) that is also a [Participant](#Participant) that is the [participant in](#participantIn) an [Ownership](#Ownership) that is owned."@en ;
+    rdfs:subClassOf hqdm:Participant ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_35.png> .
+
+hqdm:Association a rdfs:Class ;
+    skos:prefLabel "Association"@en ;
+    skos:definition "An [Individual](#Individual) that [consists of](#consistsOf) the participants that are associated, and where the participants are `part of` the same [PeriodOfTime](#PeriodOfTime)."@en ;
+    rdfs:subClassOf hqdm:Individual,
+        hqdm:StateOfAssociation ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_13.png> .
+
+hqdm:BeginningOfOwnership a rdfs:Class ;
+    skos:prefLabel "Beginning of Ownership"@en ;
+    skos:definition "An [Event](#Event) that is the beginning of an ownership association."@en ;
+    rdfs:subClassOf hqdm:Event ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_35.png> .
+
+hqdm:BiologicalObject a rdfs:Class ;
+    skos:prefLabel "Biological Object"@en ;
+    skos:definition "A [StateOfBiologicalObject](#StateOfBiologicalObject) that is also a [PhysicalObject](#PhysicalObject) that sustains itself and reproduces."@en ;
+    rdfs:subClassOf hqdm:PhysicalObject,
+        hqdm:StateOfBiologicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_20.png> .
+
+hqdm:BiologicalSystem a rdfs:Class ;
+    skos:prefLabel "Biological System"@en ;
+    skos:definition "Any system that is also an [OrdinaryBiologicalObject](#OrdinaryBiologicalObject) and a [StateOfBiologicalSystem](#StateOfBiologicalSystem)."@en ;
+    rdfs:subClassOf hqdm:OrdinaryBiologicalObject,
+        hqdm:StateOfBiologicalSystem,
+        hqdm:System ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_22.png> .
+
+hqdm:BiologicalSystemComponent a rdfs:Class ;
+    skos:prefLabel "Biological System Component"@en ;
+    skos:definition "A [BiologicalObject](#BiologicalObject), [StateOfBiologicalSystemComponent](#StateOfBiologicalSystemComponent) and [SystemComponent](#SystemComponent) that is any [BiologicalObject](#BiologicalObject) that is also a [SystemComponent](#SystemComponent)."@en ;
+    rdfs:subClassOf hqdm:BiologicalObject,
+        hqdm:StateOfBiologicalSystemComponent,
+        hqdm:SystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_24.png> .
+
+hqdm:Class a rdfs:Class ;
+    skos:prefLabel "Class"@en ;
+    skos:definition "An [AbstractObject](#AbstractObject) that has members and whose identity is defined by its membership."@en ;
+    rdfs:subClassOf hqdm:AbstractObject, 
+        rdfs:Class ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_02.png> .
+
+hqdm:ClassOfAbstractObject a rdfs:Class ;
+    skos:prefLabel "Class of Abstract Object"@en ;
+    skos:definition "A [Class](#Class) that is [AbstractObject](#AbstractObject) or any its subsets."@en ;
+    rdfs:subClassOf hqdm:Class ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_02.png> .
+
+hqdm:ClassOfActivity a rdfs:Class ;
+    skos:prefLabel "Class of Activity"@en ;
+    skos:definition "A [ClassOfIndividual](#ClassOfIndividual) and a [ClassOfStateOfActivity](#ClassOfStateOfActivity) that is [Activity](#Activity) or any of its possible subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfIndividual,
+        hqdm:ClassOfStateOfActivity ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_16.png> .
+
+hqdm:ClassOfAgreeContract a rdfs:Class ;
+    skos:prefLabel "Class of Agree Contract"@en ;
+    skos:definition "A [ClassOfReachingAgreement](#ClassOfReachingAgreement) that is [AgreeContract](#AgreeContract) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfReachingAgreement ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_40.png> .
+
+hqdm:ClassOfAgreementExecution a rdfs:Class ;
+    skos:prefLabel "Class of Agreement Execution"@en ;
+    skos:definition "A [ClassOfSociallyConstructedActivity](#ClassOfSociallyConstructedActivity) that is [AgreementExecution](#AgreementExecution) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfSociallyConstructedActivity ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_39.png> .
+
+hqdm:ClassOfAgreementProcess a rdfs:Class ;
+    skos:prefLabel "Class of Agreement Process"@en ;
+    skos:definition "A [ClassOfSociallyConstructedActivity](#ClassOfSociallyConstructedActivity) that is [AgreementProcess](#AgreementProcess) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfSociallyConstructedActivity ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_39.png> .
+
+hqdm:ClassOfAmountOfMoney a rdfs:Class ;
+    skos:prefLabel "Class of Amount of Money"@en ;
+    skos:definition "A [ClassOfStateOfAmountOfMoney](#ClassOfStateOfAmountOfMoney), that is also a [ClassOfSociallyConstructedObject](#ClassOfSociallyConstructedObject), and a [ClassOfPhysicalObject](#ClassOfPhysicalObject) that is [AmountOfMoney](#AmountOfMoney) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfPhysicalObject,
+        hqdm:ClassOfSociallyConstructedObject,
+        hqdm:ClassOfStateOfAmountOfMoney ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_34.png> .
+
+hqdm:ClassOfAssociation a rdfs:Class ;
+    skos:prefLabel "Class of Association"@en ;
+    skos:definition "A [ClassOfStateOfAssociation](#ClassOfStateOfAssociation) that is also a [ClassOfIndividual](#ClassOfIndividual) that is [Association](#Association) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfIndividual,
+        hqdm:ClassOfStateOfAssociation ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_16.png> .
+
+hqdm:ClassOfBiologicalObject a rdfs:Class ;
+    skos:prefLabel "Class of Biological Object"@en ;
+    skos:definition "A [ClassOfStateOfBiologicalObject](#ClassOfStateOfBiologicalObject) and [ClassOfPhysicalObject](#ClassOfPhysicalObject) that is [BiologicalObject](#BiologicalObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfPhysicalObject,
+        hqdm:ClassOfStateOfBiologicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_20.png> .
+
+hqdm:ClassOfBiologicalSystem a rdfs:Class ;
+    skos:prefLabel "Class of Biological System"@en ;
+    skos:definition "A [ClassOfStateOfBiologicalSystem](#ClassOfStateOfBiologicalSystem), [ClassOfOrdinaryBiologicalObject](#ClassOfOrdinaryBiologicalObject), and [ClassOfSystem](#ClassOfSystem) that is [BiologicalSystem](#BiologicalSystem) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfOrdinaryBiologicalObject,
+        hqdm:ClassOfStateOfBiologicalSystem,
+        hqdm:ClassOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_22.png> .
+
+hqdm:ClassOfBiologicalSystemComponent a rdfs:Class ;
+    skos:prefLabel "Class of Biological System Component"@en ;
+    skos:definition "A [ClassOfBiologicalObject](#ClassOfBiologicalObject), [ClassOfStateOfBiologicalSystemComponent](#ClassOfStateOfBiologicalSystemComponent), and [ClassOfSystemComponent](#ClassOfSystemComponent) that is [BiologicalSystemComponent](#BiologicalSystemComponent) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfBiologicalObject,
+        hqdm:ClassOfStateOfBiologicalSystemComponent,
+        hqdm:ClassOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_24.png> .
+
+hqdm:ClassOfClass a rdfs:Class ;
+    skos:prefLabel "Class of Class"@en ;
+    skos:definition "A [Class](#Class) that is [Class](#Class) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfAbstractObject ;
+    skos:scopeNote "More formally this means that any [member of](#memberOf) the powerset of [Class](#Class) is a valid [member of](#memberOf) `Class Of Class`."@en ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_02.png> .
+
+hqdm:ClassOfClassOfSpatioTemporalExtent a rdfs:Class ;
+    skos:prefLabel "Class of Class of Spatio-Temporal Extent"@en ;
+    skos:definition "A [ClassOfClass](#ClassOfClass) that is [ClassOfSpatioTemporalExtent](#ClassOfSpatioTemporalExtent) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfClass ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_04.png> .
+
+hqdm:ClassOfContractExecution a rdfs:Class ;
+    skos:prefLabel "Class of Contract Execution"@en ;
+    skos:definition "A [ClassOfAgreementExecution](#ClassOfAgreementExecution) that is [ContractExecution](#ContractExecution) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfAgreementExecution ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_40.png> .
+
+hqdm:ClassOfContractProcess a rdfs:Class ;
+    skos:prefLabel "Class of Contract Process"@en ;
+    skos:definition "A [ClassOfAgreementProcess](#ClassOfAgreementProcess) that is [ContractProcess](#ContractProcess) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfAgreementProcess ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_40.png> .
+
+hqdm:ClassOfEvent a rdfs:Class ;
+    skos:prefLabel "Class of Event"@en ;
+    skos:definition "A [ClassOfSpatioTemporalExtent](#ClassOfSpatioTemporalExtent) that is [Event](#Event) or any of its possible subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfSpatioTemporalExtent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_05.png> .
+
+hqdm:ClassOfFunctionalObject a rdfs:Class ;
+    skos:prefLabel "Class of Functional Object"@en ;
+    skos:definition "A [ClassOfPhysicalObject](#ClassOfPhysicalObject), [ClassOfIntentionallyConstructedObject](#ClassOfIntentionallyConstructedObject), and [ClassOfStateOfFunctionalObject](#ClassOfStateOfFunctionalObject) that is [FunctionalObject](#FunctionalObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfIntentionallyConstructedObject,
+        hqdm:ClassOfPhysicalObject,
+        hqdm:ClassOfStateOfFunctionalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_26.png> .
+
+hqdm:ClassOfFunctionalSystem a rdfs:Class ;
+    skos:prefLabel "Class of Functional System"@en ;
+    skos:definition "A [ClassOfStateOfFunctionalSystem](#ClassOfStateOfFunctionalSystem), that is also a [ClassOfOrdinaryFunctionalObject](#ClassOfOrdinaryFunctionalObject), and a [ClassOfSystem](#ClassOfSystem) that is [FunctionalSystem](#FunctionalSystem) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfOrdinaryFunctionalObject,
+        hqdm:ClassOfStateOfFunctionalSystem,
+        hqdm:ClassOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_28.png> .
+
+hqdm:ClassOfFunctionalSystemComponent a rdfs:Class ;
+    skos:prefLabel "Class of Functional System Component"@en ;
+    skos:definition "A [ClassOfStateOfFunctionalSystemComponent](#ClassOfStateOfFunctionalSystemComponent), and [ClassOfSystemComponent](#ClassOfSystemComponent) that is [FunctionalSystemComponent](#FunctionalSystemComponent) and any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfFunctionalSystemComponent,
+        hqdm:ClassOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_28.png> .
+
+hqdm:ClassOfInPlaceBiologicalComponent a rdfs:Class ;
+    skos:prefLabel "Class of In-Place Biological Component"@en ;
+    skos:definition "A [ClassOfStateOfBiologicalSystemComponent](#ClassOfStateOfBiologicalSystemComponent), that is also a [ClassOfStateOfOrdinaryBiologicalObject](#ClassOfStateOfOrdinaryBiologicalObject), and a [ClassOfInstalledObject](#ClassOfInstalledObject) that is [InPlaceBiologicalComponent](#InPlaceBiologicalComponent) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfInstalledObject,
+        hqdm:ClassOfStateOfBiologicalSystemComponent,
+        hqdm:ClassOfStateOfOrdinaryBiologicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_24.png> .
+
+hqdm:ClassOfIndividual a rdfs:Class ;
+    skos:prefLabel "Class of Individual"@en ;
+    skos:definition "A [ClassOfState](#ClassOfState) that is [Individual](#Individual) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfState ;
+    skos:scopeNote "Only classes that necessarily apply to an [Individual](#Individual) for the whole of its life are valid members. Others are members of [Class Of State](#ClassOfState) and apply to the [State](#State) that is the [Individual](#Individual) for the [Period Of Time](#PeriodOfTime) that the class applies for."@en ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_06.png> .
+
+hqdm:ClassOfInstalledFunctionalSystemComponent a rdfs:Class ;
+    skos:prefLabel "Class of Installed Functional System Component"@en ;
+    skos:definition "A [ClassOfStateOfFunctionalSystemComponent](#ClassOfStateOfFunctionalSystemComponent) that is also a [ClassOfInstalledObject](#ClassOfInstalledObject) that is [InstalledFunctionalSystemComponent](#InstalledFunctionalSystemComponent) and any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfInstalledObject,
+        hqdm:ClassOfStateOfFunctionalSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_28.png> .
+
+hqdm:ClassOfInstalledObject a rdfs:Class ;
+    skos:prefLabel "Class of Installed Object"@en ;
+    skos:definition "A [ClassOfStateOfSystemComponent](#ClassOfStateOfSystemComponent) that is also a [ClassOfStateOfOrdinaryPhysicalObject](#ClassOfStateOfOrdinaryPhysicalObject) that is [InstalledObject](#InstalledObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfOrdinaryPhysicalObject,
+        hqdm:ClassOfStateOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_19.png> .
+
+hqdm:ClassOfIntentionallyConstructedObject a rdfs:Class ;
+    skos:prefLabel "Class of Intentionally Constructed Object"@en ;
+    skos:definition "A [ClassOfIndividual](#ClassOfIndividual) that is also a [ClassOfStateOfIntentionallyConstructedObject](#ClassOfStateOfIntentionallyConstructedObject) that is [IntentionallyConstructedObject](#IntentionallyConstructedObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfIndividual,
+        hqdm:ClassOfStateOfIntentionallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_25.png> .
+
+hqdm:ClassOfOffer a rdfs:Class ;
+    skos:prefLabel "Class of Offer"@en ;
+    skos:definition "A [ClassOfSociallyConstructedActivity](#ClassOfSociallyConstructedActivity) that is [Offer](#Offer) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfSociallyConstructedActivity ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_44.png> .
+
+hqdm:ClassOfOrdinaryBiologicalObject a rdfs:Class ;
+    skos:prefLabel "Class of Ordinary Biological Object"@en ;
+    skos:definition "A [ClassOfBiologicalObject](#ClassOfBiologicalObject), [ClassOfOrdinaryPhysicalObject](#ClassOfOrdinaryPhysicalObject) and [ClassOfStateOfOrdinaryBiologicalObject](#ClassOfStateOfOrdinaryBiologicalObject) that is [OrdinaryBiologicalObject](#OrdinaryBiologicalObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfBiologicalObject,
+        hqdm:ClassOfOrdinaryPhysicalObject,
+        hqdm:ClassOfStateOfOrdinaryBiologicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_21.png> .
+
+hqdm:ClassOfOrdinaryFunctionalObject a rdfs:Class ;
+    skos:prefLabel "Class of Ordinary Functional Object"@en ;
+    skos:definition "A [ClassOfStateOfOrdinaryFunctionalObject](#ClassOfStateOfOrdinaryFunctionalObject), that is also a [ClassOfFunctionalObject](#ClassOfFunctionalObject), and a [ClassOfOrdinaryPhysicalObject](#ClassOfOrdinaryPhysicalObject) that is [OrdinaryFunctionalObject](#OrdinaryFunctionalObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfFunctionalObject,
+        hqdm:ClassOfOrdinaryPhysicalObject,
+        hqdm:ClassOfStateOfOrdinaryFunctionalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_27.png> .
+
+hqdm:ClassOfOrdinaryPhysicalObject a rdfs:Class ;
+    skos:prefLabel "Class of Ordinary Physical Object"@en ;
+    skos:definition "A [ClassOfStateOfOrdinaryPhysicalObject](#ClassOfStateOfOrdinaryPhysicalObject) that is also a [ClassOfPhysicalObject](#ClassOfPhysicalObject) that is [OrdinaryPhysicalObject](#OrdinaryPhysicalObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfPhysicalObject,
+        hqdm:ClassOfStateOfOrdinaryPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_08.png> .
+
+hqdm:ClassOfOrganization a rdfs:Class ;
+    skos:prefLabel "Class of Organization"@en ;
+    skos:definition "A [ClassOfStateOfOrganization](#ClassOfStateOfOrganization), that is also a [ClassOfSociallyConstructedObject](#ClassOfSociallyConstructedObject), and a [ClassOfParty](#ClassOfParty) that is [Organization](#Organization) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfParty,
+        hqdm:ClassOfSociallyConstructedObject,
+        hqdm:ClassOfStateOfOrganization ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_31.png> .
+
+hqdm:ClassOfOrganizationComponent a rdfs:Class ;
+    skos:prefLabel "Class of Organization Component"@en ;
+    skos:definition "A [ClassOfStateOfOrganizationComponent](#ClassOfStateOfOrganizationComponent), that is also a [ClassOfSystemComponent](#ClassOfSystemComponent), and a [ClassOfSociallyConstructedObject](#ClassOfSociallyConstructedObject) that is [OrganizationComponent](#OrganizationComponent) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfSociallyConstructedObject,
+        hqdm:ClassOfStateOfOrganizationComponent,
+        hqdm:ClassOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_33.png> .
+
+hqdm:ClassOfParticipant a rdfs:Class ;
+    skos:prefLabel "Class of Participant"@en ;
+    skos:definition "A [ClassOfStateOfPhysicalObject](#ClassOfStateOfPhysicalObject) that is [Participant](#Participant) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_16.png> .
+
+hqdm:ClassOfParty a rdfs:Class ;
+    skos:prefLabel "Class of Party"@en ;
+    skos:definition "A [ClassOfSystem](#ClassOfSystem) that is [Party](#Party) or any of its subtypes."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfParty,
+        hqdm:ClassOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_30.png> .
+
+hqdm:ClassOfPeriodOfTime a rdfs:Class ;
+    skos:prefLabel "Class of Period of Time"@en ;
+    skos:definition "A [ClassOfState](#ClassOfState) that is [PeriodOfTime](#PeriodOfTime) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfState ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_11.png> .
+
+hqdm:ClassOfPerson a rdfs:Class ;
+    skos:prefLabel "Class of Person"@en ;
+    skos:definition "A [ClassOfBiologicalSystem](#ClassOfBiologicalSystem), [ClassOfStateOfPerson](#ClassOfStateOfPerson) and [ClassOfParty](#ClassOfParty) that is [Person](#Person) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfBiologicalSystem,
+        hqdm:ClassOfParty,
+        hqdm:ClassOfStateOfPerson ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_23.png> .
+
+hqdm:ClassOfPersonInPosition a rdfs:Class ;
+    skos:prefLabel "Class of Person in Position"@en ;
+    skos:definition "A [ClassOfInstalledObject](#ClassOfInstalledObject) that is also a [ClassOfStateOfPosition](#ClassOfStateOfPosition) that is [PersonInPosition](#PersonInPosition) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfInstalledObject,
+        hqdm:ClassOfStateOfPosition ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_33.png> .
+
+hqdm:ClassOfPhysicalObject a rdfs:Class ;
+    skos:prefLabel "Class of Physical Object"@en ;
+    skos:definition "A [ClassOfIndividual](#ClassOfIndividual) and a [ClassOfStateOfPhysicalObject](#ClassOfStateOfPhysicalObject) that is [PhysicalObject](#PhysicalObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfIndividual,
+        hqdm:ClassOfStateOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_07.png> .
+
+hqdm:ClassOfPhysicalProperty a rdfs:Class ;
+    skos:prefLabel "Class of Physical Property"@en ;
+    skos:definition "A [ClassOfClassOfSpatioTemporalExtent](#ClassOfClassOfSpatioTemporalExtent) that is [PhysicalProperty](#PhysicalProperty) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfClassOfSpatioTemporalExtent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_12.png> .
+
+hqdm:ClassOfPhysicalQuantity a rdfs:Class ;
+    skos:prefLabel "Class of Physical Quantity"@en ;
+    skos:definition "A [ClassOfPhysicalProperty](#ClassOfPhysicalProperty) that is [PhysicalQuantity](#PhysicalQuantity) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfPhysicalProperty ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_12.png> .
+
+hqdm:ClassOfPointInTime a rdfs:Class ;
+    skos:prefLabel "Class of Point in Time"@en ;
+    skos:definition "A [ClassOfEvent](#ClassOfEvent) that includes [PointInTime](#PointInTime) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfEvent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_05.png> .
+
+hqdm:ClassOfPosition a rdfs:Class ;
+    skos:prefLabel "Class of Position"@en ;
+    skos:definition "A [ClassOfStateOfPosition](#ClassOfStateOfPosition) that is also a [ClassOfOrganizationComponent](#ClassOfOrganizationComponent) that is [Position](#Position) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfOrganizationComponent,
+        hqdm:ClassOfStateOfPosition ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_33.png> .
+
+hqdm:ClassOfPossibleWorld a rdfs:Class ;
+    skos:prefLabel "Class of Possible World"@en ;
+    skos:definition "A [ClassOfIndividual](#ClassOfIndividual) that is also a [ClassOfPeriodOfTime](#ClassOfPeriodOfTime) that is [PossibleWorld](#PossibleWorld) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfIndividual,
+        hqdm:ClassOfPeriodOfTime ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_11.png> .
+
+hqdm:ClassOfReachingAgreement a rdfs:Class ;
+    skos:prefLabel "Class of Reaching Agreement"@en ;
+    skos:definition "A [ClassOfSociallyConstructedActivity](#ClassOfSociallyConstructedActivity) that is [ReachingAgreement](#ReachingAgreement) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfSociallyConstructedActivity ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_39.png> .
+
+hqdm:ClassOfRelationship a rdfs:Class ;
+    skos:prefLabel "Class of Relationship"@en ;
+    skos:definition "A [Class](#Class) that is [Relationship](#Relationship) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfAbstractObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_03.png> .
+
+hqdm:ClassOfRepresentation a rdfs:Class ;
+    skos:prefLabel "Class of Representation"@en ;
+    skos:definition "A [Class Of Association](#ClassOfAssociation) that is [Representation By Sign](#RepresentationBySign) or any of its subsets"@en ;
+    rdfs:subClassOf hqdm:ClassOfAssociation ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_45.png> .
+
+hqdm:ClassOfSalesProductInstance a rdfs:Class ;
+    skos:prefLabel "Class of Sales Product Instance"@en ;
+    skos:definition "A [ClassOfStateOfSalesProductInstance](#ClassOfStateOfSalesProductInstance) that is also a [ClassOfOrdinaryFunctionalObject](#ClassOfOrdinaryFunctionalObject) that is [SalesProductInstance](#SalesProductInstance) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfOrdinaryFunctionalObject,
+        hqdm:ClassOfStateOfSalesProductInstance ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_43.png> .
+
+hqdm:ClassOfSign a rdfs:Class ;
+    skos:prefLabel "Class of Sign"@en ;
+    skos:definition "A [ClassOfStateOfSign](#ClassOfStateOfSign) that is also a [ClassOfSociallyConstructedObject](#ClassOfSociallyConstructedObject) that is [Sign](#Sign) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfSociallyConstructedObject,
+        hqdm:ClassOfStateOfSign ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_45.png> .
+
+hqdm:ClassOfSociallyConstructedActivity a rdfs:Class ;
+    skos:prefLabel "Class of Socially Constructed Activity"@en ;
+    skos:definition "A [ClassOfSociallyConstructedObject](#ClassOfSociallyConstructedObject) and [ClassOfActivity](#ClassOfActivity) that is [SociallyConstructedActivity](#SociallyConstructedActivity) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfActivity,
+        hqdm:ClassOfSociallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_38.png> .
+
+hqdm:ClassOfSociallyConstructedObject a rdfs:Class ;
+    skos:prefLabel "Class of Socially Constructed Object"@en ;
+    skos:definition "A [ClassOfIntentionallyConstructedObject](#ClassOfIntentionallyConstructedObject) that is [SociallyConstructedObject](#SociallyConstructedObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfIntentionallyConstructedObject,
+        hqdm:ClassOfStateOfSociallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_29.png> .
+
+hqdm:ClassOfSpatioTemporalExtent a rdfs:Class ;
+    skos:prefLabel "Class of Spatio-Temporal Extent"@en ;
+    skos:definition "A [Class](#Class) that is [SpatioTemporalExtent](#SpatioTemporalExtent) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:Class ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_04.png> .
+
+hqdm:ClassOfState a rdfs:Class ;
+    skos:prefLabel "Class of State"@en ;
+    skos:definition "A [ClassOfSpatioTemporalExtent](#ClassOfSpatioTemporalExtent) that is [State](#State) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfSpatioTemporalExtent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_06.png> .
+
+hqdm:ClassOfStateOfActivity a rdfs:Class ;
+    skos:prefLabel "Class of State of Activity"@en ;
+    skos:definition "A [ClassOfState](#ClassOfState) that is [StateOfActivity](#StateOfActivity) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfState ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_16.png> .
+
+hqdm:ClassOfStateOfAmountOfMoney a rdfs:Class ;
+    skos:prefLabel "Class of State of Amount of Money"@en ;
+    skos:definition "A [ClassOfStateOfSociallyConstructedObject](#ClassOfStateOfSociallyConstructedObject) that is also a [ClassOfStateOfPhysicalObject](#ClassOfStateOfPhysicalObject) that is [StateOfAmountOfMoney](#StateOfAmountOfMoney) or one of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfPhysicalObject,
+        hqdm:ClassOfStateOfSociallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_34.png> .
+
+hqdm:ClassOfStateOfAssociation a rdfs:Class ;
+    skos:prefLabel "Class of State of Association"@en ;
+    skos:definition "A [ClassOfState](#ClassOfState) that is [StateOfAssociation](#StateOfAssociation) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfState ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_16.png> .
+
+hqdm:ClassOfStateOfBiologicalObject a rdfs:Class ;
+    skos:prefLabel "Class of State of Biological Object"@en ;
+    skos:definition "A [ClassOfStateOfPhysicalObject](#ClassOfStateOfPhysicalObject) that is [StateOfBiologicalObject](#StateOfBiologicalObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_20.png> .
+
+hqdm:ClassOfStateOfBiologicalSystem a rdfs:Class ;
+    skos:prefLabel "Class of State of Biological System"@en ;
+    skos:definition "A [ClassOfStateOfOrdinaryBiologicalObject](#ClassOfStateOfOrdinaryBiologicalObject) and [ClassOfStateOfSystem](#ClassOfStateOfSystem) that is [StateOfBiologicalSystem](#StateOfBiologicalSystem) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfOrdinaryBiologicalObject,
+        hqdm:ClassOfStateOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_22.png> .
+
+hqdm:ClassOfStateOfBiologicalSystemComponent a rdfs:Class ;
+    skos:prefLabel "Class of State of Biological System Component"@en ;
+    skos:definition "A [ClassOfStateOfBiologicalObject](#ClassOfStateOfBiologicalObject) and [ClassOfStateOfSystemComponent](#ClassOfStateOfSystemComponent) that is [StateOfBiologicalSystemComponent](#StateOfBiologicalSystemComponent) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfBiologicalObject,
+        hqdm:ClassOfStateOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_24.png> .
+
+hqdm:ClassOfStateOfFunctionalObject a rdfs:Class ;
+    skos:prefLabel "Class of State of Functional Object"@en ;
+    skos:definition "A [ClassOfStateOfPhysicalObject](#ClassOfStateOfPhysicalObject) and [ClassOfStateOfIntentionallyConstructedObject](#ClassOfStateOfIntentionallyConstructedObject) that is [StateOfFunctionalObject](#StateOfFunctionalObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfIntentionallyConstructedObject,
+        hqdm:ClassOfStateOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_26.png> .
+
+hqdm:ClassOfStateOfFunctionalSystem a rdfs:Class ;
+    skos:prefLabel "Class of State of Functional System"@en ;
+    skos:definition "A [ClassOfStateOfOrdinaryFunctionalObject](#ClassOfStateOfOrdinaryFunctionalObject) that is also a [ClassOfStateOfSystem](#ClassOfStateOfSystem) that is [StateOfFunctionalSystem](#StateOfFunctionalSystem) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfOrdinaryFunctionalObject,
+        hqdm:ClassOfStateOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_28.png> .
+
+hqdm:ClassOfStateOfFunctionalSystemComponent a rdfs:Class ;
+    skos:prefLabel "Class of State of Functional System Component"@en ;
+    skos:definition "A [ClassOfStateOfOrdinaryFunctionalObject](#ClassOfStateOfOrdinaryFunctionalObject) that is also a [ClassOfStateOfSystemComponent](#ClassOfStateOfSystemComponent) that is [StateOfFunctionalSystemComponent](#StateOfFunctionalSystemComponent) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfOrdinaryFunctionalObject,
+        hqdm:ClassOfStateOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_28.png> .
+
+hqdm:ClassOfStateOfIntentionallyConstructedObject a rdfs:Class ;
+    skos:prefLabel "Class of State of Intentionally Constructed Object"@en ;
+    skos:definition "A [ClassOfState](#ClassOfState) that is [StateOfIntentionallyConstructedObject](#StateOfIntentionallyConstructedObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfState ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_25.png> .
+
+hqdm:ClassOfStateOfOrdinaryBiologicalObject a rdfs:Class ;
+    skos:prefLabel "Class of State of Ordinary Biological Object"@en ;
+    skos:definition "A [ClassOfStateOfBiologicalObject](#ClassOfStateOfBiologicalObject) that is also a [ClassOfStateOfOrdinaryPhysicalObject](#ClassOfStateOfOrdinaryPhysicalObject) that is [StateOfOrdinaryBiologicalObject](#StateOfOrdinaryBiologicalObject) or any of its subsets"@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfBiologicalObject,
+        hqdm:ClassOfStateOfOrdinaryPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_21.png> .
+
+hqdm:ClassOfStateOfOrdinaryFunctionalObject a rdfs:Class ;
+    skos:prefLabel "Class of State of Ordinary Functional Object"@en ;
+    skos:definition "A [ClassOfStateOfFunctionalObject](#ClassOfStateOfFunctionalObject) that is also a [ClassOfStateOfOrdinaryPhysicalObject](#ClassOfStateOfOrdinaryPhysicalObject) that is [StateOfOrdinaryFunctionalObject](#StateOfOrdinaryFunctionalObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfFunctionalObject,
+        hqdm:ClassOfStateOfOrdinaryPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_27.png> .
+
+hqdm:ClassOfStateOfOrdinaryPhysicalObject a rdfs:Class ;
+    skos:prefLabel "Class of State of Ordinary Physical Object"@en ;
+    skos:definition "A [ClassOfStateOfPhysicalObject](#ClassOfStateOfPhysicalObject) that is [StateOfOrdinaryPhysicalObject](#StateOfOrdinaryPhysicalObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_08.png> .
+
+hqdm:ClassOfStateOfOrganization a rdfs:Class ;
+    skos:prefLabel "Class of State of Organization"@en ;
+    skos:definition "A [ClassOfStateOfSociallyConstructedObject](#ClassOfStateOfSociallyConstructedObject) that is also a [ClassOfStateOfParty](#ClassOfStateOfParty) that is [StateOfOrganization](#StateOfOrganization) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfParty,
+        hqdm:ClassOfStateOfSociallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_31.png> .
+
+hqdm:ClassOfStateOfOrganizationComponent a rdfs:Class ;
+    skos:prefLabel "Class of State of Organization Component"@en ;
+    skos:definition "A [ClassOfStateOfSystemComponent](#ClassOfStateOfSystemComponent) that is also a [ClassOfStateOfSociallyConstructedObject](#ClassOfStateOfSociallyConstructedObject) that is [StateOfOrganizationComponent](#StateOfOrganizationComponent) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfSociallyConstructedObject,
+        hqdm:ClassOfStateOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_33.png> .
+
+hqdm:ClassOfStateOfParty a rdfs:Class ;
+    skos:prefLabel "Class of State of Party"@en ;
+    skos:definition "A [ClassOfStateOfSystem](#ClassOfStateOfSystem) that is [StateOfParty](#StateOfParty) or any of its subtypes."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_30.png> .
+
+hqdm:ClassOfStateOfPerson a rdfs:Class ;
+    skos:prefLabel "Class of State of Person"@en ;
+    skos:definition "A [ClassOfStateOfBiologicalSystem](#ClassOfStateOfBiologicalSystem) and [ClassOfStateOfParty](#ClassOfStateOfParty) that is [StateOfPerson](#StateOfPerson) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfBiologicalSystem,
+        hqdm:ClassOfStateOfParty ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_23.png> .
+
+hqdm:ClassOfStateOfPhysicalObject a rdfs:Class ;
+    skos:prefLabel "Class of State of Physical Object"@en ;
+    skos:definition "A [ClassOfState](#ClassOfState) that is [StateOfPhysicalObject](#StateOfPhysicalObject) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfState ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_07.png> .
+
+hqdm:ClassOfStateOfPosition a rdfs:Class ;
+    skos:prefLabel "Class of State of Position"@en ;
+    skos:definition "A [ClassOfStateOfOrganizationComponent](#ClassOfStateOfOrganizationComponent) that is [StateOfPosition](#StateOfPosition) and any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfOrganizationComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_33.png> .
+
+hqdm:ClassOfStateOfSalesProductInstance a rdfs:Class ;
+    skos:prefLabel "Class of State of Sales Product Instance"@en ;
+    skos:definition "A [ClassOfStateOfOrdinaryFunctionalObject](#ClassOfStateOfOrdinaryFunctionalObject) that is [StateOfSalesProductInstance](#StateOfSalesProductInstance) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfOrdinaryFunctionalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_43.png> .
+
+hqdm:ClassOfStateOfSign a rdfs:Class ;
+    skos:prefLabel "Class of State of Sign"@en ;
+    skos:definition "A [ClassOfSociallyConstructedObject](#ClassOfSociallyConstructedObject) that is [StateOfSign](#StateOfSign) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfSociallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_45.png> .
+
+hqdm:ClassOfStateOfSociallyConstructedActivity a rdfs:Class ;
+    skos:prefLabel "Class of State of Socially Constructed Activity"@en ;
+    skos:definition "A [ClassOfStateOfSociallyConstructedObject](#ClassOfStateOfSociallyConstructedObject) that is [StateOfSociallyConstructedActivity](#StateOfSociallyConstructedActivity) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfActivity,
+        hqdm:ClassOfStateOfSociallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_16.png> .
+
+hqdm:ClassOfStateOfSociallyConstructedObject a rdfs:Class ;
+    skos:prefLabel "Class of State of Socially Constructed Object"@en ;
+    skos:definition "A [ClassOfStateOfIntentionallyConstructedObject](#ClassOfStateOfIntentionallyConstructedObject) that is [StateOfSociallyConstructedObject](#StateOfSociallyConstructedObject) or one of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfIntentionallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_29.png> .
+
+hqdm:ClassOfStateOfSystem a rdfs:Class ;
+    skos:prefLabel "Class of State of System"@en ;
+    skos:definition "A [ClassOfStateOfOrdinaryPhysicalObject](#ClassOfStateOfOrdinaryPhysicalObject) that is [StateOfSystem](#StateOfSystem) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfOrdinaryPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_17.png> .
+
+hqdm:ClassOfStateOfSystemComponent a rdfs:Class ;
+    skos:prefLabel "Class of State of System Component"@en ;
+    skos:definition "A [ClassOfStateOfPhysicalObject](#ClassOfStateOfPhysicalObject) that is [StateOfSystemComponent](#StateOfSystemComponent) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfStateOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_18.png> .
+
+hqdm:ClassOfSystem a rdfs:Class ;
+    skos:prefLabel "Class of System"@en ;
+    skos:definition "A [ClassOfStateOfSystem](#ClassOfStateOfSystem) that is also a [ClassOfOrdinaryPhysicalObject](#ClassOfOrdinaryPhysicalObject) that is [System](#System) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfOrdinaryPhysicalObject,
+        hqdm:ClassOfStateOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_17.png> .
+
+hqdm:ClassOfSystemComponent a rdfs:Class ;
+    skos:prefLabel "Class of System Component"@en ;
+    skos:definition "A [ClassOfStateOfSystemComponent](#ClassOfStateOfSystemComponent) that is also a [ClassOfPhysicalObject](#ClassOfPhysicalObject) that is [SystemComponent](#SystemComponent) or any of its subsets."@en ;
+    rdfs:subClassOf hqdm:ClassOfPhysicalObject,
+        hqdm:ClassOfStateOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_18.png> .
+
+hqdm:ContractExecution a rdfs:Class ;
+    skos:prefLabel "Contract Execution"@en ;
+    skos:definition "An [AgreementExecution](#AgreementExecution) that is the provision of something in exchange for some consideration."@en ;
+    rdfs:subClassOf hqdm:AgreementExecution ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_40.png> .
+
+hqdm:ContractProcess a rdfs:Class ;
+    skos:prefLabel "Contract Process"@en ;
+    skos:definition "An [AgreementProcess](#AgreementProcess) that consists of an [AgreeContract](#AgreeContract) and a [ContractExecution](#ContractExecution)."@en ;
+    rdfs:subClassOf hqdm:AgreementProcess ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_40.png> .
+
+hqdm:Currency a rdfs:Class ;
+    skos:prefLabel "Currency"@en ;
+    skos:definition "A [ClassOfAmountOfMoney](#ClassOfAmountOfMoney) that is the subset of [AmountOfMoney](#AmountOfMoney) that has as members all the money issued by an issuing authority."@en ;
+    rdfs:subClassOf hqdm:ClassOfAmountOfMoney ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_34.png> .
+
+hqdm:Definition a rdfs:Class ;
+    skos:prefLabel "Definition"@en ;
+    skos:definition "A [RepresentationByPattern](#RepresentationByPattern) that defines a [Class](#Class)."@en ;
+    rdfs:subClassOf hqdm:RepresentationByPattern ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_45.png> .
+
+hqdm:Description a rdfs:Class ;
+    skos:prefLabel "Description"@en ;
+    skos:definition "A [RepresentationByPattern](#RepresentationByPattern) that describes some [Thing](#Thing)."@en ;
+    rdfs:subClassOf hqdm:RepresentationByPattern ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_45.png> .
+
+hqdm:Employee a rdfs:Class ;
+    skos:prefLabel "Employee"@en ;
+    skos:definition "A [StateOfPerson](#StateOfPerson) that is a [participant in](#participantIn) an [Employment](#Employment)."@en ;
+    rdfs:subClassOf hqdm:Participant,
+        hqdm:StateOfPerson ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_32.png> .
+
+hqdm:Employer a rdfs:Class ;
+    skos:prefLabel "Employer"@en ;
+    skos:definition "A [StateOfParty](#StateOfParty) that is a [participant in](#participantIn) an [Employment](#Employment)."@en ;
+    rdfs:subClassOf hqdm:Participant,
+        hqdm:StateOfParty ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_32.png> .
+
+hqdm:Employment a rdfs:Class ;
+    skos:prefLabel "Employment"@en ;
+    skos:definition "An [Association](#Association) that consists of an [Employer](#Employer) and an [Employee](#Employee) where the [Employer](#Employer) pays the [Employee](#Employee) to work for them."@en ;
+    rdfs:subClassOf hqdm:Association ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_32.png> .
+
+hqdm:EndingOfOwnership a rdfs:Class ;
+    skos:prefLabel "Ending of Ownership"@en ;
+    skos:definition "An [Event](#Event) that is the ending of an [Ownership](#Ownership)."@en ;
+    rdfs:subClassOf hqdm:Event ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_35.png> .
+
+hqdm:EnumeratedClass a rdfs:Class ;
+    skos:prefLabel "Enumerated Class"@en ;
+    skos:definition "A [Class](#Class) where each `member of` the [Class](#Class) is known."@en ;
+    rdfs:subClassOf hqdm:Class ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_02.png> .
+
+hqdm:Event a rdfs:Class ;
+    skos:prefLabel "Event"@en ;
+    skos:definition "A [SpatioTemporalExtent](#SpatioTemporalExtent) that has zero temporal thickness and may bound some [SpatioTemporalExtent](#SpatioTemporalExtent)."@en ;
+    rdfs:subClassOf hqdm:SpatioTemporalExtent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_05.png> .
+
+hqdm:ExchangeOfGoodsAndMoney a rdfs:Class ;
+    skos:prefLabel "Exchange of Goods and Money"@en ;
+    skos:definition "An [AgreementExecution](#AgreementExecution) that consists of a [TransferOfOwnership](#TransferOfOwnership) of goods and a [TransferOfOwnershipOfMoney](#TransferOfOwnershipOfMoney)."@en ;
+    rdfs:subClassOf hqdm:ContractExecution ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_42.png> .
+
+hqdm:Function a rdfs:Class ;
+    skos:prefLabel "Function"@en ;
+    skos:definition "A many-to-one [Relationship](#Relationship)."@en ;
+    rdfs:subClassOf hqdm:Relationship ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_12.png> .
+
+hqdm:FunctionalObject a rdfs:Class ;
+    skos:prefLabel "Functional Object"@en ;
+    skos:definition "An [IntentionallyConstructedObject](#IntentionallyConstructedObject) that is also a [PhysicalObject](#PhysicalObject) that has an `intended role`."@en ;
+    rdfs:subClassOf hqdm:IntentionallyConstructedObject,
+        hqdm:PhysicalObject,
+        hqdm:StateOfFunctionalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_26.png> .
+
+hqdm:FunctionalSystem a rdfs:Class ;
+    skos:prefLabel "Functional System"@en ;
+    skos:definition "Any [StateOfFunctionalSystem](#StateOfFunctionalSystem) that is also an [OrdinaryFunctionalObject](#OrdinaryFunctionalObject) and a [System](#System)."@en ;
+    rdfs:subClassOf hqdm:OrdinaryFunctionalObject,
+        hqdm:StateOfFunctionalSystem,
+        hqdm:System ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_28.png> .
+
+hqdm:FunctionalSystemComponent a rdfs:Class ;
+    skos:prefLabel "Functional System Component"@en ;
+    skos:definition "An [IntentionallyConstructedObject](#IntentionallyConstructedObject) that is a replaceable `component of` a [FunctionalSystem](#FunctionalSystem)."@en ;
+    rdfs:subClassOf hqdm:FunctionalObject,
+        hqdm:StateOfFunctionalSystemComponent,
+        hqdm:SystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_28.png> .
+
+hqdm:Identification a rdfs:Class ;
+    skos:prefLabel "Identification"@en ;
+    skos:definition "A [RepresentationByPattern](#RepresentationByPattern) that is a surrogate for the [Thing](#Thing) represented."@en ;
+    rdfs:subClassOf hqdm:RepresentationByPattern ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_45.png> .
+
+hqdm:IdentificationOfPhysicalQuantity a rdfs:Class ;
+    skos:prefLabel "Identification of Physical Quantity"@en ;
+    skos:definition "An [Identification](#Identification) that identifies a [PhysicalQuantity](#PhysicalQuantity). An `identification of physical quantity` consists of a number that is a representation of the `value` the physical quantity maps to on the [Scale](#Scale)."@en ;
+    rdfs:subClassOf hqdm:Identification ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_12.png> .
+
+hqdm:InPlaceBiologicalComponent a rdfs:Class ;
+    skos:prefLabel "In-Place Biological Component"@en ;
+    skos:definition "An [InstalledObject](#InstalledObject) that is also a [StateOfOrdinaryBiologicalObject](#StateOfOrdinaryBiologicalObject) and a [StateOfSystemComponent](#StateOfSystemComponent)."@en ;
+    rdfs:subClassOf hqdm:InstalledObject,
+        hqdm:StateOfBiologicalSystemComponent,
+        hqdm:StateOfOrdinaryBiologicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_24.png> .
+
+hqdm:Individual a rdfs:Class ;
+    skos:prefLabel "Individual"@en ;
+    skos:definition "A [SpatioTemporalExtent](#SpatioTemporalExtent) that is not a proper `temporal part of` any other [Individual](#Individual) of the same kind."@en ;
+    rdfs:subClassOf hqdm:State ;
+    skos:scopeNote "In standard mereology a [SpatioTemporalExtent](#SpatioTemporalExtent) is a part of itself. Parts of an individual excluding itself are called proper parts."@en ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_06.png> .
+
+hqdm:InstalledFunctionalSystemComponent a rdfs:Class ;
+    skos:prefLabel "Installed Functional System Component"@en ;
+    skos:definition "Any [InstalledObject](#InstalledObject) that is also a [StateOfOrdinaryFunctionalObject](#StateOfOrdinaryFunctionalObject) and a [StateOfFunctionalSystemComponent](#StateOfFunctionalSystemComponent)."@en ;
+    rdfs:subClassOf hqdm:InstalledObject,
+        hqdm:StateOfFunctionalSystemComponent,
+        hqdm:StateOfOrdinaryFunctionalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_28.png> .
+
+hqdm:InstalledObject a rdfs:Class ;
+    skos:prefLabel "Installed Object"@en ;
+    skos:definition "A [StateOfOrdinaryPhysicalObject](#StateOfOrdinaryPhysicalObject) that is also a [StateOfSystemComponent](#StateOfSystemComponent) that is a `temporal part of` an [OrdinaryPhysicalObject](#OrdinaryPhysicalObject) from when it is installed as a [SystemComponent](#SystemComponent) to when it is removed."@en ;
+    rdfs:subClassOf hqdm:StateOfOrdinaryPhysicalObject,
+        hqdm:StateOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_19.png> .
+
+hqdm:IntentionallyConstructedObject a rdfs:Class ;
+    skos:prefLabel "Intentionally Constructed Object"@en ;
+    skos:definition "An [Individual](#Individual) and [StateOfIntentionallyConstructedObject](#StateOfIntentionallyConstructedObject) that is intentionally constructed."@en ;
+    rdfs:subClassOf hqdm:Individual,
+        hqdm:StateOfIntentionallyConstructedObject ;
+    skos:scopeNote "Being intentionally constructed means that it is an act of will or agreement that makes it what it is."@en ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_25.png> .
+
+hqdm:KindOfActivity a rdfs:Class ;
+    skos:prefLabel "Kind of Activity"@en ;
+    skos:definition "A [ClassOfActivity](#ClassOfActivity) all of whose members are of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfActivity,
+        hqdm:KindOfIndividual ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_16.png> .
+
+hqdm:KindOfAssociation a rdfs:Class ;
+    skos:prefLabel "Kind of Association"@en ;
+    skos:definition "A [ClassOfAssociation](#ClassOfAssociation) where all the members are of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfAssociation,
+        hqdm:KindOfIndividual ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_16.png> .
+
+hqdm:KindOfBiologicalObject a rdfs:Class ;
+    skos:prefLabel "Kind of Biological Object"@en ;
+    skos:definition "A [ClassOfBiologicalObject](#ClassOfBiologicalObject) and a [KindOfPhysicalObject](#KindOfPhysicalObject) where each `member of` a `Kind of Biological Object` is of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfBiologicalObject,
+        hqdm:KindOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_09.png> .
+
+hqdm:KindOfBiologicalSystem a rdfs:Class ;
+    skos:prefLabel "Kind of Biological System"@en ;
+    skos:definition "A [ClassOfBiologicalSystem](#ClassOfBiologicalSystem) that is also a [KindOfSystem](#KindOfSystem) all of whose members have a natural [Role](#Role) that they play."@en ;
+    rdfs:subClassOf hqdm:ClassOfBiologicalSystem,
+        hqdm:KindOfOrdinaryBiologicalObject,
+        hqdm:KindOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_10.png> .
+
+hqdm:KindOfBiologicalSystemComponent a rdfs:Class ;
+    skos:prefLabel "Kind of Biological System Component"@en ;
+    skos:definition "A [ClassOfBiologicalSystemComponent](#ClassOfBiologicalSystemComponent) that is also a [KindOfSystemComponent](#KindOfSystemComponent) where all the member components play the same role in some [BiologicalSystem](#BiologicalSystem)."@en ;
+    rdfs:subClassOf hqdm:ClassOfBiologicalSystemComponent,
+        hqdm:KindOfBiologicalObject,
+        hqdm:KindOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_10.png> .
+
+hqdm:KindOfFunctionalObject a rdfs:Class ;
+    skos:prefLabel "Kind of Functional Object"@en ;
+    skos:definition "A [ClassOfFunctionalObject](#ClassOfFunctionalObject), that is also a [KindOfPhysicalObject](#KindOfPhysicalObject), and a [KindOfIntentionallyConstructedObject](#KindOfIntentionallyConstructedObject) where each `member of` a [KindOfFunctionalObject](#KindOfFunctionalObject) is of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfFunctionalObject,
+        hqdm:KindOfIntentionallyConstructedObject,
+        hqdm:KindOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_09.png> .
+
+hqdm:KindOfFunctionalSystem a rdfs:Class ;
+    skos:prefLabel "Kind of Functional System"@en ;
+    skos:definition "A [ClassOfFunctionalSystem](#ClassOfFunctionalSystem) that is also a [KindOfSystem](#KindOfSystem) where each `Kind of Functional System` has members that are of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfFunctionalSystem,
+        hqdm:KindOfOrdinaryFunctionalObject,
+        hqdm:KindOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_10.png> .
+
+hqdm:KindOfFunctionalSystemComponent a rdfs:Class ;
+    skos:prefLabel "Kind of Functional System Component"@en ;
+    skos:definition "A [ClassOfFunctionalSystemComponent](#ClassOfFunctionalSystemComponent) that is also a [KindOfSystemComponent](#KindOfSystemComponent) where each `member of` a [KindOfFunctionalSystemComponent](#KindOfFunctionalSystemComponent) is of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfFunctionalSystemComponent,
+        hqdm:KindOfFunctionalObject,
+        hqdm:KindOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_10.png> .
+
+hqdm:KindOfIndividual a rdfs:Class ;
+    skos:prefLabel "Kind of Individual"@en ;
+    skos:definition "A [ClassOfIndividual](#ClassOfIndividual) where all the members possess attributes in common."@en ;
+    rdfs:subClassOf hqdm:ClassOfIndividual ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_09.png> .
+
+hqdm:KindOfIntentionallyConstructedObject a rdfs:Class ;
+    skos:prefLabel "Kind of Intentionally Constructed Object"@en ;
+    skos:definition "A [ClassOfIntentionallyConstructedObject](#ClassOfIntentionallyConstructedObject) that is also a [KindOfIndividual](#KindOfIndividual) where each `member of` a `Kind of Intentionally Constructed Object` is of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfIntentionallyConstructedObject,
+        hqdm:KindOfIndividual ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_09.png> .
+
+hqdm:KindOfOrdinaryBiologicalObject a rdfs:Class ;
+    skos:prefLabel "Kind of Ordinary Biological Object"@en ;
+    skos:definition "A [ClassOfOrdinaryBiologicalObject](#ClassOfOrdinaryBiologicalObject) a [KindOfOrdinaryPhysicalObject](#KindOfOrdinaryPhysicalObject) and a [KindOfBiologicalObject](#KindOfBiologicalObject) where each `member of` a `Kind of Ordinary Biological Object` is of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfOrdinaryBiologicalObject,
+        hqdm:KindOfBiologicalObject,
+        hqdm:KindOfOrdinaryPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_09.png> .
+
+hqdm:KindOfOrdinaryFunctionalObject a rdfs:Class ;
+    skos:prefLabel "Kind of Ordinary Functional Object"@en ;
+    skos:definition "A [ClassOfOrdinaryFunctionalObject](#ClassOfOrdinaryFunctionalObject), that is also a [KindOfOrdinaryPhysicalObject](#KindOfOrdinaryPhysicalObject), and a [KindOfBiologicalObject](#KindOfBiologicalObject) where each `member of` a [ClassOfOrdinaryFunctionalObject](#ClassOfOrdinaryFunctionalObject) is of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfOrdinaryFunctionalObject,
+        hqdm:KindOfFunctionalObject,
+        hqdm:KindOfOrdinaryPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_09.png> .
+
+hqdm:KindOfOrdinaryPhysicalObject a rdfs:Class ;
+    skos:prefLabel "Kind of Ordinary Physical Object"@en ;
+    skos:definition "A [ClassOfOrdinaryPhysicalObject](#ClassOfOrdinaryPhysicalObject) that is also a [KindOfPhysicalObject](#KindOfPhysicalObject) where each [OrdinaryPhysicalObject](#OrdinaryPhysicalObject) has members that are of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfOrdinaryPhysicalObject,
+        hqdm:KindOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_09.png> .
+
+hqdm:KindOfOrganization a rdfs:Class ;
+    skos:prefLabel "Kind of Organization"@en ;
+    skos:definition "A [ClassOfOrganization](#ClassOfOrganization), that is also a [KindOfParty](#KindOfParty), and a [KindOfSociallyConstructedObject](#KindOfSociallyConstructedObject) whose members are all of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfOrganization,
+        hqdm:KindOfParty,
+        hqdm:KindOfSociallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_31.png> .
+
+hqdm:KindOfOrganizationComponent a rdfs:Class ;
+    skos:prefLabel "Kind of Organization Component"@en ;
+    skos:definition "A [ClassOfOrganizationComponent](#ClassOfOrganizationComponent) that is also a [KindOfSystemComponent](#KindOfSystemComponent) whose members are all of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfOrganizationComponent,
+        hqdm:KindOfSociallyConstructedObject,
+        hqdm:KindOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_33.png> .
+
+hqdm:KindOfParty a rdfs:Class ;
+    skos:prefLabel "Kind of Party"@en ;
+    skos:definition "A [ClassOfParty](#ClassOfParty) that is also a [KindOfSystem](#KindOfSystem) where all the members are of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfParty,
+        hqdm:KindOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_30.png> .
+
+hqdm:KindOfPerson a rdfs:Class ;
+    skos:prefLabel "Kind of Person"@en ;
+    skos:definition "A [ClassOfPerson](#ClassOfPerson) that is also a [KindOfParty](#KindOfParty) whose members are all of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfPerson,
+        hqdm:KindOfParty ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_23.png> .
+
+hqdm:KindOfPhysicalObject a rdfs:Class ;
+    skos:prefLabel "Kind of Physical Object"@en ;
+    skos:definition "A [ClassOfPhysicalObject](#ClassOfPhysicalObject) that is also a [KindOfIndividual](#KindOfIndividual) where each [PhysicalObject](#PhysicalObject) has members that are of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfPhysicalObject,
+        hqdm:KindOfIndividual ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_09.png> .
+
+hqdm:KindOfPhysicalProperty a rdfs:Class ;
+    skos:prefLabel "Kind of Physical Property"@en ;
+    skos:definition "A [ClassOfPhysicalProperty](#ClassOfPhysicalProperty) where each `member of` a [KindOfPhysicalProperty](#KindOfPhysicalProperty) is of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfPhysicalProperty ;
+    skos:example "Color, with members including red, green, and blue."@en ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_12.png> .
+
+hqdm:KindOfPhysicalQuantity a rdfs:Class ;
+    skos:prefLabel "Kind of Physical Quantity"@en ;
+    skos:definition "A [ClassOfPhysicalQuantity](#ClassOfPhysicalQuantity) that is also a [KindOfPhysicalProperty](#KindOfPhysicalProperty) such that each [member of](#memberOf) the same [Kind Of Physical Quantity](#KindOfPhysicalQuantity) is comparable to the others."@en ;
+    rdfs:subClassOf hqdm:ClassOfPhysicalQuantity,
+        hqdm:KindOfPhysicalProperty ;
+    skos:example "Temperature and pressure are members of [Kind Of Physical Quantity](#KindOfPhysicalQuantity)."@en ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_12.png> .
+
+hqdm:KindOfPosition a rdfs:Class ;
+    skos:prefLabel "Kind of Position"@en ;
+    skos:definition "A [ClassOfPosition](#ClassOfPosition) that is also a [KindOfOrganizationComponent](#KindOfOrganizationComponent) where all the members are of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfPosition,
+        hqdm:KindOfOrganizationComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_33.png> .
+
+hqdm:KindOfSociallyConstructedObject a rdfs:Class ;
+    skos:prefLabel "Kind of Socially Constructed Object"@en ;
+    skos:definition "A [ClassOfSociallyConstructedObject](#ClassOfSociallyConstructedObject) that is also a [KindOfIntentionallyConstructedObject](#KindOfIntentionallyConstructedObject) where each `Kind of Socially Constructed Object` has members that are of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfSociallyConstructedObject,
+        hqdm:KindOfIntentionallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_09.png> .
+
+hqdm:KindOfSystem a rdfs:Class ;
+    skos:prefLabel "Kind of System"@en ;
+    skos:definition "A [ClassOfSystem](#ClassOfSystem) that is also a [KindOfOrdinaryPhysicalObject](#KindOfOrdinaryPhysicalObject) where each `member of` a `Kind of System` is of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfSystem,
+        hqdm:KindOfOrdinaryPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_10.png> .
+
+hqdm:KindOfSystemComponent a rdfs:Class ;
+    skos:prefLabel "Kind of System Component"@en ;
+    skos:definition "A [ClassOfSystemComponent](#ClassOfSystemComponent) that is also a [KindOfPhysicalObject](#KindOfPhysicalObject) where all the members are of the same kind."@en ;
+    rdfs:subClassOf hqdm:ClassOfSystemComponent,
+        hqdm:KindOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_10.png> .
+
+hqdm:LanguageCommunity a rdfs:Class ;
+    skos:prefLabel "Language Community"@en ;
+    skos:definition "An [Organization](#Organization) that is a group of people who share a common understanding of a set of signs."@en ;
+    rdfs:subClassOf hqdm:Organization,
+        hqdm:StateOfLanguageCommunity ;
+    skos:scopeNote "This is not restricted to natural languages, but also controlled languages, taxonomies etc."@en ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_31.png> .
+
+hqdm:MoneyAsset a rdfs:Class ;
+    skos:prefLabel "Money Asset"@en ;
+    skos:definition "An [Asset](#Asset) that is a [StateOfAmountOfMoney](#StateOfAmountOfMoney)."@en ;
+    rdfs:subClassOf hqdm:Asset,
+        hqdm:StateOfAmountOfMoney ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_36.png> .
+
+hqdm:Offer a rdfs:Class ;
+    skos:prefLabel "Offer"@en ;
+    skos:definition "A [SociallyConstructedActivity](#SociallyConstructedActivity) that proposes an exchange of something for some consideration."@en ;
+    rdfs:subClassOf hqdm:SociallyConstructedActivity ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_41.png> .
+
+hqdm:OfferAndAcceptanceForGoods a rdfs:Class ;
+    skos:prefLabel "Offer and Acceptance for Goods"@en ;
+    skos:definition "A [ReachingAgreement](#ReachingAgreement) that [consists of](#consistsOf) exactly one [Offer](#Offer) of a [TransferOfOwnershipOfMoney](#TransferOfOwnershipOfMoney) for exactly one [TransferOfOwnership](#TransferOfOwnership) that is accepted."@en ;
+    rdfs:subClassOf hqdm:AgreeContract ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_42.png> .
+
+hqdm:OfferForGoods a rdfs:Class ;
+    skos:prefLabel "Offer for Goods"@en ;
+    skos:definition "An [Offer](#Offer) of an [ExchangeOfGoodsAndMoney](#ExchangeOfGoodsAndMoney)."@en ;
+    rdfs:subClassOf hqdm:Offer ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_42.png> .
+
+hqdm:Offering a rdfs:Class ;
+    skos:prefLabel "Offering"@en ;
+    skos:definition "A [ClassOfOffer](#ClassOfOffer) that is for a [ClassOfIndividual](#ClassOfIndividual), at a [Price](#Price), by a [Party](#Party), for a [PeriodOfTime](#PeriodOfTime)."@en ;
+    rdfs:subClassOf hqdm:ClassOfOffer ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_44.png> .
+
+hqdm:OrdinaryBiologicalObject a rdfs:Class ;
+    skos:prefLabel "Ordinary Biological Object"@en ;
+    skos:definition "A [StateOfOrdinaryBiologicalObject](#StateOfOrdinaryBiologicalObject), a [BiologicalObject](#BiologicalObject), and an [OrdinaryPhysicalObject](#OrdinaryPhysicalObject) that is a [BiologicalObject](#BiologicalObject) that does not survive the replacement of all of its parts."@en ;
+    rdfs:subClassOf hqdm:BiologicalObject,
+        hqdm:OrdinaryPhysicalObject,
+        hqdm:StateOfOrdinaryBiologicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_21.png> .
+
+hqdm:OrdinaryFunctionalObject a rdfs:Class ;
+    skos:prefLabel "Ordinary Functional Object"@en ;
+    skos:definition "Any [StateOfOrdinaryFunctionalObject](#StateOfOrdinaryFunctionalObject) and [OrdinaryPhysicalObject](#OrdinaryPhysicalObject) that is a [FunctionalObject](#FunctionalObject)."@en ;
+    rdfs:subClassOf hqdm:FunctionalObject,
+        hqdm:OrdinaryPhysicalObject,
+        hqdm:StateOfOrdinaryFunctionalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_27.png> .
+
+hqdm:OrdinaryPhysicalObject a rdfs:Class ;
+    skos:prefLabel "Ordinary Physical Object"@en ;
+    skos:definition "A [PhysicalObject](#PhysicalObject) that does not survive changing all its parts at once."@en ;
+    rdfs:subClassOf hqdm:PhysicalObject,
+        hqdm:StateOfOrdinaryPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_08.png> .
+
+hqdm:Organization a rdfs:Class ;
+    skos:prefLabel "Organization"@en ;
+    skos:definition "A [StateOfOrganization](#StateOfOrganization), that is also a [Party](#Party), and a [SociallyConstructedObject](#SociallyConstructedObject) that is an organized body of people."@en ;
+    rdfs:subClassOf hqdm:Party,
+        hqdm:SociallyConstructedObject,
+        hqdm:StateOfOrganization ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_31.png> .
+
+hqdm:OrganizationComponent a rdfs:Class ;
+    skos:prefLabel "Organization Component"@en ;
+    skos:definition "A [StateOfOrganizationComponent](#StateOfOrganizationComponent), [SystemComponent](#SystemComponent), and [SociallyConstructedObject](#SociallyConstructedObject) that is a `component of` an [Organization](#Organization) that can be completely replaced without losing its identity."@en ;
+    rdfs:subClassOf hqdm:SociallyConstructedObject,
+        hqdm:StateOfOrganizationComponent,
+        hqdm:SystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_33.png> .
+
+hqdm:Owner a rdfs:Class ;
+    skos:prefLabel "Owner"@en ;
+    skos:definition "A [StateOfParty](#StateOfParty) that is also a [Participant](#Participant) that is a [participant in](#participantIn) an [Ownership](#Ownership)."@en ;
+    rdfs:subClassOf hqdm:Participant,
+        hqdm:StateOfParty ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_35.png> .
+
+hqdm:Ownership a rdfs:Class ;
+    skos:prefLabel "Ownership"@en ;
+    skos:definition "An [Association](#Association) that [consists of](#consistsOf) an [Owner](#Owner) and an [Asset](#Asset) where the [Owner](#Owner) owns the [Asset](#Asset)."@en ;
+    rdfs:subClassOf hqdm:Association ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_35.png> .
+
+hqdm:Participant a rdfs:Class ;
+    skos:prefLabel "Participant"@en ;
+    skos:definition "A [State](#State) that is a [participant in](#participantIn) an [Activity](#Activity) or [Association](#Association)."@en ;
+    rdfs:subClassOf hqdm:StateOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_15.png> .
+
+hqdm:Party a rdfs:Class ;
+    skos:prefLabel "Party"@en ;
+    skos:definition "A [StateOfParty](#StateOfParty) that is also a [System](#System) that is a [Person](#Person) or an [Organization](#Organization)."@en ;
+    rdfs:subClassOf hqdm:StateOfParty,
+        hqdm:System ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_30.png> .
+
+hqdm:Pattern a rdfs:Class ;
+    skos:prefLabel "Pattern"@en ;
+    skos:definition "A [ClassOfSign](#ClassOfSign) where all the signs are of the same `Pattern`."@en ;
+    rdfs:subClassOf hqdm:ClassOfSign ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_45.png> .
+
+hqdm:PeriodOfTime a rdfs:Class ;
+    skos:prefLabel "Period of Time"@en ;
+    skos:definition "A [State](#State) that is a `temporal part of` some [PossibleWorld](#PossibleWorld)."@en ;
+    rdfs:subClassOf hqdm:State ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_11.png> .
+
+hqdm:Person a rdfs:Class ;
+    skos:prefLabel "Person"@en ;
+    skos:definition "A [BiologicalSystem](#BiologicalSystem) that is also, a [StateOfPerson](#StateOfPerson), and a [Party](#Party) that is a human being."@en ;
+    rdfs:subClassOf hqdm:BiologicalSystem,
+        hqdm:Party,
+        hqdm:StateOfPerson ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_23.png> .
+
+hqdm:PersonInPosition a rdfs:Class ;
+    skos:prefLabel "Person in Position"@en ;
+    skos:definition "A [StateOfPosition](#StateOfPosition), that is also a [StateOfPerson](#StateOfPerson), and an [InstalledObject](#InstalledObject) that is a [Person](#Person) while they are in a [Position](#Position) and also the [Position](#Position) while it is filled by the [Person](#Person)."@en ;
+    rdfs:subClassOf hqdm:InstalledObject,
+        hqdm:StateOfPerson,
+        hqdm:StateOfPosition ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_33.png> .
+
+hqdm:PhysicalObject a rdfs:Class ;
+    skos:prefLabel "Physical Object"@en ;
+    skos:definition "An [Individual](#Individual) that consists of a distribution of matter and/or energy."@en ;
+    rdfs:subClassOf hqdm:Individual,
+        hqdm:StateOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_07.png> .
+
+hqdm:PhysicalProperty a rdfs:Class ;
+    skos:prefLabel "Physical Property"@en ;
+    skos:definition "A [ClassOfState](#ClassOfState) that is some characteristic that is the same for each state that possesses it (is a `member of` it)."@en ;
+    rdfs:subClassOf hqdm:ClassOfState ;
+    skos:example "The color red is a [Physical Property](#PhysicalProperty)."@en ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_12.png> .
+
+hqdm:PhysicalPropertyRange a rdfs:Class ;
+    skos:prefLabel "Physical Property Range"@en ;
+    skos:definition "A [ClassOfState](#ClassOfState) where each member of the set is a member of a [PhysicalProperty](#PhysicalProperty) within the range."@en ;
+    rdfs:subClassOf hqdm:ClassOfState ;
+    skos:scopeNote "The [Physical Property Range](#PhysicalPropertyRange) is a supertype of each [Physical Property](#PhysicalProperty) in the range."@en ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_46.png> .
+
+hqdm:PhysicalQuantity a rdfs:Class ;
+    skos:prefLabel "Physical Quantity"@en ;
+    skos:definition "A [PhysicalProperty](#PhysicalProperty) that is a measurable quantity of a [KindOfPhysicalQuantity](#KindOfPhysicalQuantity)."@en ;
+    rdfs:subClassOf hqdm:PhysicalProperty ;
+    skos:example "The degree of hotness known as 20 Celsius is a [Physical Quantity](#PhysicalQuantity)."@en ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_12.png> .
+
+hqdm:PhysicalQuantityRange a rdfs:Class ;
+    skos:prefLabel "Physical Quantity Range"@en ;
+    skos:definition "A [PhysicalPropertyRange](#PhysicalPropertyRange) that ranges over [PhysicalQuantity](#PhysicalQuantity) values."@en ;
+    rdfs:subClassOf hqdm:PhysicalPropertyRange ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_46.png> .
+
+hqdm:Plan a rdfs:Class ;
+    skos:prefLabel "Plan"@en ;
+    skos:definition "A [PossibleWorld](#PossibleWorld) that some party would like to bring about."@en ;
+    rdfs:subClassOf hqdm:PossibleWorld ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_46.png> .
+
+hqdm:PointInTime a rdfs:Class ;
+    skos:prefLabel "Point in Time"@en ;
+    skos:definition "An [Event](#Event) that is the whole of space at an instant from some viewpoint."@en ;
+    rdfs:subClassOf hqdm:Event ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_05.png> .
+
+hqdm:Position a rdfs:Class ;
+    skos:prefLabel "Position"@en ;
+    skos:definition "An [OrganizationComponent](#OrganizationComponent) that is also a [StateOfPosition](#StateOfPosition) that may be held by a person."@en ;
+    rdfs:subClassOf hqdm:OrganizationComponent,
+        hqdm:StateOfPosition ;
+    skos:example "Normally a position is held by one [Person](#Person) at a time, but this does not have to be the case."@en ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_33.png> .
+
+hqdm:PossibleWorld a rdfs:Class ;
+    skos:prefLabel "Possible World"@en ;
+    skos:definition "An [Individual](#Individual) that is a complete spatio-temporal history of some possible world."@en ;
+    rdfs:subClassOf hqdm:Individual,
+        hqdm:PeriodOfTime ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_11.png> .
+
+hqdm:Price a rdfs:Class ;
+    skos:prefLabel "Price"@en ;
+    skos:definition "A [ClassOfAmountOfMoney](#ClassOfAmountOfMoney) that is the `Consideration By Class` in an [Offering](#Offering)."@en ;
+    rdfs:subClassOf hqdm:ClassOfAmountOfMoney ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_44.png> .
+
+hqdm:ProductBrand a rdfs:Class ;
+    skos:prefLabel "Product Brand"@en ;
+    skos:definition "A [ClassOfSalesProductInstance](#ClassOfSalesProductInstance) that is a set of [SalesProductInstance](#SalesProductInstance) sold under a brand name."@en ;
+    rdfs:subClassOf hqdm:ClassOfSalesProductInstance ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_43.png> .
+
+hqdm:ProductOffering a rdfs:Class ;
+    skos:prefLabel "Product Offering"@en ;
+    skos:definition "An [Offering](#Offering) that is for a [SalesProduct](#SalesProduct)."@en ;
+    rdfs:subClassOf hqdm:Offering ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_44.png> .
+
+hqdm:ReachingAgreement a rdfs:Class ;
+    skos:prefLabel "Reaching Agreement"@en ;
+    skos:definition "A [SociallyConstructedActivity](#SociallyConstructedActivity) where two or more parties determine a course of action."@en ;
+    rdfs:subClassOf hqdm:SociallyConstructedActivity ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_39.png> .
+
+hqdm:RecognizingLanguageCommunity a rdfs:Class ;
+    skos:prefLabel "Recognizing Language Community"@en ;
+    skos:definition "A [State Of Language Community](#StateOfLanguageCommunity) that recognizes what a [Pattern](#Pattern) is intended to represent."@en ;
+    rdfs:subClassOf hqdm:Participant,
+        hqdm:StateOfLanguageCommunity ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_45.png> .
+
+hqdm:Relationship a rdfs:Class ;
+    skos:prefLabel "Relationship"@en ;
+    skos:definition "An [Abstract Object](#AbstractObject) that is what one thing has to do with one or more others."@en ;
+    rdfs:subClassOf hqdm:AbstractObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_03.png> .
+
+hqdm:RepresentationByPattern a rdfs:Class ;
+    skos:prefLabel "Representation by Pattern"@en ;
+    skos:definition "A [Class Of Representation](#ClassOfRepresentation) where the [Sign](#Sign) in all the members are members of the [Pattern](#Pattern) specified."@en ;
+    rdfs:subClassOf hqdm:ClassOfRepresentation ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_45.png> .
+
+hqdm:RepresentationBySign a rdfs:Class ;
+    skos:prefLabel "Representation by Sign"@en ;
+    skos:definition "An [Association](#Association) of a [Sign](#Sign) and a [RecognizingLanguageCommunity](#RecognizingLanguageCommunity) that recognizes the [Sign](#Sign) as representing some [Thing](#Thing)."@en ;
+    rdfs:subClassOf hqdm:Association ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_45.png> .
+
+hqdm:Requirement a rdfs:Class ;
+    skos:prefLabel "Requirement"@en ;
+    skos:definition "A [SpatioTemporalExtent](#SpatioTemporalExtent) that is `part of plan` at least one [Plan](#Plan) and is `defined by` exactly one [RequirementSpecification](#RequirementSpecification)."@en ;
+    rdfs:subClassOf hqdm:SpatioTemporalExtent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_46.png> .
+
+hqdm:RequirementSpecification a rdfs:Class ;
+    skos:prefLabel "Requirement Specification"@en ;
+    skos:definition "A [ClassOfSpatioTemporalExtent](#ClassOfSpatioTemporalExtent) that is the intersection_of one or more [ClassOfState](#ClassOfState)."@en ;
+    rdfs:subClassOf hqdm:ClassOfSpatioTemporalExtent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_46.png> .
+
+hqdm:Role a rdfs:Class ;
+    skos:prefLabel "Role"@en ;
+    skos:definition "A [ClassOfParticipant](#ClassOfParticipant) where each member participates in the same way in an [Activity](#Activity) or [Association](#Association)."@en ;
+    rdfs:subClassOf hqdm:ClassOfParticipant ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_16.png> .
+
+hqdm:SaleOfGoods a rdfs:Class ;
+    skos:prefLabel "Sale of Goods"@en ;
+    skos:definition "An [AgreementProcess](#AgreementProcess) that consists of an [OfferAndAcceptanceForGoods](#OfferAndAcceptanceForGoods) and an [ExchangeOfGoodsAndMoney](#ExchangeOfGoodsAndMoney)."@en ;
+    rdfs:subClassOf hqdm:ContractProcess ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_42.png> .
+
+hqdm:SalesProduct a rdfs:Class ;
+    skos:prefLabel "Sales Product"@en ;
+    skos:definition "A [ClassOfSalesProductInstance](#ClassOfSalesProductInstance) that is a set of [SalesProductInstance](#SalesProductInstance) sold under the same product name."@en ;
+    rdfs:subClassOf hqdm:ClassOfSalesProductInstance ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_43.png> .
+
+hqdm:SalesProductInstance a rdfs:Class ;
+    skos:prefLabel "Sales Product Instance"@en ;
+    skos:definition "An [OrdinaryFunctionalObject](#OrdinaryFunctionalObject) that is produced in order to be sold."@en ;
+    rdfs:subClassOf hqdm:OrdinaryFunctionalObject,
+        hqdm:StateOfSalesProductInstance ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_43.png> .
+
+hqdm:SalesProductVersion a rdfs:Class ;
+    skos:prefLabel "Sales Product Version"@en ;
+    skos:definition "A [ClassOfSalesProductInstance](#ClassOfSalesProductInstance) that is the customer facing specification of a version of a [SalesProduct](#SalesProduct)."@en ;
+    rdfs:subClassOf hqdm:ClassOfSalesProductInstance ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_43.png> .
+
+hqdm:Scale a rdfs:Class ;
+    skos:prefLabel "Scale"@en ;
+    skos:definition "A `scale` is a function from [KindOfPhysicalQuantity](#KindOfPhysicalQuantity) to the real numbers."@en ;
+    rdfs:subClassOf hqdm:Function ;
+    skos:example "The Celsius scale is a mapping from temperature to real number."@en ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_12.png> .
+
+hqdm:Sign a rdfs:Class ;
+    skos:prefLabel "Sign"@en ;
+    skos:definition "A [StateOfSign](#StateOfSign), that is also a [SociallyConstructedObject](#SociallyConstructedObject), and a [Participant](#Participant) that represents some [Thing](#Thing) for some community in one or more [RepresentationBySign](#RepresentationBySign)."@en ;
+    rdfs:subClassOf hqdm:Participant,
+        hqdm:SociallyConstructedObject,
+        hqdm:StateOfSign ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_45.png> .
+
+hqdm:SociallyConstructedActivity a rdfs:Class ;
+    skos:prefLabel "Socially Constructed Activity"@en ;
+    skos:definition "Any [SociallyConstructedObject](#SociallyConstructedObject) that is also an [Activity](#Activity)."@en ;
+    rdfs:subClassOf hqdm:Activity,
+        hqdm:SociallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_37.png> .
+
+hqdm:SociallyConstructedObject a rdfs:Class ;
+    skos:prefLabel "Socially Constructed Object"@en ;
+    skos:definition "An [IntentionallyConstructedObject](#IntentionallyConstructedObject) that is necessarily constructed by agreement or at least acquiescence of many people."@en ;
+    rdfs:subClassOf hqdm:IntentionallyConstructedObject,
+        hqdm:StateOfSociallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_29.png> .
+
+hqdm:SpatioTemporalExtent a rdfs:Class ;
+    skos:prefLabel "Spatio-Temporal Extent"@en ;
+    skos:definition "A [Thing](#Thing) that exists in time and space."@en ;
+    rdfs:subClassOf hqdm:Thing ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_04.png> .
+
+hqdm:State a rdfs:Class ;
+    skos:prefLabel "State"@en ;
+    skos:definition "A [SpatioTemporalExtent](#SpatioTemporalExtent) that is an [Individual](#Individual) or a `temporal part of` some [Individual](#Individual)."@en ;
+    rdfs:subClassOf hqdm:SpatioTemporalExtent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_06.png> .
+
+hqdm:StateOfActivity a rdfs:Class ;
+    skos:prefLabel "State of Activity"@en ;
+    skos:definition "A state that is an [Activity](#Activity) or a `temporal part of` an [Activity](#Activity)."@en ;
+    rdfs:subClassOf hqdm:State ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_14.png> .
+
+hqdm:StateOfAmountOfMoney a rdfs:Class ;
+    skos:prefLabel "State of Amount of Money"@en ;
+    skos:definition "A [SociallyConstructedObject](#SociallyConstructedObject) that is also a [StateOfPhysicalObject](#StateOfPhysicalObject) that is a `temporal part of` an [AmountOfMoney](#AmountOfMoney)"@en ;
+    rdfs:subClassOf hqdm:StateOfPhysicalObject,
+        hqdm:StateOfSociallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_34.png> .
+
+hqdm:StateOfAssociation a rdfs:Class ;
+    skos:prefLabel "State of Association"@en ;
+    skos:definition "A [State](#State) that is an [Association](#Association) or a `temporal part of` an [Association](#Association)."@en ;
+    rdfs:subClassOf hqdm:State ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_13.png> .
+
+hqdm:StateOfBiologicalObject a rdfs:Class ;
+    skos:prefLabel "State of Biological Object"@en ;
+    skos:definition "A [StateOfPhysicalObject](#StateOfPhysicalObject) that is a [BiologicalObject](#BiologicalObject) or a `temporal part of` a [BiologicalObject](#BiologicalObject)."@en ;
+    rdfs:subClassOf hqdm:StateOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_20.png> .
+
+hqdm:StateOfBiologicalSystem a rdfs:Class ;
+    skos:prefLabel "State of Biological System"@en ;
+    skos:definition "A [State of Ordinary Biological Object](#StateOfOrdinaryBiologicalObject) and [StateOfSystem](#StateOfSystem) that is [BiologicalSystem](#BiologicalSystem) or a `temporal part of` a [BiologicalSystem](#BiologicalSystem)."@en ;
+    rdfs:subClassOf hqdm:StateOfOrdinaryBiologicalObject,
+        hqdm:StateOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_22.png> .
+
+hqdm:StateOfBiologicalSystemComponent a rdfs:Class ;
+    skos:prefLabel "State of Biological System Component"@en ;
+    skos:definition "A [State of Biological Object](#StateOfBiologicalObject) and [State Of System Component](#StateOfSystemComponent) that is a [BiologicalSystemComponent](#BiologicalSystemComponent) or a `temporal part of` a [BiologicalSystemComponent](#BiologicalSystemComponent)."@en ;
+    rdfs:subClassOf hqdm:StateOfBiologicalObject,
+        hqdm:StateOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_24.png> .
+
+hqdm:StateOfFunctionalObject a rdfs:Class ;
+    skos:prefLabel "State of Functional Object"@en ;
+    skos:definition "A [StateOfIntentionallyConstructedObject](#StateOfIntentionallyConstructedObject) and [StateOfPhysicalObject](#StateOfPhysicalObject) that is a [FunctionalObject](#FunctionalObject) or a `temporal part of` a [FunctionalObject](#FunctionalObject)."@en ;
+    rdfs:subClassOf hqdm:StateOfIntentionallyConstructedObject,
+        hqdm:StateOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_26.png> .
+
+hqdm:StateOfFunctionalSystem a rdfs:Class ;
+    skos:prefLabel "State of Functional System"@en ;
+    skos:definition "Any [StateOfOrdinaryFunctionalObject](#StateOfOrdinaryFunctionalObject) that is also a [StateOfSystem](#StateOfSystem)."@en ;
+    rdfs:subClassOf hqdm:StateOfOrdinaryFunctionalObject,
+        hqdm:StateOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_28.png> .
+
+hqdm:StateOfFunctionalSystemComponent a rdfs:Class ;
+    skos:prefLabel "State of Functional System Component"@en ;
+    skos:definition "A [StateOfIntentionallyConstructedObject](#StateOfIntentionallyConstructedObject) that is a [SystemComponent](#SystemComponent) or a `temporal part of` a [SystemComponent](#SystemComponent)."@en ;
+    rdfs:subClassOf hqdm:StateOfFunctionalObject,
+        hqdm:StateOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_28.png> .
+
+hqdm:StateOfIntentionallyConstructedObject a rdfs:Class ;
+    skos:prefLabel "State of Intentionally Constructed Object"@en ;
+    skos:definition "A [State](#State) that is an [IntentionallyConstructedObject](#IntentionallyConstructedObject) or a `temporal part of` an [IntentionallyConstructedObject](#IntentionallyConstructedObject)."@en ;
+    rdfs:subClassOf hqdm:State ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_25.png> .
+
+hqdm:StateOfLanguageCommunity a rdfs:Class ;
+    skos:prefLabel "State of Language Community"@en ;
+    skos:definition "A [StateOfOrganization](#StateOfOrganization) that is a `temporal part of` a [LanguageCommunity](#LanguageCommunity)."@en ;
+    rdfs:subClassOf hqdm:StateOfOrganization ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_31.png> .
+
+hqdm:StateOfOrdinaryBiologicalObject a rdfs:Class ;
+    skos:prefLabel "State of Ordinary Biological Object"@en ;
+    skos:definition "A [StateOfBiologicalObject](#StateOfBiologicalObject) that is also a [StateOfOrdinaryPhysicalObject](#StateOfOrdinaryPhysicalObject) that is an [OrdinaryBiologicalObject](#OrdinaryBiologicalObject) or a `temporal part of` an [OrdinaryBiologicalObject](#OrdinaryBiologicalObject)."@en ;
+    rdfs:subClassOf hqdm:StateOfBiologicalObject,
+        hqdm:StateOfOrdinaryPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_21.png> .
+
+hqdm:StateOfOrdinaryFunctionalObject a rdfs:Class ;
+    skos:prefLabel "State of Ordinary Functional Object"@en ;
+    skos:definition "Any [StateOfFunctionalObject](#StateOfFunctionalObject) that is also a [StateOfOrdinaryPhysicalObject](#StateOfOrdinaryPhysicalObject)."@en ;
+    rdfs:subClassOf hqdm:StateOfFunctionalObject,
+        hqdm:StateOfOrdinaryPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_27.png> .
+
+hqdm:StateOfOrdinaryPhysicalObject a rdfs:Class ;
+    skos:prefLabel "State of Ordinary Physical Object"@en ;
+    skos:definition "A [StateOfPhysicalObject](#StateOfPhysicalObject) that is an [OrdinaryPhysicalObject](#OrdinaryPhysicalObject) or a `temporal part of` one."@en ;
+    rdfs:subClassOf hqdm:StateOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_08.png> .
+
+hqdm:StateOfOrganization a rdfs:Class ;
+    skos:prefLabel "State of Organization"@en ;
+    skos:definition "A [StateOfParty](#StateOfParty) that is also a [StateOfSociallyConstructedObject](#StateOfSociallyConstructedObject) that is an [Organization](#Organization) or a `temporal part of` an [Organization](#Organization)."@en ;
+    rdfs:subClassOf hqdm:StateOfParty,
+        hqdm:StateOfSociallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_31.png> .
+
+hqdm:StateOfOrganizationComponent a rdfs:Class ;
+    skos:prefLabel "State of Organization Component"@en ;
+    skos:definition "A [StateOfSystemComponent](#StateOfSystemComponent) that is also a [StateOfSociallyConstructedObject](#StateOfSociallyConstructedObject) that is a `temporal part of` an [OrganizationComponent](#OrganizationComponent)."@en ;
+    rdfs:subClassOf hqdm:StateOfSociallyConstructedObject,
+        hqdm:StateOfSystemComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_33.png> .
+
+hqdm:StateOfParty a rdfs:Class ;
+    skos:prefLabel "State of Party"@en ;
+    skos:definition "A [StateOfSystem](#StateOfSystem) that is a party or a `temporal part of` a [Party](#Party)."@en ;
+    rdfs:subClassOf hqdm:StateOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_30.png> .
+
+hqdm:StateOfPerson a rdfs:Class ;
+    skos:prefLabel "State of Person"@en ;
+    skos:definition "A [StateOfBiologicalSystem](#StateOfBiologicalSystem) and [StateOfParty](#StateOfParty) that is a [Person](#Person) or a `temporal part of` a [Person](#Person)."@en ;
+    rdfs:subClassOf hqdm:StateOfBiologicalSystem,
+        hqdm:StateOfParty ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_23.png> .
+
+hqdm:StateOfPhysicalObject a rdfs:Class ;
+    skos:prefLabel "State of Physical Object"@en ;
+    skos:definition "A [State](#State) that is a [PhysicalObject](#PhysicalObject) or a `temporal part of` a [PhysicalObject](#PhysicalObject)."@en ;
+    rdfs:subClassOf hqdm:State ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_07.png> .
+
+hqdm:StateOfPosition a rdfs:Class ;
+    skos:prefLabel "State of Position"@en ;
+    skos:definition "A [StateOfOrganizationComponent](#StateOfOrganizationComponent) that is a [Position](#Position) or a `temporal part of` a [Position](#Position)."@en ;
+    rdfs:subClassOf hqdm:StateOfOrganizationComponent ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_33.png> .
+
+hqdm:StateOfSalesProductInstance a rdfs:Class ;
+    skos:prefLabel "State of Sales Product Instance"@en ;
+    skos:definition "A [StateOfOrdinaryFunctionalObject](#StateOfOrdinaryFunctionalObject) that is a [SalesProductInstance](#SalesProductInstance) or a `temporal part of` one."@en ;
+    rdfs:subClassOf hqdm:StateOfOrdinaryFunctionalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_43.png> .
+
+hqdm:StateOfSign a rdfs:Class ;
+    skos:prefLabel "State of Sign"@en ;
+    skos:definition "A [StateOfSociallyConstructedObject](#StateOfSociallyConstructedObject) that is a [Sign](#Sign) or a `temporal part of` a [Sign](#Sign)."@en ;
+    rdfs:subClassOf hqdm:StateOfSociallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_45.png> .
+
+hqdm:StateOfSociallyConstructedActivity a rdfs:Class ;
+    skos:prefLabel "State of Socially Constructed Activity"@en ;
+    skos:definition "Any [StateOfSociallyConstructedObject](#StateOfSociallyConstructedObject) that is also a [StateOfActivity](#StateOfActivity)."@en ;
+    rdfs:subClassOf hqdm:StateOfActivity,
+        hqdm:StateOfSociallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_29.png> .
+
+hqdm:StateOfSociallyConstructedObject a rdfs:Class ;
+    skos:prefLabel "State of Socially Constructed Object"@en ;
+    skos:definition "A [StateOfIntentionallyConstructedObject](#StateOfIntentionallyConstructedObject) that is a [SociallyConstructedObject](#SociallyConstructedObject) or a `temporal part of` a [SociallyConstructedObject](#SociallyConstructedObject)."@en ;
+    rdfs:subClassOf hqdm:StateOfIntentionallyConstructedObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_29.png> .
+
+hqdm:StateOfSystem a rdfs:Class ;
+    skos:prefLabel "State of System"@en ;
+    skos:definition "A [StateOfOrdinaryPhysicalObject](#StateOfOrdinaryPhysicalObject) that is a [System](#System) or a `temporal part of` a [System](#System)."@en ;
+    rdfs:subClassOf hqdm:StateOfOrdinaryPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_17.png> .
+
+hqdm:StateOfSystemComponent a rdfs:Class ;
+    skos:prefLabel "State of System Component"@en ;
+    skos:definition "A [StateOfPhysicalObject](#StateOfPhysicalObject) that is a [SystemComponent](#SystemComponent) or a `temporal part of` a [SystemComponent](#SystemComponent)."@en ;
+    rdfs:subClassOf hqdm:StateOfPhysicalObject ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_18.png> .
+
+hqdm:System a rdfs:Class ;
+    skos:prefLabel "System"@en ;
+    skos:definition "An [OrdinaryPhysicalObject](#OrdinaryPhysicalObject) that is an organized or connected group of [PhysicalObject](#PhysicalObject)."@en ;
+    rdfs:subClassOf hqdm:OrdinaryPhysicalObject,
+        hqdm:StateOfSystem ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_17.png> .
+
+hqdm:SystemComponent a rdfs:Class ;
+    skos:prefLabel "System Component"@en ;
+    skos:definition "A [PhysicalObject](#PhysicalObject) that is a `component of` a [System](#System) and that can be completely replaced without losing identity."@en ;
+    rdfs:subClassOf hqdm:PhysicalObject,
+        hqdm:StateOfSystemComponent ;
+    skos:scopeNote "A `System Component`'s existence is dependent on the [System](#System) it is a component of, unlike any [Ordinary Physical Object](#OrdinaryPhysicalObject) that may be [installed](#InstalledObject) as the component."@en ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_18.png> .
+
+hqdm:Thing a rdfs:Class ;
+    skos:prefLabel "Thing"@en ;
+    skos:definition "Anything that exists, real or imagined."@en ;
+    rdfs:subClassOf rdfs:Resource ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_01.png> .
+
+hqdm:TransferOfOwnership a rdfs:Class ;
+    skos:prefLabel "Transfer of Ownership"@en ;
+    skos:definition "A [SociallyConstructedActivity](#SociallyConstructedActivity) that ends one [Ownership](#Ownership) and begins another for assets that are a `temporal part of` the same [PhysicalObject](#PhysicalObject)."@en ;
+    rdfs:subClassOf hqdm:SociallyConstructedActivity ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_36.png> .
+
+hqdm:TransferOfOwnershipOfMoney a rdfs:Class ;
+    skos:prefLabel "Transfer of Ownership of Money"@en ;
+    skos:definition "A [TransferOfOwnership](#TransferOfOwnership) where the [Asset](#Asset) is a [MoneyAsset](#MoneyAsset)."@en ;
+    rdfs:subClassOf hqdm:TransferOfOwnership ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_36.png> .
+
+hqdm:Transferee a rdfs:Class ;
+    skos:prefLabel "Transferee"@en ;
+    skos:definition "A [StateOfParty](#StateOfParty) and [Participant](#Participant) receiving ownership in a [TransferOfOwnership](#TransferOfOwnership)."@en ;
+    rdfs:subClassOf hqdm:Participant,
+        hqdm:StateOfParty ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_36.png> .
+
+hqdm:Transferor a rdfs:Class ;
+    skos:prefLabel "Transferor"@en ;
+    skos:definition "A [StateOfParty](#StateOfParty) that is also a [Participant](#Participant) that is a `temporal part of` an [Owner](#Owner) that is a [participant in](#participantIn) one or more [TransferOfOwnership](#TransferOfOwnership)."@en ;
+    rdfs:subClassOf hqdm:Participant,
+        hqdm:StateOfParty ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_36.png> .
+
+hqdm:UnitOfMeasure a rdfs:Class ;
+    skos:prefLabel "Unit of Measure"@en ;
+    skos:definition "A plus one [Function](#Function) for a [Scale](#Scale)."@en ;
+    rdfs:subClassOf hqdm:Function ;
+    foaf:image <https://raw.githubusercontent.com/wiki/hqdmTop/hqdmFramework/diagrams/diagram_12.png> .

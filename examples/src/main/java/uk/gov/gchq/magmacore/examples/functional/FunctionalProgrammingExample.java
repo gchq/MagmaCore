@@ -207,7 +207,7 @@ public class FunctionalProgrammingExample {
          */
         ctx.startOfResearch = SpatioTemporalExtentServices
             .createPointInTime(randomIri());
-        ctx.startOfResearch.addStringValue(HQDM.VALUE_, now);
+        ctx.startOfResearch.addStringValue(HQDM.SKOS_DEFINITION, now);
 
         /*
          * Create the Activity.
