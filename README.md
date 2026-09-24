@@ -21,6 +21,18 @@ HQDM contains the replication of an openly available data model based on key ont
 
 An introduction to Magma Core is provided in the [Magma Core Wiki](https://github.com/gchq/MagmaCore/wiki).
 
+### Modules
+
+The repository is split into five Maven modules:
+
+| Module | Purpose |
+| --- | --- |
+| `hqdm` | HQDM domain objects, RDF primitives, construction services and the extension service-provider interface. |
+| `core` | Jena-backed persistence, querying, validation and transformation services built on the HQDM model. |
+| `hqdm-canonical` | Builders for expressing canonical HQDM relationships as RDF triples. |
+| `model-extension-example` | An example custom HQDM model extension and `ExtensionServiceProvider` implementation. |
+| `examples` | Example use of extensions, Magma Core databases, SPARQL queries and Fuseki integration. |
+
 ### Prerequisites
 
 - [Java 17](https://openjdk.java.net/projects/jdk/17/) - Core language

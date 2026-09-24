@@ -13,8 +13,7 @@
  */
 
 /**
- * Classes demonstrating implementation and use of Magma Core databases, SPARQL queries and Fuseki
- * server.
+ * Examples showing HQDM extensions, Magma Core databases, SPARQL queries and Fuseki integration.
  */
 module uk.gov.gchq.magmacore.examples {
     requires uk.gov.gchq.magmacore.hqdm;

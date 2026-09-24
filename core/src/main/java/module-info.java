@@ -13,8 +13,7 @@
  */
 
 /**
- * Magma Core is a lightweight set of Java classes to enable HQDM data objects to be created and
- * used as RDF Linked Data through Apache Jena.
+ * Jena-backed persistence, querying, validation and transformation services for HQDM data.
  */
 module uk.gov.gchq.magmacore {
     requires org.apache.jena.arq;

@@ -1,5 +1,5 @@
 /**
- * Example module for extension of MagmaCore HQDM classes.
+ * Example HQDM model extension and ExtensionServiceProvider implementation.
  */
 module uk.gov.gchq.magmacore.examples.extensions {
     exports uk.gov.gchq.magmacore.examples.extensions.ext;

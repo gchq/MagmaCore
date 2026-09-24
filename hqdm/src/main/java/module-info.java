@@ -13,7 +13,8 @@
  */
 
 /**
- * Classes for constructing HQDM objects in java.
+ * HQDM domain objects, RDF primitives, construction services and the extension service-provider
+ * API.
  */
 module uk.gov.gchq.magmacore.hqdm {
     exports uk.gov.gchq.magmacore.hqdm.exception;

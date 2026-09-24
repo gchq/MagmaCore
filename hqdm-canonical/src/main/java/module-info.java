@@ -13,7 +13,7 @@
  */
 
 /**
- * Classes for constructing HQDM objects as RDF triples.
+ * Builders for expressing canonical HQDM relationships as RDF triples using Magma Core.
  */
 module uk.gov.gchq.magmacore.hqdm.canonical {
     requires transitive uk.gov.gchq.magmacore;
