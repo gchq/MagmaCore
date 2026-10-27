@@ -1,5 +1,11 @@
 # Magma Core
+## This project has been archived
 
+**This project has been archived and is no longer under active maintenance. Should you have any questions or require further information, please do not hesitate to reach out to us at the following email address.**
+
+**oss@gchq.gov.uk**
+
+---
 Magma Core is a lightweight set of Java classes to enable [HQDM](https://github.com/hqdmTop/hqdmFramework/wiki) data objects to be created and used as RDF Linked Data through [Apache Jena](https://jena.apache.org).
 
 ## Introduction
